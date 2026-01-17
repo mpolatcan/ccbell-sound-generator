@@ -217,29 +217,29 @@ You can also generate sounds for specific tools:
 
 ### Architecture
 ```
-┌─────────────────────────────────────────────────────────────┐
-│           HuggingFace Spaces (Free CPU Tier)                │
-├─────────────────────────────────────────────────────────────┤
-│  ┌────────────────────────────────────────────────────────┐ │
-│  │                  Gradio Application                    │ │
-│  │  ┌────────────────────┐  ┌──────────────────────────┐  │ │
-│  │  │ Stable Audio Open  │  │ Stable Audio Open 1.0    │  │ │
-│  │  │ Small (~3.6GB)     │  │ (~7.6GB) - Higher quality│  │ │
-│  │  └────────────────────┘  └──────────────────────────┘  │ │
-│  │         ↑ Model Selection Dropdown (lazy loading) ↑    │ │
-│  │                                                        │ │
-│  │  Tab 1: Generate Sounds                                │ │
-│  │  Tab 2: Publish to GitHub                              │ │
-│  └────────────────────────────────────────────────────────┘ │
-│                                                              │
-│  Public URL: https://{username}-ccbell-sound-generator.hf.space
-└─────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────┐
+│                HuggingFace Spaces (Free CPU Tier)                   │
+├─────────────────────────────────────────────────────────────────────┤
+│  ┌───────────────────────────────────────────────────────────────┐  │
+│  │                     Gradio Application                        │  │
+│  │  ┌────────────────────────┐  ┌────────────────────────────┐   │  │
+│  │  │  Stable Audio Open     │  │  Stable Audio Open 1.0     │   │  │
+│  │  │  Small (~3.6GB)        │  │  (~7.6GB) - Higher quality │   │  │
+│  │  └────────────────────────┘  └────────────────────────────┘   │  │
+│  │           ↑ Model Selection Dropdown (lazy loading) ↑         │  │
+│  │                                                               │  │
+│  │  Tab 1: Generate Sounds                                       │  │
+│  │  Tab 2: Publish to GitHub                                     │  │
+│  └───────────────────────────────────────────────────────────────┘  │
+│                                                                     │
+│  Public URL: https://{username}-ccbell-sound-generator.hf.space     │
+└─────────────────────────────────────────────────────────────────────┘
 
-┌─────────────────────────────────────────────────────────────┐
-│               GitHub Actions CI/CD Pipeline                  │
-├─────────────────────────────────────────────────────────────┤
-│  Push to main → Sync to HuggingFace Spaces automatically    │
-└─────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────┐
+│                  GitHub Actions CI/CD Pipeline                      │
+├─────────────────────────────────────────────────────────────────────┤
+│     Push to main → Sync to HuggingFace Spaces automatically         │
+└─────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -869,8 +869,7 @@ with gr.Blocks(title="CCBell Sound Generator", theme=gr.themes.Soft()) as demo:
             gr.Markdown("Generate notification sounds for Claude Code hooks.")
 
             with gr.Accordion("📦 Sound Pack Structure", open=True):
-                gr.Markdown("""
-Generated sound packs contain WAV audio files for each hook:
+                gr.Markdown("""Generated sound packs contain WAV audio files for each hook:
 
 ```
 ccbell-sounds-{theme}-v{version}.zip
@@ -888,11 +887,10 @@ ccbell-sounds-{theme}-v{version}.zip
 ```
 
 *Note: Configuration format for ccbell plugin will be provided separately.*
-                """)
+""")
 
             with gr.Accordion("🎯 Recommended Hooks", open=True):
-                gr.Markdown("""
-| Priority | Hook | Description |
+                gr.Markdown("""| Priority | Hook | Description |
 |----------|------|-------------|
 | **Essential** | `UserPromptSubmit` | Confirms your message was sent |
 | **Essential** | `Stop` | Alerts you when task completes |
@@ -902,11 +900,10 @@ ccbell-sounds-{theme}-v{version}.zip
 | **Recommended** | `SessionEnd` | Confirms session ended |
 | **Optional** | `PreToolUse` | Tool starting (can be noisy) |
 | **Optional** | `PostToolUse` | Tool finished (can be noisy) |
-                """)
+""")
 
             with gr.Accordion("📋 Claude Code Hook Events", open=True):
-                gr.Markdown("""
-**Main Events:**
+                gr.Markdown("""**Main Events:**
 - `PreToolUse` - Runs before each tool execution
 - `PostToolUse` - Runs after each tool completes
 - `PermissionRequest` - When Claude asks for permission
@@ -925,28 +922,28 @@ ccbell-sounds-{theme}-v{version}.zip
 - `permission_prompt`, `idle_prompt`, `auth_success`, `elicitation_dialog`
 
 For full documentation, see: [Claude Code Hooks](https://code.claude.com/docs/en/hooks)
-                """)
+""")
 
     gr.Markdown("---")
     gr.Markdown("""
-    ### Tips
-    - **Model Choice**: Use Small for quick iteration, 1.0 for final production sounds
-    - **Theme + Hook**: Combine a theme preset with a hook type for best results
-    - **Duration**: 1-3 seconds works best for notifications
-    - **Advanced Settings**: Expand to fine-tune generation parameters
-    - **Reset Defaults**: Click "Reset to Model Defaults" after switching models
+### Tips
+- **Model Choice**: Use Small for quick iteration, 1.0 for final production sounds
+- **Theme + Hook**: Combine a theme preset with a hook type for best results
+- **Duration**: 1-3 seconds works best for notifications
+- **Advanced Settings**: Expand to fine-tune generation parameters
+- **Reset Defaults**: Click "Reset to Model Defaults" after switching models
 
-    ### Default Parameters by Model
-    | Parameter | Small | 1.0 |
-    |-----------|-------|-----|
-    | Steps | 8 | 50 |
-    | CFG Scale | 1.0 | 7.0 |
-    | Sampler | pingpong | dpmpp-3m-sde |
+### Default Parameters by Model
+| Parameter | Small | 1.0 |
+|-----------|-------|-----|
+| Steps | 8 | 50 |
+| CFG Scale | 1.0 | 7.0 |
+| Sampler | pingpong | dpmpp-3m-sde |
 
-    ### About
-    Powered by [Stable Audio Open](https://huggingface.co/stabilityai) models:
-    - **Small** (341M params): Fast, CPU-optimized
-    - **1.0** (1.1B params): Higher quality, longer generation
+### About
+Powered by [Stable Audio Open](https://huggingface.co/stabilityai) models:
+- **Small** (341M params): Fast, CPU-optimized
+- **1.0** (1.1B params): Higher quality, longer generation
     """)
 
 if __name__ == "__main__":
