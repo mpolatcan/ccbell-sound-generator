@@ -291,7 +291,7 @@ soundfile>=0.12.0
 ```
 
 ### Main Application (`app.py`)
-```python
+````python
 import gradio as gr
 import torch
 import numpy as np
@@ -948,7 +948,7 @@ Powered by [Stable Audio Open](https://huggingface.co/stabilityai) models:
 
 if __name__ == "__main__":
     demo.launch()
-```
+````
 
 ---
 
