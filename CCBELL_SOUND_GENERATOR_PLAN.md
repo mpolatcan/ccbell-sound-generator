@@ -470,13 +470,28 @@ jobs:
 
 ## Local Development
 
+### Python Virtual Environment
+
+**IMPORTANT**: Always use a virtual environment named `venv` for backend development.
+
+```bash
+# Create virtual environment (first time only)
+python3 -m venv venv
+
+# ALWAYS activate before running any backend commands
+source venv/bin/activate
+```
+
+### Running the Application
+
 ```bash
 # Start with docker-compose
 docker-compose up --build
 
 # Or run separately:
 
-# Backend
+# Backend (activate venv first!)
+source venv/bin/activate
 cd backend
 pip install -r requirements.txt
 uvicorn app.main:app --reload --port 8000
