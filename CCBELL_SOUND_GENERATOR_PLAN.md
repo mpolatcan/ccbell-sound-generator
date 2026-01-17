@@ -871,7 +871,7 @@ with gr.Blocks(title="CCBell Sound Generator", theme=gr.themes.Soft()) as demo:
             with gr.Accordion("📦 Sound Pack Structure", open=True):
                 gr.Markdown("""Generated sound packs contain WAV audio files for each hook:
 
-```
+```text
 ccbell-sounds-{theme}-v{version}.zip
 ├── sounds/
 │   ├── PreToolUse.wav        # Before tool execution
@@ -1092,7 +1092,7 @@ A sound pack is a ZIP archive containing WAV audio files for each Claude Code ho
 
 ### Sound Pack Directory Structure
 
-```
+```text
 ccbell-sounds-{theme}-v{version}.zip
 ├── sounds/                    # Audio files directory
 │   ├── PreToolUse.wav        # Before tool execution
