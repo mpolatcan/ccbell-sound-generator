@@ -8,7 +8,7 @@ A polished web application deployed on HuggingFace Spaces (Docker SDK, free CPU 
 |-------|------------|---------------|
 | Platform | **HuggingFace Spaces (Docker)** | Free hosting, full control, public access |
 | Backend | **FastAPI** | Modern async Python API, great ML integration |
-| Frontend | **React 18 + TypeScript** | Component-based UI, rich ecosystem |
+| Frontend | **React 19 + TypeScript** | Component-based UI, rich ecosystem |
 | Styling | **Tailwind CSS + shadcn/ui** | Polished, accessible components |
 | Build | **Vite** | Fast builds, HMR, optimized production |
 | AI Models | **Stable Audio Open Small & 1.0** | User-selectable models for different needs |
@@ -294,7 +294,7 @@ Based on the [official Claude Code hooks documentation](https://docs.anthropic.c
 
 ```dockerfile
 # Stage 1: Build frontend
-FROM node:20-alpine AS frontend-builder
+FROM node:22-alpine AS frontend-builder
 
 WORKDIR /app/frontend
 COPY frontend/package*.json ./
@@ -399,25 +399,25 @@ python-dotenv>=1.0.0
 ```json
 {
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@tanstack/react-query": "^5.17.0",
-    "zustand": "^4.4.7",
-    "wavesurfer.js": "^7.6.0",
-    "lucide-react": "^0.303.0",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.0",
-    "tailwind-merge": "^2.2.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@tanstack/react-query": "^5.62.0",
+    "zustand": "^5.0.0",
+    "wavesurfer.js": "^7.8.0",
+    "lucide-react": "^0.469.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
-    "@vitejs/plugin-react": "^4.2.0",
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.33",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.0",
-    "vite": "^5.0.0"
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.0",
+    "vite": "^6.0.0"
   }
 }
 ```
