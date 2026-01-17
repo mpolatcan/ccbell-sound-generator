@@ -304,7 +304,7 @@ COPY frontend/ ./
 RUN npm run build
 
 # Stage 2: Python backend
-FROM python:3.11-slim
+FROM python:3.13-slim
 
 # Create non-root user
 RUN useradd -m -u 1000 user
@@ -380,19 +380,20 @@ Generate AI-powered notification sounds for Claude Code.
 
 ### Backend (requirements.txt)
 ```text
-fastapi>=0.109.0
-uvicorn[standard]>=0.27.0
-python-multipart>=0.0.6
-websockets>=12.0
-torch>=2.1.0
-torchaudio>=2.1.0
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+python-multipart>=0.0.18
+websockets>=14.0
+torch>=2.5.0
+torchaudio>=2.5.0
 stable-audio-tools
 einops
-numpy
-soundfile>=0.12.0
+numpy>=2.0.0
+soundfile>=0.12.1
 pydub>=0.25.1
-PyGithub>=2.1.1
-python-dotenv>=1.0.0
+PyGithub>=2.5.0
+python-dotenv>=1.0.1
+aiofiles>=24.1.0
 ```
 
 ### Frontend (package.json dependencies)
