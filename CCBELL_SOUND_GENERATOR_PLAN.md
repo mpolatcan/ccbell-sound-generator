@@ -7,7 +7,7 @@ A Gradio web application deployed on HuggingFace Spaces (free CPU tier) that gen
 | Layer | Technology | Justification |
 |-------|------------|---------------|
 | Platform | **HuggingFace Spaces** | Free hosting, no maintenance, public access |
-| Framework | **Gradio 5.0** | Simple UI, built-in audio player, HF Spaces native |
+| Framework | **Gradio 6.x** | Simple UI, built-in audio player, HF Spaces native |
 | AI Models | **Stable Audio Open Small & 1.0** | User-selectable models for different needs |
 | Audio | **soundfile** | WAV file creation for export |
 | GitHub | **PyGithub** | Publish sound packs to GitHub releases |
@@ -254,7 +254,7 @@ emoji: 🔔
 colorFrom: indigo
 colorTo: purple
 sdk: gradio
-sdk_version: 5.0.0
+sdk_version: 6.0.0
 app_file: app.py
 pinned: false
 license: mit
@@ -284,7 +284,7 @@ torch>=2.1.0
 torchaudio>=2.1.0
 stable-audio-tools
 einops
-gradio>=5.0.0
+gradio>=6.0.0
 numpy
 PyGithub>=2.1.1
 soundfile>=0.12.0
