@@ -49,13 +49,26 @@ ccbell-sound-generator/
 
 ## Key Commands
 
+### Python Virtual Environment
+
+**IMPORTANT**: Always use the virtual environment named `venv` for backend development.
+
+```bash
+# Create virtual environment (first time only)
+python3 -m venv venv
+
+# ALWAYS activate before running any backend commands
+source venv/bin/activate
+```
+
 ### Local Development
 
 ```bash
 # Full stack with Docker
 docker-compose up --build
 
-# Backend only
+# Backend only (activate venv first!)
+source venv/bin/activate
 cd backend && pip install -r requirements.txt
 uvicorn app.main:app --reload --port 8000
 
