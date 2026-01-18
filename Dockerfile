@@ -36,7 +36,7 @@ RUN uv pip install --system \
 RUN uv pip install --system -r requirements.txt
 
 # Install stable-audio-tools without deps to skip flash-attn (CUDA-only)
-RUN uv pip install --system --no-deps stable-audio-tools==0.1.0
+RUN uv pip install --system --no-deps stable-audio-tools==0.0.19
 
 # Copy backend code and pre-built frontend
 COPY backend/ ./
