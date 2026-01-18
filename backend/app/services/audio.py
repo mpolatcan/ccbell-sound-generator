@@ -191,18 +191,20 @@ class AudioService:
                 nonlocal start_time
                 start_time = time.time()
                 estimated_total_time = steps * 1.5  # ~1.5s per step on CPU
+                last_progress = 0.3
                 while True:
                     elapsed = time.time() - start_time
-                    # Estimate progress based on time elapsed
+                    # Estimate progress based on time elapsed, but keep increasing
                     if estimated_total_time > 0:
-                        estimated_progress = min(0.3 + (elapsed / estimated_total_time) * 0.5, 0.8)
+                        raw_progress = 0.3 + (elapsed / estimated_total_time) * 0.6
                     else:
-                        estimated_progress = 0.8
+                        raw_progress = 0.9
+                    # Clamp between 0.3 and 0.9, and slowly increase if taking longer
+                    estimated_progress = min(max(raw_progress, 0.3), 0.9)
+                    # If taking longer, slowly creep up
+                    if elapsed > estimated_total_time:
+                        estimated_progress = min(0.9, estimated_progress + 0.01)
                     await self._notify_progress(job_id, estimated_progress, "generating")
-                    # Check if we've been running long enough that generation should be done
-                    if elapsed > estimated_total_time * 1.5:
-                        # Generation is taking longer than expected, keep polling
-                        pass
                     await asyncio.sleep(0.5)  # Check every 500ms
 
             # Start progress reporting task
@@ -232,7 +234,7 @@ class AudioService:
             with contextlib.suppress(asyncio.CancelledError):
                 await progress_task
 
-            await self._notify_progress(job_id, 0.8, "processing_audio")
+            await self._notify_progress(job_id, 0.95, "processing_audio")
 
             # Process output
             output = output.squeeze(0).cpu()
