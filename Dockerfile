@@ -1,43 +1,38 @@
-# Simple single-stage build with pre-built frontend
+# Optimized single-stage build for HuggingFace Spaces free tier
 FROM python:3.11-slim
 
-# Install system dependencies
+# Install system dependencies in one layer
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libsndfile1 \
     ffmpeg \
     git \
-    && rm -rf /var/lib/apt/lists/*
-
-# Create non-root user
-RUN useradd -m -u 1000 user
+    && rm -rf /var/lib/apt/lists/* \
+    && useradd -m -u 1000 user
 
 WORKDIR /home/user/app
 
-# Install PyTorch CPU-only first (largest dependency)
-RUN pip install --no-cache-dir \
+# Copy requirements first for caching
+COPY backend/requirements.txt ./
+
+# Install PyTorch CPU-only and all requirements in single pip command
+# Using --prefer-binary to avoid compilation and speed up install
+RUN pip install --no-cache-dir --prefer-binary \
     torch==2.5.1+cpu \
     torchaudio==2.5.1+cpu \
-    --index-url https://download.pytorch.org/whl/cpu
+    --index-url https://download.pytorch.org/whl/cpu \
+    && pip install --no-cache-dir --prefer-binary -r requirements.txt
 
-# Copy and install other requirements
-COPY backend/requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy backend code
+# Copy backend code and pre-built frontend
 COPY backend/ ./
-
-# Copy pre-built frontend (built locally, no npm needed)
 COPY frontend/dist ./static
 
 # Set ownership and switch to user
-RUN chown -R user:user /home/user/app
+RUN chown -R user:user /home/user/app && mkdir -p /tmp/ccbell-audio
 USER user
 
 ENV HOME=/home/user \
     PATH=/home/user/.local/bin:$PATH \
     PYTHONUNBUFFERED=1
-
-RUN mkdir -p /tmp/ccbell-audio
 
 EXPOSE 7860
 
