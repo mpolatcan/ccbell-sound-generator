@@ -24,6 +24,7 @@ frontend/dist/
 .env
 .env.local
 .env.*.local
+secrets.env
 
 # Logs
 *.log
