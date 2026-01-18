@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Slider } from '@/components/ui/slider'
 import { Progress } from '@/components/ui/progress'
 import { Skeleton } from '@/components/ui/skeleton'
+import { Badge } from '@/components/ui/badge'
 import {
   Select,
   SelectContent,
@@ -62,10 +63,20 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
   // Form state
   const [selectedModel, setSelectedModel] = useState<'small' | '1.0'>('small')
   const [selectedTheme, setSelectedTheme] = useState('sci-fi')
-  const [selectedHook, setSelectedHook] = useState('Notification')
+  const [selectedHooks, setSelectedHooks] = useState<string[]>(['Notification'])
   const [customPrompt, setCustomPrompt] = useState('')
   const [duration, setDuration] = useState(DEFAULT_DURATION)
   const [advancedSettings, setAdvancedSettings] = useState<GenerationSettings>({})
+
+  // Sequential generation state
+  const [generationQueue, setGenerationQueue] = useState<string[]>([])
+  const [currentGeneratingHook, setCurrentGeneratingHook] = useState<string | null>(null)
+  const [completedGenerations, setCompletedGenerations] = useState<Array<{
+    hookId: string
+    audioUrl: string
+    jobId: string
+  }>>([])
+  const [isSequentialGenerating, setIsSequentialGenerating] = useState(false)
 
   // Generation state
   const {
@@ -93,7 +104,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
   }, [selectedModel, maxDuration, duration])
 
   // Build prompt from theme
-  const buildPrompt = (): string => {
+  const buildPrompt = (hookId?: string): string => {
     if (selectedTheme === 'custom') {
       return customPrompt
     }
@@ -101,42 +112,101 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
     const theme = themes.find((t) => t.id === selectedTheme)
     if (!theme) return customPrompt
 
-    const hook = hooks.find((h) => h.id === selectedHook)
+    const targetHookId = hookId || selectedHooks[0]
+    const hook = hooks.find((h) => h.id === targetHookId)
     const soundType = hook?.sound_character || 'notification sound'
 
     return theme.prompt_template.replace('{sound_type}', soundType)
   }
 
-  // Handle generation
+  // Generate a single sound for a specific hook
+  const generateSingleSound = async (hookId: string) => {
+    const prompt = buildPrompt(hookId)
+    if (!prompt.trim()) return
+
+    setCurrentGeneratingHook(hookId)
+
+    try {
+      await generate({
+        model: selectedModel,
+        prompt,
+        hook_type: hookId,
+        duration,
+        settings: Object.keys(advancedSettings).length > 0 ? advancedSettings : undefined
+      })
+    } catch {
+      // Error is handled by useAudioGeneration
+      setIsSequentialGenerating(false)
+      setGenerationQueue([])
+      setCurrentGeneratingHook(null)
+    }
+  }
+
+  // Handle generation - start sequential generation
   const handleGenerate = async () => {
-    const prompt = buildPrompt()
-    if (!prompt.trim() || isGenerating) {
+    if (selectedHooks.length === 0 || isGenerating || isSequentialGenerating) {
       return
     }
 
-    await generate({
-      model: selectedModel,
-      prompt,
-      hook_type: selectedHook,
-      duration,
-      settings: Object.keys(advancedSettings).length > 0 ? advancedSettings : undefined
-    })
+    // Reset completed generations
+    setCompletedGenerations([])
+
+    if (selectedHooks.length === 1) {
+      // Single hook - simple generation
+      await generateSingleSound(selectedHooks[0])
+    } else {
+      // Multiple hooks - sequential generation
+      setIsSequentialGenerating(true)
+      setGenerationQueue([...selectedHooks])
+
+      // Start first generation
+      await generateSingleSound(selectedHooks[0])
+    }
   }
+
+  // Effect to handle sequential generation completion
+  useEffect(() => {
+    if (completedAudioUrl && currentGeneratingHook && currentJobId) {
+      // Save completed generation
+      setCompletedGenerations(prev => [
+        ...prev,
+        { hookId: currentGeneratingHook, audioUrl: completedAudioUrl, jobId: currentJobId }
+      ])
+
+      // Check if there are more hooks in the queue
+      const currentIndex = generationQueue.indexOf(currentGeneratingHook)
+      const nextHook = generationQueue[currentIndex + 1]
+
+      if (nextHook && isSequentialGenerating) {
+        // Generate next sound after a short delay
+        reset()
+        setTimeout(() => {
+          generateSingleSound(nextHook)
+        }, 500)
+      } else {
+        // All generations complete
+        setIsSequentialGenerating(false)
+        setGenerationQueue([])
+        setCurrentGeneratingHook(null)
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [completedAudioUrl, currentGeneratingHook, currentJobId])
 
   // Expose generate method via ref
   useImperativeHandle(ref, () => ({
     generate: handleGenerate
   }))
 
-  // Add to library
+  // Add single generation to library
   const handleAddToLibrary = () => {
-    if (!completedAudioUrl || !currentJobId) return
+    if (!completedAudioUrl || !currentJobId || !currentGeneratingHook) return
 
     addSound({
       id: crypto.randomUUID(),
       job_id: currentJobId,
-      hook_type: selectedHook,
-      prompt: buildPrompt(),
+      hook_type: currentGeneratingHook,
+      prompt: buildPrompt(currentGeneratingHook),
       model: selectedModel,
       duration,
       audio_url: completedAudioUrl,
@@ -145,6 +215,28 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
 
     // Reset for next generation
     reset()
+    setCurrentGeneratingHook(null)
+  }
+
+  // Add all completed generations to library
+  const handleAddAllToLibrary = () => {
+    completedGenerations.forEach(gen => {
+      addSound({
+        id: crypto.randomUUID(),
+        job_id: gen.jobId,
+        hook_type: gen.hookId,
+        prompt: buildPrompt(gen.hookId),
+        model: selectedModel,
+        duration,
+        audio_url: gen.audioUrl,
+        created_at: new Date()
+      })
+    })
+
+    // Reset
+    setCompletedGenerations([])
+    reset()
+    setCurrentGeneratingHook(null)
   }
 
   const currentPrompt = buildPrompt()
@@ -254,14 +346,14 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
 
         {/* Hook Type */}
         <div className="space-y-2">
-          <Label>Hook Type</Label>
+          <Label>Hook Types</Label>
           {hooksLoading ? (
             <Skeleton className="h-10 w-full" />
           ) : (
             <HookSelector
               hooks={hooks}
-              selectedHook={selectedHook}
-              onSelect={setSelectedHook}
+              selectedHooks={selectedHooks}
+              onSelect={setSelectedHooks}
             />
           )}
         </div>
@@ -298,24 +390,37 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
           className="w-full"
           size="lg"
           onClick={handleGenerate}
-          disabled={isGenerating || isLoading || hasApiError || !currentPrompt.trim()}
+          disabled={isGenerating || isSequentialGenerating || isLoading || hasApiError || selectedHooks.length === 0 || !currentPrompt.trim()}
         >
-          {isGenerating ? (
+          {isGenerating || isSequentialGenerating ? (
             <>
               <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-              {getStageLabel(stage)}
+              {currentGeneratingHook && hooks.find(h => h.id === currentGeneratingHook)?.name}: {getStageLabel(stage)}
             </>
           ) : (
             <>
               <Sparkles className="h-4 w-4 mr-2" />
-              Generate Sound
+              Generate {selectedHooks.length > 1 ? `${selectedHooks.length} Sounds` : 'Sound'}
             </>
           )}
         </Button>
 
         {/* Progress */}
-        {isGenerating && (
-          <div className="space-y-2">
+        {(isGenerating || isSequentialGenerating) && (
+          <div className="space-y-3">
+            {/* Sequential generation progress */}
+            {generationQueue.length > 1 && (
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <span>
+                  Generating {completedGenerations.length + 1} of {generationQueue.length}
+                </span>
+                {currentGeneratingHook && (
+                  <Badge variant="secondary">
+                    {hooks.find(h => h.id === currentGeneratingHook)?.name}
+                  </Badge>
+                )}
+              </div>
+            )}
             <Progress value={progress * 100} />
             <p className="text-sm text-center text-muted-foreground">
               {getStageLabel(stage)} ({Math.round(progress * 100)}%)
@@ -330,8 +435,37 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
           </div>
         )}
 
-        {/* Result */}
-        {completedAudioUrl && (
+        {/* Completed Generations (multiple) */}
+        {completedGenerations.length > 1 && !isSequentialGenerating && (
+          <div className="space-y-4 pt-4 border-t">
+            <div className="flex items-center justify-between">
+              <h4 className="font-medium">Generated Sounds ({completedGenerations.length})</h4>
+              <Button variant="outline" size="sm" onClick={handleAddAllToLibrary}>
+                <Plus className="h-4 w-4 mr-2" />
+                Add All to Library
+              </Button>
+            </div>
+            <div className="space-y-3">
+              {completedGenerations.map((gen) => {
+                const hook = hooks.find(h => h.id === gen.hookId)
+                return (
+                  <div key={gen.jobId} className="space-y-2 p-3 bg-muted/30 rounded-md">
+                    <div className="flex items-center gap-2">
+                      <Badge variant="secondary">{hook?.name || gen.hookId}</Badge>
+                    </div>
+                    <AudioPlayer
+                      audioUrl={gen.audioUrl}
+                      filename={`${gen.hookId.toLowerCase()}.wav`}
+                    />
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Single Result */}
+        {completedAudioUrl && completedGenerations.length <= 1 && !isSequentialGenerating && (
           <div className="space-y-4 pt-4 border-t">
             <div className="flex items-center justify-between">
               <h4 className="font-medium">Generated Sound</h4>
@@ -342,7 +476,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
             </div>
             <AudioPlayer
               audioUrl={completedAudioUrl}
-              filename={`${selectedHook.toLowerCase()}.wav`}
+              filename={`${(currentGeneratingHook || selectedHooks[0] || 'sound').toLowerCase()}.wav`}
             />
           </div>
         )}

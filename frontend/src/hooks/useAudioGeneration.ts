@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import { api } from '@/lib/api'
 import { useWebSocket } from './useWebSocket'
 import type { GenerateRequest, GenerationState, GenerationStage } from '@/types'
@@ -12,6 +12,8 @@ export function useAudioGeneration() {
     error: null
   })
   const [completedAudioUrl, setCompletedAudioUrl] = useState<string | null>(null)
+  const [usePolling, setUsePolling] = useState(false)
+  const pollingIntervalRef = useRef<number | null>(null)
 
   const handleProgress = useCallback((update: { progress: number; stage: string }) => {
     setState(prev => ({
@@ -29,9 +31,21 @@ export function useAudioGeneration() {
       progress: 1,
       stage: 'complete'
     }))
+    // Stop polling if active
+    if (pollingIntervalRef.current) {
+      clearInterval(pollingIntervalRef.current)
+      pollingIntervalRef.current = null
+    }
   }, [])
 
   const handleError = useCallback((error: string) => {
+    // If WebSocket fails, switch to polling
+    if (error === 'WebSocket connection error') {
+      console.log('WebSocket failed, switching to polling')
+      setUsePolling(true)
+      return // Don't set error state, let polling take over
+    }
+
     setState(prev => ({
       ...prev,
       isGenerating: false,
@@ -39,6 +53,11 @@ export function useAudioGeneration() {
       stage: 'error',
       error
     }))
+    // Stop polling if active
+    if (pollingIntervalRef.current) {
+      clearInterval(pollingIntervalRef.current)
+      pollingIntervalRef.current = null
+    }
   }, [])
 
   // WebSocket connection for progress updates
@@ -47,6 +66,45 @@ export function useAudioGeneration() {
     onComplete: handleComplete,
     onError: handleError
   })
+
+  // Polling fallback for WebSocket failures
+  useEffect(() => {
+    if (!usePolling || !state.currentJobId || !state.isGenerating) {
+      return
+    }
+
+    const pollStatus = async () => {
+      try {
+        const status = await api.getAudioStatus(state.currentJobId!)
+
+        handleProgress({ progress: status.progress, stage: status.stage || 'generating' })
+
+        if (status.status === 'complete' && status.audio_url) {
+          handleComplete(status.audio_url)
+          setUsePolling(false)
+        } else if (status.status === 'error') {
+          handleError(status.error || 'Generation failed')
+          setUsePolling(false)
+        }
+      } catch (error) {
+        console.error('Polling error:', error)
+        // Continue polling on network errors
+      }
+    }
+
+    // Start polling immediately
+    pollStatus()
+
+    // Then poll every 2 seconds
+    pollingIntervalRef.current = window.setInterval(pollStatus, 2000)
+
+    return () => {
+      if (pollingIntervalRef.current) {
+        clearInterval(pollingIntervalRef.current)
+        pollingIntervalRef.current = null
+      }
+    }
+  }, [usePolling, state.currentJobId, state.isGenerating, handleProgress, handleComplete, handleError])
 
   const generate = useCallback(async (request: GenerateRequest) => {
     try {
@@ -59,6 +117,7 @@ export function useAudioGeneration() {
         error: null
       })
       setCompletedAudioUrl(null)
+      setUsePolling(false)
 
       // Start generation
       const response = await api.generateAudio(request)
@@ -86,6 +145,11 @@ export function useAudioGeneration() {
       error: null
     })
     setCompletedAudioUrl(null)
+    setUsePolling(false)
+    if (pollingIntervalRef.current) {
+      clearInterval(pollingIntervalRef.current)
+      pollingIntervalRef.current = null
+    }
   }, [])
 
   return {
