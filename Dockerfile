@@ -23,8 +23,8 @@ COPY --from=ghcr.io/astral-sh/uv:0.5.18 /uv /usr/local/bin/uv
 
 WORKDIR /home/user/app
 
-# Copy requirements for dependency caching
-COPY backend/requirements.txt ./
+# Copy backend code first (needed for pyproject.toml install)
+COPY backend/ ./
 
 # Install PyTorch CPU-only version first
 RUN uv pip install --system \
@@ -32,14 +32,13 @@ RUN uv pip install --system \
     torchaudio==2.5.1 \
     --extra-index-url https://download.pytorch.org/whl/cpu
 
-# Install dependencies from requirements.txt
-RUN uv pip install --system -r requirements.txt
+# Install dependencies from pyproject.toml
+RUN uv pip install --system .
 
 # Install stable-audio-tools without deps to skip flash-attn (CUDA-only)
 RUN uv pip install --system --no-deps stable-audio-tools==0.0.19
 
-# Copy backend code and pre-built frontend
-COPY backend/ ./
+# Copy pre-built frontend
 COPY frontend/dist ./static
 
 # Set ownership and switch to user
