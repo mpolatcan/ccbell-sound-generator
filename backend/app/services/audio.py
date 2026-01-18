@@ -150,7 +150,7 @@ class AudioService:
 
             # Generate audio
             # Run generation in executor to not block event loop
-            loop = asyncio.get_event_loop()
+            loop = asyncio.get_running_loop()
 
             def do_generate():
                 with torch.no_grad():

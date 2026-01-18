@@ -1,6 +1,7 @@
 """FastAPI application entry point."""
 
 import logging
+from contextlib import asynccontextmanager
 from pathlib import Path
 
 from fastapi import FastAPI
@@ -19,6 +20,19 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Lifespan context manager for startup and shutdown events."""
+    # Startup
+    logger.info(f"Starting {settings.app_name}")
+    logger.info(f"Debug mode: {settings.debug}")
+    logger.info(f"Temp audio directory: {settings.temp_audio_dir}")
+    yield
+    # Shutdown
+    logger.info("Shutting down...")
+
+
 # Create FastAPI app
 app = FastAPI(
     title=settings.app_name,
@@ -27,6 +41,7 @@ app = FastAPI(
     docs_url="/api/docs",
     redoc_url="/api/redoc",
     openapi_url="/api/openapi.json",
+    lifespan=lifespan,
 )
 
 # Add CORS middleware for development
@@ -44,20 +59,6 @@ app.include_router(websocket.router, prefix="/api", tags=["websocket"])
 
 # Static files directory
 STATIC_DIR = Path(__file__).parent.parent / "static"
-
-
-@app.on_event("startup")
-async def startup_event():
-    """Initialize services on startup."""
-    logger.info(f"Starting {settings.app_name}")
-    logger.info(f"Debug mode: {settings.debug}")
-    logger.info(f"Temp audio directory: {settings.temp_audio_dir}")
-
-
-@app.on_event("shutdown")
-async def shutdown_event():
-    """Cleanup on shutdown."""
-    logger.info("Shutting down...")
 
 
 # Serve static files if directory exists (production)

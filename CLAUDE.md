@@ -127,7 +127,7 @@ docker build -t ccbell-sound-generator .
 
 ```bash
 cd frontend
-npx shadcn@latest add button card input label select slider tabs accordion dialog dropdown-menu toast progress badge separator scroll-area skeleton textarea tooltip
+npx shadcn@latest add button card input label select slider accordion dialog toast progress badge separator scroll-area skeleton textarea
 ```
 
 ## Architecture

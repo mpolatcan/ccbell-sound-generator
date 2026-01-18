@@ -164,7 +164,7 @@ class ModelLoader:
             # Run the actual loading in a thread pool to avoid blocking
             import concurrent.futures
 
-            loop = asyncio.get_event_loop()
+            loop = asyncio.get_running_loop()
             with concurrent.futures.ThreadPoolExecutor() as executor:
                 await loop.run_in_executor(executor, self._load_model_sync, model_id)
 
