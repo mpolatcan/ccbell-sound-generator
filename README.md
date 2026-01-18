@@ -1,0 +1,139 @@
+---
+title: CCBell Sound Generator
+emoji: 🔔
+colorFrom: indigo
+colorTo: purple
+sdk: docker
+app_port: 7860
+pinned: false
+license: mit
+suggested_hardware: cpu-basic
+---
+
+# CCBell Sound Generator
+
+Generate AI-powered notification sounds for the [Claude Code](https://github.com/anthropics/claude-code) plugin [ccbell](https://github.com/anthropics/ccbell).
+
+## Features
+
+- 🎨 **Polished UI** - Modern React interface with shadcn/ui components
+- 🎵 **Waveform Visualization** - Visual audio preview with waveform display
+- 🎭 **Theme Presets** - Sci-Fi, Retro 8-bit, Nature, Minimal, Mechanical
+- 🔔 **All Hook Types** - Generate sounds for all Claude Code events
+- 📦 **Sound Library** - Session-based collection of generated sounds
+- 💾 **Download** - Individual sounds or batch ZIP
+- 🚀 **GitHub Release** - Publish sound packs directly to GitHub
+
+## Models
+
+| Model | Parameters | Max Duration | Best For |
+|-------|-----------|--------------|----------|
+| **Stable Audio Open Small** | 341M | 11 sec | Fast iteration, CPU |
+| **Stable Audio Open 1.0** | 1.1B | 47 sec | Higher quality |
+
+## Usage
+
+1. **Select a theme** - Choose from preset themes or write a custom prompt
+2. **Choose hook type** - Select the Claude Code event for your sound
+3. **Adjust duration** - Set how long the sound should be
+4. **Generate** - Click "Generate Sound" and wait for AI magic
+5. **Preview** - Listen to the generated sound with waveform visualization
+6. **Download or Publish** - Save locally or publish to GitHub
+
+## Claude Code Hook Types
+
+The app generates sounds for these Claude Code events:
+
+| Hook Event | Description |
+|------------|-------------|
+| **PreToolUse** | Before a tool call executes |
+| **PostToolUse** | After a tool completes |
+| **Notification** | General notifications |
+| **Stop** | Main agent finishes |
+| **SubagentStop** | Subagent finishes |
+| **Bash** | Terminal command execution |
+| **Read** | File read operation |
+| **Write** | File write/create operation |
+| **Edit** | File edit operation |
+| **Task** | New agent/task spawned |
+
+## Local Development
+
+### Prerequisites
+
+- Python 3.13+
+- Node.js 22+
+- Docker (optional)
+
+### Quick Start with Docker
+
+```bash
+docker-compose up --build
+```
+
+Visit http://localhost:7860
+
+### Manual Setup
+
+**Backend:**
+
+```bash
+# Create virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Install dependencies
+cd backend
+pip install -r requirements.txt
+
+# Run server
+uvicorn app.main:app --reload --port 8000
+```
+
+**Frontend:**
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Visit http://localhost:5173 (frontend) or http://localhost:8000 (API)
+
+## Tech Stack
+
+- **Backend**: FastAPI, Python 3.13, Stable Audio Tools
+- **Frontend**: React 19, TypeScript, Vite 6, Tailwind CSS, shadcn/ui
+- **AI Models**: Stable Audio Open (Small & 1.0)
+- **Deployment**: HuggingFace Spaces (Docker SDK)
+
+## API Reference
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/health` | Health check |
+| GET | `/api/models` | List available models |
+| GET | `/api/themes` | Get theme presets |
+| GET | `/api/hooks` | Get hook types |
+| POST | `/api/generate` | Start audio generation |
+| GET | `/api/audio/{job_id}` | Download generated audio |
+| WS | `/api/ws/{job_id}` | Real-time progress updates |
+| POST | `/api/publish` | Publish to GitHub release |
+
+## Deployment
+
+This app auto-deploys to HuggingFace Spaces via GitHub Actions.
+
+Required secrets:
+- `HF_TOKEN` - HuggingFace access token
+- `HF_USERNAME` - HuggingFace username
+
+## License
+
+MIT License - See [LICENSE](LICENSE) for details.
+
+## Credits
+
+- [Stable Audio Open](https://huggingface.co/stabilityai/stable-audio-open-small) by Stability AI
+- [Claude Code](https://github.com/anthropics/claude-code) by Anthropic
+- [shadcn/ui](https://ui.shadcn.com/) for UI components

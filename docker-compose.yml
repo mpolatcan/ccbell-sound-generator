@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "7860:7860"
+    environment:
+      - CCBELL_DEBUG=true
+    volumes:
+      # Mount for development - optional
+      # - ./backend:/home/user/app
+      - ccbell-audio:/tmp/ccbell-audio
+      - ccbell-models:/home/user/.cache/ccbell-models
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:7860/api/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Development services
+  backend-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: frontend-builder
+    image: ccbell-frontend-builder
+    profiles:
+      - dev
+    command: echo "Frontend build complete"
+
+  frontend-dev:
+    image: node:22-alpine
+    profiles:
+      - dev
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "5173:5173"
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    environment:
+      - VITE_API_URL=http://localhost:8000
+
+volumes:
+  ccbell-audio:
+  ccbell-models:
