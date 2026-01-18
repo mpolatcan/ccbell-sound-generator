@@ -8,7 +8,9 @@ import type {
   AudioStatusResponse,
   PublishRequest,
   PublishResponse,
-  HealthResponse
+  HealthResponse,
+  ModelsStatusResponse,
+  ModelLoadingStatus
 } from '@/types'
 
 class ApiClient {
@@ -47,6 +49,23 @@ class ApiClient {
   // Get available models
   getModels = async (): Promise<ModelInfo[]> => {
     return this.request('/api/models')
+  }
+
+  // Get models loading status
+  getModelsStatus = async (): Promise<ModelsStatusResponse> => {
+    return this.request('/api/models/status')
+  }
+
+  // Get specific model loading status
+  getModelStatus = async (modelId: string): Promise<ModelLoadingStatus> => {
+    return this.request(`/api/models/${modelId}/status`)
+  }
+
+  // Trigger model loading
+  loadModel = async (modelId: string): Promise<{ status: string; model_id: string }> => {
+    return this.request(`/api/models/${modelId}/load`, {
+      method: 'POST'
+    })
   }
 
   // Get theme presets

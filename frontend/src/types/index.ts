@@ -84,6 +84,21 @@ export interface HealthResponse {
   models_loaded: string[]
 }
 
+export type ModelLoadingStatusType = 'idle' | 'loading' | 'ready' | 'error'
+
+export interface ModelLoadingStatus {
+  model_id: string
+  status: ModelLoadingStatusType
+  progress: number
+  stage: string | null
+  error: string | null
+}
+
+export interface ModelsStatusResponse {
+  models: Record<string, ModelLoadingStatus>
+  current_model: string | null
+}
+
 // App State Types
 
 export interface GeneratedSound {

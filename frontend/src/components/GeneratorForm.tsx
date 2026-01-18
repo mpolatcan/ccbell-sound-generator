@@ -20,8 +20,10 @@ import { ThemeSelector } from './ThemeSelector'
 import { HookSelector } from './HookSelector'
 import { AdvancedSettings } from './AdvancedSettings'
 import { AudioPlayer } from './AudioPlayer'
+import { ModelLoadingIndicator } from './ModelLoadingIndicator'
 import { useAudioGeneration } from '@/hooks/useAudioGeneration'
 import { useSoundLibrary } from '@/hooks/useSoundLibrary'
+import { useModelStatus } from '@/hooks/useModelStatus'
 import { MODEL_DEFAULTS, DEFAULT_DURATION } from '@/lib/constants'
 import { formatDuration, getStageLabel } from '@/lib/utils'
 import { Loader2, Sparkles, Plus, RefreshCw, AlertCircle } from 'lucide-react'
@@ -92,6 +94,13 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
 
   // Sound library
   const { addSound } = useSoundLibrary()
+
+  // Model loading status
+  const modelStatus = useModelStatus({
+    modelId: selectedModel,
+    pollInterval: 2000,
+    autoLoad: true
+  })
 
   // Get max duration for selected model
   const maxDuration = MODEL_DEFAULTS[selectedModel].max_duration
@@ -301,6 +310,15 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
               </SelectContent>
             </Select>
           )}
+          {/* Model Loading Status */}
+          <ModelLoadingIndicator
+            status={modelStatus.status}
+            progress={modelStatus.progress}
+            stage={modelStatus.stage}
+            error={modelStatus.error}
+            modelName={models.find(m => m.id === selectedModel)?.name || selectedModel}
+            onRetry={modelStatus.loadModel}
+          />
         </div>
 
         {/* Theme Selection */}
@@ -390,7 +408,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
           className="w-full"
           size="lg"
           onClick={handleGenerate}
-          disabled={isGenerating || isSequentialGenerating || isLoading || hasApiError || selectedHooks.length === 0 || !currentPrompt.trim()}
+          disabled={isGenerating || isSequentialGenerating || isLoading || hasApiError || selectedHooks.length === 0 || !currentPrompt.trim() || !modelStatus.isReady}
         >
           {isGenerating || isSequentialGenerating ? (
             <>

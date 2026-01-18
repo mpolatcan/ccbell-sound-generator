@@ -13,6 +13,8 @@ from app.core.models import (
     HealthResponse,
     HookType,
     ModelInfo,
+    ModelLoadingStatus,
+    ModelsStatusResponse,
     PublishRequest,
     PublishResponse,
     ThemePreset,
@@ -40,6 +42,42 @@ async def health_check():
 async def get_models():
     """Get list of available models."""
     return model_loader.get_all_models_info()
+
+
+@router.get("/models/status", response_model=ModelsStatusResponse)
+async def get_models_status():
+    """Get loading status for all models."""
+    return ModelsStatusResponse(
+        models=model_loader.get_all_loading_status(),
+        current_model=model_loader.current_model,
+    )
+
+
+@router.get("/models/{model_id}/status", response_model=ModelLoadingStatus)
+async def get_model_status(model_id: str):
+    """Get loading status for a specific model."""
+    if model_id not in ["small", "1.0"]:
+        raise HTTPException(status_code=404, detail="Model not found")
+    return model_loader.get_loading_status(model_id)
+
+
+@router.post("/models/{model_id}/load")
+async def load_model(model_id: str, background_tasks: BackgroundTasks):
+    """Trigger background loading of a model."""
+    if model_id not in ["small", "1.0"]:
+        raise HTTPException(status_code=404, detail="Model not found")
+
+    # Check if already loading or ready
+    status = model_loader.get_loading_status(model_id)
+    if status.status == "loading":
+        return {"status": "already_loading", "model_id": model_id}
+    if status.status == "ready":
+        return {"status": "already_ready", "model_id": model_id}
+
+    # Start background loading
+    background_tasks.add_task(model_loader.load_model_background, model_id)
+
+    return {"status": "loading_started", "model_id": model_id}
 
 
 @router.get("/themes", response_model=list[ThemePreset])

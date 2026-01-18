@@ -115,3 +115,20 @@ class HealthResponse(BaseModel):
     status: str = "healthy"
     version: str = "1.0.0"
     models_loaded: list[str] = []
+
+
+class ModelLoadingStatus(BaseModel):
+    """Model loading status response."""
+
+    model_id: str
+    status: Literal["idle", "loading", "ready", "error"]
+    progress: float = Field(0.0, ge=0.0, le=1.0)
+    stage: str | None = None
+    error: str | None = None
+
+
+class ModelsStatusResponse(BaseModel):
+    """Response for all models status."""
+
+    models: dict[str, ModelLoadingStatus]
+    current_model: str | None = None
