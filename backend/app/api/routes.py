@@ -5,6 +5,7 @@ import logging
 from fastapi import APIRouter, BackgroundTasks, HTTPException
 from fastapi.responses import FileResponse
 
+from app.core.config import settings
 from app.core.models import (
     AudioStatusResponse,
     GenerateRequest,
@@ -31,7 +32,7 @@ router = APIRouter()
 async def health_check():
     """Health check endpoint."""
     return HealthResponse(
-        status="healthy", version="1.0.0", models_loaded=model_loader.loaded_models
+        status="healthy", version=settings.app_version, models_loaded=model_loader.loaded_models
     )
 
 
