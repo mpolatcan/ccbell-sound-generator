@@ -5,8 +5,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Build outputs
-dist/
+# Build outputs (keep frontend/dist for deployment)
 build/
 *.egg-info/
 
@@ -30,6 +29,8 @@ npm-debug.log*
 .npm/
 .parcel-cache/
 .pytest_cache/
+tsconfig.tsbuildinfo
+*.tsbuildinfo
 
 # OS
 .DS_Store

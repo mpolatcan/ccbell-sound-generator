@@ -1,12 +1,4 @@
-# Stage 1: Build frontend
-FROM node:20-slim AS frontend-builder
-WORKDIR /app
-COPY frontend/package*.json ./
-RUN npm ci
-COPY frontend/ ./
-RUN npm run build
-
-# Stage 2: Python backend (CPU-only, smaller image)
+# Simple single-stage build with pre-built frontend
 FROM python:3.11-slim
 
 # Install system dependencies
@@ -14,15 +6,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libsndfile1 \
     ffmpeg \
     git \
-    && rm -rf /var/lib/apt/lists/* \
-    && apt-get clean
+    && rm -rf /var/lib/apt/lists/*
 
 # Create non-root user
 RUN useradd -m -u 1000 user
 
 WORKDIR /home/user/app
 
-# Install PyTorch CPU-only (much smaller than CUDA version)
+# Install PyTorch CPU-only first (largest dependency)
 RUN pip install --no-cache-dir \
     torch==2.5.1+cpu \
     torchaudio==2.5.1+cpu \
@@ -32,11 +23,11 @@ RUN pip install --no-cache-dir \
 COPY backend/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy backend
+# Copy backend code
 COPY backend/ ./
 
-# Copy frontend build
-COPY --from=frontend-builder /app/dist ./static
+# Copy pre-built frontend (built locally, no npm needed)
+COPY frontend/dist ./static
 
 # Set ownership and switch to user
 RUN chown -R user:user /home/user/app
