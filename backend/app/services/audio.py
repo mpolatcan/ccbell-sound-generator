@@ -2,6 +2,7 @@
 
 import asyncio
 import contextlib
+import time
 import uuid
 from collections.abc import Awaitable, Callable
 from pathlib import Path
@@ -11,6 +12,11 @@ from loguru import logger
 from app.core.config import settings
 from app.core.models import GenerateRequest, GenerationSettings
 from app.services.model_loader import model_loader
+
+# Job expiration time in seconds (1 hour)
+JOB_EXPIRATION_SECONDS = 3600
+# Cleanup interval in seconds (5 minutes)
+CLEANUP_INTERVAL_SECONDS = 300
 
 
 class AudioGenerationJob:
@@ -24,9 +30,14 @@ class AudioGenerationJob:
         self.stage = "queued"
         self.audio_path: Path | None = None
         self.error: str | None = None
+        self.created_at: float = time.time()
 
     def __repr__(self) -> str:
         return f"AudioGenerationJob(id={self.job_id}, status={self.status}, model={self.request.model})"
+
+    def is_expired(self) -> bool:
+        """Check if the job has expired."""
+        return time.time() - self.created_at > JOB_EXPIRATION_SECONDS
 
 
 class AudioService:
@@ -37,7 +48,82 @@ class AudioService:
         self._progress_callbacks: dict[
             str, list[Callable[[float, str, str | None], Awaitable[None]]]
         ] = {}
+        self._cleanup_task: asyncio.Task[None] | None = None
         logger.debug("AudioService initialized")
+
+    async def start_cleanup_task(self):
+        """Start the background cleanup task."""
+        if self._cleanup_task is not None:
+            return
+        self._cleanup_task = asyncio.create_task(self._cleanup_loop())
+        logger.info("Started background job cleanup task")
+
+    async def stop_cleanup_task(self):
+        """Stop the background cleanup task."""
+        if self._cleanup_task is not None:
+            self._cleanup_task.cancel()
+            with contextlib.suppress(asyncio.CancelledError):
+                await self._cleanup_task
+            self._cleanup_task = None
+            logger.info("Stopped background job cleanup task")
+
+    async def _cleanup_loop(self):
+        """Background loop that periodically cleans up expired jobs."""
+        while True:
+            try:
+                await asyncio.sleep(CLEANUP_INTERVAL_SECONDS)
+                await self._perform_cleanup()
+            except asyncio.CancelledError:
+                break
+            except Exception as e:
+                logger.error(f"Error in cleanup loop: {e}")
+                logger.opt(exception=True).debug("Cleanup loop error traceback:")
+
+    async def _perform_cleanup(self):
+        """Perform cleanup of expired jobs and enforce max files limit."""
+        # Cleanup expired jobs
+        expired_jobs = [
+            job_id
+            for job_id, job in self._jobs.items()
+            if job.is_expired() and job.status in ("complete", "error")
+        ]
+        for job_id in expired_jobs:
+            self.cleanup_job(job_id)
+            logger.info(f"Auto-cleaned expired job {job_id}")
+
+        if expired_jobs:
+            logger.info(f"Cleaned up {len(expired_jobs)} expired jobs")
+
+        # Enforce max audio files limit
+        await self._enforce_max_files()
+
+    async def _enforce_max_files(self):
+        """Remove oldest audio files if exceeding max_audio_files limit."""
+        if not settings.temp_audio_dir.exists():
+            return
+
+        audio_files = list(settings.temp_audio_dir.glob("*.wav"))
+        if len(audio_files) <= settings.max_audio_files:
+            return
+
+        # Sort by modification time (oldest first)
+        audio_files.sort(key=lambda f: f.stat().st_mtime)
+
+        # Remove oldest files until under the limit
+        files_to_remove = len(audio_files) - settings.max_audio_files
+        for audio_file in audio_files[:files_to_remove]:
+            try:
+                # Find and cleanup the associated job if it exists
+                job_id = audio_file.stem
+                if job_id in self._jobs:
+                    self.cleanup_job(job_id)
+                else:
+                    audio_file.unlink()
+                logger.info(f"Removed old audio file: {audio_file.name}")
+            except Exception as e:
+                logger.error(f"Error removing old audio file {audio_file}: {e}")
+
+        logger.info(f"Removed {files_to_remove} old audio files to stay under limit")
 
     def create_job(self, request: GenerateRequest) -> str:
         """Create a new generation job and return its ID."""
@@ -111,6 +197,9 @@ class AudioService:
             error_msg = f"Job not found: {job_id}"
             logger.error(error_msg)
             raise ValueError(error_msg)
+
+        # Initialize progress_task before try block to avoid NameError in exception handler
+        progress_task: asyncio.Task[None] | None = None
 
         try:
             job.status = "processing"
@@ -187,24 +276,34 @@ class AudioService:
 
             async def report_progress():
                 """Background task to periodically report generation progress."""
-                import time
                 nonlocal start_time
                 start_time = time.time()
                 estimated_total_time = steps * 1.5  # ~1.5s per step on CPU
-                last_progress = 0.3
+                max_runtime = 1800  # 30 minutes max to prevent infinite loops
+                last_reported_progress = 0.3
+
                 while True:
                     elapsed = time.time() - start_time
-                    # Estimate progress based on time elapsed, but keep increasing
+
+                    # Safety timeout to prevent infinite loops
+                    if elapsed > max_runtime:
+                        logger.warning(f"Job {job_id}: progress task exceeded max runtime")
+                        break
+
+                    # Estimate progress based on time elapsed
                     if estimated_total_time > 0:
-                        raw_progress = 0.3 + (elapsed / estimated_total_time) * 0.6
+                        raw_progress = 0.3 + (elapsed / estimated_total_time) * 0.65
                     else:
                         raw_progress = 0.9
-                    # Clamp between 0.3 and 0.9, and slowly increase if taking longer
-                    estimated_progress = min(max(raw_progress, 0.3), 0.9)
-                    # If taking longer, slowly creep up
-                    if elapsed > estimated_total_time:
-                        estimated_progress = min(0.9, estimated_progress + 0.01)
-                    await self._notify_progress(job_id, estimated_progress, "generating")
+
+                    # Clamp between 0.3 and 0.95, allowing progress beyond initial estimate
+                    estimated_progress = min(max(raw_progress, 0.3), 0.95)
+
+                    # Only notify if progress changed significantly (reduces CPU wake-ups)
+                    if estimated_progress - last_reported_progress >= 0.01:
+                        await self._notify_progress(job_id, estimated_progress, "generating")
+                        last_reported_progress = estimated_progress
+
                     await asyncio.sleep(0.5)  # Check every 500ms
 
             # Start progress reporting task
@@ -278,10 +377,11 @@ class AudioService:
             return output_path
 
         except Exception as e:
-            # Cancel progress task on error
-            progress_task.cancel()
-            with contextlib.suppress(asyncio.CancelledError):
-                await progress_task
+            # Cancel progress task on error (if it was started)
+            if progress_task is not None:
+                progress_task.cancel()
+                with contextlib.suppress(asyncio.CancelledError):
+                    await progress_task
             logger.error(f"Job {job_id}: error generating audio: {e}")
             logger.opt(exception=True).debug("Audio generation error traceback:")
             job.status = "error"
