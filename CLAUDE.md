@@ -143,6 +143,9 @@ npx shadcn@latest add button card input label select slider tabs accordion dialo
 |--------|----------|-------------|
 | GET | `/api/health` | Health check |
 | GET | `/api/models` | List available models |
+| GET | `/api/models/status` | Get loading status for all models |
+| GET | `/api/models/{model_id}/status` | Get loading status for a specific model |
+| POST | `/api/models/{model_id}/load` | Trigger background loading of a model |
 | GET | `/api/themes` | Get theme presets |
 | GET | `/api/hooks` | Get hook types with metadata |
 | POST | `/api/generate` | Start audio generation (returns job_id) |
@@ -201,7 +204,7 @@ The app generates sounds for these Claude Code events:
 - React 19, TypeScript 5.7
 - Vite 6, Tailwind CSS 3.4
 - @tanstack/react-query 5.62, zustand 5
-- wavesurfer.js 7.8, lucide-react, jszip 3.10
+- lucide-react, jszip 3.10
 
 ## Implementation Notes
 
@@ -231,6 +234,8 @@ All settings can be overridden via environment variables with the `CCBELL_` pref
 | `CCBELL_DEFAULT_STEPS_SMALL` | `8` | Diffusion steps for small model |
 | `CCBELL_DEFAULT_STEPS_LARGE` | `100` | Diffusion steps for 1.0 model |
 | `CCBELL_DEFAULT_CFG_SCALE` | `1.0` | Classifier-free guidance scale |
+| `CCBELL_DEFAULT_SAMPLER_SMALL` | `pingpong` | Sampler for small model |
+| `CCBELL_DEFAULT_SAMPLER_LARGE` | `dpmpp-3m-sde` | Sampler for 1.0 model |
 | `CCBELL_TEMP_AUDIO_DIR` | `/tmp/ccbell-audio` | Temporary audio directory |
 | `CCBELL_MAX_AUDIO_FILES` | `100` | Max stored audio files |
 | `CCBELL_GITHUB_TOKEN` | `null` | GitHub token for publishing |
