@@ -1,11 +1,19 @@
-# Simple slim build for HuggingFace Spaces
+# CPU-only build for HuggingFace Spaces free tier
 FROM python:3.11-slim
+
+# Force CPU-only mode - disable all CUDA compilation
+ENV CUDA_VISIBLE_DEVICES=""
+ENV USE_CUDA=0
+ENV FORCE_CUDA=0
+ENV TORCH_CUDA_ARCH_LIST=""
+ENV CUDA_HOME=""
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libsndfile1 \
     ffmpeg \
     git \
+    build-essential \
     && rm -rf /var/lib/apt/lists/* \
     && useradd -m -u 1000 user
 
@@ -14,11 +22,14 @@ WORKDIR /home/user/app
 # Copy requirements first for caching
 COPY backend/requirements.txt ./
 
-# Install PyTorch CPU with specific wheel and other requirements
+# Install PyTorch CPU-only version first
 RUN pip install --no-cache-dir \
-    https://download.pytorch.org/whl/cpu/torch-2.5.1%2Bcpu-cp311-cp311-linux_x86_64.whl \
-    https://download.pytorch.org/whl/cpu/torchaudio-2.5.1%2Bcpu-cp311-cp311-linux_x86_64.whl \
-    && pip install --no-cache-dir -r requirements.txt
+    torch==2.5.1+cpu \
+    torchaudio==2.5.1+cpu \
+    --index-url https://download.pytorch.org/whl/cpu
+
+# Install other requirements with CPU-only flags
+RUN FORCE_CUDA=0 USE_CUDA=0 pip install --no-cache-dir -r requirements.txt
 
 # Copy backend code and pre-built frontend
 COPY backend/ ./
