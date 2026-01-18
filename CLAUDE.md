@@ -239,6 +239,7 @@ All settings can be overridden via environment variables with the `CCBELL_` pref
 | `CCBELL_TEMP_AUDIO_DIR` | `/tmp/ccbell-audio` | Temporary audio directory |
 | `CCBELL_MAX_AUDIO_FILES` | `100` | Max stored audio files |
 | `CCBELL_GITHUB_TOKEN` | `null` | GitHub token for publishing |
+| `CCBELL_HF_TOKEN` | `null` | HuggingFace token for gated model access |
 
 ## CI/CD Pipelines
 

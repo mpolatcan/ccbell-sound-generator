@@ -15,6 +15,28 @@ logger = logging.getLogger(__name__)
 
 # Lazy import flag
 _torch_available: bool | None = None
+_hf_logged_in: bool = False
+
+
+def _ensure_hf_login() -> None:
+    """Ensure HuggingFace login for gated model access."""
+    global _hf_logged_in
+    if _hf_logged_in:
+        return
+
+    if settings.hf_token:
+        try:
+            from huggingface_hub import login
+
+            login(token=settings.hf_token, add_to_git_credential=False)
+            logger.info("Successfully logged in to HuggingFace")
+            _hf_logged_in = True
+        except Exception as e:
+            logger.warning(f"Failed to login to HuggingFace: {e}")
+    else:
+        logger.warning(
+            "No HuggingFace token configured. Set CCBELL_HF_TOKEN env var to access gated models."
+        )
 
 
 def _check_torch() -> bool:
@@ -168,6 +190,9 @@ class ModelLoader:
         self._update_loading_state(model_id, "loading", progress=0.1, stage="initializing")
 
         try:
+            # Ensure HuggingFace login for gated models
+            _ensure_hf_login()
+
             # Unload other models to save memory
             self._unload_all_models_sync()
             self._update_loading_state(model_id, "loading", progress=0.2, stage="downloading")
@@ -224,6 +249,9 @@ class ModelLoader:
         self._update_loading_state(model_id, "loading", progress=0.1, stage="initializing")
 
         try:
+            # Ensure HuggingFace login for gated models
+            _ensure_hf_login()
+
             # Import stable_audio_tools here to avoid loading at startup
             from stable_audio_tools import get_pretrained_model
 
