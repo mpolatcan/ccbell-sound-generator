@@ -241,8 +241,7 @@ All settings can be overridden via environment variables with the `CCBELL_` pref
 | `CCBELL_TEMP_AUDIO_DIR` | `/tmp/ccbell-audio` | Temporary audio directory |
 | `CCBELL_MAX_AUDIO_FILES` | `100` | Max stored audio files |
 | `CCBELL_GITHUB_TOKEN` | `null` | GitHub token for publishing |
-| `CCBELL_HF_TOKEN` | `null` | HuggingFace token for gated model access (recommended for HF Spaces) |
-| `HF_TOKEN` | `null` | HuggingFace token for gated model access (fallback) |
+| `CCBELL_HF_TOKEN` | `null` | HuggingFace token for gated model access |
 
 ## CI/CD Pipelines
 
@@ -280,7 +279,7 @@ git push origin v1.0.0
 
 | Secret | Description |
 |--------|-------------|
-| `HF_TOKEN` | HuggingFace API token with write access |
+| `HF_TOKEN` | HuggingFace API token with write access (for CI/CD deployment) |
 | `HF_USERNAME` | HuggingFace username/organization |
 
 ### Environment
