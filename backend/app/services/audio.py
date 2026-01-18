@@ -180,12 +180,36 @@ class AudioService:
                 {"prompt": job.request.prompt, "seconds_start": 0, "seconds_total": duration}
             ]
 
-            # Generate audio
+            # Generate audio with progress reporting
             # Run generation in executor to not block event loop
             loop = asyncio.get_running_loop()
+            start_time: float | None = None
+
+            async def report_progress():
+                """Background task to periodically report generation progress."""
+                import time
+                nonlocal start_time
+                start_time = time.time()
+                estimated_total_time = steps * 1.5  # ~1.5s per step on CPU
+                while True:
+                    elapsed = time.time() - start_time
+                    # Estimate progress based on time elapsed
+                    if estimated_total_time > 0:
+                        estimated_progress = min(0.3 + (elapsed / estimated_total_time) * 0.5, 0.8)
+                    else:
+                        estimated_progress = 0.8
+                    await self._notify_progress(job_id, estimated_progress, "generating")
+                    # Check if we've been running long enough that generation should be done
+                    if elapsed > estimated_total_time * 1.5:
+                        # Generation is taking longer than expected, keep polling
+                        pass
+                    await asyncio.sleep(0.5)  # Check every 500ms
+
+            # Start progress reporting task
+            progress_task = asyncio.create_task(report_progress())
 
             def do_generate():
-                logger.debug(f"Job {job_id}: starting diffusion generation")
+                logger.debug(f"Job {job_id}: starting diffusion generation with {steps} steps")
                 with torch.no_grad():
                     output = generate_diffusion_cond(
                         model,
@@ -202,6 +226,11 @@ class AudioService:
                 return output
 
             output = await loop.run_in_executor(None, do_generate)
+
+            # Wait for progress task to complete
+            progress_task.cancel()
+            with contextlib.suppress(asyncio.CancelledError):
+                await progress_task
 
             await self._notify_progress(job_id, 0.8, "processing_audio")
 
@@ -247,6 +276,10 @@ class AudioService:
             return output_path
 
         except Exception as e:
+            # Cancel progress task on error
+            progress_task.cancel()
+            with contextlib.suppress(asyncio.CancelledError):
+                await progress_task
             logger.error(f"Job {job_id}: error generating audio: {e}")
             logger.opt(exception=True).debug("Audio generation error traceback:")
             job.status = "error"
