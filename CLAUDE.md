@@ -275,6 +275,23 @@ git tag -a v1.0.0 -m "Release version 1.0.0"
 git push origin v1.0.0
 ```
 
+### Checking Deployment
+
+After GitHub Actions pipeline completes and HF Space is running:
+
+1. Check deployment status: https://github.com/mpolatcan/ccbell-sound-generator/actions/workflows/deploy.yml
+2. Verify Space is running: https://huggingface.co/spaces/mpolatcan/ccbell-sound-generator
+3. Check Space logs for any errors:
+
+```bash
+# Setup (first time only)
+cp secrets.env.example secrets.env
+# Edit secrets.env and add your HF_TOKEN
+
+# Check logs
+./scripts/check-hf-space-logs.sh
+```
+
 ### Required Secrets
 
 | Secret | Description |
