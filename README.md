@@ -132,6 +132,9 @@ Visit http://localhost:5173 (frontend) or http://localhost:8000 (API)
 |--------|----------|-------------|
 | GET | `/api/health` | Health check |
 | GET | `/api/models` | List available models |
+| GET | `/api/models/status` | Get loading status for all models |
+| GET | `/api/models/{model_id}/status` | Get loading status for a specific model |
+| POST | `/api/models/{model_id}/load` | Trigger background loading of a model |
 | GET | `/api/themes` | Get theme presets |
 | GET | `/api/hooks` | Get hook types |
 | POST | `/api/generate` | Start audio generation |

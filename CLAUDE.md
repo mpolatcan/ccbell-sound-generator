@@ -5,11 +5,11 @@ AI-powered notification sound generator for the Claude Code plugin "ccbell", dep
 ## Project Overview
 
 This is a full-stack web application with:
-- **Backend**: FastAPI (Python 3.11) - serves API and static files
+- **Backend**: FastAPI (Python 3.11-3.12) - serves API and static files
 - **Frontend**: React 19 + TypeScript + Vite 6 + Tailwind CSS + shadcn/ui
 - **AI Models**: Stable Audio Open (Small & 1.0) for audio generation
 - **Deployment**: HuggingFace Spaces Docker SDK on free CPU tier
-- **Tooling**: uv (package manager), ruff (linter/formatter), ty (type checker)
+- **Tooling**: uv (package manager), ruff (linter/formatter), ty>=0.0.1a5 (type checker)
 
 ## Directory Structure
 
@@ -87,7 +87,6 @@ cd backend
 uv venv ../venv  # Creates venv at project root
 source ../venv/bin/activate
 uv pip install -e ".[dev]"
-pip install ruff ty
 uv pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
 uv pip install --no-deps stable-audio-tools
 
@@ -193,12 +192,12 @@ The app generates sounds for these Claude Code events:
 
 ## Dependencies
 
-### Backend (Python 3.11)
+### Backend (Python 3.11-3.12)
 - **Runtime**: FastAPI 0.115.6, uvicorn 0.34.0, pydantic-settings 2.7.1
 - **ML**: torch 2.5.1 (CPU), torchaudio 2.5.1, stable-audio-tools 0.0.19
 - **Audio**: numpy 1.23.5, scipy 1.11.4
 - **Integrations**: PyGithub 2.5.0
-- **Dev Tools**: ruff 0.9+, ty (type checker)
+- **Dev Tools**: ruff 0.9+, ty>=0.0.1a5 (type checker)
 
 ### Frontend (Node.js 22)
 - React 19, TypeScript 5.7
@@ -239,8 +238,7 @@ All settings can be overridden via environment variables with the `CCBELL_` pref
 | `CCBELL_TEMP_AUDIO_DIR` | `/tmp/ccbell-audio` | Temporary audio directory |
 | `CCBELL_MAX_AUDIO_FILES` | `100` | Max stored audio files |
 | `CCBELL_GITHUB_TOKEN` | `null` | GitHub token for publishing |
-| `CCBELL_HF_TOKEN` | `null` | HuggingFace token for gated model access |
-| `HF_TOKEN` | `null` | Standard HuggingFace token (auto-injected by HF Spaces) |
+| `HF_TOKEN` | `null` | HuggingFace token for gated model access (auto-injected by HF Spaces) |
 
 ## CI/CD Pipelines
 

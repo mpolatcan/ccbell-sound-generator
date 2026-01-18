@@ -10,6 +10,8 @@ dependencies = [
     "fastapi==0.115.6",
     "pydantic-settings==2.7.1",
     "uvicorn[standard]==0.34.0",
+    # Logging
+    "loguru==0.7.2",
     # Audio processing (transitive deps for torch/stable-audio-tools)
     "numpy==1.23.5",
     "scipy==1.11.4",

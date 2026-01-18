@@ -2,17 +2,16 @@
 
 import asyncio
 import gc
-import logging
 import os
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Literal
+
+from loguru import logger
 
 from app.core.config import settings
 
 if TYPE_CHECKING:
     from app.core.models import ModelInfo, ModelLoadingStatus
-
-logger = logging.getLogger(__name__)
 
 # Lazy import flag
 _torch_available: bool | None = None
@@ -20,14 +19,11 @@ _hf_logged_in: bool = False
 
 
 def _get_hf_token() -> str | None:
-    """Get HuggingFace token from environment or config.
+    """Get HuggingFace token from environment.
 
-    Checks in order:
-    1. HF_TOKEN env var (standard, auto-injected by HuggingFace Spaces)
-    2. CCBELL_HF_TOKEN env var (app-specific config)
-    3. settings.hf_token (from .env file)
+    Uses HF_TOKEN env var (standard, auto-injected by HuggingFace Spaces).
     """
-    return os.environ.get("HF_TOKEN") or os.environ.get("CCBELL_HF_TOKEN") or settings.hf_token
+    return os.environ.get("HF_TOKEN")
 
 
 def _ensure_hf_login() -> None:
@@ -45,11 +41,11 @@ def _ensure_hf_login() -> None:
             logger.info("Successfully logged in to HuggingFace")
             _hf_logged_in = True
         except Exception as e:
-            logger.warning(f"Failed to login to HuggingFace: {e}")
+            logger.error(f"Failed to login to HuggingFace: {e}")
+            logger.opt(exception=True).debug("HuggingFace login traceback:")
     else:
         logger.warning(
-            "No HuggingFace token configured. "
-            "Set HF_TOKEN or CCBELL_HF_TOKEN env var to access gated models."
+            "No HuggingFace token configured. Set HF_TOKEN env var to access gated models."
         )
 
 
@@ -62,6 +58,8 @@ def _check_torch() -> bool:
         _torch_available = importlib.util.find_spec("torch") is not None
         if not _torch_available:
             logger.warning("PyTorch not available. Audio generation will not work.")
+        else:
+            logger.debug("PyTorch is available")
     return _torch_available
 
 
@@ -70,7 +68,13 @@ def _get_device() -> str:
     if _check_torch():
         import torch
 
-        return "cuda" if torch.cuda.is_available() else "cpu"
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        if device == "cuda":
+            device_name = torch.cuda.get_device_name(0) if torch.cuda.is_available() else "Unknown"
+            logger.info(f"Using GPU: {device_name}")
+        else:
+            logger.info("Using CPU for inference")
+        return device
     return "cpu"
 
 
@@ -103,12 +107,14 @@ class ModelLoader:
             "1.0": LoadingState(),
         }
         self._loading_lock = asyncio.Lock()
+        logger.debug("ModelLoader initialized")
 
     @property
     def device(self) -> str:
+        """Get the compute device."""
         if self._device is None:
             self._device = _get_device()
-            logger.info(f"ModelLoader using device: {self._device}")
+            logger.debug(f"ModelLoader device set to: {self._device}")
         return self._device
 
     @property
@@ -163,16 +169,21 @@ class ModelLoader:
             self._loading_states[model_id] = LoadingState(
                 status=status, progress=progress, stage=stage, error=error
             )
+            logger.debug(
+                f"Model {model_id} state updated: {status} ({progress * 100:.0f}%) - {stage}"
+            )
 
     async def load_model_background(self, model_id: Literal["small", "1.0"]) -> None:
         """
         Load a model in the background with progress tracking.
         """
+        logger.info(f"Starting background load of model: {model_id}")
+
         # Prevent concurrent loading
         async with self._loading_lock:
             # If already loading or ready, skip
             if self.is_loading(model_id) or self.is_ready(model_id):
-                logger.info(f"Model {model_id} is already loading or ready")
+                logger.info(f"Model {model_id} is already loading or ready, skipping")
                 return
 
             # Run the actual loading in a thread pool to avoid blocking
@@ -184,23 +195,27 @@ class ModelLoader:
 
     def _load_model_sync(self, model_id: str) -> None:
         """Synchronous model loading with progress updates."""
+        logger.debug(f"Starting sync load of model: {model_id}")
+
         if not _check_torch():
-            self._update_loading_state(
-                model_id, "error", error="PyTorch is not installed. Cannot load models."
-            )
+            error_msg = "PyTorch is not installed. Cannot load models."
+            logger.error(error_msg)
+            self._update_loading_state(model_id, "error", error=error_msg)
             return
 
         if model_id not in self.MODEL_REPOS:
-            self._update_loading_state(model_id, "error", error=f"Unknown model ID: {model_id}")
+            error_msg = f"Unknown model ID: {model_id}"
+            logger.error(error_msg)
+            self._update_loading_state(model_id, "error", error=error_msg)
             return
 
         # If model is already loaded, mark as ready
         if model_id in self._models:
-            logger.info(f"Model {model_id} already loaded")
+            logger.info(f"Model {model_id} already loaded, using cached version")
             self._update_loading_state(model_id, "ready", progress=1.0, stage="complete")
             return
 
-        logger.info(f"Starting background load of model: {model_id}")
+        logger.info(f"Loading model {model_id}: {self.MODEL_REPOS[model_id]}")
         self._update_loading_state(model_id, "loading", progress=0.1, stage="initializing")
 
         try:
@@ -216,25 +231,35 @@ class ModelLoader:
 
             self._update_loading_state(model_id, "loading", progress=0.3, stage="loading_weights")
 
+            logger.debug(f"Downloading/loading weights for {model_id}...")
             # Load the model
             model, model_config = get_pretrained_model(self.MODEL_REPOS[model_id])
+            logger.info(f"Model weights loaded for {model_id}")
 
             self._update_loading_state(model_id, "loading", progress=0.8, stage="moving_to_device")
 
             # Move to device
             model = model.to(self.device)
+            logger.debug(f"Model {model_id} moved to device: {self.device}")
 
             # Store references
             self._models[model_id] = model
             self._model_configs[model_id] = model_config
             self._current_model = model_id
 
+            # Log model info
+            sample_rate = model_config.get("sample_rate", "unknown")
+            logger.info(f"Model {model_id} loaded successfully")
+            logger.info(f"  - Sample rate: {sample_rate} Hz")
+            logger.info(f"  - Device: {self.device}")
+
             self._update_loading_state(model_id, "ready", progress=1.0, stage="complete")
-            logger.info(f"Model {model_id} loaded successfully in background")
+            logger.info(f"Model {model_id} is ready for use")
 
         except Exception as e:
             error_msg = str(e)
             logger.error(f"Failed to load model {model_id}: {error_msg}")
+            logger.opt(exception=True).debug("Model loading traceback:")
             self._update_loading_state(model_id, "error", error=error_msg)
 
     async def load_model(self, model_id: Literal["small", "1.0"]) -> tuple[Any, Any]:
@@ -244,11 +269,17 @@ class ModelLoader:
         Returns:
             Tuple of (model, model_config)
         """
+        logger.info(f"Loading model: {model_id}")
+
         if not _check_torch():
-            raise RuntimeError("PyTorch is not installed. Cannot load models.")
+            error_msg = "PyTorch is not installed. Cannot load models."
+            logger.error(error_msg)
+            raise RuntimeError(error_msg)
 
         if model_id not in self.MODEL_REPOS:
-            raise ValueError(f"Unknown model ID: {model_id}")
+            error_msg = f"Unknown model ID: {model_id}"
+            logger.error(error_msg)
+            raise ValueError(error_msg)
 
         # If model is already loaded, return it
         if model_id in self._models:
@@ -271,26 +302,36 @@ class ModelLoader:
 
             self._update_loading_state(model_id, "loading", progress=0.3, stage="loading_weights")
 
+            logger.debug(f"Downloading/loading weights for {model_id}...")
             # Load the model
             model, model_config = get_pretrained_model(self.MODEL_REPOS[model_id])
+            logger.info(f"Model weights loaded for {model_id}")
 
             self._update_loading_state(model_id, "loading", progress=0.8, stage="moving_to_device")
 
             # Move to device
             model = model.to(self.device)
+            logger.debug(f"Model {model_id} moved to device: {self.device}")
 
             # Store references
             self._models[model_id] = model
             self._model_configs[model_id] = model_config
             self._current_model = model_id
 
-            self._update_loading_state(model_id, "ready", progress=1.0, stage="complete")
+            # Log model info
+            sample_rate = model_config.get("sample_rate", "unknown")
             logger.info(f"Model {model_id} loaded successfully")
+            logger.info(f"  - Sample rate: {sample_rate} Hz")
+            logger.info(f"  - Device: {self.device}")
+
+            self._update_loading_state(model_id, "ready", progress=1.0, stage="complete")
+            logger.info(f"Model {model_id} is ready for use")
             return model, model_config
 
         except Exception as e:
             error_msg = str(e)
             logger.error(f"Failed to load model {model_id}: {error_msg}")
+            logger.opt(exception=True).debug("Model loading traceback:")
             self._update_loading_state(model_id, "error", error=error_msg)
             raise
 
@@ -311,6 +352,7 @@ class ModelLoader:
     def _unload_model_sync(self, model_id: str):
         """Synchronously unload a specific model."""
         if model_id not in self._models:
+            logger.debug(f"Model {model_id} not loaded, nothing to unload")
             return
 
         logger.info(f"Unloading model: {model_id}")
@@ -332,8 +374,9 @@ class ModelLoader:
 
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
+                logger.debug(f"CUDA cache cleared after unloading {model_id}")
 
-        logger.info(f"Model {model_id} unloaded")
+        logger.info(f"Model {model_id} unloaded and memory freed")
 
     def get_model_info(self, model_id: str) -> "ModelInfo":
         """Get information about a model."""

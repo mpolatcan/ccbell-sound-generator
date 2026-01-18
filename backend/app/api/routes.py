@@ -1,9 +1,8 @@
 """REST API endpoints."""
 
-import logging
-
 from fastapi import APIRouter, BackgroundTasks, HTTPException
 from fastapi.responses import FileResponse
+from loguru import logger
 
 from app.core.config import settings
 from app.core.models import (
@@ -25,17 +24,15 @@ from app.services.audio import audio_service
 from app.services.github import github_service
 from app.services.model_loader import model_loader
 
-logger = logging.getLogger(__name__)
-
 router = APIRouter()
 
 
 @router.get("/health", response_model=HealthResponse)
 async def health_check():
     """Health check endpoint."""
-    return HealthResponse(
-        status="healthy", version=settings.app_version, models_loaded=model_loader.loaded_models
-    )
+    models = model_loader.loaded_models
+    logger.debug(f"Health check: {len(models)} models loaded")
+    return HealthResponse(status="healthy", version=settings.app_version, models_loaded=models)
 
 
 @router.get("/models", response_model=list[ModelInfo])
@@ -47,8 +44,10 @@ async def get_models():
 @router.get("/models/status", response_model=ModelsStatusResponse)
 async def get_models_status():
     """Get loading status for all models."""
+    status = model_loader.get_all_loading_status()
+    logger.debug(f"Models status requested: {len(status)} models")
     return ModelsStatusResponse(
-        models=model_loader.get_all_loading_status(),
+        models=status,
         current_model=model_loader.current_model,
     )
 
@@ -57,6 +56,7 @@ async def get_models_status():
 async def get_model_status(model_id: str):
     """Get loading status for a specific model."""
     if model_id not in ["small", "1.0"]:
+        logger.warning(f"Unknown model requested: {model_id}")
         raise HTTPException(status_code=404, detail="Model not found")
     return model_loader.get_loading_status(model_id)
 
@@ -65,16 +65,20 @@ async def get_model_status(model_id: str):
 async def load_model(model_id: str, background_tasks: BackgroundTasks):
     """Trigger background loading of a model."""
     if model_id not in ["small", "1.0"]:
+        logger.warning(f"Unknown model load request: {model_id}")
         raise HTTPException(status_code=404, detail="Model not found")
 
     # Check if already loading or ready
     status = model_loader.get_loading_status(model_id)
     if status.status == "loading":
+        logger.info(f"Model {model_id} is already loading")
         return {"status": "already_loading", "model_id": model_id}
     if status.status == "ready":
+        logger.info(f"Model {model_id} is already ready")
         return {"status": "already_ready", "model_id": model_id}
 
     # Start background loading
+    logger.info(f"Starting background load for model: {model_id}")
     background_tasks.add_task(model_loader.load_model_background, model_id)
 
     return {"status": "loading_started", "model_id": model_id}
@@ -100,7 +104,10 @@ async def generate_audio(request: GenerateRequest, background_tasks: BackgroundT
     Returns a job ID that can be used to track progress via WebSocket
     and download the result.
     """
-    logger.info(f"Starting generation: model={request.model}, hook={request.hook_type}")
+    logger.info(
+        f"Generation request: model={request.model}, hook={request.hook_type}, duration={request.duration}s"
+    )
+    logger.debug(f"Prompt: '{request.prompt[:100]}...'")
 
     # Create job
     job_id = audio_service.create_job(request)
@@ -108,6 +115,7 @@ async def generate_audio(request: GenerateRequest, background_tasks: BackgroundT
     # Start generation in background
     background_tasks.add_task(audio_service.generate_audio, job_id)
 
+    logger.info(f"Job {job_id}: generation started")
     return GenerateResponse(job_id=job_id, status="queued")
 
 
@@ -116,10 +124,11 @@ async def get_audio_status(job_id: str):
     """Get the status of an audio generation job."""
     job = audio_service.get_job(job_id)
     if not job:
+        logger.warning(f"Status requested for unknown job: {job_id}")
         raise HTTPException(status_code=404, detail="Job not found")
 
     audio_url = f"/api/audio/{job_id}" if job.status == "complete" else None
-
+    logger.debug(f"Job {job_id} status: {job.status} ({job.progress * 100:.0f}%)")
     return AudioStatusResponse(
         job_id=job_id,
         status=job.status,
@@ -137,10 +146,13 @@ async def get_audio(job_id: str):
     if not audio_path:
         job = audio_service.get_job(job_id)
         if not job:
+            logger.warning(f"Download requested for unknown job: {job_id}")
             raise HTTPException(status_code=404, detail="Job not found")
         if job.status == "processing":
+            logger.info(f"Download requested for processing job: {job_id}")
             raise HTTPException(status_code=202, detail="Audio still processing")
         if job.status == "error":
+            logger.error(f"Download requested for failed job: {job_id} - {job.error}")
             raise HTTPException(status_code=500, detail=job.error or "Generation failed")
         raise HTTPException(status_code=404, detail="Audio file not found")
 
@@ -148,6 +160,7 @@ async def get_audio(job_id: str):
     job = audio_service.get_job(job_id)
     filename = f"{job.request.hook_type.lower()}.wav" if job else f"{job_id}.wav"
 
+    logger.info(f"Downloading audio: {filename} (job: {job_id})")
     return FileResponse(path=audio_path, media_type="audio/wav", filename=filename)
 
 
@@ -155,7 +168,7 @@ async def get_audio(job_id: str):
 async def publish_release(request: PublishRequest):
     """Publish sound pack to GitHub release."""
     logger.info(
-        f"Publishing release: {request.release_tag} to {request.repo_owner}/{request.repo_name}"
+        f"Publish request: {request.release_tag} to {request.repo_owner}/{request.repo_name}"
     )
     return await github_service.publish_release(request)
 
@@ -165,7 +178,9 @@ async def delete_audio(job_id: str):
     """Delete a generated audio file and its job."""
     job = audio_service.get_job(job_id)
     if not job:
+        logger.warning(f"Delete requested for unknown job: {job_id}")
         raise HTTPException(status_code=404, detail="Job not found")
 
     audio_service.cleanup_job(job_id)
+    logger.info(f"Deleted job: {job_id}")
     return {"status": "deleted", "job_id": job_id}

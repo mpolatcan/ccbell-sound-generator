@@ -1,12 +1,9 @@
 """WebSocket handler for real-time progress updates."""
 
-import logging
-
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+from loguru import logger
 
 from app.services.audio import audio_service
-
-logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
@@ -25,12 +22,14 @@ async def websocket_progress(websocket: WebSocket, job_id: str):
     # Check if job exists
     job = audio_service.get_job(job_id)
     if not job:
+        logger.warning(f"WebSocket connection for unknown job: {job_id}")
         await websocket.send_json({"error": "Job not found", "progress": 0, "stage": "error"})
         await websocket.close()
         return
 
     # If job is already complete, send final status
     if job.status == "complete":
+        logger.info(f"WebSocket: job {job_id} already complete, sending final status")
         await websocket.send_json(
             {"progress": 1.0, "stage": "complete", "audio_url": f"/api/audio/{job_id}"}
         )
@@ -38,6 +37,7 @@ async def websocket_progress(websocket: WebSocket, job_id: str):
         return
 
     if job.status == "error":
+        logger.warning(f"WebSocket: job {job_id} failed, sending error status")
         await websocket.send_json({"progress": 0, "stage": "error", "error": job.error})
         await websocket.close()
         return
@@ -50,7 +50,7 @@ async def websocket_progress(websocket: WebSocket, job_id: str):
                 message["audio_url"] = audio_url
             await websocket.send_json(message)
         except Exception as e:
-            logger.error(f"Error sending WebSocket message: {e}")
+            logger.error(f"Error sending WebSocket message for job {job_id}: {e}")
 
     # Register callback
     audio_service.register_progress_callback(job_id, on_progress)
@@ -58,6 +58,7 @@ async def websocket_progress(websocket: WebSocket, job_id: str):
     try:
         # Send current status
         await websocket.send_json({"progress": job.progress, "stage": job.stage})
+        logger.debug(f"WebSocket: sent initial status for job {job_id} ({job.progress * 100:.0f}%)")
 
         # Keep connection open until job completes or client disconnects
         while True:
@@ -68,12 +69,15 @@ async def websocket_progress(websocket: WebSocket, job_id: str):
                 if data == "ping":
                     await websocket.send_text("pong")
             except WebSocketDisconnect:
+                logger.info(f"WebSocket disconnected for job: {job_id}")
                 break
 
     except WebSocketDisconnect:
         logger.info(f"WebSocket disconnected for job: {job_id}")
     except Exception as e:
         logger.error(f"WebSocket error for job {job_id}: {e}")
+        logger.opt(exception=True).debug("WebSocket error traceback:")
     finally:
         # Unregister callback
         audio_service.unregister_progress_callback(job_id, on_progress)
+        logger.debug(f"WebSocket: unregistered callback for job {job_id}")

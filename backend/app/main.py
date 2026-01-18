@@ -1,6 +1,5 @@
 """FastAPI application entry point."""
 
-import logging
 from contextlib import asynccontextmanager
 from pathlib import Path
 
@@ -8,29 +7,30 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
+from loguru import logger
 
 from app.api import routes, websocket
 from app.core.config import settings
-
-# Configure logging
-logging.basicConfig(
-    level=logging.DEBUG if settings.debug else logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-)
-
-logger = logging.getLogger(__name__)
+from app.core.logging import setup_logging
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Lifespan context manager for startup and shutdown events."""
+    # Configure logging first
+    setup_logging()
+
     # Startup
-    logger.info(f"Starting {settings.app_name}")
+    logger.info(f"Starting {settings.app_name} v{settings.app_version}")
     logger.info(f"Debug mode: {settings.debug}")
+    logger.info(f"Host: {settings.host}, Port: {settings.port}")
     logger.info(f"Temp audio directory: {settings.temp_audio_dir}")
+    logger.info(f"Models cache directory: {settings.models_cache_dir}")
+    logger.info(f"Default model: {settings.default_model}")
     yield
     # Shutdown
     logger.info("Shutting down...")
+    logger.info("Shutdown complete")
 
 
 # Create FastAPI app

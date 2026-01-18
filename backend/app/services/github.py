@@ -2,16 +2,14 @@
 
 import io
 import json
-import logging
 import zipfile
 from datetime import UTC, datetime
 
 from github import Github, GithubException
+from loguru import logger
 
 from app.core.models import PublishRequest, PublishResponse
 from app.services.audio import audio_service
-
-logger = logging.getLogger(__name__)
 
 
 class GitHubService:
@@ -27,6 +25,13 @@ class GitHubService:
         Returns:
             PublishResponse with success status and release URL.
         """
+        logger.info(
+            f"Publishing release: {request.release_tag} to {request.repo_owner}/{request.repo_name}"
+        )
+        logger.debug(
+            f"Release details: {len(request.sound_files)} sound files, description provided: {bool(request.description)}"
+        )
+
         try:
             # Initialize GitHub client
             gh = Github(request.github_token)
@@ -34,8 +39,10 @@ class GitHubService:
             # Get repository
             try:
                 repo = gh.get_repo(f"{request.repo_owner}/{request.repo_name}")
+                logger.debug(f"Repository found: {repo.full_name}")
             except GithubException as e:
                 if e.status == 404:
+                    logger.error(f"Repository not found: {request.repo_owner}/{request.repo_name}")
                     return PublishResponse(
                         success=False,
                         error=f"Repository not found: {request.repo_owner}/{request.repo_name}",
@@ -44,7 +51,10 @@ class GitHubService:
 
             # Check if tag already exists
             try:
-                repo.get_release(request.release_tag)
+                existing_release = repo.get_release(request.release_tag)
+                logger.warning(
+                    f"Release with tag '{request.release_tag}' already exists: {existing_release.html_url}"
+                )
                 return PublishResponse(
                     success=False, error=f"Release with tag '{request.release_tag}' already exists"
                 )
@@ -56,6 +66,7 @@ class GitHubService:
             zip_buffer = await self._create_sound_pack_zip(request.sound_files)
 
             if zip_buffer is None:
+                logger.warning("No valid audio files found for the specified job IDs")
                 return PublishResponse(
                     success=False, error="No valid audio files found for the specified job IDs"
                 )
@@ -63,6 +74,9 @@ class GitHubService:
             # Create release
             release_body = request.description or self._generate_release_description(request)
 
+            logger.info(
+                f"Creating release '{request.release_name}' with tag '{request.release_tag}'"
+            )
             release = repo.create_git_release(
                 tag=request.release_tag,
                 name=request.release_name,
@@ -70,11 +84,13 @@ class GitHubService:
                 draft=False,
                 prerelease=False,
             )
+            logger.debug(f"Release created: {release.html_url}")
 
             # Upload ZIP as release asset
             zip_filename = f"ccbell-sounds-{request.release_tag}.zip"
             zip_data = zip_buffer.getvalue()
             zip_buffer.seek(0)
+            logger.info(f"Uploading asset: {zip_filename} ({len(zip_data)} bytes)")
             release.upload_asset_from_memory(
                 file_like=zip_buffer,
                 file_size=len(zip_data),
@@ -89,11 +105,13 @@ class GitHubService:
 
         except GithubException as e:
             logger.error(f"GitHub API error: {e}")
+            logger.opt(exception=True).debug("GitHub API error traceback:")
             return PublishResponse(
                 success=False, error=f"GitHub API error: {e.data.get('message', str(e))}"
             )
         except Exception as e:
             logger.error(f"Error publishing release: {e}")
+            logger.opt(exception=True).debug("Publish release error traceback:")
             return PublishResponse(success=False, error=str(e))
 
     async def _create_sound_pack_zip(self, job_ids: list[str]) -> io.BytesIO | None:
@@ -109,6 +127,8 @@ class GitHubService:
         zip_buffer = io.BytesIO()
         files_added = 0
         manifest = {"version": "1.0", "created_at": datetime.now(UTC).isoformat(), "sounds": []}
+
+        logger.info(f"Creating sound pack ZIP with {len(job_ids)} job IDs")
 
         with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zf:
             for job_id in job_ids:
@@ -129,6 +149,7 @@ class GitHubService:
                 # Add to ZIP
                 zf.write(audio_path, filename)
                 files_added += 1
+                logger.debug(f"Added {filename} to ZIP (job: {job_id})")
 
                 # Add to manifest
                 manifest["sounds"].append(
@@ -142,12 +163,15 @@ class GitHubService:
                 )
 
             if files_added == 0:
+                logger.warning("No valid files found for ZIP creation")
                 return None
 
             # Add manifest to ZIP
             zf.writestr("manifest.json", json.dumps(manifest, indent=2))
+            logger.debug("Added manifest.json to ZIP")
 
         zip_buffer.seek(0)
+        logger.info(f"Created sound pack ZIP with {files_added} files")
         return zip_buffer
 
     def _generate_release_description(self, request: PublishRequest) -> str:
