@@ -7,16 +7,14 @@ ENV CUDA_VISIBLE_DEVICES="" \
     UV_SYSTEM_PYTHON=1 \
     UV_NO_CACHE=1
 
-# Install system dependencies and uv
+# Install system dependencies
 # - libsndfile1: audio file I/O
 # - ffmpeg: audio processing
 # - git: required for some pip packages (model downloads)
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    libsndfile1=1.2.0-1 \
-    ffmpeg=7:5.1.6-0+deb12u1 \
-    git=1:2.39.5-0+deb12u2 \
-    curl=7.88.1-10+deb12u8 \
-    ca-certificates=20230311 \
+    libsndfile1 \
+    ffmpeg \
+    git \
     && rm -rf /var/lib/apt/lists/* \
     && useradd -m -u 1000 user
 
@@ -28,14 +26,15 @@ WORKDIR /home/user/app
 # Copy pyproject.toml for dependency resolution
 COPY backend/pyproject.toml ./
 
-# Install PyTorch CPU-only version first
+# Install PyTorch CPU-only version first (use extra-index-url for better resolution)
 RUN uv pip install --system \
-    torch==2.5.1+cpu \
-    torchaudio==2.5.1+cpu \
-    --index-url https://download.pytorch.org/whl/cpu
+    torch==2.5.1 \
+    torchaudio==2.5.1 \
+    --extra-index-url https://download.pytorch.org/whl/cpu
 
 # Install dependencies from pyproject.toml
-RUN uv pip install --system -e .
+RUN uv pip install --system -e . \
+    --extra-index-url https://download.pytorch.org/whl/cpu
 
 # Install stable-audio-tools without deps to skip flash-attn (CUDA-only)
 RUN uv pip install --system --no-deps stable-audio-tools==0.1.0
