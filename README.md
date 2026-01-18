@@ -61,7 +61,7 @@ The app generates sounds for these Claude Code events:
 
 ### Prerequisites
 
-- Python 3.13+
+- Python 3.11+
 - Node.js 22+
 - Docker (optional)
 
@@ -78,13 +78,19 @@ Visit http://localhost:7860
 **Backend:**
 
 ```bash
-# Create virtual environment
-python3 -m venv venv
-source venv/bin/activate
-
-# Install dependencies
 cd backend
-pip install -r requirements.txt
+
+# Install uv (fast Python package manager)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Create virtual environment and install dependencies
+uv venv
+source .venv/bin/activate
+uv pip install -e ".[dev]"
+
+# Install PyTorch CPU and stable-audio-tools
+uv pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+uv pip install --no-deps stable-audio-tools
 
 # Run server
 uvicorn app.main:app --reload --port 8000
@@ -102,7 +108,7 @@ Visit http://localhost:5173 (frontend) or http://localhost:8000 (API)
 
 ## Tech Stack
 
-- **Backend**: FastAPI, Python 3.13, Stable Audio Tools
+- **Backend**: FastAPI, Python 3.11, Stable Audio Tools
 - **Frontend**: React 19, TypeScript, Vite 6, Tailwind CSS, shadcn/ui
 - **AI Models**: Stable Audio Open (Small & 1.0)
 - **Deployment**: HuggingFace Spaces (Docker SDK)
@@ -116,7 +122,9 @@ Visit http://localhost:5173 (frontend) or http://localhost:8000 (API)
 | GET | `/api/themes` | Get theme presets |
 | GET | `/api/hooks` | Get hook types |
 | POST | `/api/generate` | Start audio generation |
+| GET | `/api/audio/{job_id}/status` | Get job status and progress |
 | GET | `/api/audio/{job_id}` | Download generated audio |
+| DELETE | `/api/audio/{job_id}` | Delete job and audio file |
 | WS | `/api/ws/{job_id}` | Real-time progress updates |
 | POST | `/api/publish` | Publish to GitHub release |
 
