@@ -21,10 +21,11 @@ echo ""
 echo "Fetching logs from: https://huggingface.co/spaces/mpolatcan/ccbell-sound-generator"
 echo ""
 
-# Fetch logs with timestamps
+# Fetch logs with timestamps, remove "data:" prefix from SSE format
 LOGS=$(curl -s -N \
     -H "Authorization: Bearer $HF_TOKEN" \
-    "https://huggingface.co/api/spaces/mpolatcan/ccbell-sound-generator/logs/run")
+    "https://huggingface.co/api/spaces/mpolatcan/ccbell-sound-generator/logs/run" | \
+    sed 's/^data://')
 
 if [ -z "$LOGS" ] || [ "$LOGS" = "null" ]; then
     echo "No logs available or Space may not be running."
