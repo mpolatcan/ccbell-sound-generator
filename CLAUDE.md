@@ -31,8 +31,7 @@ ccbell-sound-generator/
 │   │   └── data/
 │   │       ├── themes.py     # Theme presets
 │   │       └── hooks.py      # Hook definitions
-│   ├── pyproject.toml        # Dependencies and tool config
-│   └── requirements.txt      # Legacy (deprecated)
+│   └── pyproject.toml        # Dependencies and tool config
 ├── frontend/
 │   ├── src/
 │   │   ├── components/       # React components
@@ -160,9 +159,9 @@ The app generates sounds for these Claude Code events:
 
 ### Backend (Python 3.11)
 - **Runtime**: FastAPI 0.115.6, uvicorn 0.34.0, pydantic-settings 2.7.1
-- **ML**: torch 2.5.1 (CPU), torchaudio 2.5.1, stable-audio-tools 0.1.0
-- **Audio**: numpy 1.23.5, soundfile 0.12.1, scipy 1.11.4
-- **Integrations**: PyGithub 2.5.0, python-dotenv 1.0.1
+- **ML**: torch 2.5.1 (CPU), torchaudio 2.5.1, stable-audio-tools 0.0.19
+- **Audio**: numpy 1.23.5, scipy 1.11.4
+- **Integrations**: PyGithub 2.5.0
 - **Dev Tools**: ruff 0.9+
 
 ### Frontend (Node.js 22)
