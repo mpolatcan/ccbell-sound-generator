@@ -55,7 +55,7 @@ COPY backend/ ./
 COPY frontend/dist ./static
 
 # Set ownership
-RUN chown -R user:user /home/user/app && mkdir -p /tmp/ccbell-audio /tmp/ccbell-audio/logs
+RUN chown -R user:user /home/user/app && mkdir -p /tmp/ccbell-audio
 
 USER user
 

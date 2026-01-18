@@ -16,6 +16,7 @@ def setup_logging() -> None:
     log_level = "DEBUG" if settings.debug else "INFO"
 
     # Configure console output with colored output
+    # Note: No file logging - HF Spaces provides logs via API
     logger.add(
         sys.stderr,
         level=log_level,
@@ -28,19 +29,4 @@ def setup_logging() -> None:
         diagnose=True,
     )
 
-    # Log to file for debugging (especially useful in production)
-    log_dir = settings.temp_audio_dir / "logs"
-    log_dir.mkdir(parents=True, exist_ok=True)
-
-    logger.add(
-        log_dir / "app.log",
-        level="DEBUG",
-        format="{time:YYYY-MM-DD HH:mm:ss} | {level: <8} | {name}:{function}:{line} - {message}",
-        rotation="10 MB",
-        retention="10 days",
-        compression="gz",
-        encoding="utf-8",
-    )
-
     logger.info(f"Logging initialized at level: {log_level}")
-    logger.info(f"Log files will be stored in: {log_dir}")
