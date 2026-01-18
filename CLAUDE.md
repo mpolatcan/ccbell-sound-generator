@@ -292,6 +292,8 @@ cp secrets.env.example secrets.env
 ./scripts/check-hf-space-logs.sh
 ```
 
+**CRITICAL: Never read secrets.env from the repository. This file contains sensitive tokens and is gitignored. Always create your local copy from secrets.env.example.**
+
 ### Required Secrets
 
 | Secret | Description |
