@@ -148,9 +148,12 @@ Visit http://localhost:5173 (frontend) or http://localhost:8000 (API)
 
 This app auto-deploys to HuggingFace Spaces via GitHub Actions.
 
-Required secrets:
-- `HF_TOKEN` - HuggingFace access token
+Required secrets (GitHub repo):
+- `HF_TOKEN` - HuggingFace access token (for CI/CD deployment)
 - `HF_USERNAME` - HuggingFace username
+
+For the Space to load gated models, add this secret in HuggingFace Space settings:
+- `CCBELL_HF_TOKEN` - HuggingFace access token (for gated model access)
 
 ## License
 
