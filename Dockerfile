@@ -1,7 +1,7 @@
-# Optimized single-stage build for HuggingFace Spaces free tier
+# Simple slim build for HuggingFace Spaces
 FROM python:3.11-slim
 
-# Install system dependencies in one layer
+# Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libsndfile1 \
     ffmpeg \
@@ -14,13 +14,11 @@ WORKDIR /home/user/app
 # Copy requirements first for caching
 COPY backend/requirements.txt ./
 
-# Install PyTorch CPU-only and all requirements in single pip command
-# Using --prefer-binary to avoid compilation and speed up install
-RUN pip install --no-cache-dir --prefer-binary \
-    torch==2.5.1+cpu \
-    torchaudio==2.5.1+cpu \
-    --index-url https://download.pytorch.org/whl/cpu \
-    && pip install --no-cache-dir --prefer-binary -r requirements.txt
+# Install PyTorch CPU with specific wheel and other requirements
+RUN pip install --no-cache-dir \
+    https://download.pytorch.org/whl/cpu/torch-2.5.1%2Bcpu-cp311-cp311-linux_x86_64.whl \
+    https://download.pytorch.org/whl/cpu/torchaudio-2.5.1%2Bcpu-cp311-cp311-linux_x86_64.whl \
+    && pip install --no-cache-dir -r requirements.txt
 
 # Copy backend code and pre-built frontend
 COPY backend/ ./
