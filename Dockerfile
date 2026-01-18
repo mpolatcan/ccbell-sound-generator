@@ -1,53 +1,49 @@
-# Stage 1: Build frontend
-FROM node:22-alpine AS frontend-builder
+# Use HuggingFace's pre-built PyTorch image (has torch pre-installed)
+FROM pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime
 
-WORKDIR /app/frontend
-COPY frontend/package*.json ./
-RUN npm ci
-
-COPY frontend/ ./
-RUN npm run build
-
-# Stage 2: Python backend
-FROM python:3.13-slim
-
-# Install system dependencies for audio processing
+# Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libsndfile1 \
     ffmpeg \
+    nodejs \
+    npm \
+    git \
     && rm -rf /var/lib/apt/lists/*
 
 # Create non-root user for HuggingFace Spaces
 RUN useradd -m -u 1000 user
-USER user
-
 ENV HOME=/home/user \
     PATH=/home/user/.local/bin:$PATH \
     PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1
+    HF_HOME=/home/user/.cache/huggingface
 
 WORKDIR $HOME/app
 
-# Install Python dependencies
-COPY --chown=user backend/requirements.txt ./
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+# Install Python dependencies first (better caching)
+COPY backend/requirements.txt ./requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Build frontend
+COPY frontend/package*.json ./frontend/
+RUN cd frontend && npm ci
+
+COPY frontend/ ./frontend/
+RUN cd frontend && npm run build
 
 # Copy backend code
-COPY --chown=user backend/ ./
+COPY backend/ ./
 
-# Copy frontend build
-COPY --from=frontend-builder --chown=user /app/frontend/dist ./static
+# Move frontend build to static
+RUN mv frontend/dist static && rm -rf frontend
 
-# Create temp directory for audio files
+# Set ownership
+RUN chown -R user:user $HOME/app
+
+USER user
+
+# Create directories
 RUN mkdir -p /tmp/ccbell-audio
 
-# Expose port for HuggingFace Spaces
 EXPOSE 7860
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:7860/api/health')"
-
-# Run FastAPI with uvicorn
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "7860"]
