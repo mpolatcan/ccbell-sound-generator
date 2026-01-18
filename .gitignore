@@ -5,8 +5,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Build outputs (keep frontend/dist for deployment)
+# Build outputs
 build/
+dist/
+frontend/dist/
 *.egg-info/
 
 # IDE
