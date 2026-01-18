@@ -28,8 +28,11 @@ RUN pip install --no-cache-dir \
     torchaudio==2.5.1+cpu \
     --index-url https://download.pytorch.org/whl/cpu
 
-# Install other requirements with CPU-only flags
-RUN FORCE_CUDA=0 USE_CUDA=0 pip install --no-cache-dir -r requirements.txt
+# Install CPU-compatible requirements
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Install stable-audio-tools without deps to skip flash-attn (CUDA-only)
+RUN pip install --no-cache-dir --no-deps stable-audio-tools
 
 # Copy backend code and pre-built frontend
 COPY backend/ ./

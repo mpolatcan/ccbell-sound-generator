@@ -6,10 +6,6 @@ python-multipart>=0.0.18
 websockets>=14.0
 aiofiles>=24.1.0
 
-# Audio generation (torch/torchaudio installed separately in Dockerfile)
-stable-audio-tools
-einops
-
 # Audio processing
 numpy>=2.0.0
 soundfile>=0.12.1
@@ -17,3 +13,15 @@ soundfile>=0.12.1
 # GitHub integration
 PyGithub>=2.5.0
 python-dotenv>=1.0.1
+
+# Audio generation dependencies (torch/torchaudio installed separately in Dockerfile)
+# Note: stable-audio-tools installed with --no-deps to skip flash-attn (CUDA-only)
+einops
+transformers
+diffusers
+safetensors
+huggingface_hub
+accelerate
+scipy
+resampy
+laion-clap
