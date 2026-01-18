@@ -13,10 +13,27 @@ if [ -z "$HF_TOKEN" ]; then
     exit 1
 fi
 
-echo "===== CCBell Sound Generator Logs ====="
-curl -s -N \
+echo ""
+echo "========================================"
+echo "  CCBell Sound Generator - Space Logs"
+echo "========================================"
+echo ""
+echo "Fetching logs from: https://huggingface.co/spaces/mpolatcan/ccbell-sound-generator"
+echo ""
+
+# Fetch logs with timestamps
+LOGS=$(curl -s -N \
     -H "Authorization: Bearer $HF_TOKEN" \
-    "https://huggingface.co/api/spaces/mpolatcan/ccbell-sound-generator/logs/run"
+    "https://huggingface.co/api/spaces/mpolatcan/ccbell-sound-generator/logs/run")
+
+if [ -z "$LOGS" ] || [ "$LOGS" = "null" ]; then
+    echo "No logs available or Space may not be running."
+else
+    echo "$LOGS"
+fi
 
 echo ""
-echo "===== End of Logs ====="
+echo "----------------------------------------"
+echo "End of logs"
+echo "========================================"
+echo ""
