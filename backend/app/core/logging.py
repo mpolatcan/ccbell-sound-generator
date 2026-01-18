@@ -37,7 +37,7 @@ def setup_logging() -> None:
         level="DEBUG",
         format="{time:YYYY-MM-DD HH:mm:ss} | {level: <8} | {name}:{function}:{line} - {message}",
         rotation="10 MB",
-        retention="10 files",
+        retention="10 days",
         compression="gz",
         encoding="utf-8",
     )
