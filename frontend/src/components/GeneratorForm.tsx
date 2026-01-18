@@ -23,7 +23,7 @@ import { useAudioGeneration } from '@/hooks/useAudioGeneration'
 import { useSoundLibrary } from '@/hooks/useSoundLibrary'
 import { MODEL_DEFAULTS, DEFAULT_DURATION } from '@/lib/constants'
 import { formatDuration, getStageLabel } from '@/lib/utils'
-import { Loader2, Sparkles, Plus } from 'lucide-react'
+import { Loader2, Sparkles, Plus, RefreshCw, AlertCircle } from 'lucide-react'
 import type { GenerationSettings } from '@/types'
 
 export interface GeneratorFormRef {
@@ -32,22 +32,32 @@ export interface GeneratorFormRef {
 
 export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm(_, ref) {
   // Fetch data
-  const { data: themes = [], isLoading: themesLoading } = useQuery({
+  const { data: themes = [], isLoading: themesLoading, isError: themesError, refetch: refetchThemes } = useQuery({
     queryKey: ['themes'],
-    queryFn: api.getThemes
+    queryFn: api.getThemes,
+    retry: 2
   })
 
-  const { data: hooks = [], isLoading: hooksLoading } = useQuery({
+  const { data: hooks = [], isLoading: hooksLoading, isError: hooksError, refetch: refetchHooks } = useQuery({
     queryKey: ['hooks'],
-    queryFn: api.getHooks
+    queryFn: api.getHooks,
+    retry: 2
   })
 
-  const { data: models = [], isLoading: modelsLoading } = useQuery({
+  const { data: models = [], isLoading: modelsLoading, isError: modelsError, refetch: refetchModels } = useQuery({
     queryKey: ['models'],
-    queryFn: api.getModels
+    queryFn: api.getModels,
+    retry: 2
   })
 
   const isLoading = themesLoading || hooksLoading || modelsLoading
+  const hasApiError = themesError || hooksError || modelsError
+
+  const handleRetryAll = () => {
+    refetchThemes()
+    refetchHooks()
+    refetchModels()
+  }
 
   // Form state
   const [selectedModel, setSelectedModel] = useState<'small' | '1.0'>('small')
@@ -151,6 +161,30 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
+        {/* API Error State */}
+        {hasApiError && (
+          <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg">
+            <div className="flex items-start gap-3">
+              <AlertCircle className="h-5 w-5 text-destructive mt-0.5" />
+              <div className="flex-1">
+                <h4 className="font-medium text-destructive">Failed to load configuration</h4>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Could not connect to the API. Please check if the backend server is running.
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleRetryAll}
+                  className="mt-3"
+                >
+                  <RefreshCw className="h-4 w-4 mr-2" />
+                  Retry
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Model Selection */}
         <div className="space-y-2">
           <Label>Model</Label>
@@ -264,7 +298,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
           className="w-full"
           size="lg"
           onClick={handleGenerate}
-          disabled={isGenerating || isLoading || !currentPrompt.trim()}
+          disabled={isGenerating || isLoading || hasApiError || !currentPrompt.trim()}
         >
           {isGenerating ? (
             <>

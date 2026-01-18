@@ -4,7 +4,7 @@ import io
 import json
 import logging
 import zipfile
-from datetime import datetime
+from datetime import UTC, datetime
 
 from github import Github, GithubException
 
@@ -73,12 +73,14 @@ class GitHubService:
 
             # Upload ZIP as release asset
             zip_filename = f"ccbell-sounds-{request.release_tag}.zip"
-            release.upload_asset(
-                path="",
-                label=zip_filename,
-                content_type="application/zip",
+            zip_data = zip_buffer.getvalue()
+            zip_buffer.seek(0)
+            release.upload_asset_from_memory(
+                file_like=zip_buffer,
+                file_size=len(zip_data),
                 name=zip_filename,
-                data=zip_buffer.getvalue(),
+                content_type="application/zip",
+                label=zip_filename,
             )
 
             logger.info(f"Successfully published release: {release.html_url}")
@@ -106,7 +108,7 @@ class GitHubService:
         """
         zip_buffer = io.BytesIO()
         files_added = 0
-        manifest = {"version": "1.0", "created_at": datetime.utcnow().isoformat(), "sounds": []}
+        manifest = {"version": "1.0", "created_at": datetime.now(UTC).isoformat(), "sounds": []}
 
         with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zf:
             for job_id in job_ids:

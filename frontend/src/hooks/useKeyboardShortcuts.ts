@@ -34,7 +34,7 @@ export function useKeyboardShortcuts(
 
       for (const shortcut of shortcuts) {
         const keyMatch = event.key.toLowerCase() === shortcut.key.toLowerCase()
-        const ctrlMatch = shortcut.ctrlKey ? event.ctrlKey || event.metaKey : true
+        const ctrlMatch = shortcut.ctrlKey ? event.ctrlKey || event.metaKey : !event.ctrlKey && !event.metaKey
         const shiftMatch = shortcut.shiftKey ? event.shiftKey : !event.shiftKey
         const altMatch = shortcut.altKey ? event.altKey : !event.altKey
 
@@ -55,11 +55,3 @@ export function useKeyboardShortcuts(
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [enabled, handleKeyDown])
 }
-
-// Predefined shortcuts info for help display
-export const KEYBOARD_SHORTCUTS = [
-  { keys: 'G', description: 'Generate sound' },
-  { keys: 'Ctrl+D', description: 'Download ZIP' },
-  { keys: 'C', description: 'Clear library' },
-  { keys: '?', description: 'Show shortcuts help' },
-] as const

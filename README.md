@@ -56,6 +56,10 @@ The app generates sounds for these Claude Code events:
 | **Write** | File write/create operation |
 | **Edit** | File edit operation |
 | **Task** | New agent/task spawned |
+| **Error** | Error or failure occurred |
+| **Success** | Operation completed successfully |
+| **Warning** | Warning or caution indicator |
+| **Progress** | Task progress milestone |
 
 ## Local Development
 

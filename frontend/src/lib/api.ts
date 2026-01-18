@@ -40,27 +40,27 @@ class ApiClient {
   }
 
   // Health check
-  async getHealth(): Promise<HealthResponse> {
+  getHealth = async (): Promise<HealthResponse> => {
     return this.request('/api/health')
   }
 
   // Get available models
-  async getModels(): Promise<ModelInfo[]> {
+  getModels = async (): Promise<ModelInfo[]> => {
     return this.request('/api/models')
   }
 
   // Get theme presets
-  async getThemes(): Promise<ThemePreset[]> {
+  getThemes = async (): Promise<ThemePreset[]> => {
     return this.request('/api/themes')
   }
 
   // Get hook types
-  async getHooks(): Promise<HookType[]> {
+  getHooks = async (): Promise<HookType[]> => {
     return this.request('/api/hooks')
   }
 
   // Start audio generation
-  async generateAudio(request: GenerateRequest): Promise<GenerateResponse> {
+  generateAudio = async (request: GenerateRequest): Promise<GenerateResponse> => {
     return this.request('/api/generate', {
       method: 'POST',
       body: JSON.stringify(request)
@@ -68,24 +68,24 @@ class ApiClient {
   }
 
   // Get audio generation status
-  async getAudioStatus(jobId: string): Promise<AudioStatusResponse> {
+  getAudioStatus = async (jobId: string): Promise<AudioStatusResponse> => {
     return this.request(`/api/audio/${jobId}/status`)
   }
 
   // Get audio file URL
-  getAudioUrl(jobId: string): string {
+  getAudioUrl = (jobId: string): string => {
     return `${this.baseUrl}/api/audio/${jobId}`
   }
 
   // Delete audio job
-  async deleteAudio(jobId: string): Promise<void> {
+  deleteAudio = async (jobId: string): Promise<void> => {
     await this.request(`/api/audio/${jobId}`, {
       method: 'DELETE'
     })
   }
 
   // Publish to GitHub
-  async publishRelease(request: PublishRequest): Promise<PublishResponse> {
+  publishRelease = async (request: PublishRequest): Promise<PublishResponse> => {
     return this.request('/api/publish', {
       method: 'POST',
       body: JSON.stringify(request)
@@ -93,7 +93,7 @@ class ApiClient {
   }
 
   // Download audio as blob
-  async downloadAudio(jobId: string): Promise<Blob> {
+  downloadAudio = async (jobId: string): Promise<Blob> => {
     const url = this.getAudioUrl(jobId)
     const response = await fetch(url)
     if (!response.ok) {

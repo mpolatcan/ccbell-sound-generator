@@ -32,7 +32,9 @@ class AudioService:
 
     def __init__(self):
         self._jobs: dict[str, AudioGenerationJob] = {}
-        self._progress_callbacks: dict[str, list[Callable[[float, str], Awaitable[None]]]] = {}
+        self._progress_callbacks: dict[
+            str, list[Callable[[float, str, str | None], Awaitable[None]]]
+        ] = {}
 
     def create_job(self, request: GenerateRequest) -> str:
         """Create a new generation job and return its ID."""

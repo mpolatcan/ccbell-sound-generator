@@ -3,8 +3,7 @@ import WaveSurfer from 'wavesurfer.js'
 import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
 import { Play, Pause, Volume2, VolumeX, Download, RotateCcw } from 'lucide-react'
-import { formatDuration, downloadUrl } from '@/lib/utils'
-import { cn } from '@/lib/utils'
+import { formatDuration, downloadUrl, cn } from '@/lib/utils'
 
 interface AudioPlayerProps {
   audioUrl: string
@@ -77,6 +76,7 @@ export function AudioPlayer({
     return () => {
       wavesurfer.destroy()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [audioUrl])
 
   // Update volume when it changes
