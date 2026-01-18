@@ -235,7 +235,45 @@ All settings can be overridden via environment variables with the `CCBELL_` pref
 | `CCBELL_MAX_AUDIO_FILES` | `100` | Max stored audio files |
 | `CCBELL_GITHUB_TOKEN` | `null` | GitHub token for publishing |
 
-## Deployment
+## CI/CD Pipelines
 
-GitHub Actions auto-syncs to HuggingFace Spaces on push to main.
-Requires `HF_TOKEN` and `HF_USERNAME` secrets configured.
+### CI Pipeline (`.github/workflows/ci.yml`)
+
+Runs on every push to `main`/`master` and pull requests:
+
+1. **Lint Frontend** - ESLint and TypeScript type checking
+2. **Lint Backend** - Ruff check and format verification
+3. **Build Frontend** - Produces build artifacts
+4. **Build Docker** - Validates Docker image builds correctly
+
+### Deploy Pipeline (`.github/workflows/deploy.yml`)
+
+Triggered by version tags (e.g., `v1.0.0`) or manual workflow dispatch:
+
+1. **Validate** - Extracts and validates semver version from tag
+2. **Build** - Builds frontend and updates version in config
+3. **Test Docker** - Verifies Docker image builds
+4. **Deploy** - Pushes to HuggingFace Spaces
+
+### Creating a Release
+
+```bash
+# Create and push a version tag
+git tag v1.0.0
+git push origin v1.0.0
+
+# Or with annotation
+git tag -a v1.0.0 -m "Release version 1.0.0"
+git push origin v1.0.0
+```
+
+### Required Secrets
+
+| Secret | Description |
+|--------|-------------|
+| `HF_TOKEN` | HuggingFace API token with write access |
+| `HF_USERNAME` | HuggingFace username/organization |
+
+### Environment
+
+The deploy workflow uses a `production` environment for deployment approvals (optional).
