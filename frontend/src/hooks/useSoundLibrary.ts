@@ -1,13 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { GeneratedSound } from '@/types'
-
-interface SoundLibraryState {
-  sounds: GeneratedSound[]
-  addSound: (sound: GeneratedSound) => void
-  removeSound: (id: string) => void
-  clearSounds: () => void
-}
+import type { SoundLibraryState } from '@/types'
 
 export const useSoundLibrary = create<SoundLibraryState>()(
   persist(
