@@ -110,7 +110,7 @@ docker build -t ccbell-sound-generator .
 
 ```bash
 cd frontend
-npx shadcn-ui@latest add button card input label select slider tabs accordion dialog dropdown-menu toast progress badge separator scroll-area
+npx shadcn@latest add button card input label select slider tabs accordion dialog dropdown-menu toast progress badge separator scroll-area skeleton textarea tooltip
 ```
 
 ## Architecture
@@ -129,7 +129,9 @@ npx shadcn-ui@latest add button card input label select slider tabs accordion di
 | GET | `/api/themes` | Get theme presets |
 | GET | `/api/hooks` | Get hook types with metadata |
 | POST | `/api/generate` | Start audio generation (returns job_id) |
+| GET | `/api/audio/{job_id}/status` | Get job status and progress |
 | GET | `/api/audio/{job_id}` | Download generated audio |
+| DELETE | `/api/audio/{job_id}` | Delete job and audio file |
 | POST | `/api/publish` | Publish to GitHub release |
 | WS | `/api/ws/{job_id}` | Real-time progress updates |
 
@@ -168,7 +170,7 @@ The app generates sounds for these Claude Code events:
 - React 19, TypeScript 5.7
 - Vite 6, Tailwind CSS 3.4
 - @tanstack/react-query 5.62, zustand 5
-- wavesurfer.js 7.8, lucide-react
+- wavesurfer.js 7.8, lucide-react, jszip 3.10
 
 ## Implementation Notes
 

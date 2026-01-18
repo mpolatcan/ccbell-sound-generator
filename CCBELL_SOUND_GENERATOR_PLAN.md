@@ -12,7 +12,7 @@ A polished web application deployed on HuggingFace Spaces (Docker SDK, free CPU 
 | Styling | **Tailwind CSS + shadcn/ui** | Polished, accessible components |
 | Build | **Vite** | Fast builds, HMR, optimized production |
 | AI Models | **Stable Audio Open Small & 1.0** | User-selectable models for different needs |
-| Audio | **soundfile + pydub** | WAV file creation and processing |
+| Audio | **torchaudio** | WAV file creation and processing |
 | GitHub | **PyGithub** | Publish sound packs to GitHub releases |
 | CI/CD | **GitHub Actions** | Auto-sync repo to HuggingFace Spaces |
 
@@ -378,22 +378,18 @@ Generate AI-powered notification sounds for Claude Code.
 
 ## Dependencies
 
-### Backend (requirements.txt)
+### Backend (pyproject.toml)
 ```text
-fastapi>=0.115.0
-uvicorn[standard]>=0.32.0
-python-multipart>=0.0.18
-websockets>=14.0
-torch>=2.5.0
-torchaudio>=2.5.0
-stable-audio-tools
-einops
-numpy>=2.0.0
-soundfile>=0.12.1
-pydub>=0.25.1
-PyGithub>=2.5.0
-python-dotenv>=1.0.1
-aiofiles>=24.1.0
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic-settings==2.7.1
+numpy==1.23.5
+scipy==1.11.4
+PyGithub==2.5.0
+# Plus stable-audio-tools inference dependencies
+torch==2.5.1 (CPU)
+torchaudio==2.5.1
+stable-audio-tools==0.0.19
 ```
 
 ### Frontend (package.json dependencies)
@@ -406,6 +402,7 @@ aiofiles>=24.1.0
     "zustand": "^5.0.0",
     "wavesurfer.js": "^7.8.0",
     "lucide-react": "^0.469.0",
+    "jszip": "^3.10.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "tailwind-merge": "^2.6.0"
@@ -429,8 +426,8 @@ aiofiles>=24.1.0
 
 Required components to install:
 ```bash
-npx shadcn-ui@latest init
-npx shadcn-ui@latest add button card input label select slider tabs accordion dialog dropdown-menu toast progress badge separator scroll-area
+npx shadcn@latest init
+npx shadcn@latest add button card input label select slider tabs accordion dialog dropdown-menu toast progress badge separator scroll-area skeleton textarea tooltip
 ```
 
 ---
