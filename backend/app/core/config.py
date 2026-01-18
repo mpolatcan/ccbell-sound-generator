@@ -1,6 +1,5 @@
 """Configuration settings for the CCBell Sound Generator."""
 
-import os
 from pathlib import Path
 from typing import Literal
 
@@ -42,11 +41,7 @@ class Settings(BaseSettings):
     # GitHub settings
     github_token: str | None = None
 
-    model_config = {
-        "env_prefix": "CCBELL_",
-        "env_file": ".env",
-        "extra": "ignore"
-    }
+    model_config = {"env_prefix": "CCBELL_", "env_file": ".env", "extra": "ignore"}
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

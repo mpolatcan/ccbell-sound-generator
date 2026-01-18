@@ -1,7 +1,6 @@
 """WebSocket handler for real-time progress updates."""
 
 import logging
-from typing import Optional
 
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 
@@ -26,40 +25,27 @@ async def websocket_progress(websocket: WebSocket, job_id: str):
     # Check if job exists
     job = audio_service.get_job(job_id)
     if not job:
-        await websocket.send_json({
-            "error": "Job not found",
-            "progress": 0,
-            "stage": "error"
-        })
+        await websocket.send_json({"error": "Job not found", "progress": 0, "stage": "error"})
         await websocket.close()
         return
 
     # If job is already complete, send final status
     if job.status == "complete":
-        await websocket.send_json({
-            "progress": 1.0,
-            "stage": "complete",
-            "audio_url": f"/api/audio/{job_id}"
-        })
+        await websocket.send_json(
+            {"progress": 1.0, "stage": "complete", "audio_url": f"/api/audio/{job_id}"}
+        )
         await websocket.close()
         return
 
     if job.status == "error":
-        await websocket.send_json({
-            "progress": 0,
-            "stage": "error",
-            "error": job.error
-        })
+        await websocket.send_json({"progress": 0, "stage": "error", "error": job.error})
         await websocket.close()
         return
 
     # Define progress callback
-    async def on_progress(progress: float, stage: str, audio_url: Optional[str] = None):
+    async def on_progress(progress: float, stage: str, audio_url: str | None = None):
         try:
-            message = {
-                "progress": progress,
-                "stage": stage
-            }
+            message = {"progress": progress, "stage": stage}
             if audio_url:
                 message["audio_url"] = audio_url
             await websocket.send_json(message)
@@ -71,10 +57,7 @@ async def websocket_progress(websocket: WebSocket, job_id: str):
 
     try:
         # Send current status
-        await websocket.send_json({
-            "progress": job.progress,
-            "stage": job.stage
-        })
+        await websocket.send_json({"progress": job.progress, "stage": job.stage})
 
         # Keep connection open until job completes or client disconnects
         while True:

@@ -5,8 +5,6 @@ import json
 import logging
 import zipfile
 from datetime import datetime
-from pathlib import Path
-from typing import Optional
 
 from github import Github, GithubException
 
@@ -40,7 +38,7 @@ class GitHubService:
                 if e.status == 404:
                     return PublishResponse(
                         success=False,
-                        error=f"Repository not found: {request.repo_owner}/{request.repo_name}"
+                        error=f"Repository not found: {request.repo_owner}/{request.repo_name}",
                     )
                 raise
 
@@ -48,8 +46,7 @@ class GitHubService:
             try:
                 repo.get_release(request.release_tag)
                 return PublishResponse(
-                    success=False,
-                    error=f"Release with tag '{request.release_tag}' already exists"
+                    success=False, error=f"Release with tag '{request.release_tag}' already exists"
                 )
             except GithubException as e:
                 if e.status != 404:
@@ -60,8 +57,7 @@ class GitHubService:
 
             if zip_buffer is None:
                 return PublishResponse(
-                    success=False,
-                    error="No valid audio files found for the specified job IDs"
+                    success=False, error="No valid audio files found for the specified job IDs"
                 )
 
             # Create release
@@ -72,7 +68,7 @@ class GitHubService:
                 name=request.release_name,
                 message=release_body,
                 draft=False,
-                prerelease=False
+                prerelease=False,
             )
 
             # Upload ZIP as release asset
@@ -82,30 +78,23 @@ class GitHubService:
                 label=zip_filename,
                 content_type="application/zip",
                 name=zip_filename,
-                data=zip_buffer.getvalue()
+                data=zip_buffer.getvalue(),
             )
 
             logger.info(f"Successfully published release: {release.html_url}")
 
-            return PublishResponse(
-                success=True,
-                release_url=release.html_url
-            )
+            return PublishResponse(success=True, release_url=release.html_url)
 
         except GithubException as e:
             logger.error(f"GitHub API error: {e}")
             return PublishResponse(
-                success=False,
-                error=f"GitHub API error: {e.data.get('message', str(e))}"
+                success=False, error=f"GitHub API error: {e.data.get('message', str(e))}"
             )
         except Exception as e:
             logger.error(f"Error publishing release: {e}")
-            return PublishResponse(
-                success=False,
-                error=str(e)
-            )
+            return PublishResponse(success=False, error=str(e))
 
-    async def _create_sound_pack_zip(self, job_ids: list[str]) -> Optional[io.BytesIO]:
+    async def _create_sound_pack_zip(self, job_ids: list[str]) -> io.BytesIO | None:
         """
         Create a ZIP file containing all sound files.
 
@@ -117,11 +106,7 @@ class GitHubService:
         """
         zip_buffer = io.BytesIO()
         files_added = 0
-        manifest = {
-            "version": "1.0",
-            "created_at": datetime.utcnow().isoformat(),
-            "sounds": []
-        }
+        manifest = {"version": "1.0", "created_at": datetime.utcnow().isoformat(), "sounds": []}
 
         with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zf:
             for job_id in job_ids:
@@ -144,13 +129,15 @@ class GitHubService:
                 files_added += 1
 
                 # Add to manifest
-                manifest["sounds"].append({
-                    "filename": filename,
-                    "hook_type": hook_type,
-                    "prompt": job.request.prompt,
-                    "model": job.request.model,
-                    "duration": job.request.duration
-                })
+                manifest["sounds"].append(
+                    {
+                        "filename": filename,
+                        "hook_type": hook_type,
+                        "prompt": job.request.prompt,
+                        "model": job.request.model,
+                        "duration": job.request.duration,
+                    }
+                )
 
             if files_added == 0:
                 return None

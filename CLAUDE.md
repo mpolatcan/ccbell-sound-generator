@@ -58,15 +58,11 @@ Install required tools:
 # Install uv (Python package manager)
 curl -LsSf https://astral.sh/uv/install.sh | sh
 # Or with Homebrew: brew install uv
-
-# Install ruff (linter/formatter) and ty (type checker)
-uv tool install ruff
-uv tool install ty
 ```
 
 ### Virtual Environment (REQUIRED)
 
-**IMPORTANT**: Always activate the virtual environment before running ANY Python-related commands.
+**IMPORTANT**: Always activate the virtual environment before running ANY Python-related commands, including `ruff` and `ty` which are installed in the venv.
 
 ```bash
 # From project root - activate venv FIRST
@@ -74,35 +70,36 @@ source venv/bin/activate
 
 # Verify activation (should show venv path)
 which python
+
+# ruff and ty are available after activation
+which ruff  # Should show venv/bin/ruff
+which ty    # Should show venv/bin/ty
 ```
 
 ### Backend Development
 
 ```bash
-# ALWAYS activate venv first!
+# ALWAYS activate venv first (from project root)!
 source venv/bin/activate
 
+# First-time setup (from project root):
 cd backend
-
-# First-time setup: Create venv and install dependencies
 uv venv ../venv  # Creates venv at project root
 source ../venv/bin/activate
 uv pip install -e ".[dev]"
-
-# Install PyTorch CPU (for local development without CUDA)
+pip install ruff ty
 uv pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
-
-# Install stable-audio-tools (skip flash-attn which requires CUDA)
 uv pip install --no-deps stable-audio-tools
 
-# Run development server (venv must be active)
+# Run development server (from backend directory, venv must be active)
+cd backend
 uvicorn app.main:app --reload --port 8000
 
-# Lint and format (venv must be active)
+# Lint and format (from backend directory, venv must be active)
 ruff check .
 ruff format .
 
-# Type checking with ty (venv must be active)
+# Type checking with ty (from backend directory, venv must be active)
 ty check .
 ```
 
@@ -165,12 +162,26 @@ npx shadcn@latest add button card input label select slider tabs accordion dialo
 ## Claude Code Hook Types
 
 The app generates sounds for these Claude Code events:
+
+**Core Events:**
 - **PreToolUse** - Before tool execution
 - **PostToolUse** - After tool completion
 - **Notification** - General notifications
 - **Stop** - Main agent completion
 - **SubagentStop** - Subagent completion
-- Tool-specific: Bash, Read, Write, Edit, Task
+
+**Tool-specific:**
+- **Bash** - Terminal/shell command execution
+- **Read** - File read operation
+- **Write** - File write/create operation
+- **Edit** - File edit operation
+- **Task** - New agent or task spawned
+
+**Status Events:**
+- **Error** - Error or failure occurred
+- **Success** - Operation completed successfully
+- **Warning** - Warning or caution indicator
+- **Progress** - Task progress milestone
 
 ## Theme Presets
 
@@ -201,6 +212,28 @@ The app generates sounds for these Claude Code events:
 - Use React Query for API calls with proper caching
 - All audio files are 44.1kHz stereo WAV
 - Before committing, run: `ruff check .`, `ruff format .`, and `ty check .`
+
+## Environment Variables
+
+All settings can be overridden via environment variables with the `CCBELL_` prefix:
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `CCBELL_DEBUG` | `false` | Enable debug mode |
+| `CCBELL_HOST` | `0.0.0.0` | Server host |
+| `CCBELL_PORT` | `7860` | Server port |
+| `CCBELL_DEFAULT_MODEL` | `small` | Default model (`small` or `1.0`) |
+| `CCBELL_MODELS_CACHE_DIR` | `~/.cache/ccbell-models` | Model cache directory |
+| `CCBELL_SAMPLE_RATE` | `44100` | Audio sample rate |
+| `CCBELL_DEFAULT_DURATION` | `2.0` | Default audio duration (seconds) |
+| `CCBELL_MAX_DURATION_SMALL` | `11.0` | Max duration for small model |
+| `CCBELL_MAX_DURATION_LARGE` | `47.0` | Max duration for 1.0 model |
+| `CCBELL_DEFAULT_STEPS_SMALL` | `8` | Diffusion steps for small model |
+| `CCBELL_DEFAULT_STEPS_LARGE` | `100` | Diffusion steps for 1.0 model |
+| `CCBELL_DEFAULT_CFG_SCALE` | `1.0` | Classifier-free guidance scale |
+| `CCBELL_TEMP_AUDIO_DIR` | `/tmp/ccbell-audio` | Temporary audio directory |
+| `CCBELL_MAX_AUDIO_FILES` | `100` | Max stored audio files |
+| `CCBELL_GITHUB_TOKEN` | `null` | GitHub token for publishing |
 
 ## Deployment
 

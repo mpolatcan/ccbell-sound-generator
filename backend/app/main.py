@@ -5,8 +5,8 @@ from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 
 from app.api import routes, websocket
 from app.core.config import settings
@@ -14,7 +14,7 @@ from app.core.config import settings
 # Configure logging
 logging.basicConfig(
     level=logging.DEBUG if settings.debug else logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
 
 logger = logging.getLogger(__name__)
@@ -26,7 +26,7 @@ app = FastAPI(
     version="1.0.0",
     docs_url="/api/docs",
     redoc_url="/api/redoc",
-    openapi_url="/api/openapi.json"
+    openapi_url="/api/openapi.json",
 )
 
 # Add CORS middleware for development
@@ -85,21 +85,18 @@ if STATIC_DIR.exists():
         # Fallback to index.html for SPA routing
         return FileResponse(STATIC_DIR / "index.html")
 else:
+
     @app.get("/")
     async def root():
         """Root endpoint when no static files are present."""
         return {
             "message": f"Welcome to {settings.app_name}",
             "docs": "/api/docs",
-            "health": "/api/health"
+            "health": "/api/health",
         }
 
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(
-        "app.main:app",
-        host=settings.host,
-        port=settings.port,
-        reload=settings.debug
-    )
+
+    uvicorn.run("app.main:app", host=settings.host, port=settings.port, reload=settings.debug)

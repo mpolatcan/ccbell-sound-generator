@@ -1,10 +1,11 @@
 """Audio generation service using Stable Audio Open."""
 
 import asyncio
+import contextlib
 import logging
 import uuid
+from collections.abc import Awaitable, Callable
 from pathlib import Path
-from typing import Optional, Callable, Awaitable, Any
 
 from app.core.config import settings
 from app.core.models import GenerateRequest, GenerationSettings
@@ -22,8 +23,8 @@ class AudioGenerationJob:
         self.status = "queued"
         self.progress = 0.0
         self.stage = "queued"
-        self.audio_path: Optional[Path] = None
-        self.error: Optional[str] = None
+        self.audio_path: Path | None = None
+        self.error: str | None = None
 
 
 class AudioService:
@@ -40,12 +41,12 @@ class AudioService:
         self._jobs[job_id] = job
         return job_id
 
-    def get_job(self, job_id: str) -> Optional[AudioGenerationJob]:
+    def get_job(self, job_id: str) -> AudioGenerationJob | None:
         """Get a job by its ID."""
         return self._jobs.get(job_id)
 
     def register_progress_callback(
-        self, job_id: str, callback: Callable[[float, str, Optional[str]], Awaitable[None]]
+        self, job_id: str, callback: Callable[[float, str, str | None], Awaitable[None]]
     ):
         """Register a callback for progress updates."""
         if job_id not in self._progress_callbacks:
@@ -53,17 +54,15 @@ class AudioService:
         self._progress_callbacks[job_id].append(callback)
 
     def unregister_progress_callback(
-        self, job_id: str, callback: Callable[[float, str, Optional[str]], Awaitable[None]]
+        self, job_id: str, callback: Callable[[float, str, str | None], Awaitable[None]]
     ):
         """Unregister a progress callback."""
         if job_id in self._progress_callbacks:
-            try:
+            with contextlib.suppress(ValueError):
                 self._progress_callbacks[job_id].remove(callback)
-            except ValueError:
-                pass
 
     async def _notify_progress(
-        self, job_id: str, progress: float, stage: str, audio_url: Optional[str] = None
+        self, job_id: str, progress: float, stage: str, audio_url: str | None = None
     ):
         """Notify all registered callbacks of progress."""
         job = self._jobs.get(job_id)
@@ -90,7 +89,7 @@ class AudioService:
             import torch
             import torchaudio
         except ImportError as e:
-            raise RuntimeError(f"PyTorch/torchaudio not installed: {e}")
+            raise RuntimeError(f"PyTorch/torchaudio not installed: {e}") from e
 
         job = self._jobs.get(job_id)
         if not job:
@@ -110,11 +109,19 @@ class AudioService:
             # Set defaults based on model
             if job.request.model == "small":
                 steps = gen_settings.steps or settings.default_steps_small
-                cfg_scale = gen_settings.cfg_scale if gen_settings.cfg_scale is not None else settings.default_cfg_scale
+                cfg_scale = (
+                    gen_settings.cfg_scale
+                    if gen_settings.cfg_scale is not None
+                    else settings.default_cfg_scale
+                )
                 sampler = gen_settings.sampler or settings.default_sampler_small
             else:
                 steps = gen_settings.steps or settings.default_steps_large
-                cfg_scale = gen_settings.cfg_scale if gen_settings.cfg_scale is not None else settings.default_cfg_scale
+                cfg_scale = (
+                    gen_settings.cfg_scale
+                    if gen_settings.cfg_scale is not None
+                    else settings.default_cfg_scale
+                )
                 sampler = gen_settings.sampler or settings.default_sampler_large
 
             # Validate duration
@@ -135,11 +142,9 @@ class AudioService:
             from stable_audio_tools.inference.generation import generate_diffusion_cond
 
             # Set up conditioning
-            conditioning = [{
-                "prompt": job.request.prompt,
-                "seconds_start": 0,
-                "seconds_total": duration
-            }]
+            conditioning = [
+                {"prompt": job.request.prompt, "seconds_start": 0, "seconds_total": duration}
+            ]
 
             # Generate audio
             # Run generation in executor to not block event loop
@@ -156,7 +161,7 @@ class AudioService:
                         sigma_min=0.3,
                         sigma_max=500,
                         sampler_type=sampler,
-                        device=model_loader.device
+                        device=model_loader.device,
                     )
                 return output
 
@@ -186,11 +191,7 @@ class AudioService:
                 output = output / max_val * 0.95
 
             # Save using torchaudio
-            torchaudio.save(
-                str(output_path),
-                output,
-                model_config["sample_rate"]
-            )
+            torchaudio.save(str(output_path), output, model_config["sample_rate"])
 
             job.audio_path = output_path
             job.status = "complete"
@@ -208,7 +209,7 @@ class AudioService:
             await self._notify_progress(job_id, 0.0, "error")
             raise
 
-    def get_audio_path(self, job_id: str) -> Optional[Path]:
+    def get_audio_path(self, job_id: str) -> Path | None:
         """Get the path to the generated audio file."""
         job = self._jobs.get(job_id)
         if job and job.audio_path and job.audio_path.exists():

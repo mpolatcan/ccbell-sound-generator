@@ -2,25 +2,27 @@
 
 import gc
 import logging
-from typing import Optional, Literal, Any
+from typing import TYPE_CHECKING, Any, Literal
 
 from app.core.config import settings
+
+if TYPE_CHECKING:
+    from app.core.models import ModelInfo
 
 logger = logging.getLogger(__name__)
 
 # Lazy import flag
-_torch_available: Optional[bool] = None
+_torch_available: bool | None = None
 
 
 def _check_torch() -> bool:
     """Check if torch is available."""
     global _torch_available
     if _torch_available is None:
-        try:
-            import torch
-            _torch_available = True
-        except ImportError:
-            _torch_available = False
+        import importlib.util
+
+        _torch_available = importlib.util.find_spec("torch") is not None
+        if not _torch_available:
             logger.warning("PyTorch not available. Audio generation will not work.")
     return _torch_available
 
@@ -29,6 +31,7 @@ def _get_device() -> str:
     """Get the compute device."""
     if _check_torch():
         import torch
+
         return "cuda" if torch.cuda.is_available() else "cpu"
     return "cpu"
 
@@ -39,14 +42,14 @@ class ModelLoader:
     # Model HuggingFace repository IDs
     MODEL_REPOS = {
         "small": "stabilityai/stable-audio-open-small",
-        "1.0": "stabilityai/stable-audio-open-1.0"
+        "1.0": "stabilityai/stable-audio-open-1.0",
     }
 
     def __init__(self):
         self._models: dict[str, Any] = {}
         self._model_configs: dict[str, Any] = {}
-        self._current_model: Optional[str] = None
-        self._device: Optional[str] = None
+        self._current_model: str | None = None
+        self._device: str | None = None
 
     @property
     def device(self) -> str:
@@ -132,6 +135,7 @@ class ModelLoader:
         gc.collect()
         if _check_torch():
             import torch
+
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
 
@@ -149,7 +153,7 @@ class ModelLoader:
                 max_duration=settings.max_duration_small,
                 default_steps=settings.default_steps_small,
                 default_sampler=settings.default_sampler_small,
-                parameters="341 million"
+                parameters="341 million",
             )
         elif model_id == "1.0":
             return ModelInfo(
@@ -159,17 +163,14 @@ class ModelLoader:
                 max_duration=settings.max_duration_large,
                 default_steps=settings.default_steps_large,
                 default_sampler=settings.default_sampler_large,
-                parameters="1.1 billion"
+                parameters="1.1 billion",
             )
         else:
             raise ValueError(f"Unknown model ID: {model_id}")
 
-    def get_all_models_info(self) -> list:
+    def get_all_models_info(self) -> "list[ModelInfo]":
         """Get information about all available models."""
-        return [
-            self.get_model_info("small"),
-            self.get_model_info("1.0")
-        ]
+        return [self.get_model_info("small"), self.get_model_info("1.0")]
 
 
 # Global model loader instance
