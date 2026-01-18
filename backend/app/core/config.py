@@ -42,6 +42,9 @@ class Settings(BaseSettings):
     # GitHub settings
     github_token: str | None = None
 
+    # HuggingFace settings (for gated model access)
+    hf_token: str | None = None
+
     model_config = {"env_prefix": "CCBELL_", "env_file": ".env", "extra": "ignore"}
 
     def __init__(self, **kwargs):

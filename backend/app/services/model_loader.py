@@ -19,11 +19,14 @@ _hf_logged_in: bool = False
 
 
 def _get_hf_token() -> str | None:
-    """Get HuggingFace token from environment.
+    """Get HuggingFace token from environment or config.
 
-    Uses HF_TOKEN env var (standard, auto-injected by HuggingFace Spaces).
+    Checks in order:
+    1. CCBELL_HF_TOKEN env var (Space-specific config, recommended)
+    2. HF_TOKEN env var (standard, may be auto-injected)
+    3. settings.hf_token (from .env file)
     """
-    return os.environ.get("HF_TOKEN")
+    return os.environ.get("CCBELL_HF_TOKEN") or os.environ.get("HF_TOKEN") or settings.hf_token
 
 
 def _ensure_hf_login() -> None:
@@ -45,7 +48,7 @@ def _ensure_hf_login() -> None:
             logger.opt(exception=True).debug("HuggingFace login traceback:")
     else:
         logger.warning(
-            "No HuggingFace token configured. Set HF_TOKEN env var to access gated models."
+            "No HuggingFace token configured. Set CCBELL_HF_TOKEN or HF_TOKEN env var to access gated models."
         )
 
 
