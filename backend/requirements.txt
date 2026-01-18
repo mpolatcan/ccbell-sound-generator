@@ -1,10 +1,6 @@
-# DEPRECATED: Use pyproject.toml and uv for dependency management
-# This file is kept for backwards compatibility only
-#
-# For local development:
-#   uv pip install -e ".[dev]"
-#
-# For Docker builds, dependencies are defined in pyproject.toml
+# Production dependencies for Docker builds
+# For local development with ruff, use: uv pip install -e ".[dev]"
+# See pyproject.toml for dev dependencies and tool config
 
 # Core API
 fastapi==0.115.6
