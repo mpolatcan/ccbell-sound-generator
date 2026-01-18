@@ -20,16 +20,6 @@ services:
       start_period: 10s
 
   # Development services
-  backend-dev:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: frontend-builder
-    image: ccbell-frontend-builder
-    profiles:
-      - dev
-    command: echo "Frontend build complete"
-
   frontend-dev:
     image: node:22-alpine
     profiles:
