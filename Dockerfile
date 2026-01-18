@@ -1,52 +1,66 @@
 # CPU-only build for HuggingFace Spaces free tier
-FROM python:3.11.11-slim-bookworm
+FROM python:3.11.11-slim-bookworm AS builder
 
 # Force CPU-only mode
 ENV CUDA_VISIBLE_DEVICES="" \
     FORCE_CUDA=0 \
-    UV_SYSTEM_PYTHON=1 \
-    UV_NO_CACHE=1
+    UV_SYSTEM_PYTHON=1
 
 # Install system dependencies
-# - libsndfile1: audio file I/O
-# - ffmpeg: audio processing
-# - git: required for some pip packages (model downloads)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libsndfile1 \
     ffmpeg \
     git \
-    && rm -rf /var/lib/apt/lists/* \
-    && useradd -m -u 1000 user
+    && rm -rf /var/lib/apt/lists/*
 
 # Install uv
 COPY --from=ghcr.io/astral-sh/uv:0.5.18 /uv /usr/local/bin/uv
 
 WORKDIR /home/user/app
 
-# Copy backend code first (needed for pyproject.toml install)
-COPY backend/ ./
+# Copy only dependency files first for better caching
+COPY backend/pyproject.toml ./
 
-# Install PyTorch CPU-only version first
+# Install all dependencies in a single layer (better caching)
+# PyTorch CPU, then all other deps from pyproject.toml including stable-audio-tools
 RUN uv pip install --system \
     torch==2.5.1 \
     torchaudio==2.5.1 \
-    --extra-index-url https://download.pytorch.org/whl/cpu
+    --extra-index-url https://download.pytorch.org/whl/cpu && \
+    uv pip install --system --no-deps stable-audio-tools==0.0.19 && \
+    uv pip install --system .
 
-# Install dependencies from pyproject.toml
-RUN uv pip install --system .
+# Final stage - runtime only
+FROM python:3.11.11-slim-bookworm AS runtime
 
-# Install stable-audio-tools without deps to skip flash-attn (CUDA-only)
-RUN uv pip install --system --no-deps stable-audio-tools==0.0.19
+# Force CPU-only mode
+ENV CUDA_VISIBLE_DEVICES="" \
+    FORCE_CUDA=0 \
+    UV_SYSTEM_PYTHON=1
 
-# Copy pre-built frontend
+# Install minimal runtime dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libsndfile1 \
+    ffmpeg \
+    && rm -rf /var/lib/apt/lists/* \
+    && useradd -m -u 1000 user
+
+WORKDIR /home/user/app
+
+# Copy installed Python packages from builder (system site-packages)
+COPY --from=builder /usr/local /usr/local
+
+# Copy application code
+COPY backend/ ./
 COPY frontend/dist ./static
 
-# Set ownership and switch to user
+# Set ownership
 RUN chown -R user:user /home/user/app && mkdir -p /tmp/ccbell-audio
+
 USER user
 
 ENV HOME=/home/user \
-    PATH=/home/user/.local/bin:$PATH \
+    PATH=/usr/local/bin:$PATH \
     PYTHONUNBUFFERED=1
 
 EXPOSE 7860
