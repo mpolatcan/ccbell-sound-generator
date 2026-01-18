@@ -1,11 +1,14 @@
-import { useState } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { GeneratorForm } from '@/components/GeneratorForm'
-import { SoundLibrary } from '@/components/SoundLibrary'
+import { GeneratorForm, GeneratorFormRef } from '@/components/GeneratorForm'
+import { SoundLibrary, SoundLibraryRef } from '@/components/SoundLibrary'
 import { PublishDialog } from '@/components/PublishDialog'
+import { KeyboardShortcutsHelp } from '@/components/KeyboardShortcutsHelp'
 import { Toaster } from '@/components/ui/toaster'
-import { Bell, Github, ExternalLink } from 'lucide-react'
+import { Bell, Github, ExternalLink, Keyboard } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts'
+import { toast } from '@/hooks/useToast'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,11 +22,59 @@ const queryClient = new QueryClient({
 function AppContent() {
   const [publishDialogOpen, setPublishDialogOpen] = useState(false)
   const [soundsToPublish, setSoundsToPublish] = useState<string[]>([])
+  const [shortcutsHelpOpen, setShortcutsHelpOpen] = useState(false)
+
+  const generatorFormRef = useRef<GeneratorFormRef>(null)
+  const soundLibraryRef = useRef<SoundLibraryRef>(null)
 
   const handleSelectForPublish = (soundIds: string[]) => {
     setSoundsToPublish(soundIds)
     setPublishDialogOpen(true)
   }
+
+  const handleGenerate = useCallback(() => {
+    generatorFormRef.current?.generate()
+  }, [])
+
+  const handleDownloadZip = useCallback(() => {
+    soundLibraryRef.current?.downloadZip()
+  }, [])
+
+  const handleClearLibrary = useCallback(() => {
+    soundLibraryRef.current?.clearAll()
+    toast({
+      title: 'Library cleared',
+      description: 'All sounds have been removed from the library.'
+    })
+  }, [])
+
+  // Keyboard shortcuts
+  useKeyboardShortcuts([
+    {
+      key: 'g',
+      action: handleGenerate,
+      description: 'Generate sound'
+    },
+    {
+      key: 'd',
+      ctrlKey: true,
+      action: handleDownloadZip,
+      description: 'Download ZIP'
+    },
+    {
+      key: 'c',
+      ctrlKey: true,
+      shiftKey: true,
+      action: handleClearLibrary,
+      description: 'Clear library'
+    },
+    {
+      key: '?',
+      shiftKey: true,
+      action: () => setShortcutsHelpOpen(true),
+      description: 'Show shortcuts help'
+    }
+  ])
 
   return (
     <div className="min-h-screen bg-background">
@@ -42,6 +93,14 @@ function AppContent() {
             </div>
           </div>
           <div className="flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShortcutsHelpOpen(true)}
+              title="Keyboard shortcuts (?)"
+            >
+              <Keyboard className="h-4 w-4" />
+            </Button>
             <Button variant="ghost" size="sm" asChild>
               <a
                 href="https://docs.anthropic.com/en/docs/claude-code/hooks"
@@ -71,12 +130,15 @@ function AppContent() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Generator Form */}
           <div>
-            <GeneratorForm />
+            <GeneratorForm ref={generatorFormRef} />
           </div>
 
           {/* Sound Library */}
           <div>
-            <SoundLibrary onSelectForPublish={handleSelectForPublish} />
+            <SoundLibrary
+              ref={soundLibraryRef}
+              onSelectForPublish={handleSelectForPublish}
+            />
           </div>
         </div>
       </main>
@@ -103,6 +165,9 @@ function AppContent() {
             >
               Claude Code
             </a>
+            {' '}· Press{' '}
+            <kbd className="px-1 py-0.5 text-xs bg-muted border rounded">?</kbd>
+            {' '}for shortcuts
           </p>
         </div>
       </footer>
@@ -112,6 +177,12 @@ function AppContent() {
         open={publishDialogOpen}
         onOpenChange={setPublishDialogOpen}
         soundIds={soundsToPublish}
+      />
+
+      {/* Keyboard Shortcuts Help */}
+      <KeyboardShortcutsHelp
+        open={shortcutsHelpOpen}
+        onOpenChange={setShortcutsHelpOpen}
       />
 
       {/* Toast notifications */}

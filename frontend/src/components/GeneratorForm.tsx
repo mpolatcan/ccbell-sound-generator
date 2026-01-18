@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, forwardRef, useImperativeHandle } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { api } from '@/lib/api'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Slider } from '@/components/ui/slider'
 import { Progress } from '@/components/ui/progress'
+import { Skeleton } from '@/components/ui/skeleton'
 import {
   Select,
   SelectContent,
@@ -25,22 +26,28 @@ import { formatDuration, getStageLabel } from '@/lib/utils'
 import { Loader2, Sparkles, Plus } from 'lucide-react'
 import type { GenerationSettings } from '@/types'
 
-export function GeneratorForm() {
+export interface GeneratorFormRef {
+  generate: () => void
+}
+
+export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm(_, ref) {
   // Fetch data
-  const { data: themes = [] } = useQuery({
+  const { data: themes = [], isLoading: themesLoading } = useQuery({
     queryKey: ['themes'],
     queryFn: api.getThemes
   })
 
-  const { data: hooks = [] } = useQuery({
+  const { data: hooks = [], isLoading: hooksLoading } = useQuery({
     queryKey: ['hooks'],
     queryFn: api.getHooks
   })
 
-  const { data: models = [] } = useQuery({
+  const { data: models = [], isLoading: modelsLoading } = useQuery({
     queryKey: ['models'],
     queryFn: api.getModels
   })
+
+  const isLoading = themesLoading || hooksLoading || modelsLoading
 
   // Form state
   const [selectedModel, setSelectedModel] = useState<'small' | '1.0'>('small')
@@ -93,7 +100,7 @@ export function GeneratorForm() {
   // Handle generation
   const handleGenerate = async () => {
     const prompt = buildPrompt()
-    if (!prompt.trim()) {
+    if (!prompt.trim() || isGenerating) {
       return
     }
 
@@ -105,6 +112,11 @@ export function GeneratorForm() {
       settings: Object.keys(advancedSettings).length > 0 ? advancedSettings : undefined
     })
   }
+
+  // Expose generate method via ref
+  useImperativeHandle(ref, () => ({
+    generate: handleGenerate
+  }))
 
   // Add to library
   const handleAddToLibrary = () => {
@@ -142,33 +154,45 @@ export function GeneratorForm() {
         {/* Model Selection */}
         <div className="space-y-2">
           <Label>Model</Label>
-          <Select value={selectedModel} onValueChange={(v) => setSelectedModel(v as 'small' | '1.0')}>
-            <SelectTrigger>
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {models.map((model) => (
-                <SelectItem key={model.id} value={model.id}>
-                  <div className="flex flex-col">
-                    <span>{model.name}</span>
-                    <span className="text-xs text-muted-foreground">
-                      {model.parameters} · Max {model.max_duration}s
-                    </span>
-                  </div>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          {modelsLoading ? (
+            <Skeleton className="h-10 w-full" />
+          ) : (
+            <Select value={selectedModel} onValueChange={(v) => setSelectedModel(v as 'small' | '1.0')}>
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {models.map((model) => (
+                  <SelectItem key={model.id} value={model.id}>
+                    <div className="flex flex-col">
+                      <span>{model.name}</span>
+                      <span className="text-xs text-muted-foreground">
+                        {model.parameters} · Max {model.max_duration}s
+                      </span>
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
         </div>
 
         {/* Theme Selection */}
         <div className="space-y-2">
           <Label>Theme</Label>
-          <ThemeSelector
-            themes={themes}
-            selectedTheme={selectedTheme}
-            onSelect={setSelectedTheme}
-          />
+          {themesLoading ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              {[...Array(6)].map((_, i) => (
+                <Skeleton key={i} className="h-24 w-full" />
+              ))}
+            </div>
+          ) : (
+            <ThemeSelector
+              themes={themes}
+              selectedTheme={selectedTheme}
+              onSelect={setSelectedTheme}
+            />
+          )}
         </div>
 
         {/* Custom Prompt (if custom theme selected) */}
@@ -197,11 +221,15 @@ export function GeneratorForm() {
         {/* Hook Type */}
         <div className="space-y-2">
           <Label>Hook Type</Label>
-          <HookSelector
-            hooks={hooks}
-            selectedHook={selectedHook}
-            onSelect={setSelectedHook}
-          />
+          {hooksLoading ? (
+            <Skeleton className="h-10 w-full" />
+          ) : (
+            <HookSelector
+              hooks={hooks}
+              selectedHook={selectedHook}
+              onSelect={setSelectedHook}
+            />
+          )}
         </div>
 
         {/* Duration */}
@@ -236,7 +264,7 @@ export function GeneratorForm() {
           className="w-full"
           size="lg"
           onClick={handleGenerate}
-          disabled={isGenerating || !currentPrompt.trim()}
+          disabled={isGenerating || isLoading || !currentPrompt.trim()}
         >
           {isGenerating ? (
             <>
@@ -287,4 +315,4 @@ export function GeneratorForm() {
       </CardContent>
     </Card>
   )
-}
+})
