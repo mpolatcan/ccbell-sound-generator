@@ -1,47 +1,51 @@
-# Use HuggingFace's pre-built PyTorch image (has torch pre-installed)
-FROM pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime
+# Stage 1: Build frontend
+FROM node:20-slim AS frontend-builder
+WORKDIR /app
+COPY frontend/package*.json ./
+RUN npm ci --only=production
+COPY frontend/ ./
+RUN npm run build
+
+# Stage 2: Python backend (CPU-only, smaller image)
+FROM python:3.11-slim
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libsndfile1 \
     ffmpeg \
-    nodejs \
-    npm \
     git \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
-# Create non-root user for HuggingFace Spaces
+# Create non-root user
 RUN useradd -m -u 1000 user
-ENV HOME=/home/user \
-    PATH=/home/user/.local/bin:$PATH \
-    PYTHONUNBUFFERED=1 \
-    HF_HOME=/home/user/.cache/huggingface
 
-WORKDIR $HOME/app
+WORKDIR /home/user/app
 
-# Install Python dependencies first (better caching)
-COPY backend/requirements.txt ./requirements.txt
+# Install PyTorch CPU-only (much smaller than CUDA version)
+RUN pip install --no-cache-dir \
+    torch==2.5.1+cpu \
+    torchaudio==2.5.1+cpu \
+    --index-url https://download.pytorch.org/whl/cpu
+
+# Copy and install other requirements
+COPY backend/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Build frontend
-COPY frontend/package*.json ./frontend/
-RUN cd frontend && npm ci
-
-COPY frontend/ ./frontend/
-RUN cd frontend && npm run build
-
-# Copy backend code
+# Copy backend
 COPY backend/ ./
 
-# Move frontend build to static
-RUN mv frontend/dist static && rm -rf frontend
+# Copy frontend build
+COPY --from=frontend-builder /app/dist ./static
 
-# Set ownership
-RUN chown -R user:user $HOME/app
-
+# Set ownership and switch to user
+RUN chown -R user:user /home/user/app
 USER user
 
-# Create directories
+ENV HOME=/home/user \
+    PATH=/home/user/.local/bin:$PATH \
+    PYTHONUNBUFFERED=1
+
 RUN mkdir -p /tmp/ccbell-audio
 
 EXPOSE 7860

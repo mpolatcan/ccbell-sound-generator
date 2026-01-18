@@ -6,8 +6,7 @@ python-multipart>=0.0.18
 websockets>=14.0
 aiofiles>=24.1.0
 
-# Audio generation (torch is pre-installed in base image)
-torchaudio>=2.5.0
+# Audio generation (torch/torchaudio installed separately in Dockerfile)
 stable-audio-tools
 einops
 
