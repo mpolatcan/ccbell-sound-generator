@@ -1,27 +1,26 @@
 # Core API
-fastapi>=0.115.0
-pydantic-settings>=2.6.0
-uvicorn[standard]>=0.32.0
-python-multipart>=0.0.18
-websockets>=14.0
-aiofiles>=24.1.0
+fastapi==0.115.6
+pydantic-settings==2.7.1
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+aiofiles==24.1.0
 
 # Audio processing
-numpy>=2.0.0
-soundfile>=0.12.1
+numpy==2.2.2
+soundfile==0.13.1
 
 # GitHub integration
-PyGithub>=2.5.0
-python-dotenv>=1.0.1
+PyGithub==2.5.0
+python-dotenv==1.0.1
 
 # Audio generation dependencies (torch/torchaudio installed separately in Dockerfile)
 # Note: stable-audio-tools installed with --no-deps to skip flash-attn (CUDA-only)
-einops
-transformers
-diffusers
-safetensors
-huggingface_hub
-accelerate
-scipy
-resampy
-laion-clap
+einops==0.8.1
+transformers==4.48.2
+diffusers==0.32.2
+safetensors==0.5.2
+huggingface_hub==0.27.1
+accelerate==1.3.0
+scipy==1.15.1
+alibi-detect==0.12.1
+laion-clap==1.1.6
