@@ -240,6 +240,7 @@ All settings can be overridden via environment variables with the `CCBELL_` pref
 | `CCBELL_MAX_AUDIO_FILES` | `100` | Max stored audio files |
 | `CCBELL_GITHUB_TOKEN` | `null` | GitHub token for publishing |
 | `CCBELL_HF_TOKEN` | `null` | HuggingFace token for gated model access |
+| `HF_TOKEN` | `null` | Standard HuggingFace token (auto-injected by HF Spaces) |
 
 ## CI/CD Pipelines
 

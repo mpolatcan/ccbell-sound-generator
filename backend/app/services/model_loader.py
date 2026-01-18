@@ -3,6 +3,7 @@
 import asyncio
 import gc
 import logging
+import os
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Literal
 
@@ -18,24 +19,37 @@ _torch_available: bool | None = None
 _hf_logged_in: bool = False
 
 
+def _get_hf_token() -> str | None:
+    """Get HuggingFace token from environment or config.
+
+    Checks in order:
+    1. HF_TOKEN env var (standard, auto-injected by HuggingFace Spaces)
+    2. CCBELL_HF_TOKEN env var (app-specific config)
+    3. settings.hf_token (from .env file)
+    """
+    return os.environ.get("HF_TOKEN") or os.environ.get("CCBELL_HF_TOKEN") or settings.hf_token
+
+
 def _ensure_hf_login() -> None:
     """Ensure HuggingFace login for gated model access."""
     global _hf_logged_in
     if _hf_logged_in:
         return
 
-    if settings.hf_token:
+    token = _get_hf_token()
+    if token:
         try:
             from huggingface_hub import login
 
-            login(token=settings.hf_token, add_to_git_credential=False)
+            login(token=token, add_to_git_credential=False)
             logger.info("Successfully logged in to HuggingFace")
             _hf_logged_in = True
         except Exception as e:
             logger.warning(f"Failed to login to HuggingFace: {e}")
     else:
         logger.warning(
-            "No HuggingFace token configured. Set CCBELL_HF_TOKEN env var to access gated models."
+            "No HuggingFace token configured. "
+            "Set HF_TOKEN or CCBELL_HF_TOKEN env var to access gated models."
         )
 
 
