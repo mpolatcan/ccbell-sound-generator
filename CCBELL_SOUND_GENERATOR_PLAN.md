@@ -55,7 +55,7 @@ ccbell-sound-generator/
 │   │   └── data/
 │   │       ├── themes.py         # Theme presets
 │   │       └── hooks.py          # Hook type definitions
-│   └── requirements.txt          # Python dependencies
+│   └── pyproject.toml            # Dependencies and tool config
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
@@ -66,11 +66,14 @@ ccbell-sound-generator/
 │   │   │   ├── ThemeSelector.tsx # Theme preset buttons
 │   │   │   ├── HookSelector.tsx  # Hook type dropdown
 │   │   │   ├── AdvancedSettings.tsx
-│   │   │   └── PublishDialog.tsx # GitHub release dialog
+│   │   │   ├── PublishDialog.tsx # GitHub release dialog
+│   │   │   └── KeyboardShortcutsHelp.tsx # Keyboard shortcuts dialog
 │   │   ├── hooks/
 │   │   │   ├── useAudioGeneration.ts
 │   │   │   ├── useWebSocket.ts
-│   │   │   └── useSoundLibrary.ts
+│   │   │   ├── useSoundLibrary.ts
+│   │   │   ├── useToast.ts
+│   │   │   └── useKeyboardShortcuts.ts
 │   │   ├── lib/
 │   │   │   ├── api.ts            # API client
 │   │   │   ├── utils.ts
@@ -246,7 +249,9 @@ Based on the [official Claude Code hooks documentation](https://docs.anthropic.c
 | `GET` | `/api/themes` | Get theme presets |
 | `GET` | `/api/hooks` | Get hook types with metadata |
 | `POST` | `/api/generate` | Generate audio (returns job ID) |
+| `GET` | `/api/audio/{job_id}/status` | Get job status and progress |
 | `GET` | `/api/audio/{job_id}` | Get generated audio file |
+| `DELETE` | `/api/audio/{job_id}` | Delete job and audio file |
 | `POST` | `/api/publish` | Publish to GitHub release |
 
 ### WebSocket
@@ -293,43 +298,51 @@ Based on the [official Claude Code hooks documentation](https://docs.anthropic.c
 ## Dockerfile
 
 ```dockerfile
-# Stage 1: Build frontend
-FROM node:22-alpine AS frontend-builder
+# CPU-only build for HuggingFace Spaces free tier
+FROM python:3.11.11-slim-bookworm
 
-WORKDIR /app/frontend
-COPY frontend/package*.json ./
-RUN npm ci
+# Force CPU-only mode
+ENV CUDA_VISIBLE_DEVICES="" \
+    FORCE_CUDA=0 \
+    UV_SYSTEM_PYTHON=1 \
+    UV_NO_CACHE=1
 
-COPY frontend/ ./
-RUN npm run build
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libsndfile1 ffmpeg git \
+    && rm -rf /var/lib/apt/lists/* \
+    && useradd -m -u 1000 user
 
-# Stage 2: Python backend
-FROM python:3.13-slim
+# Install uv
+COPY --from=ghcr.io/astral-sh/uv:0.5.18 /uv /usr/local/bin/uv
 
-# Create non-root user
-RUN useradd -m -u 1000 user
+WORKDIR /home/user/app
+
+# Copy backend code
+COPY backend/ ./
+
+# Install PyTorch CPU-only version first
+RUN uv pip install --system torch==2.5.1 torchaudio==2.5.1 \
+    --extra-index-url https://download.pytorch.org/whl/cpu
+
+# Install dependencies from pyproject.toml
+RUN uv pip install --system .
+
+# Install stable-audio-tools without deps
+RUN uv pip install --system --no-deps stable-audio-tools==0.0.19
+
+# Copy pre-built frontend
+COPY frontend/dist ./static
+
+# Set ownership and switch to user
+RUN chown -R user:user /home/user/app && mkdir -p /tmp/ccbell-audio
 USER user
 
 ENV HOME=/home/user \
     PATH=/home/user/.local/bin:$PATH \
     PYTHONUNBUFFERED=1
 
-WORKDIR $HOME/app
-
-# Install Python dependencies
-COPY --chown=user backend/requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy backend code
-COPY --chown=user backend/ ./
-
-# Copy frontend build
-COPY --from=frontend-builder --chown=user /app/frontend/dist ./static
-
-# Expose port
 EXPOSE 7860
-
-# Run FastAPI with uvicorn
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "7860"]
 ```
 
@@ -467,16 +480,27 @@ jobs:
 
 ## Local Development
 
-### Python Virtual Environment
-
-**IMPORTANT**: Always use a virtual environment named `venv` for backend development.
+### Prerequisites
 
 ```bash
-# Create virtual environment (first time only)
-python3 -m venv venv
+# Install uv (Python package manager)
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# ALWAYS activate before running any backend commands
+# Install ruff (linter/formatter) and ty (type checker)
+uv tool install ruff
+uv tool install ty
+```
+
+### Python Virtual Environment
+
+**IMPORTANT**: Always activate the virtual environment before running ANY Python-related commands.
+
+```bash
+# From project root - activate venv FIRST
 source venv/bin/activate
+
+# Verify activation (should show venv path)
+which python
 ```
 
 ### Running the Application
@@ -487,11 +511,18 @@ docker-compose up --build
 
 # Or run separately:
 
-# Backend (activate venv first!)
+# Backend (ALWAYS activate venv first!)
 source venv/bin/activate
 cd backend
-pip install -r requirements.txt
+uv pip install -e ".[dev]"
+uv pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+uv pip install --no-deps stable-audio-tools
 uvicorn app.main:app --reload --port 8000
+
+# Lint, format, and type check
+ruff check .
+ruff format .
+ty check .
 
 # Frontend
 cd frontend

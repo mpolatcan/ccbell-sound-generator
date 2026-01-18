@@ -9,7 +9,7 @@ This is a full-stack web application with:
 - **Frontend**: React 19 + TypeScript + Vite 6 + Tailwind CSS + shadcn/ui
 - **AI Models**: Stable Audio Open (Small & 1.0) for audio generation
 - **Deployment**: HuggingFace Spaces Docker SDK on free CPU tier
-- **Tooling**: uv (package manager), ruff (linter/formatter)
+- **Tooling**: uv (package manager), ruff (linter/formatter), ty (type checker)
 
 ## Directory Structure
 
@@ -52,24 +52,41 @@ ccbell-sound-generator/
 
 ### Prerequisites
 
-Install [uv](https://docs.astral.sh/uv/) for Python package management:
+Install required tools:
 
 ```bash
-# macOS/Linux
+# Install uv (Python package manager)
 curl -LsSf https://astral.sh/uv/install.sh | sh
+# Or with Homebrew: brew install uv
 
-# Or with Homebrew
-brew install uv
+# Install ruff (linter/formatter) and ty (type checker)
+uv tool install ruff
+uv tool install ty
+```
+
+### Virtual Environment (REQUIRED)
+
+**IMPORTANT**: Always activate the virtual environment before running ANY Python-related commands.
+
+```bash
+# From project root - activate venv FIRST
+source venv/bin/activate
+
+# Verify activation (should show venv path)
+which python
 ```
 
 ### Backend Development
 
 ```bash
+# ALWAYS activate venv first!
+source venv/bin/activate
+
 cd backend
 
-# Create virtual environment and install dependencies
-uv venv
-source .venv/bin/activate
+# First-time setup: Create venv and install dependencies
+uv venv ../venv  # Creates venv at project root
+source ../venv/bin/activate
 uv pip install -e ".[dev]"
 
 # Install PyTorch CPU (for local development without CUDA)
@@ -78,12 +95,15 @@ uv pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
 # Install stable-audio-tools (skip flash-attn which requires CUDA)
 uv pip install --no-deps stable-audio-tools
 
-# Run development server
+# Run development server (venv must be active)
 uvicorn app.main:app --reload --port 8000
 
-# Lint and format
+# Lint and format (venv must be active)
 ruff check .
 ruff format .
+
+# Type checking with ty (venv must be active)
+ty check .
 ```
 
 ### Frontend Development
@@ -164,7 +184,7 @@ The app generates sounds for these Claude Code events:
 - **ML**: torch 2.5.1 (CPU), torchaudio 2.5.1, stable-audio-tools 0.0.19
 - **Audio**: numpy 1.23.5, scipy 1.11.4
 - **Integrations**: PyGithub 2.5.0
-- **Dev Tools**: ruff 0.9+
+- **Dev Tools**: ruff 0.9+, ty (type checker)
 
 ### Frontend (Node.js 22)
 - React 19, TypeScript 5.7
@@ -180,7 +200,7 @@ The app generates sounds for these Claude Code events:
 - Frontend state managed with Zustand for sound library
 - Use React Query for API calls with proper caching
 - All audio files are 44.1kHz stereo WAV
-- Run `ruff check .` and `ruff format .` before committing
+- Before committing, run: `ruff check .`, `ruff format .`, and `ty check .`
 
 ## Deployment
 

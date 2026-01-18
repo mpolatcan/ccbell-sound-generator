@@ -75,20 +75,29 @@ Visit http://localhost:7860
 
 ### Manual Setup
 
-**Backend:**
+**Prerequisites:**
 
 ```bash
-cd backend
-
 # Install uv (fast Python package manager)
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# Create virtual environment and install dependencies
-uv venv
-source .venv/bin/activate
-uv pip install -e ".[dev]"
+# Install ruff (linter/formatter) and ty (type checker)
+uv tool install ruff
+uv tool install ty
+```
 
-# Install PyTorch CPU and stable-audio-tools
+**Backend:**
+
+```bash
+# Create venv at project root (first time only)
+cd backend
+uv venv ../venv
+
+# ALWAYS activate venv before running Python commands
+source ../venv/bin/activate  # or: source venv/bin/activate from project root
+
+# Install dependencies
+uv pip install -e ".[dev]"
 uv pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
 uv pip install --no-deps stable-audio-tools
 
