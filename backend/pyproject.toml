@@ -1,0 +1,86 @@
+[project]
+name = "ccbell-sound-generator"
+version = "1.0.0"
+description = "AI-powered notification sound generator for Claude Code plugin ccbell"
+requires-python = ">=3.11,<3.13"
+readme = "README.md"
+license = { text = "MIT" }
+
+dependencies = [
+    # Core API
+    "fastapi==0.115.6",
+    "pydantic-settings==2.7.1",
+    "uvicorn[standard]==0.34.0",
+    "python-multipart==0.0.20",
+    "aiofiles==24.1.0",
+    # Audio processing
+    "numpy==1.23.5",
+    "soundfile==0.12.1",
+    "scipy==1.11.4",
+    # GitHub integration
+    "PyGithub==2.5.0",
+    "python-dotenv==1.0.1",
+    # stable-audio-tools dependencies (inference only)
+    "einops==0.8.0",
+    "einops-exts==0.0.4",
+    "safetensors==0.4.5",
+    "huggingface_hub==0.27.0",
+    "transformers==4.47.1",
+    "tqdm==4.67.1",
+    "sentencepiece==0.1.99",
+    "laion-clap==1.1.4",
+    "ema-pytorch==0.2.3",
+    "local-attention==1.8.6",
+    "vector-quantize-pytorch==1.14.41",
+    "k-diffusion==0.1.1",
+    "alias-free-torch==0.0.6",
+    "descript-audio-codec==1.0.0",
+    "auraloss==0.4.0",
+    "encodec==0.1.1",
+    "prefigure==0.0.9",
+    "importlib-resources==5.12.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.9.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # Pyflakes
+    "I",      # isort
+    "B",      # flake8-bugbear
+    "C4",     # flake8-comprehensions
+    "UP",     # pyupgrade
+    "SIM",    # flake8-simplify
+]
+ignore = [
+    "E501",   # line too long (handled by formatter)
+    "B008",   # do not perform function calls in argument defaults
+    "B905",   # zip without strict
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.uv]
+dev-dependencies = [
+    "ruff>=0.9.0",
+]

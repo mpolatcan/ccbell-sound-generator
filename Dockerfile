@@ -3,35 +3,42 @@ FROM python:3.11.11-slim-bookworm
 
 # Force CPU-only mode
 ENV CUDA_VISIBLE_DEVICES="" \
-    FORCE_CUDA=0
+    FORCE_CUDA=0 \
+    UV_SYSTEM_PYTHON=1 \
+    UV_NO_CACHE=1
 
-# Install system dependencies
+# Install system dependencies and uv
 # - libsndfile1: audio file I/O
 # - ffmpeg: audio processing
-# - git: required by some pip packages for model downloads
+# - git: required for some pip packages (model downloads)
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    libsndfile1 \
-    ffmpeg \
-    git \
+    libsndfile1=1.2.0-1 \
+    ffmpeg=7:5.1.6-0+deb12u1 \
+    git=1:2.39.5-0+deb12u2 \
+    curl=7.88.1-10+deb12u8 \
+    ca-certificates=20230311 \
     && rm -rf /var/lib/apt/lists/* \
     && useradd -m -u 1000 user
 
+# Install uv
+COPY --from=ghcr.io/astral-sh/uv:0.5.18 /uv /usr/local/bin/uv
+
 WORKDIR /home/user/app
 
-# Copy requirements first for caching
-COPY backend/requirements.txt ./
+# Copy pyproject.toml for dependency resolution
+COPY backend/pyproject.toml ./
 
-# Install PyTorch CPU-only version
-RUN pip install --no-cache-dir \
+# Install PyTorch CPU-only version first
+RUN uv pip install --system \
     torch==2.5.1+cpu \
     torchaudio==2.5.1+cpu \
     --index-url https://download.pytorch.org/whl/cpu
 
-# Install pinned requirements
-RUN pip install --no-cache-dir -r requirements.txt
+# Install dependencies from pyproject.toml
+RUN uv pip install --system -e .
 
 # Install stable-audio-tools without deps to skip flash-attn (CUDA-only)
-RUN pip install --no-cache-dir --no-deps stable-audio-tools==0.1.0
+RUN uv pip install --system --no-deps stable-audio-tools==0.1.0
 
 # Copy backend code and pre-built frontend
 COPY backend/ ./

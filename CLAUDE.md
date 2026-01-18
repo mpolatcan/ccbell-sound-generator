@@ -5,10 +5,11 @@ AI-powered notification sound generator for the Claude Code plugin "ccbell", dep
 ## Project Overview
 
 This is a full-stack web application with:
-- **Backend**: FastAPI (Python 3.13) - serves API and static files
+- **Backend**: FastAPI (Python 3.11) - serves API and static files
 - **Frontend**: React 19 + TypeScript + Vite 6 + Tailwind CSS + shadcn/ui
 - **AI Models**: Stable Audio Open (Small & 1.0) for audio generation
 - **Deployment**: HuggingFace Spaces Docker SDK on free CPU tier
+- **Tooling**: uv (package manager), ruff (linter/formatter)
 
 ## Directory Structure
 
@@ -30,7 +31,8 @@ ccbell-sound-generator/
 │   │   └── data/
 │   │       ├── themes.py     # Theme presets
 │   │       └── hooks.py      # Hook definitions
-│   └── requirements.txt
+│   ├── pyproject.toml        # Dependencies and tool config
+│   └── requirements.txt      # Legacy (deprecated)
 ├── frontend/
 │   ├── src/
 │   │   ├── components/       # React components
@@ -42,53 +44,73 @@ ccbell-sound-generator/
 │   ├── package.json
 │   ├── vite.config.ts
 │   └── tailwind.config.js
-├── Dockerfile                # Multi-stage build
+├── Dockerfile                # Production build with uv
 ├── docker-compose.yml        # Local development
 └── README.md                 # HuggingFace Space config
 ```
 
 ## Key Commands
 
-### Python Virtual Environment
+### Prerequisites
 
-**IMPORTANT**: Always use the virtual environment named `venv` for backend development.
+Install [uv](https://docs.astral.sh/uv/) for Python package management:
 
 ```bash
-# Create virtual environment (first time only)
-python3 -m venv venv
+# macOS/Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# ALWAYS activate before running any backend commands
-source venv/bin/activate
+# Or with Homebrew
+brew install uv
 ```
 
-### Local Development
+### Backend Development
+
+```bash
+cd backend
+
+# Create virtual environment and install dependencies
+uv venv
+source .venv/bin/activate
+uv pip install -e ".[dev]"
+
+# Install PyTorch CPU (for local development without CUDA)
+uv pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+
+# Install stable-audio-tools (skip flash-attn which requires CUDA)
+uv pip install --no-deps stable-audio-tools
+
+# Run development server
+uvicorn app.main:app --reload --port 8000
+
+# Lint and format
+ruff check .
+ruff format .
+```
+
+### Frontend Development
+
+```bash
+cd frontend
+npm install          # Install dependencies
+npm run dev          # Development server (http://localhost:5173)
+npm run build        # Production build
+npm run lint         # Run ESLint
+```
+
+### Docker Development
 
 ```bash
 # Full stack with Docker
 docker-compose up --build
 
-# Backend only (activate venv first!)
-source venv/bin/activate
-cd backend && pip install -r requirements.txt
-uvicorn app.main:app --reload --port 8000
-
-# Frontend only
-cd frontend && npm install && npm run dev
-```
-
-### Frontend
-
-```bash
-cd frontend
-npm install          # Install dependencies
-npm run dev          # Development server
-npm run build        # Production build
-npm run lint         # Run linter
+# Build production image
+docker build -t ccbell-sound-generator .
 ```
 
 ### shadcn/ui Components
 
 ```bash
+cd frontend
 npx shadcn-ui@latest add button card input label select slider tabs accordion dialog dropdown-menu toast progress badge separator scroll-area
 ```
 
@@ -136,10 +158,12 @@ The app generates sounds for these Claude Code events:
 
 ## Dependencies
 
-### Backend (Python 3.13)
-- FastAPI 0.115+, uvicorn 0.32+
-- torch 2.5+, torchaudio 2.5+, stable-audio-tools
-- PyGithub 2.5+, soundfile, pydub
+### Backend (Python 3.11)
+- **Runtime**: FastAPI 0.115.6, uvicorn 0.34.0, pydantic-settings 2.7.1
+- **ML**: torch 2.5.1 (CPU), torchaudio 2.5.1, stable-audio-tools 0.1.0
+- **Audio**: numpy 1.23.5, soundfile 0.12.1, scipy 1.11.4
+- **Integrations**: PyGithub 2.5.0, python-dotenv 1.0.1
+- **Dev Tools**: ruff 0.9+
 
 ### Frontend (Node.js 22)
 - React 19, TypeScript 5.7
@@ -155,6 +179,7 @@ The app generates sounds for these Claude Code events:
 - Frontend state managed with Zustand for sound library
 - Use React Query for API calls with proper caching
 - All audio files are 44.1kHz stereo WAV
+- Run `ruff check .` and `ruff format .` before committing
 
 ## Deployment
 

@@ -1,3 +1,11 @@
+# DEPRECATED: Use pyproject.toml and uv for dependency management
+# This file is kept for backwards compatibility only
+#
+# For local development:
+#   uv pip install -e ".[dev]"
+#
+# For Docker builds, dependencies are defined in pyproject.toml
+
 # Core API
 fastapi==0.115.6
 pydantic-settings==2.7.1
@@ -14,8 +22,7 @@ scipy==1.11.4
 PyGithub==2.5.0
 python-dotenv==1.0.1
 
-# stable-audio-tools dependencies (installed with --no-deps to skip flash-attn)
-# These are the CPU-compatible deps from stable-audio-tools setup.py
+# stable-audio-tools inference dependencies
 einops==0.8.0
 einops-exts==0.0.4
 safetensors==0.4.5
@@ -28,15 +35,9 @@ ema-pytorch==0.2.3
 local-attention==1.8.6
 vector-quantize-pytorch==1.14.41
 k-diffusion==0.1.1
-pytorch_lightning==2.1.0
 alias-free-torch==0.0.6
 descript-audio-codec==1.0.0
 auraloss==0.4.0
 encodec==0.1.1
-v-diffusion-pytorch==0.0.2
 prefigure==0.0.9
-torchmetrics==0.11.4
-pandas==2.0.2
-PyWavelets==1.4.1
-webdataset==0.2.100
 importlib-resources==5.12.0
