@@ -27,7 +27,7 @@ echo ""
 echo "Fetching logs from: https://huggingface.co/spaces/mpolatcan/ccbell-sound-generator"
 echo ""
 
-# Fetch logs, remove "data:" prefix, parse with jq for pretty formatting
+# Fetch logs, remove "data:" prefix, extract log message
 curl -s -N \
     -H "Authorization: Bearer $HF_TOKEN" \
     "https://huggingface.co/api/spaces/mpolatcan/ccbell-sound-generator/logs/run" 2>/dev/null | \
@@ -37,8 +37,8 @@ curl -s -N \
         [ -z "$line" ] && continue
         # Skip "event: " and "id: " lines from SSE
         echo "$line" | grep -qE '^(event|id):' && continue
-        # Format JSON output with jq
-        echo "$line" | jq -c '.'
+        # Extract and print the log message (data or message field)
+        echo "$line" | jq -r '.data // .message // . // empty'
     done
 
 echo ""
