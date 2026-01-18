@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  sync:
+  build-and-sync:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -17,11 +17,38 @@ jobs:
           fetch-depth: 0
           lfs: true
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm ci
+          npm run build
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: false
+          tags: ccbell-sound-generator:test
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
       - name: Push to HuggingFace Spaces
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
+          git add -f frontend/dist
+          git commit -m "Add frontend build" --allow-empty
           git remote add hf https://oauth2:${HF_TOKEN}@huggingface.co/spaces/${{ secrets.HF_USERNAME }}/ccbell-sound-generator || true
           git push hf HEAD:main --force
