@@ -23,6 +23,7 @@ ccbell-sound-generator/
 │   │   │   └── websocket.py  # WebSocket for progress
 │   │   ├── core/
 │   │   │   ├── config.py     # Settings
+│   │   │   ├── logging.py    # Loguru logging configuration
 │   │   │   └── models.py     # Pydantic models
 │   │   ├── services/
 │   │   │   ├── audio.py      # Audio generation
@@ -92,7 +93,7 @@ uv pip install --no-deps stable-audio-tools
 
 # Run development server (from backend directory, venv must be active)
 cd backend
-uvicorn app.main:app --reload --port 8000
+uvicorn app.main:app --reload --port 8000  # Local dev uses port 8000
 
 # Lint and format (from backend directory, venv must be active)
 ruff check .
@@ -194,6 +195,7 @@ The app generates sounds for these Claude Code events:
 
 ### Backend (Python 3.11-3.12)
 - **Runtime**: FastAPI 0.115.6, uvicorn 0.34.0, pydantic-settings 2.7.1
+- **Logging**: loguru 0.7.2
 - **ML**: torch 2.5.1 (CPU), torchaudio 2.5.1, stable-audio-tools 0.0.19
 - **Audio**: numpy 1.23.5, scipy 1.11.4
 - **Integrations**: PyGithub 2.5.0
@@ -213,6 +215,7 @@ The app generates sounds for these Claude Code events:
 - Frontend state managed with Zustand for sound library
 - Use React Query for API calls with proper caching
 - All audio files are 44.1kHz stereo WAV
+- **After every code change, review and update CLAUDE.md to reflect changes** (new files, dependencies, environment variables, etc.)
 - Before committing, run: `ruff check .`, `ruff format .`, and `ty check .`
 
 ## Environment Variables
@@ -223,7 +226,7 @@ All settings can be overridden via environment variables with the `CCBELL_` pref
 |----------|---------|-------------|
 | `CCBELL_DEBUG` | `false` | Enable debug mode |
 | `CCBELL_HOST` | `0.0.0.0` | Server host |
-| `CCBELL_PORT` | `7860` | Server port |
+| `CCBELL_PORT` | `7860` | Server port (use 8000 for local dev via uvicorn --reload) |
 | `CCBELL_DEFAULT_MODEL` | `small` | Default model (`small` or `1.0`) |
 | `CCBELL_MODELS_CACHE_DIR` | `~/.cache/ccbell-models` | Model cache directory |
 | `CCBELL_SAMPLE_RATE` | `44100` | Audio sample rate |
