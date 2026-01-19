@@ -138,10 +138,15 @@ jobs:
       - name: Prepare deployment
         run: |
           VERSION="${{ needs.validate.outputs.version }}"
+          DEPLOY_TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          # Update deploy version marker in README to force HF rebuild
+          sed -i "s/<!-- deploy-version: .* -->/<!-- deploy-version: v${VERSION} deployed at ${DEPLOY_TIMESTAMP} -->/" README.md
 
           # Stage all changes including frontend dist
           git add -f frontend/dist
           git add -f backend/app/core/config.py
+          git add -f README.md
 
           # Create deployment commit
           git commit -m "Deploy v${VERSION}" --allow-empty

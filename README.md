@@ -10,6 +10,8 @@ license: mit
 suggested_hardware: cpu-basic
 ---
 
+<!-- deploy-version: will be updated by CI -->
+
 # CCBell Sound Generator
 
 Generate AI-powered notification sounds for the [Claude Code](https://github.com/anthropics/claude-code) plugin [ccbell](https://github.com/anthropics/ccbell).
