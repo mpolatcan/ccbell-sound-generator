@@ -4,6 +4,24 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
+# Valid Claude Code hook types
+HookTypeId = Literal[
+    "PreToolUse",
+    "PostToolUse",
+    "Notification",
+    "Stop",
+    "SubagentStop",
+    "Bash",
+    "Read",
+    "Write",
+    "Edit",
+    "Task",
+    "Error",
+    "Success",
+    "Warning",
+    "Progress",
+]
+
 
 class GenerationSettings(BaseModel):
     """Advanced generation settings."""
@@ -23,7 +41,7 @@ class GenerateRequest(BaseModel):
     prompt: str = Field(
         ..., min_length=1, max_length=500, description="Text prompt for audio generation"
     )
-    hook_type: str = Field(..., description="Claude Code hook type")
+    hook_type: HookTypeId = Field(..., description="Claude Code hook type")
     duration: float = Field(2.0, ge=0.5, le=47.0, description="Duration in seconds")
     settings: GenerationSettings | None = Field(None, description="Advanced generation settings")
 

@@ -18,8 +18,25 @@ export interface ThemePreset {
   icon: string
 }
 
+// Valid Claude Code hook type IDs
+export type HookTypeId =
+  | 'PreToolUse'
+  | 'PostToolUse'
+  | 'Notification'
+  | 'Stop'
+  | 'SubagentStop'
+  | 'Bash'
+  | 'Read'
+  | 'Write'
+  | 'Edit'
+  | 'Task'
+  | 'Error'
+  | 'Success'
+  | 'Warning'
+  | 'Progress'
+
 export interface HookType {
-  id: string
+  id: HookTypeId
   name: string
   description: string
   sound_character: string
@@ -36,7 +53,7 @@ export interface GenerationSettings {
 export interface GenerateRequest {
   model: 'small' | '1.0'
   prompt: string
-  hook_type: string
+  hook_type: HookTypeId
   duration: number
   settings?: GenerationSettings
 }
@@ -104,9 +121,9 @@ export interface ModelsStatusResponse {
 export interface GeneratedSound {
   id: string
   job_id: string
-  hook_type: string
+  hook_type: HookTypeId
   prompt: string
-  model: string
+  model: 'small' | '1.0'
   duration: number
   audio_url: string
   created_at: Date

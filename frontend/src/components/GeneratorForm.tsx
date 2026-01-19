@@ -27,7 +27,7 @@ import { useModelStatus } from '@/hooks/useModelStatus'
 import { MODEL_DEFAULTS, DEFAULT_DURATION } from '@/lib/constants'
 import { formatDuration, getStageLabel } from '@/lib/utils'
 import { Loader2, Sparkles, Plus, RefreshCw, AlertCircle } from 'lucide-react'
-import type { GenerationSettings } from '@/types'
+import type { GenerationSettings, HookTypeId } from '@/types'
 
 export interface GeneratorFormRef {
   generate: () => void
@@ -65,16 +65,16 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
   // Form state
   const [selectedModel, setSelectedModel] = useState<'small' | '1.0'>('small')
   const [selectedTheme, setSelectedTheme] = useState('sci-fi')
-  const [selectedHooks, setSelectedHooks] = useState<string[]>(['Notification'])
+  const [selectedHooks, setSelectedHooks] = useState<HookTypeId[]>(['Notification'])
   const [customPrompt, setCustomPrompt] = useState('')
   const [duration, setDuration] = useState(DEFAULT_DURATION)
   const [advancedSettings, setAdvancedSettings] = useState<GenerationSettings>({})
 
   // Sequential generation state
-  const [generationQueue, setGenerationQueue] = useState<string[]>([])
-  const [currentGeneratingHook, setCurrentGeneratingHook] = useState<string | null>(null)
+  const [generationQueue, setGenerationQueue] = useState<HookTypeId[]>([])
+  const [currentGeneratingHook, setCurrentGeneratingHook] = useState<HookTypeId | null>(null)
   const [completedGenerations, setCompletedGenerations] = useState<Array<{
-    hookId: string
+    hookId: HookTypeId
     audioUrl: string
     jobId: string
   }>>([])
@@ -129,7 +129,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
   }
 
   // Generate a single sound for a specific hook
-  const generateSingleSound = async (hookId: string) => {
+  const generateSingleSound = async (hookId: HookTypeId) => {
     const prompt = buildPrompt(hookId)
     if (!prompt.trim()) return
 

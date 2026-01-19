@@ -8,19 +8,19 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { ChevronDown, X } from 'lucide-react'
-import type { HookType } from '@/types'
+import type { HookType, HookTypeId } from '@/types'
 import { formatDuration, cn } from '@/lib/utils'
 
 interface HookSelectorProps {
   hooks: HookType[]
-  selectedHooks: string[]
-  onSelect: (hookIds: string[]) => void
+  selectedHooks: HookTypeId[]
+  onSelect: (hookIds: HookTypeId[]) => void
 }
 
 export function HookSelector({ hooks, selectedHooks, onSelect }: HookSelectorProps) {
   const selectedHooksData = hooks.filter(h => selectedHooks.includes(h.id))
 
-  const toggleHook = (hookId: string) => {
+  const toggleHook = (hookId: HookTypeId) => {
     if (selectedHooks.includes(hookId)) {
       onSelect(selectedHooks.filter(id => id !== hookId))
     } else {
@@ -28,7 +28,7 @@ export function HookSelector({ hooks, selectedHooks, onSelect }: HookSelectorPro
     }
   }
 
-  const removeHook = (hookId: string, e: React.MouseEvent) => {
+  const removeHook = (hookId: HookTypeId, e: React.MouseEvent) => {
     e.stopPropagation()
     onSelect(selectedHooks.filter(id => id !== hookId))
   }
