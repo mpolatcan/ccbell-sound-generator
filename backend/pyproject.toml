@@ -15,6 +15,7 @@ dependencies = [
     # PyTorch - pinned to avoid torchcodec dependency issues in newer versions
     "torch==2.5.1",
     "torchaudio==2.5.1",
+    "torchvision==0.20.1",
     # Audio processing (transitive deps for torch/stable-audio-tools)
     "numpy==1.23.5",
     "scipy==1.11.4",

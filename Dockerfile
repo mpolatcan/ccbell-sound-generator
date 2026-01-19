@@ -22,19 +22,21 @@ WORKDIR /home/user/app
 COPY backend/pyproject.toml ./
 
 # Install all dependencies in a single layer (better caching)
-# 1. PyTorch CPU first (pinned versions)
+# 1. PyTorch CPU first (pinned versions) - includes torchvision for laion-clap
 # 2. stable-audio-tools without deps (to avoid pulling newer torch)
 # 3. All other deps from pyproject.toml
 # IMPORTANT: Use --reinstall to ensure pinned versions are not upgraded by transitive deps
 RUN uv pip install --system \
     torch==2.5.1 \
     torchaudio==2.5.1 \
+    torchvision==0.20.1 \
     --extra-index-url https://download.pytorch.org/whl/cpu && \
     uv pip install --system --no-deps stable-audio-tools==0.0.19 && \
     uv pip install --system . && \
     uv pip install --system --reinstall \
     torch==2.5.1 \
     torchaudio==2.5.1 \
+    torchvision==0.20.1 \
     --extra-index-url https://download.pytorch.org/whl/cpu
 
 # Final stage - runtime only
