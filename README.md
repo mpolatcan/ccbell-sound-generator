@@ -98,17 +98,12 @@ uv tool install ty
 **Backend:**
 
 ```bash
-# Create venv at project root (first time only)
 cd backend
-uv venv ../venv
+# Create and sync venv (first time only)
+uv sync --group dev
 
 # ALWAYS activate venv before running Python commands
-source ../venv/bin/activate  # or: source venv/bin/activate from project root
-
-# Install dependencies
-uv pip install -e ".[dev]"
-uv pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
-uv pip install --no-deps stable-audio-tools
+source .venv/bin/activate
 
 # Run server
 uvicorn app.main:app --reload --port 8000

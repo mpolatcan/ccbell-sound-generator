@@ -1,0 +1,30 @@
+---
+description: Format Python code using ruff
+allowed-tools: Bash, Read
+---
+
+# Format
+
+Format code using ruff for the backend.
+
+## Instructions
+
+### Check Formatting
+To check if formatting is correct without making changes:
+```bash
+cd backend && source .venv/bin/activate && ruff format --check .
+```
+
+### Apply Formatting
+To apply formatting:
+```bash
+cd backend && source .venv/bin/activate && ruff format .
+```
+
+Report the results and any files that were reformatted.
+
+## Important Notes
+- The virtual environment is at `backend/.venv` (created by `uv sync`)
+- Backend uses ruff format with 100 character line length and double quotes
+- Frontend doesn't have a separate formatting step (handled by ESLint/Prettier if configured)
+- Run `ruff format --check .` before committing to verify formatting

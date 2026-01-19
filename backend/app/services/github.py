@@ -9,6 +9,7 @@ from typing import TypedDict
 from github import Github, GithubException
 from loguru import logger
 
+from app.core.config import settings
 from app.core.models import PublishRequest, PublishResponse
 from app.services.audio import audio_service
 
@@ -53,7 +54,15 @@ class GitHubService:
 
         try:
             # Initialize GitHub client
-            gh = Github(request.github_token)
+            token = request.github_token or settings.github_token
+            if not token:
+                logger.error("GitHub token not provided and CCBELL_GITHUB_TOKEN not set")
+                return PublishResponse(
+                    success=False,
+                    error="GitHub token not provided. Please set CCBELL_GITHUB_TOKEN or provide it in the request.",
+                )
+
+            gh = Github(token)
 
             # Get repository
             try:

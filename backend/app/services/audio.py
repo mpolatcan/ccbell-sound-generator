@@ -85,7 +85,7 @@ class AudioService:
         expired_jobs = [
             job_id
             for job_id, job in self._jobs.items()
-            if job.is_expired() and job.status in ("complete", "error")
+            if job.is_expired() and job.status in ("completed", "error")
         ]
         for job_id in expired_jobs:
             self.cleanup_job(job_id)
@@ -282,7 +282,10 @@ class AudioService:
                 """Background task to periodically report generation progress."""
                 nonlocal start_time
                 start_time = time.time()
-                estimated_total_time = steps * 1.5  # ~1.5s per step on CPU
+                # Heuristic: ~1.5s per step on CPU. This is a rough estimate for progress
+                # reporting since the stable-audio-tools doesn't provide step-by-step
+                # progress callbacks for the generation loop.
+                estimated_total_time = steps * 1.5
                 max_runtime = 1800  # 30 minutes max to prevent infinite loops
                 last_reported_progress = 0.3
 
@@ -329,7 +332,7 @@ class AudioService:
                         sampler_type=sampler,
                         device=model_loader.device,
                     )
-                logger.debug(f"Job {job_id}: diffusion generation complete")
+                logger.debug(f"Job {job_id}: diffusion generation completed")
                 return output
 
             output = await loop.run_in_executor(None, do_generate)
@@ -373,12 +376,12 @@ class AudioService:
             torchaudio.save(str(output_path), output, sample_rate)
 
             job.audio_path = output_path
-            job.status = "complete"
+            job.status = "completed"
             logger.info(f"Job {job_id}: audio generated successfully")
             logger.info(f"Job {job_id}: saved to {output_path} ({sample_rate} Hz)")
 
             audio_url = f"/api/audio/{job_id}"
-            await self._notify_progress(job_id, 1.0, "complete", audio_url)
+            await self._notify_progress(job_id, 1.0, "completed", audio_url)
 
             return output_path
 

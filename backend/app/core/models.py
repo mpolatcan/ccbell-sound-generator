@@ -50,7 +50,7 @@ class GenerateResponse(BaseModel):
     """Response model for audio generation."""
 
     job_id: str = Field(..., description="Unique job identifier")
-    status: Literal["queued", "processing", "complete", "error"] = Field(
+    status: Literal["queued", "processing", "completed", "error"] = Field(
         ..., description="Job status"
     )
 
@@ -59,7 +59,7 @@ class AudioStatusResponse(BaseModel):
     """Response model for audio status check."""
 
     job_id: str
-    status: Literal["queued", "processing", "complete", "error"]
+    status: Literal["queued", "processing", "completed", "error"]
     progress: float = Field(0.0, ge=0.0, le=1.0)
     stage: str | None = None
     audio_url: str | None = None
@@ -110,7 +110,7 @@ class HookType(BaseModel):
 class PublishRequest(BaseModel):
     """Request model for publishing to GitHub."""
 
-    github_token: str = Field(..., min_length=1, description="GitHub personal access token")
+    github_token: str | None = Field(None, description="GitHub personal access token")
     repo_owner: str = Field(..., min_length=1, description="Repository owner")
     repo_name: str = Field(..., min_length=1, description="Repository name")
     release_tag: str = Field(..., min_length=1, description="Release tag")

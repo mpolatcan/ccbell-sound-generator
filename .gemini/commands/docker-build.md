@@ -1,0 +1,34 @@
+---
+description: Build the production Docker image
+allowed-tools: Bash, Read
+---
+
+# Docker Build
+
+Build the production Docker image.
+
+## Instructions
+
+Build the Docker image:
+```bash
+docker build -t ccbell-sound-generator .
+```
+
+This multi-stage build:
+1. Uses uv to sync dependencies from lockfile
+2. Installs CPU-only PyTorch automatically
+3. Copies the frontend build from `frontend/dist/`
+4. Creates a lean runtime image
+5. Runs as non-root user (uid 1000)
+
+## With Version Tag
+```bash
+docker build -t ccbell-sound-generator:v1.0.0 .
+```
+
+## Important Notes
+- Ensure `frontend/dist/` exists (run `/build` first if needed)
+- The image is optimized for HuggingFace Spaces free CPU tier
+- Build uses uv lockfile for reproducible dependencies
+- The `.dockerignore` excludes source files, reducing context size
+- Health check runs every 30s on `/api/health`

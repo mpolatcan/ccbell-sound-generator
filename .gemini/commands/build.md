@@ -1,0 +1,29 @@
+---
+description: Build the frontend application with Vite
+allowed-tools: Bash, Read
+---
+
+# Build
+
+Build the frontend application.
+
+## Instructions
+
+Build the frontend:
+```bash
+cd frontend && npm run build
+```
+
+This will:
+1. Compile TypeScript
+2. Bundle with Vite
+3. Output to `frontend/dist/`
+
+Report build results including any warnings or errors.
+
+## Important Notes
+- The build output goes to `frontend/dist/`
+- This is what gets served by the FastAPI backend in production
+- The Docker build uses this output
+- Run this before Docker builds to ensure the frontend is up to date
+- Build artifacts are uploaded as CI artifacts in the GitHub workflow

@@ -48,48 +48,47 @@ ccbell-sound-generator/
 ├── .claude/
 │   ├── commands/             # Slash commands (14 commands)
 │   └── skills/               # Auto-triggered skills (3 skills)
+├── .gemini/
+│   ├── commands/             # Gemini commands
+│   └── skills/               # Gemini skills
 ├── Dockerfile                # Production build with uv
 ├── docker-compose.yml        # Local development
 └── README.md                 # HuggingFace Space config
 ```
 
-## Claude Code Integration
+## Gemini CLI Integration
 
-### Auto-Triggered Skills
+### Available Agent Skills
 
-Skills are automatically invoked by Claude when relevant based on context:
+Skills are automatically utilized by the Gemini agent when relevant based on context:
 
-| Skill | Triggers When |
-|-------|---------------|
+| Skill | Purpose |
+|-------|---------|
 | `agent-browser` | Testing UI in browser, visual verification, form interactions, screenshots |
 | `code-quality` | Fixing lint errors, formatting code, type checking |
 | `project-architecture` | Explaining codebase, understanding structure |
 | `deployment-workflow` | Deploying, releasing, checking deployment status |
 
-Skills are located in `.claude/skills/` and use auto-discovery.
+### Manual Operations (Equivalent to Slash Commands)
 
-### Slash Commands
+The following tasks should be performed using shell tools when requested:
 
-Manual commands for common tasks:
-
-| Command | Description |
+| Task | Description |
 |---------|-------------|
-| `/setup` | First-time project setup for local development |
-| `/dev` | Start development servers (backend + frontend) |
-| `/lint` | Run linting for both backend and frontend |
-| `/format` | Format Python code using ruff |
-| `/typecheck` | Run type checking (Python ty + TypeScript) |
-| `/build` | Build the frontend application with Vite |
-| `/verify` | Run complete pre-deployment verification checklist |
-| `/release <version>` | Create version release tag and trigger deployment |
-| `/docker-build` | Build production Docker image |
-| `/docker-run` | Run Docker container locally for testing |
-| `/sync-deps` | Update and sync Python dependencies using uv |
-| `/check-hf-logs` | Check HuggingFace Space deployment logs |
-| `/status` | Show project status (git, deps, environment) |
-| `/clean` | Clean build artifacts, caches, and temp files |
-
-Commands are located in `.claude/commands/`.
+| **Setup** | First-time project setup for local development |
+| **Development** | Start development servers (backend + frontend) |
+| **Linting** | Run linting for both backend and frontend |
+| **Formatting** | Format Python code using ruff |
+| **Type Checking** | Run type checking (Python ty + TypeScript) |
+| **Build** | Build the frontend application with Vite |
+| **Verification** | Run complete pre-deployment verification checklist |
+| **Release** | Create version release tag and trigger deployment |
+| **Docker Build** | Build production Docker image |
+| **Docker Run** | Run Docker container locally for testing |
+| **Sync Deps** | Update and sync Python dependencies using uv |
+| **Check Logs** | Check HuggingFace Space deployment logs |
+| **Status** | Show project status (git, deps, environment) |
+| **Clean** | Clean build artifacts, caches, and temp files |
 
 ## Key Commands
 
@@ -308,9 +307,9 @@ The app generates sounds for these Claude Code events:
 # Backend (from backend directory, venv must be active)
 cd backend
 source .venv/bin/activate
-ruff check .              # Linting
+ruff check .
 ruff format --check .     # Format verification (use 'ruff format .' to auto-fix)
-ty check .                # Type checking
+ty check .
 
 # Frontend (from frontend directory)
 cd frontend
@@ -344,7 +343,7 @@ cd frontend && npm run lint -- --fix
 - Frontend state managed with Zustand for sound library
 - Use React Query for API calls with proper caching
 - All audio files are 44.1kHz stereo WAV
-- **After every code change, review and update CLAUDE.md to reflect changes** (new files, dependencies, environment variables, etc.)
+- **After every code change, review and update CLAUDE.md and GEMINI.md to reflect changes** (new files, dependencies, environment variables, etc.)
 - **Before committing, ALWAYS run linting locally**: `ruff check .`, `ruff format .`, `ty check .`, and `npm run lint`
 - **ALWAYS use `agent-browser` skill to visually verify UI changes** during local development - take screenshots, interact with elements, and confirm everything renders correctly
 
@@ -487,12 +486,13 @@ curl http://localhost:7860/api/models/small/status
 # 6. Generate audio (hook_type is required)
 curl -X POST http://localhost:7860/api/generate \
   -H "Content-Type: application/json" \
-  -d '{
+  -d 
+  {
     "prompt": "short notification chime, bright and clear",
     "model": "small",
     "hook_type": "Notification",
     "duration": 2.0
-  }'
+  }
 # Returns: {"job_id": "xxx-xxx-xxx"}
 
 # 7. Check job status (wait until "completed")
@@ -681,3 +681,5 @@ cp secrets.env.example secrets.env
 ### Environment
 
 The deploy workflow uses a `production` environment for deployment approvals (optional).
+
+```

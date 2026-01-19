@@ -1,0 +1,53 @@
+---
+description: Start development servers for local development
+allowed-tools: Bash, Read
+---
+
+# Development Server
+
+Start development servers for local development.
+
+## Current State
+- Backend venv exists: !`test -d backend/.venv && echo "Yes - Ready" || echo "No - Run /setup first"`
+- Frontend node_modules exists: !`test -d frontend/node_modules && echo "Yes - Ready" || echo "No - Run npm install"`
+
+## Instructions
+
+You need to start two servers in separate terminals:
+
+### Terminal 1: Backend (FastAPI)
+```bash
+cd backend && source .venv/bin/activate && uvicorn app.main:app --reload --port 8000
+```
+
+### Terminal 2: Frontend (Vite)
+```bash
+cd frontend && npm run dev
+```
+
+## Access Points
+- **Frontend**: http://localhost:5173 (with API proxy to backend)
+- **Backend API**: http://localhost:8000
+- **API Docs**: http://localhost:8000/docs
+
+## Important Notes
+- The backend runs on port 8000 for local development
+- The frontend Vite dev server proxies `/api` requests to port 8000
+- The virtual environment is at `backend/.venv` (created by `uv sync`)
+- Use `--reload` for hot reloading during development
+- Frontend uses Vite's HMR (Hot Module Replacement)
+
+## First-time Setup
+If the venv doesn't exist yet, run setup first:
+```bash
+cd backend && uv sync --group dev
+cd frontend && npm install
+```
+
+## Alternative: Docker Compose
+For a containerized development experience:
+```bash
+docker-compose up --build
+```
+
+This runs the full stack on port 7860 (production-like environment).

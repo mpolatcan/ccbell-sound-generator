@@ -1,3 +1,11 @@
+# Frontend build stage
+FROM node:22-alpine AS frontend-builder
+WORKDIR /app
+COPY frontend/package.json frontend/package-lock.json ./
+RUN npm ci
+COPY frontend/ ./
+RUN npm run build
+
 # CPU-only build for HuggingFace Spaces free tier
 FROM python:3.11.11-slim-bookworm AS builder
 
@@ -21,7 +29,7 @@ WORKDIR /home/user/app
 
 # Copy dependency files (pyproject.toml and uv.lock)
 # The lockfile ensures reproducible, deterministic builds
-COPY backend/pyproject.toml backend/uv.lock ./
+COPY backend/pyproject.toml backend/uv.lock .
 
 # Install dependencies using the lockfile
 # --locked: Fail if lockfile is out of sync (ensures reproducibility)
@@ -54,7 +62,8 @@ COPY --from=builder /home/user/app/.venv /home/user/app/.venv
 
 # Copy application code
 COPY backend/app ./app
-COPY frontend/dist ./static
+# Copy built frontend assets
+COPY --from=frontend-builder /app/dist ./static
 
 # Set ownership and create directories with correct permissions
 RUN chown -R user:user /home/user/app && \

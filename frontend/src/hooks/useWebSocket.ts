@@ -39,7 +39,7 @@ export function useWebSocket(jobId: string | null, options: UseWebSocketOptions 
 
         options.onProgress?.(data)
 
-        if (data.stage === 'complete' && data.audio_url) {
+        if (data.stage === 'completed' && data.audio_url) {
           options.onComplete?.(data.audio_url)
         }
 

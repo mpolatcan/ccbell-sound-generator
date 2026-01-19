@@ -131,7 +131,7 @@ async def get_audio_status(job_id: str):
         logger.warning(f"Status requested for unknown job: {job_id}")
         raise HTTPException(status_code=404, detail="Job not found")
 
-    audio_url = f"/api/audio/{job_id}" if job.status == "complete" else None
+    audio_url = f"/api/audio/{job_id}" if job.status == "completed" else None
     logger.debug(f"Job {job_id} status: {job.status} ({job.progress * 100:.0f}%)")
     return AudioStatusResponse(
         job_id=job_id,

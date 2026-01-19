@@ -29,7 +29,7 @@ export function useAudioGeneration() {
       ...prev,
       isGenerating: false,
       progress: 1,
-      stage: 'complete'
+      stage: 'completed'
     }))
     // Stop polling if active
     if (pollingIntervalRef.current) {
@@ -79,7 +79,7 @@ export function useAudioGeneration() {
 
         handleProgress({ progress: status.progress, stage: status.stage || 'generating' })
 
-        if (status.status === 'complete' && status.audio_url) {
+        if (status.status === 'completed' && status.audio_url) {
           handleComplete(status.audio_url)
           setUsePolling(false)
         } else if (status.status === 'error') {

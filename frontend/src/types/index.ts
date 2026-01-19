@@ -60,12 +60,12 @@ export interface GenerateRequest {
 
 export interface GenerateResponse {
   job_id: string
-  status: 'queued' | 'processing' | 'complete' | 'error'
+  status: 'queued' | 'processing' | 'completed' | 'error'
 }
 
 export interface AudioStatusResponse {
   job_id: string
-  status: 'queued' | 'processing' | 'complete' | 'error'
+  status: 'queued' | 'processing' | 'completed' | 'error'
   progress: number
   stage?: string
   audio_url?: string
@@ -167,7 +167,7 @@ export type GenerationStage =
   | 'generating'
   | 'processing_audio'
   | 'saving'
-  | 'complete'
+  | 'completed'
   | 'error'
 
 export interface GenerationState {

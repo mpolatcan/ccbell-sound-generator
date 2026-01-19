@@ -22,8 +22,9 @@ def _get_hf_token() -> str | None:
     """Get HuggingFace token from environment.
 
     Uses CCBELL_HF_TOKEN env var (Space-specific config).
+    Falls back to HF_TOKEN (standard HF env var).
     """
-    return os.environ.get("CCBELL_HF_TOKEN")
+    return os.environ.get("CCBELL_HF_TOKEN") or os.environ.get("HF_TOKEN")
 
 
 def _ensure_hf_login() -> None:

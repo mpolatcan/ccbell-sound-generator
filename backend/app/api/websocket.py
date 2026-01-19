@@ -28,10 +28,10 @@ async def websocket_progress(websocket: WebSocket, job_id: str):
         return
 
     # If job is already complete, send final status
-    if job.status == "complete":
+    if job.status == "completed":
         logger.info(f"WebSocket: job {job_id} already complete, sending final status")
         await websocket.send_json(
-            {"progress": 1.0, "stage": "complete", "audio_url": f"/api/audio/{job_id}"}
+            {"progress": 1.0, "stage": "completed", "audio_url": f"/api/audio/{job_id}"}
         )
         await websocket.close()
         return
