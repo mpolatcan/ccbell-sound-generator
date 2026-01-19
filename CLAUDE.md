@@ -47,7 +47,7 @@ ccbell-sound-generator/
 │   └── tailwind.config.js
 ├── .claude/
 │   ├── commands/             # Slash commands (14 commands)
-│   └── skills/               # Auto-triggered skills (3 skills)
+│   └── skills/               # Auto-triggered skills (4 skills)
 ├── Dockerfile                # Production build with uv
 ├── docker-compose.yml        # Local development
 └── README.md                 # HuggingFace Space config
