@@ -247,6 +247,44 @@ The app generates sounds for these Claude Code events:
 - @tanstack/react-query 5.62, zustand 5
 - lucide-react, jszip 3.10
 
+## Code Quality Requirements
+
+**CRITICAL: Linting and type checking must ALWAYS pass both locally AND in GitHub Actions CI pipeline before any code is merged or deployed.**
+
+### Local Checks (REQUIRED before every commit)
+
+```bash
+# Backend (from backend directory, venv must be active)
+cd backend
+source .venv/bin/activate
+ruff check .              # Linting
+ruff format --check .     # Format verification (use 'ruff format .' to auto-fix)
+ty check .                # Type checking
+
+# Frontend (from frontend directory)
+cd frontend
+npm run lint              # ESLint + TypeScript type checking
+```
+
+### CI Pipeline Verification
+
+The CI pipeline (`.github/workflows/ci.yml`) runs the same checks automatically on every push and PR. **Your code must pass CI before merging.**
+
+After pushing, always verify CI status:
+1. Check GitHub Actions: https://github.com/mpolatcan/ccbell-sound-generator/actions/workflows/ci.yml
+2. Fix any failures locally and push again
+3. Never merge or deploy if CI is failing
+
+### Quick Fix Commands
+
+```bash
+# Auto-fix backend formatting issues
+cd backend && ruff format .
+
+# Auto-fix frontend linting issues (where possible)
+cd frontend && npm run lint -- --fix
+```
+
 ## Implementation Notes
 
 - Use async/await consistently in FastAPI routes
@@ -256,7 +294,7 @@ The app generates sounds for these Claude Code events:
 - Use React Query for API calls with proper caching
 - All audio files are 44.1kHz stereo WAV
 - **After every code change, review and update CLAUDE.md to reflect changes** (new files, dependencies, environment variables, etc.)
-- Before committing, run: `ruff check .`, `ruff format .`, and `ty check .`
+- **Before committing, ALWAYS run linting locally**: `ruff check .`, `ruff format .`, `ty check .`, and `npm run lint`
 
 ## Dependency Management
 
@@ -333,9 +371,13 @@ All settings can be overridden via environment variables with the `CCBELL_` pref
 
 Before creating a release tag, complete ALL of the following:
 
+**Code Quality (see [Code Quality Requirements](#code-quality-requirements) for details):**
 - [ ] Backend linting passes: `cd backend && ruff check . && ruff format --check .`
 - [ ] Backend type checking passes: `cd backend && ty check .`
 - [ ] Frontend linting passes: `cd frontend && npm run lint`
+- [ ] **CI pipeline passes**: Check https://github.com/mpolatcan/ccbell-sound-generator/actions/workflows/ci.yml
+
+**Build & Runtime:**
 - [ ] Frontend builds successfully: `cd frontend && npm run build`
 - [ ] Docker image builds: `docker build -t ccbell-sound-generator .`
 - [ ] Docker container runs: `docker run -p 7860:7860 ccbell-sound-generator`
