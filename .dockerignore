@@ -1,0 +1,53 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv
+venv
+.env
+*.egg-info
+.eggs
+dist
+build
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# Testing
+.pytest_cache
+.coverage
+htmlcov
+.tox
+
+# Documentation
+*.md
+!README.md
+docs
+
+# CI/CD
+.github
+
+# Local dev files
+*.log
+.DS_Store
+secrets.env
+scripts
+
+# Node (frontend build artifacts excluded, dist needed)
+frontend/node_modules
+frontend/.vite
+frontend/src
+frontend/*.json
+frontend/*.ts
+frontend/*.js
+frontend/*.html
+frontend/*.config.*

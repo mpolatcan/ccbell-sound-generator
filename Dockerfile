@@ -21,19 +21,20 @@ WORKDIR /home/user/app
 # Copy only dependency files first for better caching
 COPY backend/pyproject.toml ./
 
-# Install all dependencies in a single layer (better caching)
-# 1. PyTorch CPU first (pinned versions) - includes torchvision for laion-clap
-# 2. stable-audio-tools without deps (to avoid pulling newer torch)
-# 3. All other deps from pyproject.toml
-# IMPORTANT: Use --reinstall to ensure pinned versions are not upgraded by transitive deps
-RUN uv pip install --system \
+# Install dependencies with CPU-only PyTorch
+# Strategy:
+# 1. Install PyTorch CPU first from PyTorch index
+# 2. Install stable-audio-tools without deps (avoids pulling different torch version)
+# 3. Install remaining deps, then reinstall PyTorch to ensure CPU versions aren't overwritten
+# Note: --extra-index-url needed for cross-platform (x86/ARM) compatibility
+RUN uv pip install --system --no-cache \
     torch==2.5.1 \
     torchaudio==2.5.1 \
     torchvision==0.20.1 \
     --extra-index-url https://download.pytorch.org/whl/cpu && \
-    uv pip install --system --no-deps stable-audio-tools==0.0.19 && \
-    uv pip install --system . && \
-    uv pip install --system --reinstall \
+    uv pip install --system --no-cache --no-deps stable-audio-tools==0.0.19 && \
+    uv pip install --system --no-cache . && \
+    uv pip install --system --no-cache --reinstall \
     torch==2.5.1 \
     torchaudio==2.5.1 \
     torchvision==0.20.1 \
@@ -44,8 +45,7 @@ FROM python:3.11.11-slim-bookworm AS runtime
 
 # Force CPU-only mode
 ENV CUDA_VISIBLE_DEVICES="" \
-    FORCE_CUDA=0 \
-    UV_SYSTEM_PYTHON=1
+    FORCE_CUDA=0
 
 # Install minimal runtime dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -77,5 +77,8 @@ ENV HOME=/home/user \
     PYTHONUNBUFFERED=1
 
 EXPOSE 7860
+
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:7860/api/health')" || exit 1
 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "7860"]
