@@ -35,6 +35,8 @@ RUN uv pip install --system --no-cache \
     uv pip install --system --no-cache --no-deps stable-audio-tools==0.0.19 && \
     uv pip install --system --no-cache . && \
     uv pip install --system --no-cache --reinstall \
+    numpy==1.23.5 \
+    scipy==1.11.4 \
     torch==2.5.1 \
     torchaudio==2.5.1 \
     torchvision==0.20.1 \
