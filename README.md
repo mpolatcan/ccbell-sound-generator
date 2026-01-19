@@ -22,8 +22,10 @@ Generate AI-powered notification sounds for the [Claude Code](https://github.com
 - 🎵 **Waveform Visualization** - Visual audio preview with waveform display
 - 🎭 **Theme Presets** - Sci-Fi, Retro 8-bit, Nature, Minimal, Mechanical
 - 🔔 **All Hook Types** - Generate sounds for all Claude Code events
-- 📦 **Sound Library** - Session-based collection of generated sounds
-- 💾 **Download** - Individual sounds or batch ZIP
+- 📦 **Sound Packs** - Organize generated sounds in named, collapsible packs
+- ⏱️ **Custom Duration** - Generate sounds from 0.5s to 11s (or 47s with 1.0 model)
+- 🔄 **Real-time Progress** - Watch generation progress in the Sound Library
+- 💾 **Download** - Individual sounds or batch ZIP (organized by pack)
 - 🚀 **GitHub Release** - Publish sound packs directly to GitHub
 
 ## Models
@@ -35,12 +37,13 @@ Generate AI-powered notification sounds for the [Claude Code](https://github.com
 
 ## Usage
 
-1. **Select a theme** - Choose from preset themes or write a custom prompt
-2. **Choose hook type** - Select the Claude Code event for your sound
-3. **Adjust duration** - Set how long the sound should be
-4. **Generate** - Click "Generate Sound" and wait for AI magic
-5. **Preview** - Listen to the generated sound with waveform visualization
-6. **Download or Publish** - Save locally or publish to GitHub
+1. **Name your pack** - Enter a custom name or use the auto-generated one
+2. **Select a theme** - Choose from preset themes or write a custom prompt
+3. **Choose hook types** - Select one or more Claude Code events
+4. **Adjust duration** - Set how long the sound should be (0.5s to 11s)
+5. **Generate** - Click "Generate Sound" and watch progress in the Sound Library
+6. **Preview** - Listen to generated sounds with waveform visualization
+7. **Download or Publish** - Save pack as ZIP or publish to GitHub
 
 ## Claude Code Hook Types
 

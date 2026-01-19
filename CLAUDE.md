@@ -168,7 +168,7 @@ docker build -t ccbell-sound-generator .
 
 ```bash
 cd frontend
-npx shadcn@latest add button card input label select slider accordion dialog toast progress badge separator scroll-area skeleton textarea
+npx shadcn@latest add button card input label select slider accordion dialog toast progress badge separator scroll-area skeleton textarea collapsible
 ```
 
 ## Architecture
@@ -177,6 +177,55 @@ npx shadcn@latest add button card input label select slider accordion dialog toa
 - WebSocket at `/api/ws/{job_id}` for real-time progress during generation
 - Models lazy-loaded to manage memory on free CPU tier
 - Single container exposes port 7860 for HuggingFace Spaces
+
+## UI Components
+
+### Sound Packs
+
+Generated sounds are organized into **Sound Packs** - named, collapsible groups of sounds:
+
+- **Pack Name Input**: Users can name their pack or use auto-generated name (theme + timestamp)
+- **Real-time Progress**: Sounds appear in library immediately when generation starts with progress bar
+- **Pack Actions**: Rename, download as ZIP, publish to GitHub, delete
+- **Collapsible UI**: Each pack can be expanded/collapsed independently
+- **Persistence**: Packs stored in session storage (cleared on page refresh)
+
+### Key Frontend Types
+
+```typescript
+interface SoundPack {
+  id: string
+  name: string
+  theme: string
+  model: 'small' | '1.0'
+  created_at: Date
+}
+
+interface GeneratedSound {
+  id: string
+  job_id: string
+  pack_id: string           // Links sound to pack
+  hook_type: HookTypeId
+  prompt: string
+  model: 'small' | '1.0'
+  duration: number
+  audio_url: string
+  status: 'generating' | 'completed' | 'error'
+  progress?: number         // 0-1 during generation
+  stage?: string            // Current generation stage
+  error?: string
+  created_at: Date
+}
+```
+
+### State Management
+
+Sound library state is managed with Zustand (`useSoundLibrary` hook):
+- `packs`: Array of SoundPack objects
+- `sounds`: Array of GeneratedSound objects
+- Pack operations: `addPack`, `removePack`, `renamePack`
+- Sound operations: `addSound`, `updateSound`, `removeSound`
+- Bulk: `clearAll`, `getSoundsByPack`
 
 ## API Endpoints
 
