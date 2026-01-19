@@ -260,9 +260,13 @@ class AudioService:
             # Import generation function
             from stable_audio_tools.inference.generation import generate_diffusion_cond
 
-            # Get model's sample_size from config (fixed based on model training)
-            model_sample_size = model_config.get("sample_size", 1024)
-            logger.debug(f"Job {job_id}: using model sample_size={model_sample_size}")
+            # Calculate sample_size based on requested duration
+            # sample_size = duration (seconds) * sample_rate
+            sample_rate = model_config["sample_rate"]
+            sample_size = int(duration * sample_rate)
+            logger.debug(
+                f"Job {job_id}: calculated sample_size={sample_size} for {duration}s at {sample_rate}Hz"
+            )
 
             # Set up conditioning
             conditioning = [
@@ -319,7 +323,7 @@ class AudioService:
                         steps=steps,
                         cfg_scale=cfg_scale,
                         conditioning=conditioning,  # type: ignore[arg-type]
-                        sample_size=model_sample_size,
+                        sample_size=sample_size,
                         sigma_min=0.3,
                         sigma_max=500,
                         sampler_type=sampler,

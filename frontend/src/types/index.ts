@@ -118,22 +118,46 @@ export interface ModelsStatusResponse {
 
 // App State Types
 
+export type SoundStatus = 'generating' | 'completed' | 'error'
+
 export interface GeneratedSound {
   id: string
   job_id: string
+  pack_id: string
   hook_type: HookTypeId
   prompt: string
   model: 'small' | '1.0'
   duration: number
   audio_url: string
+  status: SoundStatus
+  progress?: number
+  stage?: string
+  error?: string
+  created_at: Date
+}
+
+export interface SoundPack {
+  id: string
+  name: string
+  theme: string
+  model: 'small' | '1.0'
   created_at: Date
 }
 
 export interface SoundLibraryState {
+  packs: SoundPack[]
   sounds: GeneratedSound[]
+  // Pack operations
+  addPack: (pack: SoundPack) => void
+  removePack: (id: string) => void
+  renamePack: (id: string, name: string) => void
+  // Sound operations
   addSound: (sound: GeneratedSound) => void
+  updateSound: (id: string, updates: Partial<GeneratedSound>) => void
   removeSound: (id: string) => void
-  clearSounds: () => void
+  // Bulk operations
+  clearAll: () => void
+  getSoundsByPack: (packId: string) => GeneratedSound[]
 }
 
 export type GenerationStage =

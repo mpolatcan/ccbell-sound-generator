@@ -1,23 +1,56 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import type { SoundLibraryState } from '@/types'
+import type { SoundLibraryState, GeneratedSound, SoundPack } from '@/types'
 
 export const useSoundLibrary = create<SoundLibraryState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
+      packs: [],
       sounds: [],
 
-      addSound: (sound) =>
+      // Pack operations
+      addPack: (pack: SoundPack) =>
         set((state) => ({
-          sounds: [sound, ...state.sounds]
+          packs: [pack, ...state.packs]
         })),
 
-      removeSound: (id) =>
+      removePack: (id: string) =>
+        set((state) => ({
+          packs: state.packs.filter((p) => p.id !== id),
+          sounds: state.sounds.filter((s) => s.pack_id !== id)
+        })),
+
+      renamePack: (id: string, name: string) =>
+        set((state) => ({
+          packs: state.packs.map((p) =>
+            p.id === id ? { ...p, name } : p
+          )
+        })),
+
+      // Sound operations
+      addSound: (sound: GeneratedSound) =>
+        set((state) => ({
+          sounds: [...state.sounds, sound]
+        })),
+
+      updateSound: (id: string, updates: Partial<GeneratedSound>) =>
+        set((state) => ({
+          sounds: state.sounds.map((s) =>
+            s.id === id ? { ...s, ...updates } : s
+          )
+        })),
+
+      removeSound: (id: string) =>
         set((state) => ({
           sounds: state.sounds.filter((s) => s.id !== id)
         })),
 
-      clearSounds: () => set({ sounds: [] })
+      // Bulk operations
+      clearAll: () => set({ packs: [], sounds: [] }),
+
+      getSoundsByPack: (packId: string) => {
+        return get().sounds.filter((s) => s.pack_id === packId)
+      }
     }),
     {
       name: 'ccbell-sound-library',
