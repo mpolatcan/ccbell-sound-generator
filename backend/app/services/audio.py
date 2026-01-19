@@ -312,11 +312,13 @@ class AudioService:
             def do_generate():
                 logger.debug(f"Job {job_id}: starting diffusion generation with {steps} steps")
                 with torch.no_grad():
+                    # Note: conditioning is List[Dict] per MultiConditioner.forward signature,
+                    # but generate_diffusion_cond type hint incorrectly says dict
                     output = generate_diffusion_cond(
                         model,
                         steps=steps,
                         cfg_scale=cfg_scale,
-                        conditioning=conditioning,
+                        conditioning=conditioning,  # type: ignore[arg-type]
                         sample_size=model_sample_size,
                         sigma_min=0.3,
                         sigma_max=500,

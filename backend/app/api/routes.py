@@ -1,5 +1,7 @@
 """REST API endpoints."""
 
+from typing import Literal, cast
+
 from fastapi import APIRouter, BackgroundTasks, HTTPException
 from fastapi.responses import FileResponse
 from loguru import logger
@@ -79,7 +81,9 @@ async def load_model(model_id: str, background_tasks: BackgroundTasks):
 
     # Start background loading
     logger.info(f"Starting background load for model: {model_id}")
-    background_tasks.add_task(model_loader.load_model_background, model_id)
+    # Cast model_id to Literal type since we validated it above
+    model_id_literal = cast(Literal["small", "1.0"], model_id)
+    background_tasks.add_task(model_loader.load_model_background, model_id_literal)
 
     return {"status": "loading_started", "model_id": model_id}
 

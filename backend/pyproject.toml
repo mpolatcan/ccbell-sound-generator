@@ -12,6 +12,9 @@ dependencies = [
     "uvicorn[standard]==0.34.0",
     # Logging
     "loguru==0.7.2",
+    # PyTorch - pinned to avoid torchcodec dependency issues in newer versions
+    "torch==2.5.1",
+    "torchaudio==2.5.1",
     # Audio processing (transitive deps for torch/stable-audio-tools)
     "numpy==1.23.5",
     "scipy==1.11.4",

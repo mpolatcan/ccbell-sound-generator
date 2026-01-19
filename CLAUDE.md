@@ -243,6 +243,127 @@ All settings can be overridden via environment variables with the `CCBELL_` pref
 | `CCBELL_GITHUB_TOKEN` | `null` | GitHub token for publishing |
 | `CCBELL_HF_TOKEN` | `null` | HuggingFace token for gated model access |
 
+## Local Testing Before Deployment
+
+**CRITICAL: Always test locally before deploying to HuggingFace Spaces via GitHub Actions.** This prevents wasted CI/CD cycles and ensures the application works correctly in a production-like environment.
+
+### Pre-Deployment Checklist
+
+Before creating a release tag, complete ALL of the following:
+
+- [ ] Backend linting passes: `cd backend && ruff check . && ruff format --check .`
+- [ ] Backend type checking passes: `cd backend && ty check .`
+- [ ] Frontend linting passes: `cd frontend && npm run lint`
+- [ ] Frontend builds successfully: `cd frontend && npm run build`
+- [ ] Docker image builds: `docker build -t ccbell-sound-generator .`
+- [ ] Docker container runs: `docker run -p 7860:7860 ccbell-sound-generator`
+- [ ] Health check passes: `curl http://localhost:7860/api/health`
+- [ ] Audio generation works end-to-end (see testing steps below)
+
+### Docker-Based Local Testing (Recommended)
+
+This simulates the exact HuggingFace Spaces environment:
+
+```bash
+# Build the production Docker image
+docker build -t ccbell-sound-generator .
+
+# Run the container (matches HF Spaces port)
+docker run -p 7860:7860 ccbell-sound-generator
+
+# Or with environment variables for debugging
+docker run -p 7860:7860 -e CCBELL_DEBUG=true ccbell-sound-generator
+
+# Or mount a local cache directory to persist models between runs
+docker run -p 7860:7860 \
+  -v ~/.cache/ccbell-models:/home/user/.cache/ccbell-models \
+  ccbell-sound-generator
+```
+
+Access the application at http://localhost:7860
+
+### Audio Generation Testing
+
+Test the complete audio generation flow:
+
+```bash
+# 1. Start the application (Docker or local dev server)
+docker run -p 7860:7860 ccbell-sound-generator
+
+# 2. Verify API is healthy
+curl http://localhost:7860/api/health
+
+# 3. Check available models
+curl http://localhost:7860/api/models
+
+# 4. Load a model (first time takes a while to download)
+curl -X POST http://localhost:7860/api/models/small/load
+
+# 5. Check model loading status (wait until "loaded")
+curl http://localhost:7860/api/models/small/status
+
+# 6. Generate audio (hook_type is required)
+curl -X POST http://localhost:7860/api/generate \
+  -H "Content-Type: application/json" \
+  -d '{
+    "prompt": "short notification chime, bright and clear",
+    "model": "small",
+    "hook_type": "Notification",
+    "duration": 2.0
+  }'
+# Returns: {"job_id": "xxx-xxx-xxx"}
+
+# 7. Check job status (wait until "completed")
+curl http://localhost:7860/api/audio/{job_id}/status
+
+# 8. Download the generated audio
+curl http://localhost:7860/api/audio/{job_id} --output test.wav
+
+# 9. Play the audio to verify
+afplay test.wav  # macOS
+# or: aplay test.wav  # Linux
+```
+
+### UI-Based Testing
+
+For comprehensive testing, use the web UI:
+
+1. Open http://localhost:7860 in browser
+2. Select a theme (e.g., "Sci-Fi")
+3. Select a hook type (e.g., "Notification")
+4. Click "Generate" and wait for completion
+5. Play the generated audio
+6. Verify WebSocket progress updates work (progress bar should animate)
+7. Test downloading the audio file
+8. Test multiple generations in sequence
+
+### Common Issues and Solutions
+
+| Issue | Solution |
+|-------|----------|
+| Model download fails | Check HF_TOKEN is set for gated models |
+| Out of memory | Use the `small` model for local testing |
+| Audio generation hangs | Ensure torch is using CPU correctly |
+| WebSocket not connecting | Check browser console for CORS issues |
+| Container exits immediately | Check logs with `docker logs <container_id>` |
+
+### Development Server Testing
+
+For faster iteration during development:
+
+```bash
+# Terminal 1: Backend
+source venv/bin/activate
+cd backend
+uvicorn app.main:app --reload --port 8000
+
+# Terminal 2: Frontend (with API proxy to backend)
+cd frontend
+npm run dev
+```
+
+Access frontend at http://localhost:5173 (proxies API calls to port 8000)
+
 ## CI/CD Pipelines
 
 ### CI Pipeline (`.github/workflows/ci.yml`)

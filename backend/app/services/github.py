@@ -4,12 +4,31 @@ import io
 import json
 import zipfile
 from datetime import UTC, datetime
+from typing import TypedDict
 
 from github import Github, GithubException
 from loguru import logger
 
 from app.core.models import PublishRequest, PublishResponse
 from app.services.audio import audio_service
+
+
+class SoundInfo(TypedDict):
+    """Type for sound info in manifest."""
+
+    filename: str
+    hook_type: str
+    prompt: str
+    model: str
+    duration: float
+
+
+class Manifest(TypedDict):
+    """Type for sound pack manifest."""
+
+    version: str
+    created_at: str
+    sounds: list[SoundInfo]
 
 
 class GitHubService:
@@ -126,7 +145,11 @@ class GitHubService:
         """
         zip_buffer = io.BytesIO()
         files_added = 0
-        manifest = {"version": "1.0", "created_at": datetime.now(UTC).isoformat(), "sounds": []}
+        manifest: Manifest = {
+            "version": "1.0",
+            "created_at": datetime.now(UTC).isoformat(),
+            "sounds": [],
+        }
 
         logger.info(f"Creating sound pack ZIP with {len(job_ids)} job IDs")
 
