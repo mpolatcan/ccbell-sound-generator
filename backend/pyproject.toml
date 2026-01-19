@@ -21,6 +21,8 @@ dependencies = [
     "scipy==1.11.4",
     # GitHub integration
     "PyGithub==2.5.0",
+    # Stable Audio Tools (main ML package)
+    "stable-audio-tools==0.0.19",
     # stable-audio-tools dependencies (inference only)
     "einops==0.8.0",
     "einops-exts==0.0.4",
@@ -42,7 +44,8 @@ dependencies = [
     "importlib-resources==5.12.0",
 ]
 
-[project.optional-dependencies]
+# Development dependencies (PEP 735)
+[dependency-groups]
 dev = [
     "ruff>=0.9.0",
     "ty>=0.0.1a5",
@@ -86,7 +89,26 @@ skip-magic-trailing-comma = false
 line-ending = "auto"
 
 [tool.uv]
-dev-dependencies = [
-    "ruff>=0.9.0",
-    "ty>=0.0.1a5",
+# Pin critical dependencies to prevent transitive deps from overriding
+constraint-dependencies = [
+    "numpy==1.23.5",
+    "scipy==1.11.4",
 ]
+
+# Exclude packages we don't need (stable-audio-tools pulls in gradio for its UI,
+# but we only use it for inference)
+exclude-dependencies = [
+    "gradio",
+]
+
+# Configure PyTorch packages to use CPU-only index
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu" }]
+torchaudio = [{ index = "pytorch-cpu" }]
+torchvision = [{ index = "pytorch-cpu" }]
+
+# PyTorch CPU-only index
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true

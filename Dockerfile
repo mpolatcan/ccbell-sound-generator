@@ -4,7 +4,8 @@ FROM python:3.11.11-slim-bookworm AS builder
 # Force CPU-only mode
 ENV CUDA_VISIBLE_DEVICES="" \
     FORCE_CUDA=0 \
-    UV_SYSTEM_PYTHON=1
+    UV_SYSTEM_PYTHON=1 \
+    UV_COMPILE_BYTECODE=1
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -14,33 +15,23 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install uv
-COPY --from=ghcr.io/astral-sh/uv:0.5.18 /uv /usr/local/bin/uv
+COPY --from=ghcr.io/astral-sh/uv:0.9 /uv /usr/local/bin/uv
 
 WORKDIR /home/user/app
 
-# Copy only dependency files first for better caching
-COPY backend/pyproject.toml ./
+# Copy dependency files (pyproject.toml and uv.lock)
+# The lockfile ensures reproducible, deterministic builds
+COPY backend/pyproject.toml backend/uv.lock ./
 
-# Install dependencies with CPU-only PyTorch
-# Strategy:
-# 1. Install PyTorch CPU first from PyTorch index
-# 2. Install stable-audio-tools without deps (avoids pulling different torch version)
-# 3. Install remaining deps, then reinstall PyTorch to ensure CPU versions aren't overwritten
-# Note: --extra-index-url needed for cross-platform (x86/ARM) compatibility
-RUN uv pip install --system --no-cache \
-    torch==2.5.1 \
-    torchaudio==2.5.1 \
-    torchvision==0.20.1 \
-    --extra-index-url https://download.pytorch.org/whl/cpu && \
-    uv pip install --system --no-cache --no-deps stable-audio-tools==0.0.19 && \
-    uv pip install --system --no-cache . && \
-    uv pip install --system --no-cache --reinstall \
-    numpy==1.23.5 \
-    scipy==1.11.4 \
-    torch==2.5.1 \
-    torchaudio==2.5.1 \
-    torchvision==0.20.1 \
-    --extra-index-url https://download.pytorch.org/whl/cpu
+# Install dependencies using the lockfile
+# --locked: Fail if lockfile is out of sync (ensures reproducibility)
+# --no-dev: Skip development dependencies
+# --no-install-project: Don't install the project itself yet
+RUN uv sync --locked --no-dev --no-install-project
+
+# Copy application code and install the project
+COPY backend/app ./app
+RUN uv sync --locked --no-dev
 
 # Final stage - runtime only
 FROM python:3.11.11-slim-bookworm AS runtime
@@ -58,11 +49,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /home/user/app
 
-# Copy installed Python packages from builder (system site-packages)
-COPY --from=builder /usr/local /usr/local
+# Copy the virtual environment from builder
+COPY --from=builder /home/user/app/.venv /home/user/app/.venv
 
 # Copy application code
-COPY backend/ ./
+COPY backend/app ./app
 COPY frontend/dist ./static
 
 # Set ownership and create directories with correct permissions
@@ -75,7 +66,7 @@ RUN chown -R user:user /home/user/app && \
 USER user
 
 ENV HOME=/home/user \
-    PATH=/usr/local/bin:$PATH \
+    PATH="/home/user/app/.venv/bin:$PATH" \
     PYTHONUNBUFFERED=1
 
 EXPOSE 7860

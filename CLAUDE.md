@@ -32,7 +32,8 @@ ccbell-sound-generator/
 │   │   └── data/
 │   │       ├── themes.py     # Theme presets
 │   │       └── hooks.py      # Hook definitions
-│   └── pyproject.toml        # Dependencies and tool config
+│   ├── pyproject.toml        # Dependencies and tool config
+│   └── uv.lock               # Lockfile for reproducible builds
 ├── frontend/
 │   ├── src/
 │   │   ├── components/       # React components
@@ -66,33 +67,32 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 **IMPORTANT**: Always activate the virtual environment before running ANY Python-related commands, including `ruff` and `ty` which are installed in the venv.
 
 ```bash
-# From project root - activate venv FIRST
-source venv/bin/activate
+# From backend directory - activate venv
+cd backend
+source .venv/bin/activate
 
-# Verify activation (should show venv path)
+# Or from project root (if venv exists at backend/.venv)
+source backend/.venv/bin/activate
+
+# Verify activation (should show .venv path)
 which python
 
 # ruff and ty are available after activation
-which ruff  # Should show venv/bin/ruff
-which ty    # Should show venv/bin/ty
+which ruff  # Should show .venv/bin/ruff
+which ty    # Should show .venv/bin/ty
 ```
 
 ### Backend Development
 
 ```bash
-# ALWAYS activate venv first (from project root)!
-source venv/bin/activate
-
-# First-time setup (from project root):
+# First-time setup (from backend directory):
 cd backend
-uv venv ../venv  # Creates venv at project root
-source ../venv/bin/activate
-uv pip install -e ".[dev]"
-uv pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
-uv pip install --no-deps stable-audio-tools
+uv sync --group dev  # Creates .venv and installs all deps from lockfile
 
-# Run development server (from backend directory, venv must be active)
-cd backend
+# Activate the virtual environment
+source .venv/bin/activate
+
+# Run development server (from backend directory)
 uvicorn app.main:app --reload --port 8000  # Local dev uses port 8000
 
 # Lint and format (from backend directory, venv must be active)
@@ -217,6 +217,48 @@ The app generates sounds for these Claude Code events:
 - All audio files are 44.1kHz stereo WAV
 - **After every code change, review and update CLAUDE.md to reflect changes** (new files, dependencies, environment variables, etc.)
 - Before committing, run: `ruff check .`, `ruff format .`, and `ty check .`
+
+## Dependency Management
+
+Dependencies are managed using **uv lockfile** for reproducible builds:
+
+- **pyproject.toml**: Declares dependencies and version constraints
+- **uv.lock**: Generated lockfile with exact resolved versions (committed to git)
+- **uv sync**: Installs dependencies from lockfile (used in Docker and local dev)
+
+### Key Configuration (pyproject.toml)
+
+```toml
+[tool.uv]
+# Pin critical dependencies
+constraint-dependencies = ["numpy==1.23.5", "scipy==1.11.4"]
+
+# Exclude unused transitive dependencies
+exclude-dependencies = ["gradio"]
+
+# PyTorch CPU-only index
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu" }]
+torchaudio = [{ index = "pytorch-cpu" }]
+torchvision = [{ index = "pytorch-cpu" }]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+```
+
+### Updating Dependencies
+
+```bash
+cd backend
+
+# Update lockfile after changing pyproject.toml
+uv lock
+
+# Sync environment with lockfile
+uv sync --group dev
+```
 
 ## Environment Variables
 
