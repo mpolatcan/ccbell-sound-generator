@@ -58,7 +58,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd backend
-          uv pip install --system ruff
+          uv pip install --system ruff ty
 
       - name: Run Ruff check
         run: |
@@ -69,6 +69,11 @@ jobs:
         run: |
           cd backend
           ruff format --check .
+
+      - name: Run Ty type check
+        run: |
+          cd backend
+          ty check .
 
   build-frontend:
     name: Build Frontend
