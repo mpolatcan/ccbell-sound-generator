@@ -238,6 +238,15 @@ class ModelLoader:
 
             self._update_loading_state(model_id, "loading", progress=0.8, stage="moving_to_device")
 
+            # Convert to float32 for CPU inference (float16 is extremely slow on CPU)
+            # See: https://huggingface.co/stabilityai/stable-audio-open-small/discussions/1
+            if self.device == "cpu":
+                import torch
+
+                model.pretransform.model_half = False
+                model = model.to(torch.float32)
+                logger.info(f"Converted model {model_id} to float32 for CPU inference")
+
             # Move to device
             model = model.to(self.device)
             logger.debug(f"Model {model_id} moved to device: {self.device}")
@@ -308,6 +317,15 @@ class ModelLoader:
             logger.info(f"Model weights loaded for {model_id}")
 
             self._update_loading_state(model_id, "loading", progress=0.8, stage="moving_to_device")
+
+            # Convert to float32 for CPU inference (float16 is extremely slow on CPU)
+            # See: https://huggingface.co/stabilityai/stable-audio-open-small/discussions/1
+            if self.device == "cpu":
+                import torch
+
+                model.pretransform.model_half = False
+                model = model.to(torch.float32)
+                logger.info(f"Converted model {model_id} to float32 for CPU inference")
 
             # Move to device
             model = model.to(self.device)
