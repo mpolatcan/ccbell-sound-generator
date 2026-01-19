@@ -42,13 +42,8 @@ docs
 secrets.env
 scripts
 
-# Node (frontend build artifacts excluded, dist needed)
+# Node
 frontend/node_modules
 frontend/.vite
-frontend/src
-frontend/*.json
-!frontend/package.json
-frontend/*.ts
-frontend/*.js
-frontend/*.html
-frontend/*.config.*
+frontend/dist
+frontend/.claude
