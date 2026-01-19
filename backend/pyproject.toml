@@ -1,6 +1,6 @@
 [project]
 name = "ccbell-sound-generator"
-version = "1.0.0"
+version = "1.0.18"
 description = "AI-powered notification sound generator for Claude Code plugin ccbell"
 requires-python = ">=3.11,<3.13"
 license = { text = "MIT" }
