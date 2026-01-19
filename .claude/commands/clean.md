@@ -1,0 +1,56 @@
+---
+description: Clean build artifacts, caches, and temporary files
+allowed-tools: Bash, Read
+---
+
+# Clean
+
+Clean build artifacts, caches, and temporary files.
+
+## Current State
+- Frontend dist exists: !`test -d frontend/dist && echo "Yes" || echo "No"`
+- Python cache exists: !`find backend -name "__pycache__" -type d 2>/dev/null | head -1 | xargs -I{} echo "Yes" || echo "No"`
+
+## Instructions
+
+### Clean Frontend Build
+```bash
+rm -rf frontend/dist
+rm -rf frontend/node_modules/.vite
+```
+
+### Clean Python Cache
+```bash
+find backend -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
+find backend -type f -name "*.pyc" -delete 2>/dev/null || true
+find backend -type d -name ".ruff_cache" -exec rm -rf {} + 2>/dev/null || true
+```
+
+### Clean Docker
+```bash
+# Remove test containers
+docker rm -f ccbell-test 2>/dev/null || true
+
+# Remove dangling images (optional)
+docker image prune -f
+```
+
+### Clean Temporary Audio Files
+```bash
+rm -rf /tmp/ccbell-audio/*
+```
+
+### Full Clean
+To clean everything:
+```bash
+rm -rf frontend/dist frontend/node_modules/.vite
+find backend -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
+find backend -type f -name "*.pyc" -delete 2>/dev/null || true
+find backend -type d -name ".ruff_cache" -exec rm -rf {} + 2>/dev/null || true
+docker rm -f ccbell-test 2>/dev/null || true
+```
+
+## Important Notes
+- Does NOT remove `node_modules/` or `backend/.venv/` (use `/setup` to recreate)
+- Does NOT remove model cache (`~/.cache/ccbell-models`)
+- Safe to run without affecting dependencies

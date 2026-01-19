@@ -1,0 +1,33 @@
+---
+description: Run linting for both backend and frontend
+allowed-tools: Bash, Read
+---
+
+# Lint
+
+Run linting for both backend and frontend.
+
+## Current Files Changed
+- Modified files: !`git diff --name-only HEAD | head -10`
+
+## Instructions
+
+Run the following lint commands in parallel:
+
+### Backend (Python)
+```bash
+cd backend && source .venv/bin/activate && ruff check .
+```
+
+### Frontend (TypeScript/React)
+```bash
+cd frontend && npm run lint
+```
+
+Report any linting errors found and suggest fixes. If both pass, confirm that linting completed successfully.
+
+## Important Notes
+- The virtual environment is at `backend/.venv` (created by `uv sync`)
+- Backend uses ruff for linting
+- Frontend uses ESLint configured for React and TypeScript
+- Fix any issues found before committing code

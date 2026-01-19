@@ -17,8 +17,10 @@ frontend/dist/
 *.swp
 *.swo
 
-# Claude Code
-.claude/
+# Claude Code (keep commands and skills for project sharing)
+.claude/*
+!.claude/commands/
+!.claude/skills/
 
 # Environment
 .env

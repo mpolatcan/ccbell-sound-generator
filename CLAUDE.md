@@ -45,10 +45,50 @@ ccbell-sound-generator/
 │   ├── package.json
 │   ├── vite.config.ts
 │   └── tailwind.config.js
+├── .claude/
+│   ├── commands/             # Slash commands (14 commands)
+│   └── skills/               # Auto-triggered skills (3 skills)
 ├── Dockerfile                # Production build with uv
 ├── docker-compose.yml        # Local development
 └── README.md                 # HuggingFace Space config
 ```
+
+## Claude Code Integration
+
+### Auto-Triggered Skills
+
+Skills are automatically invoked by Claude when relevant based on context:
+
+| Skill | Triggers When |
+|-------|---------------|
+| `code-quality` | Fixing lint errors, formatting code, type checking |
+| `project-architecture` | Explaining codebase, understanding structure |
+| `deployment-workflow` | Deploying, releasing, checking deployment status |
+
+Skills are located in `.claude/skills/` and use auto-discovery.
+
+### Slash Commands
+
+Manual commands for common tasks:
+
+| Command | Description |
+|---------|-------------|
+| `/setup` | First-time project setup for local development |
+| `/dev` | Start development servers (backend + frontend) |
+| `/lint` | Run linting for both backend and frontend |
+| `/format` | Format Python code using ruff |
+| `/typecheck` | Run type checking (Python ty + TypeScript) |
+| `/build` | Build the frontend application with Vite |
+| `/verify` | Run complete pre-deployment verification checklist |
+| `/release <version>` | Create version release tag and trigger deployment |
+| `/docker-build` | Build production Docker image |
+| `/docker-run` | Run Docker container locally for testing |
+| `/sync-deps` | Update and sync Python dependencies using uv |
+| `/check-hf-logs` | Check HuggingFace Space deployment logs |
+| `/status` | Show project status (git, deps, environment) |
+| `/clean` | Clean build artifacts, caches, and temp files |
+
+Commands are located in `.claude/commands/`.
 
 ## Key Commands
 
