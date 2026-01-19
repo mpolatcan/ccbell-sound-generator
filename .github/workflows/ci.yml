@@ -55,10 +55,10 @@ jobs:
         with:
           version: "0.5.18"
 
-      - name: Install dependencies
+      - name: Install linting tools
         run: |
           cd backend
-          uv pip install --system ruff ty
+          uv pip install --system ruff
 
       - name: Run Ruff check
         run: |
@@ -70,10 +70,15 @@ jobs:
           cd backend
           ruff format --check .
 
+      - name: Install project dependencies for type checking
+        run: |
+          cd backend
+          uv sync --group dev
+
       - name: Run Ty type check
         run: |
           cd backend
-          ty check .
+          uv run ty check .
 
   build-frontend:
     name: Build Frontend
