@@ -61,6 +61,7 @@ Skills are automatically invoked by Claude when relevant based on context:
 
 | Skill | Triggers When |
 |-------|---------------|
+| `agent-browser` | Testing UI in browser, visual verification, form interactions, screenshots |
 | `code-quality` | Fixing lint errors, formatting code, type checking |
 | `project-architecture` | Explaining codebase, understanding structure |
 | `deployment-workflow` | Deploying, releasing, checking deployment status |
@@ -295,6 +296,7 @@ cd frontend && npm run lint -- --fix
 - All audio files are 44.1kHz stereo WAV
 - **After every code change, review and update CLAUDE.md to reflect changes** (new files, dependencies, environment variables, etc.)
 - **Before committing, ALWAYS run linting locally**: `ruff check .`, `ruff format .`, `ty check .`, and `npm run lint`
+- **ALWAYS use `agent-browser` skill to visually verify UI changes** during local development - take screenshots, interact with elements, and confirm everything renders correctly
 
 ## Dependency Management
 
@@ -384,6 +386,11 @@ Before creating a release tag, complete ALL of the following:
 - [ ] Health check passes: `curl http://localhost:7860/api/health`
 - [ ] Audio generation works end-to-end (see testing steps below)
 
+**UI Visual Verification (MANDATORY):**
+- [ ] Use `agent-browser` to visually verify UI (see [UI-Based Testing](#ui-based-testing-with-agent-browser-mandatory))
+- [ ] Take screenshots to confirm UI renders correctly
+- [ ] Verify all interactive elements are present and functional
+
 ### Docker-Based Local Testing (Recommended)
 
 This simulates the exact HuggingFace Spaces environment:
@@ -448,9 +455,82 @@ afplay test.wav  # macOS
 # or: aplay test.wav  # Linux
 ```
 
-### UI-Based Testing
+### UI-Based Testing with agent-browser (MANDATORY)
 
-For comprehensive testing, use the web UI:
+**CRITICAL: ALWAYS use the `agent-browser` skill to visually verify the UI during local development.** This ensures you can see exactly what's happening in the browser and catch visual issues before deployment.
+
+The `agent-browser` skill provides automated browser control for testing. Use it to:
+- Navigate to the application
+- Take screenshots to verify UI state
+- Interact with forms and buttons
+- Verify visual elements are rendering correctly
+
+#### Standard UI Testing Workflow
+
+```bash
+# 1. Start the dev server first (Docker or local)
+docker run -p 7860:7860 ccbell-sound-generator
+# Or: npm run dev (frontend) + uvicorn (backend)
+
+# 2. Open the application in browser
+agent-browser open http://localhost:7860
+
+# 3. Take a snapshot to see interactive elements
+agent-browser snapshot -i
+
+# 4. Take a screenshot to visually verify the UI
+agent-browser screenshot ui-check.png
+
+# 5. Test theme selection (use refs from snapshot)
+agent-browser click @e1  # Click theme dropdown
+agent-browser snapshot -i
+agent-browser click @e2  # Select a theme option
+
+# 6. Test hook type selection
+agent-browser click @e3  # Click hook type dropdown
+agent-browser snapshot -i
+agent-browser click @e4  # Select a hook type
+
+# 7. Test audio generation
+agent-browser click @e5  # Click Generate button
+agent-browser wait 5000  # Wait for generation
+agent-browser screenshot generation-result.png
+
+# 8. Verify progress bar animation
+agent-browser snapshot -i  # Check for progress element
+
+# 9. Test audio playback controls
+agent-browser click @e6  # Click play button
+
+# 10. Close browser when done
+agent-browser close
+```
+
+#### Quick Visual Verification Checklist
+
+```bash
+# Minimum verification before any PR or deployment:
+agent-browser open http://localhost:7860
+agent-browser wait --load networkidle
+agent-browser screenshot full-page.png --full
+agent-browser snapshot -i  # Verify all interactive elements exist
+agent-browser close
+```
+
+#### Record UI Testing Sessions
+
+For debugging or documentation:
+
+```bash
+agent-browser open http://localhost:7860
+agent-browser record start ./ui-test.webm
+# Perform all testing steps...
+agent-browser record stop
+```
+
+#### Manual Verification (Alternative)
+
+If agent-browser is unavailable, manually verify:
 
 1. Open http://localhost:7860 in browser
 2. Select a theme (e.g., "Sci-Fi")
