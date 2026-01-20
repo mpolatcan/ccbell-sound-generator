@@ -47,7 +47,7 @@ ccbell-sound-generator/
 │   └── tailwind.config.js
 ├── .claude/
 │   ├── commands/             # Slash commands (14 commands)
-│   └── skills/               # Auto-triggered skills (3 skills)
+│   └── skills/               # Auto-triggered skills (4 skills)
 ├── .gemini/
 │   ├── commands/             # Gemini commands
 │   └── skills/               # Gemini skills
