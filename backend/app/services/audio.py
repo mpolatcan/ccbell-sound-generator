@@ -232,8 +232,16 @@ class AudioService:
                 sampler = gen_settings.sampler or settings.default_sampler_large
 
             # Sigma values (noise levels)
-            sigma_min = gen_settings.sigma_min if gen_settings.sigma_min is not None else settings.default_sigma_min
-            sigma_max = gen_settings.sigma_max if gen_settings.sigma_max is not None else settings.default_sigma_max
+            sigma_min = (
+                gen_settings.sigma_min
+                if gen_settings.sigma_min is not None
+                else settings.default_sigma_min
+            )
+            sigma_max = (
+                gen_settings.sigma_max
+                if gen_settings.sigma_max is not None
+                else settings.default_sigma_max
+            )
 
             # Validate duration
             max_duration = (
