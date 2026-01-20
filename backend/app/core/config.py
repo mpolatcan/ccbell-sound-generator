@@ -11,7 +11,7 @@ class Settings(BaseSettings):
 
     # App settings
     app_name: str = "CCBell Sound Generator"
-    app_version: str = "1.0.20"
+    app_version: str = "1.0.21"
     debug: bool = False
 
     # Server settings
