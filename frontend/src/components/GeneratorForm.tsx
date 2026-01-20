@@ -12,6 +12,7 @@ import {
   Select,
   SelectContent,
   SelectItem,
+  SelectSeparator,
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
@@ -24,7 +25,7 @@ import { useSoundLibrary } from '@/hooks/useSoundLibrary'
 import { useModelStatus } from '@/hooks/useModelStatus'
 import { MODEL_DEFAULTS, DEFAULT_DURATION } from '@/lib/constants'
 import { formatDuration } from '@/lib/utils'
-import { Sparkles, RefreshCw, AlertCircle, Package, ListOrdered } from 'lucide-react'
+import { Sparkles, RefreshCw, AlertCircle, Package, ListOrdered, Plus } from 'lucide-react'
 import type { GenerationSettings, HookTypeId, ThemePreset } from '@/types'
 
 export interface GeneratorFormRef {
@@ -68,12 +69,13 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
   const [duration, setDuration] = useState(DEFAULT_DURATION)
   const [advancedSettings, setAdvancedSettings] = useState<GenerationSettings>({})
   const [packName, setPackName] = useState('')
+  const [selectedPackId, setSelectedPackId] = useState<string | null>(null)
 
   // Generation queue (non-blocking)
   const { addToQueue, queueLength, error } = useGenerationQueue()
 
   // Sound library
-  const { addPack, addSound } = useSoundLibrary()
+  const { packs, addPack, addSound, getSoundsByPack } = useSoundLibrary()
 
   // Model loading status
   const modelStatus = useModelStatus({
@@ -119,23 +121,30 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
     return theme.prompt_template.replace('{sound_type}', soundType)
   }
 
-  // Handle generation - create pack and queue all sounds
+  // Handle generation - create pack (if new) and queue all sounds
   const handleGenerate = () => {
     if (selectedHooks.length === 0) {
       return
     }
 
-    const packId = crypto.randomUUID()
-    const name = packName.trim() || getDefaultPackName()
+    let packId: string
 
-    // Create pack
-    addPack({
-      id: packId,
-      name,
-      theme: selectedTheme,
-      model: selectedModel,
-      created_at: new Date()
-    })
+    if (selectedPackId) {
+      // Use existing pack
+      packId = selectedPackId
+    } else {
+      // Create new pack
+      packId = crypto.randomUUID()
+      const name = packName.trim() || getDefaultPackName()
+
+      addPack({
+        id: packId,
+        name,
+        theme: selectedTheme,
+        model: selectedModel,
+        created_at: new Date()
+      })
+    }
 
     // Add all sounds to library and queue them for generation
     selectedHooks.forEach((hookId) => {
@@ -168,7 +177,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
       })
     })
 
-    // Reset pack name for next generation
+    // Reset pack name for next generation (keep selectedPackId for easy batch additions)
     setPackName('')
   }
 
@@ -215,20 +224,57 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
           </div>
         )}
 
-        {/* Pack Name Input */}
+        {/* Sound Pack Selection */}
         <div className="space-y-2">
           <Label className="flex items-center gap-2">
             <Package className="h-4 w-4" />
-            Sound Pack Name
+            Sound Pack
           </Label>
-          <Input
-            placeholder={getDefaultPackName()}
-            value={packName}
-            onChange={(e) => setPackName(e.target.value)}
-          />
-          <p className="text-xs text-muted-foreground">
-            Leave empty to auto-generate name from theme
-          </p>
+          <Select
+            value={selectedPackId || 'new'}
+            onValueChange={(v) => setSelectedPackId(v === 'new' ? null : v)}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Create New Pack" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="new">
+                <div className="flex items-center gap-2">
+                  <Plus className="h-4 w-4" />
+                  <span>Create New Pack</span>
+                </div>
+              </SelectItem>
+              {packs.length > 0 && (
+                <>
+                  <SelectSeparator />
+                  {packs.map((pack) => (
+                    <SelectItem key={pack.id} value={pack.id}>
+                      <div className="flex items-center gap-2">
+                        <Package className="h-4 w-4" />
+                        <span>{pack.name}</span>
+                        <span className="text-muted-foreground">
+                          ({getSoundsByPack(pack.id).length} sounds)
+                        </span>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </>
+              )}
+            </SelectContent>
+          </Select>
+          {/* Pack name input - only shown when creating new pack */}
+          {selectedPackId === null && (
+            <div className="space-y-1">
+              <Input
+                placeholder={getDefaultPackName()}
+                value={packName}
+                onChange={(e) => setPackName(e.target.value)}
+              />
+              <p className="text-xs text-muted-foreground">
+                Leave empty to auto-generate name from theme
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Model Selection */}
