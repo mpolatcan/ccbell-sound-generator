@@ -103,6 +103,14 @@ export function useGenerationQueue() {
         const connectWebSocket = () => {
           const ws = new WebSocket(`${WS_BASE_URL}/api/ws/${jobId}`)
           wsRef.current = ws
+          let completed = false
+
+          // Keep-alive ping
+          const pingInterval = setInterval(() => {
+            if (ws.readyState === WebSocket.OPEN) {
+              ws.send(JSON.stringify({ type: 'ping' }))
+            }
+          }, 30000)
 
           ws.onmessage = (event) => {
             try {
@@ -117,6 +125,7 @@ export function useGenerationQueue() {
 
               if (data.audio_url) {
                 // Completed
+                completed = true
                 updateSound(item.id, {
                   status: 'completed',
                   progress: 1,
@@ -128,6 +137,7 @@ export function useGenerationQueue() {
               }
 
               if (data.error) {
+                completed = true
                 updateSound(item.id, {
                   status: 'error',
                   error: data.error
@@ -141,7 +151,7 @@ export function useGenerationQueue() {
           }
 
           ws.onerror = () => {
-            if (!usePolling) {
+            if (!usePolling && !completed) {
               usePolling = true
               ws.close()
               startPolling()
@@ -149,19 +159,13 @@ export function useGenerationQueue() {
           }
 
           ws.onclose = () => {
-            wsRef.current = null
-          }
-
-          // Keep-alive ping
-          const pingInterval = setInterval(() => {
-            if (ws.readyState === WebSocket.OPEN) {
-              ws.send(JSON.stringify({ type: 'ping' }))
-            }
-          }, 30000)
-
-          ws.onclose = () => {
             clearInterval(pingInterval)
             wsRef.current = null
+            // If WebSocket closed before completion, switch to polling
+            if (!completed && !usePolling) {
+              usePolling = true
+              startPolling()
+            }
           }
         }
 
