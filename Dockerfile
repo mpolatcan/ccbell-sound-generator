@@ -1,10 +1,18 @@
 # Frontend build stage
+# In CI: frontend/dist is pre-built and included in artifacts
+# Locally: build frontend from source
 FROM node:22-alpine AS frontend-builder
 WORKDIR /app
-COPY frontend/package.json frontend/package-lock.json ./
-RUN npm ci
+
+# Check if pre-built dist exists (CI flow) or build from source (local flow)
 COPY frontend/ ./
-RUN npm run build
+RUN if [ -d "dist" ] && [ -f "dist/index.html" ]; then \
+      echo "Using pre-built frontend dist"; \
+    else \
+      echo "Building frontend from source" && \
+      npm ci && \
+      npm run build; \
+    fi
 
 # CPU-only build for HuggingFace Spaces free tier
 FROM python:3.11.11-slim-bookworm AS builder
