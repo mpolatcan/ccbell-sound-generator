@@ -185,7 +185,9 @@ npx shadcn@latest add button card input label select slider accordion dialog toa
 
 Generated sounds are organized into **Sound Packs** - named, collapsible groups of sounds:
 
-- **Pack Name Input**: Users can name their pack or use auto-generated name (theme + timestamp)
+- **Pack Selection**: Users can create a new pack or add sounds to an existing pack via dropdown
+- **Pack Name Input**: When creating new packs, users can name their pack or use auto-generated name (theme + timestamp)
+- **Add to Existing**: Select an existing pack from the dropdown to add more sounds (shows sound count)
 - **Real-time Progress**: Sounds appear in library immediately when generation starts with progress bar
 - **Pack Actions**: Rename, download as ZIP, publish to GitHub, delete
 - **Collapsible UI**: Each pack can be expanded/collapsed independently

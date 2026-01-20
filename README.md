@@ -22,7 +22,7 @@ Generate AI-powered notification sounds for the [Claude Code](https://github.com
 - 🎵 **Waveform Visualization** - Visual audio preview with waveform display
 - 🎭 **Theme Presets** - Sci-Fi, Retro 8-bit, Nature, Minimal, Mechanical
 - 🔔 **All Hook Types** - Generate sounds for all Claude Code events
-- 📦 **Sound Packs** - Organize generated sounds in named, collapsible packs
+- 📦 **Sound Packs** - Organize sounds in named packs; add to existing packs or create new ones
 - ⏱️ **Custom Duration** - Generate sounds from 0.5s to 11s (or 47s with 1.0 model)
 - 🔄 **Real-time Progress** - Watch generation progress in the Sound Library
 - 💾 **Download** - Individual sounds or batch ZIP (organized by pack)
@@ -37,7 +37,7 @@ Generate AI-powered notification sounds for the [Claude Code](https://github.com
 
 ## Usage
 
-1. **Name your pack** - Enter a custom name or use the auto-generated one
+1. **Select or create a pack** - Choose an existing pack to add sounds, or create a new one
 2. **Select a theme** - Choose from preset themes or write a custom prompt
 3. **Choose hook types** - Select one or more Claude Code events
 4. **Adjust duration** - Set how long the sound should be (0.5s to 11s)
