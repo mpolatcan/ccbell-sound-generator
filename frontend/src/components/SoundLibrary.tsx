@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
 import { Input } from '@/components/ui/input'
 import { AudioPlayer } from './AudioPlayer'
+import { ElapsedTime } from './ElapsedTime'
 import {
   Trash2,
   Archive,
@@ -422,9 +423,15 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                               {sound.status === 'generating' && (
                                 <div className="mt-2">
                                   <Progress value={(sound.progress || 0) * 100} className="h-2" />
-                                  <p className="text-xs text-muted-foreground mt-1">
-                                    {sound.stage} ({Math.round((sound.progress || 0) * 100)}%)
-                                  </p>
+                                  <div className="flex items-center justify-between mt-1">
+                                    <p className="text-xs text-muted-foreground">
+                                      {sound.stage} ({Math.round((sound.progress || 0) * 100)}%)
+                                    </p>
+                                    <ElapsedTime
+                                      startTime={sound.started_at}
+                                      isRunning={sound.status === 'generating'}
+                                    />
+                                  </div>
                                 </div>
                               )}
 

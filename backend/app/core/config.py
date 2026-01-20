@@ -28,12 +28,16 @@ class Settings(BaseSettings):
     max_duration_small: float = 11.0
     max_duration_large: float = 47.0
 
-    # Generation settings
+    # Generation settings (from official HuggingFace documentation)
     default_steps_small: int = 8
     default_steps_large: int = 100
-    default_cfg_scale: float = 1.0
+    default_cfg_scale_small: float = 1.0
+    default_cfg_scale_large: float = 7.0  # Official default for 1.0 model
     default_sampler_small: str = "pingpong"
     default_sampler_large: str = "dpmpp-3m-sde"
+    # Noise level parameters
+    default_sigma_min: float = 0.3
+    default_sigma_max: float = 500.0
 
     # Storage settings
     temp_audio_dir: Path = Path("/tmp/ccbell-audio")

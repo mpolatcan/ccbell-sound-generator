@@ -22,6 +22,15 @@ HookTypeId = Literal[
     "Progress",
 ]
 
+# Valid sampler types supported by stable-audio-tools
+# Small model: only "pingpong"
+# 1.0 model: only "dpmpp-3m-sde" and "dpmpp-2m-sde"
+SamplerType = Literal[
+    "pingpong",  # Small model only
+    "dpmpp-3m-sde",  # 1.0 model only
+    "dpmpp-2m-sde",  # 1.0 model only
+]
+
 
 class GenerationSettings(BaseModel):
     """Advanced generation settings."""
@@ -30,8 +39,14 @@ class GenerationSettings(BaseModel):
     cfg_scale: float | None = Field(
         None, ge=0.0, le=15.0, description="Classifier-free guidance scale"
     )
-    sampler: str | None = Field(None, description="Sampler type")
+    sampler: SamplerType | None = Field(None, description="Sampler type")
     seed: int | None = Field(None, description="Random seed for reproducibility")
+    sigma_min: float | None = Field(
+        None, ge=0.0, le=10.0, description="Minimum noise level for diffusion"
+    )
+    sigma_max: float | None = Field(
+        None, ge=1.0, le=1000.0, description="Maximum noise level for diffusion"
+    )
 
 
 class GenerateRequest(BaseModel):

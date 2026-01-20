@@ -48,6 +48,8 @@ export interface GenerationSettings {
   cfg_scale?: number
   sampler?: string
   seed?: number
+  sigma_min?: number
+  sigma_max?: number
 }
 
 export interface GenerateRequest {
@@ -134,6 +136,7 @@ export interface GeneratedSound {
   stage?: string
   error?: string
   created_at: Date
+  started_at?: Date // When generation actually started (for elapsed time)
 }
 
 export interface SoundPack {

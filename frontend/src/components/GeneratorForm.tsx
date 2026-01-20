@@ -1,4 +1,4 @@
-import { useState, useEffect, forwardRef, useImperativeHandle, useRef } from 'react'
+import { useState, useEffect, forwardRef, useImperativeHandle } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { api } from '@/lib/api'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
@@ -7,9 +7,7 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Slider } from '@/components/ui/slider'
-import { Progress } from '@/components/ui/progress'
 import { Skeleton } from '@/components/ui/skeleton'
-import { Badge } from '@/components/ui/badge'
 import {
   Select,
   SelectContent,
@@ -21,12 +19,12 @@ import { ThemeSelector } from './ThemeSelector'
 import { HookSelector } from './HookSelector'
 import { AdvancedSettings } from './AdvancedSettings'
 import { ModelLoadingIndicator } from './ModelLoadingIndicator'
-import { useAudioGeneration } from '@/hooks/useAudioGeneration'
+import { useGenerationQueue } from '@/hooks/useGenerationQueue'
 import { useSoundLibrary } from '@/hooks/useSoundLibrary'
 import { useModelStatus } from '@/hooks/useModelStatus'
 import { MODEL_DEFAULTS, DEFAULT_DURATION } from '@/lib/constants'
-import { formatDuration, getStageLabel } from '@/lib/utils'
-import { Loader2, Sparkles, RefreshCw, AlertCircle, Package } from 'lucide-react'
+import { formatDuration } from '@/lib/utils'
+import { Sparkles, RefreshCw, AlertCircle, Package, ListOrdered } from 'lucide-react'
 import type { GenerationSettings, HookTypeId, ThemePreset } from '@/types'
 
 export interface GeneratorFormRef {
@@ -71,30 +69,11 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
   const [advancedSettings, setAdvancedSettings] = useState<GenerationSettings>({})
   const [packName, setPackName] = useState('')
 
-  // Sequential generation state
-  const [generationQueue, setGenerationQueue] = useState<HookTypeId[]>([])
-  const [currentGeneratingHook, setCurrentGeneratingHook] = useState<HookTypeId | null>(null)
-  const [completedCount, setCompletedCount] = useState(0)
-  const [isSequentialGenerating, setIsSequentialGenerating] = useState(false)
-  const [currentPackId, setCurrentPackId] = useState<string | null>(null)
-
-  // Track sound IDs for current generation
-  const currentSoundIdRef = useRef<string | null>(null)
-
-  // Generation state
-  const {
-    isGenerating,
-    progress,
-    stage,
-    error,
-    completedAudioUrl,
-    currentJobId,
-    generate,
-    reset
-  } = useAudioGeneration()
+  // Generation queue (non-blocking)
+  const { addToQueue, queueLength, error } = useGenerationQueue()
 
   // Sound library
-  const { addPack, addSound, updateSound } = useSoundLibrary()
+  const { addPack, addSound } = useSoundLibrary()
 
   // Model loading status
   const modelStatus = useModelStatus({
@@ -140,8 +119,12 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
     return theme.prompt_template.replace('{sound_type}', soundType)
   }
 
-  // Create pack and add generating sound to library
-  const createPackAndStartGeneration = (hookIds: HookTypeId[]) => {
+  // Handle generation - create pack and queue all sounds
+  const handleGenerate = () => {
+    if (selectedHooks.length === 0) {
+      return
+    }
+
     const packId = crypto.randomUUID()
     const name = packName.trim() || getDefaultPackName()
 
@@ -154,167 +137,40 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
       created_at: new Date()
     })
 
-    setCurrentPackId(packId)
-
-    // Add all sounds to library with 'generating' status (for the first one, others will be 'pending')
-    hookIds.forEach((hookId, index) => {
+    // Add all sounds to library and queue them for generation
+    selectedHooks.forEach((hookId) => {
       const soundId = crypto.randomUUID()
+      const prompt = buildPrompt(hookId)
+
+      // Add sound to library with 'generating' status (queued)
       addSound({
         id: soundId,
-        job_id: '', // Will be updated when generation starts
+        job_id: '',
         pack_id: packId,
         hook_type: hookId,
-        prompt: buildPrompt(hookId),
+        prompt,
         model: selectedModel,
         duration,
         audio_url: '',
-        status: index === 0 ? 'generating' : 'generating',
+        status: 'generating',
         progress: 0,
-        stage: index === 0 ? 'Queued' : 'Waiting',
+        stage: 'Queued',
         created_at: new Date()
       })
-    })
 
-    return packId
-  }
-
-  // Generate a single sound for a specific hook
-  const generateSingleSound = async (hookId: HookTypeId, _packId: string, soundId: string) => {
-    const prompt = buildPrompt(hookId)
-    if (!prompt.trim()) return
-
-    setCurrentGeneratingHook(hookId)
-    currentSoundIdRef.current = soundId
-
-    // Update sound status to generating
-    updateSound(soundId, {
-      status: 'generating',
-      stage: 'Starting',
-      progress: 0
-    })
-
-    try {
-      await generate({
+      // Add to generation queue
+      addToQueue(soundId, packId, {
         model: selectedModel,
         prompt,
         hook_type: hookId,
         duration,
         settings: Object.keys(advancedSettings).length > 0 ? advancedSettings : undefined
       })
-    } catch {
-      // Error is handled by useAudioGeneration
-      updateSound(soundId, {
-        status: 'error',
-        error: error || 'Generation failed'
-      })
-      setIsSequentialGenerating(false)
-      setGenerationQueue([])
-      setCurrentGeneratingHook(null)
-    }
+    })
+
+    // Reset pack name for next generation
+    setPackName('')
   }
-
-  // Handle generation - start sequential generation
-  const handleGenerate = async () => {
-    if (selectedHooks.length === 0 || isGenerating || isSequentialGenerating) {
-      return
-    }
-
-    // Reset counters
-    setCompletedCount(0)
-
-    // Create pack and add all sounds
-    const packId = createPackAndStartGeneration(selectedHooks)
-
-    // Get the sound IDs that were just created
-    const soundLibrary = useSoundLibrary.getState()
-    const packSounds = soundLibrary.sounds.filter(s => s.pack_id === packId)
-
-    if (selectedHooks.length === 1) {
-      // Single hook - simple generation
-      const soundId = packSounds[0]?.id
-      if (soundId) {
-        await generateSingleSound(selectedHooks[0], packId, soundId)
-      }
-    } else {
-      // Multiple hooks - sequential generation
-      setIsSequentialGenerating(true)
-      setGenerationQueue([...selectedHooks])
-
-      // Start first generation
-      const soundId = packSounds[0]?.id
-      if (soundId) {
-        await generateSingleSound(selectedHooks[0], packId, soundId)
-      }
-    }
-  }
-
-  // Update progress in real-time
-  useEffect(() => {
-    if (currentSoundIdRef.current && (isGenerating || isSequentialGenerating)) {
-      updateSound(currentSoundIdRef.current, {
-        progress,
-        stage: getStageLabel(stage)
-      })
-    }
-  }, [progress, stage, isGenerating, isSequentialGenerating, updateSound])
-
-  // Effect to handle sequential generation completion
-  useEffect(() => {
-    if (completedAudioUrl && currentGeneratingHook && currentJobId && currentPackId) {
-      // Update completed sound with audio URL
-      if (currentSoundIdRef.current) {
-        updateSound(currentSoundIdRef.current, {
-          job_id: currentJobId,
-          audio_url: completedAudioUrl,
-          status: 'completed',
-          progress: 100,
-          stage: 'Complete'
-        })
-      }
-
-      setCompletedCount(prev => prev + 1)
-
-      // Check if there are more hooks in the queue
-      const currentIndex = generationQueue.indexOf(currentGeneratingHook)
-      const nextHook = generationQueue[currentIndex + 1]
-
-      if (nextHook && isSequentialGenerating) {
-        // Get the next sound ID
-        const soundLibrary = useSoundLibrary.getState()
-        const packSounds = soundLibrary.sounds.filter(s => s.pack_id === currentPackId)
-        const nextSound = packSounds.find(s => s.hook_type === nextHook)
-
-        // Generate next sound after a short delay
-        reset()
-        setTimeout(() => {
-          if (nextSound) {
-            generateSingleSound(nextHook, currentPackId, nextSound.id)
-          }
-        }, 500)
-      } else {
-        // All generations complete
-        setIsSequentialGenerating(false)
-        setGenerationQueue([])
-        setCurrentGeneratingHook(null)
-        setCurrentPackId(null)
-        currentSoundIdRef.current = null
-        reset()
-        // Reset pack name for next generation
-        setPackName('')
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [completedAudioUrl, currentGeneratingHook, currentJobId])
-
-  // Handle error state
-  useEffect(() => {
-    if (error && currentSoundIdRef.current) {
-      updateSound(currentSoundIdRef.current, {
-        status: 'error',
-        error: error
-      })
-    }
-  }, [error, updateSound])
 
   // Expose generate method via ref
   useImperativeHandle(ref, () => ({
@@ -493,47 +349,23 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
         />
 
         {/* Generate Button */}
-        <Button
-          className="w-full"
-          size="lg"
-          onClick={handleGenerate}
-          disabled={isGenerating || isSequentialGenerating || isLoading || hasApiError || selectedHooks.length === 0 || !currentPrompt.trim() || !modelStatus.isReady}
-        >
-          {isGenerating || isSequentialGenerating ? (
-            <>
-              <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-              {currentGeneratingHook && hooks.find(h => h.id === currentGeneratingHook)?.name}: {getStageLabel(stage)}
-            </>
-          ) : (
-            <>
-              <Sparkles className="h-4 w-4 mr-2" />
-              Generate {selectedHooks.length > 1 ? `${selectedHooks.length} Sounds` : 'Sound'}
-            </>
+        <div className="space-y-2">
+          <Button
+            className="w-full"
+            size="lg"
+            onClick={handleGenerate}
+            disabled={isLoading || hasApiError || selectedHooks.length === 0 || !currentPrompt.trim() || !modelStatus.isReady}
+          >
+            <Sparkles className="h-4 w-4 mr-2" />
+            Generate {selectedHooks.length > 1 ? `${selectedHooks.length} Sounds` : 'Sound'}
+          </Button>
+          {queueLength > 0 && (
+            <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+              <ListOrdered className="h-4 w-4" />
+              <span>{queueLength} {queueLength === 1 ? 'sound' : 'sounds'} in queue</span>
+            </div>
           )}
-        </Button>
-
-        {/* Progress */}
-        {(isGenerating || isSequentialGenerating) && (
-          <div className="space-y-3">
-            {/* Sequential generation progress */}
-            {generationQueue.length > 1 && (
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <span>
-                  Generating {completedCount + 1} of {generationQueue.length}
-                </span>
-                {currentGeneratingHook && (
-                  <Badge variant="secondary">
-                    {hooks.find(h => h.id === currentGeneratingHook)?.name}
-                  </Badge>
-                )}
-              </div>
-            )}
-            <Progress value={progress * 100} />
-            <p className="text-sm text-center text-muted-foreground">
-              {getStageLabel(stage)} ({Math.round(progress * 100)}%)
-            </p>
-          </div>
-        )}
+        </div>
 
         {/* Error */}
         {error && (

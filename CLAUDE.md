@@ -430,21 +430,21 @@ Before creating a release tag, complete ALL of the following:
 - [ ] Frontend linting passes: `cd frontend && npm run lint`
 - [ ] **CI pipeline passes**: Check https://github.com/mpolatcan/ccbell-sound-generator/actions/workflows/ci.yml
 
-**Build & Runtime:**
+**Build & Runtime (MANDATORY Docker Testing):**
 - [ ] Frontend builds successfully: `cd frontend && npm run build`
 - [ ] Docker image builds: `docker build -t ccbell-sound-generator .`
-- [ ] Docker container runs: `docker run -p 7860:7860 ccbell-sound-generator`
+- [ ] Docker container runs: `docker run -p 7860:7860 -e HF_TOKEN="$HF_TOKEN" ccbell-sound-generator`
 - [ ] Health check passes: `curl http://localhost:7860/api/health`
-- [ ] Audio generation works end-to-end (see testing steps below)
+- [ ] Audio generation works end-to-end in Docker (see [Docker-Based Local Testing](#docker-based-local-testing-mandatory))
 
 **UI Visual Verification (MANDATORY):**
 - [ ] Use `agent-browser` to visually verify UI (see [UI-Based Testing](#ui-based-testing-with-agent-browser-mandatory))
 - [ ] Take screenshots to confirm UI renders correctly
 - [ ] Verify all interactive elements are present and functional
 
-### Docker-Based Local Testing (Recommended)
+### Docker-Based Local Testing (MANDATORY)
 
-This simulates the exact HuggingFace Spaces environment:
+**CRITICAL: Docker-based testing is MANDATORY before any deployment.** This is NOT optional or just recommended - you MUST test with Docker before creating a release tag. This simulates the exact HuggingFace Spaces environment and catches issues that won't appear in development server testing:
 
 ```bash
 # Build the production Docker image
@@ -602,9 +602,11 @@ If agent-browser is unavailable, manually verify:
 | WebSocket not connecting | Check browser console for CORS issues |
 | Container exits immediately | Check logs with `docker logs <container_id>` |
 
-### Development Server Testing
+### Development Server Testing (For Fast Iteration Only)
 
-For faster iteration during development:
+**NOTE: This is NOT a replacement for Docker testing.** Use development servers only for fast iteration while coding. You MUST still run Docker-based testing before any deployment or release.
+
+For faster iteration during active development:
 
 ```bash
 # Terminal 1: Backend
@@ -618,6 +620,8 @@ npm run dev
 ```
 
 Access frontend at http://localhost:5173 (proxies API calls to port 8000)
+
+**Remember:** Always follow up with Docker testing before committing or deploying.
 
 ## CI/CD Pipelines
 

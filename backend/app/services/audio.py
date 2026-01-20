@@ -219,7 +219,7 @@ class AudioService:
                 cfg_scale = (
                     gen_settings.cfg_scale
                     if gen_settings.cfg_scale is not None
-                    else settings.default_cfg_scale
+                    else settings.default_cfg_scale_small
                 )
                 sampler = gen_settings.sampler or settings.default_sampler_small
             else:
@@ -227,9 +227,13 @@ class AudioService:
                 cfg_scale = (
                     gen_settings.cfg_scale
                     if gen_settings.cfg_scale is not None
-                    else settings.default_cfg_scale
+                    else settings.default_cfg_scale_large
                 )
                 sampler = gen_settings.sampler or settings.default_sampler_large
+
+            # Sigma values (noise levels)
+            sigma_min = gen_settings.sigma_min if gen_settings.sigma_min is not None else settings.default_sigma_min
+            sigma_max = gen_settings.sigma_max if gen_settings.sigma_max is not None else settings.default_sigma_max
 
             # Validate duration
             max_duration = (
@@ -327,8 +331,8 @@ class AudioService:
                         cfg_scale=cfg_scale,
                         conditioning=conditioning,  # type: ignore[arg-type]
                         sample_size=sample_size,
-                        sigma_min=0.3,
-                        sigma_max=500,
+                        sigma_min=sigma_min,
+                        sigma_max=sigma_max,
                         sampler_type=sampler,
                         device=model_loader.device,
                     )
