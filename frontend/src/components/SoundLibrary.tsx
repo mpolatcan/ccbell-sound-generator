@@ -1,6 +1,7 @@
-import { useRef, useState, forwardRef, useImperativeHandle } from 'react'
+import { useRef, useState, forwardRef, useImperativeHandle, useCallback } from 'react'
 import JSZip from 'jszip'
 import { useSoundLibrary } from '@/hooks/useSoundLibrary'
+import { api } from '@/lib/api'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ScrollArea } from '@/components/ui/scroll-area'
@@ -199,9 +200,64 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
       setEditingName('')
     }
 
+    // Delete a single sound from both backend (filesystem) and frontend state
+    const handleDeleteSound = useCallback(async (sound: GeneratedSound) => {
+      // Delete from backend if sound has a job_id (completed sounds)
+      if (sound.job_id) {
+        try {
+          await api.deleteAudio(sound.job_id)
+        } catch (error) {
+          // Log but don't block - file may already be cleaned up
+          console.warn(`Failed to delete audio file for job ${sound.job_id}:`, error)
+        }
+      }
+      // Always remove from frontend state
+      removeSound(sound.id)
+    }, [removeSound])
+
+    // Delete all sounds in a pack from backend, then remove pack from state
+    const handleDeletePack = useCallback(async (packId: string) => {
+      const packSounds = sounds.filter((s) => s.pack_id === packId)
+
+      // Delete all sounds from backend in parallel
+      await Promise.all(
+        packSounds
+          .filter((s) => s.job_id) // Only sounds with job_ids
+          .map(async (sound) => {
+            try {
+              await api.deleteAudio(sound.job_id)
+            } catch (error) {
+              console.warn(`Failed to delete audio file for job ${sound.job_id}:`, error)
+            }
+          })
+      )
+
+      // Remove pack and all its sounds from frontend state
+      removePack(packId)
+    }, [sounds, removePack])
+
+    // Clear all sounds from backend, then clear frontend state
+    const handleClearAll = useCallback(async () => {
+      // Delete all sounds from backend in parallel
+      await Promise.all(
+        sounds
+          .filter((s) => s.job_id) // Only sounds with job_ids
+          .map(async (sound) => {
+            try {
+              await api.deleteAudio(sound.job_id)
+            } catch (error) {
+              console.warn(`Failed to delete audio file for job ${sound.job_id}:`, error)
+            }
+          })
+      )
+
+      // Clear all from frontend state
+      clearAll()
+    }, [sounds, clearAll])
+
     useImperativeHandle(ref, () => ({
       downloadZip: handleDownloadAll,
-      clearAll
+      clearAll: handleClearAll
     }))
 
     if (packs.length === 0) {
@@ -247,7 +303,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
               )}
               Download All
             </Button>
-            <Button variant="ghost" size="sm" onClick={clearAll} title="Ctrl+Shift+C">
+            <Button variant="ghost" size="sm" onClick={handleClearAll} title="Ctrl+Shift+C">
               Clear All
             </Button>
           </div>
@@ -357,7 +413,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                               className="h-7 w-7 text-destructive hover:text-destructive"
                               onClick={(e) => {
                                 e.stopPropagation()
-                                removePack(pack.id)
+                                handleDeletePack(pack.id)
                               }}
                             >
                               <Trash2 className="h-3 w-3" />
@@ -413,7 +469,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                 <Button
                                   variant="ghost"
                                   size="icon"
-                                  onClick={() => removeSound(sound.id)}
+                                  onClick={() => handleDeleteSound(sound)}
                                 >
                                   <Trash2 className="h-4 w-4" />
                                 </Button>
