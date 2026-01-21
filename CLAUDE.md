@@ -401,7 +401,7 @@ All settings can be overridden via environment variables with the `CCBELL_` pref
 | `CCBELL_DEBUG` | `false` | Enable debug mode |
 | `CCBELL_HOST` | `0.0.0.0` | Server host |
 | `CCBELL_PORT` | `7860` | Server port (use 8000 for local dev via uvicorn --reload) |
-| `CCBELL_APP_VERSION` | `1.0.0` | Application version |
+| `CCBELL_APP_VERSION` | `1.0.22` | Application version |
 | `CCBELL_DEFAULT_MODEL` | `small` | Default model (`small` or `1.0`) |
 | `CCBELL_MODELS_CACHE_DIR` | `~/.cache/ccbell-models` | Model cache directory |
 | `CCBELL_SAMPLE_RATE` | `44100` | Audio sample rate |
