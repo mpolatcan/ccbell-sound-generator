@@ -14,10 +14,10 @@ Show comprehensive project status.
 - Latest tag: !`git describe --tags --abbrev=0 2>/dev/null || echo "No tags"`
 
 ## Backend Status
-- Python version: !`cd backend && source .venv/bin/activate 2>/dev/null && python --version 2>&1 || echo "venv not found"`
-- Venv exists: !`test -d backend/.venv && echo "Yes" || echo "No"`
-- Ruff version: !`cd backend && source .venv/bin/activate 2>/dev/null && ruff --version 2>&1 || echo "Not installed"`
-- ty version: !`cd backend && source .venv/bin/activate 2>/dev/null && ty --version 2>&1 || echo "Not installed"`
+- Python version: !`cd backend && source venv/bin/activate 2>/dev/null && python --version 2>&1 || echo "venv not found"`
+- Venv exists: !`test -d backend/venv && echo "Yes" || echo "No"`
+- Ruff version: !`cd backend && source venv/bin/activate 2>/dev/null && ruff --version 2>&1 || echo "Not installed"`
+- ty version: !`cd backend && source venv/bin/activate 2>/dev/null && ty --version 2>&1 || echo "Not installed"`
 
 ## Frontend Status
 - Node version: !`node --version 2>&1 || echo "Not installed"`
@@ -44,7 +44,7 @@ Based on the status above:
 To verify the project is ready for development:
 ```bash
 # Backend health
-cd backend && source .venv/bin/activate && python -c "import fastapi; print('FastAPI OK')"
+cd backend && source venv/bin/activate && python -c "import fastapi; print('FastAPI OK')"
 
 # Frontend health
 cd frontend && npm run build --dry-run 2>/dev/null && echo "Frontend OK" || npm install

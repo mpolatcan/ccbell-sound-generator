@@ -13,7 +13,7 @@ Run the following type check commands in parallel:
 
 ### Backend (Python with ty)
 ```bash
-cd backend && source .venv/bin/activate && ty check .
+cd backend && source venv/bin/activate && ty check .
 ```
 
 ### Frontend (TypeScript)
@@ -24,7 +24,7 @@ cd frontend && npx tsc --noEmit
 Report any type errors found. If both pass, confirm that type checking completed successfully.
 
 ## Important Notes
-- The virtual environment is at `backend/.venv` (created by `uv sync`)
+- The virtual environment is at `backend/venv` (created by `uv sync`)
 - Backend uses `ty` (Astral's type checker, version >= 0.0.1a5)
 - Frontend uses TypeScript compiler in strict mode
 - Fix any type errors before committing code

@@ -51,6 +51,6 @@ docker rm -f ccbell-test 2>/dev/null || true
 ```
 
 ## Important Notes
-- Does NOT remove `node_modules/` or `backend/.venv/` (use `/setup` to recreate)
+- Does NOT remove `node_modules/` or `backend/venv/` (use `/setup` to recreate)
 - Does NOT remove model cache (`~/.cache/ccbell-models`)
 - Safe to run without affecting dependencies

@@ -1,16 +1,14 @@
----
-description: Run complete pre-deployment verification checklist
-allowed-tools: Bash, Read
----
+description = "Run complete pre-deployment verification checklist"
 
+prompt = """
 # Verify
 
 Run the complete pre-deployment verification checklist.
 
 ## Current State
-- Git status: !`git status --short`
-- Current branch: !`git branch --show-current`
-- Latest commit: !`git log -1 --oneline`
+- Git status: !{git status --short}
+- Current branch: !{git branch --show-current}
+- Latest commit: !{git log -1 --oneline}
 
 ## Instructions
 
@@ -18,12 +16,12 @@ This command runs all checks required before deployment. Execute these in order:
 
 ### 1. Backend Linting
 ```bash
-cd backend && source .venv/bin/activate && ruff check . && ruff format --check .
+cd backend && source venv/bin/activate && ruff check . && ruff format --check .
 ```
 
 ### 2. Backend Type Checking
 ```bash
-cd backend && source .venv/bin/activate && ty check .
+cd backend && source venv/bin/activate && ty check .
 ```
 
 ### 3. Frontend Linting
@@ -69,3 +67,4 @@ Report the status of each step:
 - This matches the CI pipeline checks
 - Docker build is the most time-consuming step
 - If any step fails, fix the issues before proceeding
+"""

@@ -48,6 +48,9 @@ ccbell-sound-generator/
 ├── .claude/
 │   ├── commands/             # Slash commands (14 commands)
 │   └── skills/               # Auto-triggered skills (4 skills)
+├── .gemini/
+│   ├── commands/             # Gemini commands
+│   └── skills/               # Gemini skills
 ├── Dockerfile                # Production build with uv
 ├── docker-compose.yml        # Local development
 └── README.md                 # HuggingFace Space config
@@ -110,17 +113,17 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 ```bash
 # From backend directory - activate venv
 cd backend
-source .venv/bin/activate
+source venv/bin/activate
 
-# Or from project root (if venv exists at backend/.venv)
-source backend/.venv/bin/activate
+# Or from project root (if venv exists at backend/venv)
+source backend/venv/bin/activate
 
-# Verify activation (should show .venv path)
+# Verify activation (should show venv path)
 which python
 
 # ruff and ty are available after activation
-which ruff  # Should show .venv/bin/ruff
-which ty    # Should show .venv/bin/ty
+which ruff  # Should show venv/bin/ruff
+which ty    # Should show venv/bin/ty
 ```
 
 ### Backend Development
@@ -128,10 +131,11 @@ which ty    # Should show .venv/bin/ty
 ```bash
 # First-time setup (from backend directory):
 cd backend
-uv sync --group dev  # Creates .venv and installs all deps from lockfile
+uv venv venv  # Create venv directory
+uv sync --group dev  # Install all deps from lockfile into venv
 
 # Activate the virtual environment
-source .venv/bin/activate
+source venv/bin/activate
 
 # Run development server (from backend directory)
 uvicorn app.main:app --reload --port 8000  # Local dev uses port 8000
@@ -281,8 +285,8 @@ The app generates sounds for these Claude Code events:
 
 ## Theme Presets
 
-- Sci-Fi, Retro 8-bit, Nature, Minimal, Mechanical
-- Custom prompts also supported
+- Sci-Fi, Retro 8-bit, Nature, Minimal, Mechanical, Custom
+- Custom theme allows user-written prompts
 
 ## Dependencies
 
@@ -309,7 +313,7 @@ The app generates sounds for these Claude Code events:
 ```bash
 # Backend (from backend directory, venv must be active)
 cd backend
-source .venv/bin/activate
+source venv/bin/activate
 ruff check .              # Linting
 ruff format --check .     # Format verification (use 'ruff format .' to auto-fix)
 ty check .                # Type checking
@@ -346,7 +350,7 @@ cd frontend && npm run lint -- --fix
 - Frontend state managed with Zustand for sound library
 - Use React Query for API calls with proper caching
 - All audio files are 44.1kHz stereo WAV
-- **After every code change, review and update CLAUDE.md to reflect changes** (new files, dependencies, environment variables, etc.)
+- **After every code change, review and update CLAUDE.md and GEMINI.md to reflect changes** (new files, dependencies, environment variables, etc.)
 - **Before committing, ALWAYS run linting locally**: `ruff check .`, `ruff format .`, `ty check .`, and `npm run lint`
 - **ALWAYS use `agent-browser` skill to visually verify UI changes** during local development - take screenshots, interact with elements, and confirm everything renders correctly
 
@@ -398,10 +402,11 @@ All settings can be overridden via environment variables with the `CCBELL_` pref
 
 | Variable | Default | Description |
 |----------|---------|-------------|
+| `CCBELL_APP_NAME` | `CCBell Sound Generator` | Application name |
+| `CCBELL_APP_VERSION` | `1.0.22` | Application version |
 | `CCBELL_DEBUG` | `false` | Enable debug mode |
 | `CCBELL_HOST` | `0.0.0.0` | Server host |
 | `CCBELL_PORT` | `7860` | Server port (use 8000 for local dev via uvicorn --reload) |
-| `CCBELL_APP_VERSION` | `1.0.22` | Application version |
 | `CCBELL_DEFAULT_MODEL` | `small` | Default model (`small` or `1.0`) |
 | `CCBELL_MODELS_CACHE_DIR` | `~/.cache/ccbell-models` | Model cache directory |
 | `CCBELL_SAMPLE_RATE` | `44100` | Audio sample rate |
@@ -410,13 +415,16 @@ All settings can be overridden via environment variables with the `CCBELL_` pref
 | `CCBELL_MAX_DURATION_LARGE` | `47.0` | Max duration for 1.0 model |
 | `CCBELL_DEFAULT_STEPS_SMALL` | `8` | Diffusion steps for small model |
 | `CCBELL_DEFAULT_STEPS_LARGE` | `100` | Diffusion steps for 1.0 model |
-| `CCBELL_DEFAULT_CFG_SCALE` | `1.0` | Classifier-free guidance scale |
+| `CCBELL_DEFAULT_CFG_SCALE_SMALL` | `1.0` | CFG scale for small model |
+| `CCBELL_DEFAULT_CFG_SCALE_LARGE` | `7.0` | CFG scale for 1.0 model |
 | `CCBELL_DEFAULT_SAMPLER_SMALL` | `pingpong` | Sampler for small model |
 | `CCBELL_DEFAULT_SAMPLER_LARGE` | `dpmpp-3m-sde` | Sampler for 1.0 model |
+| `CCBELL_DEFAULT_SIGMA_MIN` | `0.3` | Minimum noise level for diffusion |
+| `CCBELL_DEFAULT_SIGMA_MAX` | `500.0` | Maximum noise level for diffusion |
 | `CCBELL_TEMP_AUDIO_DIR` | `/tmp/ccbell-audio` | Temporary audio directory |
 | `CCBELL_MAX_AUDIO_FILES` | `100` | Max stored audio files |
-| `CCBELL_GITHUB_TOKEN` | `null` | GitHub token for publishing (fallback) |
-| `CCBELL_HF_TOKEN` | `null` | HuggingFace token for gated model access |
+| `CCBELL_GITHUB_TOKEN` | `null` | GitHub token for publishing |
+| `HF_TOKEN` | `null` | HuggingFace token for gated model access (also checks `CCBELL_HF_TOKEN`) |
 
 ## Local Testing Before Deployment
 
@@ -612,8 +620,8 @@ For faster iteration during active development:
 
 ```bash
 # Terminal 1: Backend
-source venv/bin/activate
 cd backend
+source venv/bin/activate
 uvicorn app.main:app --reload --port 8000
 
 # Terminal 2: Frontend (with API proxy to backend)

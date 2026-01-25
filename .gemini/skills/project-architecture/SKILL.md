@@ -1,7 +1,6 @@
 ---
 name: project-architecture
 description: Explain the codebase architecture, project structure, how components work together, API endpoints, data flow. Use when explaining code, understanding structure, or learning about the project.
-allowed-tools: Read, Grep, Glob
 ---
 
 # CCBell Sound Generator Architecture
@@ -69,6 +68,9 @@ ccbell-sound-generator/
 ├── .claude/
 │   ├── commands/                # Slash commands
 │   └── skills/                  # Auto-triggered skills
+├── .gemini/
+│   ├── commands/                # Gemini commands
+│   └── skills/                  # Gemini skills
 ├── .github/workflows/
 │   ├── ci.yml                   # Lint, build checks
 │   └── deploy.yml               # HuggingFace deployment

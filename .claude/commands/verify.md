@@ -18,12 +18,12 @@ This command runs all checks required before deployment. Execute these in order:
 
 ### 1. Backend Linting
 ```bash
-cd backend && source .venv/bin/activate && ruff check . && ruff format --check .
+cd backend && source venv/bin/activate && ruff check . && ruff format --check .
 ```
 
 ### 2. Backend Type Checking
 ```bash
-cd backend && source .venv/bin/activate && ty check .
+cd backend && source venv/bin/activate && ty check .
 ```
 
 ### 3. Frontend Linting

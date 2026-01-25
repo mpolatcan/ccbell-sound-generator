@@ -22,7 +22,8 @@ node --version
 ### 2. Backend Setup
 ```bash
 cd backend
-uv sync --group dev  # Creates .venv and installs all dependencies
+uv venv venv  # Create venv directory
+uv sync --group dev  # Install all dependencies into venv
 ```
 
 ### 3. Frontend Setup
@@ -35,7 +36,7 @@ npm install
 ```bash
 # Backend - check venv and tools
 cd backend
-source .venv/bin/activate
+source venv/bin/activate
 python --version
 ruff --version
 ty --version
@@ -49,7 +50,7 @@ npm run build
 
 ```bash
 # Terminal 1: Backend
-cd backend && source .venv/bin/activate && uvicorn app.main:app --reload --port 8000
+cd backend && source venv/bin/activate && uvicorn app.main:app --reload --port 8000
 
 # Terminal 2: Frontend
 cd frontend && npm run dev

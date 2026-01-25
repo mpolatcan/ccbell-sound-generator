@@ -69,6 +69,9 @@ ccbell-sound-generator/
 ├── .claude/
 │   ├── commands/                # Slash commands
 │   └── skills/                  # Auto-triggered skills
+├── .gemini/
+│   ├── commands/                # Gemini commands
+│   └── skills/                  # Gemini skills
 ├── .github/workflows/
 │   ├── ci.yml                   # Lint, build checks
 │   └── deploy.yml               # HuggingFace deployment

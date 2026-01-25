@@ -8,7 +8,7 @@ allowed-tools: Bash, Read
 Start development servers for local development.
 
 ## Current State
-- Backend venv exists: !`test -d backend/.venv && echo "Yes - Ready" || echo "No - Run /setup first"`
+- Backend venv exists: !`test -d backend/venv && echo "Yes - Ready" || echo "No - Run /setup first"`
 - Frontend node_modules exists: !`test -d frontend/node_modules && echo "Yes - Ready" || echo "No - Run npm install"`
 
 ## Instructions
@@ -17,7 +17,7 @@ You need to start two servers in separate terminals:
 
 ### Terminal 1: Backend (FastAPI)
 ```bash
-cd backend && source .venv/bin/activate && uvicorn app.main:app --reload --port 8000
+cd backend && source venv/bin/activate && uvicorn app.main:app --reload --port 8000
 ```
 
 ### Terminal 2: Frontend (Vite)
@@ -33,7 +33,7 @@ cd frontend && npm run dev
 ## Important Notes
 - The backend runs on port 8000 for local development
 - The frontend Vite dev server proxies `/api` requests to port 8000
-- The virtual environment is at `backend/.venv` (created by `uv sync`)
+- The virtual environment is at `backend/venv` (created by `uv sync`)
 - Use `--reload` for hot reloading during development
 - Frontend uses Vite's HMR (Hot Module Replacement)
 

@@ -1,8 +1,6 @@
----
-description: Check HuggingFace Space deployment logs
-allowed-tools: Bash, Read
----
+description = "Check HuggingFace Space deployment logs"
 
+prompt = """
 # Check HuggingFace Logs
 
 Check the deployment logs from HuggingFace Spaces.
@@ -49,4 +47,4 @@ curl https://mpolatcan-ccbell-sound-generator.hf.space/api/health
 - The script streams logs in real-time
 - Check logs after deployment to verify startup
 - Common issues: model download failures, memory limits, dependency errors
-
+"""

@@ -58,37 +58,41 @@ ccbell-sound-generator/
 
 ## Gemini CLI Integration
 
-### Available Agent Skills
+### Available Skills
 
-Skills are automatically utilized by the Gemini agent when relevant based on context:
+Skills are automatically utilized by Gemini when relevant based on context. Skills are located in `.gemini/skills/` with a `SKILL.md` file containing instructions.
 
-| Skill | Purpose |
-|-------|---------|
+| Skill | Triggers When |
+|-------|---------------|
 | `agent-browser` | Testing UI in browser, visual verification, form interactions, screenshots |
 | `code-quality` | Fixing lint errors, formatting code, type checking |
 | `project-architecture` | Explaining codebase, understanding structure |
 | `deployment-workflow` | Deploying, releasing, checking deployment status |
 
-### Manual Operations (Equivalent to Slash Commands)
+Skills are defined with `name` and `description` fields in YAML frontmatter.
 
-The following tasks should be performed using shell tools when requested:
+### Slash Commands
 
-| Task | Description |
+Custom commands are available as TOML files in `.gemini/commands/`:
+
+| Command | Description |
 |---------|-------------|
-| **Setup** | First-time project setup for local development |
-| **Development** | Start development servers (backend + frontend) |
-| **Linting** | Run linting for both backend and frontend |
-| **Formatting** | Format Python code using ruff |
-| **Type Checking** | Run type checking (Python ty + TypeScript) |
-| **Build** | Build the frontend application with Vite |
-| **Verification** | Run complete pre-deployment verification checklist |
-| **Release** | Create version release tag and trigger deployment |
-| **Docker Build** | Build production Docker image |
-| **Docker Run** | Run Docker container locally for testing |
-| **Sync Deps** | Update and sync Python dependencies using uv |
-| **Check Logs** | Check HuggingFace Space deployment logs |
-| **Status** | Show project status (git, deps, environment) |
-| **Clean** | Clean build artifacts, caches, and temp files |
+| `/setup` | First-time project setup for local development |
+| `/dev` | Start development servers (backend + frontend) |
+| `/lint` | Run linting for both backend and frontend |
+| `/format` | Format Python code using ruff |
+| `/typecheck` | Run type checking (Python ty + TypeScript) |
+| `/build` | Build the frontend application with Vite |
+| `/verify` | Run complete pre-deployment verification checklist |
+| `/release <version>` | Create version release tag and trigger deployment |
+| `/docker-build` | Build production Docker image |
+| `/docker-run` | Run Docker container locally for testing |
+| `/sync-deps` | Update and sync Python dependencies using uv |
+| `/check-hf-logs` | Check HuggingFace Space deployment logs |
+| `/status` | Show project status (git, deps, environment) |
+| `/clean` | Clean build artifacts, caches, and temp files |
+
+Commands use TOML format with `description` and `prompt` fields. Shell commands use `!{...}` syntax for dynamic execution.
 
 ## Key Commands
 
@@ -109,17 +113,17 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 ```bash
 # From backend directory - activate venv
 cd backend
-source .venv/bin/activate
+source venv/bin/activate
 
-# Or from project root (if venv exists at backend/.venv)
-source backend/.venv/bin/activate
+# Or from project root (if venv exists at backend/venv)
+source backend/venv/bin/activate
 
-# Verify activation (should show .venv path)
+# Verify activation (should show venv path)
 which python
 
 # ruff and ty are available after activation
-which ruff  # Should show .venv/bin/ruff
-which ty    # Should show .venv/bin/ty
+which ruff  # Should show venv/bin/ruff
+which ty    # Should show venv/bin/ty
 ```
 
 ### Backend Development
@@ -127,10 +131,11 @@ which ty    # Should show .venv/bin/ty
 ```bash
 # First-time setup (from backend directory):
 cd backend
-uv sync --group dev  # Creates .venv and installs all deps from lockfile
+uv venv venv  # Create venv directory
+uv sync --group dev  # Install all deps from lockfile into venv
 
 # Activate the virtual environment
-source .venv/bin/activate
+source venv/bin/activate
 
 # Run development server (from backend directory)
 uvicorn app.main:app --reload --port 8000  # Local dev uses port 8000
@@ -184,7 +189,9 @@ npx shadcn@latest add button card input label select slider accordion dialog toa
 
 Generated sounds are organized into **Sound Packs** - named, collapsible groups of sounds:
 
-- **Pack Name Input**: Users can name their pack or use auto-generated name (theme + timestamp)
+- **Pack Selection**: Users can create a new pack or add sounds to an existing pack via dropdown
+- **Pack Name Input**: When creating new packs, users can name their pack or use auto-generated name (theme + timestamp)
+- **Add to Existing**: Select an existing pack from the dropdown to add more sounds (shows sound count)
 - **Real-time Progress**: Sounds appear in library immediately when generation starts with progress bar
 - **Pack Actions**: Rename, download as ZIP, publish to GitHub, delete
 - **Collapsible UI**: Each pack can be expanded/collapsed independently
@@ -254,7 +261,7 @@ Sound library state is managed with Zustand (`useSoundLibrary` hook):
 
 ## Claude Code Hook Types
 
-The app generates sounds for these Claude Code events:
+The app generates sounds for these Claude Code events (used by the ccbell plugin):
 
 **Core Events:**
 - **PreToolUse** - Before tool execution
@@ -278,8 +285,8 @@ The app generates sounds for these Claude Code events:
 
 ## Theme Presets
 
-- Sci-Fi, Retro 8-bit, Nature, Minimal, Mechanical
-- Custom prompts also supported
+- Sci-Fi, Retro 8-bit, Nature, Minimal, Mechanical, Custom
+- Custom theme allows user-written prompts
 
 ## Dependencies
 
@@ -306,10 +313,10 @@ The app generates sounds for these Claude Code events:
 ```bash
 # Backend (from backend directory, venv must be active)
 cd backend
-source .venv/bin/activate
-ruff check .
+source venv/bin/activate
+ruff check .              # Linting
 ruff format --check .     # Format verification (use 'ruff format .' to auto-fix)
-ty check .
+ty check .                # Type checking
 
 # Frontend (from frontend directory)
 cd frontend
@@ -345,7 +352,7 @@ cd frontend && npm run lint -- --fix
 - All audio files are 44.1kHz stereo WAV
 - **After every code change, review and update CLAUDE.md and GEMINI.md to reflect changes** (new files, dependencies, environment variables, etc.)
 - **Before committing, ALWAYS run linting locally**: `ruff check .`, `ruff format .`, `ty check .`, and `npm run lint`
-- **ALWAYS use `agent-browser` skill to visually verify UI changes** during local development - take screenshots, interact with elements, and confirm everything renders correctly
+- **ALWAYS use `agent-browser` to visually verify UI changes** during local development - take screenshots, interact with elements, and confirm everything renders correctly
 
 ## Dependency Management
 
@@ -395,10 +402,11 @@ All settings can be overridden via environment variables with the `CCBELL_` pref
 
 | Variable | Default | Description |
 |----------|---------|-------------|
+| `CCBELL_APP_NAME` | `CCBell Sound Generator` | Application name |
+| `CCBELL_APP_VERSION` | `1.0.22` | Application version |
 | `CCBELL_DEBUG` | `false` | Enable debug mode |
 | `CCBELL_HOST` | `0.0.0.0` | Server host |
 | `CCBELL_PORT` | `7860` | Server port (use 8000 for local dev via uvicorn --reload) |
-| `CCBELL_APP_VERSION` | `1.0.22` | Application version |
 | `CCBELL_DEFAULT_MODEL` | `small` | Default model (`small` or `1.0`) |
 | `CCBELL_MODELS_CACHE_DIR` | `~/.cache/ccbell-models` | Model cache directory |
 | `CCBELL_SAMPLE_RATE` | `44100` | Audio sample rate |
@@ -407,13 +415,16 @@ All settings can be overridden via environment variables with the `CCBELL_` pref
 | `CCBELL_MAX_DURATION_LARGE` | `47.0` | Max duration for 1.0 model |
 | `CCBELL_DEFAULT_STEPS_SMALL` | `8` | Diffusion steps for small model |
 | `CCBELL_DEFAULT_STEPS_LARGE` | `100` | Diffusion steps for 1.0 model |
-| `CCBELL_DEFAULT_CFG_SCALE` | `1.0` | Classifier-free guidance scale |
+| `CCBELL_DEFAULT_CFG_SCALE_SMALL` | `1.0` | CFG scale for small model |
+| `CCBELL_DEFAULT_CFG_SCALE_LARGE` | `7.0` | CFG scale for 1.0 model |
 | `CCBELL_DEFAULT_SAMPLER_SMALL` | `pingpong` | Sampler for small model |
 | `CCBELL_DEFAULT_SAMPLER_LARGE` | `dpmpp-3m-sde` | Sampler for 1.0 model |
+| `CCBELL_DEFAULT_SIGMA_MIN` | `0.3` | Minimum noise level for diffusion |
+| `CCBELL_DEFAULT_SIGMA_MAX` | `500.0` | Maximum noise level for diffusion |
 | `CCBELL_TEMP_AUDIO_DIR` | `/tmp/ccbell-audio` | Temporary audio directory |
 | `CCBELL_MAX_AUDIO_FILES` | `100` | Max stored audio files |
-| `CCBELL_GITHUB_TOKEN` | `null` | GitHub token for publishing (fallback) |
-| `CCBELL_HF_TOKEN` | `null` | HuggingFace token for gated model access |
+| `CCBELL_GITHUB_TOKEN` | `null` | GitHub token for publishing |
+| `HF_TOKEN` | `null` | HuggingFace token for gated model access (also checks `CCBELL_HF_TOKEN`) |
 
 ## Local Testing Before Deployment
 
@@ -429,21 +440,21 @@ Before creating a release tag, complete ALL of the following:
 - [ ] Frontend linting passes: `cd frontend && npm run lint`
 - [ ] **CI pipeline passes**: Check https://github.com/mpolatcan/ccbell-sound-generator/actions/workflows/ci.yml
 
-**Build & Runtime:**
+**Build & Runtime (MANDATORY Docker Testing):**
 - [ ] Frontend builds successfully: `cd frontend && npm run build`
 - [ ] Docker image builds: `docker build -t ccbell-sound-generator .`
-- [ ] Docker container runs: `docker run -p 7860:7860 ccbell-sound-generator`
+- [ ] Docker container runs: `docker run -p 7860:7860 -e HF_TOKEN="$HF_TOKEN" ccbell-sound-generator`
 - [ ] Health check passes: `curl http://localhost:7860/api/health`
-- [ ] Audio generation works end-to-end (see testing steps below)
+- [ ] Audio generation works end-to-end in Docker (see [Docker-Based Local Testing](#docker-based-local-testing-mandatory))
 
 **UI Visual Verification (MANDATORY):**
 - [ ] Use `agent-browser` to visually verify UI (see [UI-Based Testing](#ui-based-testing-with-agent-browser-mandatory))
 - [ ] Take screenshots to confirm UI renders correctly
 - [ ] Verify all interactive elements are present and functional
 
-### Docker-Based Local Testing (Recommended)
+### Docker-Based Local Testing (MANDATORY)
 
-This simulates the exact HuggingFace Spaces environment:
+**CRITICAL: Docker-based testing is MANDATORY before any deployment.** This is NOT optional or just recommended - you MUST test with Docker before creating a release tag. This simulates the exact HuggingFace Spaces environment and catches issues that won't appear in development server testing:
 
 ```bash
 # Build the production Docker image
@@ -486,13 +497,12 @@ curl http://localhost:7860/api/models/small/status
 # 6. Generate audio (hook_type is required)
 curl -X POST http://localhost:7860/api/generate \
   -H "Content-Type: application/json" \
-  -d 
-  {
+  -d '{
     "prompt": "short notification chime, bright and clear",
     "model": "small",
     "hook_type": "Notification",
     "duration": 2.0
-  }
+  }'
 # Returns: {"job_id": "xxx-xxx-xxx"}
 
 # 7. Check job status (wait until "completed")
@@ -508,9 +518,9 @@ afplay test.wav  # macOS
 
 ### UI-Based Testing with agent-browser (MANDATORY)
 
-**CRITICAL: ALWAYS use the `agent-browser` skill to visually verify the UI during local development.** This ensures you can see exactly what's happening in the browser and catch visual issues before deployment.
+**CRITICAL: ALWAYS use the `agent-browser` tool to visually verify the UI during local development.** This ensures you can see exactly what's happening in the browser and catch visual issues before deployment.
 
-The `agent-browser` skill provides automated browser control for testing. Use it to:
+The `agent-browser` CLI tool provides automated browser control for testing. Use it to:
 - Navigate to the application
 - Take screenshots to verify UI state
 - Interact with forms and buttons
@@ -602,14 +612,16 @@ If agent-browser is unavailable, manually verify:
 | WebSocket not connecting | Check browser console for CORS issues |
 | Container exits immediately | Check logs with `docker logs <container_id>` |
 
-### Development Server Testing
+### Development Server Testing (For Fast Iteration Only)
 
-For faster iteration during development:
+**NOTE: This is NOT a replacement for Docker testing.** Use development servers only for fast iteration while coding. You MUST still run Docker-based testing before any deployment or release.
+
+For faster iteration during active development:
 
 ```bash
 # Terminal 1: Backend
-source venv/bin/activate
 cd backend
+source venv/bin/activate
 uvicorn app.main:app --reload --port 8000
 
 # Terminal 2: Frontend (with API proxy to backend)
@@ -618,6 +630,8 @@ npm run dev
 ```
 
 Access frontend at http://localhost:5173 (proxies API calls to port 8000)
+
+**Remember:** Always follow up with Docker testing before committing or deploying.
 
 ## CI/CD Pipelines
 
@@ -681,5 +695,3 @@ cp secrets.env.example secrets.env
 ### Environment
 
 The deploy workflow uses a `production` environment for deployment approvals (optional).
-
-```

@@ -25,8 +25,8 @@ Ensure the version follows semver format (major.minor.patch). Strip leading "v" 
 ### 2. Run Pre-Release Verification
 Before creating a release, ensure all checks pass by running the `/verify` command or these commands:
 ```bash
-cd backend && source .venv/bin/activate && ruff check . && ruff format --check .
-cd backend && source .venv/bin/activate && ty check .
+cd backend && source venv/bin/activate && ruff check . && ruff format --check .
+cd backend && source venv/bin/activate && ty check .
 cd frontend && npm run lint
 cd frontend && npm run build
 docker build -t ccbell-sound-generator .

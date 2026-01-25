@@ -1,8 +1,6 @@
----
-description: Build the frontend application with Vite
-allowed-tools: Bash, Read
----
+description = "Build the frontend application with Vite"
 
+prompt = """
 # Build
 
 Build the frontend application.
@@ -27,3 +25,4 @@ Report build results including any warnings or errors.
 - The Docker build uses this output
 - Run this before Docker builds to ensure the frontend is up to date
 - Build artifacts are uploaded as CI artifacts in the GitHub workflow
+"""

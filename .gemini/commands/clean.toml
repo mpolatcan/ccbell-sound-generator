@@ -1,15 +1,13 @@
----
-description: Clean build artifacts, caches, and temporary files
-allowed-tools: Bash, Read
----
+description = "Clean build artifacts, caches, and temporary files"
 
+prompt = """
 # Clean
 
 Clean build artifacts, caches, and temporary files.
 
 ## Current State
-- Frontend dist exists: !`test -d frontend/dist && echo "Yes" || echo "No"`
-- Python cache exists: !`find backend -name "__pycache__" -type d 2>/dev/null | head -1 | xargs -I{} echo "Yes" || echo "No"`
+- Frontend dist exists: !{test -d frontend/dist && echo "Yes" || echo "No"}
+- Python cache exists: !{find backend -name "__pycache__" -type d 2>/dev/null | head -1 | xargs -I{} echo "Yes" || echo "No"}
 
 ## Instructions
 
@@ -51,6 +49,7 @@ docker rm -f ccbell-test 2>/dev/null || true
 ```
 
 ## Important Notes
-- Does NOT remove `node_modules/` or `backend/.venv/` (use `/setup` to recreate)
+- Does NOT remove `node_modules/` or `backend/venv/` (use /setup to recreate)
 - Does NOT remove model cache (`~/.cache/ccbell-models`)
 - Safe to run without affecting dependencies
+"""

@@ -89,21 +89,24 @@ Visit http://localhost:7860
 ```bash
 # Install uv (fast Python package manager)
 curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Install ruff (linter/formatter) and ty (type checker)
-uv tool install ruff
-uv tool install ty
+# Or with Homebrew: brew install uv
 ```
 
 **Backend:**
 
 ```bash
 cd backend
-# Create and sync venv (first time only)
-uv sync --group dev
+
+# Create venv and install dependencies (first time only)
+uv venv venv
+uv sync --group dev  # Installs all deps including ruff and ty
 
 # ALWAYS activate venv before running Python commands
-source .venv/bin/activate
+source venv/bin/activate
+
+# Verify tools are available
+which ruff  # Should show venv/bin/ruff
+which ty    # Should show venv/bin/ty
 
 # Run server
 uvicorn app.main:app --reload --port 8000

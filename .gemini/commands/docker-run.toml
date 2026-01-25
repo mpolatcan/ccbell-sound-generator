@@ -1,8 +1,6 @@
----
-description: Run the Docker container locally for testing
-allowed-tools: Bash, Read
----
+description = "Run the Docker container locally for testing"
 
+prompt = """
 # Docker Run
 
 Run the Docker container locally.
@@ -50,3 +48,4 @@ curl http://localhost:7860/api/health
 - Use volume mount to persist models between runs
 - Container runs as non-root user
 - CTRL+C to stop the container
+"""

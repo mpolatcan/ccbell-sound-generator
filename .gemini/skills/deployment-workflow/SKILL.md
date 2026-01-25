@@ -1,7 +1,6 @@
 ---
 name: deployment-workflow
 description: Deploy to HuggingFace Spaces, create releases, check deployment status, verify before release, push to production. Use when deploying, releasing, or checking deployment logs.
-allowed-tools: Bash, Read
 ---
 
 # Deployment Workflow
@@ -20,7 +19,7 @@ Before creating a release, ALL checks must pass:
 
 ### 1. Backend Quality
 ```bash
-cd backend && source .venv/bin/activate
+cd backend && source venv/bin/activate
 ruff check .
 ruff format --check .
 ty check .

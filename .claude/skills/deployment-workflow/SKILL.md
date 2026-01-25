@@ -20,7 +20,7 @@ Before creating a release, ALL checks must pass:
 
 ### 1. Backend Quality
 ```bash
-cd backend && source .venv/bin/activate
+cd backend && source venv/bin/activate
 ruff check .
 ruff format --check .
 ty check .

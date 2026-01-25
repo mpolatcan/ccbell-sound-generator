@@ -1,8 +1,6 @@
----
-description: Build the production Docker image
-allowed-tools: Bash, Read
----
+description = "Build the production Docker image"
 
+prompt = """
 # Docker Build
 
 Build the production Docker image.
@@ -27,8 +25,9 @@ docker build -t ccbell-sound-generator:v1.0.0 .
 ```
 
 ## Important Notes
-- Ensure `frontend/dist/` exists (run `/build` first if needed)
+- Ensure `frontend/dist/` exists (run /build first if needed)
 - The image is optimized for HuggingFace Spaces free CPU tier
 - Build uses uv lockfile for reproducible dependencies
 - The `.dockerignore` excludes source files, reducing context size
 - Health check runs every 30s on `/api/health`
+"""

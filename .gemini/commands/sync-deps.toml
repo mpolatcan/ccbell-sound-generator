@@ -1,8 +1,6 @@
----
-description: Update and sync Python dependencies using uv lockfile
-allowed-tools: Bash, Read
----
+description = "Update and sync Python dependencies using uv lockfile"
 
+prompt = """
 # Sync Dependencies
 
 Update and sync Python dependencies using uv lockfile.
@@ -43,3 +41,4 @@ Key settings in `pyproject.toml`:
 - `constraint-dependencies`: Pins numpy==1.23.5, scipy==1.11.4
 - `exclude-dependencies`: Excludes gradio
 - `[tool.uv.sources]`: Configures PyTorch CPU-only index
+"""
