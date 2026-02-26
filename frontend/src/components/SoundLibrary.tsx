@@ -24,7 +24,7 @@ import {
   Music
 } from 'lucide-react'
 import { formatDuration, downloadBlob } from '@/lib/utils'
-import type { SoundPack, GeneratedSound } from '@/types'
+import type { SoundPack, GeneratedSound, PublishPackData } from '@/types'
 import {
   Collapsible,
   CollapsibleContent,
@@ -37,7 +37,7 @@ export interface SoundLibraryRef {
 }
 
 interface SoundLibraryProps {
-  onSelectForPublish?: (soundIds: string[]) => void
+  onSelectForPublish?: (data: PublishPackData) => void
 }
 
 export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
@@ -149,9 +149,14 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
       }
     }
 
-    const handlePublishPack = (packId: string) => {
-      const packSounds = getCompletedSoundsForPack(packId)
-      onSelectForPublish?.(packSounds.map((s) => s.job_id))
+    const handlePublishPack = (pack: SoundPack) => {
+      const packSounds = getCompletedSoundsForPack(pack.id)
+      onSelectForPublish?.({
+        packName: pack.name,
+        theme: pack.theme,
+        model: pack.model,
+        sounds: packSounds
+      })
     }
 
     const handlePreviewStart = (sound: GeneratedSound) => {
@@ -400,7 +405,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                 className="h-7"
                                 onClick={(e) => {
                                   e.stopPropagation()
-                                  handlePublishPack(pack.id)
+                                  handlePublishPack(pack)
                                 }}
                                 disabled={completedSounds.length === 0}
                               >

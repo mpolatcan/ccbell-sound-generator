@@ -171,9 +171,7 @@ async def get_audio(job_id: str):
 @router.post("/publish", response_model=PublishResponse)
 async def publish_release(request: PublishRequest):
     """Publish sound pack to GitHub release."""
-    logger.info(
-        f"Publish request: {request.release_tag} to {request.repo_owner}/{request.repo_name}"
-    )
+    logger.info(f"Publish request: pack '{request.pack_id}' v{request.pack_version}")
     return await github_service.publish_release(request)
 
 

@@ -82,11 +82,11 @@ export interface ProgressUpdate {
 }
 
 export interface PublishRequest {
-  github_token: string
-  repo_owner: string
-  repo_name: string
-  release_tag: string
-  release_name: string
+  pack_id: string
+  pack_name: string
+  pack_description: string
+  pack_author: string
+  pack_version: string
   sound_files: string[]
   description?: string
 }
@@ -161,6 +161,32 @@ export interface SoundLibraryState {
   // Bulk operations
   clearAll: () => void
   getSoundsByPack: (packId: string) => GeneratedSound[]
+}
+
+// Maps generator hook type IDs to ccbell plugin event names.
+export const HOOK_TO_EVENT_MAP: Record<HookTypeId, string> = {
+  PreToolUse: 'pre_tool_use',
+  PostToolUse: 'post_tool_use',
+  Notification: 'notification',
+  Stop: 'stop',
+  SubagentStop: 'subagent',
+  Bash: 'bash',
+  Read: 'read',
+  Write: 'write',
+  Edit: 'edit',
+  Task: 'task',
+  Error: 'error',
+  Success: 'success',
+  Warning: 'warning',
+  Progress: 'progress',
+}
+
+// Data passed from SoundLibrary to PublishDialog.
+export interface PublishPackData {
+  packName: string
+  theme: string
+  model: 'small' | '1.0'
+  sounds: GeneratedSound[]
 }
 
 export type GenerationStage =

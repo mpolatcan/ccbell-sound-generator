@@ -1,6 +1,24 @@
 """Claude Code hook type definitions."""
 
-from app.core.models import HookType
+from app.core.models import HookType, HookTypeId
+
+# Maps generator hook type IDs to ccbell plugin event names.
+HOOK_TO_EVENT_MAP: dict[HookTypeId, str] = {
+    "PreToolUse": "pre_tool_use",
+    "PostToolUse": "post_tool_use",
+    "Notification": "notification",
+    "Stop": "stop",
+    "SubagentStop": "subagent",
+    "Bash": "bash",
+    "Read": "read",
+    "Write": "write",
+    "Edit": "edit",
+    "Task": "task",
+    "Error": "error",
+    "Success": "success",
+    "Warning": "warning",
+    "Progress": "progress",
+}
 
 HOOK_TYPES: list[HookType] = [
     # Core hook events

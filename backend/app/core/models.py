@@ -125,11 +125,11 @@ class HookType(BaseModel):
 class PublishRequest(BaseModel):
     """Request model for publishing to GitHub."""
 
-    github_token: str | None = Field(None, description="GitHub personal access token")
-    repo_owner: str = Field(..., min_length=1, description="Repository owner")
-    repo_name: str = Field(..., min_length=1, description="Repository name")
-    release_tag: str = Field(..., min_length=1, description="Release tag")
-    release_name: str = Field(..., min_length=1, description="Release name")
+    pack_id: str = Field(..., min_length=1, description="Pack slug, e.g. 'sci-fi-ambient'")
+    pack_name: str = Field(..., min_length=1, description="Display name, e.g. 'Sci-Fi Ambient'")
+    pack_description: str = Field("", description="Pack description")
+    pack_author: str = Field("ccbell-sound-generator", description="Pack author")
+    pack_version: str = Field("1.0.0", description="Pack version")
     sound_files: list[str] = Field(..., min_length=1, description="List of job IDs to include")
     description: str | None = Field(None, description="Release description")
 

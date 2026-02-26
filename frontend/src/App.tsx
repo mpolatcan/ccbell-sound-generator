@@ -9,6 +9,7 @@ import { Bell, Github, ExternalLink, Keyboard } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts'
 import { toast } from '@/hooks/useToast'
+import type { PublishPackData } from '@/types'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,14 +22,14 @@ const queryClient = new QueryClient({
 
 function AppContent() {
   const [publishDialogOpen, setPublishDialogOpen] = useState(false)
-  const [soundsToPublish, setSoundsToPublish] = useState<string[]>([])
+  const [packDataToPublish, setPackDataToPublish] = useState<PublishPackData | null>(null)
   const [shortcutsHelpOpen, setShortcutsHelpOpen] = useState(false)
 
   const generatorFormRef = useRef<GeneratorFormRef>(null)
   const soundLibraryRef = useRef<SoundLibraryRef>(null)
 
-  const handleSelectForPublish = (soundIds: string[]) => {
-    setSoundsToPublish(soundIds)
+  const handleSelectForPublish = (data: PublishPackData) => {
+    setPackDataToPublish(data)
     setPublishDialogOpen(true)
   }
 
@@ -176,7 +177,7 @@ function AppContent() {
       <PublishDialog
         open={publishDialogOpen}
         onOpenChange={setPublishDialogOpen}
-        soundIds={soundsToPublish}
+        packData={packDataToPublish}
       />
 
       {/* Keyboard Shortcuts Help */}
