@@ -1,5 +1,6 @@
 """Configuration settings for the CCBell Sound Generator."""
 
+import os
 from pathlib import Path
 from typing import Literal
 
@@ -43,10 +44,15 @@ class Settings(BaseSettings):
     temp_audio_dir: Path = Path("/tmp/ccbell-audio")
     max_audio_files: int = 100
 
-    # GitHub settings
-    github_token: str | None = None
+    # GitHub settings (supports CCBELL_GH_TOKEN or CCBELL_GITHUB_TOKEN)
+    gh_token: str | None = None
 
     model_config = {"env_prefix": "CCBELL_", "env_file": ".env", "extra": "ignore"}
+
+    @property
+    def github_token(self) -> str | None:
+        """Resolve GitHub token from CCBELL_GH_TOKEN or CCBELL_GITHUB_TOKEN."""
+        return self.gh_token or os.environ.get("CCBELL_GITHUB_TOKEN")
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

@@ -8,9 +8,6 @@ import {
   DialogTitle
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { api } from '@/lib/api'
@@ -35,28 +32,12 @@ function slugify(name: string): string {
 export function PublishDialog({ open, onOpenChange, packData }: PublishDialogProps) {
   const [isPublishing, setIsPublishing] = useState(false)
   const [releaseUrl, setReleaseUrl] = useState<string | null>(null)
+  const [packId, setPackId] = useState('')
 
-  const [formData, setFormData] = useState({
-    packId: '',
-    packName: '',
-    packDescription: '',
-    packAuthor: 'ccbell-sound-generator',
-    packVersion: '1.0.0',
-    description: ''
-  })
-
-  // Pre-fill form when packData changes
+  // Derive pack ID when packData changes
   useEffect(() => {
     if (packData) {
-      const name = packData.packName
-      setFormData({
-        packId: slugify(name),
-        packName: name,
-        packDescription: '',
-        packAuthor: 'ccbell-sound-generator',
-        packVersion: '1.0.0',
-        description: ''
-      })
+      setPackId(slugify(packData.packName))
     }
   }, [packData])
 
@@ -67,30 +48,20 @@ export function PublishDialog({ open, onOpenChange, packData }: PublishDialogPro
     filename: `${HOOK_TO_EVENT_MAP[sound.hook_type] || sound.hook_type.toLowerCase()}.wav`
   })) ?? []
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!formData.packId || !formData.packName || !packData) {
-      toast({
-        title: 'Missing fields',
-        description: 'Pack ID and Pack Name are required.',
-        variant: 'destructive'
-      })
-      return
-    }
+  const handlePublish = async () => {
+    if (!packData || !packId) return
 
     setIsPublishing(true)
     setReleaseUrl(null)
 
     try {
       const response = await api.publishRelease({
-        pack_id: formData.packId,
-        pack_name: formData.packName,
-        pack_description: formData.packDescription,
-        pack_author: formData.packAuthor,
-        pack_version: formData.packVersion,
-        sound_files: packData.sounds.map((s) => s.job_id),
-        description: formData.description || undefined
+        pack_id: packId,
+        pack_name: packData.packName,
+        pack_description: '',
+        pack_author: 'ccbell-sound-generator',
+        pack_version: '1.0.0',
+        sound_files: packData.sounds.map((s) => s.job_id)
       })
 
       if (response.success && response.release_url) {
@@ -115,31 +86,23 @@ export function PublishDialog({ open, onOpenChange, packData }: PublishDialogPro
 
   const handleClose = () => {
     onOpenChange(false)
-    // Reset form after closing
     setTimeout(() => {
-      setFormData({
-        packId: '',
-        packName: '',
-        packDescription: '',
-        packAuthor: 'ccbell-sound-generator',
-        packVersion: '1.0.0',
-        description: ''
-      })
       setReleaseUrl(null)
+      setPackId('')
     }, 300)
   }
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-[550px]">
+      <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Github className="h-5 w-5" />
             Publish Sound Pack
           </DialogTitle>
           <DialogDescription>
-            Publish {eventMapping.length} sound{eventMapping.length !== 1 ? 's' : ''} as a ccbell
-            sound pack to GitHub.
+            Publish <strong>{packData?.packName}</strong> ({eventMapping.length} sound{eventMapping.length !== 1 ? 's' : ''}) to{' '}
+            <code className="text-xs bg-muted px-1 py-0.5 rounded">mpolatcan/ccbell-sound-packs</code>
           </DialogDescription>
         </DialogHeader>
 
@@ -162,7 +125,7 @@ export function PublishDialog({ open, onOpenChange, packData }: PublishDialogPro
             </div>
             <h3 className="text-lg font-medium mb-2">Pack Published!</h3>
             <p className="text-sm text-muted-foreground mb-2">
-              Install with: <code className="bg-muted px-1 py-0.5 rounded text-xs">ccbell packs install {formData.packId}</code>
+              Install with: <code className="bg-muted px-1 py-0.5 rounded text-xs">ccbell packs install {packId}</code>
             </p>
             <Button asChild>
               <a href={releaseUrl} target="_blank" rel="noopener noreferrer">
@@ -172,117 +135,45 @@ export function PublishDialog({ open, onOpenChange, packData }: PublishDialogPro
             </Button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit}>
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="packName">Pack Name *</Label>
-                  <Input
-                    id="packName"
-                    placeholder="Sci-Fi Ambient"
-                    value={formData.packName}
-                    onChange={(e) => {
-                      const name = e.target.value
-                      setFormData({
-                        ...formData,
-                        packName: name,
-                        packId: slugify(name)
-                      })
-                    }}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="packId">Pack ID *</Label>
-                  <Input
-                    id="packId"
-                    placeholder="sci-fi-ambient"
-                    value={formData.packId}
-                    onChange={(e) =>
-                      setFormData({ ...formData, packId: e.target.value })
-                    }
-                  />
-                  <p className="text-xs text-muted-foreground">URL-safe identifier</p>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="packAuthor">Author</Label>
-                  <Input
-                    id="packAuthor"
-                    value={formData.packAuthor}
-                    onChange={(e) =>
-                      setFormData({ ...formData, packAuthor: e.target.value })
-                    }
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="packVersion">Version</Label>
-                  <Input
-                    id="packVersion"
-                    value={formData.packVersion}
-                    onChange={(e) =>
-                      setFormData({ ...formData, packVersion: e.target.value })
-                    }
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="description">Description (optional)</Label>
-                <Textarea
-                  id="description"
-                  placeholder="Describe your sound pack..."
-                  value={formData.description}
-                  onChange={(e) =>
-                    setFormData({ ...formData, description: e.target.value })
-                  }
-                  rows={2}
-                />
-              </div>
-
-              {/* Event Mapping Preview */}
-              {eventMapping.length > 0 && (
-                <>
-                  <Separator />
-                  <div className="space-y-2">
-                    <Label>Event Mapping</Label>
-                    <div className="rounded-md border">
-                      <div className="grid grid-cols-3 gap-2 p-2 bg-muted/50 text-xs font-medium text-muted-foreground">
-                        <span>Hook Type</span>
-                        <span>Event Name</span>
-                        <span>Filename</span>
-                      </div>
-                      {eventMapping.map((mapping) => (
-                        <div
-                          key={mapping.hookType}
-                          className="grid grid-cols-3 gap-2 p-2 border-t text-sm"
-                        >
-                          <span>{mapping.hookType}</span>
-                          <Badge variant="secondary" className="w-fit text-xs">
-                            {mapping.eventName}
-                          </Badge>
-                          <span className="text-muted-foreground text-xs font-mono">
-                            {mapping.filename}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
+          <div>
+            {/* Event Mapping Preview */}
+            {eventMapping.length > 0 && (
+              <div className="space-y-2 py-4">
+                <Separator />
+                <div className="rounded-md border">
+                  <div className="grid grid-cols-3 gap-2 p-2 bg-muted/50 text-xs font-medium text-muted-foreground">
+                    <span>Hook Type</span>
+                    <span>Event Name</span>
+                    <span>Filename</span>
                   </div>
-                </>
-              )}
-            </div>
+                  {eventMapping.map((mapping) => (
+                    <div
+                      key={mapping.hookType}
+                      className="grid grid-cols-3 gap-2 p-2 border-t text-sm"
+                    >
+                      <span>{mapping.hookType}</span>
+                      <Badge variant="secondary" className="w-fit text-xs">
+                        {mapping.eventName}
+                      </Badge>
+                      <span className="text-muted-foreground text-xs font-mono">
+                        {mapping.filename}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <DialogFooter>
               <Button type="button" variant="outline" onClick={handleClose}>
                 Cancel
               </Button>
-              <Button type="submit" disabled={isPublishing}>
+              <Button onClick={handlePublish} disabled={isPublishing}>
                 {isPublishing && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
                 Publish
               </Button>
             </DialogFooter>
-          </form>
+          </div>
         )}
       </DialogContent>
     </Dialog>
