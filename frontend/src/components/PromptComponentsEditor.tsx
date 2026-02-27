@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { Label } from '@/components/ui/label'
 import { ChevronDown, ChevronRight, Settings2, Plus, X } from 'lucide-react'
@@ -45,6 +45,13 @@ function ChipRow({
     setIsAdding(false)
   }
 
+  // Focus the input after it renders
+  useEffect(() => {
+    if (isAdding && inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [isAdding])
+
   return (
     <div className="space-y-1">
       <Label className="text-xs text-muted-foreground">{label}</Label>
@@ -87,10 +94,9 @@ function ChipRow({
                 setIsAdding(false)
               }
             }}
-            onBlur={handleAdd}
+            onBlur={() => setTimeout(handleAdd, 100)}
             placeholder="Add..."
             className="h-5 w-24 px-1.5 text-xs border border-primary/50 rounded-full bg-background outline-none focus:border-primary"
-            autoFocus
           />
         ) : (
           <button
