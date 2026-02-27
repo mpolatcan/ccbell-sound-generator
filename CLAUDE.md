@@ -401,7 +401,7 @@ All settings can be overridden via environment variables with the `CCBELL_` pref
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `CCBELL_APP_NAME` | `CCBell Sound Generator` | Application name |
-| `CCBELL_APP_VERSION` | `1.0.28` | Application version |
+| `CCBELL_APP_VERSION` | `1.0.29` | Application version |
 | `CCBELL_DEBUG` | `false` | Enable debug mode |
 | `CCBELL_HOST` | `0.0.0.0` | Server host |
 | `CCBELL_PORT` | `7860` | Server port (use 8000 for local dev via uvicorn --reload) |

@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/select'
 import { ThemeSelector } from './ThemeSelector'
 import { HookSelector } from './HookSelector'
+import { PromptComponentsEditor } from './PromptComponentsEditor'
 import { ModelLoadingIndicator } from './ModelLoadingIndicator'
 import { useGenerationQueue } from '@/hooks/useGenerationQueue'
 import { useSoundLibrary } from '@/hooks/useSoundLibrary'
@@ -25,8 +26,7 @@ import { useModelStatus } from '@/hooks/useModelStatus'
 import { MODEL_DEFAULTS, DEFAULT_DURATION } from '@/lib/constants'
 import { formatDuration } from '@/lib/utils'
 import { Sparkles, RefreshCw, AlertCircle, Package, ListOrdered, Plus } from 'lucide-react'
-import { cn } from '@/lib/utils'
-import type { GenerationSettings, HookTypeId, ThemePreset, PromptDetailLevel } from '@/types'
+import type { GenerationSettings, HookTypeId, HookType, ThemePreset, EditablePromptComponents } from '@/types'
 
 export interface GeneratorFormRef {
   generate: () => void
@@ -77,7 +77,13 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
   const [duration, setDuration] = useState(DEFAULT_DURATION)
   const [packName, setPackName] = useState('')
   const [selectedPackId, setSelectedPackId] = useState<string | null>(null)
-  const [promptDetail, setPromptDetail] = useState<PromptDetailLevel>('detailed')
+  const [promptComponents, setPromptComponents] = useState<EditablePromptComponents>({
+    sound_type: '',
+    style: '',
+    instruments: '',
+    mood: '',
+    quality: '',
+  })
 
   // Generation queue (non-blocking)
   const { addToQueue, queueLength, error } = useGenerationQueue()
@@ -102,6 +108,31 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
     }
   }, [selectedModel, maxDuration, duration])
 
+  // Sync prompt components when theme changes
+  useEffect(() => {
+    if (selectedTheme === 'custom') return
+    const theme = themes.find((t: ThemePreset) => t.id === selectedTheme)
+    if (!theme) return
+    setPromptComponents((prev) => ({
+      ...prev,
+      style: theme.prompt_components.style,
+      instruments: theme.prompt_components.instruments,
+      mood: theme.prompt_components.mood,
+      quality: theme.prompt_components.quality,
+    }))
+  }, [selectedTheme, themes])
+
+  // Sync sound_type when selected hooks change
+  useEffect(() => {
+    if (selectedHooks.length === 0) return
+    const hook = hooks.find((h: HookType) => h.id === selectedHooks[0])
+    if (!hook) return
+    setPromptComponents((prev) => ({
+      ...prev,
+      sound_type: hook.sound_character,
+    }))
+  }, [selectedHooks, hooks])
+
   // Generate default pack name from theme
   const getDefaultPackName = () => {
     const theme = themes.find((t: ThemePreset) => t.id === selectedTheme)
@@ -113,20 +144,30 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
     return `${themeName} - ${timestamp}`
   }
 
-  // Build prompt from theme
+  // Assemble prompt from structured components
+  // Order follows Stable Audio best practices: sound_type, style, instruments, mood, duration, quality
   const buildPrompt = (hookId?: string): string => {
     if (selectedTheme === 'custom') {
       return customPrompt
     }
 
-    const theme = themes.find((t: ThemePreset) => t.id === selectedTheme)
-    if (!theme) return customPrompt
+    // For multi-hook generation, use the specific hook's sound_character
+    let soundType = promptComponents.sound_type
+    if (hookId && hookId !== selectedHooks[0]) {
+      const hook = hooks.find((h: HookType) => h.id === hookId)
+      soundType = hook?.sound_character || soundType
+    }
 
-    const targetHookId = hookId || selectedHooks[0]
-    const hook = hooks.find((h) => h.id === targetHookId)
-    const soundType = hook?.sound_characters[promptDetail] || 'notification sound'
+    const parts = [
+      soundType,
+      promptComponents.style,
+      promptComponents.instruments,
+      promptComponents.mood,
+      `${duration} seconds`,
+      promptComponents.quality,
+    ].filter((part) => part.trim() !== '')
 
-    return theme.prompt_templates[promptDetail].replace('{sound_type}', soundType)
+    return parts.join(', ')
   }
 
   // Handle generation - create pack (if new) and queue all sounds
@@ -321,32 +362,13 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
           )}
         </div>
 
-        {/* Prompt Detail Level (hidden for Custom theme) */}
+        {/* Prompt Components Editor (hidden for Custom theme) */}
         {selectedTheme !== 'custom' && (
-          <div className="space-y-2">
-            <Label>Prompt Detail</Label>
-            <div className="flex rounded-lg border bg-muted/30 p-1">
-              {([
-                { value: 'simple', label: 'Simple' },
-                { value: 'detailed', label: 'Detailed' },
-                { value: 'more_detailed', label: 'More Detailed' },
-              ] as const).map((level) => (
-                <button
-                  key={level.value}
-                  type="button"
-                  onClick={() => setPromptDetail(level.value)}
-                  className={cn(
-                    "flex-1 rounded-md px-3 py-1.5 text-sm font-medium transition-all",
-                    promptDetail === level.value
-                      ? "bg-background text-foreground shadow-sm"
-                      : "text-muted-foreground hover:text-foreground"
-                  )}
-                >
-                  {level.label}
-                </button>
-              ))}
-            </div>
-          </div>
+          <PromptComponentsEditor
+            components={promptComponents}
+            onChange={setPromptComponents}
+            assembledPrompt={currentPrompt}
+          />
         )}
 
         {/* Custom Prompt (if custom theme selected) */}
@@ -359,16 +381,6 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
               onChange={(e) => setCustomPrompt(e.target.value)}
               rows={3}
             />
-          </div>
-        )}
-
-        {/* Preview Prompt */}
-        {selectedTheme !== 'custom' && currentPrompt && (
-          <div className="space-y-1">
-            <Label className="text-muted-foreground text-xs">Generated Prompt</Label>
-            <p className="text-xs bg-muted/50 py-2 px-3 rounded-md">
-              {currentPrompt}
-            </p>
           </div>
         )}
 

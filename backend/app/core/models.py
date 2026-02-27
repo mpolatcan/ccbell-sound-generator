@@ -98,20 +98,17 @@ class ModelInfo(BaseModel):
     parameters: str
 
 
-class PromptTemplates(BaseModel):
-    """Three detail levels for prompt templates."""
+class PromptComponents(BaseModel):
+    """Structured prompt components for Stable Audio generation.
 
-    simple: str
-    detailed: str
-    more_detailed: str
+    Following Stable Audio Open best practices, prompts are assembled as:
+    "{sound_type}, {style}, {instruments}, {mood}, {duration} seconds, {quality}"
+    """
 
-
-class SoundCharacters(BaseModel):
-    """Three detail levels for sound characters."""
-
-    simple: str
-    detailed: str
-    more_detailed: str
+    style: str
+    instruments: str
+    mood: str
+    quality: str
 
 
 class ThemePreset(BaseModel):
@@ -120,7 +117,7 @@ class ThemePreset(BaseModel):
     id: str
     name: str
     description: str
-    prompt_templates: PromptTemplates
+    prompt_components: PromptComponents
     icon: str
 
 
@@ -130,8 +127,7 @@ class HookType(BaseModel):
     id: str
     name: str
     description: str
-    sound_characters: SoundCharacters
-    suggested_duration: float
+    sound_character: str
 
 
 class PublishRequest(BaseModel):
@@ -158,7 +154,7 @@ class HealthResponse(BaseModel):
     """Health check response."""
 
     status: str = "healthy"
-    version: str = "1.0.28"
+    version: str = "1.0.29"
     models_loaded: list[str] = []
 
 

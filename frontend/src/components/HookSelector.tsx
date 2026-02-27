@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/popover'
 import { ChevronDown, X } from 'lucide-react'
 import type { HookType, HookTypeId } from '@/types'
-import { formatDuration, cn } from '@/lib/utils'
+import { cn } from '@/lib/utils'
 
 interface HookSelectorProps {
   hooks: HookType[]
@@ -108,12 +108,7 @@ export function HookSelector({ hooks, selectedHooks, onSelect }: HookSelectorPro
                     className="mt-0.5"
                   />
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="font-medium">{hook.name}</span>
-                      <Badge variant="outline" className="text-xs">
-                        {formatDuration(hook.suggested_duration)}
-                      </Badge>
-                    </div>
+                    <span className="font-medium">{hook.name}</span>
                     <p className="text-xs text-muted-foreground mt-0.5">
                       {hook.description}
                     </p>
@@ -129,7 +124,7 @@ export function HookSelector({ hooks, selectedHooks, onSelect }: HookSelectorPro
         <div className="text-sm text-muted-foreground space-y-1">
           {selectedHooksData.map((hook, index) => (
             <p key={hook.id} className="italic text-xs">
-              {index + 1}. {hook.name}: {hook.sound_characters.detailed}
+              {index + 1}. {hook.name}: {hook.sound_character}
             </p>
           ))}
         </div>

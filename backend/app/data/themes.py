@@ -1,16 +1,17 @@
 """Theme presets for sound generation."""
 
-from app.core.models import PromptTemplates, ThemePreset
+from app.core.models import PromptComponents, ThemePreset
 
 THEME_PRESETS: list[ThemePreset] = [
     ThemePreset(
         id="sci-fi",
         name="Sci-Fi",
         description="Futuristic digital sounds with electronic textures",
-        prompt_templates=PromptTemplates(
-            simple="Futuristic electronic {sound_type}, synthesizer sound effect",
-            detailed="Futuristic electronic {sound_type}, digital synthesizer, crisp space age sound effect",
-            more_detailed="Short futuristic sci-fi {sound_type}, high quality electronic digital synthesizer, clean crisp space age technology sound effect",
+        prompt_components=PromptComponents(
+            style="sci-fi, futuristic, space age, digital",
+            instruments="digital synthesizer, electronic oscillator, laser resonator",
+            mood="technological, clean, precise",
+            quality="44.1kHz, stereo, high-quality, crisp",
         ),
         icon="rocket",
     ),
@@ -18,10 +19,11 @@ THEME_PRESETS: list[ThemePreset] = [
         id="retro-8bit",
         name="Retro 8-bit",
         description="Classic video game style chiptune sounds",
-        prompt_templates=PromptTemplates(
-            simple="8-bit chiptune {sound_type}, arcade sound effect",
-            detailed="8-bit chiptune {sound_type}, retro video game, crisp arcade sound effect",
-            more_detailed="Short 8-bit retro video game {sound_type}, high quality chiptune style, crisp classic arcade pixel sound effect",
+        prompt_components=PromptComponents(
+            style="retro 8-bit, chiptune, classic arcade",
+            instruments="chiptune synthesizer, square wave, pulse wave, 8-bit drum machine",
+            mood="playful, nostalgic, energetic",
+            quality="44.1kHz, stereo, crisp, punchy",
         ),
         icon="gamepad-2",
     ),
@@ -29,10 +31,11 @@ THEME_PRESETS: list[ThemePreset] = [
         id="nature",
         name="Nature",
         description="Organic sounds inspired by natural elements",
-        prompt_templates=PromptTemplates(
-            simple="Organic acoustic {sound_type}, natural sound effect",
-            detailed="Organic acoustic {sound_type}, soft natural texture, earthy sound effect",
-            more_detailed="Short natural organic {sound_type}, high quality soft acoustic texture, crisp nature-inspired gentle earthy tone",
+        prompt_components=PromptComponents(
+            style="nature, organic, acoustic, earthy",
+            instruments="bamboo wind chime, wooden percussion, acoustic bell, natural resonance",
+            mood="warm, gentle, soothing, peaceful",
+            quality="44.1kHz, stereo, high-quality, soft",
         ),
         icon="leaf",
     ),
@@ -40,10 +43,11 @@ THEME_PRESETS: list[ThemePreset] = [
         id="minimal",
         name="Minimal",
         description="Clean, subtle, professional notification sounds",
-        prompt_templates=PromptTemplates(
-            simple="Clean minimal {sound_type}, notification sound effect",
-            detailed="Clean minimal {sound_type}, subtle professional notification sound effect",
-            more_detailed="Short minimal clean {sound_type}, high quality crisp professional notification, subtle gentle tone sound effect",
+        prompt_components=PromptComponents(
+            style="minimal, clean, modern, professional",
+            instruments="sine wave tone, clean bell, soft piano note, glass chime",
+            mood="subtle, refined, understated, elegant",
+            quality="44.1kHz, stereo, high-quality, pristine",
         ),
         icon="minus",
     ),
@@ -51,10 +55,11 @@ THEME_PRESETS: list[ThemePreset] = [
         id="mechanical",
         name="Mechanical",
         description="Industrial and mechanical textures",
-        prompt_templates=PromptTemplates(
-            simple="Mechanical metallic {sound_type}, industrial sound effect",
-            detailed="Mechanical metallic {sound_type}, crisp industrial machinery sound effect",
-            more_detailed="Short mechanical industrial {sound_type}, high quality crisp metallic click, precise machinery sound effect",
+        prompt_components=PromptComponents(
+            style="mechanical, industrial, metallic, steampunk",
+            instruments="metal percussion, gear click, pneumatic valve, steel resonator",
+            mood="precise, robust, utilitarian, sharp",
+            quality="44.1kHz, stereo, high-quality, crisp",
         ),
         icon="cog",
     ),
@@ -62,10 +67,11 @@ THEME_PRESETS: list[ThemePreset] = [
         id="custom",
         name="Custom",
         description="Write your own prompt",
-        prompt_templates=PromptTemplates(
-            simple="{custom_prompt}",
-            detailed="{custom_prompt}",
-            more_detailed="{custom_prompt}",
+        prompt_components=PromptComponents(
+            style="",
+            instruments="",
+            mood="",
+            quality="",
         ),
         icon="pencil",
     ),
