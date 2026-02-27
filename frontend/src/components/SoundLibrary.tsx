@@ -1,5 +1,5 @@
-import { useRef, useState, forwardRef, useImperativeHandle, useCallback } from 'react'
-import JSZip from 'jszip'
+import { useRef, useState, useEffect, useMemo, forwardRef, useImperativeHandle, useCallback } from 'react'
+import { useShallow } from 'zustand/react/shallow'
 import { useSoundLibrary } from '@/hooks/useSoundLibrary'
 import { api } from '@/lib/api'
 import { Button } from '@/components/ui/button'
@@ -41,7 +41,16 @@ interface SoundLibraryProps {
 
 export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
   function SoundLibrary({ onSelectForPublish }, ref) {
-    const { packs, sounds, removePack, renamePack, removeSound, clearAll } = useSoundLibrary()
+    const { packs, sounds, removePack, renamePack, removeSound, clearAll } = useSoundLibrary(
+      useShallow((s) => ({
+        packs: s.packs,
+        sounds: s.sounds,
+        removePack: s.removePack,
+        renamePack: s.renamePack,
+        removeSound: s.removeSound,
+        clearAll: s.clearAll,
+      }))
+    )
     const [isDownloading, setIsDownloading] = useState(false)
     const [previewingSoundId, setPreviewingSoundId] = useState<string | null>(null)
     const [expandedPacks, setExpandedPacks] = useState<Set<string>>(new Set())
@@ -49,17 +58,27 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
     const [editingName, setEditingName] = useState('')
     const previewAudioRef = useRef<HTMLAudioElement | null>(null)
 
+    // Cleanup audio preview on unmount
+    useEffect(() => {
+      return () => {
+        if (previewAudioRef.current) {
+          previewAudioRef.current.pause()
+          previewAudioRef.current = null
+        }
+      }
+    }, [])
+
     // Auto-expand new packs
     const expandedPacksRef = useRef<Set<string>>(new Set())
-    if (packs.length > 0) {
-      const latestPackId = packs[0].id
-      if (!expandedPacksRef.current.has(latestPackId)) {
-        expandedPacksRef.current.add(latestPackId)
-        if (!expandedPacks.has(latestPackId)) {
+    useEffect(() => {
+      if (packs.length > 0) {
+        const latestPackId = packs[0].id
+        if (!expandedPacksRef.current.has(latestPackId)) {
+          expandedPacksRef.current.add(latestPackId)
           setExpandedPacks(new Set([latestPackId]))
         }
       }
-    }
+    }, [packs])
 
     const togglePack = (packId: string) => {
       const newExpanded = new Set(expandedPacks)
@@ -71,20 +90,29 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
       setExpandedPacks(newExpanded)
     }
 
-    const getSoundsForPack = (packId: string): GeneratedSound[] => {
-      return sounds.filter((s) => s.pack_id === packId)
-    }
-
-    const getCompletedSoundsForPack = (packId: string): GeneratedSound[] => {
-      return sounds.filter((s) => s.pack_id === packId && s.status === 'completed')
-    }
+    const soundsByPack = useMemo(() => {
+      const allMap = new Map<string, GeneratedSound[]>()
+      const completedMap = new Map<string, GeneratedSound[]>()
+      for (const s of sounds) {
+        const all = allMap.get(s.pack_id) ?? []
+        all.push(s)
+        allMap.set(s.pack_id, all)
+        if (s.status === 'completed') {
+          const completed = completedMap.get(s.pack_id) ?? []
+          completed.push(s)
+          completedMap.set(s.pack_id, completed)
+        }
+      }
+      return { all: allMap, completed: completedMap }
+    }, [sounds])
 
     const handleDownloadPack = async (pack: SoundPack) => {
-      const packSounds = getCompletedSoundsForPack(pack.id)
+      const packSounds = soundsByPack.completed.get(pack.id) ?? []
       if (packSounds.length === 0) return
 
       setIsDownloading(true)
       try {
+        const JSZip = (await import('jszip')).default
         const zip = new JSZip()
         const folder = zip.folder(pack.name.replace(/[/\\?%*:|"<>]/g, '-'))
 
@@ -117,11 +145,12 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
 
       setIsDownloading(true)
       try {
+        const JSZip = (await import('jszip')).default
         const zip = new JSZip()
 
         // Group by pack
         for (const pack of packs) {
-          const packSounds = getCompletedSoundsForPack(pack.id)
+          const packSounds = soundsByPack.completed.get(pack.id) ?? []
           if (packSounds.length === 0) continue
 
           const folder = zip.folder(pack.name.replace(/[/\\?%*:|"<>]/g, '-'))
@@ -149,7 +178,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
     }
 
     const handlePublishPack = (pack: SoundPack) => {
-      const packSounds = getCompletedSoundsForPack(pack.id)
+      const packSounds = soundsByPack.completed.get(pack.id) ?? []
       onSelectForPublish?.({
         packName: pack.name,
         theme: pack.theme,
@@ -221,7 +250,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
 
     // Delete all sounds in a pack from backend, then remove pack from state
     const handleDeletePack = useCallback(async (packId: string) => {
-      const packSounds = sounds.filter((s) => s.pack_id === packId)
+      const packSounds = soundsByPack.all.get(packId) ?? []
 
       // Delete all sounds from backend in parallel
       await Promise.all(
@@ -238,7 +267,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
 
       // Remove pack and all its sounds from frontend state
       removePack(packId)
-    }, [sounds, removePack])
+    }, [soundsByPack, removePack])
 
     // Clear all sounds from backend, then clear frontend state
     const handleClearAll = useCallback(async () => {
@@ -316,8 +345,8 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
           <div className="max-h-[600px] overflow-y-auto pr-1 scrollbar-thin">
             <div className="space-y-4">
               {packs.map((pack) => {
-                const packSounds = getSoundsForPack(pack.id)
-                const completedSounds = getCompletedSoundsForPack(pack.id)
+                const packSounds = soundsByPack.all.get(pack.id) ?? []
+                const completedSounds = soundsByPack.completed.get(pack.id) ?? []
                 const isExpanded = expandedPacks.has(pack.id)
                 const hasGenerating = packSounds.some((s) => s.status === 'generating')
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, memo } from 'react'
 import { Clock } from 'lucide-react'
 
 interface ElapsedTimeProps {
@@ -6,7 +6,7 @@ interface ElapsedTimeProps {
   isRunning: boolean
 }
 
-export function ElapsedTime({ startTime, isRunning }: ElapsedTimeProps) {
+export const ElapsedTime = memo(function ElapsedTime({ startTime, isRunning }: ElapsedTimeProps) {
   const [elapsed, setElapsed] = useState(0)
 
   useEffect(() => {
@@ -47,4 +47,4 @@ export function ElapsedTime({ startTime, isRunning }: ElapsedTimeProps) {
       {formatTime(elapsed)}
     </span>
   )
-}
+})

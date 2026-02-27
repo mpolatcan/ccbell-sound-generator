@@ -421,6 +421,11 @@ All settings can be overridden via environment variables with the `CCBELL_` pref
 | `CCBELL_DEFAULT_SIGMA_MAX` | `500.0` | Maximum noise level for diffusion |
 | `CCBELL_TEMP_AUDIO_DIR` | `/tmp/ccbell-audio` | Temporary audio directory |
 | `CCBELL_MAX_AUDIO_FILES` | `100` | Max stored audio files |
+| `CCBELL_MAX_CONCURRENT_GENERATIONS` | `2` | Max concurrent audio generation jobs |
+| `CCBELL_GENERATION_THREAD_POOL_WORKERS` | `2` | Thread pool size for generation |
+| `CCBELL_WS_IDLE_TIMEOUT` | `60` | Seconds before WebSocket keepalive ping |
+| `CCBELL_WS_MAX_MISSED_PINGS` | `2` | Consecutive missed pings before close |
+| `CCBELL_JOB_MAX_LIFETIME_SECONDS` | `1800` | Max job lifetime (30 min) before cleanup |
 | `CCBELL_GH_TOKEN` | `null` | GitHub token for publishing (also supports `CCBELL_GITHUB_TOKEN`) |
 | `HF_TOKEN` | `null` | HuggingFace token for gated model access (also checks `CCBELL_HF_TOKEN`) |
 

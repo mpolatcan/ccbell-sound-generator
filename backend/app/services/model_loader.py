@@ -1,6 +1,7 @@
 """ML model management with lazy loading."""
 
 import asyncio
+import concurrent.futures
 import gc
 import os
 from dataclasses import dataclass
@@ -188,8 +189,6 @@ class ModelLoader:
                 return
 
             # Run the actual loading in a thread pool to avoid blocking
-            import concurrent.futures
-
             loop = asyncio.get_running_loop()
             with concurrent.futures.ThreadPoolExecutor() as executor:
                 await loop.run_in_executor(executor, self._load_model_sync, model_id)
@@ -276,6 +275,9 @@ class ModelLoader:
         """
         Load a model, unloading others if necessary to manage memory.
 
+        Uses the loading lock to prevent concurrent loading and runs
+        heavy sync work in a thread pool to avoid blocking the event loop.
+
         Returns:
             Tuple of (model, model_config)
         """
@@ -291,68 +293,25 @@ class ModelLoader:
             logger.error(error_msg)
             raise ValueError(error_msg)
 
-        # If model is already loaded, return it
-        if model_id in self._models:
-            logger.info(f"Model {model_id} already loaded, returning cached version")
-            self._update_loading_state(model_id, "ready", progress=1.0, stage="complete")
+        async with self._loading_lock:
+            # If model is already loaded, return it
+            if model_id in self._models:
+                logger.info(f"Model {model_id} already loaded, returning cached version")
+                self._update_loading_state(model_id, "ready", progress=1.0, stage="complete")
+                return self._models[model_id], self._model_configs[model_id]
+
+            # Run the heavy sync loading in a thread pool
+            loop = asyncio.get_running_loop()
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                await loop.run_in_executor(executor, self._load_model_sync, model_id)
+
+            # Check if loading succeeded
+            if model_id not in self._models:
+                state = self._loading_states.get(model_id, LoadingState())
+                error_msg = state.error or f"Failed to load model {model_id}"
+                raise RuntimeError(error_msg)
+
             return self._models[model_id], self._model_configs[model_id]
-
-        # Unload other models to save memory (only keep one model loaded)
-        await self._unload_all_models()
-
-        logger.info(f"Loading model: {model_id}")
-        self._update_loading_state(model_id, "loading", progress=0.1, stage="initializing")
-
-        try:
-            # Ensure HuggingFace login for gated models
-            _ensure_hf_login()
-
-            # Import stable_audio_tools here to avoid loading at startup
-            from stable_audio_tools import get_pretrained_model
-
-            self._update_loading_state(model_id, "loading", progress=0.3, stage="loading_weights")
-
-            logger.debug(f"Downloading/loading weights for {model_id}...")
-            # Load the model
-            model, model_config = get_pretrained_model(self.MODEL_REPOS[model_id])
-            logger.info(f"Model weights loaded for {model_id}")
-
-            self._update_loading_state(model_id, "loading", progress=0.8, stage="moving_to_device")
-
-            # Convert to float32 for CPU inference (float16 is extremely slow on CPU)
-            # See: https://huggingface.co/stabilityai/stable-audio-open-small/discussions/1
-            if self.device == "cpu":
-                import torch
-
-                model.pretransform.model_half = False
-                model = model.to(torch.float32)
-                logger.info(f"Converted model {model_id} to float32 for CPU inference")
-
-            # Move to device
-            model = model.to(self.device)
-            logger.debug(f"Model {model_id} moved to device: {self.device}")
-
-            # Store references
-            self._models[model_id] = model
-            self._model_configs[model_id] = model_config
-            self._current_model = model_id
-
-            # Log model info
-            sample_rate = model_config.get("sample_rate", "unknown")
-            logger.info(f"Model {model_id} loaded successfully")
-            logger.info(f"  - Sample rate: {sample_rate} Hz")
-            logger.info(f"  - Device: {self.device}")
-
-            self._update_loading_state(model_id, "ready", progress=1.0, stage="complete")
-            logger.info(f"Model {model_id} is ready for use")
-            return model, model_config
-
-        except Exception as e:
-            error_msg = str(e)
-            logger.error(f"Failed to load model {model_id}: {error_msg}")
-            logger.opt(exception=True).debug("Model loading traceback:")
-            self._update_loading_state(model_id, "error", error=error_msg)
-            raise
 
     async def _unload_all_models(self):
         """Unload all models to free memory."""

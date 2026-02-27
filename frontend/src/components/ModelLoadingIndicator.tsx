@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Progress } from '@/components/ui/progress'
 import { Button } from '@/components/ui/button'
 import { AlertCircle, CheckCircle2, Loader2, RefreshCw } from 'lucide-react'
@@ -20,7 +21,7 @@ const stageLabels: Record<string, string> = {
   complete: 'Ready'
 }
 
-export function ModelLoadingIndicator({
+export const ModelLoadingIndicator = memo(function ModelLoadingIndicator({
   status,
   progress,
   stage,
@@ -86,4 +87,4 @@ export function ModelLoadingIndicator({
       <span>Preparing {modelName}...</span>
     </div>
   )
-}
+})

@@ -1,5 +1,6 @@
 """REST API endpoints."""
 
+import asyncio
 from typing import Literal, cast
 
 from fastapi import APIRouter, BackgroundTasks, HTTPException
@@ -27,6 +28,36 @@ from app.services.github import github_service
 from app.services.model_loader import model_loader
 
 router = APIRouter()
+
+# Semaphore to limit concurrent audio generation jobs
+_generation_semaphore: asyncio.Semaphore | None = None
+
+
+def _get_generation_semaphore() -> asyncio.Semaphore:
+    """Lazily initialize the generation semaphore.
+
+    Must be called inside an async context (after event loop is running).
+    """
+    global _generation_semaphore
+    if _generation_semaphore is None:
+        _generation_semaphore = asyncio.Semaphore(settings.max_concurrent_generations)
+        logger.info(
+            f"Generation semaphore initialized with limit={settings.max_concurrent_generations}"
+        )
+    return _generation_semaphore
+
+
+async def _run_generation_with_limit(job_id: str):
+    """Run audio generation with semaphore-based concurrency limiting."""
+    semaphore = _get_generation_semaphore()
+
+    if semaphore.locked():
+        # All slots busy — notify the client we're queuing
+        logger.info(f"Job {job_id}: waiting for generation slot")
+        await audio_service._notify_progress(job_id, 0.0, "waiting_in_queue")
+
+    async with semaphore:
+        await audio_service.generate_audio(job_id)
 
 
 @router.get("/health", response_model=HealthResponse)
@@ -116,8 +147,8 @@ async def generate_audio(request: GenerateRequest, background_tasks: BackgroundT
     # Create job
     job_id = audio_service.create_job(request)
 
-    # Start generation in background
-    background_tasks.add_task(audio_service.generate_audio, job_id)
+    # Start generation in background with concurrency limiting
+    background_tasks.add_task(_run_generation_with_limit, job_id)
 
     logger.info(f"Job {job_id}: generation started")
     return GenerateResponse(job_id=job_id, status="queued")

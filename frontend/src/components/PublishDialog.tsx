@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import {
   Dialog,
   DialogContent,
@@ -32,21 +32,16 @@ function slugify(name: string): string {
 export function PublishDialog({ open, onOpenChange, packData }: PublishDialogProps) {
   const [isPublishing, setIsPublishing] = useState(false)
   const [releaseUrl, setReleaseUrl] = useState<string | null>(null)
-  const [packId, setPackId] = useState('')
-
-  // Derive pack ID when packData changes
-  useEffect(() => {
-    if (packData) {
-      setPackId(slugify(packData.packName))
-    }
-  }, [packData])
+  const packId = packData ? slugify(packData.packName) : ''
 
   // Build event mapping from sounds
-  const eventMapping = packData?.sounds.map((sound) => ({
-    hookType: sound.hook_type,
-    eventName: HOOK_TO_EVENT_MAP[sound.hook_type] || sound.hook_type.toLowerCase(),
-    filename: `${HOOK_TO_EVENT_MAP[sound.hook_type] || sound.hook_type.toLowerCase()}.wav`
-  })) ?? []
+  const eventMapping = useMemo(() =>
+    packData?.sounds.map((sound) => ({
+      hookType: sound.hook_type,
+      eventName: HOOK_TO_EVENT_MAP[sound.hook_type] || sound.hook_type.toLowerCase(),
+      filename: `${HOOK_TO_EVENT_MAP[sound.hook_type] || sound.hook_type.toLowerCase()}.wav`
+    })) ?? []
+  , [packData?.sounds])
 
   const handlePublish = async () => {
     if (!packData || !packId) return
@@ -88,7 +83,6 @@ export function PublishDialog({ open, onOpenChange, packData }: PublishDialogPro
     onOpenChange(false)
     setTimeout(() => {
       setReleaseUrl(null)
-      setPackId('')
     }, 300)
   }
 

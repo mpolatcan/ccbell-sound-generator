@@ -1,17 +1,36 @@
 """Theme presets for sound generation."""
 
-from app.core.models import PromptComponents, ThemePreset
+from app.core.models import PromptComponents, ThemePreset, TieredPromptComponents
 
 THEME_PRESETS: list[ThemePreset] = [
     ThemePreset(
         id="sci-fi",
         name="Sci-Fi",
         description="Futuristic digital sounds with electronic textures",
-        prompt_components=PromptComponents(
-            style=["sci-fi", "futuristic", "space age", "digital"],
-            instruments=["digital synthesizer", "electronic oscillator", "laser resonator"],
-            mood=["technological", "clean", "precise"],
-            quality=["44.1kHz", "stereo", "high-quality", "crisp"],
+        prompt_components=TieredPromptComponents(
+            simple=PromptComponents(
+                style=["sci-fi", "futuristic"],
+                instruments=["digital synthesizer"],
+                mood=["technological"],
+                quality=["44.1kHz", "stereo"],
+            ),
+            standard=PromptComponents(
+                style=["sci-fi", "futuristic", "space age"],
+                instruments=["digital synthesizer", "electronic oscillator"],
+                mood=["technological", "clean"],
+                quality=["44.1kHz", "stereo", "high-quality"],
+            ),
+            detailed=PromptComponents(
+                style=["sci-fi", "futuristic", "space age", "digital", "cybernetic"],
+                instruments=[
+                    "digital synthesizer",
+                    "electronic oscillator",
+                    "laser resonator",
+                    "modular synth pad",
+                ],
+                mood=["technological", "clean", "precise", "immersive"],
+                quality=["44.1kHz", "stereo", "high-quality", "crisp", "studio-grade"],
+            ),
         ),
         icon="rocket",
     ),
@@ -19,16 +38,31 @@ THEME_PRESETS: list[ThemePreset] = [
         id="retro-8bit",
         name="Retro 8-bit",
         description="Classic video game style chiptune sounds",
-        prompt_components=PromptComponents(
-            style=["retro 8-bit", "chiptune", "classic arcade"],
-            instruments=[
-                "chiptune synthesizer",
-                "square wave",
-                "pulse wave",
-                "8-bit drum machine",
-            ],
-            mood=["playful", "nostalgic", "energetic"],
-            quality=["44.1kHz", "stereo", "crisp", "punchy"],
+        prompt_components=TieredPromptComponents(
+            simple=PromptComponents(
+                style=["retro 8-bit", "chiptune"],
+                instruments=["chiptune synthesizer"],
+                mood=["playful"],
+                quality=["44.1kHz", "stereo"],
+            ),
+            standard=PromptComponents(
+                style=["retro 8-bit", "chiptune", "classic arcade"],
+                instruments=["chiptune synthesizer", "square wave", "pulse wave"],
+                mood=["playful", "nostalgic"],
+                quality=["44.1kHz", "stereo", "crisp"],
+            ),
+            detailed=PromptComponents(
+                style=["retro 8-bit", "chiptune", "classic arcade", "pixel game", "lo-fi digital"],
+                instruments=[
+                    "chiptune synthesizer",
+                    "square wave",
+                    "pulse wave",
+                    "8-bit drum machine",
+                    "triangle wave",
+                ],
+                mood=["playful", "nostalgic", "energetic", "fun", "bouncy"],
+                quality=["44.1kHz", "stereo", "crisp", "punchy", "bright"],
+            ),
         ),
         icon="gamepad-2",
     ),
@@ -36,16 +70,31 @@ THEME_PRESETS: list[ThemePreset] = [
         id="nature",
         name="Nature",
         description="Organic sounds inspired by natural elements",
-        prompt_components=PromptComponents(
-            style=["nature", "organic", "acoustic", "earthy"],
-            instruments=[
-                "bamboo wind chime",
-                "wooden percussion",
-                "acoustic bell",
-                "natural resonance",
-            ],
-            mood=["warm", "gentle", "soothing", "peaceful"],
-            quality=["44.1kHz", "stereo", "high-quality", "soft"],
+        prompt_components=TieredPromptComponents(
+            simple=PromptComponents(
+                style=["nature", "organic"],
+                instruments=["bamboo wind chime"],
+                mood=["warm"],
+                quality=["44.1kHz", "stereo"],
+            ),
+            standard=PromptComponents(
+                style=["nature", "organic", "acoustic"],
+                instruments=["bamboo wind chime", "wooden percussion", "acoustic bell"],
+                mood=["warm", "gentle", "soothing"],
+                quality=["44.1kHz", "stereo", "high-quality"],
+            ),
+            detailed=PromptComponents(
+                style=["nature", "organic", "acoustic", "earthy", "ambient"],
+                instruments=[
+                    "bamboo wind chime",
+                    "wooden percussion",
+                    "acoustic bell",
+                    "natural resonance",
+                    "rain stick",
+                ],
+                mood=["warm", "gentle", "soothing", "peaceful", "meditative"],
+                quality=["44.1kHz", "stereo", "high-quality", "soft", "airy"],
+            ),
         ),
         icon="leaf",
     ),
@@ -53,11 +102,31 @@ THEME_PRESETS: list[ThemePreset] = [
         id="minimal",
         name="Minimal",
         description="Clean, subtle, professional notification sounds",
-        prompt_components=PromptComponents(
-            style=["minimal", "clean", "modern", "professional"],
-            instruments=["sine wave tone", "clean bell", "soft piano note", "glass chime"],
-            mood=["subtle", "refined", "understated", "elegant"],
-            quality=["44.1kHz", "stereo", "high-quality", "pristine"],
+        prompt_components=TieredPromptComponents(
+            simple=PromptComponents(
+                style=["minimal", "clean"],
+                instruments=["sine wave tone"],
+                mood=["subtle"],
+                quality=["44.1kHz", "stereo"],
+            ),
+            standard=PromptComponents(
+                style=["minimal", "clean", "modern"],
+                instruments=["sine wave tone", "clean bell", "soft piano note"],
+                mood=["subtle", "refined", "understated"],
+                quality=["44.1kHz", "stereo", "high-quality"],
+            ),
+            detailed=PromptComponents(
+                style=["minimal", "clean", "modern", "professional", "elegant"],
+                instruments=[
+                    "sine wave tone",
+                    "clean bell",
+                    "soft piano note",
+                    "glass chime",
+                    "pure tone",
+                ],
+                mood=["subtle", "refined", "understated", "elegant", "calm"],
+                quality=["44.1kHz", "stereo", "high-quality", "pristine", "transparent"],
+            ),
         ),
         icon="minus",
     ),
@@ -65,16 +134,37 @@ THEME_PRESETS: list[ThemePreset] = [
         id="mechanical",
         name="Mechanical",
         description="Industrial and mechanical textures",
-        prompt_components=PromptComponents(
-            style=["mechanical", "industrial", "metallic", "steampunk"],
-            instruments=[
-                "metal percussion",
-                "gear click",
-                "pneumatic valve",
-                "steel resonator",
-            ],
-            mood=["precise", "robust", "utilitarian", "sharp"],
-            quality=["44.1kHz", "stereo", "high-quality", "crisp"],
+        prompt_components=TieredPromptComponents(
+            simple=PromptComponents(
+                style=["mechanical", "industrial"],
+                instruments=["metal percussion"],
+                mood=["precise"],
+                quality=["44.1kHz", "stereo"],
+            ),
+            standard=PromptComponents(
+                style=["mechanical", "industrial", "metallic"],
+                instruments=["metal percussion", "gear click", "pneumatic valve"],
+                mood=["precise", "robust", "utilitarian"],
+                quality=["44.1kHz", "stereo", "high-quality"],
+            ),
+            detailed=PromptComponents(
+                style=[
+                    "mechanical",
+                    "industrial",
+                    "metallic",
+                    "steampunk",
+                    "raw",
+                ],
+                instruments=[
+                    "metal percussion",
+                    "gear click",
+                    "pneumatic valve",
+                    "steel resonator",
+                    "hydraulic press",
+                ],
+                mood=["precise", "robust", "utilitarian", "sharp", "powerful"],
+                quality=["44.1kHz", "stereo", "high-quality", "crisp", "impactful"],
+            ),
         ),
         icon="cog",
     ),
@@ -82,11 +172,25 @@ THEME_PRESETS: list[ThemePreset] = [
         id="custom",
         name="Custom",
         description="Write your own prompt",
-        prompt_components=PromptComponents(
-            style=[],
-            instruments=[],
-            mood=[],
-            quality=[],
+        prompt_components=TieredPromptComponents(
+            simple=PromptComponents(
+                style=[],
+                instruments=[],
+                mood=[],
+                quality=[],
+            ),
+            standard=PromptComponents(
+                style=[],
+                instruments=[],
+                mood=[],
+                quality=[],
+            ),
+            detailed=PromptComponents(
+                style=[],
+                instruments=[],
+                mood=[],
+                quality=[],
+            ),
         ),
         icon="pencil",
     ),

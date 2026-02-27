@@ -1,5 +1,6 @@
 """GitHub release service for publishing sound packs."""
 
+import asyncio
 import json
 import os
 from typing import Any
@@ -24,6 +25,9 @@ class GitHubService:
         """
         Create a GitHub release with pack.json and individual WAV assets.
 
+        Runs all blocking PyGithub operations in a thread to avoid blocking
+        the async event loop.
+
         Args:
             request: Publishing request with pack metadata and job IDs.
 
@@ -32,6 +36,67 @@ class GitHubService:
         """
         logger.info(f"Publishing pack '{request.pack_id}' v{request.pack_version}")
 
+        # Collect job metadata (fast in-memory lookups, safe on event loop)
+        sound_paths, events, prompts, model_name = self._collect_job_data(request)
+
+        if not sound_paths:
+            logger.warning("No valid audio files found for the specified job IDs")
+            return PublishResponse(
+                success=False,
+                error="No valid audio files found for the specified job IDs",
+            )
+
+        # Run all blocking GitHub API operations in a thread
+        return await asyncio.to_thread(
+            self._publish_release_sync,
+            request,
+            sound_paths,
+            events,
+            prompts,
+            model_name,
+        )
+
+    def _collect_job_data(
+        self, request: PublishRequest
+    ) -> tuple[list[tuple[str, str]], dict[str, str], dict[str, str], str | None]:
+        """Collect job metadata and file paths from in-memory job store."""
+        events: dict[str, str] = {}
+        prompts: dict[str, str] = {}
+        model_name: str | None = None
+        sound_paths: list[tuple[str, str]] = []
+
+        for job_id in request.sound_files:
+            job = audio_service.get_job(job_id)
+            if not job:
+                logger.warning(f"Job not found: {job_id}")
+                continue
+
+            audio_path = audio_service.get_audio_path(job_id)
+            if not audio_path:
+                logger.warning(f"Audio file not found for job: {job_id}")
+                continue
+
+            hook_type = job.request.hook_type
+            event_name = HOOK_TO_EVENT_MAP.get(hook_type, hook_type.lower())
+            sound_filename = f"{event_name}.wav"
+
+            events[event_name] = sound_filename
+            prompts[event_name] = job.request.prompt
+            if model_name is None:
+                model_name = job.request.model
+            sound_paths.append((event_name, str(audio_path)))
+
+        return sound_paths, events, prompts, model_name
+
+    def _publish_release_sync(
+        self,
+        request: PublishRequest,
+        sound_paths: list[tuple[str, str]],
+        events: dict[str, str],
+        prompts: dict[str, str],
+        model_name: str | None,
+    ) -> PublishResponse:
+        """Synchronous method that performs all blocking GitHub API calls."""
         try:
             # Validate token
             token = settings.github_token
@@ -72,40 +137,6 @@ class GitHubService:
             except GithubException as e:
                 if e.status != 404:
                     raise
-
-            # Collect job metadata and build pack.json
-            events: dict[str, str] = {}
-            prompts: dict[str, str] = {}
-            model_name: str | None = None
-            sound_paths: list[tuple[str, str]] = []  # (event_name, file_path)
-
-            for job_id in request.sound_files:
-                job = audio_service.get_job(job_id)
-                if not job:
-                    logger.warning(f"Job not found: {job_id}")
-                    continue
-
-                audio_path = audio_service.get_audio_path(job_id)
-                if not audio_path:
-                    logger.warning(f"Audio file not found for job: {job_id}")
-                    continue
-
-                hook_type = job.request.hook_type
-                event_name = HOOK_TO_EVENT_MAP.get(hook_type, hook_type.lower())
-                sound_filename = f"{event_name}.wav"
-
-                events[event_name] = sound_filename
-                prompts[event_name] = job.request.prompt
-                if model_name is None:
-                    model_name = job.request.model
-                sound_paths.append((event_name, str(audio_path)))
-
-            if not sound_paths:
-                logger.warning("No valid audio files found for the specified job IDs")
-                return PublishResponse(
-                    success=False,
-                    error="No valid audio files found for the specified job IDs",
-                )
 
             # Build pack.json content
             pack_json: dict[str, Any] = {

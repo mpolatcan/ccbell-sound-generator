@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, memo } from 'react'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { Label } from '@/components/ui/label'
 import { ChevronDown, ChevronRight, Settings2, X } from 'lucide-react'
@@ -19,7 +19,7 @@ const CATEGORIES: { key: keyof EditablePromptChips; label: string }[] = [
   { key: 'quality', label: 'Quality' },
 ]
 
-function ChipRow({
+const ChipRow = memo(function ChipRow({
   label,
   items,
   onToggle,
@@ -87,9 +87,9 @@ function ChipRow({
       </div>
     </div>
   )
-}
+})
 
-export function PromptComponentsEditor({
+export const PromptComponentsEditor = memo(function PromptComponentsEditor({
   chips,
   onChange,
   assembledPrompt,
@@ -156,4 +156,4 @@ export function PromptComponentsEditor({
       )}
     </div>
   )
-}
+})

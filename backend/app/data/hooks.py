@@ -1,6 +1,6 @@
 """Claude Code hook type definitions."""
 
-from app.core.models import HookType, HookTypeId
+from app.core.models import HookType, HookTypeId, TieredSoundCharacters
 
 # Maps generator hook type IDs to ccbell plugin event names.
 HOOK_TO_EVENT_MAP: dict[HookTypeId, str] = {
@@ -22,64 +22,168 @@ HOOK_TYPES: list[HookType] = [
         id="Stop",
         name="Stop",
         description="Main agent has finished its task",
-        sound_characters=["completion chime", "resolution tone", "task-done signal"],
+        sound_characters=TieredSoundCharacters(
+            simple=["completion chime"],
+            standard=["completion chime", "resolution tone", "task-done signal"],
+            detailed=[
+                "triumphant completion chime",
+                "satisfying resolution tone",
+                "task-done signal",
+                "bright ascending finish",
+                "clear final note",
+            ],
+        ),
     ),
     HookType(
         id="SubagentStop",
         name="Subagent Stop",
         description="A subagent has finished its task",
-        sound_characters=["soft confirmation ding", "subtle completion ping"],
+        sound_characters=TieredSoundCharacters(
+            simple=["soft confirmation ding"],
+            standard=["soft confirmation ding", "subtle completion ping", "quiet acknowledgment"],
+            detailed=[
+                "soft confirmation ding",
+                "subtle completion ping",
+                "quiet acknowledgment tone",
+                "gentle background chime",
+                "secondary task complete",
+            ],
+        ),
     ),
     HookType(
         id="PermissionPrompt",
         name="Permission Prompt",
         description="Tool needs user permission to proceed",
-        sound_characters=["attention alert ping", "two-tone notification chime"],
+        sound_characters=TieredSoundCharacters(
+            simple=["attention alert ping"],
+            standard=[
+                "attention alert ping",
+                "two-tone notification chime",
+                "permission request tone",
+            ],
+            detailed=[
+                "attention alert ping",
+                "two-tone notification chime",
+                "permission request tone",
+                "gentle warning bell",
+                "questioning ascending arpeggio",
+            ],
+        ),
     ),
     HookType(
         id="IdlePrompt",
         name="Idle Prompt",
         description="Agent is idle and waiting for user input",
-        sound_characters=["gentle low hum", "warm waiting tone"],
+        sound_characters=TieredSoundCharacters(
+            simple=["gentle waiting tone"],
+            standard=["gentle low hum", "warm waiting tone", "patient idle sound"],
+            detailed=[
+                "gentle low hum",
+                "warm waiting tone",
+                "patient idle sound",
+                "soft ambient pulse",
+                "calm breathing rhythm",
+            ],
+        ),
     ),
     # Session lifecycle events
     HookType(
         id="SessionStart",
         name="Session Start",
         description="A new Claude Code session has started",
-        sound_characters=["ascending startup chime", "boot-up tone"],
+        sound_characters=TieredSoundCharacters(
+            simple=["ascending startup chime"],
+            standard=["ascending startup chime", "boot-up tone", "initialization sound"],
+            detailed=[
+                "ascending startup chime",
+                "boot-up tone",
+                "initialization sound",
+                "bright welcome arpeggio",
+                "energetic launch sequence",
+            ],
+        ),
     ),
     HookType(
         id="SessionEnd",
         name="Session End",
         description="Claude Code session has ended",
-        sound_characters=["descending shutdown tone", "closing fade"],
+        sound_characters=TieredSoundCharacters(
+            simple=["descending shutdown tone"],
+            standard=["descending shutdown tone", "closing fade", "session complete signal"],
+            detailed=[
+                "descending shutdown tone",
+                "closing fade",
+                "session complete signal",
+                "gentle power-down sweep",
+                "final farewell chime",
+            ],
+        ),
     ),
     # Tool lifecycle events
     HookType(
         id="PreToolUse",
         name="Pre Tool Use",
         description="Triggered before a tool call executes",
-        sound_characters=["soft click", "brief activation tick"],
+        sound_characters=TieredSoundCharacters(
+            simple=["soft click"],
+            standard=["soft click", "brief activation tick", "tool-start indicator"],
+            detailed=[
+                "soft click",
+                "brief activation tick",
+                "tool-start indicator",
+                "mechanical engagement sound",
+                "crisp preparatory tap",
+            ],
+        ),
     ),
     HookType(
         id="PostToolUse",
         name="Post Tool Use",
         description="Triggered after a tool completes execution",
-        sound_characters=["crisp pop", "short confirmation beep"],
+        sound_characters=TieredSoundCharacters(
+            simple=["short confirmation beep"],
+            standard=["crisp pop", "short confirmation beep", "tool-done signal"],
+            detailed=[
+                "crisp pop",
+                "short confirmation beep",
+                "tool-done signal",
+                "clean execution complete",
+                "bright result indicator",
+            ],
+        ),
     ),
     # Agent events
     HookType(
         id="SubagentStart",
         name="Subagent Start",
         description="A new subagent has been spawned",
-        sound_characters=["rising swoosh", "quick launch tone"],
+        sound_characters=TieredSoundCharacters(
+            simple=["rising swoosh"],
+            standard=["rising swoosh", "quick launch tone", "spawn indicator"],
+            detailed=[
+                "rising swoosh",
+                "quick launch tone",
+                "spawn indicator",
+                "energetic branching sound",
+                "parallel process activation",
+            ],
+        ),
     ),
     HookType(
         id="UserPromptSubmit",
         name="User Prompt Submit",
         description="User has submitted a new prompt",
-        sound_characters=["soft whoosh", "brief send click"],
+        sound_characters=TieredSoundCharacters(
+            simple=["soft whoosh"],
+            standard=["soft whoosh", "brief send click", "message dispatch tone"],
+            detailed=[
+                "soft whoosh",
+                "brief send click",
+                "message dispatch tone",
+                "input acknowledgment chime",
+                "smooth submission sweep",
+            ],
+        ),
     ),
 ]
 

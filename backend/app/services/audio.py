@@ -1,6 +1,7 @@
 """Audio generation service using Stable Audio Open."""
 
 import asyncio
+import concurrent.futures
 import contextlib
 import time
 import uuid
@@ -17,6 +18,23 @@ from app.services.model_loader import model_loader
 JOB_EXPIRATION_SECONDS = 3600
 # Cleanup interval in seconds (5 minutes)
 CLEANUP_INTERVAL_SECONDS = 300
+
+# Dedicated thread pool for audio generation work.
+_generation_executor: concurrent.futures.ThreadPoolExecutor | None = None
+
+
+def _get_generation_executor() -> concurrent.futures.ThreadPoolExecutor:
+    """Get or create the dedicated generation thread pool executor."""
+    global _generation_executor
+    if _generation_executor is None:
+        _generation_executor = concurrent.futures.ThreadPoolExecutor(
+            max_workers=settings.generation_thread_pool_workers,
+            thread_name_prefix="audio-gen",
+        )
+        logger.info(
+            f"Created generation executor with max_workers={settings.generation_thread_pool_workers}"
+        )
+    return _generation_executor
 
 
 class AudioGenerationJob:
@@ -80,25 +98,49 @@ class AudioService:
                 logger.opt(exception=True).debug("Cleanup loop error traceback:")
 
     async def _perform_cleanup(self):
-        """Perform cleanup of expired jobs and enforce max files limit."""
-        # Cleanup expired jobs
+        """Perform cleanup of expired jobs, abandoned jobs, and enforce max files limit."""
+        # Cleanup expired completed/error jobs
         expired_jobs = [
             job_id
             for job_id, job in self._jobs.items()
             if job.is_expired() and job.status in ("completed", "error")
         ]
-        for job_id in expired_jobs:
-            self.cleanup_job(job_id)
-            logger.info(f"Auto-cleaned expired job {job_id}")
 
-        if expired_jobs:
-            logger.info(f"Cleaned up {len(expired_jobs)} expired jobs")
+        # Cleanup abandoned jobs (stuck in queued/processing beyond max lifetime)
+        max_lifetime = settings.job_max_lifetime_seconds
+        abandoned_jobs = [
+            job_id
+            for job_id, job in self._jobs.items()
+            if job.status in ("queued", "processing")
+            and (time.time() - job.created_at) > max_lifetime
+        ]
+
+        for job_id in abandoned_jobs:
+            job = self._jobs.get(job_id)
+            if job:
+                logger.warning(
+                    f"Cleaning up abandoned job {job_id} "
+                    f"(status={job.status}, age={time.time() - job.created_at:.0f}s)"
+                )
+                job.status = "error"
+                job.error = "Job timed out"
+
+        jobs_to_clean = expired_jobs + abandoned_jobs
+        for job_id in jobs_to_clean:
+            await asyncio.to_thread(self.cleanup_job, job_id)
+
+        if jobs_to_clean:
+            logger.info(f"Cleaned up {len(jobs_to_clean)} jobs")
 
         # Enforce max audio files limit
         await self._enforce_max_files()
 
     async def _enforce_max_files(self):
         """Remove oldest audio files if exceeding max_audio_files limit."""
+        await asyncio.to_thread(self._enforce_max_files_sync)
+
+    def _enforce_max_files_sync(self):
+        """Synchronous implementation of max files enforcement."""
         if not settings.temp_audio_dir.exists():
             return
 
@@ -256,10 +298,10 @@ class AudioService:
                     f"exceeds max {max_duration}s, using {duration}s"
                 )
 
-            # Set seed if provided
-            if gen_settings.seed is not None:
-                torch.manual_seed(gen_settings.seed)
-                logger.debug(f"Job {job_id}: using seed {gen_settings.seed}")
+            # Seed is set inside the worker thread for thread safety (see do_generate)
+            seed = gen_settings.seed
+            if seed is not None:
+                logger.debug(f"Job {job_id}: will use seed {seed}")
 
             # Log generation parameters
             logger.info(
@@ -341,6 +383,11 @@ class AudioService:
 
             def do_generate():
                 logger.debug(f"Job {job_id}: starting diffusion generation with {steps} steps")
+                # Set seed inside the worker thread for thread safety.
+                # torch.manual_seed affects the calling thread's default generator.
+                if seed is not None:
+                    torch.manual_seed(seed)
+                    logger.debug(f"Job {job_id}: seed {seed} set in worker thread")
                 with torch.no_grad():
                     # Note: conditioning is List[Dict] per MultiConditioner.forward signature,
                     # but generate_diffusion_cond type hint incorrectly says dict
@@ -359,7 +406,7 @@ class AudioService:
                 logger.debug(f"Job {job_id}: diffusion generation completed")
                 return output
 
-            output = await loop.run_in_executor(None, do_generate)
+            output = await loop.run_in_executor(_get_generation_executor(), do_generate)
 
             # Wait for progress task to complete
             progress_task.cancel()
@@ -383,7 +430,7 @@ class AudioService:
                 output = output[:2, :]
                 logger.debug(f"Job {job_id}: trimmed to 2 channels")
 
-            await self._notify_progress(job_id, 0.9, "saving")
+            await self._notify_progress(job_id, 0.96, "saving")
 
             # Save to file
             output_path = settings.temp_audio_dir / f"{job_id}.wav"

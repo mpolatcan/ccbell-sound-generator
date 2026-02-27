@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -8,16 +9,17 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { ChevronDown, X } from 'lucide-react'
-import type { HookType, HookTypeId } from '@/types'
+import type { HookType, HookTypeId, PromptDetailTier } from '@/types'
 import { cn } from '@/lib/utils'
 
 interface HookSelectorProps {
   hooks: HookType[]
   selectedHooks: HookTypeId[]
   onSelect: (hookIds: HookTypeId[]) => void
+  promptDetailTier: PromptDetailTier
 }
 
-export function HookSelector({ hooks, selectedHooks, onSelect }: HookSelectorProps) {
+export const HookSelector = memo(function HookSelector({ hooks, selectedHooks, onSelect, promptDetailTier }: HookSelectorProps) {
   const selectedHooksData = hooks.filter(h => selectedHooks.includes(h.id))
 
   const toggleHook = (hookId: HookTypeId) => {
@@ -124,7 +126,7 @@ export function HookSelector({ hooks, selectedHooks, onSelect }: HookSelectorPro
         <div className="text-sm text-muted-foreground space-y-1">
           {selectedHooksData.map((hook, index) => (
             <p key={hook.id} className="italic text-xs">
-              {index + 1}. {hook.name}: {hook.sound_characters.join(', ')}
+              {index + 1}. {hook.name}: {hook.sound_characters[promptDetailTier].join(', ')}
             </p>
           ))}
         </div>
@@ -137,4 +139,4 @@ export function HookSelector({ hooks, selectedHooks, onSelect }: HookSelectorPro
       )}
     </div>
   )
-}
+})

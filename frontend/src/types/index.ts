@@ -31,11 +31,19 @@ export interface EditablePromptChips {
   quality: ChipItem[]
 }
 
+export type PromptDetailTier = 'simple' | 'standard' | 'detailed'
+
+export interface TieredPromptComponents {
+  simple: PromptComponents
+  standard: PromptComponents
+  detailed: PromptComponents
+}
+
 export interface ThemePreset {
   id: string
   name: string
   description: string
-  prompt_components: PromptComponents
+  prompt_components: TieredPromptComponents
   icon: string
 }
 
@@ -52,11 +60,17 @@ export type HookTypeId =
   | 'SubagentStart'
   | 'UserPromptSubmit'
 
+export interface TieredSoundCharacters {
+  simple: string[]
+  standard: string[]
+  detailed: string[]
+}
+
 export interface HookType {
   id: HookTypeId
   name: string
   description: string
-  sound_characters: string[]
+  sound_characters: TieredSoundCharacters
 }
 
 export interface GenerationSettings {

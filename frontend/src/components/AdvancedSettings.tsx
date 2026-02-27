@@ -167,8 +167,10 @@ export function AdvancedSettings({ model, settings, onChange }: AdvancedSettings
                         size="sm"
                         onClick={() => applyPreset(key as keyof typeof PRESETS)}
                         className={cn(
-                          "flex-1",
-                          activePreset === key && "ring-2 ring-primary/50"
+                          "flex-1 transition-all duration-200",
+                          activePreset === key
+                            ? "ring-2 ring-primary shadow-md shadow-primary/25 scale-[1.02]"
+                            : "opacity-75 hover:opacity-100"
                         )}
                       >
                         <Icon className="h-4 w-4 mr-1.5" />
@@ -185,6 +187,9 @@ export function AdvancedSettings({ model, settings, onChange }: AdvancedSettings
                 )
               })}
             </div>
+            {activePreset === null && (
+              <p className="text-xs text-muted-foreground italic">Custom settings</p>
+            )}
           </div>
 
           {/* Steps */}

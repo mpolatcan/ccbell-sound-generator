@@ -113,14 +113,30 @@ class PromptComponents(BaseModel):
     quality: list[str]
 
 
+class TieredPromptComponents(BaseModel):
+    """Prompt components at three detail levels."""
+
+    simple: PromptComponents
+    standard: PromptComponents
+    detailed: PromptComponents
+
+
 class ThemePreset(BaseModel):
     """Theme preset for sound generation."""
 
     id: str
     name: str
     description: str
-    prompt_components: PromptComponents
+    prompt_components: TieredPromptComponents
     icon: str
+
+
+class TieredSoundCharacters(BaseModel):
+    """Sound character descriptors at three detail levels."""
+
+    simple: list[str]
+    standard: list[str]
+    detailed: list[str]
 
 
 class HookType(BaseModel):
@@ -129,7 +145,7 @@ class HookType(BaseModel):
     id: str
     name: str
     description: str
-    sound_characters: list[str]
+    sound_characters: TieredSoundCharacters
 
 
 class PublishRequest(BaseModel):

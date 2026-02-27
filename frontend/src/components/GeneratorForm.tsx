@@ -1,4 +1,4 @@
-import { useState, useEffect, forwardRef, useImperativeHandle } from 'react'
+import { useState, useEffect, useMemo, forwardRef, useImperativeHandle } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { api } from '@/lib/api'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
@@ -21,12 +21,14 @@ import { HookSelector } from './HookSelector'
 import { PromptComponentsEditor } from './PromptComponentsEditor'
 import { ModelLoadingIndicator } from './ModelLoadingIndicator'
 import { useGenerationQueue } from '@/hooks/useGenerationQueue'
+import { useShallow } from 'zustand/react/shallow'
 import { useSoundLibrary } from '@/hooks/useSoundLibrary'
 import { useModelStatus } from '@/hooks/useModelStatus'
 import { MODEL_DEFAULTS, DEFAULT_DURATION } from '@/lib/constants'
 import { formatDuration } from '@/lib/utils'
 import { Sparkles, RefreshCw, AlertCircle, Package, ListOrdered, Plus } from 'lucide-react'
-import type { GenerationSettings, HookTypeId, HookType, ThemePreset, EditablePromptChips, ChipItem } from '@/types'
+import { cn } from '@/lib/utils'
+import type { GenerationSettings, HookTypeId, HookType, ThemePreset, EditablePromptChips, ChipItem, PromptDetailTier } from '@/types'
 
 export interface GeneratorFormRef {
   generate: () => void
@@ -77,6 +79,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
   const [duration, setDuration] = useState(DEFAULT_DURATION)
   const [packName, setPackName] = useState('')
   const [selectedPackId, setSelectedPackId] = useState<string | null>(null)
+  const [promptDetailTier, setPromptDetailTier] = useState<PromptDetailTier>('standard')
   const toChips = (values: string[]): ChipItem[] =>
     values.map((label) => ({ label, enabled: true }))
 
@@ -92,7 +95,14 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
   const { addToQueue, queueLength, error } = useGenerationQueue()
 
   // Sound library
-  const { packs, addPack, addSound, getSoundsByPack } = useSoundLibrary()
+  const { packs, addPack, addSound, getSoundsByPack } = useSoundLibrary(
+    useShallow((s) => ({
+      packs: s.packs,
+      addPack: s.addPack,
+      addSound: s.addSound,
+      getSoundsByPack: s.getSoundsByPack,
+    }))
+  )
 
   // Model loading status
   const modelStatus = useModelStatus({
@@ -111,30 +121,31 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
     }
   }, [selectedModel, maxDuration, duration])
 
-  // Sync prompt chips when theme changes
+  // Sync prompt chips when theme or detail tier changes
   useEffect(() => {
     if (selectedTheme === 'custom') return
     const theme = themes.find((t: ThemePreset) => t.id === selectedTheme)
     if (!theme) return
+    const tierComponents = theme.prompt_components[promptDetailTier]
     setPromptChips((prev) => ({
       ...prev,
-      style: toChips(theme.prompt_components.style),
-      instruments: toChips(theme.prompt_components.instruments),
-      mood: toChips(theme.prompt_components.mood),
-      quality: toChips(theme.prompt_components.quality),
+      style: toChips(tierComponents.style),
+      instruments: toChips(tierComponents.instruments),
+      mood: toChips(tierComponents.mood),
+      quality: toChips(tierComponents.quality),
     }))
-  }, [selectedTheme, themes])
+  }, [selectedTheme, themes, promptDetailTier])
 
-  // Sync sound_type chips when selected hooks change
+  // Sync sound_type chips when selected hooks or detail tier changes
   useEffect(() => {
     if (selectedHooks.length === 0) return
     const hook = hooks.find((h: HookType) => h.id === selectedHooks[0])
     if (!hook) return
     setPromptChips((prev) => ({
       ...prev,
-      sound_type: toChips(hook.sound_characters),
+      sound_type: toChips(hook.sound_characters[promptDetailTier]),
     }))
-  }, [selectedHooks, hooks])
+  }, [selectedHooks, hooks, promptDetailTier])
 
   // Generate default pack name from theme
   const getDefaultPackName = () => {
@@ -158,7 +169,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
     let soundTypeChips = promptChips.sound_type
     if (hookId && hookId !== selectedHooks[0]) {
       const hook = hooks.find((h: HookType) => h.id === hookId)
-      if (hook) soundTypeChips = toChips(hook.sound_characters)
+      if (hook) soundTypeChips = toChips(hook.sound_characters[promptDetailTier])
     }
 
     const chipGroups = [
@@ -247,7 +258,8 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
     generate: handleGenerate
   }))
 
-  const currentPrompt = buildPrompt()
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- buildPrompt reads from selectedTheme, customPrompt, promptChips, duration, hooks, selectedHooks, promptDetailTier
+  const currentPrompt = useMemo(() => buildPrompt(), [selectedTheme, customPrompt, promptChips, duration, hooks, selectedHooks, promptDetailTier])
 
   return (
     <Card>
@@ -337,6 +349,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
                 hooks={hooks}
                 selectedHooks={selectedHooks}
                 onSelect={setSelectedHooks}
+                promptDetailTier={promptDetailTier}
               />
             )}
           </div>
@@ -373,6 +386,35 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
             />
           )}
         </div>
+
+        {/* Prompt Detail Level */}
+        {selectedTheme !== 'custom' && (
+          <div className="space-y-2">
+            <Label>Prompt Detail</Label>
+            <div className="flex gap-2">
+              {(['simple', 'standard', 'detailed'] as const).map((tier) => (
+                <button
+                  key={tier}
+                  type="button"
+                  className={cn(
+                    'flex-1 px-3 py-1.5 rounded-full text-sm font-medium transition-all border cursor-pointer',
+                    promptDetailTier === tier
+                      ? 'border-primary bg-primary/15 text-primary'
+                      : 'border-border bg-muted/30 text-muted-foreground hover:border-primary/50 hover:text-foreground'
+                  )}
+                  onClick={() => setPromptDetailTier(tier)}
+                >
+                  {tier.charAt(0).toUpperCase() + tier.slice(1)}
+                </button>
+              ))}
+            </div>
+            <p className="text-xs text-muted-foreground">
+              {promptDetailTier === 'simple' && 'Minimal descriptors for shorter, focused prompts'}
+              {promptDetailTier === 'standard' && 'Balanced set of descriptors (recommended)'}
+              {promptDetailTier === 'detailed' && 'Rich descriptors for more specific, detailed prompts'}
+            </p>
+          </div>
+        )}
 
         {/* Prompt Components Editor (hidden for Custom theme) */}
         {selectedTheme !== 'custom' && (

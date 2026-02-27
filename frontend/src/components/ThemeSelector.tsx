@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { cn } from '@/lib/utils'
 import type { ThemePreset } from '@/types'
 import {
@@ -24,7 +25,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   'pencil': Pencil
 }
 
-export function ThemeSelector({ themes, selectedTheme, onSelect }: ThemeSelectorProps) {
+export const ThemeSelector = memo(function ThemeSelector({ themes, selectedTheme, onSelect }: ThemeSelectorProps) {
   const selected = themes.find((t) => t.id === selectedTheme)
 
   return (
@@ -58,4 +59,4 @@ export function ThemeSelector({ themes, selectedTheme, onSelect }: ThemeSelector
       )}
     </div>
   )
-}
+})

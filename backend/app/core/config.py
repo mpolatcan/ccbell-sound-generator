@@ -44,6 +44,17 @@ class Settings(BaseSettings):
     temp_audio_dir: Path = Path("/tmp/ccbell-audio")
     max_audio_files: int = 100
 
+    # Concurrency settings
+    max_concurrent_generations: int = 2
+    generation_thread_pool_workers: int = 2
+
+    # WebSocket settings
+    ws_idle_timeout: int = 60  # seconds before sending keepalive ping
+    ws_max_missed_pings: int = 2  # consecutive missed pings before close
+
+    # Job lifetime settings
+    job_max_lifetime_seconds: int = 1800  # 30 min max for any job regardless of status
+
     # GitHub settings (supports CCBELL_GH_TOKEN or CCBELL_GITHUB_TOKEN)
     gh_token: str | None = None
 

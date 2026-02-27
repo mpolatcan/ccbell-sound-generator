@@ -48,7 +48,7 @@ export const useGenerationQueueStore = create<GenerationQueueState>((set, get) =
 
 export function useGenerationQueue() {
   const queueStore = useGenerationQueueStore()
-  const { updateSound } = useSoundLibrary()
+  const updateSound = useSoundLibrary((s) => s.updateSound)
   const [error, setError] = useState<string | null>(null)
   const wsRef = useRef<WebSocket | null>(null)
   const processingRef = useRef(false)
