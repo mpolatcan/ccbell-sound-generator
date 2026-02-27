@@ -4,7 +4,6 @@ import { useSoundLibrary } from '@/hooks/useSoundLibrary'
 import { api } from '@/lib/api'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { ScrollArea } from '@/components/ui/scroll-area'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
 import { Input } from '@/components/ui/input'
@@ -314,7 +313,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
           </div>
         </CardHeader>
         <CardContent>
-          <ScrollArea className="max-h-[600px] pr-4">
+          <div className="max-h-[600px] overflow-y-auto pr-1 scrollbar-thin">
             <div className="space-y-4">
               {packs.map((pack) => {
                 const packSounds = getSoundsForPack(pack.id)
@@ -517,7 +516,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                 )
               })}
             </div>
-          </ScrollArea>
+          </div>
         </CardContent>
       </Card>
     )

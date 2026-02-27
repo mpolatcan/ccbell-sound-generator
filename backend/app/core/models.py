@@ -158,7 +158,7 @@ class HealthResponse(BaseModel):
     """Health check response."""
 
     status: str = "healthy"
-    version: str = "1.0.27"
+    version: str = "1.0.28"
     models_loaded: list[str] = []
 
 
