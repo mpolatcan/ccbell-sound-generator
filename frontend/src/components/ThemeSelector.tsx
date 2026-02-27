@@ -7,6 +7,8 @@ import {
   Leaf,
   Minus,
   Cog,
+  Cloud,
+  Music,
   Pencil
 } from 'lucide-react'
 
@@ -22,6 +24,8 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   'leaf': Leaf,
   'minus': Minus,
   'cog': Cog,
+  'cloud': Cloud,
+  'music': Music,
   'pencil': Pencil
 }
 
