@@ -1,6 +1,6 @@
 """Claude Code hook type definitions."""
 
-from app.core.models import HookType, HookTypeId
+from app.core.models import HookType, HookTypeId, SoundCharacters
 
 # Maps generator hook type IDs to ccbell plugin event names.
 HOOK_TO_EVENT_MAP: dict[HookTypeId, str] = {
@@ -22,28 +22,44 @@ HOOK_TYPES: list[HookType] = [
         id="Stop",
         name="Stop",
         description="Main agent has finished its task",
-        sound_character="bright ascending bell chime",
+        sound_characters=SoundCharacters(
+            simple="bright bell chime",
+            detailed="bright ascending bell chime, completion tone",
+            more_detailed="bright ascending two-note completion chime, clear crisp bell tone, satisfying resolution",
+        ),
         suggested_duration=1.5,
     ),
     HookType(
         id="SubagentStop",
         name="Subagent Stop",
         description="A subagent has finished its task",
-        sound_character="soft muted single ding",
+        sound_characters=SoundCharacters(
+            simple="soft muted ding",
+            detailed="soft muted single ding, gentle bell",
+            more_detailed="short soft single-note confirmation ding, gentle muted bell, subtle completion",
+        ),
         suggested_duration=1.0,
     ),
     HookType(
         id="PermissionPrompt",
         name="Permission Prompt",
         description="Tool needs user permission to proceed",
-        sound_character="two-tone alert ping",
+        sound_characters=SoundCharacters(
+            simple="two-tone alert ping",
+            detailed="two-tone alert ping, bright notification",
+            more_detailed="attention-getting two-tone alert chime, clear bright ping, urgent but pleasant notification",
+        ),
         suggested_duration=1.0,
     ),
     HookType(
         id="IdlePrompt",
         name="Idle Prompt",
         description="Agent is idle and waiting for user input",
-        sound_character="gentle low hum fade",
+        sound_characters=SoundCharacters(
+            simple="gentle low hum",
+            detailed="gentle low hum fade, warm tone",
+            more_detailed="gentle soft nudge tone, warm low-pitched hum with fade, quiet waiting reminder",
+        ),
         suggested_duration=1.0,
     ),
     # Session lifecycle events
@@ -51,14 +67,22 @@ HOOK_TYPES: list[HookType] = [
         id="SessionStart",
         name="Session Start",
         description="A new Claude Code session has started",
-        sound_character="rising three-note chime",
+        sound_characters=SoundCharacters(
+            simple="rising chime",
+            detailed="rising three-note chime, startup tone",
+            more_detailed="bright ascending three-note startup chime, welcoming warm boot sound, clear rising tones",
+        ),
         suggested_duration=1.0,
     ),
     HookType(
         id="SessionEnd",
         name="Session End",
         description="Claude Code session has ended",
-        sound_character="descending soft fade tone",
+        sound_characters=SoundCharacters(
+            simple="descending fade tone",
+            detailed="descending soft fade tone, closing sound",
+            more_detailed="soft descending two-note shutdown chime, gentle fading goodbye tone, warm closing sound",
+        ),
         suggested_duration=1.0,
     ),
     # Tool lifecycle events
@@ -66,14 +90,22 @@ HOOK_TYPES: list[HookType] = [
         id="PreToolUse",
         name="Pre Tool Use",
         description="Triggered before a tool call executes",
-        sound_character="soft short click tick",
+        sound_characters=SoundCharacters(
+            simple="soft click",
+            detailed="soft short click tick, tap sound",
+            more_detailed="brief soft click, short subtle tap sound, quiet activation tick",
+        ),
         suggested_duration=0.5,
     ),
     HookType(
         id="PostToolUse",
         name="Post Tool Use",
         description="Triggered after a tool completes execution",
-        sound_character="crisp short pop ping",
+        sound_characters=SoundCharacters(
+            simple="crisp pop ping",
+            detailed="crisp short pop ping, confirmation beep",
+            more_detailed="quick short confirmation beep, brief crisp pop sound, tiny success ping",
+        ),
         suggested_duration=0.5,
     ),
     # Agent events
@@ -81,14 +113,22 @@ HOOK_TYPES: list[HookType] = [
         id="SubagentStart",
         name="Subagent Start",
         description="A new subagent has been spawned",
-        sound_character="quick rising swoosh",
+        sound_characters=SoundCharacters(
+            simple="quick swoosh",
+            detailed="quick rising swoosh, launch tone",
+            more_detailed="short bright ascending whoosh, quick launch swoosh sound, brief rising activation tone",
+        ),
         suggested_duration=1.0,
     ),
     HookType(
         id="UserPromptSubmit",
         name="User Prompt Submit",
         description="User has submitted a new prompt",
-        sound_character="brief soft whoosh tap",
+        sound_characters=SoundCharacters(
+            simple="soft whoosh tap",
+            detailed="brief soft whoosh tap, send sound",
+            more_detailed="brief subtle keystroke click, short soft send whoosh, quick quiet confirmation tap",
+        ),
         suggested_duration=0.5,
     ),
 ]

@@ -98,13 +98,29 @@ class ModelInfo(BaseModel):
     parameters: str
 
 
+class PromptTemplates(BaseModel):
+    """Three detail levels for prompt templates."""
+
+    simple: str
+    detailed: str
+    more_detailed: str
+
+
+class SoundCharacters(BaseModel):
+    """Three detail levels for sound characters."""
+
+    simple: str
+    detailed: str
+    more_detailed: str
+
+
 class ThemePreset(BaseModel):
     """Theme preset for sound generation."""
 
     id: str
     name: str
     description: str
-    prompt_template: str
+    prompt_templates: PromptTemplates
     icon: str
 
 
@@ -114,7 +130,7 @@ class HookType(BaseModel):
     id: str
     name: str
     description: str
-    sound_character: str
+    sound_characters: SoundCharacters
     suggested_duration: float
 
 
@@ -142,7 +158,7 @@ class HealthResponse(BaseModel):
     """Health check response."""
 
     status: str = "healthy"
-    version: str = "1.0.26"
+    version: str = "1.0.27"
     models_loaded: list[str] = []
 
 

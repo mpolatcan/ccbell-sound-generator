@@ -57,7 +57,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
       if (!expandedPacksRef.current.has(latestPackId)) {
         expandedPacksRef.current.add(latestPackId)
         if (!expandedPacks.has(latestPackId)) {
-          setExpandedPacks(new Set([...expandedPacks, latestPackId]))
+          setExpandedPacks(new Set([latestPackId]))
         }
       }
     }

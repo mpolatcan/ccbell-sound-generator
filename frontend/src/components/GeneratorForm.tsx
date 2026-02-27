@@ -25,7 +25,8 @@ import { useModelStatus } from '@/hooks/useModelStatus'
 import { MODEL_DEFAULTS, DEFAULT_DURATION } from '@/lib/constants'
 import { formatDuration } from '@/lib/utils'
 import { Sparkles, RefreshCw, AlertCircle, Package, ListOrdered, Plus } from 'lucide-react'
-import type { GenerationSettings, HookTypeId, ThemePreset } from '@/types'
+import { cn } from '@/lib/utils'
+import type { GenerationSettings, HookTypeId, ThemePreset, PromptDetailLevel } from '@/types'
 
 export interface GeneratorFormRef {
   generate: () => void
@@ -76,6 +77,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
   const [duration, setDuration] = useState(DEFAULT_DURATION)
   const [packName, setPackName] = useState('')
   const [selectedPackId, setSelectedPackId] = useState<string | null>(null)
+  const [promptDetail, setPromptDetail] = useState<PromptDetailLevel>('detailed')
 
   // Generation queue (non-blocking)
   const { addToQueue, queueLength, error } = useGenerationQueue()
@@ -122,9 +124,9 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
 
     const targetHookId = hookId || selectedHooks[0]
     const hook = hooks.find((h) => h.id === targetHookId)
-    const soundType = hook?.sound_character || 'notification sound'
+    const soundType = hook?.sound_characters[promptDetail] || 'notification sound'
 
-    return theme.prompt_template.replace('{sound_type}', soundType)
+    return theme.prompt_templates[promptDetail].replace('{sound_type}', soundType)
   }
 
   // Handle generation - create pack (if new) and queue all sounds
@@ -318,6 +320,34 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
             />
           )}
         </div>
+
+        {/* Prompt Detail Level (hidden for Custom theme) */}
+        {selectedTheme !== 'custom' && (
+          <div className="space-y-2">
+            <Label>Prompt Detail</Label>
+            <div className="flex rounded-lg border bg-muted/30 p-1">
+              {([
+                { value: 'simple', label: 'Simple' },
+                { value: 'detailed', label: 'Detailed' },
+                { value: 'more_detailed', label: 'More Detailed' },
+              ] as const).map((level) => (
+                <button
+                  key={level.value}
+                  type="button"
+                  onClick={() => setPromptDetail(level.value)}
+                  className={cn(
+                    "flex-1 rounded-md px-3 py-1.5 text-sm font-medium transition-all",
+                    promptDetail === level.value
+                      ? "bg-background text-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  {level.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Custom Prompt (if custom theme selected) */}
         {selectedTheme === 'custom' && (

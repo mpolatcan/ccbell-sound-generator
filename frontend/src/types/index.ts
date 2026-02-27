@@ -10,11 +10,25 @@ export interface ModelInfo {
   parameters: string
 }
 
+export type PromptDetailLevel = 'simple' | 'detailed' | 'more_detailed'
+
+export interface PromptTemplates {
+  simple: string
+  detailed: string
+  more_detailed: string
+}
+
+export interface SoundCharacters {
+  simple: string
+  detailed: string
+  more_detailed: string
+}
+
 export interface ThemePreset {
   id: string
   name: string
   description: string
-  prompt_template: string
+  prompt_templates: PromptTemplates
   icon: string
 }
 
@@ -35,7 +49,7 @@ export interface HookType {
   id: HookTypeId
   name: string
   description: string
-  sound_character: string
+  sound_characters: SoundCharacters
   suggested_duration: number
 }
 

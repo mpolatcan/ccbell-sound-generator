@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Slider } from '@/components/ui/slider'
@@ -18,6 +19,7 @@ import {
   TooltipTrigger
 } from '@/components/ui/tooltip'
 import { getSamplersForModel, MODEL_DEFAULTS } from '@/lib/constants'
+import { cn } from '@/lib/utils'
 import { Info, Zap, Gem, Scale, RotateCcw, SlidersHorizontal } from 'lucide-react'
 import type { GenerationSettings } from '@/types'
 
@@ -103,6 +105,20 @@ export function AdvancedSettings({ model, settings, onChange }: AdvancedSettings
   const currentCfgScale = settings.cfg_scale ?? defaults.cfg_scale
   const availableSamplers = getSamplersForModel(model)
 
+  const activePreset = useMemo(() => {
+    for (const [key, preset] of Object.entries(PRESETS)) {
+      const p = preset.settings[model]
+      if (
+        currentSteps === p.steps &&
+        currentCfgScale === p.cfg_scale &&
+        currentSampler === p.sampler
+      ) {
+        return key as keyof typeof PRESETS
+      }
+    }
+    return null
+  }, [model, currentSteps, currentCfgScale, currentSampler])
+
   return (
     <TooltipProvider>
       <Card>
@@ -147,10 +163,13 @@ export function AdvancedSettings({ model, settings, onChange }: AdvancedSettings
                   <Tooltip key={key}>
                     <TooltipTrigger asChild>
                       <Button
-                        variant="outline"
+                        variant={activePreset === key ? "default" : "outline"}
                         size="sm"
                         onClick={() => applyPreset(key as keyof typeof PRESETS)}
-                        className="flex-1"
+                        className={cn(
+                          "flex-1",
+                          activePreset === key && "ring-2 ring-primary/50"
+                        )}
                       >
                         <Icon className="h-4 w-4 mr-1.5" />
                         {preset.name}
