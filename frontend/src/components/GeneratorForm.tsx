@@ -26,7 +26,7 @@ import { useModelStatus } from '@/hooks/useModelStatus'
 import { MODEL_DEFAULTS, DEFAULT_DURATION } from '@/lib/constants'
 import { formatDuration } from '@/lib/utils'
 import { Sparkles, RefreshCw, AlertCircle, Package, ListOrdered, Plus } from 'lucide-react'
-import type { GenerationSettings, HookTypeId, HookType, ThemePreset, EditablePromptComponents } from '@/types'
+import type { GenerationSettings, HookTypeId, HookType, ThemePreset, EditablePromptChips, ChipItem } from '@/types'
 
 export interface GeneratorFormRef {
   generate: () => void
@@ -77,12 +77,15 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
   const [duration, setDuration] = useState(DEFAULT_DURATION)
   const [packName, setPackName] = useState('')
   const [selectedPackId, setSelectedPackId] = useState<string | null>(null)
-  const [promptComponents, setPromptComponents] = useState<EditablePromptComponents>({
-    sound_type: '',
-    style: '',
-    instruments: '',
-    mood: '',
-    quality: '',
+  const toChips = (values: string[]): ChipItem[] =>
+    values.map((label) => ({ label, enabled: true }))
+
+  const [promptChips, setPromptChips] = useState<EditablePromptChips>({
+    sound_type: [],
+    style: [],
+    instruments: [],
+    mood: [],
+    quality: [],
   })
 
   // Generation queue (non-blocking)
@@ -108,28 +111,28 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
     }
   }, [selectedModel, maxDuration, duration])
 
-  // Sync prompt components when theme changes
+  // Sync prompt chips when theme changes
   useEffect(() => {
     if (selectedTheme === 'custom') return
     const theme = themes.find((t: ThemePreset) => t.id === selectedTheme)
     if (!theme) return
-    setPromptComponents((prev) => ({
+    setPromptChips((prev) => ({
       ...prev,
-      style: theme.prompt_components.style,
-      instruments: theme.prompt_components.instruments,
-      mood: theme.prompt_components.mood,
-      quality: theme.prompt_components.quality,
+      style: toChips(theme.prompt_components.style),
+      instruments: toChips(theme.prompt_components.instruments),
+      mood: toChips(theme.prompt_components.mood),
+      quality: toChips(theme.prompt_components.quality),
     }))
   }, [selectedTheme, themes])
 
-  // Sync sound_type when selected hooks change
+  // Sync sound_type chips when selected hooks change
   useEffect(() => {
     if (selectedHooks.length === 0) return
     const hook = hooks.find((h: HookType) => h.id === selectedHooks[0])
     if (!hook) return
-    setPromptComponents((prev) => ({
+    setPromptChips((prev) => ({
       ...prev,
-      sound_type: hook.sound_character,
+      sound_type: toChips(hook.sound_characters),
     }))
   }, [selectedHooks, hooks])
 
@@ -144,28 +147,37 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
     return `${themeName} - ${timestamp}`
   }
 
-  // Assemble prompt from structured components
+  // Assemble prompt from chip selections
   // Order follows Stable Audio best practices: sound_type, style, instruments, mood, duration, quality
   const buildPrompt = (hookId?: string): string => {
     if (selectedTheme === 'custom') {
       return customPrompt
     }
 
-    // For multi-hook generation, use the specific hook's sound_character
-    let soundType = promptComponents.sound_type
+    // For multi-hook generation, use the specific hook's sound_characters
+    let soundTypeChips = promptChips.sound_type
     if (hookId && hookId !== selectedHooks[0]) {
       const hook = hooks.find((h: HookType) => h.id === hookId)
-      soundType = hook?.sound_character || soundType
+      if (hook) soundTypeChips = toChips(hook.sound_characters)
     }
 
-    const parts = [
-      soundType,
-      promptComponents.style,
-      promptComponents.instruments,
-      promptComponents.mood,
-      `${duration} seconds`,
-      promptComponents.quality,
-    ].filter((part) => part.trim() !== '')
+    const chipGroups = [
+      soundTypeChips,
+      promptChips.style,
+      promptChips.instruments,
+      promptChips.mood,
+      [{ label: `${duration} seconds`, enabled: true }],
+      promptChips.quality,
+    ]
+
+    const parts = chipGroups
+      .map((group) =>
+        group
+          .filter((c) => c.enabled)
+          .map((c) => c.label)
+          .join(', ')
+      )
+      .filter((part) => part !== '')
 
     return parts.join(', ')
   }
@@ -365,8 +377,8 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
         {/* Prompt Components Editor (hidden for Custom theme) */}
         {selectedTheme !== 'custom' && (
           <PromptComponentsEditor
-            components={promptComponents}
-            onChange={setPromptComponents}
+            chips={promptChips}
+            onChange={setPromptChips}
             assembledPrompt={currentPrompt}
           />
         )}

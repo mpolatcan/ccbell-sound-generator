@@ -1,34 +1,132 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
-import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { ChevronDown, ChevronRight, Settings2 } from 'lucide-react'
+import { ChevronDown, ChevronRight, Settings2, Plus, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import type { EditablePromptComponents } from '@/types'
+import type { EditablePromptChips, ChipItem } from '@/types'
 
 interface PromptComponentsEditorProps {
-  components: EditablePromptComponents
-  onChange: (components: EditablePromptComponents) => void
+  chips: EditablePromptChips
+  onChange: (chips: EditablePromptChips) => void
   assembledPrompt: string
 }
 
-const FIELDS: { key: keyof EditablePromptComponents; label: string; placeholder: string }[] = [
-  { key: 'sound_type', label: 'Sound Type', placeholder: 'e.g. completion chime, resolution tone' },
-  { key: 'style', label: 'Style', placeholder: 'e.g. sci-fi, futuristic, digital' },
-  { key: 'instruments', label: 'Instruments', placeholder: 'e.g. digital synthesizer, oscillator' },
-  { key: 'mood', label: 'Mood', placeholder: 'e.g. technological, clean, precise' },
-  { key: 'quality', label: 'Quality', placeholder: 'e.g. 44.1kHz, stereo, high-quality' },
+const CATEGORIES: { key: keyof EditablePromptChips; label: string }[] = [
+  { key: 'sound_type', label: 'Sound Type' },
+  { key: 'style', label: 'Style' },
+  { key: 'instruments', label: 'Instruments' },
+  { key: 'mood', label: 'Mood' },
+  { key: 'quality', label: 'Quality' },
 ]
 
+function ChipRow({
+  label,
+  items,
+  onToggle,
+  onAdd,
+  onRemove,
+}: {
+  label: string
+  items: ChipItem[]
+  onToggle: (index: number) => void
+  onAdd: (value: string) => void
+  onRemove: (index: number) => void
+}) {
+  const [isAdding, setIsAdding] = useState(false)
+  const [newValue, setNewValue] = useState('')
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const handleAdd = () => {
+    const trimmed = newValue.trim()
+    if (trimmed && !items.some((item) => item.label.toLowerCase() === trimmed.toLowerCase())) {
+      onAdd(trimmed)
+    }
+    setNewValue('')
+    setIsAdding(false)
+  }
+
+  return (
+    <div className="space-y-1">
+      <Label className="text-xs text-muted-foreground">{label}</Label>
+      <div className="flex flex-wrap gap-1.5 items-center">
+        {items.map((item, index) => (
+          <button
+            key={`${item.label}-${index}`}
+            type="button"
+            className={cn(
+              'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium transition-all',
+              'border cursor-pointer',
+              item.enabled
+                ? 'border-primary bg-primary/15 text-primary'
+                : 'border-border bg-muted/30 text-muted-foreground line-through opacity-60'
+            )}
+            onClick={() => onToggle(index)}
+          >
+            {item.label}
+            {item.isCustom && (
+              <X
+                className="h-3 w-3 ml-0.5 hover:text-destructive"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onRemove(index)
+                }}
+              />
+            )}
+          </button>
+        ))}
+        {isAdding ? (
+          <input
+            ref={inputRef}
+            type="text"
+            value={newValue}
+            onChange={(e) => setNewValue(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') handleAdd()
+              if (e.key === 'Escape') {
+                setNewValue('')
+                setIsAdding(false)
+              }
+            }}
+            onBlur={handleAdd}
+            placeholder="Add..."
+            className="h-5 w-24 px-1.5 text-xs border border-primary/50 rounded-full bg-background outline-none focus:border-primary"
+            autoFocus
+          />
+        ) : (
+          <button
+            type="button"
+            className="inline-flex items-center justify-center h-5 w-5 rounded-full border border-dashed border-muted-foreground/50 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
+            onClick={() => setIsAdding(true)}
+          >
+            <Plus className="h-3 w-3" />
+          </button>
+        )}
+      </div>
+    </div>
+  )
+}
+
 export function PromptComponentsEditor({
-  components,
+  chips,
   onChange,
   assembledPrompt,
 }: PromptComponentsEditorProps) {
   const [isOpen, setIsOpen] = useState(false)
 
-  const updateField = (field: keyof EditablePromptComponents, value: string) => {
-    onChange({ ...components, [field]: value })
+  const handleToggle = (category: keyof EditablePromptChips, index: number) => {
+    const updated = [...chips[category]]
+    updated[index] = { ...updated[index], enabled: !updated[index].enabled }
+    onChange({ ...chips, [category]: updated })
+  }
+
+  const handleAdd = (category: keyof EditablePromptChips, value: string) => {
+    const updated = [...chips[category], { label: value, enabled: true, isCustom: true }]
+    onChange({ ...chips, [category]: updated })
+  }
+
+  const handleRemove = (category: keyof EditablePromptChips, index: number) => {
+    const updated = chips[category].filter((_, i) => i !== index)
+    onChange({ ...chips, [category]: updated })
   }
 
   return (
@@ -52,16 +150,15 @@ export function PromptComponentsEditor({
           </button>
         </CollapsibleTrigger>
         <CollapsibleContent className="pt-3 space-y-3">
-          {FIELDS.map(({ key, label, placeholder }) => (
-            <div key={key} className="space-y-1">
-              <Label className="text-xs text-muted-foreground">{label}</Label>
-              <Input
-                value={components[key]}
-                onChange={(e) => updateField(key, e.target.value)}
-                placeholder={placeholder}
-                className="h-8 text-sm"
-              />
-            </div>
+          {CATEGORIES.map(({ key, label }) => (
+            <ChipRow
+              key={key}
+              label={label}
+              items={chips[key]}
+              onToggle={(index) => handleToggle(key, index)}
+              onAdd={(value) => handleAdd(key, value)}
+              onRemove={(index) => handleRemove(key, index)}
+            />
           ))}
         </CollapsibleContent>
       </Collapsible>

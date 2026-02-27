@@ -11,14 +11,24 @@ export interface ModelInfo {
 }
 
 export interface PromptComponents {
-  style: string
-  instruments: string
-  mood: string
-  quality: string
+  style: string[]
+  instruments: string[]
+  mood: string[]
+  quality: string[]
 }
 
-export interface EditablePromptComponents extends PromptComponents {
-  sound_type: string
+export interface ChipItem {
+  label: string
+  enabled: boolean
+  isCustom?: boolean
+}
+
+export interface EditablePromptChips {
+  sound_type: ChipItem[]
+  style: ChipItem[]
+  instruments: ChipItem[]
+  mood: ChipItem[]
+  quality: ChipItem[]
 }
 
 export interface ThemePreset {
@@ -46,7 +56,7 @@ export interface HookType {
   id: HookTypeId
   name: string
   description: string
-  sound_character: string
+  sound_characters: string[]
 }
 
 export interface GenerationSettings {

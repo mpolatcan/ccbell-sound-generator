@@ -103,12 +103,14 @@ class PromptComponents(BaseModel):
 
     Following Stable Audio Open best practices, prompts are assembled as:
     "{sound_type}, {style}, {instruments}, {mood}, {duration} seconds, {quality}"
+
+    Each field is a list of descriptors that can be individually toggled in the UI.
     """
 
-    style: str
-    instruments: str
-    mood: str
-    quality: str
+    style: list[str]
+    instruments: list[str]
+    mood: list[str]
+    quality: list[str]
 
 
 class ThemePreset(BaseModel):
@@ -127,7 +129,7 @@ class HookType(BaseModel):
     id: str
     name: str
     description: str
-    sound_character: str
+    sound_characters: list[str]
 
 
 class PublishRequest(BaseModel):
@@ -154,7 +156,7 @@ class HealthResponse(BaseModel):
     """Health check response."""
 
     status: str = "healthy"
-    version: str = "1.0.29"
+    version: str = "1.0.30"
     models_loaded: list[str] = []
 
 

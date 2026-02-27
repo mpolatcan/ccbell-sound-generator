@@ -124,7 +124,7 @@ export function HookSelector({ hooks, selectedHooks, onSelect }: HookSelectorPro
         <div className="text-sm text-muted-foreground space-y-1">
           {selectedHooksData.map((hook, index) => (
             <p key={hook.id} className="italic text-xs">
-              {index + 1}. {hook.name}: {hook.sound_character}
+              {index + 1}. {hook.name}: {hook.sound_characters.join(', ')}
             </p>
           ))}
         </div>

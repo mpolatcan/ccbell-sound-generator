@@ -22,64 +22,64 @@ HOOK_TYPES: list[HookType] = [
         id="Stop",
         name="Stop",
         description="Main agent has finished its task",
-        sound_character="completion chime, resolution tone, task-done signal",
+        sound_characters=["completion chime", "resolution tone", "task-done signal"],
     ),
     HookType(
         id="SubagentStop",
         name="Subagent Stop",
         description="A subagent has finished its task",
-        sound_character="soft confirmation ding, subtle completion ping",
+        sound_characters=["soft confirmation ding", "subtle completion ping"],
     ),
     HookType(
         id="PermissionPrompt",
         name="Permission Prompt",
         description="Tool needs user permission to proceed",
-        sound_character="attention alert ping, two-tone notification chime",
+        sound_characters=["attention alert ping", "two-tone notification chime"],
     ),
     HookType(
         id="IdlePrompt",
         name="Idle Prompt",
         description="Agent is idle and waiting for user input",
-        sound_character="gentle low hum, warm waiting tone",
+        sound_characters=["gentle low hum", "warm waiting tone"],
     ),
     # Session lifecycle events
     HookType(
         id="SessionStart",
         name="Session Start",
         description="A new Claude Code session has started",
-        sound_character="ascending startup chime, boot-up tone",
+        sound_characters=["ascending startup chime", "boot-up tone"],
     ),
     HookType(
         id="SessionEnd",
         name="Session End",
         description="Claude Code session has ended",
-        sound_character="descending shutdown tone, closing fade",
+        sound_characters=["descending shutdown tone", "closing fade"],
     ),
     # Tool lifecycle events
     HookType(
         id="PreToolUse",
         name="Pre Tool Use",
         description="Triggered before a tool call executes",
-        sound_character="soft click, brief activation tick",
+        sound_characters=["soft click", "brief activation tick"],
     ),
     HookType(
         id="PostToolUse",
         name="Post Tool Use",
         description="Triggered after a tool completes execution",
-        sound_character="crisp pop, short confirmation beep",
+        sound_characters=["crisp pop", "short confirmation beep"],
     ),
     # Agent events
     HookType(
         id="SubagentStart",
         name="Subagent Start",
         description="A new subagent has been spawned",
-        sound_character="rising swoosh, quick launch tone",
+        sound_characters=["rising swoosh", "quick launch tone"],
     ),
     HookType(
         id="UserPromptSubmit",
         name="User Prompt Submit",
         description="User has submitted a new prompt",
-        sound_character="soft whoosh, brief send click",
+        sound_characters=["soft whoosh", "brief send click"],
     ),
 ]
 
