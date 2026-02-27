@@ -1,7 +1,7 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { Label } from '@/components/ui/label'
-import { ChevronDown, ChevronRight, Settings2, Plus, X } from 'lucide-react'
+import { ChevronDown, ChevronRight, Settings2, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { EditablePromptChips, ChipItem } from '@/types'
 
@@ -32,9 +32,7 @@ function ChipRow({
   onAdd: (value: string) => void
   onRemove: (index: number) => void
 }) {
-  const [isAdding, setIsAdding] = useState(false)
   const [newValue, setNewValue] = useState('')
-  const inputRef = useRef<HTMLInputElement>(null)
 
   const handleAdd = () => {
     const trimmed = newValue.trim()
@@ -42,15 +40,7 @@ function ChipRow({
       onAdd(trimmed)
     }
     setNewValue('')
-    setIsAdding(false)
   }
-
-  // Focus the input after it renders
-  useEffect(() => {
-    if (isAdding && inputRef.current) {
-      inputRef.current.focus()
-    }
-  }, [isAdding])
 
   return (
     <div className="space-y-1">
@@ -81,32 +71,19 @@ function ChipRow({
             )}
           </button>
         ))}
-        {isAdding ? (
-          <input
-            ref={inputRef}
-            type="text"
-            value={newValue}
-            onChange={(e) => setNewValue(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') handleAdd()
-              if (e.key === 'Escape') {
-                setNewValue('')
-                setIsAdding(false)
-              }
-            }}
-            onBlur={() => setTimeout(handleAdd, 100)}
-            placeholder="Add..."
-            className="h-5 w-24 px-1.5 text-xs border border-primary/50 rounded-full bg-background outline-none focus:border-primary"
-          />
-        ) : (
-          <button
-            type="button"
-            className="inline-flex items-center justify-center h-5 w-5 rounded-full border border-dashed border-muted-foreground/50 text-muted-foreground hover:border-primary hover:text-primary transition-colors"
-            onClick={() => setIsAdding(true)}
-          >
-            <Plus className="h-3 w-3" />
-          </button>
-        )}
+        <input
+          type="text"
+          value={newValue}
+          onChange={(e) => setNewValue(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              e.preventDefault()
+              handleAdd()
+            }
+          }}
+          placeholder="Add..."
+          className="h-5 w-20 px-1.5 text-xs border border-dashed border-muted-foreground/30 rounded-full bg-transparent outline-none focus:border-primary focus:w-28 transition-all placeholder:text-muted-foreground/40"
+        />
       </div>
     </div>
   )
