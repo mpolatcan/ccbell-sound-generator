@@ -285,6 +285,17 @@ class AudioService:
                 {"prompt": job.request.prompt, "seconds_start": 0, "seconds_total": duration}
             ]
 
+            # Negative conditioning for better quality (only effective when cfg_scale > 1.0).
+            # Note: Small model default cfg_scale=1.0 disables classifier-free guidance,
+            # so this negative prompt has no effect for the small model.
+            negative_conditioning = [
+                {
+                    "prompt": "low quality, noise, distortion, clipping, reverb, echo, background noise, hiss",
+                    "seconds_start": 0,
+                    "seconds_total": duration,
+                }
+            ]
+
             # Generate audio with progress reporting
             # Run generation in executor to not block event loop
             loop = asyncio.get_running_loop()
@@ -338,6 +349,7 @@ class AudioService:
                         steps=steps,
                         cfg_scale=cfg_scale,
                         conditioning=conditioning,  # type: ignore[arg-type]
+                        negative_conditioning=negative_conditioning,  # type: ignore[arg-type]
                         sample_size=sample_size,
                         sigma_min=sigma_min,
                         sigma_max=sigma_max,

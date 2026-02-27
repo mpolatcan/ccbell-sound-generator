@@ -314,7 +314,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
           </div>
         </CardHeader>
         <CardContent>
-          <ScrollArea className="h-[500px] pr-4">
+          <ScrollArea className="max-h-[600px] pr-4">
             <div className="space-y-4">
               {packs.map((pack) => {
                 const packSounds = getSoundsForPack(pack.id)

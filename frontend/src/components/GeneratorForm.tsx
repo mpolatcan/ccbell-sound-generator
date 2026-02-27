@@ -18,7 +18,6 @@ import {
 } from '@/components/ui/select'
 import { ThemeSelector } from './ThemeSelector'
 import { HookSelector } from './HookSelector'
-import { AdvancedSettings } from './AdvancedSettings'
 import { ModelLoadingIndicator } from './ModelLoadingIndicator'
 import { useGenerationQueue } from '@/hooks/useGenerationQueue'
 import { useSoundLibrary } from '@/hooks/useSoundLibrary'
@@ -32,7 +31,16 @@ export interface GeneratorFormRef {
   generate: () => void
 }
 
-export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm(_, ref) {
+interface GeneratorFormProps {
+  selectedModel: 'small' | '1.0'
+  onModelChange: (model: 'small' | '1.0') => void
+  advancedSettings: GenerationSettings
+}
+
+export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(function GeneratorForm(
+  { selectedModel, onModelChange, advancedSettings },
+  ref
+) {
   // Fetch data
   const { data: themes = [], isLoading: themesLoading, isError: themesError, refetch: refetchThemes } = useQuery({
     queryKey: ['themes'],
@@ -62,12 +70,10 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
   }
 
   // Form state
-  const [selectedModel, setSelectedModel] = useState<'small' | '1.0'>('small')
   const [selectedTheme, setSelectedTheme] = useState('sci-fi')
-  const [selectedHooks, setSelectedHooks] = useState<HookTypeId[]>(['Notification'])
+  const [selectedHooks, setSelectedHooks] = useState<HookTypeId[]>(['Stop'])
   const [customPrompt, setCustomPrompt] = useState('')
   const [duration, setDuration] = useState(DEFAULT_DURATION)
-  const [advancedSettings, setAdvancedSettings] = useState<GenerationSettings>({})
   const [packName, setPackName] = useState('')
   const [selectedPackId, setSelectedPackId] = useState<string | null>(null)
 
@@ -199,7 +205,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
           Create AI-powered notification sounds for Claude Code
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-4">
         {/* API Error State */}
         {hasApiError && (
           <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg">
@@ -224,101 +230,84 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
           </div>
         )}
 
-        {/* Sound Pack Selection */}
-        <div className="space-y-2">
-          <Label className="flex items-center gap-2">
-            <Package className="h-4 w-4" />
-            Sound Pack
-          </Label>
-          <Select
-            value={selectedPackId || 'new'}
-            onValueChange={(v) => setSelectedPackId(v === 'new' ? null : v)}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Create New Pack" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="new">
-                <div className="flex items-center gap-2">
-                  <Plus className="h-4 w-4" />
-                  <span>Create New Pack</span>
-                </div>
-              </SelectItem>
-              {packs.length > 0 && (
-                <>
-                  <SelectSeparator />
-                  {packs.map((pack) => (
-                    <SelectItem key={pack.id} value={pack.id}>
-                      <div className="flex items-center gap-2">
-                        <Package className="h-4 w-4" />
-                        <span>{pack.name}</span>
-                        <span className="text-muted-foreground">
-                          ({getSoundsByPack(pack.id).length} sounds)
-                        </span>
-                      </div>
-                    </SelectItem>
-                  ))}
-                </>
-              )}
-            </SelectContent>
-          </Select>
-          {/* Pack name input - only shown when creating new pack */}
-          {selectedPackId === null && (
-            <div className="space-y-1">
-              <Input
-                placeholder={getDefaultPackName()}
-                value={packName}
-                onChange={(e) => setPackName(e.target.value)}
-              />
-              <p className="text-xs text-muted-foreground">
-                Leave empty to auto-generate name from theme
-              </p>
-            </div>
-          )}
-        </div>
-
-        {/* Model Selection */}
-        <div className="space-y-2">
-          <Label>Model</Label>
-          {modelsLoading ? (
-            <Skeleton className="h-10 w-full" />
-          ) : (
-            <Select value={selectedModel} onValueChange={(v) => setSelectedModel(v as 'small' | '1.0')}>
+        {/* Row 1: Sound Pack + Hook Types side-by-side */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Sound Pack Selection */}
+          <div className="space-y-2">
+            <Label className="flex items-center gap-2">
+              <Package className="h-4 w-4" />
+              Sound Pack
+            </Label>
+            <Select
+              value={selectedPackId || 'new'}
+              onValueChange={(v) => setSelectedPackId(v === 'new' ? null : v)}
+            >
               <SelectTrigger>
-                <SelectValue />
+                <SelectValue placeholder="Create New Pack" />
               </SelectTrigger>
               <SelectContent>
-                {models.map((model) => (
-                  <SelectItem key={model.id} value={model.id}>
-                    <div className="flex flex-col">
-                      <span>{model.name}</span>
-                      <span className="text-xs text-muted-foreground">
-                        {model.parameters} · Max {model.max_duration}s
-                      </span>
-                    </div>
-                  </SelectItem>
-                ))}
+                <SelectItem value="new">
+                  <div className="flex items-center gap-2">
+                    <Plus className="h-4 w-4" />
+                    <span>Create New Pack</span>
+                  </div>
+                </SelectItem>
+                {packs.length > 0 && (
+                  <>
+                    <SelectSeparator />
+                    {packs.map((pack) => (
+                      <SelectItem key={pack.id} value={pack.id}>
+                        <div className="flex items-center gap-2">
+                          <Package className="h-4 w-4" />
+                          <span>{pack.name}</span>
+                          <span className="text-muted-foreground">
+                            ({getSoundsByPack(pack.id).length} sounds)
+                          </span>
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </>
+                )}
               </SelectContent>
             </Select>
-          )}
-          {/* Model Loading Status */}
-          <ModelLoadingIndicator
-            status={modelStatus.status}
-            progress={modelStatus.progress}
-            stage={modelStatus.stage}
-            error={modelStatus.error}
-            modelName={models.find(m => m.id === selectedModel)?.name || selectedModel}
-            onRetry={modelStatus.loadModel}
-          />
+          </div>
+
+          {/* Hook Types */}
+          <div className="space-y-2">
+            <Label>Hook Types</Label>
+            {hooksLoading ? (
+              <Skeleton className="h-10 w-full" />
+            ) : (
+              <HookSelector
+                hooks={hooks}
+                selectedHooks={selectedHooks}
+                onSelect={setSelectedHooks}
+              />
+            )}
+          </div>
         </div>
 
-        {/* Theme Selection */}
+        {/* Pack name input - full width below, only when creating new pack */}
+        {selectedPackId === null && (
+          <div className="space-y-1">
+            <Input
+              placeholder={getDefaultPackName()}
+              value={packName}
+              onChange={(e) => setPackName(e.target.value)}
+            />
+            <p className="text-xs text-muted-foreground">
+              Leave empty to auto-generate name from theme
+            </p>
+          </div>
+        )}
+
+        {/* Row 2: Theme Selection (pills) */}
         <div className="space-y-2">
           <Label>Theme</Label>
           {themesLoading ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+            <div className="flex flex-wrap gap-2">
               {[...Array(6)].map((_, i) => (
-                <Skeleton key={i} className="h-24 w-full" />
+                <Skeleton key={i} className="h-8 w-24 rounded-full" />
               ))}
             </div>
           ) : (
@@ -345,53 +334,71 @@ export const GeneratorForm = forwardRef<GeneratorFormRef>(function GeneratorForm
 
         {/* Preview Prompt */}
         {selectedTheme !== 'custom' && currentPrompt && (
-          <div className="space-y-2">
-            <Label className="text-muted-foreground">Generated Prompt</Label>
-            <p className="text-sm bg-muted/50 p-3 rounded-md">
+          <div className="space-y-1">
+            <Label className="text-muted-foreground text-xs">Generated Prompt</Label>
+            <p className="text-xs bg-muted/50 py-2 px-3 rounded-md">
               {currentPrompt}
             </p>
           </div>
         )}
 
-        {/* Hook Type */}
-        <div className="space-y-2">
-          <Label>Hook Types</Label>
-          {hooksLoading ? (
-            <Skeleton className="h-10 w-full" />
-          ) : (
-            <HookSelector
-              hooks={hooks}
-              selectedHooks={selectedHooks}
-              onSelect={setSelectedHooks}
-            />
-          )}
-        </div>
-
-        {/* Duration */}
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <Label>Duration</Label>
-            <span className="text-sm text-muted-foreground">
-              {formatDuration(duration)}
-            </span>
+        {/* Row 3: Model + Duration side-by-side */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Model Selection */}
+          <div className="space-y-2">
+            <Label>Model</Label>
+            {modelsLoading ? (
+              <Skeleton className="h-10 w-full" />
+            ) : (
+              <Select value={selectedModel} onValueChange={(v) => onModelChange(v as 'small' | '1.0')}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {models.map((model) => (
+                    <SelectItem key={model.id} value={model.id}>
+                      <div className="flex flex-col">
+                        <span>{model.name}</span>
+                        <span className="text-xs text-muted-foreground">
+                          {model.parameters} · Max {model.max_duration}s
+                        </span>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
           </div>
-          <Slider
-            value={[duration]}
-            onValueChange={(v) => setDuration(v[0])}
-            min={0.5}
-            max={maxDuration}
-            step={0.5}
-          />
-          <p className="text-xs text-muted-foreground">
-            Max {maxDuration}s for {selectedModel === 'small' ? 'Small' : '1.0'} model
-          </p>
+
+          {/* Duration */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <Label>Duration</Label>
+              <span className="text-sm text-muted-foreground">
+                {formatDuration(duration)}
+              </span>
+            </div>
+            <Slider
+              value={[duration]}
+              onValueChange={(v) => setDuration(v[0])}
+              min={0.5}
+              max={maxDuration}
+              step={0.5}
+            />
+            <p className="text-xs text-muted-foreground">
+              Max {maxDuration}s for {selectedModel === 'small' ? 'Small' : '1.0'} model
+            </p>
+          </div>
         </div>
 
-        {/* Advanced Settings */}
-        <AdvancedSettings
-          model={selectedModel}
-          settings={advancedSettings}
-          onChange={setAdvancedSettings}
+        {/* Model Loading Status - full width below */}
+        <ModelLoadingIndicator
+          status={modelStatus.status}
+          progress={modelStatus.progress}
+          stage={modelStatus.stage}
+          error={modelStatus.error}
+          modelName={models.find(m => m.id === selectedModel)?.name || selectedModel}
+          onRetry={modelStatus.loadModel}
         />
 
         {/* Generate Button */}

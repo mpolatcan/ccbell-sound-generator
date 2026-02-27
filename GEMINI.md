@@ -261,27 +261,25 @@ Sound library state is managed with Zustand (`useSoundLibrary` hook):
 
 ## Claude Code Hook Types
 
-The app generates sounds for these Claude Code events (used by the ccbell plugin):
+The app generates sounds for these Claude Code hook events (10 types, aligned with official Claude Code hooks):
 
-**Core Events:**
-- **PreToolUse** - Before tool execution
-- **PostToolUse** - After tool completion
-- **Notification** - General notifications
-- **Stop** - Main agent completion
-- **SubagentStop** - Subagent completion
+**Core Events (currently supported in ccbell binary):**
+- **Stop** (`stop`) - Main agent has finished its task
+- **SubagentStop** (`subagent`) - A subagent has finished its task
+- **PermissionPrompt** (`permission_prompt`) - Tool needs user permission to proceed
+- **IdlePrompt** (`idle_prompt`) - Agent is idle and waiting for user input
 
-**Tool-specific:**
-- **Bash** - Terminal/shell command execution
-- **Read** - File read operation
-- **Write** - File write/create operation
-- **Edit** - File edit operation
-- **Task** - New agent or task spawned
+**Session Lifecycle:**
+- **SessionStart** (`session_start`) - A new Claude Code session has started
+- **SessionEnd** (`session_end`) - Claude Code session has ended
 
-**Status Events:**
-- **Error** - Error or failure occurred
-- **Success** - Operation completed successfully
-- **Warning** - Warning or caution indicator
-- **Progress** - Task progress milestone
+**Tool Lifecycle:**
+- **PreToolUse** (`pre_tool_use`) - Before a tool call executes
+- **PostToolUse** (`post_tool_use`) - After a tool completes execution
+
+**Agent Events:**
+- **SubagentStart** (`subagent_start`) - A new subagent has been spawned
+- **UserPromptSubmit** (`user_prompt_submit`) - User has submitted a new prompt
 
 ## Theme Presets
 

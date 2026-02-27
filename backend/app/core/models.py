@@ -6,20 +6,16 @@ from pydantic import BaseModel, Field
 
 # Valid Claude Code hook types
 HookTypeId = Literal[
-    "PreToolUse",
-    "PostToolUse",
-    "Notification",
     "Stop",
     "SubagentStop",
-    "Bash",
-    "Read",
-    "Write",
-    "Edit",
-    "Task",
-    "Error",
-    "Success",
-    "Warning",
-    "Progress",
+    "PermissionPrompt",
+    "IdlePrompt",
+    "SessionStart",
+    "SessionEnd",
+    "PreToolUse",
+    "PostToolUse",
+    "SubagentStart",
+    "UserPromptSubmit",
 ]
 
 # Valid sampler types supported by stable-audio-tools

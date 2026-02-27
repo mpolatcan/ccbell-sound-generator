@@ -20,20 +20,16 @@ export interface ThemePreset {
 
 // Valid Claude Code hook type IDs
 export type HookTypeId =
-  | 'PreToolUse'
-  | 'PostToolUse'
-  | 'Notification'
   | 'Stop'
   | 'SubagentStop'
-  | 'Bash'
-  | 'Read'
-  | 'Write'
-  | 'Edit'
-  | 'Task'
-  | 'Error'
-  | 'Success'
-  | 'Warning'
-  | 'Progress'
+  | 'PermissionPrompt'
+  | 'IdlePrompt'
+  | 'SessionStart'
+  | 'SessionEnd'
+  | 'PreToolUse'
+  | 'PostToolUse'
+  | 'SubagentStart'
+  | 'UserPromptSubmit'
 
 export interface HookType {
   id: HookTypeId
@@ -165,20 +161,16 @@ export interface SoundLibraryState {
 
 // Maps generator hook type IDs to ccbell plugin event names.
 export const HOOK_TO_EVENT_MAP: Record<HookTypeId, string> = {
-  PreToolUse: 'pre_tool_use',
-  PostToolUse: 'post_tool_use',
-  Notification: 'notification',
   Stop: 'stop',
   SubagentStop: 'subagent',
-  Bash: 'bash',
-  Read: 'read',
-  Write: 'write',
-  Edit: 'edit',
-  Task: 'task',
-  Error: 'error',
-  Success: 'success',
-  Warning: 'warning',
-  Progress: 'progress',
+  PermissionPrompt: 'permission_prompt',
+  IdlePrompt: 'idle_prompt',
+  SessionStart: 'session_start',
+  SessionEnd: 'session_end',
+  PreToolUse: 'pre_tool_use',
+  PostToolUse: 'post_tool_use',
+  SubagentStart: 'subagent_start',
+  UserPromptSubmit: 'user_prompt_submit',
 }
 
 // Data passed from SoundLibrary to PublishDialog.

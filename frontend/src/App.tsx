@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { GeneratorForm, GeneratorFormRef } from '@/components/GeneratorForm'
+import { AdvancedSettings } from '@/components/AdvancedSettings'
 import { SoundLibrary, SoundLibraryRef } from '@/components/SoundLibrary'
 import { PublishDialog } from '@/components/PublishDialog'
 import { KeyboardShortcutsHelp } from '@/components/KeyboardShortcutsHelp'
@@ -9,7 +10,7 @@ import { Bell, Github, ExternalLink, Keyboard } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts'
 import { toast } from '@/hooks/useToast'
-import type { PublishPackData } from '@/types'
+import type { PublishPackData, GenerationSettings } from '@/types'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,6 +25,8 @@ function AppContent() {
   const [publishDialogOpen, setPublishDialogOpen] = useState(false)
   const [packDataToPublish, setPackDataToPublish] = useState<PublishPackData | null>(null)
   const [shortcutsHelpOpen, setShortcutsHelpOpen] = useState(false)
+  const [selectedModel, setSelectedModel] = useState<'small' | '1.0'>('small')
+  const [advancedSettings, setAdvancedSettings] = useState<GenerationSettings>({})
 
   const generatorFormRef = useRef<GeneratorFormRef>(null)
   const soundLibraryRef = useRef<SoundLibraryRef>(null)
@@ -127,21 +130,27 @@ function AppContent() {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Generator Form */}
-          <div>
-            <GeneratorForm ref={generatorFormRef} />
-          </div>
-
-          {/* Sound Library */}
-          <div>
-            <SoundLibrary
-              ref={soundLibraryRef}
-              onSelectForPublish={handleSelectForPublish}
-            />
-          </div>
+      <main className="container mx-auto px-4 py-8 space-y-6">
+        {/* Row 1: Generator Form + Advanced Settings */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <GeneratorForm
+            ref={generatorFormRef}
+            selectedModel={selectedModel}
+            onModelChange={setSelectedModel}
+            advancedSettings={advancedSettings}
+          />
+          <AdvancedSettings
+            model={selectedModel}
+            settings={advancedSettings}
+            onChange={setAdvancedSettings}
+          />
         </div>
+
+        {/* Row 2: Sound Library (full width) */}
+        <SoundLibrary
+          ref={soundLibraryRef}
+          onSelectForPublish={handleSelectForPublish}
+        />
       </main>
 
       {/* Footer */}
