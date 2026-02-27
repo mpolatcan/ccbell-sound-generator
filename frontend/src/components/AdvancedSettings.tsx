@@ -55,8 +55,8 @@ const PRESETS = {
     description: 'Higher quality, longer generation time',
     icon: Gem,
     settings: {
-      small: { steps: 12, cfg_scale: 1.5, sampler: 'pingpong' },
-      '1.0': { steps: 150, cfg_scale: 9.0, sampler: 'dpmpp-3m-sde' }
+      small: { steps: 12, cfg_scale: 2.0, sampler: 'pingpong' },
+      '1.0': { steps: 150, cfg_scale: 8.0, sampler: 'dpmpp-3m-sde' }
     }
   }
 } as const

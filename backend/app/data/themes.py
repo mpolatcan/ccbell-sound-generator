@@ -25,7 +25,7 @@ THEME_PRESETS: list[ThemePreset] = [
                 instruments=[
                     "digital synthesizer",
                     "electronic oscillator",
-                    "laser resonator",
+                    "frequency modulation pad",
                     "modular synth pad",
                 ],
                 mood=["technological", "clean", "precise", "immersive"],
@@ -105,20 +105,20 @@ THEME_PRESETS: list[ThemePreset] = [
         prompt_components=TieredPromptComponents(
             simple=PromptComponents(
                 style=["minimal", "clean"],
-                instruments=["sine wave tone"],
+                instruments=["pure melodic tone"],
                 mood=["subtle"],
                 quality=["44.1kHz", "stereo"],
             ),
             standard=PromptComponents(
                 style=["minimal", "clean", "modern"],
-                instruments=["sine wave tone", "clean bell", "soft piano note"],
+                instruments=["pure melodic tone", "clean bell", "soft piano note"],
                 mood=["subtle", "refined", "understated"],
                 quality=["44.1kHz", "stereo", "high-quality"],
             ),
             detailed=PromptComponents(
                 style=["minimal", "clean", "modern", "professional", "elegant"],
                 instruments=[
-                    "sine wave tone",
+                    "pure melodic tone",
                     "clean bell",
                     "soft piano note",
                     "glass chime",
@@ -143,7 +143,7 @@ THEME_PRESETS: list[ThemePreset] = [
             ),
             standard=PromptComponents(
                 style=["mechanical", "industrial", "metallic"],
-                instruments=["metal percussion", "gear click", "pneumatic valve"],
+                instruments=["metal percussion", "anvil strike", "metal clink"],
                 mood=["precise", "robust", "utilitarian"],
                 quality=["44.1kHz", "stereo", "high-quality"],
             ),
@@ -157,10 +157,10 @@ THEME_PRESETS: list[ThemePreset] = [
                 ],
                 instruments=[
                     "metal percussion",
-                    "gear click",
-                    "pneumatic valve",
+                    "anvil strike",
+                    "metal clink",
                     "steel resonator",
-                    "hydraulic press",
+                    "spring resonance",
                 ],
                 mood=["precise", "robust", "utilitarian", "sharp", "powerful"],
                 quality=["44.1kHz", "stereo", "high-quality", "crisp", "impactful"],
