@@ -8,7 +8,7 @@ app_port: 7860
 pinned: false
 license: mit
 suggested_hardware: cpu-basic
-short_description: Generate custom notification sounds instantly
+short_description: Generate notification sound packs for Claude Code ccbell plugin
 ---
 
 <!-- deploy-version: will be updated by CI -->
