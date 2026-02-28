@@ -261,14 +261,6 @@ THEME_PRESETS: list[ThemePreset] = [
 ]
 
 
-def get_theme_by_id(theme_id: str) -> ThemePreset | None:
-    """Get a theme preset by its ID."""
-    for theme in THEME_PRESETS:
-        if theme.id == theme_id:
-            return theme
-    return None
-
-
 def get_all_themes() -> list[ThemePreset]:
     """Get all theme presets."""
     return THEME_PRESETS

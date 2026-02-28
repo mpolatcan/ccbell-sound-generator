@@ -10,6 +10,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
+import { Input } from '@/components/ui/input'
 import { api } from '@/lib/api'
 import { toast } from '@/hooks/useToast'
 import { Loader2, Github, ExternalLink } from 'lucide-react'
@@ -32,6 +33,9 @@ function slugify(name: string): string {
 export function PublishDialog({ open, onOpenChange, packData }: PublishDialogProps) {
   const [isPublishing, setIsPublishing] = useState(false)
   const [releaseUrl, setReleaseUrl] = useState<string | null>(null)
+  const [packDescription, setPackDescription] = useState('')
+  const [packAuthor, setPackAuthor] = useState('ccbell-sound-generator')
+  const [packVersion, setPackVersion] = useState('1.0.0')
   const packId = packData ? slugify(packData.packName) : ''
 
   // Build event mapping from sounds
@@ -53,9 +57,9 @@ export function PublishDialog({ open, onOpenChange, packData }: PublishDialogPro
       const response = await api.publishRelease({
         pack_id: packId,
         pack_name: packData.packName,
-        pack_description: '',
-        pack_author: 'ccbell-sound-generator',
-        pack_version: '1.0.0',
+        pack_description: packDescription,
+        pack_author: packAuthor,
+        pack_version: packVersion,
         sound_files: packData.sounds.map((s) => s.job_id)
       })
 
@@ -83,6 +87,9 @@ export function PublishDialog({ open, onOpenChange, packData }: PublishDialogPro
     onOpenChange(false)
     setTimeout(() => {
       setReleaseUrl(null)
+      setPackDescription('')
+      setPackAuthor('ccbell-sound-generator')
+      setPackVersion('1.0.0')
     }, 300)
   }
 
@@ -130,6 +137,36 @@ export function PublishDialog({ open, onOpenChange, packData }: PublishDialogPro
           </div>
         ) : (
           <div>
+            {/* Pack Metadata */}
+            <div className="space-y-3 py-2">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1">
+                  <label className="text-xs font-medium text-muted-foreground">Author</label>
+                  <Input
+                    value={packAuthor}
+                    onChange={(e) => setPackAuthor(e.target.value)}
+                    placeholder="ccbell-sound-generator"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-xs font-medium text-muted-foreground">Version</label>
+                  <Input
+                    value={packVersion}
+                    onChange={(e) => setPackVersion(e.target.value)}
+                    placeholder="1.0.0"
+                  />
+                </div>
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-muted-foreground">Description</label>
+                <Input
+                  value={packDescription}
+                  onChange={(e) => setPackDescription(e.target.value)}
+                  placeholder="AI-generated notification sounds for Claude Code"
+                />
+              </div>
+            </div>
+
             {/* Event Mapping Preview */}
             {eventMapping.length > 0 && (
               <div className="space-y-2 py-4">

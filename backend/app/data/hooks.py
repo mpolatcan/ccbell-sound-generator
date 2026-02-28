@@ -188,14 +188,6 @@ HOOK_TYPES: list[HookType] = [
 ]
 
 
-def get_hook_by_id(hook_id: str) -> HookType | None:
-    """Get a hook type by its ID."""
-    for hook in HOOK_TYPES:
-        if hook.id == hook_id:
-            return hook
-    return None
-
-
 def get_all_hooks() -> list[HookType]:
     """Get all hook types."""
     return HOOK_TYPES
