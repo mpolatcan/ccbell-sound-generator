@@ -1,9 +1,12 @@
 import { useMemo } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { api } from '@/lib/api'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Slider } from '@/components/ui/slider'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { Skeleton } from '@/components/ui/skeleton'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import {
   Select,
@@ -18,13 +21,17 @@ import {
   TooltipProvider,
   TooltipTrigger
 } from '@/components/ui/tooltip'
+import { ModelLoadingIndicator } from './ModelLoadingIndicator'
 import { getSamplersForModel, MODEL_DEFAULTS } from '@/lib/constants'
 import { cn } from '@/lib/utils'
-import { Info, Zap, Gem, Scale, RotateCcw, SlidersHorizontal } from 'lucide-react'
+import { Info, Zap, Gem, Scale, RotateCcw, Cpu } from 'lucide-react'
 import type { GenerationSettings } from '@/types'
+import type { UseModelStatusReturn } from '@/hooks/useModelStatus'
 
-interface AdvancedSettingsProps {
+interface ModelSettingsProps {
   model: 'small' | '1.0'
+  onModelChange: (model: 'small' | '1.0') => void
+  modelStatus: UseModelStatusReturn
   settings: GenerationSettings
   onChange: (settings: GenerationSettings) => void
 }
@@ -62,8 +69,14 @@ const PRESETS = {
 } as const
 
 
-export function AdvancedSettings({ model, settings, onChange }: AdvancedSettingsProps) {
+export function ModelSettings({ model, onModelChange, modelStatus, settings, onChange }: ModelSettingsProps) {
   const defaults = MODEL_DEFAULTS[model]
+
+  const { data: models = [], isLoading: modelsLoading } = useQuery({
+    queryKey: ['models'],
+    queryFn: api.getModels,
+    retry: 2
+  })
 
   const handleStepsChange = (value: number[]) => {
     onChange({ ...settings, steps: value[0] })
@@ -126,10 +139,10 @@ export function AdvancedSettings({ model, settings, onChange }: AdvancedSettings
           <div className="flex items-center justify-between">
             <div>
               <CardTitle className="flex items-center gap-2">
-                <SlidersHorizontal className="h-5 w-5 text-primary" />
-                Advanced Settings
+                <Cpu className="h-5 w-5 text-primary" />
+                Model Settings
               </CardTitle>
-              <CardDescription>Fine-tune audio generation parameters</CardDescription>
+              <CardDescription>Select model and fine-tune generation parameters</CardDescription>
             </div>
             <Button
               variant="ghost"
@@ -143,6 +156,42 @@ export function AdvancedSettings({ model, settings, onChange }: AdvancedSettings
           </div>
         </CardHeader>
         <CardContent className="space-y-4">
+          {/* Model Selection */}
+          <div className="space-y-2">
+            <Label>Model</Label>
+            {modelsLoading ? (
+              <Skeleton className="h-10 w-full" />
+            ) : (
+              <Select value={model} onValueChange={(v) => onModelChange(v as 'small' | '1.0')}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {models.map((m) => (
+                    <SelectItem key={m.id} value={m.id}>
+                      <div className="flex flex-col">
+                        <span>{m.name}</span>
+                        <span className="text-xs text-muted-foreground">
+                          {m.parameters} · Max {m.max_duration}s
+                        </span>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
+          </div>
+
+          {/* Model Loading Status */}
+          <ModelLoadingIndicator
+            status={modelStatus.status}
+            progress={modelStatus.progress}
+            stage={modelStatus.stage}
+            error={modelStatus.error}
+            modelName={models.find(m => m.id === model)?.name || model}
+            onRetry={modelStatus.loadModel}
+          />
+
           {/* Presets */}
           <div className="space-y-2">
             <Label className="flex items-center gap-2">

@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { GeneratorForm, GeneratorFormRef } from '@/components/GeneratorForm'
-import { AdvancedSettings } from '@/components/AdvancedSettings'
+import { ModelSettings } from '@/components/ModelSettings'
 import { SoundLibrary, SoundLibraryRef } from '@/components/SoundLibrary'
 import { PublishDialog } from '@/components/PublishDialog'
 import { KeyboardShortcutsHelp } from '@/components/KeyboardShortcutsHelp'
@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button'
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts'
 import { toast } from '@/hooks/useToast'
 import { api } from '@/lib/api'
+import { useModelStatus } from '@/hooks/useModelStatus'
 import type { PublishPackData, GenerationSettings } from '@/types'
 
 const queryClient = new QueryClient({
@@ -29,6 +30,11 @@ function AppContent() {
   const [shortcutsHelpOpen, setShortcutsHelpOpen] = useState(false)
   const [selectedModel, setSelectedModel] = useState<'small' | '1.0'>('small')
   const [advancedSettings, setAdvancedSettings] = useState<GenerationSettings>({})
+  const modelStatus = useModelStatus({
+    modelId: selectedModel,
+    pollInterval: 2000,
+    autoLoad: true
+  })
 
   useEffect(() => {
     api.getHealth().then((health) => {
@@ -139,16 +145,18 @@ function AppContent() {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8 space-y-6">
-        {/* Row 1: Generator Form + Advanced Settings */}
+        {/* Row 1: Generator Form + Model Settings */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <GeneratorForm
             ref={generatorFormRef}
             selectedModel={selectedModel}
-            onModelChange={setSelectedModel}
             advancedSettings={advancedSettings}
+            modelReady={modelStatus.isReady}
           />
-          <AdvancedSettings
+          <ModelSettings
             model={selectedModel}
+            onModelChange={setSelectedModel}
+            modelStatus={modelStatus}
             settings={advancedSettings}
             onChange={setAdvancedSettings}
           />

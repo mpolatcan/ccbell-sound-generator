@@ -19,11 +19,9 @@ import {
 import { ThemeSelector } from './ThemeSelector'
 import { HookSelector } from './HookSelector'
 import { PromptComponentsEditor } from './PromptComponentsEditor'
-import { ModelLoadingIndicator } from './ModelLoadingIndicator'
 import { useGenerationQueue } from '@/hooks/useGenerationQueue'
 import { useShallow } from 'zustand/react/shallow'
 import { useSoundLibrary } from '@/hooks/useSoundLibrary'
-import { useModelStatus } from '@/hooks/useModelStatus'
 import { MODEL_DEFAULTS, DEFAULT_DURATION } from '@/lib/constants'
 import { formatDuration } from '@/lib/utils'
 import { Sparkles, RefreshCw, AlertCircle, Package, ListOrdered, Plus } from 'lucide-react'
@@ -36,12 +34,12 @@ export interface GeneratorFormRef {
 
 interface GeneratorFormProps {
   selectedModel: 'small' | '1.0'
-  onModelChange: (model: 'small' | '1.0') => void
   advancedSettings: GenerationSettings
+  modelReady: boolean
 }
 
 export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(function GeneratorForm(
-  { selectedModel, onModelChange, advancedSettings },
+  { selectedModel, advancedSettings, modelReady },
   ref
 ) {
   // Fetch data
@@ -57,19 +55,12 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
     retry: 2
   })
 
-  const { data: models = [], isLoading: modelsLoading, isError: modelsError, refetch: refetchModels } = useQuery({
-    queryKey: ['models'],
-    queryFn: api.getModels,
-    retry: 2
-  })
-
-  const isLoading = themesLoading || hooksLoading || modelsLoading
-  const hasApiError = themesError || hooksError || modelsError
+  const isLoading = themesLoading || hooksLoading
+  const hasApiError = themesError || hooksError
 
   const handleRetryAll = () => {
     refetchThemes()
     refetchHooks()
-    refetchModels()
   }
 
   // Form state
@@ -103,13 +94,6 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
       getSoundsByPack: s.getSoundsByPack,
     }))
   )
-
-  // Model loading status
-  const modelStatus = useModelStatus({
-    modelId: selectedModel,
-    pollInterval: 2000,
-    autoLoad: true
-  })
 
   // Get max duration for selected model
   const maxDuration = MODEL_DEFAULTS[selectedModel].max_duration
@@ -438,64 +422,25 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
           </div>
         )}
 
-        {/* Row 3: Model + Duration side-by-side */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {/* Model Selection */}
-          <div className="space-y-2">
-            <Label>Model</Label>
-            {modelsLoading ? (
-              <Skeleton className="h-10 w-full" />
-            ) : (
-              <Select value={selectedModel} onValueChange={(v) => onModelChange(v as 'small' | '1.0')}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {models.map((model) => (
-                    <SelectItem key={model.id} value={model.id}>
-                      <div className="flex flex-col">
-                        <span>{model.name}</span>
-                        <span className="text-xs text-muted-foreground">
-                          {model.parameters} · Max {model.max_duration}s
-                        </span>
-                      </div>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            )}
+        {/* Duration */}
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <Label>Duration</Label>
+            <span className="text-sm text-muted-foreground">
+              {formatDuration(duration)}
+            </span>
           </div>
-
-          {/* Duration */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <Label>Duration</Label>
-              <span className="text-sm text-muted-foreground">
-                {formatDuration(duration)}
-              </span>
-            </div>
-            <Slider
-              value={[duration]}
-              onValueChange={(v) => setDuration(v[0])}
-              min={0.5}
-              max={maxDuration}
-              step={0.5}
-            />
-            <p className="text-xs text-muted-foreground">
-              Max {maxDuration}s for {selectedModel === 'small' ? 'Small' : '1.0'} model
-            </p>
-          </div>
+          <Slider
+            value={[duration]}
+            onValueChange={(v) => setDuration(v[0])}
+            min={0.5}
+            max={maxDuration}
+            step={0.5}
+          />
+          <p className="text-xs text-muted-foreground">
+            Max {maxDuration}s for {selectedModel === 'small' ? 'Small' : '1.0'} model
+          </p>
         </div>
-
-        {/* Model Loading Status - full width below */}
-        <ModelLoadingIndicator
-          status={modelStatus.status}
-          progress={modelStatus.progress}
-          stage={modelStatus.stage}
-          error={modelStatus.error}
-          modelName={models.find(m => m.id === selectedModel)?.name || selectedModel}
-          onRetry={modelStatus.loadModel}
-        />
 
         {/* Generate Button */}
         <div className="space-y-2">
@@ -503,7 +448,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
             className="w-full"
             size="lg"
             onClick={handleGenerate}
-            disabled={isLoading || hasApiError || selectedHooks.length === 0 || !currentPrompt.trim() || !modelStatus.isReady}
+            disabled={isLoading || hasApiError || selectedHooks.length === 0 || !currentPrompt.trim() || !modelReady}
           >
             <Sparkles className="h-4 w-4 mr-2" />
             Generate {selectedHooks.length > 1 ? `${selectedHooks.length} Sounds` : 'Sound'}

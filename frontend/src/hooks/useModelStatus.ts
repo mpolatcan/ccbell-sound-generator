@@ -8,7 +8,7 @@ interface UseModelStatusOptions {
   autoLoad?: boolean
 }
 
-interface UseModelStatusReturn {
+export interface UseModelStatusReturn {
   status: ModelLoadingStatusType
   progress: number
   stage: string | null
