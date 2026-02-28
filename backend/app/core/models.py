@@ -174,6 +174,7 @@ class HealthResponse(BaseModel):
     status: str = "healthy"
     version: str = "1.0.30"
     models_loaded: list[str] = []
+    publish_enabled: bool = False
 
 
 class ModelLoadingStatus(BaseModel):

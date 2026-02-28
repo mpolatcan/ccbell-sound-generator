@@ -65,7 +65,12 @@ async def health_check():
     """Health check endpoint."""
     models = model_loader.loaded_models
     logger.debug(f"Health check: {len(models)} models loaded")
-    return HealthResponse(status="healthy", version=settings.app_version, models_loaded=models)
+    return HealthResponse(
+        status="healthy",
+        version=settings.app_version,
+        models_loaded=models,
+        publish_enabled=bool(settings.github_token),
+    )
 
 
 @router.get("/models", response_model=list[ModelInfo])

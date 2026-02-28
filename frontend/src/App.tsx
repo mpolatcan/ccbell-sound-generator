@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { GeneratorForm, GeneratorFormRef } from '@/components/GeneratorForm'
 import { AdvancedSettings } from '@/components/AdvancedSettings'
@@ -10,6 +10,7 @@ import { Bell, Github, ExternalLink, Keyboard } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts'
 import { toast } from '@/hooks/useToast'
+import { api } from '@/lib/api'
 import type { PublishPackData, GenerationSettings } from '@/types'
 
 const queryClient = new QueryClient({
@@ -24,9 +25,16 @@ const queryClient = new QueryClient({
 function AppContent() {
   const [publishDialogOpen, setPublishDialogOpen] = useState(false)
   const [packDataToPublish, setPackDataToPublish] = useState<PublishPackData | null>(null)
+  const [publishEnabled, setPublishEnabled] = useState(false)
   const [shortcutsHelpOpen, setShortcutsHelpOpen] = useState(false)
   const [selectedModel, setSelectedModel] = useState<'small' | '1.0'>('small')
   const [advancedSettings, setAdvancedSettings] = useState<GenerationSettings>({})
+
+  useEffect(() => {
+    api.getHealth().then((health) => {
+      setPublishEnabled(health.publish_enabled)
+    }).catch(() => {})
+  }, [])
 
   const generatorFormRef = useRef<GeneratorFormRef>(null)
   const soundLibraryRef = useRef<SoundLibraryRef>(null)
@@ -149,7 +157,7 @@ function AppContent() {
         {/* Row 2: Sound Library (full width) */}
         <SoundLibrary
           ref={soundLibraryRef}
-          onSelectForPublish={handleSelectForPublish}
+          onSelectForPublish={publishEnabled ? handleSelectForPublish : undefined}
         />
       </main>
 

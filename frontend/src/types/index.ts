@@ -131,6 +131,7 @@ export interface HealthResponse {
   status: string
   version: string
   models_loaded: string[]
+  publish_enabled: boolean
 }
 
 export type ModelLoadingStatusType = 'idle' | 'loading' | 'ready' | 'error'
