@@ -119,9 +119,7 @@ jobs:
       matrix:
         include:
           - space: ccbell-sound-generator
-            token_secret: HF_TOKEN
           - space: ccbell-sound-generator-admin
-            token_secret: HF_TOKEN_ADMIN
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -158,7 +156,7 @@ jobs:
 
       - name: Push to HuggingFace Spaces (${{ matrix.space }})
         env:
-          HF_TOKEN: ${{ secrets[matrix.token_secret] }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
           HF_USERNAME: ${{ secrets.HF_USERNAME }}
           HF_SPACE: ${{ matrix.space }}
         run: |
