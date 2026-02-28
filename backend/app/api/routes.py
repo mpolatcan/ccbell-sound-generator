@@ -10,6 +10,8 @@ from loguru import logger
 from app.core.config import settings
 from app.core.models import (
     AudioStatusResponse,
+    DownloadPackRequest,
+    DownloadPackResponse,
     GenerateRequest,
     GenerateResponse,
     HealthResponse,
@@ -26,6 +28,7 @@ from app.data.themes import get_all_themes
 from app.services.audio import audio_service
 from app.services.github import github_service
 from app.services.model_loader import model_loader
+from app.services.pack import pack_service
 
 router = APIRouter()
 
@@ -222,3 +225,26 @@ async def delete_audio(job_id: str):
     audio_service.cleanup_job(job_id)
     logger.info(f"Deleted job: {job_id}")
     return {"status": "deleted", "job_id": job_id}
+
+
+@router.post("/packs", response_model=DownloadPackResponse)
+async def create_pack(request: DownloadPackRequest):
+    """Create a downloadable ccbell-compatible sound pack ZIP."""
+    logger.info(f"Pack creation request: '{request.pack_name}' with {len(request.sound_files)} sounds")
+    return await pack_service.create_pack(request)
+
+
+@router.get("/packs/{pack_id}")
+async def download_pack(pack_id: str):
+    """Download a pack ZIP file."""
+    pack_path = pack_service.get_pack_path(pack_id)
+    if not pack_path:
+        logger.warning(f"Pack not found or expired: {pack_id}")
+        raise HTTPException(status_code=404, detail="Pack not found or expired")
+
+    logger.info(f"Downloading pack: {pack_id}")
+    return FileResponse(
+        path=pack_path,
+        media_type="application/zip",
+        filename=f"{pack_id}.zip",
+    )

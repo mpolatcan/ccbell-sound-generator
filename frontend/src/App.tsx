@@ -4,6 +4,7 @@ import { GeneratorForm, GeneratorFormRef } from '@/components/GeneratorForm'
 import { ModelSettings } from '@/components/ModelSettings'
 import { SoundLibrary, SoundLibraryRef } from '@/components/SoundLibrary'
 import { PublishDialog } from '@/components/PublishDialog'
+import { DownloadPackDialog } from '@/components/DownloadPackDialog'
 import { KeyboardShortcutsHelp } from '@/components/KeyboardShortcutsHelp'
 import { Toaster } from '@/components/ui/toaster'
 import { Bell, Github, ExternalLink, Keyboard } from 'lucide-react'
@@ -12,7 +13,7 @@ import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts'
 import { toast } from '@/hooks/useToast'
 import { api } from '@/lib/api'
 import { useModelStatus } from '@/hooks/useModelStatus'
-import type { PublishPackData, GenerationSettings } from '@/types'
+import type { PublishPackData, DownloadPackData, GenerationSettings } from '@/types'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -27,6 +28,8 @@ function AppContent() {
   const [publishDialogOpen, setPublishDialogOpen] = useState(false)
   const [packDataToPublish, setPackDataToPublish] = useState<PublishPackData | null>(null)
   const [publishEnabled, setPublishEnabled] = useState(false)
+  const [downloadDialogOpen, setDownloadDialogOpen] = useState(false)
+  const [packDataToDownload, setPackDataToDownload] = useState<DownloadPackData | null>(null)
   const [shortcutsHelpOpen, setShortcutsHelpOpen] = useState(false)
   const [selectedModel, setSelectedModel] = useState<'small' | '1.0'>('small')
   const [advancedSettings, setAdvancedSettings] = useState<GenerationSettings>({})
@@ -48,6 +51,11 @@ function AppContent() {
   const handleSelectForPublish = (data: PublishPackData) => {
     setPackDataToPublish(data)
     setPublishDialogOpen(true)
+  }
+
+  const handleSelectForDownload = (data: DownloadPackData) => {
+    setPackDataToDownload(data)
+    setDownloadDialogOpen(true)
   }
 
   const handleGenerate = useCallback(() => {
@@ -166,6 +174,7 @@ function AppContent() {
         <SoundLibrary
           ref={soundLibraryRef}
           onSelectForPublish={publishEnabled ? handleSelectForPublish : undefined}
+          onSelectForDownload={handleSelectForDownload}
         />
       </main>
 
@@ -197,6 +206,13 @@ function AppContent() {
           </p>
         </div>
       </footer>
+
+      {/* Download Pack Dialog */}
+      <DownloadPackDialog
+        open={downloadDialogOpen}
+        onOpenChange={setDownloadDialogOpen}
+        packData={packDataToDownload}
+      />
 
       {/* Publish Dialog */}
       <PublishDialog

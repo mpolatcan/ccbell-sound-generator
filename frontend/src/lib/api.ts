@@ -8,6 +8,8 @@ import type {
   AudioStatusResponse,
   PublishRequest,
   PublishResponse,
+  DownloadPackRequest,
+  DownloadPackResponse,
   HealthResponse,
   ModelsStatusResponse,
   ModelLoadingStatus
@@ -119,6 +121,19 @@ class ApiClient {
       throw new Error('Failed to download audio')
     }
     return response.blob()
+  }
+
+  // Create a downloadable pack ZIP
+  createPack = async (request: DownloadPackRequest): Promise<DownloadPackResponse> => {
+    return this.request('/api/packs', {
+      method: 'POST',
+      body: JSON.stringify(request)
+    })
+  }
+
+  // Get pack download URL
+  getPackDownloadUrl = (packId: string): string => {
+    return `${window.location.origin}${this.baseUrl}/api/packs/${packId}`
   }
 }
 

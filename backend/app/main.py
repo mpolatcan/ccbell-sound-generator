@@ -13,6 +13,7 @@ from app.api import routes, websocket
 from app.core.config import settings
 from app.core.logging import setup_logging
 from app.services.audio import audio_service
+from app.services.pack import pack_service
 
 
 @asynccontextmanager
@@ -29,13 +30,15 @@ async def lifespan(app: FastAPI):
     logger.info(f"Models cache directory: {settings.models_cache_dir}")
     logger.info(f"Default model: {settings.default_model}")
 
-    # Start background cleanup task
+    # Start background cleanup tasks
     await audio_service.start_cleanup_task()
+    await pack_service.start_cleanup_task()
 
     yield
 
     # Shutdown
     logger.info("Shutting down...")
+    await pack_service.stop_cleanup_task()
     await audio_service.stop_cleanup_task()
     logger.info("Shutdown complete")
 

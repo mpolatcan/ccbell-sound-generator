@@ -23,7 +23,7 @@ import {
   Music
 } from 'lucide-react'
 import { formatDuration, downloadBlob } from '@/lib/utils'
-import type { SoundPack, GeneratedSound, PublishPackData } from '@/types'
+import type { SoundPack, GeneratedSound, PublishPackData, DownloadPackData } from '@/types'
 import {
   Collapsible,
   CollapsibleContent,
@@ -37,10 +37,11 @@ export interface SoundLibraryRef {
 
 interface SoundLibraryProps {
   onSelectForPublish?: (data: PublishPackData) => void
+  onSelectForDownload?: (data: DownloadPackData) => void
 }
 
 export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
-  function SoundLibrary({ onSelectForPublish }, ref) {
+  function SoundLibrary({ onSelectForPublish, onSelectForDownload }, ref) {
     const { packs, sounds, removePack, renamePack, removeSound, clearAll } = useSoundLibrary(
       useShallow((s) => ({
         packs: s.packs,
@@ -183,6 +184,14 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
         packName: pack.name,
         theme: pack.theme,
         model: pack.model,
+        sounds: packSounds
+      })
+    }
+
+    const handleDownloadPackDialog = (pack: SoundPack) => {
+      const packSounds = soundsByPack.completed.get(pack.id) ?? []
+      onSelectForDownload?.({
+        packName: pack.name,
         sounds: packSounds
       })
     }
@@ -420,9 +429,14 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                               className="h-7 w-7"
                               onClick={(e) => {
                                 e.stopPropagation()
-                                handleDownloadPack(pack)
+                                if (onSelectForDownload) {
+                                  handleDownloadPackDialog(pack)
+                                } else {
+                                  handleDownloadPack(pack)
+                                }
                               }}
                               disabled={isDownloading || completedSounds.length === 0}
+                              title={onSelectForDownload ? 'Download as ccbell pack' : 'Download as ZIP'}
                             >
                               <Archive className="h-3 w-3" />
                             </Button>

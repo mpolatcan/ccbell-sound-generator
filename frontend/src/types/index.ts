@@ -208,6 +208,27 @@ export const HOOK_TO_EVENT_MAP: Record<HookTypeId, string> = {
   UserPromptSubmit: 'user_prompt_submit',
 }
 
+// Pack download types
+export interface DownloadPackRequest {
+  pack_name: string
+  pack_description: string
+  sound_files: string[]
+}
+
+export interface DownloadPackResponse {
+  success: boolean
+  pack_id?: string
+  download_url?: string
+  install_command?: string
+  error?: string
+}
+
+// Data passed from SoundLibrary to DownloadPackDialog.
+export interface DownloadPackData {
+  packName: string
+  sounds: GeneratedSound[]
+}
+
 // Data passed from SoundLibrary to PublishDialog.
 export interface PublishPackData {
   packName: string

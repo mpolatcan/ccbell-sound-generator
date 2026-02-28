@@ -168,6 +168,26 @@ class PublishResponse(BaseModel):
     error: str | None = None
 
 
+class DownloadPackRequest(BaseModel):
+    """Request model for creating a downloadable pack ZIP."""
+
+    pack_name: str = Field(..., min_length=1, description="Display name, e.g. 'Sci-Fi Ambient'")
+    pack_description: str = Field(
+        "AI-generated notification sounds for Claude Code", description="Pack description"
+    )
+    sound_files: list[str] = Field(..., min_length=1, description="List of job IDs to include")
+
+
+class DownloadPackResponse(BaseModel):
+    """Response model for pack creation."""
+
+    success: bool
+    pack_id: str | None = None
+    download_url: str | None = None
+    install_command: str | None = None
+    error: str | None = None
+
+
 class HealthResponse(BaseModel):
     """Health check response."""
 
