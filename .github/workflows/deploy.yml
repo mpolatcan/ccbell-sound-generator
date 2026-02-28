@@ -146,6 +146,11 @@ jobs:
           # Update deploy version marker in README to force HF rebuild
           sed -i "s/<!-- deploy-version: .* -->/<!-- deploy-version: v${VERSION} deployed at ${DEPLOY_TIMESTAMP} -->/" README.md
 
+          # Customize Space title for admin variant
+          if [[ "${{ matrix.space }}" == "ccbell-sound-generator-admin" ]]; then
+            sed -i 's/^title: CCBell Sound Generator$/title: CCBell Sound Generator (Admin)/' README.md
+          fi
+
           # Stage all changes including frontend dist
           git add -f frontend/dist
           git add -f backend/app/core/config.py

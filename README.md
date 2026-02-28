@@ -21,13 +21,13 @@ Generate AI-powered notification sounds for the [Claude Code](https://github.com
 
 - 🎨 **Polished UI** - Modern React interface with shadcn/ui components
 - 🎵 **Waveform Visualization** - Visual audio preview with waveform display
-- 🎭 **Theme Presets** - Sci-Fi, Retro 8-bit, Nature, Minimal, Mechanical
+- 🎭 **Theme Presets** - Sci-Fi, Retro 8-bit, Nature, Minimal, Mechanical, Ambient, Jazz, Custom
 - 🔔 **All Hook Types** - Generate sounds for all Claude Code events
 - 📦 **Sound Packs** - Organize sounds in named packs; add to existing packs or create new ones
 - ⏱️ **Custom Duration** - Generate sounds from 0.5s to 11s (or 47s with 1.0 model)
 - 🔄 **Real-time Progress** - Watch generation progress in the Sound Library
 - 💾 **Download** - Individual sounds or batch ZIP (organized by pack)
-- 🚀 **GitHub Release** - Publish sound packs directly to GitHub
+- 🚀 **GitHub Release** - Publish sound packs directly to GitHub (admin space only)
 
 ## Models
 
@@ -48,24 +48,20 @@ Generate AI-powered notification sounds for the [Claude Code](https://github.com
 
 ## Claude Code Hook Types
 
-The app generates sounds for these Claude Code events:
+The app generates sounds for these Claude Code hook events:
 
 | Hook Event | Description |
 |------------|-------------|
-| **PreToolUse** | Before a tool call executes |
-| **PostToolUse** | After a tool completes |
-| **Notification** | General notifications |
-| **Stop** | Main agent finishes |
-| **SubagentStop** | Subagent finishes |
-| **Bash** | Terminal command execution |
-| **Read** | File read operation |
-| **Write** | File write/create operation |
-| **Edit** | File edit operation |
-| **Task** | New agent/task spawned |
-| **Error** | Error or failure occurred |
-| **Success** | Operation completed successfully |
-| **Warning** | Warning or caution indicator |
-| **Progress** | Task progress milestone |
+| **Stop** | Main agent has finished its task |
+| **SubagentStop** | A subagent has finished its task |
+| **PermissionPrompt** | Tool needs user permission to proceed |
+| **IdlePrompt** | Agent is idle and waiting for user input |
+| **SessionStart** | A new Claude Code session has started |
+| **SessionEnd** | Claude Code session has ended |
+| **PreToolUse** | Triggered before a tool call executes |
+| **PostToolUse** | Triggered after a tool completes execution |
+| **SubagentStart** | A new subagent has been spawned |
+| **UserPromptSubmit** | User has submitted a new prompt |
 
 ## Local Development
 
@@ -134,7 +130,7 @@ Visit http://localhost:5173 (frontend) or http://localhost:8000 (API)
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/health` | Health check |
+| GET | `/api/health` | Health check (includes `publish_enabled` flag) |
 | GET | `/api/models` | List available models |
 | GET | `/api/models/status` | Get loading status for all models |
 | GET | `/api/models/{model_id}/status` | Get loading status for a specific model |
@@ -146,18 +142,34 @@ Visit http://localhost:5173 (frontend) or http://localhost:8000 (API)
 | GET | `/api/audio/{job_id}` | Download generated audio |
 | DELETE | `/api/audio/{job_id}` | Delete job and audio file |
 | WS | `/api/ws/{job_id}` | Real-time progress updates |
-| POST | `/api/publish` | Publish to GitHub release |
+| POST | `/api/publish` | Publish to GitHub release (requires `CCBELL_GITHUB_TOKEN`) |
 
 ## Deployment
 
-This app auto-deploys to HuggingFace Spaces via GitHub Actions.
+This app auto-deploys to two HuggingFace Spaces via GitHub Actions using a matrix strategy:
 
-Required secrets (GitHub repo):
-- `HF_TOKEN` - HuggingFace access token (for CI/CD deployment)
-- `HF_USERNAME` - HuggingFace username
+| Space | Purpose | Publish Feature |
+|-------|---------|-----------------|
+| `ccbell-sound-generator` | Public — anyone can generate sounds | Hidden |
+| `ccbell-sound-generator-admin` | Admin — includes GitHub publish | Visible |
 
-For the Space to load gated models, add this secret in HuggingFace Space settings:
-- `CCBELL_HF_TOKEN` - HuggingFace access token (for gated model access)
+Deployment is triggered by version tags (`v*.*.*`) or manual workflow dispatch.
+
+### GitHub Repository Secrets
+
+| Secret | Purpose |
+|--------|---------|
+| `HF_TOKEN` | HuggingFace access token (used for CI/CD push to both spaces) |
+| `HF_USERNAME` | HuggingFace username |
+
+### HuggingFace Space Secrets
+
+Set these in each Space's settings:
+
+| Secret | Space | Purpose |
+|--------|-------|---------|
+| `CCBELL_HF_TOKEN` | Both | Access to gated Stable Audio models |
+| `CCBELL_GITHUB_TOKEN` | Admin only | Enables GitHub publish feature |
 
 ## License
 
