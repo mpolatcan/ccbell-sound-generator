@@ -11,7 +11,7 @@ import { AudioPlayer } from './AudioPlayer'
 import { ElapsedTime } from './ElapsedTime'
 import {
   Trash2,
-  Archive,
+  Download,
   Loader2,
   Volume2,
   ChevronDown,
@@ -22,7 +22,7 @@ import {
   X,
   Music
 } from 'lucide-react'
-import { formatDuration, downloadBlob } from '@/lib/utils'
+import { formatDuration } from '@/lib/utils'
 import type { SoundPack, GeneratedSound, PublishPackData, DownloadPackData } from '@/types'
 import {
   Collapsible,
@@ -31,7 +31,6 @@ import {
 } from '@/components/ui/collapsible'
 
 export interface SoundLibraryRef {
-  downloadZip: () => void
   clearAll: () => void
 }
 
@@ -52,7 +51,6 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
         clearAll: s.clearAll,
       }))
     )
-    const [isDownloading, setIsDownloading] = useState(false)
     const [previewingSoundId, setPreviewingSoundId] = useState<string | null>(null)
     const [expandedPacks, setExpandedPacks] = useState<Set<string>>(new Set())
     const [editingPackId, setEditingPackId] = useState<string | null>(null)
@@ -106,77 +104,6 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
       }
       return { all: allMap, completed: completedMap }
     }, [sounds])
-
-    const handleDownloadPack = async (pack: SoundPack) => {
-      const packSounds = soundsByPack.completed.get(pack.id) ?? []
-      if (packSounds.length === 0) return
-
-      setIsDownloading(true)
-      try {
-        const JSZip = (await import('jszip')).default
-        const zip = new JSZip()
-        const folder = zip.folder(pack.name.replace(/[/\\?%*:|"<>]/g, '-'))
-
-        if (folder) {
-          await Promise.all(
-            packSounds.map(async (sound, index) => {
-              const response = await fetch(sound.audio_url)
-              const blob = await response.blob()
-              // Add index to avoid overwrites for same hook type
-              const filename = packSounds.filter(s => s.hook_type === sound.hook_type).length > 1
-                ? `${sound.hook_type.toLowerCase()}_${index + 1}.wav`
-                : `${sound.hook_type.toLowerCase()}.wav`
-              folder.file(filename, blob)
-            })
-          )
-        }
-
-        const zipBlob = await zip.generateAsync({ type: 'blob' })
-        downloadBlob(zipBlob, `${pack.name.replace(/[/\\?%*:|"<>]/g, '-')}.zip`)
-      } catch (error) {
-        console.error('Failed to create ZIP:', error)
-      } finally {
-        setIsDownloading(false)
-      }
-    }
-
-    const handleDownloadAll = async () => {
-      const completedSounds = sounds.filter((s) => s.status === 'completed')
-      if (completedSounds.length === 0) return
-
-      setIsDownloading(true)
-      try {
-        const JSZip = (await import('jszip')).default
-        const zip = new JSZip()
-
-        // Group by pack
-        for (const pack of packs) {
-          const packSounds = soundsByPack.completed.get(pack.id) ?? []
-          if (packSounds.length === 0) continue
-
-          const folder = zip.folder(pack.name.replace(/[/\\?%*:|"<>]/g, '-'))
-          if (folder) {
-            await Promise.all(
-              packSounds.map(async (sound, index) => {
-                const response = await fetch(sound.audio_url)
-                const blob = await response.blob()
-                const filename = packSounds.filter(s => s.hook_type === sound.hook_type).length > 1
-                  ? `${sound.hook_type.toLowerCase()}_${index + 1}.wav`
-                  : `${sound.hook_type.toLowerCase()}.wav`
-                folder.file(filename, blob)
-              })
-            )
-          }
-        }
-
-        const zipBlob = await zip.generateAsync({ type: 'blob' })
-        downloadBlob(zipBlob, 'ccbell-sounds.zip')
-      } catch (error) {
-        console.error('Failed to create ZIP:', error)
-      } finally {
-        setIsDownloading(false)
-      }
-    }
 
     const handlePublishPack = (pack: SoundPack) => {
       const packSounds = soundsByPack.completed.get(pack.id) ?? []
@@ -298,7 +225,6 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
     }, [sounds, clearAll])
 
     useImperativeHandle(ref, () => ({
-      downloadZip: handleDownloadAll,
       clearAll: handleClearAll
     }))
 
@@ -331,20 +257,6 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
             </Badge>
           </CardTitle>
           <div className="flex gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleDownloadAll}
-              disabled={isDownloading || sounds.filter((s) => s.status === 'completed').length === 0}
-              title="Ctrl+D"
-            >
-              {isDownloading ? (
-                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-              ) : (
-                <Archive className="h-4 w-4 mr-2" />
-              )}
-              Download All
-            </Button>
             <Button variant="ghost" size="sm" onClick={handleClearAll} title="Ctrl+Shift+C">
               Clear All
             </Button>
@@ -423,23 +335,21 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                 <Pencil className="h-3 w-3" />
                               </Button>
                             )}
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              className="h-7 w-7"
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                if (onSelectForDownload) {
+                            {onSelectForDownload && (
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="h-7"
+                                onClick={(e) => {
+                                  e.stopPropagation()
                                   handleDownloadPackDialog(pack)
-                                } else {
-                                  handleDownloadPack(pack)
-                                }
-                              }}
-                              disabled={isDownloading || completedSounds.length === 0}
-                              title={onSelectForDownload ? 'Download as ccbell pack' : 'Download as ZIP'}
-                            >
-                              <Archive className="h-3 w-3" />
-                            </Button>
+                                }}
+                                disabled={completedSounds.length === 0}
+                              >
+                                <Download className="h-3 w-3 mr-1" />
+                                Download
+                              </Button>
+                            )}
                             {onSelectForPublish && (
                               <Button
                                 variant="ghost"
@@ -547,7 +457,6 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                               {sound.status === 'completed' && sound.audio_url && (
                                 <AudioPlayer
                                   audioUrl={sound.audio_url}
-                                  filename={`${sound.hook_type.toLowerCase()}.wav`}
                                 />
                               )}
                             </div>

@@ -2,19 +2,17 @@ import { useEffect, useRef, useState, useCallback, memo } from 'react'
 import WaveSurfer from 'wavesurfer.js'
 import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
-import { Play, Pause, Volume2, VolumeX, Download, RotateCcw } from 'lucide-react'
-import { formatDuration, downloadUrl, cn } from '@/lib/utils'
+import { Play, Pause, Volume2, VolumeX, RotateCcw } from 'lucide-react'
+import { formatDuration, cn } from '@/lib/utils'
 
 interface AudioPlayerProps {
   audioUrl: string
-  filename?: string
   className?: string
   onPlayStateChange?: (isPlaying: boolean) => void
 }
 
 export const AudioPlayer = memo(function AudioPlayer({
   audioUrl,
-  filename = 'sound.wav',
   className,
   onPlayStateChange
 }: AudioPlayerProps) {
@@ -106,10 +104,6 @@ export const AudioPlayer = memo(function AudioPlayer({
     setIsMuted((prev) => !prev)
   }, [])
 
-  const handleDownload = useCallback(async () => {
-    await downloadUrl(audioUrl, filename)
-  }, [audioUrl, filename])
-
   return (
     <div className={cn('space-y-3', className)}>
       {/* Waveform */}
@@ -168,11 +162,6 @@ export const AudioPlayer = memo(function AudioPlayer({
           />
         </div>
 
-        {/* Download */}
-        <Button variant="outline" size="sm" onClick={handleDownload}>
-          <Download className="h-4 w-4 mr-2" />
-          Download
-        </Button>
       </div>
     </div>
   )

@@ -62,10 +62,6 @@ function AppContent() {
     generatorFormRef.current?.generate()
   }, [])
 
-  const handleDownloadZip = useCallback(() => {
-    soundLibraryRef.current?.downloadZip()
-  }, [])
-
   const handleClearLibrary = useCallback(() => {
     soundLibraryRef.current?.clearAll()
     toast({
@@ -80,12 +76,6 @@ function AppContent() {
       key: 'g',
       action: handleGenerate,
       description: 'Generate sound'
-    },
-    {
-      key: 'd',
-      ctrlKey: true,
-      action: handleDownloadZip,
-      description: 'Download ZIP'
     },
     {
       key: 'c',
