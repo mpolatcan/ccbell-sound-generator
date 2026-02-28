@@ -253,7 +253,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
           Generate Sound
         </CardTitle>
         <CardDescription>
-          Create AI-powered notification sounds for Claude Code
+          Create AI-powered notification sounds for Claude Code ccbell plugin
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">

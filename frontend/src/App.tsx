@@ -106,7 +106,7 @@ function AppContent() {
             <div>
               <h1 className="text-xl font-bold">CCBell Sound Generator</h1>
               <p className="text-sm text-muted-foreground">
-                AI-powered notification sounds for Claude Code
+                AI-powered notification sounds for Claude Code ccbell plugin
               </p>
             </div>
           </div>
