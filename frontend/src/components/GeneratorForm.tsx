@@ -222,10 +222,13 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
     const hook = hooks.find((h) => h.id === hookId)
     if (!hook) return []
     const config = perHookConfig[hookId]
+    const presets = hook.sound_style_presets[selectedTheme] ?? []
     if (config?.stylePresetId) {
-      const preset = (hook.sound_style_presets[selectedTheme] ?? []).find((p) => p.id === config.stylePresetId)
+      const preset = presets.find((p) => p.id === config.stylePresetId)
       if (preset) return preset.prompts
     }
+    // When no preset explicitly selected, use first preset if available (matches dropdown default)
+    if (presets.length > 0) return presets[0].prompts
     return buildDefaultPrompts(hook, selectedTheme, themes)
   }, [hooks, perHookConfig, selectedTheme, themes])
 
