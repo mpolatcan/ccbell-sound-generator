@@ -19,7 +19,6 @@ import {
   Trash2,
   Download,
   Loader2,
-  Volume2,
   ChevronDown,
   ChevronRight,
   Package,
@@ -84,21 +83,9 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
       }))
     )
     const { addToQueue, cancelGeneration, cancelByPackId, cancelAll: cancelAllQueue } = useGenerationQueue()
-    const [previewingSoundId, setPreviewingSoundId] = useState<string | null>(null)
     const [expandedPacks, setExpandedPacks] = useState<Set<string>>(new Set())
     const [editingPackId, setEditingPackId] = useState<string | null>(null)
     const [editingName, setEditingName] = useState('')
-    const previewAudioRef = useRef<HTMLAudioElement | null>(null)
-
-    // Cleanup audio preview on unmount
-    useEffect(() => {
-      return () => {
-        if (previewAudioRef.current) {
-          previewAudioRef.current.pause()
-          previewAudioRef.current = null
-        }
-      }
-    }, [])
 
     // Auto-expand new packs
     const expandedPacksRef = useRef<Set<string>>(new Set())
@@ -156,33 +143,6 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
       })
     }
 
-    const handlePreviewStart = (sound: GeneratedSound) => {
-      if (sound.status !== 'completed' || !sound.audio_url) return
-
-      if (previewAudioRef.current) {
-        previewAudioRef.current.pause()
-        previewAudioRef.current = null
-      }
-
-      const audio = new Audio(sound.audio_url)
-      audio.volume = 0.5
-      audio.play().catch(() => {})
-      previewAudioRef.current = audio
-      setPreviewingSoundId(sound.id)
-
-      audio.onended = () => {
-        setPreviewingSoundId(null)
-        previewAudioRef.current = null
-      }
-    }
-
-    const handlePreviewStop = () => {
-      if (previewAudioRef.current) {
-        previewAudioRef.current.pause()
-        previewAudioRef.current = null
-      }
-      setPreviewingSoundId(null)
-    }
 
     const startEditingPack = (pack: SoundPack) => {
       setEditingPackId(pack.id)
@@ -541,11 +501,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                 style={{ animationDelay: `${index * 50}ms` }}
                               >
                                 <div className="flex items-start justify-between mb-2">
-                                  <div
-                                    className="flex-1 cursor-pointer min-w-0"
-                                    onMouseEnter={() => handlePreviewStart(sound)}
-                                    onMouseLeave={handlePreviewStop}
-                                  >
+                                  <div className="flex-1 min-w-0">
                                     <div className="flex items-center gap-2 flex-wrap">
                                       <span className={cn('h-2 w-2 rounded-full shrink-0', hookColor?.dot || 'bg-primary')} />
                                       <h4 className="font-display font-medium text-sm">{sound.hook_type}</h4>
@@ -568,9 +524,6 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                         endTime={sound.completed_at}
                                         isRunning={isGenerating}
                                       />
-                                      {previewingSoundId === sound.id && (
-                                        <Volume2 className="h-3.5 w-3.5 text-primary animate-pulse" />
-                                      )}
                                     </div>
                                     <p className="text-xs text-muted-foreground mt-1 line-clamp-1 font-mono">
                                       {sound.prompt}

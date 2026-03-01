@@ -8,7 +8,6 @@ import type { EditablePromptChips, ChipItem } from '@/types'
 interface PromptComponentsEditorProps {
   chips: EditablePromptChips
   onChange: (chips: EditablePromptChips) => void
-  assembledPrompt: string
 }
 
 const CATEGORIES: { key: keyof EditablePromptChips; label: string }[] = [
@@ -93,7 +92,6 @@ const ChipRow = memo(function ChipRow({
 export const PromptComponentsEditor = memo(function PromptComponentsEditor({
   chips,
   onChange,
-  assembledPrompt,
 }: PromptComponentsEditorProps) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -147,20 +145,7 @@ export const PromptComponentsEditor = memo(function PromptComponentsEditor({
         </CollapsibleContent>
       </Collapsible>
 
-      {assembledPrompt && (
-        <div className="space-y-1.5">
-          <Label className="text-muted-foreground text-xs">Generated Prompt</Label>
-          <div className="relative rounded-lg overflow-hidden border border-border/40 bg-muted/20">
-            <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary/60" />
-            <div className="flex items-start gap-2 py-2.5 pl-3.5 pr-3">
-              <span className="text-primary/50 text-xs font-mono select-none shrink-0 mt-px">&gt;</span>
-              <p className="text-xs font-mono break-words leading-relaxed text-foreground/80">
-                {assembledPrompt}
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Prompt preview moved to pinned bottom section in GeneratorForm */}
     </div>
   )
 })

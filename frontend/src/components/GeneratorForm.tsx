@@ -620,7 +620,6 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
               <PromptComponentsEditor
                 chips={editorChips}
                 onChange={handleChipsChange}
-                assembledPrompt={currentPrompt}
               />
             )}
 
