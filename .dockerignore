@@ -35,6 +35,7 @@ docs
 
 # CI/CD
 .github
+Dockerfile.base
 
 # Local dev files
 *.log

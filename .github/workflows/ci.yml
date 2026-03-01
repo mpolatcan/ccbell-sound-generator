@@ -133,4 +133,3 @@ jobs:
           context: .
           push: false
           tags: ccbell-sound-generator:ci
-          no-cache: true
