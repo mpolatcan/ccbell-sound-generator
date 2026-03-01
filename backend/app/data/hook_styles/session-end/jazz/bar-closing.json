@@ -2,54 +2,26 @@
   "id": "jazz-session-end-bar-closing",
   "name": "Bar Closing",
   "description": "Jazz club closing up for the night",
-  "sound_characters": {
-    "simple": [
-      "jazz club bartender calling last orders as music fades"
-    ],
-    "standard": [
-      "jazz club bartender calling last orders as music fades",
-      "cocktail glasses being collected as house music softens",
-      "club doors opening to late-night street sounds"
-    ],
-    "detailed": [
-      "jazz club bartender calling last orders as music fades",
-      "cocktail glasses being collected as house music softens",
-      "club doors opening to late-night street sounds",
-      "cash register closing with final ring of the evening",
-      "neon open sign clicking off with electrical buzz fade"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "late-night jazz club",
-      "Blue Note session warmth",
-      "velvet curtain lounge",
-      "bossa nova beachside patio",
-      "cool jazz after-hours session"
-    ],
-    "instruments": [
-      "harmon-muted trumpet breath",
-      "walking bass string pluck",
-      "vibraphone mallet on metal bar",
-      "wire brushes swirling on snare head",
-      "Rhodes electric piano with tremolo"
-    ],
-    "mood": [
-      "smoky room intimacy",
-      "last-set-of-the-night mellowness",
-      "bourbon warmth on the tongue",
-      "slow-nod groove",
-      "spotlight-on-the-soloist focus"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "rich",
-      "analog warmth",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "jazz club bartender calling last orders as music fades",
+      "text": "jazz club bartender calling last orders as music fades, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay"
+    },
+    {
+      "label": "cocktail glasses being collected as house music softens",
+      "text": "cocktail glasses being collected as house music softens, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out"
+    },
+    {
+      "label": "club doors opening to late-night street sounds",
+      "text": "club doors opening to late-night street sounds, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance"
+    },
+    {
+      "label": "cash register closing with final ring of the evening",
+      "text": "cash register closing with final ring of the evening, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay"
+    },
+    {
+      "label": "neon open sign clicking off with electrical buzz fade",
+      "text": "neon open sign clicking off with electrical buzz fade, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out"
+    }
+  ]
 }

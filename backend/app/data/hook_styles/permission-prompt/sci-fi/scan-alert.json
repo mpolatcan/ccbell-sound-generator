@@ -2,52 +2,26 @@
   "id": "scifi-permission-prompt-scan-alert",
   "name": "Scan Alert",
   "description": "Sensor detecting unknown object requiring analysis",
-  "sound_characters": {
-    "simple": [
-      "sensor array detecting unknown object with alert ping"
-    ],
-    "standard": [
-      "sensor array detecting unknown object with alert ping",
-      "radar sweep highlighting unidentified contact",
-      "tactical display flashing with questioning sensor tone"
-    ],
-    "detailed": [
-      "sensor array detecting unknown object with alert ping",
-      "radar sweep highlighting unidentified contact",
-      "tactical display flashing with questioning sensor tone",
-      "deep space scanner requesting classification input",
-      "anomaly detection system chirping for operator attention"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "futuristic spacecraft interface",
-      "cyberpunk neon-lit",
-      "deep space station",
-      "quantum computer hum",
-      "orbital relay signal"
-    ],
-    "instruments": [
-      "crystalline FM synthesis bell",
-      "voltage-controlled resonant filter sweep",
-      "granular synth texture",
-      "plasma crackle discharge"
-    ],
-    "mood": [
-      "otherworldly precision",
-      "holographic clarity",
-      "cold vacuum stillness",
-      "alien intelligence awakening"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "crisp",
-      "studio-grade",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "sensor array detecting unknown object with alert ping",
+      "text": "sensor array detecting unknown object with alert ping, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "radar sweep highlighting unidentified contact",
+      "text": "radar sweep highlighting unidentified contact, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+    },
+    {
+      "label": "tactical display flashing with questioning sensor tone",
+      "text": "tactical display flashing with questioning sensor tone, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+    },
+    {
+      "label": "deep space scanner requesting classification input",
+      "text": "deep space scanner requesting classification input, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+    },
+    {
+      "label": "anomaly detection system chirping for operator attention",
+      "text": "anomaly detection system chirping for operator attention, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+    }
+  ]
 }

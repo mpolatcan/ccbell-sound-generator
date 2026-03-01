@@ -2,54 +2,26 @@
   "id": "jazz-session-start-count-in",
   "name": "Count In",
   "description": "Drummer counting the band in with stick clicks",
-  "sound_characters": {
-    "simple": [
-      "drummer counting the band in with confident stick clicks"
-    ],
-    "standard": [
-      "drummer counting the band in with confident stick clicks",
-      "jazz trio getting the tempo with four click count",
-      "bandleader snapping fingers to set the groove"
-    ],
-    "detailed": [
-      "drummer counting the band in with confident stick clicks",
-      "jazz trio getting the tempo with four click count",
-      "bandleader snapping fingers to set the groove",
-      "hi-hat clicking steady pulse before the downbeat",
-      "bass player thumping root note to anchor the key"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "late-night jazz club",
-      "Blue Note session warmth",
-      "velvet curtain lounge",
-      "bossa nova beachside patio",
-      "cool jazz after-hours session"
-    ],
-    "instruments": [
-      "harmon-muted trumpet breath",
-      "walking bass string pluck",
-      "vibraphone mallet on metal bar",
-      "wire brushes swirling on snare head",
-      "Rhodes electric piano with tremolo"
-    ],
-    "mood": [
-      "smoky room intimacy",
-      "last-set-of-the-night mellowness",
-      "bourbon warmth on the tongue",
-      "slow-nod groove",
-      "spotlight-on-the-soloist focus"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "rich",
-      "analog warmth",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "drummer counting the band in with confident stick clicks",
+      "text": "drummer counting the band in with confident stick clicks, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay"
+    },
+    {
+      "label": "jazz trio getting the tempo with four click count",
+      "text": "jazz trio getting the tempo with four click count, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out"
+    },
+    {
+      "label": "bandleader snapping fingers to set the groove",
+      "text": "bandleader snapping fingers to set the groove, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance"
+    },
+    {
+      "label": "hi-hat clicking steady pulse before the downbeat",
+      "text": "hi-hat clicking steady pulse before the downbeat, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay"
+    },
+    {
+      "label": "bass player thumping root note to anchor the key",
+      "text": "bass player thumping root note to anchor the key, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out"
+    }
+  ]
 }

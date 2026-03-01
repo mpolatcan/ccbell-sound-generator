@@ -2,54 +2,26 @@
   "id": "min-pre-tool-use-needle-drop",
   "name": "Needle Drop",
   "description": "Record needle approaching the groove surface",
-  "sound_characters": {
-    "simple": [
-      "record needle lowering toward vinyl groove surface"
-    ],
-    "standard": [
-      "record needle lowering toward vinyl groove surface",
-      "stylus descending through silent air before contact",
-      "turntable arm floating down with delicate precision"
-    ],
-    "detailed": [
-      "record needle lowering toward vinyl groove surface",
-      "stylus descending through silent air before contact",
-      "turntable arm floating down with delicate precision",
-      "diamond tip approaching spinning surface with anticipation",
-      "anti-skate mechanism guiding needle to perfect starting position"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "ultra-clean UI interaction",
-      "Swiss design precision",
-      "white gallery silence",
-      "Scandinavian living room",
-      "frosted glass partition"
-    ],
-    "instruments": [
-      "pure sine tone at concert pitch",
-      "tapped crystal glass rim",
-      "single piano key softly pressed",
-      "porcelain bowl struck with felt tip",
-      "tuning fork resonating on wood"
-    ],
-    "mood": [
-      "whisper-quiet elegance",
-      "zen garden calm",
-      "paper-thin delicacy",
-      "breath-held anticipation",
-      "snow falling on still water"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "pristine",
-      "transparent",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "record needle lowering toward vinyl groove surface",
+      "text": "record needle lowering toward vinyl groove surface, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+    },
+    {
+      "label": "stylus descending through silent air before contact",
+      "text": "stylus descending through silent air before contact, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+    },
+    {
+      "label": "turntable arm floating down with delicate precision",
+      "text": "turntable arm floating down with delicate precision, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+    },
+    {
+      "label": "diamond tip approaching spinning surface with anticipation",
+      "text": "diamond tip approaching spinning surface with anticipation, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+    },
+    {
+      "label": "anti-skate mechanism guiding needle to perfect starting position",
+      "text": "anti-skate mechanism guiding needle to perfect starting position, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+    }
+  ]
 }

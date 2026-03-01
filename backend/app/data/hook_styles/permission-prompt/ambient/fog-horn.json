@@ -2,54 +2,26 @@
   "id": "amb-permission-prompt-fog-horn",
   "name": "Fog Horn",
   "description": "Deep maritime warning calling through thick mist",
-  "sound_characters": {
-    "simple": [
-      "deep maritime fog horn calling through thick coastal mist"
-    ],
-    "standard": [
-      "deep maritime fog horn calling through thick coastal mist",
-      "harbor warning tone pulsing through gray atmosphere",
-      "lighthouse signal moaning with low frequency inquiry"
-    ],
-    "detailed": [
-      "deep maritime fog horn calling through thick coastal mist",
-      "harbor warning tone pulsing through gray atmosphere",
-      "lighthouse signal moaning with low frequency inquiry",
-      "ocean buoy bell swaying in foggy swell",
-      "distant ship horn questioning through sea haze"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "cathedral reverb at midnight",
-      "tape-saturated warmth",
-      "Brian Eno infinite space",
-      "abandoned hall echo",
-      "lo-fi cassette hiss and bloom"
-    ],
-    "instruments": [
-      "bowed singing bowl overtone",
-      "granular piano cloud",
-      "reversed cymbal swell",
-      "harmonium drone with tape wobble",
-      "shimmer reverb pad wash"
-    ],
-    "mood": [
-      "warm fog dissolving slowly",
-      "candlelight flickering softly",
-      "underwater weightlessness",
-      "drifting between sleep and waking",
-      "moonlight through frosted glass"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "lush",
-      "wide",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "deep maritime fog horn calling through thick coastal mist",
+      "text": "deep maritime fog horn calling through thick coastal mist, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay"
+    },
+    {
+      "label": "harbor warning tone pulsing through gray atmosphere",
+      "text": "harbor warning tone pulsing through gray atmosphere, tape-saturated warmth, granular piano cloud, candlelight flickering softly, 44.1kHz, stereo, high-quality, wide, smooth fade out"
+    },
+    {
+      "label": "lighthouse signal moaning with low frequency inquiry",
+      "text": "lighthouse signal moaning with low frequency inquiry, Brian Eno infinite space, reversed cymbal swell, underwater weightlessness, 44.1kHz, stereo, high-quality, lush, sustained resonance"
+    },
+    {
+      "label": "ocean buoy bell swaying in foggy swell",
+      "text": "ocean buoy bell swaying in foggy swell, abandoned hall echo, harmonium drone with tape wobble, drifting between sleep and waking, 44.1kHz, stereo, high-quality, wide, with natural decay"
+    },
+    {
+      "label": "distant ship horn questioning through sea haze",
+      "text": "distant ship horn questioning through sea haze, lo-fi cassette hiss and bloom, shimmer reverb pad wash, moonlight through frosted glass, 44.1kHz, stereo, high-quality, lush, smooth fade out"
+    }
+  ]
 }

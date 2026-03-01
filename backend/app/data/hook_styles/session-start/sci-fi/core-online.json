@@ -2,52 +2,26 @@
   "id": "scifi-session-start-core-online",
   "name": "Core Online",
   "description": "Main reactor core powering up with dramatic energy surge",
-  "sound_characters": {
-    "simple": [
-      "main reactor core powering up with dramatic energy surge"
-    ],
-    "standard": [
-      "main reactor core powering up with dramatic energy surge",
-      "fusion reactor reaching critical ignition with ascending roar",
-      "central AI system booting with cascading activation tones"
-    ],
-    "detailed": [
-      "main reactor core powering up with dramatic energy surge",
-      "fusion reactor reaching critical ignition with ascending roar",
-      "central AI system booting with cascading activation tones",
-      "quantum processor array initializing with harmonic power-up sweep",
-      "starship main power coming online with building electromagnetic hum"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "futuristic spacecraft interface",
-      "cyberpunk neon-lit",
-      "deep space station",
-      "quantum computer hum",
-      "orbital relay signal"
-    ],
-    "instruments": [
-      "crystalline FM synthesis bell",
-      "voltage-controlled resonant filter sweep",
-      "granular synth texture",
-      "plasma crackle discharge"
-    ],
-    "mood": [
-      "otherworldly precision",
-      "holographic clarity",
-      "cold vacuum stillness",
-      "alien intelligence awakening"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "crisp",
-      "studio-grade",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "main reactor core powering up with dramatic energy surge",
+      "text": "main reactor core powering up with dramatic energy surge, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "fusion reactor reaching critical ignition with ascending roar",
+      "text": "fusion reactor reaching critical ignition with ascending roar, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+    },
+    {
+      "label": "central AI system booting with cascading activation tones",
+      "text": "central AI system booting with cascading activation tones, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+    },
+    {
+      "label": "quantum processor array initializing with harmonic power-up sweep",
+      "text": "quantum processor array initializing with harmonic power-up sweep, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+    },
+    {
+      "label": "starship main power coming online with building electromagnetic hum",
+      "text": "starship main power coming online with building electromagnetic hum, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+    }
+  ]
 }

@@ -2,52 +2,26 @@
   "id": "scifi-idle-prompt-orbit-hold",
   "name": "Orbit Hold",
   "description": "Satellite maintaining steady orbit with periodic ping",
-  "sound_characters": {
-    "simple": [
-      "satellite maintaining steady orbit with periodic gentle ping"
-    ],
-    "standard": [
-      "satellite maintaining steady orbit with periodic gentle ping",
-      "space station maintaining altitude with soft thruster pulse",
-      "orbital beacon transmitting patient keepalive signal"
-    ],
-    "detailed": [
-      "satellite maintaining steady orbit with periodic gentle ping",
-      "space station maintaining altitude with soft thruster pulse",
-      "orbital beacon transmitting patient keepalive signal",
-      "geostationary platform humming in weightless equilibrium",
-      "deep space probe sending heartbeat telemetry at slow interval"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "futuristic spacecraft interface",
-      "cyberpunk neon-lit",
-      "deep space station",
-      "quantum computer hum",
-      "orbital relay signal"
-    ],
-    "instruments": [
-      "crystalline FM synthesis bell",
-      "voltage-controlled resonant filter sweep",
-      "granular synth texture",
-      "plasma crackle discharge"
-    ],
-    "mood": [
-      "otherworldly precision",
-      "holographic clarity",
-      "cold vacuum stillness",
-      "alien intelligence awakening"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "crisp",
-      "studio-grade",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "satellite maintaining steady orbit with periodic gentle ping",
+      "text": "satellite maintaining steady orbit with periodic gentle ping, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "space station maintaining altitude with soft thruster pulse",
+      "text": "space station maintaining altitude with soft thruster pulse, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+    },
+    {
+      "label": "orbital beacon transmitting patient keepalive signal",
+      "text": "orbital beacon transmitting patient keepalive signal, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+    },
+    {
+      "label": "geostationary platform humming in weightless equilibrium",
+      "text": "geostationary platform humming in weightless equilibrium, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+    },
+    {
+      "label": "deep space probe sending heartbeat telemetry at slow interval",
+      "text": "deep space probe sending heartbeat telemetry at slow interval, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+    }
+  ]
 }

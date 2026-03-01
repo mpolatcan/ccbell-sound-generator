@@ -2,54 +2,26 @@
   "id": "min-idle-prompt-sine-drift",
   "name": "Sine Drift",
   "description": "Slow sine wave drifting with subtle pitch change",
-  "sound_characters": {
-    "simple": [
-      "slow sine wave drifting with subtle gradual pitch shift"
-    ],
-    "standard": [
-      "slow sine wave drifting with subtle gradual pitch shift",
-      "clean frequency wandering lazily through narrow range",
-      "pure tone floating with glacial pitch modulation"
-    ],
-    "detailed": [
-      "slow sine wave drifting with subtle gradual pitch shift",
-      "clean frequency wandering lazily through narrow range",
-      "pure tone floating with glacial pitch modulation",
-      "mathematical curve gliding through silence with precision",
-      "single oscillator tracing patient arc through frequency space"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "ultra-clean UI interaction",
-      "Swiss design precision",
-      "white gallery silence",
-      "Scandinavian living room",
-      "frosted glass partition"
-    ],
-    "instruments": [
-      "pure sine tone at concert pitch",
-      "tapped crystal glass rim",
-      "single piano key softly pressed",
-      "porcelain bowl struck with felt tip",
-      "tuning fork resonating on wood"
-    ],
-    "mood": [
-      "whisper-quiet elegance",
-      "zen garden calm",
-      "paper-thin delicacy",
-      "breath-held anticipation",
-      "snow falling on still water"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "pristine",
-      "transparent",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "slow sine wave drifting with subtle gradual pitch shift",
+      "text": "slow sine wave drifting with subtle gradual pitch shift, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+    },
+    {
+      "label": "clean frequency wandering lazily through narrow range",
+      "text": "clean frequency wandering lazily through narrow range, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+    },
+    {
+      "label": "pure tone floating with glacial pitch modulation",
+      "text": "pure tone floating with glacial pitch modulation, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+    },
+    {
+      "label": "mathematical curve gliding through silence with precision",
+      "text": "mathematical curve gliding through silence with precision, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+    },
+    {
+      "label": "single oscillator tracing patient arc through frequency space",
+      "text": "single oscillator tracing patient arc through frequency space, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+    }
+  ]
 }

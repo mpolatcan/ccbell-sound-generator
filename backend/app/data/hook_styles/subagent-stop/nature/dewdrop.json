@@ -2,54 +2,26 @@
   "id": "nature-subagent-stop-dewdrop",
   "name": "Dewdrop",
   "description": "Morning dew dripping from petal to pool",
-  "sound_characters": {
-    "simple": [
-      "morning dewdrop falling from flower petal into still pool"
-    ],
-    "standard": [
-      "morning dewdrop falling from flower petal into still pool",
-      "tiny water bead releasing from leaf tip with soft plip",
-      "crystalline droplet meeting calm surface with micro-ripple"
-    ],
-    "detailed": [
-      "morning dewdrop falling from flower petal into still pool",
-      "tiny water bead releasing from leaf tip with soft plip",
-      "crystalline droplet meeting calm surface with micro-ripple",
-      "dawn moisture gathering and dropping from spider silk",
-      "miniature splash in a quiet garden pond"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "forest clearing at dawn",
-      "moss-covered stone garden",
-      "bamboo grove in gentle wind",
-      "creek bed after summer rain",
-      "meadow with distant thunder"
-    ],
-    "instruments": [
-      "wooden mallet on hollow log",
-      "rain droplet on broad leaf",
-      "smooth river stones clinking",
-      "fingertip-plucked kalimba tine",
-      "ceramic wind chime in breeze"
-    ],
-    "mood": [
-      "morning dew stillness",
-      "sun-warmed earth",
-      "birdsong tranquility",
-      "deep forest solitude",
-      "waterfall mist on skin"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "soft",
-      "airy",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "morning dewdrop falling from flower petal into still pool",
+      "text": "morning dewdrop falling from flower petal into still pool, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay"
+    },
+    {
+      "label": "tiny water bead releasing from leaf tip with soft plip",
+      "text": "tiny water bead releasing from leaf tip with soft plip, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out"
+    },
+    {
+      "label": "crystalline droplet meeting calm surface with micro-ripple",
+      "text": "crystalline droplet meeting calm surface with micro-ripple, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance"
+    },
+    {
+      "label": "dawn moisture gathering and dropping from spider silk",
+      "text": "dawn moisture gathering and dropping from spider silk, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay"
+    },
+    {
+      "label": "miniature splash in a quiet garden pond",
+      "text": "miniature splash in a quiet garden pond, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out"
+    }
+  ]
 }

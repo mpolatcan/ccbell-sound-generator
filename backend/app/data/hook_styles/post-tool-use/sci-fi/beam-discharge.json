@@ -2,52 +2,26 @@
   "id": "scifi-post-tool-use-beam-discharge",
   "name": "Beam Discharge",
   "description": "Energy weapon releasing stored charge",
-  "sound_characters": {
-    "simple": [
-      "energy weapon releasing stored charge with bright discharge"
-    ],
-    "standard": [
-      "energy weapon releasing stored charge with bright discharge",
-      "laser firing with sharp crystalline burst",
-      "particle beam completing emission with cooling hiss"
-    ],
-    "detailed": [
-      "energy weapon releasing stored charge with bright discharge",
-      "laser firing with sharp crystalline burst",
-      "particle beam completing emission with cooling hiss",
-      "capacitor bank emptying with sudden electromagnetic release",
-      "photon torpedo detonating at coordinates with flash"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "futuristic spacecraft interface",
-      "cyberpunk neon-lit",
-      "deep space station",
-      "quantum computer hum",
-      "orbital relay signal"
-    ],
-    "instruments": [
-      "crystalline FM synthesis bell",
-      "voltage-controlled resonant filter sweep",
-      "granular synth texture",
-      "plasma crackle discharge"
-    ],
-    "mood": [
-      "otherworldly precision",
-      "holographic clarity",
-      "cold vacuum stillness",
-      "alien intelligence awakening"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "crisp",
-      "studio-grade",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "energy weapon releasing stored charge with bright discharge",
+      "text": "energy weapon releasing stored charge with bright discharge, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "laser firing with sharp crystalline burst",
+      "text": "laser firing with sharp crystalline burst, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+    },
+    {
+      "label": "particle beam completing emission with cooling hiss",
+      "text": "particle beam completing emission with cooling hiss, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+    },
+    {
+      "label": "capacitor bank emptying with sudden electromagnetic release",
+      "text": "capacitor bank emptying with sudden electromagnetic release, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+    },
+    {
+      "label": "photon torpedo detonating at coordinates with flash",
+      "text": "photon torpedo detonating at coordinates with flash, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+    }
+  ]
 }

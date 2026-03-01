@@ -2,54 +2,26 @@
   "id": "min-stop-glass-point",
   "name": "Glass Point",
   "description": "Precise glass tap like a single pixel of sound",
-  "sound_characters": {
-    "simple": [
-      "single precise glass tap like a pixel of sound"
-    ],
-    "standard": [
-      "single precise glass tap like a pixel of sound",
-      "pinpoint crystal strike with zero excess",
-      "clean glass dot with mathematical decay"
-    ],
-    "detailed": [
-      "single precise glass tap like a pixel of sound",
-      "pinpoint crystal strike with zero excess",
-      "clean glass dot with mathematical decay",
-      "atomic-thin resonance point fading cleanly",
-      "pure frequency point dissolving into void"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "ultra-clean UI interaction",
-      "Swiss design precision",
-      "white gallery silence",
-      "Scandinavian living room",
-      "frosted glass partition"
-    ],
-    "instruments": [
-      "pure sine tone at concert pitch",
-      "tapped crystal glass rim",
-      "single piano key softly pressed",
-      "porcelain bowl struck with felt tip",
-      "tuning fork resonating on wood"
-    ],
-    "mood": [
-      "whisper-quiet elegance",
-      "zen garden calm",
-      "paper-thin delicacy",
-      "breath-held anticipation",
-      "snow falling on still water"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "pristine",
-      "transparent",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "single precise glass tap like a pixel of sound",
+      "text": "single precise glass tap like a pixel of sound, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+    },
+    {
+      "label": "pinpoint crystal strike with zero excess",
+      "text": "pinpoint crystal strike with zero excess, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+    },
+    {
+      "label": "clean glass dot with mathematical decay",
+      "text": "clean glass dot with mathematical decay, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+    },
+    {
+      "label": "atomic-thin resonance point fading cleanly",
+      "text": "atomic-thin resonance point fading cleanly, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+    },
+    {
+      "label": "pure frequency point dissolving into void",
+      "text": "pure frequency point dissolving into void, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+    }
+  ]
 }

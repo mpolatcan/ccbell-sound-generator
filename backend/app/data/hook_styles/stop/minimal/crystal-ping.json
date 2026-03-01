@@ -2,54 +2,26 @@
   "id": "min-stop-crystal-ping",
   "name": "Crystal Ping",
   "description": "Single pure crystal tone with clean sustain",
-  "sound_characters": {
-    "simple": [
-      "pure crystal ping with pristine sustain"
-    ],
-    "standard": [
-      "pure crystal ping with pristine sustain",
-      "single glass point of light in silence",
-      "clean sine tone resolving with transparent clarity"
-    ],
-    "detailed": [
-      "pure crystal ping with pristine sustain",
-      "single glass point of light in silence",
-      "clean sine tone resolving with transparent clarity",
-      "porcelain tap fading into absolute stillness",
-      "whisper-thin harmonic dissolving to nothing"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "ultra-clean UI interaction",
-      "Swiss design precision",
-      "white gallery silence",
-      "Scandinavian living room",
-      "frosted glass partition"
-    ],
-    "instruments": [
-      "pure sine tone at concert pitch",
-      "tapped crystal glass rim",
-      "single piano key softly pressed",
-      "porcelain bowl struck with felt tip",
-      "tuning fork resonating on wood"
-    ],
-    "mood": [
-      "whisper-quiet elegance",
-      "zen garden calm",
-      "paper-thin delicacy",
-      "breath-held anticipation",
-      "snow falling on still water"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "pristine",
-      "transparent",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "pure crystal ping with pristine sustain",
+      "text": "pure crystal ping with pristine sustain, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+    },
+    {
+      "label": "single glass point of light in silence",
+      "text": "single glass point of light in silence, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+    },
+    {
+      "label": "clean sine tone resolving with transparent clarity",
+      "text": "clean sine tone resolving with transparent clarity, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+    },
+    {
+      "label": "porcelain tap fading into absolute stillness",
+      "text": "porcelain tap fading into absolute stillness, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+    },
+    {
+      "label": "whisper-thin harmonic dissolving to nothing",
+      "text": "whisper-thin harmonic dissolving to nothing, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+    }
+  ]
 }

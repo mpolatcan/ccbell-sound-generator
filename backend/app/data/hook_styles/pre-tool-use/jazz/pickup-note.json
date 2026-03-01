@@ -2,54 +2,26 @@
   "id": "jazz-pre-tool-use-pickup-note",
   "name": "Pickup Note",
   "description": "Quick note before the downbeat launches the phrase",
-  "sound_characters": {
-    "simple": [
-      "quick pickup note before the downbeat launches the phrase"
-    ],
-    "standard": [
-      "quick pickup note before the downbeat launches the phrase",
-      "anticipatory eighth note leading into the main melody",
-      "saxophone grace note sliding up to starting pitch"
-    ],
-    "detailed": [
-      "quick pickup note before the downbeat launches the phrase",
-      "anticipatory eighth note leading into the main melody",
-      "saxophone grace note sliding up to starting pitch",
-      "drummer's quick flam before the accent",
-      "bass player sliding up to the root note"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "late-night jazz club",
-      "Blue Note session warmth",
-      "velvet curtain lounge",
-      "bossa nova beachside patio",
-      "cool jazz after-hours session"
-    ],
-    "instruments": [
-      "harmon-muted trumpet breath",
-      "walking bass string pluck",
-      "vibraphone mallet on metal bar",
-      "wire brushes swirling on snare head",
-      "Rhodes electric piano with tremolo"
-    ],
-    "mood": [
-      "smoky room intimacy",
-      "last-set-of-the-night mellowness",
-      "bourbon warmth on the tongue",
-      "slow-nod groove",
-      "spotlight-on-the-soloist focus"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "rich",
-      "analog warmth",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "quick pickup note before the downbeat launches the phrase",
+      "text": "quick pickup note before the downbeat launches the phrase, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay"
+    },
+    {
+      "label": "anticipatory eighth note leading into the main melody",
+      "text": "anticipatory eighth note leading into the main melody, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out"
+    },
+    {
+      "label": "saxophone grace note sliding up to starting pitch",
+      "text": "saxophone grace note sliding up to starting pitch, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance"
+    },
+    {
+      "label": "drummer's quick flam before the accent",
+      "text": "drummer's quick flam before the accent, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay"
+    },
+    {
+      "label": "bass player sliding up to the root note",
+      "text": "bass player sliding up to the root note, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out"
+    }
+  ]
 }

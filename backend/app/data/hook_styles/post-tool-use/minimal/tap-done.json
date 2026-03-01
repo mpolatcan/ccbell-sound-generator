@@ -2,54 +2,26 @@
   "id": "min-post-tool-use-tap-done",
   "name": "Tap Done",
   "description": "One clean tap confirming completion",
-  "sound_characters": {
-    "simple": [
-      "one clean precise tap confirming task completion"
-    ],
-    "standard": [
-      "one clean precise tap confirming task completion",
-      "fingertip touching surface once with finality",
-      "minimal percussion point marking done with clarity"
-    ],
-    "detailed": [
-      "one clean precise tap confirming task completion",
-      "fingertip touching surface once with finality",
-      "minimal percussion point marking done with clarity",
-      "porcelain struck once at exact center",
-      "glass contact point with instant clean release"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "ultra-clean UI interaction",
-      "Swiss design precision",
-      "white gallery silence",
-      "Scandinavian living room",
-      "frosted glass partition"
-    ],
-    "instruments": [
-      "pure sine tone at concert pitch",
-      "tapped crystal glass rim",
-      "single piano key softly pressed",
-      "porcelain bowl struck with felt tip",
-      "tuning fork resonating on wood"
-    ],
-    "mood": [
-      "whisper-quiet elegance",
-      "zen garden calm",
-      "paper-thin delicacy",
-      "breath-held anticipation",
-      "snow falling on still water"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "pristine",
-      "transparent",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "one clean precise tap confirming task completion",
+      "text": "one clean precise tap confirming task completion, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+    },
+    {
+      "label": "fingertip touching surface once with finality",
+      "text": "fingertip touching surface once with finality, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+    },
+    {
+      "label": "minimal percussion point marking done with clarity",
+      "text": "minimal percussion point marking done with clarity, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+    },
+    {
+      "label": "porcelain struck once at exact center",
+      "text": "porcelain struck once at exact center, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+    },
+    {
+      "label": "glass contact point with instant clean release",
+      "text": "glass contact point with instant clean release, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+    }
+  ]
 }

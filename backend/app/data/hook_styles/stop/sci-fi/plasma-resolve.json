@@ -2,52 +2,26 @@
   "id": "scifi-stop-plasma-resolve",
   "name": "Plasma Resolve",
   "description": "Futuristic energy beam powering down to completion",
-  "sound_characters": {
-    "simple": [
-      "plasma beam powering down with digital shimmer"
-    ],
-    "standard": [
-      "plasma beam powering down with digital shimmer",
-      "neon circuit closing with crystalline confirmation",
-      "holographic interface dismissing with clean sweep"
-    ],
-    "detailed": [
-      "plasma beam powering down with digital shimmer",
-      "neon circuit closing with crystalline confirmation",
-      "holographic interface dismissing with clean sweep",
-      "quantum computation resolving into harmonic lock",
-      "starship console chirping mission complete"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "futuristic spacecraft interface",
-      "cyberpunk neon-lit",
-      "deep space station",
-      "quantum computer hum",
-      "orbital relay signal"
-    ],
-    "instruments": [
-      "crystalline FM synthesis bell",
-      "voltage-controlled resonant filter sweep",
-      "granular synth texture",
-      "plasma crackle discharge"
-    ],
-    "mood": [
-      "otherworldly precision",
-      "holographic clarity",
-      "cold vacuum stillness",
-      "alien intelligence awakening"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "crisp",
-      "studio-grade",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "plasma beam powering down with digital shimmer",
+      "text": "plasma beam powering down with digital shimmer, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "neon circuit closing with crystalline confirmation",
+      "text": "neon circuit closing with crystalline confirmation, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+    },
+    {
+      "label": "holographic interface dismissing with clean sweep",
+      "text": "holographic interface dismissing with clean sweep, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+    },
+    {
+      "label": "quantum computation resolving into harmonic lock",
+      "text": "quantum computation resolving into harmonic lock, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+    },
+    {
+      "label": "starship console chirping mission complete",
+      "text": "starship console chirping mission complete, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+    }
+  ]
 }

@@ -2,54 +2,26 @@
   "id": "min-subagent-stop-whisper-dot",
   "name": "Whisper Dot",
   "description": "Barely audible point of sound in silence",
-  "sound_characters": {
-    "simple": [
-      "barely audible whisper dot appearing in silence"
-    ],
-    "standard": [
-      "barely audible whisper dot appearing in silence",
-      "ghost-thin tone point with instant fade",
-      "microscopic sine blip at the threshold of hearing"
-    ],
-    "detailed": [
-      "barely audible whisper dot appearing in silence",
-      "ghost-thin tone point with instant fade",
-      "microscopic sine blip at the threshold of hearing",
-      "single pixel of pure sound dissolving immediately",
-      "featherweight frequency touch vanishing to nothing"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "ultra-clean UI interaction",
-      "Swiss design precision",
-      "white gallery silence",
-      "Scandinavian living room",
-      "frosted glass partition"
-    ],
-    "instruments": [
-      "pure sine tone at concert pitch",
-      "tapped crystal glass rim",
-      "single piano key softly pressed",
-      "porcelain bowl struck with felt tip",
-      "tuning fork resonating on wood"
-    ],
-    "mood": [
-      "whisper-quiet elegance",
-      "zen garden calm",
-      "paper-thin delicacy",
-      "breath-held anticipation",
-      "snow falling on still water"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "pristine",
-      "transparent",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "barely audible whisper dot appearing in silence",
+      "text": "barely audible whisper dot appearing in silence, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+    },
+    {
+      "label": "ghost-thin tone point with instant fade",
+      "text": "ghost-thin tone point with instant fade, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+    },
+    {
+      "label": "microscopic sine blip at the threshold of hearing",
+      "text": "microscopic sine blip at the threshold of hearing, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+    },
+    {
+      "label": "single pixel of pure sound dissolving immediately",
+      "text": "single pixel of pure sound dissolving immediately, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+    },
+    {
+      "label": "featherweight frequency touch vanishing to nothing",
+      "text": "featherweight frequency touch vanishing to nothing, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+    }
+  ]
 }

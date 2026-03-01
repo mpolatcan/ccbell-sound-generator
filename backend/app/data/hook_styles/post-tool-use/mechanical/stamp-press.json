@@ -2,54 +2,26 @@
   "id": "mech-post-tool-use-stamp-press",
   "name": "Stamp Press",
   "description": "Industrial stamp pressing down with authoritative force",
-  "sound_characters": {
-    "simple": [
-      "industrial stamp pressing down with authoritative mechanical force"
-    ],
-    "standard": [
-      "industrial stamp pressing down with authoritative mechanical force",
-      "heavy die press completing cycle with hydraulic thump",
-      "manufacturing stamp leaving clean impression with solid impact"
-    ],
-    "detailed": [
-      "industrial stamp pressing down with authoritative mechanical force",
-      "heavy die press completing cycle with hydraulic thump",
-      "manufacturing stamp leaving clean impression with solid impact",
-      "embossing press creating mark with precise tonnage",
-      "rubber seal meeting paper with decisive compression"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "steam workshop furnace glow",
-      "Victorian clocktower",
-      "locomotive engine room",
-      "blacksmith anvil yard",
-      "submarine pressure hull"
-    ],
-    "instruments": [
-      "brass gear clank on iron plate",
-      "ratchet wrench click",
-      "tempered steel spring release",
-      "cast iron lever thrown",
-      "copper pipe resonance ping"
-    ],
-    "mood": [
-      "forge-hot determination",
-      "oiled-machine rhythm",
-      "riveted iron solidity",
-      "pneumatic power hiss",
-      "precision clockwork ticking"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "crisp",
-      "impactful",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "industrial stamp pressing down with authoritative mechanical force",
+      "text": "industrial stamp pressing down with authoritative mechanical force, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "heavy die press completing cycle with hydraulic thump",
+      "text": "heavy die press completing cycle with hydraulic thump, Victorian clocktower, ratchet wrench click, oiled-machine rhythm, 44.1kHz, stereo, high-quality, impactful, smooth fade out"
+    },
+    {
+      "label": "manufacturing stamp leaving clean impression with solid impact",
+      "text": "manufacturing stamp leaving clean impression with solid impact, locomotive engine room, tempered steel spring release, riveted iron solidity, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+    },
+    {
+      "label": "embossing press creating mark with precise tonnage",
+      "text": "embossing press creating mark with precise tonnage, blacksmith anvil yard, cast iron lever thrown, pneumatic power hiss, 44.1kHz, stereo, high-quality, impactful, with natural decay"
+    },
+    {
+      "label": "rubber seal meeting paper with decisive compression",
+      "text": "rubber seal meeting paper with decisive compression, submarine pressure hull, copper pipe resonance ping, precision clockwork ticking, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+    }
+  ]
 }

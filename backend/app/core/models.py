@@ -139,14 +139,20 @@ class TieredSoundCharacters(BaseModel):
     detailed: list[str]
 
 
+class PromptEntry(BaseModel):
+    """A single pre-composed prompt variant."""
+
+    label: str
+    text: str
+
+
 class SoundStylePreset(BaseModel):
     """A named sound style preset for a hook type."""
 
     id: str
     name: str
     description: str
-    sound_characters: TieredSoundCharacters
-    prompt_components: PromptComponents | None = None
+    prompts: list[PromptEntry]
 
 
 class HookType(BaseModel):

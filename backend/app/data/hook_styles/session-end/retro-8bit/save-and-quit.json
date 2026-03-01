@@ -2,54 +2,26 @@
   "id": "8bit-session-end-save-and-quit",
   "name": "Save & Quit",
   "description": "Game saving progress and returning to title",
-  "sound_characters": {
-    "simple": [
-      "game saving progress and returning to title with confirmation chime"
-    ],
-    "standard": [
-      "game saving progress and returning to title with confirmation chime",
-      "8-bit save complete jingle with floppy disk write sound",
-      "retro game data stored with cheerful square wave goodbye"
-    ],
-    "detailed": [
-      "game saving progress and returning to title with confirmation chime",
-      "8-bit save complete jingle with floppy disk write sound",
-      "retro game data stored with cheerful square wave goodbye",
-      "NES memory card writing with brief processing melody",
-      "pixel progress bar completing with satisfied chiptune ding"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "NES coin-collect jingle",
-      "pixel game power-up",
-      "Game Boy startup melody",
-      "SID chip tracker groove",
-      "16-bit victory screen"
-    ],
-    "instruments": [
-      "bitcrushed square wave blip",
-      "pulse wave arpeggio",
-      "triangle wave bass note",
-      "noise channel snare hit",
-      "lo-fi sample playback crunch"
-    ],
-    "mood": [
-      "arcade cabinet excitement",
-      "joystick-era nostalgia",
-      "high-score elation",
-      "speed-run intensity",
-      "bonus-stage energy"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "crisp",
-      "punchy",
-      "bright",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "game saving progress and returning to title with confirmation chime",
+      "text": "game saving progress and returning to title with confirmation chime, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "8-bit save complete jingle with floppy disk write sound",
+      "text": "8-bit save complete jingle with floppy disk write sound, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+    },
+    {
+      "label": "retro game data stored with cheerful square wave goodbye",
+      "text": "retro game data stored with cheerful square wave goodbye, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance"
+    },
+    {
+      "label": "NES memory card writing with brief processing melody",
+      "text": "NES memory card writing with brief processing melody, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "pixel progress bar completing with satisfied chiptune ding",
+      "text": "pixel progress bar completing with satisfied chiptune ding, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+    }
+  ]
 }

@@ -2,54 +2,26 @@
   "id": "nature-session-start-spring-thaw",
   "name": "Spring Thaw",
   "description": "Frozen landscape cracking and melting to life",
-  "sound_characters": {
-    "simple": [
-      "frozen landscape cracking and melting awake with spring thaw"
-    ],
-    "standard": [
-      "frozen landscape cracking and melting awake with spring thaw",
-      "ice breaking on river with flowing water rushing beneath",
-      "winter silence yielding to trickling streams and dripping icicles"
-    ],
-    "detailed": [
-      "frozen landscape cracking and melting awake with spring thaw",
-      "ice breaking on river with flowing water rushing beneath",
-      "winter silence yielding to trickling streams and dripping icicles",
-      "glacier creaking as warmth spreads through frozen earth",
-      "first flowers pushing through snow with triumphant green energy"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "forest clearing at dawn",
-      "moss-covered stone garden",
-      "bamboo grove in gentle wind",
-      "creek bed after summer rain",
-      "meadow with distant thunder"
-    ],
-    "instruments": [
-      "wooden mallet on hollow log",
-      "rain droplet on broad leaf",
-      "smooth river stones clinking",
-      "fingertip-plucked kalimba tine",
-      "ceramic wind chime in breeze"
-    ],
-    "mood": [
-      "morning dew stillness",
-      "sun-warmed earth",
-      "birdsong tranquility",
-      "deep forest solitude",
-      "waterfall mist on skin"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "soft",
-      "airy",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "frozen landscape cracking and melting awake with spring thaw",
+      "text": "frozen landscape cracking and melting awake with spring thaw, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay"
+    },
+    {
+      "label": "ice breaking on river with flowing water rushing beneath",
+      "text": "ice breaking on river with flowing water rushing beneath, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out"
+    },
+    {
+      "label": "winter silence yielding to trickling streams and dripping icicles",
+      "text": "winter silence yielding to trickling streams and dripping icicles, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance"
+    },
+    {
+      "label": "glacier creaking as warmth spreads through frozen earth",
+      "text": "glacier creaking as warmth spreads through frozen earth, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay"
+    },
+    {
+      "label": "first flowers pushing through snow with triumphant green energy",
+      "text": "first flowers pushing through snow with triumphant green energy, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out"
+    }
+  ]
 }

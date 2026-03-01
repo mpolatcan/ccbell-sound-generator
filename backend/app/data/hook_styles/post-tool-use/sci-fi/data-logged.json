@@ -2,52 +2,26 @@
   "id": "scifi-post-tool-use-data-logged",
   "name": "Data Logged",
   "description": "Scan results saved with digital confirmation",
-  "sound_characters": {
-    "simple": [
-      "scan results saved to database with digital confirmation ping"
-    ],
-    "standard": [
-      "scan results saved to database with digital confirmation ping",
-      "analysis complete with data written to crystal storage",
-      "information processed and logged with quick electronic stamp"
-    ],
-    "detailed": [
-      "scan results saved to database with digital confirmation ping",
-      "analysis complete with data written to crystal storage",
-      "information processed and logged with quick electronic stamp",
-      "quantum memory banks accepting new data with soft click",
-      "holographic file closing with compressed whoosh"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "futuristic spacecraft interface",
-      "cyberpunk neon-lit",
-      "deep space station",
-      "quantum computer hum",
-      "orbital relay signal"
-    ],
-    "instruments": [
-      "crystalline FM synthesis bell",
-      "voltage-controlled resonant filter sweep",
-      "granular synth texture",
-      "plasma crackle discharge"
-    ],
-    "mood": [
-      "otherworldly precision",
-      "holographic clarity",
-      "cold vacuum stillness",
-      "alien intelligence awakening"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "crisp",
-      "studio-grade",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "scan results saved to database with digital confirmation ping",
+      "text": "scan results saved to database with digital confirmation ping, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "analysis complete with data written to crystal storage",
+      "text": "analysis complete with data written to crystal storage, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+    },
+    {
+      "label": "information processed and logged with quick electronic stamp",
+      "text": "information processed and logged with quick electronic stamp, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+    },
+    {
+      "label": "quantum memory banks accepting new data with soft click",
+      "text": "quantum memory banks accepting new data with soft click, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+    },
+    {
+      "label": "holographic file closing with compressed whoosh",
+      "text": "holographic file closing with compressed whoosh, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+    }
+  ]
 }

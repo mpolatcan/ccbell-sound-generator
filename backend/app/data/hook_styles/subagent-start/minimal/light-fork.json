@@ -2,54 +2,26 @@
   "id": "min-subagent-start-light-fork",
   "name": "Light Fork",
   "description": "Beam of light splitting through a prism",
-  "sound_characters": {
-    "simple": [
-      "beam of pure light splitting through crystalline prism"
-    ],
-    "standard": [
-      "beam of pure light splitting through crystalline prism",
-      "single frequency refracting into divergent paths",
-      "coherent tone dispersing into component directions"
-    ],
-    "detailed": [
-      "beam of pure light splitting through crystalline prism",
-      "single frequency refracting into divergent paths",
-      "coherent tone dispersing into component directions",
-      "white sound separating into spectral elements",
-      "optical split creating rainbow of frequency paths"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "ultra-clean UI interaction",
-      "Swiss design precision",
-      "white gallery silence",
-      "Scandinavian living room",
-      "frosted glass partition"
-    ],
-    "instruments": [
-      "pure sine tone at concert pitch",
-      "tapped crystal glass rim",
-      "single piano key softly pressed",
-      "porcelain bowl struck with felt tip",
-      "tuning fork resonating on wood"
-    ],
-    "mood": [
-      "whisper-quiet elegance",
-      "zen garden calm",
-      "paper-thin delicacy",
-      "breath-held anticipation",
-      "snow falling on still water"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "pristine",
-      "transparent",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "beam of pure light splitting through crystalline prism",
+      "text": "beam of pure light splitting through crystalline prism, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+    },
+    {
+      "label": "single frequency refracting into divergent paths",
+      "text": "single frequency refracting into divergent paths, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+    },
+    {
+      "label": "coherent tone dispersing into component directions",
+      "text": "coherent tone dispersing into component directions, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+    },
+    {
+      "label": "white sound separating into spectral elements",
+      "text": "white sound separating into spectral elements, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+    },
+    {
+      "label": "optical split creating rainbow of frequency paths",
+      "text": "optical split creating rainbow of frequency paths, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+    }
+  ]
 }

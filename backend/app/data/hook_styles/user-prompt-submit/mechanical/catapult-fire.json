@@ -2,54 +2,26 @@
   "id": "mech-user-prompt-submit-catapult-fire",
   "name": "Catapult Fire",
   "description": "Siege catapult releasing with tremendous force",
-  "sound_characters": {
-    "simple": [
-      "siege catapult arm releasing payload with tremendous force"
-    ],
-    "standard": [
-      "siege catapult arm releasing payload with tremendous force",
-      "trebuchet counterweight dropping and arm swinging forward",
-      "medieval launch mechanism firing with wooden creaking blast"
-    ],
-    "detailed": [
-      "siege catapult arm releasing payload with tremendous force",
-      "trebuchet counterweight dropping and arm swinging forward",
-      "medieval launch mechanism firing with wooden creaking blast",
-      "torsion spring unwinding with explosive rotational energy",
-      "projectile departing cradle with whistling acceleration"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "steam workshop furnace glow",
-      "Victorian clocktower",
-      "locomotive engine room",
-      "blacksmith anvil yard",
-      "submarine pressure hull"
-    ],
-    "instruments": [
-      "brass gear clank on iron plate",
-      "ratchet wrench click",
-      "tempered steel spring release",
-      "cast iron lever thrown",
-      "copper pipe resonance ping"
-    ],
-    "mood": [
-      "forge-hot determination",
-      "oiled-machine rhythm",
-      "riveted iron solidity",
-      "pneumatic power hiss",
-      "precision clockwork ticking"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "crisp",
-      "impactful",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "siege catapult arm releasing payload with tremendous force",
+      "text": "siege catapult arm releasing payload with tremendous force, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "trebuchet counterweight dropping and arm swinging forward",
+      "text": "trebuchet counterweight dropping and arm swinging forward, Victorian clocktower, ratchet wrench click, oiled-machine rhythm, 44.1kHz, stereo, high-quality, impactful, smooth fade out"
+    },
+    {
+      "label": "medieval launch mechanism firing with wooden creaking blast",
+      "text": "medieval launch mechanism firing with wooden creaking blast, locomotive engine room, tempered steel spring release, riveted iron solidity, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+    },
+    {
+      "label": "torsion spring unwinding with explosive rotational energy",
+      "text": "torsion spring unwinding with explosive rotational energy, blacksmith anvil yard, cast iron lever thrown, pneumatic power hiss, 44.1kHz, stereo, high-quality, impactful, with natural decay"
+    },
+    {
+      "label": "projectile departing cradle with whistling acceleration",
+      "text": "projectile departing cradle with whistling acceleration, submarine pressure hull, copper pipe resonance ping, precision clockwork ticking, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+    }
+  ]
 }

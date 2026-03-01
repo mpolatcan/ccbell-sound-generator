@@ -2,54 +2,26 @@
   "id": "mech-idle-prompt-standby-whir",
   "name": "Standby Whir",
   "description": "Machine motor idling with low electrical whir",
-  "sound_characters": {
-    "simple": [
-      "machine motor idling with low steady electrical whir"
-    ],
-    "standard": [
-      "machine motor idling with low steady electrical whir",
-      "standby motor humming at minimum power with soft vibration",
-      "electric generator purring in ready state"
-    ],
-    "detailed": [
-      "machine motor idling with low steady electrical whir",
-      "standby motor humming at minimum power with soft vibration",
-      "electric generator purring in ready state",
-      "servo mechanism holding position with quiet frequency hum",
-      "industrial fan spinning at lowest setting with gentle drone"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "steam workshop furnace glow",
-      "Victorian clocktower",
-      "locomotive engine room",
-      "blacksmith anvil yard",
-      "submarine pressure hull"
-    ],
-    "instruments": [
-      "brass gear clank on iron plate",
-      "ratchet wrench click",
-      "tempered steel spring release",
-      "cast iron lever thrown",
-      "copper pipe resonance ping"
-    ],
-    "mood": [
-      "forge-hot determination",
-      "oiled-machine rhythm",
-      "riveted iron solidity",
-      "pneumatic power hiss",
-      "precision clockwork ticking"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "crisp",
-      "impactful",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "machine motor idling with low steady electrical whir",
+      "text": "machine motor idling with low steady electrical whir, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "standby motor humming at minimum power with soft vibration",
+      "text": "standby motor humming at minimum power with soft vibration, Victorian clocktower, ratchet wrench click, oiled-machine rhythm, 44.1kHz, stereo, high-quality, impactful, smooth fade out"
+    },
+    {
+      "label": "electric generator purring in ready state",
+      "text": "electric generator purring in ready state, locomotive engine room, tempered steel spring release, riveted iron solidity, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+    },
+    {
+      "label": "servo mechanism holding position with quiet frequency hum",
+      "text": "servo mechanism holding position with quiet frequency hum, blacksmith anvil yard, cast iron lever thrown, pneumatic power hiss, 44.1kHz, stereo, high-quality, impactful, with natural decay"
+    },
+    {
+      "label": "industrial fan spinning at lowest setting with gentle drone",
+      "text": "industrial fan spinning at lowest setting with gentle drone, submarine pressure hull, copper pipe resonance ping, precision clockwork ticking, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+    }
+  ]
 }

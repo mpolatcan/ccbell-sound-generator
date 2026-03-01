@@ -2,54 +2,26 @@
   "id": "jazz-user-prompt-submit-vamp-out",
   "name": "Vamp Out",
   "description": "Band vamping to send off the soloist",
-  "sound_characters": {
-    "simple": [
-      "jazz band vamping energetically to send off the soloist"
-    ],
-    "standard": [
-      "jazz band vamping energetically to send off the soloist",
-      "rhythm section building groove beneath departing melody",
-      "ensemble cooking on repeating riff with increasing intensity"
-    ],
-    "detailed": [
-      "jazz band vamping energetically to send off the soloist",
-      "rhythm section building groove beneath departing melody",
-      "ensemble cooking on repeating riff with increasing intensity",
-      "organ and drums locking into propulsive send-off pattern",
-      "bass and piano driving forward with unstoppable swing"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "late-night jazz club",
-      "Blue Note session warmth",
-      "velvet curtain lounge",
-      "bossa nova beachside patio",
-      "cool jazz after-hours session"
-    ],
-    "instruments": [
-      "harmon-muted trumpet breath",
-      "walking bass string pluck",
-      "vibraphone mallet on metal bar",
-      "wire brushes swirling on snare head",
-      "Rhodes electric piano with tremolo"
-    ],
-    "mood": [
-      "smoky room intimacy",
-      "last-set-of-the-night mellowness",
-      "bourbon warmth on the tongue",
-      "slow-nod groove",
-      "spotlight-on-the-soloist focus"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "rich",
-      "analog warmth",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "jazz band vamping energetically to send off the soloist",
+      "text": "jazz band vamping energetically to send off the soloist, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay"
+    },
+    {
+      "label": "rhythm section building groove beneath departing melody",
+      "text": "rhythm section building groove beneath departing melody, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out"
+    },
+    {
+      "label": "ensemble cooking on repeating riff with increasing intensity",
+      "text": "ensemble cooking on repeating riff with increasing intensity, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance"
+    },
+    {
+      "label": "organ and drums locking into propulsive send-off pattern",
+      "text": "organ and drums locking into propulsive send-off pattern, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay"
+    },
+    {
+      "label": "bass and piano driving forward with unstoppable swing",
+      "text": "bass and piano driving forward with unstoppable swing, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out"
+    }
+  ]
 }

@@ -2,54 +2,26 @@
   "id": "min-user-prompt-submit-clean-send",
   "name": "Clean Send",
   "description": "Message dispatched with pristine efficiency",
-  "sound_characters": {
-    "simple": [
-      "message dispatched with pristine clinical efficiency"
-    ],
-    "standard": [
-      "message dispatched with pristine clinical efficiency",
-      "data transmitted with zero noise or artifact",
-      "clean signal departing with surgical precision"
-    ],
-    "detailed": [
-      "message dispatched with pristine clinical efficiency",
-      "data transmitted with zero noise or artifact",
-      "clean signal departing with surgical precision",
-      "pure frequency pulse launched into void",
-      "immaculate transmission with no wasted energy"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "ultra-clean UI interaction",
-      "Swiss design precision",
-      "white gallery silence",
-      "Scandinavian living room",
-      "frosted glass partition"
-    ],
-    "instruments": [
-      "pure sine tone at concert pitch",
-      "tapped crystal glass rim",
-      "single piano key softly pressed",
-      "porcelain bowl struck with felt tip",
-      "tuning fork resonating on wood"
-    ],
-    "mood": [
-      "whisper-quiet elegance",
-      "zen garden calm",
-      "paper-thin delicacy",
-      "breath-held anticipation",
-      "snow falling on still water"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "pristine",
-      "transparent",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "message dispatched with pristine clinical efficiency",
+      "text": "message dispatched with pristine clinical efficiency, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+    },
+    {
+      "label": "data transmitted with zero noise or artifact",
+      "text": "data transmitted with zero noise or artifact, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+    },
+    {
+      "label": "clean signal departing with surgical precision",
+      "text": "clean signal departing with surgical precision, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+    },
+    {
+      "label": "pure frequency pulse launched into void",
+      "text": "pure frequency pulse launched into void, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+    },
+    {
+      "label": "immaculate transmission with no wasted energy",
+      "text": "immaculate transmission with no wasted energy, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+    }
+  ]
 }

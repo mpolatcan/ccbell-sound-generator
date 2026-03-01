@@ -2,54 +2,26 @@
   "id": "mech-permission-prompt-pressure-alert",
   "name": "Pressure Alert",
   "description": "System pressure building and requesting release",
-  "sound_characters": {
-    "simple": [
-      "system pressure building and requesting operator release"
-    ],
-    "standard": [
-      "system pressure building and requesting operator release",
-      "hydraulic line pulsing with building urgency",
-      "pneumatic system asking for adjustment with hissing alert"
-    ],
-    "detailed": [
-      "system pressure building and requesting operator release",
-      "hydraulic line pulsing with building urgency",
-      "pneumatic system asking for adjustment with hissing alert",
-      "factory floor pressure warning with oscillating brass tone",
-      "steam engine governor requesting attention with clicking urgency"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "steam workshop furnace glow",
-      "Victorian clocktower",
-      "locomotive engine room",
-      "blacksmith anvil yard",
-      "submarine pressure hull"
-    ],
-    "instruments": [
-      "brass gear clank on iron plate",
-      "ratchet wrench click",
-      "tempered steel spring release",
-      "cast iron lever thrown",
-      "copper pipe resonance ping"
-    ],
-    "mood": [
-      "forge-hot determination",
-      "oiled-machine rhythm",
-      "riveted iron solidity",
-      "pneumatic power hiss",
-      "precision clockwork ticking"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "crisp",
-      "impactful",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "system pressure building and requesting operator release",
+      "text": "system pressure building and requesting operator release, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "hydraulic line pulsing with building urgency",
+      "text": "hydraulic line pulsing with building urgency, Victorian clocktower, ratchet wrench click, oiled-machine rhythm, 44.1kHz, stereo, high-quality, impactful, smooth fade out"
+    },
+    {
+      "label": "pneumatic system asking for adjustment with hissing alert",
+      "text": "pneumatic system asking for adjustment with hissing alert, locomotive engine room, tempered steel spring release, riveted iron solidity, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+    },
+    {
+      "label": "factory floor pressure warning with oscillating brass tone",
+      "text": "factory floor pressure warning with oscillating brass tone, blacksmith anvil yard, cast iron lever thrown, pneumatic power hiss, 44.1kHz, stereo, high-quality, impactful, with natural decay"
+    },
+    {
+      "label": "steam engine governor requesting attention with clicking urgency",
+      "text": "steam engine governor requesting attention with clicking urgency, submarine pressure hull, copper pipe resonance ping, precision clockwork ticking, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+    }
+  ]
 }

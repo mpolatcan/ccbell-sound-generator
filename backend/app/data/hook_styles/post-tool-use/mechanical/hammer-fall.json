@@ -2,54 +2,26 @@
   "id": "mech-post-tool-use-hammer-fall",
   "name": "Hammer Fall",
   "description": "Forge hammer striking with tremendous impact",
-  "sound_characters": {
-    "simple": [
-      "forge hammer striking hot iron with tremendous ringing impact"
-    ],
-    "standard": [
-      "forge hammer striking hot iron with tremendous ringing impact",
-      "blacksmith blow landing on anvil with deep metallic clang",
-      "heavy tool head connecting with workpiece decisively"
-    ],
-    "detailed": [
-      "forge hammer striking hot iron with tremendous ringing impact",
-      "blacksmith blow landing on anvil with deep metallic clang",
-      "heavy tool head connecting with workpiece decisively",
-      "iron sparks flying from hammer contact point",
-      "workshop ringing with the authority of completed strike"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "steam workshop furnace glow",
-      "Victorian clocktower",
-      "locomotive engine room",
-      "blacksmith anvil yard",
-      "submarine pressure hull"
-    ],
-    "instruments": [
-      "brass gear clank on iron plate",
-      "ratchet wrench click",
-      "tempered steel spring release",
-      "cast iron lever thrown",
-      "copper pipe resonance ping"
-    ],
-    "mood": [
-      "forge-hot determination",
-      "oiled-machine rhythm",
-      "riveted iron solidity",
-      "pneumatic power hiss",
-      "precision clockwork ticking"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "crisp",
-      "impactful",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "forge hammer striking hot iron with tremendous ringing impact",
+      "text": "forge hammer striking hot iron with tremendous ringing impact, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "blacksmith blow landing on anvil with deep metallic clang",
+      "text": "blacksmith blow landing on anvil with deep metallic clang, Victorian clocktower, ratchet wrench click, oiled-machine rhythm, 44.1kHz, stereo, high-quality, impactful, smooth fade out"
+    },
+    {
+      "label": "heavy tool head connecting with workpiece decisively",
+      "text": "heavy tool head connecting with workpiece decisively, locomotive engine room, tempered steel spring release, riveted iron solidity, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+    },
+    {
+      "label": "iron sparks flying from hammer contact point",
+      "text": "iron sparks flying from hammer contact point, blacksmith anvil yard, cast iron lever thrown, pneumatic power hiss, 44.1kHz, stereo, high-quality, impactful, with natural decay"
+    },
+    {
+      "label": "workshop ringing with the authority of completed strike",
+      "text": "workshop ringing with the authority of completed strike, submarine pressure hull, copper pipe resonance ping, precision clockwork ticking, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+    }
+  ]
 }

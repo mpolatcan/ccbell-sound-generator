@@ -2,54 +2,26 @@
   "id": "8bit-pre-tool-use-sword-draw",
   "name": "Sword Draw",
   "description": "Hero drawing pixel blade from sheath",
-  "sound_characters": {
-    "simple": [
-      "pixel hero drawing blade from sheath with 8-bit metallic ring"
-    ],
-    "standard": [
-      "pixel hero drawing blade from sheath with 8-bit metallic ring",
-      "chiptune sword unsheathing with ascending square wave slide",
-      "retro weapon equipped with dramatic bitcrushed flourish"
-    ],
-    "detailed": [
-      "pixel hero drawing blade from sheath with 8-bit metallic ring",
-      "chiptune sword unsheathing with ascending square wave slide",
-      "retro weapon equipped with dramatic bitcrushed flourish",
-      "NES blade glinting with brief high-pitched sparkle tone",
-      "8-bit battle stance assumed with aggressive pulse channel stab"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "NES coin-collect jingle",
-      "pixel game power-up",
-      "Game Boy startup melody",
-      "SID chip tracker groove",
-      "16-bit victory screen"
-    ],
-    "instruments": [
-      "bitcrushed square wave blip",
-      "pulse wave arpeggio",
-      "triangle wave bass note",
-      "noise channel snare hit",
-      "lo-fi sample playback crunch"
-    ],
-    "mood": [
-      "arcade cabinet excitement",
-      "joystick-era nostalgia",
-      "high-score elation",
-      "speed-run intensity",
-      "bonus-stage energy"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "crisp",
-      "punchy",
-      "bright",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "pixel hero drawing blade from sheath with 8-bit metallic ring",
+      "text": "pixel hero drawing blade from sheath with 8-bit metallic ring, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "chiptune sword unsheathing with ascending square wave slide",
+      "text": "chiptune sword unsheathing with ascending square wave slide, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+    },
+    {
+      "label": "retro weapon equipped with dramatic bitcrushed flourish",
+      "text": "retro weapon equipped with dramatic bitcrushed flourish, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance"
+    },
+    {
+      "label": "NES blade glinting with brief high-pitched sparkle tone",
+      "text": "NES blade glinting with brief high-pitched sparkle tone, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "8-bit battle stance assumed with aggressive pulse channel stab",
+      "text": "8-bit battle stance assumed with aggressive pulse channel stab, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+    }
+  ]
 }

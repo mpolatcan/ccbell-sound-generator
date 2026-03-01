@@ -2,54 +2,26 @@
   "id": "nature-idle-prompt-breeze-sigh",
   "name": "Breeze Sigh",
   "description": "Gentle wind breathing through tall grass",
-  "sound_characters": {
-    "simple": [
-      "gentle wind breathing through tall meadow grass"
-    ],
-    "standard": [
-      "gentle wind breathing through tall meadow grass",
-      "soft breeze sighing through wheat field with slow rhythm",
-      "air moving lazily through wildflower stalks"
-    ],
-    "detailed": [
-      "gentle wind breathing through tall meadow grass",
-      "soft breeze sighing through wheat field with slow rhythm",
-      "air moving lazily through wildflower stalks",
-      "prairie wind exhaling with patient seasonal cadence",
-      "hillside grass bending in slow hypnotic waves of sound"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "forest clearing at dawn",
-      "moss-covered stone garden",
-      "bamboo grove in gentle wind",
-      "creek bed after summer rain",
-      "meadow with distant thunder"
-    ],
-    "instruments": [
-      "wooden mallet on hollow log",
-      "rain droplet on broad leaf",
-      "smooth river stones clinking",
-      "fingertip-plucked kalimba tine",
-      "ceramic wind chime in breeze"
-    ],
-    "mood": [
-      "morning dew stillness",
-      "sun-warmed earth",
-      "birdsong tranquility",
-      "deep forest solitude",
-      "waterfall mist on skin"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "soft",
-      "airy",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "gentle wind breathing through tall meadow grass",
+      "text": "gentle wind breathing through tall meadow grass, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay"
+    },
+    {
+      "label": "soft breeze sighing through wheat field with slow rhythm",
+      "text": "soft breeze sighing through wheat field with slow rhythm, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out"
+    },
+    {
+      "label": "air moving lazily through wildflower stalks",
+      "text": "air moving lazily through wildflower stalks, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance"
+    },
+    {
+      "label": "prairie wind exhaling with patient seasonal cadence",
+      "text": "prairie wind exhaling with patient seasonal cadence, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay"
+    },
+    {
+      "label": "hillside grass bending in slow hypnotic waves of sound",
+      "text": "hillside grass bending in slow hypnotic waves of sound, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out"
+    }
+  ]
 }

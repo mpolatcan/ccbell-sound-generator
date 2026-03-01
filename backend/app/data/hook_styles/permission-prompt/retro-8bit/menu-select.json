@@ -2,54 +2,26 @@
   "id": "8bit-permission-prompt-menu-select",
   "name": "Menu Select",
   "description": "Game menu cursor highlighting an option",
-  "sound_characters": {
-    "simple": [
-      "game menu cursor moving to highlight option with blip"
-    ],
-    "standard": [
-      "game menu cursor moving to highlight option with blip",
-      "8-bit selection indicator with crisp square wave tick",
-      "pixel arrow pointing at menu choice with confirmation tone"
-    ],
-    "detailed": [
-      "game menu cursor moving to highlight option with blip",
-      "8-bit selection indicator with crisp square wave tick",
-      "pixel arrow pointing at menu choice with confirmation tone",
-      "retro interface navigation with clean chiptune cursor sound",
-      "NES menu highlight with brief ascending pulse"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "NES coin-collect jingle",
-      "pixel game power-up",
-      "Game Boy startup melody",
-      "SID chip tracker groove",
-      "16-bit victory screen"
-    ],
-    "instruments": [
-      "bitcrushed square wave blip",
-      "pulse wave arpeggio",
-      "triangle wave bass note",
-      "noise channel snare hit",
-      "lo-fi sample playback crunch"
-    ],
-    "mood": [
-      "arcade cabinet excitement",
-      "joystick-era nostalgia",
-      "high-score elation",
-      "speed-run intensity",
-      "bonus-stage energy"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "crisp",
-      "punchy",
-      "bright",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "game menu cursor moving to highlight option with blip",
+      "text": "game menu cursor moving to highlight option with blip, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "8-bit selection indicator with crisp square wave tick",
+      "text": "8-bit selection indicator with crisp square wave tick, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+    },
+    {
+      "label": "pixel arrow pointing at menu choice with confirmation tone",
+      "text": "pixel arrow pointing at menu choice with confirmation tone, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance"
+    },
+    {
+      "label": "retro interface navigation with clean chiptune cursor sound",
+      "text": "retro interface navigation with clean chiptune cursor sound, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "NES menu highlight with brief ascending pulse",
+      "text": "NES menu highlight with brief ascending pulse, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+    }
+  ]
 }

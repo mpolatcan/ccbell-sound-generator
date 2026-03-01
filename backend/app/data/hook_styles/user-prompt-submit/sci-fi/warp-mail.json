@@ -2,52 +2,26 @@
   "id": "scifi-user-prompt-submit-warp-mail",
   "name": "Warp Mail",
   "description": "Message entering faster-than-light delivery system",
-  "sound_characters": {
-    "simple": [
-      "message entering faster-than-light postal delivery system"
-    ],
-    "standard": [
-      "message entering faster-than-light postal delivery system",
-      "interstellar courier capsule launching from docking bay",
-      "FTL mailbox accepting message with departure confirmation"
-    ],
-    "detailed": [
-      "message entering faster-than-light postal delivery system",
-      "interstellar courier capsule launching from docking bay",
-      "FTL mailbox accepting message with departure confirmation",
-      "warp-capable message drone accelerating away from ship",
-      "priority transmission punching into subspace with urgency"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "futuristic spacecraft interface",
-      "cyberpunk neon-lit",
-      "deep space station",
-      "quantum computer hum",
-      "orbital relay signal"
-    ],
-    "instruments": [
-      "crystalline FM synthesis bell",
-      "voltage-controlled resonant filter sweep",
-      "granular synth texture",
-      "plasma crackle discharge"
-    ],
-    "mood": [
-      "otherworldly precision",
-      "holographic clarity",
-      "cold vacuum stillness",
-      "alien intelligence awakening"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "crisp",
-      "studio-grade",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "message entering faster-than-light postal delivery system",
+      "text": "message entering faster-than-light postal delivery system, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "interstellar courier capsule launching from docking bay",
+      "text": "interstellar courier capsule launching from docking bay, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+    },
+    {
+      "label": "FTL mailbox accepting message with departure confirmation",
+      "text": "FTL mailbox accepting message with departure confirmation, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+    },
+    {
+      "label": "warp-capable message drone accelerating away from ship",
+      "text": "warp-capable message drone accelerating away from ship, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+    },
+    {
+      "label": "priority transmission punching into subspace with urgency",
+      "text": "priority transmission punching into subspace with urgency, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+    }
+  ]
 }

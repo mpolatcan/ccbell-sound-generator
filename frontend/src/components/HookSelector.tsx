@@ -125,16 +125,6 @@ export const HookSelector = memo(function HookSelector({ hooks, selectedHooks, o
         </PopoverContent>
       </Popover>
 
-      {selectedHooksData.length > 0 && selectedHooksData.length <= 3 && (
-        <div className="text-sm text-muted-foreground space-y-1">
-          {selectedHooksData.map((hook, index) => (
-            <p key={hook.id} className="italic text-xs">
-              {index + 1}. {hook.name}: {hook.sound_characters.detailed.join(', ')}
-            </p>
-          ))}
-        </div>
-      )}
-
       {selectedHooksData.length > 3 && (
         <p className="text-xs text-muted-foreground">
           {selectedHooksData.length} hooks selected - sounds will be generated sequentially

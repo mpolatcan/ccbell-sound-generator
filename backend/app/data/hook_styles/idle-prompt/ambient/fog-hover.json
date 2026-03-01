@@ -2,54 +2,26 @@
   "id": "amb-idle-prompt-fog-hover",
   "name": "Fog Hover",
   "description": "Dense atmospheric texture hanging motionless",
-  "sound_characters": {
-    "simple": [
-      "dense atmospheric fog texture hanging perfectly motionless"
-    ],
-    "standard": [
-      "dense atmospheric fog texture hanging perfectly motionless",
-      "thick ambient mist layer suspended without movement",
-      "gray noise blanket hovering at constant gentle level"
-    ],
-    "detailed": [
-      "dense atmospheric fog texture hanging perfectly motionless",
-      "thick ambient mist layer suspended without movement",
-      "gray noise blanket hovering at constant gentle level",
-      "ground-level cloud maintaining static presence",
-      "weather system stalled in place with unchanging drone"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "cathedral reverb at midnight",
-      "tape-saturated warmth",
-      "Brian Eno infinite space",
-      "abandoned hall echo",
-      "lo-fi cassette hiss and bloom"
-    ],
-    "instruments": [
-      "bowed singing bowl overtone",
-      "granular piano cloud",
-      "reversed cymbal swell",
-      "harmonium drone with tape wobble",
-      "shimmer reverb pad wash"
-    ],
-    "mood": [
-      "warm fog dissolving slowly",
-      "candlelight flickering softly",
-      "underwater weightlessness",
-      "drifting between sleep and waking",
-      "moonlight through frosted glass"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "lush",
-      "wide",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "dense atmospheric fog texture hanging perfectly motionless",
+      "text": "dense atmospheric fog texture hanging perfectly motionless, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay"
+    },
+    {
+      "label": "thick ambient mist layer suspended without movement",
+      "text": "thick ambient mist layer suspended without movement, tape-saturated warmth, granular piano cloud, candlelight flickering softly, 44.1kHz, stereo, high-quality, wide, smooth fade out"
+    },
+    {
+      "label": "gray noise blanket hovering at constant gentle level",
+      "text": "gray noise blanket hovering at constant gentle level, Brian Eno infinite space, reversed cymbal swell, underwater weightlessness, 44.1kHz, stereo, high-quality, lush, sustained resonance"
+    },
+    {
+      "label": "ground-level cloud maintaining static presence",
+      "text": "ground-level cloud maintaining static presence, abandoned hall echo, harmonium drone with tape wobble, drifting between sleep and waking, 44.1kHz, stereo, high-quality, wide, with natural decay"
+    },
+    {
+      "label": "weather system stalled in place with unchanging drone",
+      "text": "weather system stalled in place with unchanging drone, lo-fi cassette hiss and bloom, shimmer reverb pad wash, moonlight through frosted glass, 44.1kHz, stereo, high-quality, lush, smooth fade out"
+    }
+  ]
 }

@@ -2,54 +2,26 @@
   "id": "min-subagent-start-line-branch",
   "name": "Line Branch",
   "description": "Straight line sprouting a new direction",
-  "sound_characters": {
-    "simple": [
-      "straight sonic line sprouting a new branch direction"
-    ],
-    "standard": [
-      "straight sonic line sprouting a new branch direction",
-      "clean frequency path developing secondary trajectory",
-      "pure tone generating offset harmonic offshoot"
-    ],
-    "detailed": [
-      "straight sonic line sprouting a new branch direction",
-      "clean frequency path developing secondary trajectory",
-      "pure tone generating offset harmonic offshoot",
-      "geometric line extending new vector with angular precision",
-      "minimal dendritic growth with one clean fork"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "ultra-clean UI interaction",
-      "Swiss design precision",
-      "white gallery silence",
-      "Scandinavian living room",
-      "frosted glass partition"
-    ],
-    "instruments": [
-      "pure sine tone at concert pitch",
-      "tapped crystal glass rim",
-      "single piano key softly pressed",
-      "porcelain bowl struck with felt tip",
-      "tuning fork resonating on wood"
-    ],
-    "mood": [
-      "whisper-quiet elegance",
-      "zen garden calm",
-      "paper-thin delicacy",
-      "breath-held anticipation",
-      "snow falling on still water"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "pristine",
-      "transparent",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "straight sonic line sprouting a new branch direction",
+      "text": "straight sonic line sprouting a new branch direction, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+    },
+    {
+      "label": "clean frequency path developing secondary trajectory",
+      "text": "clean frequency path developing secondary trajectory, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+    },
+    {
+      "label": "pure tone generating offset harmonic offshoot",
+      "text": "pure tone generating offset harmonic offshoot, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+    },
+    {
+      "label": "geometric line extending new vector with angular precision",
+      "text": "geometric line extending new vector with angular precision, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+    },
+    {
+      "label": "minimal dendritic growth with one clean fork",
+      "text": "minimal dendritic growth with one clean fork, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+    }
+  ]
 }

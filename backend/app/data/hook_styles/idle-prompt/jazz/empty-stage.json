@@ -2,54 +2,26 @@
   "id": "jazz-idle-prompt-empty-stage",
   "name": "Empty Stage",
   "description": "Quiet jazz club before the musicians arrive",
-  "sound_characters": {
-    "simple": [
-      "quiet jazz club stage with ambient hum before musicians arrive"
-    ],
-    "standard": [
-      "quiet jazz club stage with ambient hum before musicians arrive",
-      "empty spotlight on drum kit with room tone buzz",
-      "music stand pages rustling in air-conditioned silence"
-    ],
-    "detailed": [
-      "quiet jazz club stage with ambient hum before musicians arrive",
-      "empty spotlight on drum kit with room tone buzz",
-      "music stand pages rustling in air-conditioned silence",
-      "piano lid reflecting dim club lighting with expectant quiet",
-      "microphone feedback whisper from unmuted stage monitors"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "late-night jazz club",
-      "Blue Note session warmth",
-      "velvet curtain lounge",
-      "bossa nova beachside patio",
-      "cool jazz after-hours session"
-    ],
-    "instruments": [
-      "harmon-muted trumpet breath",
-      "walking bass string pluck",
-      "vibraphone mallet on metal bar",
-      "wire brushes swirling on snare head",
-      "Rhodes electric piano with tremolo"
-    ],
-    "mood": [
-      "smoky room intimacy",
-      "last-set-of-the-night mellowness",
-      "bourbon warmth on the tongue",
-      "slow-nod groove",
-      "spotlight-on-the-soloist focus"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "rich",
-      "analog warmth",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "quiet jazz club stage with ambient hum before musicians arrive",
+      "text": "quiet jazz club stage with ambient hum before musicians arrive, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay"
+    },
+    {
+      "label": "empty spotlight on drum kit with room tone buzz",
+      "text": "empty spotlight on drum kit with room tone buzz, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out"
+    },
+    {
+      "label": "music stand pages rustling in air-conditioned silence",
+      "text": "music stand pages rustling in air-conditioned silence, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance"
+    },
+    {
+      "label": "piano lid reflecting dim club lighting with expectant quiet",
+      "text": "piano lid reflecting dim club lighting with expectant quiet, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay"
+    },
+    {
+      "label": "microphone feedback whisper from unmuted stage monitors",
+      "text": "microphone feedback whisper from unmuted stage monitors, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out"
+    }
+  ]
 }

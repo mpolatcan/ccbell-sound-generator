@@ -2,54 +2,26 @@
   "id": "jazz-stop-curtain-down",
   "name": "Curtain Down",
   "description": "Theater curtain descending as the show ends",
-  "sound_characters": {
-    "simple": [
-      "theater curtain descending with velvet whoosh and final applause"
-    ],
-    "standard": [
-      "theater curtain descending with velvet whoosh and final applause",
-      "jazz club spotlight dimming with warm fade",
-      "swing band hitting final accent with brass stab"
-    ],
-    "detailed": [
-      "theater curtain descending with velvet whoosh and final applause",
-      "jazz club spotlight dimming with warm fade",
-      "swing band hitting final accent with brass stab",
-      "audience murmur settling after standing ovation",
-      "house lights coming up with gentle warmth"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "late-night jazz club",
-      "Blue Note session warmth",
-      "velvet curtain lounge",
-      "bossa nova beachside patio",
-      "cool jazz after-hours session"
-    ],
-    "instruments": [
-      "harmon-muted trumpet breath",
-      "walking bass string pluck",
-      "vibraphone mallet on metal bar",
-      "wire brushes swirling on snare head",
-      "Rhodes electric piano with tremolo"
-    ],
-    "mood": [
-      "smoky room intimacy",
-      "last-set-of-the-night mellowness",
-      "bourbon warmth on the tongue",
-      "slow-nod groove",
-      "spotlight-on-the-soloist focus"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "rich",
-      "analog warmth",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "theater curtain descending with velvet whoosh and final applause",
+      "text": "theater curtain descending with velvet whoosh and final applause, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay"
+    },
+    {
+      "label": "jazz club spotlight dimming with warm fade",
+      "text": "jazz club spotlight dimming with warm fade, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out"
+    },
+    {
+      "label": "swing band hitting final accent with brass stab",
+      "text": "swing band hitting final accent with brass stab, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance"
+    },
+    {
+      "label": "audience murmur settling after standing ovation",
+      "text": "audience murmur settling after standing ovation, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay"
+    },
+    {
+      "label": "house lights coming up with gentle warmth",
+      "text": "house lights coming up with gentle warmth, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out"
+    }
+  ]
 }

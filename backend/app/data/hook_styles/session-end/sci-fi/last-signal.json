@@ -2,52 +2,26 @@
   "id": "scifi-session-end-last-signal",
   "name": "Last Signal",
   "description": "Final transmission before entering comm silence",
-  "sound_characters": {
-    "simple": [
-      "final transmission sent before entering communication silence"
-    ],
-    "standard": [
-      "final transmission sent before entering communication silence",
-      "last data burst broadcasting with fading carrier wave",
-      "radio silence protocol engaging with descending signal tone"
-    ],
-    "detailed": [
-      "final transmission sent before entering communication silence",
-      "last data burst broadcasting with fading carrier wave",
-      "radio silence protocol engaging with descending signal tone",
-      "deep space transmitter powering down with diminishing range",
-      "farewell beacon pulsing three times then going dark"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "futuristic spacecraft interface",
-      "cyberpunk neon-lit",
-      "deep space station",
-      "quantum computer hum",
-      "orbital relay signal"
-    ],
-    "instruments": [
-      "crystalline FM synthesis bell",
-      "voltage-controlled resonant filter sweep",
-      "granular synth texture",
-      "plasma crackle discharge"
-    ],
-    "mood": [
-      "otherworldly precision",
-      "holographic clarity",
-      "cold vacuum stillness",
-      "alien intelligence awakening"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "crisp",
-      "studio-grade",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "final transmission sent before entering communication silence",
+      "text": "final transmission sent before entering communication silence, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "last data burst broadcasting with fading carrier wave",
+      "text": "last data burst broadcasting with fading carrier wave, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+    },
+    {
+      "label": "radio silence protocol engaging with descending signal tone",
+      "text": "radio silence protocol engaging with descending signal tone, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+    },
+    {
+      "label": "deep space transmitter powering down with diminishing range",
+      "text": "deep space transmitter powering down with diminishing range, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+    },
+    {
+      "label": "farewell beacon pulsing three times then going dark",
+      "text": "farewell beacon pulsing three times then going dark, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+    }
+  ]
 }

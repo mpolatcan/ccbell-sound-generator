@@ -2,54 +2,26 @@
   "id": "amb-post-tool-use-echo-fade",
   "name": "Echo Fade",
   "description": "Sound bouncing away into distant silence",
-  "sound_characters": {
-    "simple": [
-      "sound bouncing away into ever more distant silence"
-    ],
-    "standard": [
-      "sound bouncing away into ever more distant silence",
-      "echo chain diminishing with each reflection",
-      "reverberation trail disappearing into acoustic infinity"
-    ],
-    "detailed": [
-      "sound bouncing away into ever more distant silence",
-      "echo chain diminishing with each reflection",
-      "reverberation trail disappearing into acoustic infinity",
-      "canyon echo repeating with progressive softening",
-      "sound memory fading through layers of atmospheric distance"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "cathedral reverb at midnight",
-      "tape-saturated warmth",
-      "Brian Eno infinite space",
-      "abandoned hall echo",
-      "lo-fi cassette hiss and bloom"
-    ],
-    "instruments": [
-      "bowed singing bowl overtone",
-      "granular piano cloud",
-      "reversed cymbal swell",
-      "harmonium drone with tape wobble",
-      "shimmer reverb pad wash"
-    ],
-    "mood": [
-      "warm fog dissolving slowly",
-      "candlelight flickering softly",
-      "underwater weightlessness",
-      "drifting between sleep and waking",
-      "moonlight through frosted glass"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "lush",
-      "wide",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "sound bouncing away into ever more distant silence",
+      "text": "sound bouncing away into ever more distant silence, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay"
+    },
+    {
+      "label": "echo chain diminishing with each reflection",
+      "text": "echo chain diminishing with each reflection, tape-saturated warmth, granular piano cloud, candlelight flickering softly, 44.1kHz, stereo, high-quality, wide, smooth fade out"
+    },
+    {
+      "label": "reverberation trail disappearing into acoustic infinity",
+      "text": "reverberation trail disappearing into acoustic infinity, Brian Eno infinite space, reversed cymbal swell, underwater weightlessness, 44.1kHz, stereo, high-quality, lush, sustained resonance"
+    },
+    {
+      "label": "canyon echo repeating with progressive softening",
+      "text": "canyon echo repeating with progressive softening, abandoned hall echo, harmonium drone with tape wobble, drifting between sleep and waking, 44.1kHz, stereo, high-quality, wide, with natural decay"
+    },
+    {
+      "label": "sound memory fading through layers of atmospheric distance",
+      "text": "sound memory fading through layers of atmospheric distance, lo-fi cassette hiss and bloom, shimmer reverb pad wash, moonlight through frosted glass, 44.1kHz, stereo, high-quality, lush, smooth fade out"
+    }
+  ]
 }

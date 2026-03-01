@@ -2,52 +2,26 @@
   "id": "scifi-stop-warp-confirm",
   "name": "Warp Confirm",
   "description": "Faster-than-light jump completing with dramatic deceleration",
-  "sound_characters": {
-    "simple": [
-      "warp drive deceleration sweep with arrival confirmation"
-    ],
-    "standard": [
-      "warp drive deceleration sweep with arrival confirmation",
-      "hyperspace exit flash with descending energy trail",
-      "FTL jump completing with satisfying velocity drop"
-    ],
-    "detailed": [
-      "warp drive deceleration sweep with arrival confirmation",
-      "hyperspace exit flash with descending energy trail",
-      "FTL jump completing with satisfying velocity drop",
-      "spacetime fabric snapping back after warp bubble collapse",
-      "navigation computer chirping destination reached"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "futuristic spacecraft interface",
-      "cyberpunk neon-lit",
-      "deep space station",
-      "quantum computer hum",
-      "orbital relay signal"
-    ],
-    "instruments": [
-      "crystalline FM synthesis bell",
-      "voltage-controlled resonant filter sweep",
-      "granular synth texture",
-      "plasma crackle discharge"
-    ],
-    "mood": [
-      "otherworldly precision",
-      "holographic clarity",
-      "cold vacuum stillness",
-      "alien intelligence awakening"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "crisp",
-      "studio-grade",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "warp drive deceleration sweep with arrival confirmation",
+      "text": "warp drive deceleration sweep with arrival confirmation, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "hyperspace exit flash with descending energy trail",
+      "text": "hyperspace exit flash with descending energy trail, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+    },
+    {
+      "label": "FTL jump completing with satisfying velocity drop",
+      "text": "FTL jump completing with satisfying velocity drop, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+    },
+    {
+      "label": "spacetime fabric snapping back after warp bubble collapse",
+      "text": "spacetime fabric snapping back after warp bubble collapse, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+    },
+    {
+      "label": "navigation computer chirping destination reached",
+      "text": "navigation computer chirping destination reached, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+    }
+  ]
 }

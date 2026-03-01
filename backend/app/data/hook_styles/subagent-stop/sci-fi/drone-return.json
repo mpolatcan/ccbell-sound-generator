@@ -2,52 +2,26 @@
   "id": "scifi-subagent-stop-drone-return",
   "name": "Drone Return",
   "description": "Small drone docking back to mothership",
-  "sound_characters": {
-    "simple": [
-      "small drone docking with quiet magnetic clamp"
-    ],
-    "standard": [
-      "small drone docking with quiet magnetic clamp",
-      "reconnaissance probe returning with descending hover whine",
-      "micro-satellite latching home with soft mechanical click"
-    ],
-    "detailed": [
-      "small drone docking with quiet magnetic clamp",
-      "reconnaissance probe returning with descending hover whine",
-      "micro-satellite latching home with soft mechanical click",
-      "scout craft powering down after successful sweep",
-      "nanodrone settling into charging bay with tiny hum"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "futuristic spacecraft interface",
-      "cyberpunk neon-lit",
-      "deep space station",
-      "quantum computer hum",
-      "orbital relay signal"
-    ],
-    "instruments": [
-      "crystalline FM synthesis bell",
-      "voltage-controlled resonant filter sweep",
-      "granular synth texture",
-      "plasma crackle discharge"
-    ],
-    "mood": [
-      "otherworldly precision",
-      "holographic clarity",
-      "cold vacuum stillness",
-      "alien intelligence awakening"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "crisp",
-      "studio-grade",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "small drone docking with quiet magnetic clamp",
+      "text": "small drone docking with quiet magnetic clamp, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "reconnaissance probe returning with descending hover whine",
+      "text": "reconnaissance probe returning with descending hover whine, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+    },
+    {
+      "label": "micro-satellite latching home with soft mechanical click",
+      "text": "micro-satellite latching home with soft mechanical click, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+    },
+    {
+      "label": "scout craft powering down after successful sweep",
+      "text": "scout craft powering down after successful sweep, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+    },
+    {
+      "label": "nanodrone settling into charging bay with tiny hum",
+      "text": "nanodrone settling into charging bay with tiny hum, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+    }
+  ]
 }

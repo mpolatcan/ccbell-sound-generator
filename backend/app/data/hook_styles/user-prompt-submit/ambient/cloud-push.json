@@ -2,54 +2,26 @@
   "id": "amb-user-prompt-submit-cloud-push",
   "name": "Cloud Push",
   "description": "Atmospheric mass set in motion by force",
-  "sound_characters": {
-    "simple": [
-      "atmospheric cloud mass set in gentle purposeful motion"
-    ],
-    "standard": [
-      "atmospheric cloud mass set in gentle purposeful motion",
-      "weather system nudged forward by invisible hand",
-      "fog bank advancing with slow deliberate momentum"
-    ],
-    "detailed": [
-      "atmospheric cloud mass set in gentle purposeful motion",
-      "weather system nudged forward by invisible hand",
-      "fog bank advancing with slow deliberate momentum",
-      "sky texture shifting as pressure gradient takes hold",
-      "cumulus formation drifting with building wind energy"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "cathedral reverb at midnight",
-      "tape-saturated warmth",
-      "Brian Eno infinite space",
-      "abandoned hall echo",
-      "lo-fi cassette hiss and bloom"
-    ],
-    "instruments": [
-      "bowed singing bowl overtone",
-      "granular piano cloud",
-      "reversed cymbal swell",
-      "harmonium drone with tape wobble",
-      "shimmer reverb pad wash"
-    ],
-    "mood": [
-      "warm fog dissolving slowly",
-      "candlelight flickering softly",
-      "underwater weightlessness",
-      "drifting between sleep and waking",
-      "moonlight through frosted glass"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "lush",
-      "wide",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "atmospheric cloud mass set in gentle purposeful motion",
+      "text": "atmospheric cloud mass set in gentle purposeful motion, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay"
+    },
+    {
+      "label": "weather system nudged forward by invisible hand",
+      "text": "weather system nudged forward by invisible hand, tape-saturated warmth, granular piano cloud, candlelight flickering softly, 44.1kHz, stereo, high-quality, wide, smooth fade out"
+    },
+    {
+      "label": "fog bank advancing with slow deliberate momentum",
+      "text": "fog bank advancing with slow deliberate momentum, Brian Eno infinite space, reversed cymbal swell, underwater weightlessness, 44.1kHz, stereo, high-quality, lush, sustained resonance"
+    },
+    {
+      "label": "sky texture shifting as pressure gradient takes hold",
+      "text": "sky texture shifting as pressure gradient takes hold, abandoned hall echo, harmonium drone with tape wobble, drifting between sleep and waking, 44.1kHz, stereo, high-quality, wide, with natural decay"
+    },
+    {
+      "label": "cumulus formation drifting with building wind energy",
+      "text": "cumulus formation drifting with building wind energy, lo-fi cassette hiss and bloom, shimmer reverb pad wash, moonlight through frosted glass, 44.1kHz, stereo, high-quality, lush, smooth fade out"
+    }
+  ]
 }

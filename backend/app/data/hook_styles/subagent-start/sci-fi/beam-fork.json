@@ -2,52 +2,26 @@
   "id": "scifi-subagent-start-beam-fork",
   "name": "Beam Fork",
   "description": "Single beam refracting into multiple directions",
-  "sound_characters": {
-    "simple": [
-      "single coherent beam refracting into multiple directions"
-    ],
-    "standard": [
-      "single coherent beam refracting into multiple directions",
-      "laser hitting prism with colorful divergence burst",
-      "focused energy spreading into fan of separate paths"
-    ],
-    "detailed": [
-      "single coherent beam refracting into multiple directions",
-      "laser hitting prism with colorful divergence burst",
-      "focused energy spreading into fan of separate paths",
-      "tractor beam splitting to grab multiple targets",
-      "sensor array dispatching parallel scan beams simultaneously"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "futuristic spacecraft interface",
-      "cyberpunk neon-lit",
-      "deep space station",
-      "quantum computer hum",
-      "orbital relay signal"
-    ],
-    "instruments": [
-      "crystalline FM synthesis bell",
-      "voltage-controlled resonant filter sweep",
-      "granular synth texture",
-      "plasma crackle discharge"
-    ],
-    "mood": [
-      "otherworldly precision",
-      "holographic clarity",
-      "cold vacuum stillness",
-      "alien intelligence awakening"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "crisp",
-      "studio-grade",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "single coherent beam refracting into multiple directions",
+      "text": "single coherent beam refracting into multiple directions, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "laser hitting prism with colorful divergence burst",
+      "text": "laser hitting prism with colorful divergence burst, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+    },
+    {
+      "label": "focused energy spreading into fan of separate paths",
+      "text": "focused energy spreading into fan of separate paths, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+    },
+    {
+      "label": "tractor beam splitting to grab multiple targets",
+      "text": "tractor beam splitting to grab multiple targets, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+    },
+    {
+      "label": "sensor array dispatching parallel scan beams simultaneously",
+      "text": "sensor array dispatching parallel scan beams simultaneously, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+    }
+  ]
 }

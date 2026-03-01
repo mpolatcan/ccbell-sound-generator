@@ -2,54 +2,26 @@
   "id": "mech-stop-steam-release",
   "name": "Steam Release",
   "description": "Pressure valve venting with a satisfying hiss",
-  "sound_characters": {
-    "simple": [
-      "steam pressure valve releasing with satisfying hiss"
-    ],
-    "standard": [
-      "steam pressure valve releasing with satisfying hiss",
-      "brass relief valve venting hot steam burst",
-      "industrial boiler exhaling with descending pressure whistle"
-    ],
-    "detailed": [
-      "steam pressure valve releasing with satisfying hiss",
-      "brass relief valve venting hot steam burst",
-      "industrial boiler exhaling with descending pressure whistle",
-      "copper pipe steam jet settling to quiet simmer",
-      "locomotive brake release with iron and vapor sigh"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "steam workshop furnace glow",
-      "Victorian clocktower",
-      "locomotive engine room",
-      "blacksmith anvil yard",
-      "submarine pressure hull"
-    ],
-    "instruments": [
-      "brass gear clank on iron plate",
-      "ratchet wrench click",
-      "tempered steel spring release",
-      "cast iron lever thrown",
-      "copper pipe resonance ping"
-    ],
-    "mood": [
-      "forge-hot determination",
-      "oiled-machine rhythm",
-      "riveted iron solidity",
-      "pneumatic power hiss",
-      "precision clockwork ticking"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "crisp",
-      "impactful",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "steam pressure valve releasing with satisfying hiss",
+      "text": "steam pressure valve releasing with satisfying hiss, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "brass relief valve venting hot steam burst",
+      "text": "brass relief valve venting hot steam burst, Victorian clocktower, ratchet wrench click, oiled-machine rhythm, 44.1kHz, stereo, high-quality, impactful, smooth fade out"
+    },
+    {
+      "label": "industrial boiler exhaling with descending pressure whistle",
+      "text": "industrial boiler exhaling with descending pressure whistle, locomotive engine room, tempered steel spring release, riveted iron solidity, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+    },
+    {
+      "label": "copper pipe steam jet settling to quiet simmer",
+      "text": "copper pipe steam jet settling to quiet simmer, blacksmith anvil yard, cast iron lever thrown, pneumatic power hiss, 44.1kHz, stereo, high-quality, impactful, with natural decay"
+    },
+    {
+      "label": "locomotive brake release with iron and vapor sigh",
+      "text": "locomotive brake release with iron and vapor sigh, submarine pressure hull, copper pipe resonance ping, precision clockwork ticking, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+    }
+  ]
 }

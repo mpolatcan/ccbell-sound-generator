@@ -2,54 +2,26 @@
   "id": "min-idle-prompt-held-breath",
   "name": "Held Breath",
   "description": "Suspended silence with barely audible tone",
-  "sound_characters": {
-    "simple": [
-      "suspended silence with barely audible held tone"
-    ],
-    "standard": [
-      "suspended silence with barely audible held tone",
-      "breath held at threshold between sound and silence",
-      "ultra-quiet sustained frequency hovering in stillness"
-    ],
-    "detailed": [
-      "suspended silence with barely audible held tone",
-      "breath held at threshold between sound and silence",
-      "ultra-quiet sustained frequency hovering in stillness",
-      "pure anticipation rendered as whisper-thin drone",
-      "emptiness with single thread of sound maintaining presence"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "ultra-clean UI interaction",
-      "Swiss design precision",
-      "white gallery silence",
-      "Scandinavian living room",
-      "frosted glass partition"
-    ],
-    "instruments": [
-      "pure sine tone at concert pitch",
-      "tapped crystal glass rim",
-      "single piano key softly pressed",
-      "porcelain bowl struck with felt tip",
-      "tuning fork resonating on wood"
-    ],
-    "mood": [
-      "whisper-quiet elegance",
-      "zen garden calm",
-      "paper-thin delicacy",
-      "breath-held anticipation",
-      "snow falling on still water"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "pristine",
-      "transparent",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "suspended silence with barely audible held tone",
+      "text": "suspended silence with barely audible held tone, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+    },
+    {
+      "label": "breath held at threshold between sound and silence",
+      "text": "breath held at threshold between sound and silence, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+    },
+    {
+      "label": "ultra-quiet sustained frequency hovering in stillness",
+      "text": "ultra-quiet sustained frequency hovering in stillness, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+    },
+    {
+      "label": "pure anticipation rendered as whisper-thin drone",
+      "text": "pure anticipation rendered as whisper-thin drone, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+    },
+    {
+      "label": "emptiness with single thread of sound maintaining presence",
+      "text": "emptiness with single thread of sound maintaining presence, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+    }
+  ]
 }

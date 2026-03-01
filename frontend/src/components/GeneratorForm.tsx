@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo, useCallback, forwardRef, useImperativeHandle } from 'react'
+import { useState, useEffect, useRef, useCallback, forwardRef, useImperativeHandle } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { api } from '@/lib/api'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
@@ -19,15 +19,15 @@ import {
 import { ThemeSelector } from './ThemeSelector'
 import { HookSelector } from './HookSelector'
 import { HookConfigTabs } from './HookConfigTabs'
-import { PromptComponentsEditor } from './PromptComponentsEditor'
+import { PromptVariantSelector } from './PromptVariantSelector'
 import { useGenerationQueue } from '@/hooks/useGenerationQueue'
 import { useShallow } from 'zustand/react/shallow'
 import { useSoundLibrary } from '@/hooks/useSoundLibrary'
 import { MODEL_DEFAULTS, DEFAULT_DURATION } from '@/lib/constants'
 import { formatDuration } from '@/lib/utils'
-import { Sparkles, RefreshCw, AlertCircle, Package, ListOrdered, Plus, ChevronDown, ChevronUp, Copy, Check } from 'lucide-react'
+import { Sparkles, RefreshCw, AlertCircle, Package, ListOrdered, Plus } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import type { GenerationSettings, HookTypeId, HookType, ThemePreset, EditablePromptChips, ChipItem, PerHookConfig } from '@/types'
+import type { GenerationSettings, HookTypeId, HookType, ThemePreset, PerHookConfig, PromptEntry } from '@/types'
 
 export interface GeneratorFormRef {
   generate: () => void
@@ -41,6 +41,50 @@ interface GeneratorFormProps {
 
 const EMPTY_THEMES: ThemePreset[] = []
 const EMPTY_HOOKS: HookType[] = []
+const DEFAULT_HOOK_CONFIG: PerHookConfig = { stylePresetId: null, selectedPromptIndex: 0, editedPrompt: null }
+
+const QUALITY_BASE = '44.1kHz, stereo, high-quality'
+const QUALITY_AESTHETIC = ['crisp', 'studio-grade', 'pristine', 'clean', 'warm']
+const QUALITY_TAIL = ['with natural decay', 'smooth fade out', 'sustained resonance', 'with gentle release', 'with clean tail']
+
+/** Classify quality items from theme into aesthetic and tail categories */
+function classifyQuality(items: string[]): { aesthetic: string[]; tail: string[] } {
+  const base = new Set(['44.1kHz', 'stereo', 'high-quality'])
+  const aesthetic: string[] = []
+  const tail: string[] = []
+  for (const item of items) {
+    if (base.has(item)) continue
+    if (item.startsWith('with ') || item.includes('fade') || item.includes('resonance') || item.includes('release') || item.includes('tail') || item.includes('decay')) {
+      tail.push(item)
+    } else {
+      aesthetic.push(item)
+    }
+  }
+  return {
+    aesthetic: aesthetic.length > 0 ? aesthetic : QUALITY_AESTHETIC.slice(0, 1),
+    tail: tail.length > 0 ? tail : QUALITY_TAIL.slice(0, 1),
+  }
+}
+
+/** Build default prompt entries by cycling hook sound characters with theme components */
+function buildDefaultPrompts(hook: HookType, themeId: string, themes: ThemePreset[]): PromptEntry[] {
+  const theme = themes.find((t) => t.id === themeId)
+  if (!theme) return hook.sound_characters.detailed.map((c) => ({ label: c, text: c }))
+
+  const pc = theme.prompt_components.detailed
+  const chars = hook.sound_characters.detailed
+  const { aesthetic, tail } = classifyQuality(pc.quality)
+
+  return chars.map((char, i) => {
+    const style = pc.style[i % pc.style.length] ?? ''
+    const instrument = pc.instruments[i % pc.instruments.length] ?? ''
+    const mood = pc.mood[i % pc.mood.length] ?? ''
+    const aes = aesthetic[i % aesthetic.length]
+    const tl = tail[i % tail.length]
+    const parts = [char, style, instrument, mood, QUALITY_BASE, aes, tl].filter(Boolean)
+    return { label: char, text: parts.join(', ') }
+  })
+}
 
 /** Thin labeled divider between form sections */
 function SectionDivider({ label }: { label: string }) {
@@ -88,10 +132,8 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
   const [duration, setDuration] = useState(DEFAULT_DURATION)
   const [packName, setPackName] = useState('')
   const [selectedPackId, setSelectedPackId] = useState<string | null>(null)
-  const toChips = (values: string[]): ChipItem[] =>
-    values.map((label) => ({ label, enabled: true }))
 
-  // Per-hook configuration (sound_type chips + style preset per hook)
+  // Per-hook configuration (style preset + selected prompt index + edited prompt)
   const [perHookConfig, setPerHookConfig] = useState<Record<string, PerHookConfig>>({})
   const [activeHookTab, setActiveHookTab] = useState<HookTypeId | null>(null)
 
@@ -126,6 +168,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
     }
   }, [selectedModel, maxDuration, duration])
 
+
   // Effect 1: Sync perHookConfig keys with selectedHooks — init new hooks, remove deselected, preserve existing
   useEffect(() => {
     setPerHookConfig((prev) => {
@@ -135,22 +178,16 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
         if (prev[hookId]) {
           next[hookId] = prev[hookId]
         } else {
-          const hook = hooks.find((h) => h.id === hookId)
-          next[hookId] = {
-            soundTypeChips: hook ? toChips(hook.sound_characters.detailed) : [],
-            stylePresetId: null,
-            promptComponentChips: null,
-          }
+          next[hookId] = { ...DEFAULT_HOOK_CONFIG }
           changed = true
         }
       }
-      // Bail out if nothing changed (no hooks added/removed) to prevent unnecessary re-renders
       if (!changed && Object.keys(prev).length === selectedHooks.length) {
         return prev
       }
       return next
     })
-  }, [selectedHooks, hooks])
+  }, [selectedHooks])
 
   // Effect 2: Keep activeHookTab valid — default to first selected hook, move if active deselected
   useEffect(() => {
@@ -170,88 +207,36 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
       if (Object.keys(prev).length === 0) return prev
       const next: Record<string, PerHookConfig> = {}
       for (const hookId of Object.keys(prev)) {
-        const hook = hooks.find((h) => h.id === hookId)
-        next[hookId] = {
-          soundTypeChips: hook ? toChips(hook.sound_characters.detailed) : [],
-          stylePresetId: null,
-          promptComponentChips: null,
-        }
+        next[hookId] = { ...DEFAULT_HOOK_CONFIG }
       }
       return next
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- Only reset when theme changes; hooks read from closure is current
   }, [selectedTheme])
 
   // Derived values for active hook tab
   const activeHook = hooks.find((h: HookType) => h.id === activeHookTab)
   const activePresetId = activeHookTab ? perHookConfig[activeHookTab]?.stylePresetId ?? null : null
 
-  // Get theme default prompt component chips (always uses detailed tier)
-  const getThemeDefaultChips = useCallback(() => {
-    const theme = themes.find((t: ThemePreset) => t.id === selectedTheme)
-    if (!theme) return { style: [] as ChipItem[], instruments: [] as ChipItem[], mood: [] as ChipItem[], quality: [] as ChipItem[] }
-    const c = theme.prompt_components.detailed
-    return { style: toChips(c.style), instruments: toChips(c.instruments), mood: toChips(c.mood), quality: toChips(c.quality) }
-  }, [themes, selectedTheme])
-
-  // Construct editor chips: all from active hook's perHookConfig, falling back to theme defaults
-  const editorChips: EditablePromptChips = useMemo(() => {
-    const hookChips = activeHookTab ? perHookConfig[activeHookTab]?.promptComponentChips : null
-    const defaults = getThemeDefaultChips()
-    return {
-      sound_type: activeHookTab ? perHookConfig[activeHookTab]?.soundTypeChips ?? [] : [],
-      style: hookChips?.style ?? defaults.style,
-      instruments: hookChips?.instruments ?? defaults.instruments,
-      mood: hookChips?.mood ?? defaults.mood,
-      quality: hookChips?.quality ?? defaults.quality,
+  // Get prompts for a hook (preset's prompts or build from defaults)
+  const getPromptsForHook = useCallback((hookId: string): PromptEntry[] => {
+    const hook = hooks.find((h) => h.id === hookId)
+    if (!hook) return []
+    const config = perHookConfig[hookId]
+    if (config?.stylePresetId) {
+      const preset = (hook.sound_style_presets[selectedTheme] ?? []).find((p) => p.id === config.stylePresetId)
+      if (preset) return preset.prompts
     }
-  }, [activeHookTab, perHookConfig, getThemeDefaultChips])
+    return buildDefaultPrompts(hook, selectedTheme, themes)
+  }, [hooks, perHookConfig, selectedTheme, themes])
 
   // Handle style preset change for active hook
   const handleStylePresetChange = (presetId: string | null) => {
     if (!activeHookTab) return
-    const hook = hooks.find((h: HookType) => h.id === activeHookTab)
-    if (!hook) return
-    let soundTypeChips: ChipItem[]
-    let promptComponentChips: PerHookConfig['promptComponentChips'] = null
-    if (presetId) {
-      const preset = (hook.sound_style_presets[selectedTheme] ?? []).find((p) => p.id === presetId)
-      soundTypeChips = preset ? toChips(preset.sound_characters.detailed) : toChips(hook.sound_characters.detailed)
-      if (preset?.prompt_components) {
-        const pc = preset.prompt_components
-        promptComponentChips = {
-          style: toChips(pc.style),
-          instruments: toChips(pc.instruments),
-          mood: toChips(pc.mood),
-          quality: toChips(pc.quality),
-        }
-      }
-    } else {
-      soundTypeChips = toChips(hook.sound_characters.detailed)
-    }
     setPerHookConfig((prev) => ({
       ...prev,
-      [activeHookTab]: { soundTypeChips, stylePresetId: presetId, promptComponentChips },
+      [activeHookTab]: { stylePresetId: presetId, selectedPromptIndex: 0, editedPrompt: null },
     }))
   }
-
-  // Handle chips change — route ALL categories to active hook's perHookConfig
-  const handleChipsChange = useCallback((updated: EditablePromptChips) => {
-    if (!activeHookTab) return
-    setPerHookConfig((prev) => ({
-      ...prev,
-      [activeHookTab]: {
-        ...prev[activeHookTab],
-        soundTypeChips: updated.sound_type,
-        promptComponentChips: {
-          style: updated.style,
-          instruments: updated.instruments,
-          mood: updated.mood,
-          quality: updated.quality,
-        },
-      },
-    }))
-  }, [activeHookTab])
 
   // Generate default pack name from theme
   const getDefaultPackName = () => {
@@ -266,50 +251,17 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
     return `${themeName} - ${date} ${time}`
   }
 
-  // Assemble prompt from chip selections for a specific hook
-  // Order follows Stable Audio best practices: sound_type, style, instruments, mood, duration, quality
-  const buildPrompt = (hookId?: string): string => {
+  // Build final prompt text for a specific hook
+  const buildPrompt = (hookId: string): string => {
     if (selectedTheme === 'custom') {
       return customPrompt
     }
-
-    const targetHookId = hookId ?? activeHookTab
-    let soundTypeChips: ChipItem[] = []
-    let componentChips: { style: ChipItem[]; instruments: ChipItem[]; mood: ChipItem[]; quality: ChipItem[] }
-    const defaults = getThemeDefaultChips()
-
-    if (targetHookId && perHookConfig[targetHookId]) {
-      soundTypeChips = perHookConfig[targetHookId].soundTypeChips
-      const hookPc = perHookConfig[targetHookId].promptComponentChips
-      componentChips = hookPc ?? defaults
-    } else if (targetHookId) {
-      // Fallback: use hook's default sound_characters
-      const hook = hooks.find((h: HookType) => h.id === targetHookId)
-      if (hook) soundTypeChips = toChips(hook.sound_characters.detailed)
-      componentChips = defaults
-    } else {
-      componentChips = defaults
-    }
-
-    const chipGroups = [
-      soundTypeChips,
-      componentChips.style,
-      componentChips.instruments,
-      componentChips.mood,
-      [{ label: `${duration} seconds`, enabled: true }],
-      componentChips.quality,
-    ]
-
-    const parts = chipGroups
-      .map((group) =>
-        group
-          .filter((c) => c.enabled)
-          .map((c) => c.label)
-          .join(', ')
-      )
-      .filter((part) => part !== '')
-
-    return parts.join(', ')
+    const config = perHookConfig[hookId]
+    const prompts = getPromptsForHook(hookId)
+    if (prompts.length === 0) return ''
+    const idx = config?.selectedPromptIndex ?? 0
+    const baseText = config?.editedPrompt ?? prompts[idx]?.text ?? ''
+    return `${baseText}, ${duration} seconds`
   }
 
   // Handle generation - create pack (if new) and queue all sounds
@@ -377,20 +329,10 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
     generate: handleGenerate
   }))
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- buildPrompt reads from multiple state values
-  const currentPrompt = useMemo(() => buildPrompt(), [selectedTheme, customPrompt, perHookConfig, activeHookTab, duration, hooks, getThemeDefaultChips])
-
-  const [promptExpanded, setPromptExpanded] = useState(false)
-  const [promptCopied, setPromptCopied] = useState(false)
-
-  const handleCopyPrompt = useCallback(() => {
-    navigator.clipboard.writeText(currentPrompt).then(() => {
-      setPromptCopied(true)
-      setTimeout(() => setPromptCopied(false), 1500)
-    })
-  }, [currentPrompt])
-
-  const canGenerate = !isLoading && !hasApiError && selectedHooks.length > 0 && currentPrompt.trim() && modelReady
+  // Determine if we can generate
+  const activePrompts = activeHookTab ? getPromptsForHook(activeHookTab) : []
+  const hasPrompt = selectedTheme === 'custom' ? customPrompt.trim().length > 0 : activePrompts.length > 0
+  const canGenerate = !isLoading && !hasApiError && selectedHooks.length > 0 && hasPrompt && modelReady
 
   return (
     <Card className="card-elevated lg:max-h-[calc(100vh-160px)] flex flex-col">
@@ -567,15 +509,29 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
                     </div>
                   </div>
                 )}
-              </>
-            )}
 
-            {/* Prompt Components Editor (hidden for Custom theme) */}
-            {selectedTheme !== 'custom' && (
-              <PromptComponentsEditor
-                chips={editorChips}
-                onChange={handleChipsChange}
-              />
+                {/* Prompt Variant Selector */}
+                {activeHookTab && (
+                  <PromptVariantSelector
+                    prompts={activePrompts}
+                    selectedIndex={perHookConfig[activeHookTab]?.selectedPromptIndex ?? 0}
+                    editedPrompt={perHookConfig[activeHookTab]?.editedPrompt ?? null}
+                    duration={duration}
+                    onSelectIndex={(index) => {
+                      setPerHookConfig((prev) => ({
+                        ...prev,
+                        [activeHookTab]: { ...prev[activeHookTab], selectedPromptIndex: index, editedPrompt: null },
+                      }))
+                    }}
+                    onEditPrompt={(text) => {
+                      setPerHookConfig((prev) => ({
+                        ...prev,
+                        [activeHookTab]: { ...prev[activeHookTab], editedPrompt: text },
+                      }))
+                    }}
+                  />
+                )}
+              </>
             )}
 
             {/* Custom Prompt (if custom theme selected) */}
@@ -594,54 +550,8 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
           </div>
         </div>
 
-        {/* ═══ PINNED BOTTOM: Prompt Preview + Duration + Generate ═══ */}
+        {/* ═══ PINNED BOTTOM: Duration + Generate ═══ */}
         <div className="shrink-0 border-t border-border/30 pt-4 mt-2 space-y-3 bg-card">
-          {/* Live prompt preview — fully visible, expandable */}
-          {currentPrompt.trim() && selectedTheme !== 'custom' && (
-            <div className="relative rounded-md overflow-hidden border border-border/30 bg-muted/10 group/prompt">
-              <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary/40" />
-              <div className="flex items-start gap-2 py-2 pl-3 pr-2">
-                <span className="text-primary/40 text-[10px] font-mono select-none shrink-0 mt-0.5">&gt;</span>
-                <p
-                  className={cn(
-                    "text-[11px] font-mono break-words leading-relaxed text-foreground/60 flex-1 cursor-pointer select-none transition-all",
-                    !promptExpanded && "line-clamp-3"
-                  )}
-                  onClick={() => setPromptExpanded((v) => !v)}
-                  title={promptExpanded ? "Click to collapse" : "Click to expand full prompt"}
-                >
-                  {currentPrompt}
-                </p>
-                <div className="flex items-center gap-0.5 shrink-0 ml-1">
-                  <button
-                    type="button"
-                    onClick={handleCopyPrompt}
-                    className="p-1 rounded text-muted-foreground/40 hover:text-foreground/60 transition-colors"
-                    title="Copy prompt"
-                  >
-                    {promptCopied ? (
-                      <Check className="h-3 w-3 text-success" />
-                    ) : (
-                      <Copy className="h-3 w-3" />
-                    )}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setPromptExpanded((v) => !v)}
-                    className="p-1 rounded text-muted-foreground/40 hover:text-foreground/60 transition-colors"
-                    title={promptExpanded ? "Collapse" : "Expand"}
-                  >
-                    {promptExpanded ? (
-                      <ChevronUp className="h-3 w-3" />
-                    ) : (
-                      <ChevronDown className="h-3 w-3" />
-                    )}
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
-
           {/* Duration - compact inline */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">

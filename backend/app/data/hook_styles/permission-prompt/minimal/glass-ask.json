@@ -2,54 +2,26 @@
   "id": "min-permission-prompt-glass-ask",
   "name": "Glass Ask",
   "description": "Clear glass tone with upward questioning inflection",
-  "sound_characters": {
-    "simple": [
-      "clear glass tone with upward questioning inflection"
-    ],
-    "standard": [
-      "clear glass tone with upward questioning inflection",
-      "transparent crystal ping rising at the end",
-      "pure sine sweep lifting like a raised eyebrow"
-    ],
-    "detailed": [
-      "clear glass tone with upward questioning inflection",
-      "transparent crystal ping rising at the end",
-      "pure sine sweep lifting like a raised eyebrow",
-      "porcelain bell with unresolved ascending tail",
-      "clean frequency curve bending upward into open question"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "ultra-clean UI interaction",
-      "Swiss design precision",
-      "white gallery silence",
-      "Scandinavian living room",
-      "frosted glass partition"
-    ],
-    "instruments": [
-      "pure sine tone at concert pitch",
-      "tapped crystal glass rim",
-      "single piano key softly pressed",
-      "porcelain bowl struck with felt tip",
-      "tuning fork resonating on wood"
-    ],
-    "mood": [
-      "whisper-quiet elegance",
-      "zen garden calm",
-      "paper-thin delicacy",
-      "breath-held anticipation",
-      "snow falling on still water"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "pristine",
-      "transparent",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "clear glass tone with upward questioning inflection",
+      "text": "clear glass tone with upward questioning inflection, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+    },
+    {
+      "label": "transparent crystal ping rising at the end",
+      "text": "transparent crystal ping rising at the end, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+    },
+    {
+      "label": "pure sine sweep lifting like a raised eyebrow",
+      "text": "pure sine sweep lifting like a raised eyebrow, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+    },
+    {
+      "label": "porcelain bell with unresolved ascending tail",
+      "text": "porcelain bell with unresolved ascending tail, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+    },
+    {
+      "label": "clean frequency curve bending upward into open question",
+      "text": "clean frequency curve bending upward into open question, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+    }
+  ]
 }

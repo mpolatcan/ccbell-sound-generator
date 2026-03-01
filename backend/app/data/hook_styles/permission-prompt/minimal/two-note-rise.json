@@ -2,54 +2,26 @@
   "id": "min-permission-prompt-two-note-rise",
   "name": "Two-Note Rise",
   "description": "Simple two-note interval ascending with inquiry",
-  "sound_characters": {
-    "simple": [
-      "simple two-note interval ascending with gentle inquiry"
-    ],
-    "standard": [
-      "simple two-note interval ascending with gentle inquiry",
-      "clean minor third rising with questioning intent",
-      "paired sine tones stepping upward with open ending"
-    ],
-    "detailed": [
-      "simple two-note interval ascending with gentle inquiry",
-      "clean minor third rising with questioning intent",
-      "paired sine tones stepping upward with open ending",
-      "whisper-thin dual frequency lift with suspended resolution",
-      "mathematical interval pair leaving space for answer"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "ultra-clean UI interaction",
-      "Swiss design precision",
-      "white gallery silence",
-      "Scandinavian living room",
-      "frosted glass partition"
-    ],
-    "instruments": [
-      "pure sine tone at concert pitch",
-      "tapped crystal glass rim",
-      "single piano key softly pressed",
-      "porcelain bowl struck with felt tip",
-      "tuning fork resonating on wood"
-    ],
-    "mood": [
-      "whisper-quiet elegance",
-      "zen garden calm",
-      "paper-thin delicacy",
-      "breath-held anticipation",
-      "snow falling on still water"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "pristine",
-      "transparent",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "simple two-note interval ascending with gentle inquiry",
+      "text": "simple two-note interval ascending with gentle inquiry, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+    },
+    {
+      "label": "clean minor third rising with questioning intent",
+      "text": "clean minor third rising with questioning intent, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+    },
+    {
+      "label": "paired sine tones stepping upward with open ending",
+      "text": "paired sine tones stepping upward with open ending, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+    },
+    {
+      "label": "whisper-thin dual frequency lift with suspended resolution",
+      "text": "whisper-thin dual frequency lift with suspended resolution, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+    },
+    {
+      "label": "mathematical interval pair leaving space for answer",
+      "text": "mathematical interval pair leaving space for answer, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+    }
+  ]
 }

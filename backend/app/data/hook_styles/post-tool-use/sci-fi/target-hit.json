@@ -2,52 +2,26 @@
   "id": "scifi-post-tool-use-target-hit",
   "name": "Target Hit",
   "description": "Weapon finding its mark with impact confirmation",
-  "sound_characters": {
-    "simple": [
-      "weapon finding its mark with bright impact confirmation flash"
-    ],
-    "standard": [
-      "weapon finding its mark with bright impact confirmation flash",
-      "tactical display registering direct hit with satisfied chirp",
-      "plasma bolt connecting with target in burst of energy"
-    ],
-    "detailed": [
-      "weapon finding its mark with bright impact confirmation flash",
-      "tactical display registering direct hit with satisfied chirp",
-      "plasma bolt connecting with target in burst of energy",
-      "shields absorbing impact with dissipating energy ripple",
-      "fire control system logging successful strike with data click"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "futuristic spacecraft interface",
-      "cyberpunk neon-lit",
-      "deep space station",
-      "quantum computer hum",
-      "orbital relay signal"
-    ],
-    "instruments": [
-      "crystalline FM synthesis bell",
-      "voltage-controlled resonant filter sweep",
-      "granular synth texture",
-      "plasma crackle discharge"
-    ],
-    "mood": [
-      "otherworldly precision",
-      "holographic clarity",
-      "cold vacuum stillness",
-      "alien intelligence awakening"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "crisp",
-      "studio-grade",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "weapon finding its mark with bright impact confirmation flash",
+      "text": "weapon finding its mark with bright impact confirmation flash, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "tactical display registering direct hit with satisfied chirp",
+      "text": "tactical display registering direct hit with satisfied chirp, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+    },
+    {
+      "label": "plasma bolt connecting with target in burst of energy",
+      "text": "plasma bolt connecting with target in burst of energy, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+    },
+    {
+      "label": "shields absorbing impact with dissipating energy ripple",
+      "text": "shields absorbing impact with dissipating energy ripple, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+    },
+    {
+      "label": "fire control system logging successful strike with data click",
+      "text": "fire control system logging successful strike with data click, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+    }
+  ]
 }

@@ -2,54 +2,26 @@
   "id": "jazz-idle-prompt-lounge-wait",
   "name": "Lounge Wait",
   "description": "Cool jazz vamping softly between sets",
-  "sound_characters": {
-    "simple": [
-      "cool jazz piano vamping softly between sets in dim lounge"
-    ],
-    "standard": [
-      "cool jazz piano vamping softly between sets in dim lounge",
-      "Rhodes keyboard noodling gentle waiting patterns",
-      "cocktail piano tinkling patient comping chords"
-    ],
-    "detailed": [
-      "cool jazz piano vamping softly between sets in dim lounge",
-      "Rhodes keyboard noodling gentle waiting patterns",
-      "cocktail piano tinkling patient comping chords",
-      "vibraphone sustaining warm chord in empty club",
-      "upright bass player quietly walking a slow pattern alone"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "late-night jazz club",
-      "Blue Note session warmth",
-      "velvet curtain lounge",
-      "bossa nova beachside patio",
-      "cool jazz after-hours session"
-    ],
-    "instruments": [
-      "harmon-muted trumpet breath",
-      "walking bass string pluck",
-      "vibraphone mallet on metal bar",
-      "wire brushes swirling on snare head",
-      "Rhodes electric piano with tremolo"
-    ],
-    "mood": [
-      "smoky room intimacy",
-      "last-set-of-the-night mellowness",
-      "bourbon warmth on the tongue",
-      "slow-nod groove",
-      "spotlight-on-the-soloist focus"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "rich",
-      "analog warmth",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "cool jazz piano vamping softly between sets in dim lounge",
+      "text": "cool jazz piano vamping softly between sets in dim lounge, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay"
+    },
+    {
+      "label": "Rhodes keyboard noodling gentle waiting patterns",
+      "text": "Rhodes keyboard noodling gentle waiting patterns, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out"
+    },
+    {
+      "label": "cocktail piano tinkling patient comping chords",
+      "text": "cocktail piano tinkling patient comping chords, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance"
+    },
+    {
+      "label": "vibraphone sustaining warm chord in empty club",
+      "text": "vibraphone sustaining warm chord in empty club, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay"
+    },
+    {
+      "label": "upright bass player quietly walking a slow pattern alone",
+      "text": "upright bass player quietly walking a slow pattern alone, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out"
+    }
+  ]
 }

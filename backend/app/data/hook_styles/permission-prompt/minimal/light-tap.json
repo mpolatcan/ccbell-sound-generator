@@ -2,54 +2,26 @@
   "id": "min-permission-prompt-light-tap",
   "name": "Light Tap",
   "description": "Barely perceptible knock on smooth surface",
-  "sound_characters": {
-    "simple": [
-      "barely perceptible tap on smooth polished surface"
-    ],
-    "standard": [
-      "barely perceptible tap on smooth polished surface",
-      "fingertip touching glass with minimal contact",
-      "soft knock point with almost no resonance"
-    ],
-    "detailed": [
-      "barely perceptible tap on smooth polished surface",
-      "fingertip touching glass with minimal contact",
-      "soft knock point with almost no resonance",
-      "single gentle percussion dot on ceramic",
-      "quiet inquiry touch with pristine delicacy"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "ultra-clean UI interaction",
-      "Swiss design precision",
-      "white gallery silence",
-      "Scandinavian living room",
-      "frosted glass partition"
-    ],
-    "instruments": [
-      "pure sine tone at concert pitch",
-      "tapped crystal glass rim",
-      "single piano key softly pressed",
-      "porcelain bowl struck with felt tip",
-      "tuning fork resonating on wood"
-    ],
-    "mood": [
-      "whisper-quiet elegance",
-      "zen garden calm",
-      "paper-thin delicacy",
-      "breath-held anticipation",
-      "snow falling on still water"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "pristine",
-      "transparent",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "barely perceptible tap on smooth polished surface",
+      "text": "barely perceptible tap on smooth polished surface, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+    },
+    {
+      "label": "fingertip touching glass with minimal contact",
+      "text": "fingertip touching glass with minimal contact, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+    },
+    {
+      "label": "soft knock point with almost no resonance",
+      "text": "soft knock point with almost no resonance, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+    },
+    {
+      "label": "single gentle percussion dot on ceramic",
+      "text": "single gentle percussion dot on ceramic, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+    },
+    {
+      "label": "quiet inquiry touch with pristine delicacy",
+      "text": "quiet inquiry touch with pristine delicacy, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+    }
+  ]
 }

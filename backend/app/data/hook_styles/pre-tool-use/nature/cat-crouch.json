@@ -2,54 +2,26 @@
   "id": "nature-pre-tool-use-cat-crouch",
   "name": "Cat Crouch",
   "description": "Predator cat lowering into ready position",
-  "sound_characters": {
-    "simple": [
-      "predator cat lowering into tense crouching position silently"
-    ],
-    "standard": [
-      "predator cat lowering into tense crouching position silently",
-      "feline muscles coiling with barely audible shifting",
-      "hunting cat's tail twitching as focus narrows"
-    ],
-    "detailed": [
-      "predator cat lowering into tense crouching position silently",
-      "feline muscles coiling with barely audible shifting",
-      "hunting cat's tail twitching as focus narrows",
-      "wild cat's breathing slowing before explosive pounce",
-      "jungle predator locking gaze with concentrated stillness"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "forest clearing at dawn",
-      "moss-covered stone garden",
-      "bamboo grove in gentle wind",
-      "creek bed after summer rain",
-      "meadow with distant thunder"
-    ],
-    "instruments": [
-      "wooden mallet on hollow log",
-      "rain droplet on broad leaf",
-      "smooth river stones clinking",
-      "fingertip-plucked kalimba tine",
-      "ceramic wind chime in breeze"
-    ],
-    "mood": [
-      "morning dew stillness",
-      "sun-warmed earth",
-      "birdsong tranquility",
-      "deep forest solitude",
-      "waterfall mist on skin"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "soft",
-      "airy",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "predator cat lowering into tense crouching position silently",
+      "text": "predator cat lowering into tense crouching position silently, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay"
+    },
+    {
+      "label": "feline muscles coiling with barely audible shifting",
+      "text": "feline muscles coiling with barely audible shifting, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out"
+    },
+    {
+      "label": "hunting cat's tail twitching as focus narrows",
+      "text": "hunting cat's tail twitching as focus narrows, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance"
+    },
+    {
+      "label": "wild cat's breathing slowing before explosive pounce",
+      "text": "wild cat's breathing slowing before explosive pounce, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay"
+    },
+    {
+      "label": "jungle predator locking gaze with concentrated stillness",
+      "text": "jungle predator locking gaze with concentrated stillness, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out"
+    }
+  ]
 }

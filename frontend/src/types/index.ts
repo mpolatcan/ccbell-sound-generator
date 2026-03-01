@@ -17,29 +17,15 @@ export interface PromptComponents {
   quality: string[]
 }
 
-export interface ChipItem {
+export interface PromptEntry {
   label: string
-  enabled: boolean
-  isCustom?: boolean
-}
-
-export interface EditablePromptChips {
-  sound_type: ChipItem[]
-  style: ChipItem[]
-  instruments: ChipItem[]
-  mood: ChipItem[]
-  quality: ChipItem[]
+  text: string
 }
 
 export interface PerHookConfig {
-  soundTypeChips: ChipItem[]
   stylePresetId: string | null
-  promptComponentChips: {
-    style: ChipItem[]
-    instruments: ChipItem[]
-    mood: ChipItem[]
-    quality: ChipItem[]
-  } | null
+  selectedPromptIndex: number
+  editedPrompt: string | null
 }
 
 export interface TieredPromptComponents {
@@ -79,8 +65,7 @@ export interface SoundStylePreset {
   id: string
   name: string
   description: string
-  sound_characters: TieredSoundCharacters
-  prompt_components?: PromptComponents
+  prompts: PromptEntry[]
 }
 
 export interface HookType {

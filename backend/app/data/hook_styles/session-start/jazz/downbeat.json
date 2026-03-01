@@ -2,54 +2,26 @@
   "id": "jazz-session-start-downbeat",
   "name": "Downbeat",
   "description": "First emphatic beat of a new jazz tune",
-  "sound_characters": {
-    "simple": [
-      "first emphatic downbeat launching a new jazz tune"
-    ],
-    "standard": [
-      "first emphatic downbeat launching a new jazz tune",
-      "full band hitting opening chord with swinging authority",
-      "crash cymbal and bass note announcing the start"
-    ],
-    "detailed": [
-      "first emphatic downbeat launching a new jazz tune",
-      "full band hitting opening chord with swinging authority",
-      "crash cymbal and bass note announcing the start",
-      "horn section blasting opening riff with bright brass energy",
-      "rhythm section locking into groove from the very first beat"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "late-night jazz club",
-      "Blue Note session warmth",
-      "velvet curtain lounge",
-      "bossa nova beachside patio",
-      "cool jazz after-hours session"
-    ],
-    "instruments": [
-      "harmon-muted trumpet breath",
-      "walking bass string pluck",
-      "vibraphone mallet on metal bar",
-      "wire brushes swirling on snare head",
-      "Rhodes electric piano with tremolo"
-    ],
-    "mood": [
-      "smoky room intimacy",
-      "last-set-of-the-night mellowness",
-      "bourbon warmth on the tongue",
-      "slow-nod groove",
-      "spotlight-on-the-soloist focus"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "rich",
-      "analog warmth",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "first emphatic downbeat launching a new jazz tune",
+      "text": "first emphatic downbeat launching a new jazz tune, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay"
+    },
+    {
+      "label": "full band hitting opening chord with swinging authority",
+      "text": "full band hitting opening chord with swinging authority, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out"
+    },
+    {
+      "label": "crash cymbal and bass note announcing the start",
+      "text": "crash cymbal and bass note announcing the start, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance"
+    },
+    {
+      "label": "horn section blasting opening riff with bright brass energy",
+      "text": "horn section blasting opening riff with bright brass energy, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay"
+    },
+    {
+      "label": "rhythm section locking into groove from the very first beat",
+      "text": "rhythm section locking into groove from the very first beat, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out"
+    }
+  ]
 }

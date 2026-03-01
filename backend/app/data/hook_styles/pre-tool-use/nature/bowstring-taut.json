@@ -2,54 +2,26 @@
   "id": "nature-pre-tool-use-bowstring-taut",
   "name": "Bowstring Taut",
   "description": "Archer drawing natural sinew bowstring tight",
-  "sound_characters": {
-    "simple": [
-      "archer drawing natural sinew bowstring to full tension"
-    ],
-    "standard": [
-      "archer drawing natural sinew bowstring to full tension",
-      "wooden longbow creaking under maximum draw weight",
-      "gut string stretching taut with trembling potential energy"
-    ],
-    "detailed": [
-      "archer drawing natural sinew bowstring to full tension",
-      "wooden longbow creaking under maximum draw weight",
-      "gut string stretching taut with trembling potential energy",
-      "yew wood bending with organic creaking tension",
-      "feathered arrow nocked and ready with vibrating anticipation"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "forest clearing at dawn",
-      "moss-covered stone garden",
-      "bamboo grove in gentle wind",
-      "creek bed after summer rain",
-      "meadow with distant thunder"
-    ],
-    "instruments": [
-      "wooden mallet on hollow log",
-      "rain droplet on broad leaf",
-      "smooth river stones clinking",
-      "fingertip-plucked kalimba tine",
-      "ceramic wind chime in breeze"
-    ],
-    "mood": [
-      "morning dew stillness",
-      "sun-warmed earth",
-      "birdsong tranquility",
-      "deep forest solitude",
-      "waterfall mist on skin"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "soft",
-      "airy",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "archer drawing natural sinew bowstring to full tension",
+      "text": "archer drawing natural sinew bowstring to full tension, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay"
+    },
+    {
+      "label": "wooden longbow creaking under maximum draw weight",
+      "text": "wooden longbow creaking under maximum draw weight, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out"
+    },
+    {
+      "label": "gut string stretching taut with trembling potential energy",
+      "text": "gut string stretching taut with trembling potential energy, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance"
+    },
+    {
+      "label": "yew wood bending with organic creaking tension",
+      "text": "yew wood bending with organic creaking tension, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay"
+    },
+    {
+      "label": "feathered arrow nocked and ready with vibrating anticipation",
+      "text": "feathered arrow nocked and ready with vibrating anticipation, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out"
+    }
+  ]
 }

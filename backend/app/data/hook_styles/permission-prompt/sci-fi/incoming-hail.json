@@ -2,52 +2,26 @@
   "id": "scifi-permission-prompt-incoming-hail",
   "name": "Incoming Hail",
   "description": "Starship communication request with alert chirp",
-  "sound_characters": {
-    "simple": [
-      "starship bridge receiving incoming hail with alert chirp"
-    ],
-    "standard": [
-      "starship bridge receiving incoming hail with alert chirp",
-      "communication channel opening with rising frequency sweep",
-      "alien transmission detected with two-tone query signal"
-    ],
-    "detailed": [
-      "starship bridge receiving incoming hail with alert chirp",
-      "communication channel opening with rising frequency sweep",
-      "alien transmission detected with two-tone query signal",
-      "subspace frequency lock requesting acknowledgment",
-      "holographic comm panel activating with questioning pulse"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "futuristic spacecraft interface",
-      "cyberpunk neon-lit",
-      "deep space station",
-      "quantum computer hum",
-      "orbital relay signal"
-    ],
-    "instruments": [
-      "crystalline FM synthesis bell",
-      "voltage-controlled resonant filter sweep",
-      "granular synth texture",
-      "plasma crackle discharge"
-    ],
-    "mood": [
-      "otherworldly precision",
-      "holographic clarity",
-      "cold vacuum stillness",
-      "alien intelligence awakening"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "crisp",
-      "studio-grade",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "starship bridge receiving incoming hail with alert chirp",
+      "text": "starship bridge receiving incoming hail with alert chirp, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "communication channel opening with rising frequency sweep",
+      "text": "communication channel opening with rising frequency sweep, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+    },
+    {
+      "label": "alien transmission detected with two-tone query signal",
+      "text": "alien transmission detected with two-tone query signal, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+    },
+    {
+      "label": "subspace frequency lock requesting acknowledgment",
+      "text": "subspace frequency lock requesting acknowledgment, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+    },
+    {
+      "label": "holographic comm panel activating with questioning pulse",
+      "text": "holographic comm panel activating with questioning pulse, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+    }
+  ]
 }

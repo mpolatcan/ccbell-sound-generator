@@ -2,52 +2,26 @@
   "id": "scifi-session-start-warp-drive",
   "name": "Warp Drive",
   "description": "Faster-than-light engines spooling up for jump",
-  "sound_characters": {
-    "simple": [
-      "warp drive engines spooling up for faster-than-light jump"
-    ],
-    "standard": [
-      "warp drive engines spooling up for faster-than-light jump",
-      "FTL motivator charging with building harmonic whine",
-      "hyperspace field generator powering up with swirling energy"
-    ],
-    "detailed": [
-      "warp drive engines spooling up for faster-than-light jump",
-      "FTL motivator charging with building harmonic whine",
-      "hyperspace field generator powering up with swirling energy",
-      "spacetime distortion field expanding with rising electromagnetic hum",
-      "jump coordinates locked with dramatic acceleration buildup"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "futuristic spacecraft interface",
-      "cyberpunk neon-lit",
-      "deep space station",
-      "quantum computer hum",
-      "orbital relay signal"
-    ],
-    "instruments": [
-      "crystalline FM synthesis bell",
-      "voltage-controlled resonant filter sweep",
-      "granular synth texture",
-      "plasma crackle discharge"
-    ],
-    "mood": [
-      "otherworldly precision",
-      "holographic clarity",
-      "cold vacuum stillness",
-      "alien intelligence awakening"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "crisp",
-      "studio-grade",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "warp drive engines spooling up for faster-than-light jump",
+      "text": "warp drive engines spooling up for faster-than-light jump, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    },
+    {
+      "label": "FTL motivator charging with building harmonic whine",
+      "text": "FTL motivator charging with building harmonic whine, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+    },
+    {
+      "label": "hyperspace field generator powering up with swirling energy",
+      "text": "hyperspace field generator powering up with swirling energy, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+    },
+    {
+      "label": "spacetime distortion field expanding with rising electromagnetic hum",
+      "text": "spacetime distortion field expanding with rising electromagnetic hum, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+    },
+    {
+      "label": "jump coordinates locked with dramatic acceleration buildup",
+      "text": "jump coordinates locked with dramatic acceleration buildup, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+    }
+  ]
 }

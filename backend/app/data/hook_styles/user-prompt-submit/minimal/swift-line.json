@@ -2,54 +2,26 @@
   "id": "min-user-prompt-submit-swift-line",
   "name": "Swift Line",
   "description": "Quick decisive stroke drawn with confidence",
-  "sound_characters": {
-    "simple": [
-      "quick decisive line drawn with confident single stroke"
-    ],
-    "standard": [
-      "quick decisive line drawn with confident single stroke",
-      "pen moving swiftly across paper with purposeful speed",
-      "clean vector drawn from start to end without hesitation"
-    ],
-    "detailed": [
-      "quick decisive line drawn with confident single stroke",
-      "pen moving swiftly across paper with purposeful speed",
-      "clean vector drawn from start to end without hesitation",
-      "graphite leaving precise mark with forward momentum",
-      "calligraphy brush making one bold decisive movement"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "ultra-clean UI interaction",
-      "Swiss design precision",
-      "white gallery silence",
-      "Scandinavian living room",
-      "frosted glass partition"
-    ],
-    "instruments": [
-      "pure sine tone at concert pitch",
-      "tapped crystal glass rim",
-      "single piano key softly pressed",
-      "porcelain bowl struck with felt tip",
-      "tuning fork resonating on wood"
-    ],
-    "mood": [
-      "whisper-quiet elegance",
-      "zen garden calm",
-      "paper-thin delicacy",
-      "breath-held anticipation",
-      "snow falling on still water"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "pristine",
-      "transparent",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "quick decisive line drawn with confident single stroke",
+      "text": "quick decisive line drawn with confident single stroke, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+    },
+    {
+      "label": "pen moving swiftly across paper with purposeful speed",
+      "text": "pen moving swiftly across paper with purposeful speed, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+    },
+    {
+      "label": "clean vector drawn from start to end without hesitation",
+      "text": "clean vector drawn from start to end without hesitation, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+    },
+    {
+      "label": "graphite leaving precise mark with forward momentum",
+      "text": "graphite leaving precise mark with forward momentum, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+    },
+    {
+      "label": "calligraphy brush making one bold decisive movement",
+      "text": "calligraphy brush making one bold decisive movement, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+    }
+  ]
 }

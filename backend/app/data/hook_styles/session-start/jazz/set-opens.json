@@ -2,54 +2,26 @@
   "id": "jazz-session-start-set-opens",
   "name": "Set Opens",
   "description": "Jazz club set beginning with warm audience energy",
-  "sound_characters": {
-    "simple": [
-      "jazz club set opening with warm audience energy and applause"
-    ],
-    "standard": [
-      "jazz club set opening with warm audience energy and applause",
-      "spotlight hitting the stage as musicians take their places",
-      "evening performance beginning with excited murmur and first notes"
-    ],
-    "detailed": [
-      "jazz club set opening with warm audience energy and applause",
-      "spotlight hitting the stage as musicians take their places",
-      "evening performance beginning with excited murmur and first notes",
-      "MC announcing the band as crowd settles with anticipation",
-      "house lights dimming as stage glow intensifies"
-    ]
-  },
-  "prompt_components": {
-    "style": [
-      "late-night jazz club",
-      "Blue Note session warmth",
-      "velvet curtain lounge",
-      "bossa nova beachside patio",
-      "cool jazz after-hours session"
-    ],
-    "instruments": [
-      "harmon-muted trumpet breath",
-      "walking bass string pluck",
-      "vibraphone mallet on metal bar",
-      "wire brushes swirling on snare head",
-      "Rhodes electric piano with tremolo"
-    ],
-    "mood": [
-      "smoky room intimacy",
-      "last-set-of-the-night mellowness",
-      "bourbon warmth on the tongue",
-      "slow-nod groove",
-      "spotlight-on-the-soloist focus"
-    ],
-    "quality": [
-      "44.1kHz",
-      "stereo",
-      "high-quality",
-      "rich",
-      "analog warmth",
-      "with natural decay",
-      "smooth fade out",
-      "sustained resonance"
-    ]
-  }
+  "prompts": [
+    {
+      "label": "jazz club set opening with warm audience energy and applause",
+      "text": "jazz club set opening with warm audience energy and applause, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay"
+    },
+    {
+      "label": "spotlight hitting the stage as musicians take their places",
+      "text": "spotlight hitting the stage as musicians take their places, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out"
+    },
+    {
+      "label": "evening performance beginning with excited murmur and first notes",
+      "text": "evening performance beginning with excited murmur and first notes, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance"
+    },
+    {
+      "label": "MC announcing the band as crowd settles with anticipation",
+      "text": "MC announcing the band as crowd settles with anticipation, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay"
+    },
+    {
+      "label": "house lights dimming as stage glow intensifies",
+      "text": "house lights dimming as stage glow intensifies, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out"
+    }
+  ]
 }
