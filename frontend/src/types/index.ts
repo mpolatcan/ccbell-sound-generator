@@ -10,15 +10,14 @@ export interface ModelInfo {
   parameters: string
 }
 
-export interface PromptEntry {
-  text: string
-  alias?: string
+export interface PerHookConfig {
+  editedPrompt: string | null
 }
 
-export interface PerHookConfig {
-  stylePresetId: string | null
-  selectedPromptIndex: number
-  editedPrompt: string | null
+export interface SubTheme {
+  id: string
+  name: string
+  prompts: Record<string, string>
 }
 
 export interface ThemePreset {
@@ -26,6 +25,7 @@ export interface ThemePreset {
   name: string
   description: string
   icon: string
+  sub_themes: SubTheme[]
 }
 
 // Valid Claude Code hook type IDs
@@ -41,17 +41,10 @@ export type HookTypeId =
   | 'SubagentStart'
   | 'UserPromptSubmit'
 
-export interface SoundStylePreset {
-  id: string
-  name: string
-  prompts: PromptEntry[]
-}
-
 export interface HookType {
   id: HookTypeId
   name: string
   description: string
-  sound_style_presets: Record<string, SoundStylePreset[]>
 }
 
 export interface GenerationSettings {

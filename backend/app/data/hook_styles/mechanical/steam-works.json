@@ -1,0 +1,16 @@
+{
+  "id": "mechanical-steam-works",
+  "name": "Steam Works",
+  "prompts": {
+    "IdlePrompt": "resting steam engine with slow periodic exhale of vapor, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "PermissionPrompt": "servant's bell pulled with questioning brass ring, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "PostToolUse": "bolt torqued to specification with final satisfying click, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "PreToolUse": "clutch pedal depressing with mechanical disengage clunk, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SessionEnd": "motor cutting out and spinning down to complete stop, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SessionStart": "steam boiler reaching operating pressure with triumphant whistle, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "Stop": "heavy blacksmith anvil struck with iron hammer, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SubagentStart": "new gear teeth meshing into running clockwork mechanism, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SubagentStop": "rotary dial completing return to rest position, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "UserPromptSubmit": "siege catapult arm releasing payload with tremendous force, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+  }
+}

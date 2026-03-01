@@ -1,0 +1,16 @@
+{
+  "id": "jazz-blue-note",
+  "name": "Blue Note",
+  "prompts": {
+    "IdlePrompt": "West Coast jazz atmosphere floating in warm California air, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
+    "PermissionPrompt": "sultry blue note hanging in smoky club air, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
+    "PostToolUse": "sharp piano chord hitting with rhythmic punch and release, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
+    "PreToolUse": "horn player taking deep breath before launching big phrase, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
+    "SessionEnd": "jazz club bartender calling last orders as music fades, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
+    "SessionStart": "drummer counting the band in with confident stick clicks, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
+    "Stop": "theater curtain descending with velvet whoosh and final applause, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
+    "SubagentStart": "countermelody entering and weaving against main jazz theme, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
+    "SubagentStop": "single wire brush tap on snare drum head, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
+    "UserPromptSubmit": "bright trumpet blast announcing message with brassy authority, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay"
+  }
+}

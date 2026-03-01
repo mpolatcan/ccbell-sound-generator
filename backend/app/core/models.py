@@ -98,6 +98,14 @@ class ModelInfo(BaseModel):
     parameters: str
 
 
+class SubTheme(BaseModel):
+    """A correlated sub-theme within a theme preset."""
+
+    id: str
+    name: str
+    prompts: dict[str, str] = Field(default_factory=dict)
+
+
 class ThemePreset(BaseModel):
     """Theme preset for sound generation."""
 
@@ -105,21 +113,7 @@ class ThemePreset(BaseModel):
     name: str
     description: str
     icon: str
-
-
-class PromptEntry(BaseModel):
-    """A single pre-composed prompt variant."""
-
-    text: str
-    alias: str | None = None
-
-
-class SoundStylePreset(BaseModel):
-    """A named sound style preset for a hook type."""
-
-    id: str
-    name: str
-    prompts: list[PromptEntry]
+    sub_themes: list[SubTheme] = Field(default_factory=list)
 
 
 class HookType(BaseModel):
@@ -128,7 +122,6 @@ class HookType(BaseModel):
     id: str
     name: str
     description: str
-    sound_style_presets: dict[str, list[SoundStylePreset]] = Field(default_factory=dict)
 
 
 class PublishRequest(BaseModel):

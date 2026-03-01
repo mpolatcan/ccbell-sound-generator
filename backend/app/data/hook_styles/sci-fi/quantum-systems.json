@@ -1,0 +1,16 @@
+{
+  "id": "sci-fi-quantum-systems",
+  "name": "Quantum Systems",
+  "prompts": {
+    "IdlePrompt": "satellite maintaining steady orbit with periodic gentle ping, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "PermissionPrompt": "starship bridge receiving incoming hail with alert chirp, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "PostToolUse": "scan results saved to database with digital confirmation ping, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "PreToolUse": "sensor sweep beginning with rotating detection field activation, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SessionEnd": "final transmission sent before entering communication silence, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SessionStart": "computer systems initializing with sequential digital startup sounds, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "Stop": "quantum frequency collapsing into crystalline bell tone, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SubagentStart": "digital clone spawning from main entity with launch burst, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SubagentStop": "small drone docking with quiet magnetic clamp, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "UserPromptSubmit": "communication dispatched across subspace channels with burst, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+  }
+}

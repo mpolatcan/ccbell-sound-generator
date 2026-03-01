@@ -1,0 +1,16 @@
+{
+  "id": "retro-8bit-boss-battle",
+  "name": "Boss Battle",
+  "prompts": {
+    "IdlePrompt": "calm 8-bit melody playing during loading screen wait, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "PermissionPrompt": "mystery question block pulsing with curious chiptune glow, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "PostToolUse": "attack connecting with enemy with satisfying 8-bit impact flash, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "PreToolUse": "pixel hero drawing blade from sheath with 8-bit metallic ring, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SessionEnd": "game saving progress and returning to title with confirmation chime, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SessionStart": "classic game title screen appearing with chiptune fanfare, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "Stop": "power star collected with sparkling bitcrushed cascade, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SubagentStart": "adventure path splitting into two directions with choice chime, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SubagentStop": "small item acquired with cheerful 8-bit pickup jingle, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "UserPromptSubmit": "in-game message dispatched with cheerful 8-bit confirmation jingle, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+  }
+}

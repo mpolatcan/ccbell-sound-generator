@@ -19,15 +19,14 @@ import {
 import { ThemeSelector } from './ThemeSelector'
 import { HookSelector } from './HookSelector'
 import { HookConfigTabs } from './HookConfigTabs'
-import { PromptVariantSelector } from './PromptVariantSelector'
 import { useGenerationQueue } from '@/hooks/useGenerationQueue'
 import { useShallow } from 'zustand/react/shallow'
 import { useSoundLibrary } from '@/hooks/useSoundLibrary'
 import { MODEL_DEFAULTS, DEFAULT_DURATION } from '@/lib/constants'
 import { formatDuration } from '@/lib/utils'
-import { Sparkles, RefreshCw, AlertCircle, Package, ListOrdered, Plus } from 'lucide-react'
+import { Sparkles, RefreshCw, AlertCircle, Package, ListOrdered, Plus, RotateCcw } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import type { GenerationSettings, HookTypeId, HookType, ThemePreset, PerHookConfig, PromptEntry } from '@/types'
+import type { GenerationSettings, HookTypeId, HookType, ThemePreset, PerHookConfig, SubTheme } from '@/types'
 
 export interface GeneratorFormRef {
   generate: () => void
@@ -41,7 +40,7 @@ interface GeneratorFormProps {
 
 const EMPTY_THEMES: ThemePreset[] = []
 const EMPTY_HOOKS: HookType[] = []
-const DEFAULT_HOOK_CONFIG: PerHookConfig = { stylePresetId: null, selectedPromptIndex: 0, editedPrompt: null }
+const DEFAULT_HOOK_CONFIG: PerHookConfig = { editedPrompt: null }
 
 /** Thin labeled divider between form sections */
 function SectionDivider({ label }: { label: string }) {
@@ -90,7 +89,10 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
   const [packName, setPackName] = useState('')
   const [selectedPackId, setSelectedPackId] = useState<string | null>(null)
 
-  // Per-hook configuration (style preset + selected prompt index + edited prompt)
+  // Global sub-theme selection (correlated across all hooks)
+  const [selectedSubTheme, setSelectedSubTheme] = useState<string | null>(null)
+
+  // Per-hook configuration (edited prompt only)
   const [perHookConfig, setPerHookConfig] = useState<Record<string, PerHookConfig>>({})
   const [activeHookTab, setActiveHookTab] = useState<HookTypeId | null>(null)
 
@@ -155,11 +157,12 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
     })
   }, [selectedHooks])
 
-  // Effect 3: Reset all per-hook configs on theme change — theme is a major context switch
+  // Effect 3: Reset all per-hook configs and sub-theme on theme change — theme is a major context switch
   const prevThemeRef = useRef(selectedTheme)
   useEffect(() => {
     if (prevThemeRef.current === selectedTheme) return
     prevThemeRef.current = selectedTheme
+    setSelectedSubTheme(null)
     setPerHookConfig((prev) => {
       if (Object.keys(prev).length === 0) return prev
       const next: Record<string, PerHookConfig> = {}
@@ -170,32 +173,27 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
     })
   }, [selectedTheme])
 
-  // Derived values for active hook tab
-  const activeHook = hooks.find((h: HookType) => h.id === activeHookTab)
-  const activePresetId = activeHookTab ? perHookConfig[activeHookTab]?.stylePresetId ?? null : null
+  // Resolve the effective sub-theme object
+  const selectedThemeObj = themes.find((t) => t.id === selectedTheme)
+  const subThemes = selectedThemeObj?.sub_themes ?? []
+  const effectiveSubThemeId = selectedSubTheme ?? subThemes[0]?.id ?? null
+  const effectiveSubTheme: SubTheme | undefined = subThemes.find((s) => s.id === effectiveSubThemeId)
 
-  // Get prompts for a hook (preset's prompts or build from defaults)
-  const getPromptsForHook = useCallback((hookId: string): PromptEntry[] => {
-    const hook = hooks.find((h) => h.id === hookId)
-    if (!hook) return []
-    const config = perHookConfig[hookId]
-    const presets = hook.sound_style_presets[selectedTheme] ?? []
-    if (config?.stylePresetId) {
-      const preset = presets.find((p) => p.id === config.stylePresetId)
-      if (preset) return preset.prompts
-    }
-    // When no preset explicitly selected, use first preset if available (matches dropdown default)
-    if (presets.length > 0) return presets[0].prompts
-    return []
-  }, [hooks, perHookConfig, selectedTheme])
+  // Get prompt for a hook from the current sub-theme
+  const getPromptForHook = useCallback((hookId: string): string => {
+    return effectiveSubTheme?.prompts[hookId] ?? ''
+  }, [effectiveSubTheme])
 
-  // Handle style preset change for active hook
-  const handleStylePresetChange = (presetId: string | null) => {
-    if (!activeHookTab) return
-    setPerHookConfig((prev) => ({
-      ...prev,
-      [activeHookTab]: { stylePresetId: presetId, selectedPromptIndex: 0, editedPrompt: null },
-    }))
+  // Handle global sub-theme change — reset per-hook prompt edits
+  const handleSubThemeChange = (subThemeId: string) => {
+    setSelectedSubTheme(subThemeId)
+    setPerHookConfig((prev) => {
+      const next: Record<string, PerHookConfig> = {}
+      for (const hookId of Object.keys(prev)) {
+        next[hookId] = { ...DEFAULT_HOOK_CONFIG }
+      }
+      return next
+    })
   }
 
   // Generate default pack name from theme
@@ -217,11 +215,10 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
       return customPrompt
     }
     const config = perHookConfig[hookId]
-    const prompts = getPromptsForHook(hookId)
-    if (prompts.length === 0) return ''
-    const idx = config?.selectedPromptIndex ?? 0
-    const baseText = config?.editedPrompt ?? prompts[idx]?.text ?? ''
-    return `${baseText}, ${duration} seconds`
+    const basePrompt = getPromptForHook(hookId)
+    if (!basePrompt) return ''
+    const text = config?.editedPrompt ?? basePrompt
+    return `${text}, ${duration} seconds`
   }
 
   // Handle generation - create pack (if new) and queue all sounds
@@ -254,25 +251,8 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
       const soundId = crypto.randomUUID()
       const prompt = buildPrompt(hookId)
 
-      // Resolve style name and prompt alias for this hook
-      let styleName: string | undefined
-      let promptAlias: string | undefined
-      if (selectedTheme !== 'custom') {
-        const hook = hooks.find((h) => h.id === hookId)
-        if (hook) {
-          const config = perHookConfig[hookId]
-          const presets = hook.sound_style_presets[selectedTheme] ?? []
-          if (config?.stylePresetId) {
-            const preset = presets.find((p) => p.id === config.stylePresetId)
-            if (preset) styleName = preset.name
-          } else if (presets.length > 0) {
-            styleName = presets[0].name
-          }
-          const prompts = getPromptsForHook(hookId)
-          const idx = config?.selectedPromptIndex ?? 0
-          promptAlias = prompts[idx]?.alias
-        }
-      }
+      // Resolve style name for this hook
+      const styleName = selectedTheme !== 'custom' ? effectiveSubTheme?.name : undefined
 
       // Add sound to library with 'generating' status (queued)
       addSound({
@@ -289,7 +269,6 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
         stage: 'Queued',
         created_at: new Date(),
         style_name: styleName,
-        prompt_alias: promptAlias,
       })
 
       // Add to generation queue
@@ -312,9 +291,24 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
   }))
 
   // Determine if we can generate
-  const activePrompts = activeHookTab ? getPromptsForHook(activeHookTab) : []
-  const hasPrompt = selectedTheme === 'custom' ? customPrompt.trim().length > 0 : activePrompts.length > 0
+  const activePrompt = activeHookTab ? getPromptForHook(activeHookTab) : ''
+  const hasPrompt = selectedTheme === 'custom' ? customPrompt.trim().length > 0 : activePrompt.length > 0
   const canGenerate = !isLoading && !hasApiError && selectedHooks.length > 0 && hasPrompt && modelReady
+
+  // Inline prompt display for the active hook tab
+  const activeHookBasePrompt = activeHookTab ? getPromptForHook(activeHookTab) : ''
+  const activeHookConfig = activeHookTab ? perHookConfig[activeHookTab] : undefined
+  const activeHookFullOriginal = activeHookBasePrompt ? `${activeHookBasePrompt}, ${duration} seconds` : ''
+  const activeHookDisplayText = activeHookConfig?.editedPrompt ?? activeHookFullOriginal
+
+  // Auto-resize textarea ref
+  const promptTextareaRef = useRef<HTMLTextAreaElement>(null)
+  useEffect(() => {
+    const el = promptTextareaRef.current
+    if (!el) return
+    el.style.height = 'auto'
+    el.style.height = `${el.scrollHeight}px`
+  }, [activeHookDisplayText])
 
   return (
     <Card className="card-elevated lg:max-h-[calc(100vh-160px)] flex flex-col">
@@ -449,6 +443,28 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
               )}
             </div>
 
+            {/* Sound Style — global sub-theme selector */}
+            {selectedTheme !== 'custom' && subThemes.length > 0 && (
+              <div className="space-y-2">
+                <Label>Sound Style</Label>
+                <Select
+                  value={effectiveSubThemeId ?? ''}
+                  onValueChange={handleSubThemeChange}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a style..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {subThemes.map((sub) => (
+                      <SelectItem key={sub.id} value={sub.id}>
+                        {sub.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+
             {/* Hook Sound Config — inline within Sound Design */}
             {selectedTheme !== 'custom' && selectedHooks.length > 0 && (
               <>
@@ -462,50 +478,39 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
                   />
                 </div>
 
-                {/* Sound Style Presets */}
-                {activeHook && (activeHook.sound_style_presets[selectedTheme]?.length ?? 0) > 0 && (
+                {/* Inline prompt display */}
+                {activeHookTab && activeHookBasePrompt && (
                   <div className="space-y-2">
-                    <Label>Sound Style</Label>
-                    <Select
-                      value={activePresetId ?? (activeHook.sound_style_presets[selectedTheme] ?? [])[0]?.id ?? ''}
-                      onValueChange={(value) => handleStylePresetChange(value)}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select a style..." />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {(activeHook.sound_style_presets[selectedTheme] ?? []).map((preset) => (
-                          <SelectItem key={preset.id} value={preset.id}>
-                            {preset.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                )}
-
-                {/* Prompt Variant Selector */}
-                {activeHookTab && (
-                  <div className="space-y-2">
-                  <Label>Prompt</Label>
-                  <PromptVariantSelector
-                    prompts={activePrompts}
-                    selectedIndex={perHookConfig[activeHookTab]?.selectedPromptIndex ?? 0}
-                    editedPrompt={perHookConfig[activeHookTab]?.editedPrompt ?? null}
-                    duration={duration}
-                    onSelectIndex={(index) => {
-                      setPerHookConfig((prev) => ({
-                        ...prev,
-                        [activeHookTab]: { ...prev[activeHookTab], selectedPromptIndex: index, editedPrompt: null },
-                      }))
-                    }}
-                    onEditPrompt={(text) => {
-                      setPerHookConfig((prev) => ({
-                        ...prev,
-                        [activeHookTab]: { ...prev[activeHookTab], editedPrompt: text },
-                      }))
-                    }}
-                  />
+                    <Label>Prompt</Label>
+                    <div className="relative">
+                      <Textarea
+                        ref={promptTextareaRef}
+                        value={activeHookDisplayText}
+                        onChange={(e) => {
+                          setPerHookConfig((prev) => ({
+                            ...prev,
+                            [activeHookTab!]: { ...prev[activeHookTab!], editedPrompt: e.target.value },
+                          }))
+                        }}
+                        rows={3}
+                        className="font-mono text-[11px] leading-relaxed text-foreground/70 resize-none overflow-hidden pr-8"
+                      />
+                      {activeHookConfig?.editedPrompt !== null && activeHookConfig?.editedPrompt !== undefined && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setPerHookConfig((prev) => ({
+                              ...prev,
+                              [activeHookTab!]: { ...prev[activeHookTab!], editedPrompt: null },
+                            }))
+                          }}
+                          className="absolute top-2 right-2 p-1 rounded text-muted-foreground/50 hover:text-primary transition-colors"
+                          title="Reset to original"
+                        >
+                          <RotateCcw className="h-3 w-3" />
+                        </button>
+                      )}
+                    </div>
                   </div>
                 )}
               </>

@@ -1,0 +1,16 @@
+{
+  "id": "minimal-light-point",
+  "name": "Light Point",
+  "prompts": {
+    "IdlePrompt": "rhythmic pulse at the very edge of perception, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "PermissionPrompt": "barely perceptible tap on smooth polished surface, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "PostToolUse": "check mark drawn with swift confident single stroke, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "PreToolUse": "attention narrowing to single precise focus point, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "SessionEnd": "single point of sound diminishing gracefully to nothing, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "SessionStart": "single bright point of light appearing in total darkness, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "Stop": "single precise glass tap like a pixel of sound, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "SubagentStart": "straight sonic line sprouting a new branch direction, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "SubagentStop": "ultra-small precise ping with zero decay tail, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "UserPromptSubmit": "single sheet of paper sliding across smooth desk surface, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+  }
+}

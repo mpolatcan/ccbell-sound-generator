@@ -1,0 +1,16 @@
+{
+  "id": "mechanical-gear-train",
+  "name": "Gear Train",
+  "prompts": {
+    "IdlePrompt": "machine motor idling with low steady electrical whir, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "PermissionPrompt": "system pressure building and requesting operator release, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "PostToolUse": "forge hammer striking hot iron with tremendous ringing impact, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "PreToolUse": "heavy forge hammer being raised overhead for powerful strike, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SessionEnd": "last switch flipped to off position with decisive click, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SessionStart": "heavy industrial engine turning over and catching with roar, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "Stop": "precision gear teeth clicking into locked position, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SubagentStart": "additional piston beginning its power stroke with firing burst, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SubagentStop": "small mechanical latch catching with quiet click, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "UserPromptSubmit": "heavy chain releasing from winch with rapid clattering drop, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+  }
+}
