@@ -30,9 +30,9 @@ class Settings(BaseSettings):
     max_duration_large: float = 47.0
 
     # Generation settings (from official HuggingFace documentation)
-    default_steps_small: int = 8
+    default_steps_small: int = 16
     default_steps_large: int = 100
-    default_cfg_scale_small: float = 1.0
+    default_cfg_scale_small: float = 3.0
     default_cfg_scale_large: float = 7.0  # Official default for 1.0 model
     default_sampler_small: str = "pingpong"
     default_sampler_large: str = "dpmpp-3m-sde"

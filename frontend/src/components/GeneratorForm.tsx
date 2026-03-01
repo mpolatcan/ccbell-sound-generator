@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, forwardRef, useImperativeHandle } from 'react'
+import { useState, useEffect, useRef, useMemo, forwardRef, useImperativeHandle } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { api } from '@/lib/api'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
@@ -65,7 +65,8 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
 
   // Form state
   const [selectedTheme, setSelectedTheme] = useState('sci-fi')
-  const [selectedHooks, setSelectedHooks] = useState<HookTypeId[]>(['Stop'])
+  const [selectedHooks, setSelectedHooks] = useState<HookTypeId[]>([])
+  const hooksInitialized = useRef(false)
   const [customPrompt, setCustomPrompt] = useState('')
   const [duration, setDuration] = useState(DEFAULT_DURATION)
   const [packName, setPackName] = useState('')
@@ -94,6 +95,14 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
       getSoundsByPack: s.getSoundsByPack,
     }))
   )
+
+  // Select all hooks by default when hooks data loads (one-time only)
+  useEffect(() => {
+    if (!hooksInitialized.current && hooks.length > 0) {
+      hooksInitialized.current = true
+      setSelectedHooks(hooks.map((h: HookType) => h.id))
+    }
+  }, [hooks])
 
   // Get max duration for selected model
   const maxDuration = MODEL_DEFAULTS[selectedModel].max_duration
@@ -135,11 +144,13 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
   const getDefaultPackName = () => {
     const theme = themes.find((t: ThemePreset) => t.id === selectedTheme)
     const themeName = theme?.name || selectedTheme
-    const timestamp = new Date().toLocaleTimeString('en-US', {
+    const now = new Date()
+    const date = now.toLocaleDateString('en-CA') // YYYY-MM-DD
+    const time = now.toLocaleTimeString('en-US', {
       hour: '2-digit',
       minute: '2-digit'
     })
-    return `${themeName} - ${timestamp}`
+    return `${themeName} - ${date} ${time}`
   }
 
   // Assemble prompt from chip selections

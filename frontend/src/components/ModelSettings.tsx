@@ -44,7 +44,7 @@ const PRESETS = {
     description: 'Quick generation, good for testing',
     icon: Zap,
     settings: {
-      small: { steps: 4, cfg_scale: 1.0, sampler: 'pingpong' },
+      small: { steps: 8, cfg_scale: 1.0, sampler: 'pingpong' },
       '1.0': { steps: 40, cfg_scale: 3.0, sampler: 'dpmpp-3m-sde' }
     }
   },
@@ -53,7 +53,7 @@ const PRESETS = {
     description: 'Good quality with reasonable speed',
     icon: Scale,
     settings: {
-      small: { steps: 8, cfg_scale: 1.0, sampler: 'pingpong' },
+      small: { steps: 16, cfg_scale: 3.0, sampler: 'pingpong' },
       '1.0': { steps: 100, cfg_scale: 7.0, sampler: 'dpmpp-3m-sde' }
     }
   },
@@ -62,7 +62,7 @@ const PRESETS = {
     description: 'Higher quality, longer generation time',
     icon: Gem,
     settings: {
-      small: { steps: 12, cfg_scale: 2.0, sampler: 'pingpong' },
+      small: { steps: 24, cfg_scale: 5.0, sampler: 'pingpong' },
       '1.0': { steps: 150, cfg_scale: 8.0, sampler: 'dpmpp-3m-sde' }
     }
   }

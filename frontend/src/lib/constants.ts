@@ -9,8 +9,8 @@ export const WS_BASE_URL = typeof window !== 'undefined'
 // Model defaults (from official HuggingFace documentation)
 export const MODEL_DEFAULTS = {
   small: {
-    default_steps: 8,
-    cfg_scale: 1.0,
+    default_steps: 16,
+    cfg_scale: 3.0,
     default_sampler: 'pingpong',
     max_duration: 11,
     sigma_min: 0.3,

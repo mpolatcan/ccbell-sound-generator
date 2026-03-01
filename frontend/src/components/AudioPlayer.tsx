@@ -21,7 +21,7 @@ export const AudioPlayer = memo(function AudioPlayer({
   const [isPlaying, setIsPlaying] = useState(false)
   const [duration, setDuration] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
-  const [volume, setVolume] = useState(0.8)
+  const [volume, setVolume] = useState(1)
   const [isMuted, setIsMuted] = useState(false)
   const [isReady, setIsReady] = useState(false)
 

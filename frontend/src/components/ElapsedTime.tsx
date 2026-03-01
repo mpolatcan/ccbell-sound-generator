@@ -3,19 +3,32 @@ import { Clock } from 'lucide-react'
 
 interface ElapsedTimeProps {
   startTime: Date | undefined
+  endTime?: Date
   isRunning: boolean
 }
 
-export const ElapsedTime = memo(function ElapsedTime({ startTime, isRunning }: ElapsedTimeProps) {
+export const ElapsedTime = memo(function ElapsedTime({ startTime, endTime, isRunning }: ElapsedTimeProps) {
   const [elapsed, setElapsed] = useState(0)
 
   useEffect(() => {
-    if (!startTime || !isRunning) {
+    if (!startTime) {
+      return
+    }
+
+    const start = startTime instanceof Date ? startTime : new Date(startTime)
+
+    if (!isRunning && endTime) {
+      // Show static final elapsed time
+      const end = endTime instanceof Date ? endTime : new Date(endTime)
+      setElapsed(Math.floor((end.getTime() - start.getTime()) / 1000))
+      return
+    }
+
+    if (!isRunning) {
       return
     }
 
     const calculateElapsed = () => {
-      const start = startTime instanceof Date ? startTime : new Date(startTime)
       const now = new Date()
       return Math.floor((now.getTime() - start.getTime()) / 1000)
     }
@@ -29,7 +42,7 @@ export const ElapsedTime = memo(function ElapsedTime({ startTime, isRunning }: E
     }, 1000)
 
     return () => clearInterval(interval)
-  }, [startTime, isRunning])
+  }, [startTime, endTime, isRunning])
 
   const formatTime = (seconds: number): string => {
     const mins = Math.floor(seconds / 60)
@@ -37,7 +50,11 @@ export const ElapsedTime = memo(function ElapsedTime({ startTime, isRunning }: E
     return `${mins}:${secs.toString().padStart(2, '0')}`
   }
 
-  if (!startTime || !isRunning) {
+  if (!startTime) {
+    return null
+  }
+
+  if (!isRunning && !endTime) {
     return null
   }
 

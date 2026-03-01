@@ -20,8 +20,10 @@ import {
   Pencil,
   Check,
   X,
-  Music
+  Music,
+  RefreshCw
 } from 'lucide-react'
+import { useGenerationQueue } from '@/hooks/useGenerationQueue'
 import { formatDuration } from '@/lib/utils'
 import type { SoundPack, GeneratedSound, PublishPackData, DownloadPackData } from '@/types'
 import {
@@ -41,16 +43,18 @@ interface SoundLibraryProps {
 
 export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
   function SoundLibrary({ onSelectForPublish, onSelectForDownload }, ref) {
-    const { packs, sounds, removePack, renamePack, removeSound, clearAll } = useSoundLibrary(
+    const { packs, sounds, removePack, renamePack, removeSound, updateSound, clearAll } = useSoundLibrary(
       useShallow((s) => ({
         packs: s.packs,
         sounds: s.sounds,
         removePack: s.removePack,
         renamePack: s.renamePack,
         removeSound: s.removeSound,
+        updateSound: s.updateSound,
         clearAll: s.clearAll,
       }))
     )
+    const { addToQueue } = useGenerationQueue()
     const [previewingSoundId, setPreviewingSoundId] = useState<string | null>(null)
     const [expandedPacks, setExpandedPacks] = useState<Set<string>>(new Set())
     const [editingPackId, setEditingPackId] = useState<string | null>(null)
@@ -183,6 +187,38 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
       // Always remove from frontend state
       removeSound(sound.id)
     }, [removeSound])
+
+    // Regenerate a single sound: reset state and re-queue
+    const handleRegenerateSound = useCallback(async (sound: GeneratedSound) => {
+      // Delete old audio from backend (best-effort)
+      if (sound.job_id) {
+        try {
+          await api.deleteAudio(sound.job_id)
+        } catch {
+          // Ignore - file may already be cleaned up
+        }
+      }
+
+      // Reset sound state
+      updateSound(sound.id, {
+        status: 'generating',
+        progress: 0,
+        stage: 'Queued',
+        audio_url: '',
+        job_id: '',
+        error: undefined,
+        started_at: undefined,
+        completed_at: undefined
+      })
+
+      // Re-queue for generation
+      addToQueue(sound.id, sound.pack_id, {
+        model: sound.model,
+        prompt: sound.prompt,
+        hook_type: sound.hook_type,
+        duration: sound.duration
+      })
+    }, [updateSound, addToQueue])
 
     // Delete all sounds in a pack from backend, then remove pack from state
     const handleDeletePack = useCallback(async (packId: string) => {
@@ -415,6 +451,11 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                         : sound.status}
                                     </Badge>
                                     <Badge variant="outline">{formatDuration(sound.duration)}</Badge>
+                                    <ElapsedTime
+                                      startTime={sound.started_at}
+                                      endTime={sound.completed_at}
+                                      isRunning={sound.status === 'generating'}
+                                    />
                                     {previewingSoundId === sound.id && (
                                       <Volume2 className="h-4 w-4 text-primary animate-pulse" />
                                     )}
@@ -423,28 +464,34 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                     {sound.prompt}
                                   </p>
                                 </div>
-                                <Button
-                                  variant="ghost"
-                                  size="icon"
-                                  onClick={() => handleDeleteSound(sound)}
-                                >
-                                  <Trash2 className="h-4 w-4" />
-                                </Button>
+                                <div className="flex items-center gap-1">
+                                  {sound.status !== 'generating' && (
+                                    <Button
+                                      variant="ghost"
+                                      size="icon"
+                                      onClick={() => handleRegenerateSound(sound)}
+                                      title="Regenerate"
+                                    >
+                                      <RefreshCw className="h-4 w-4" />
+                                    </Button>
+                                  )}
+                                  <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    onClick={() => handleDeleteSound(sound)}
+                                  >
+                                    <Trash2 className="h-4 w-4" />
+                                  </Button>
+                                </div>
                               </div>
 
                               {/* Progress for generating sounds */}
                               {sound.status === 'generating' && (
                                 <div className="mt-2">
                                   <Progress value={(sound.progress || 0) * 100} className="h-2" />
-                                  <div className="flex items-center justify-between mt-1">
-                                    <p className="text-xs text-muted-foreground">
-                                      {sound.stage} ({Math.round((sound.progress || 0) * 100)}%)
-                                    </p>
-                                    <ElapsedTime
-                                      startTime={sound.started_at}
-                                      isRunning={sound.status === 'generating'}
-                                    />
-                                  </div>
+                                  <p className="text-xs text-muted-foreground mt-1">
+                                    {sound.stage} ({Math.round((sound.progress || 0) * 100)}%)
+                                  </p>
                                 </div>
                               )}
 

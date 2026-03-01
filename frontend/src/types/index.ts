@@ -168,6 +168,7 @@ export interface GeneratedSound {
   error?: string
   created_at: Date
   started_at?: Date // When generation actually started (for elapsed time)
+  completed_at?: Date // When generation completed or errored (for persistent elapsed time)
 }
 
 export interface SoundPack {

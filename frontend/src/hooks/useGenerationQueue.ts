@@ -130,7 +130,8 @@ export function useGenerationQueue() {
                   status: 'completed',
                   progress: 1,
                   stage: 'Complete',
-                  audio_url: data.audio_url
+                  audio_url: data.audio_url,
+                  completed_at: new Date()
                 })
                 ws.close()
                 resolve()
@@ -140,7 +141,8 @@ export function useGenerationQueue() {
                 completed = true
                 updateSound(item.id, {
                   status: 'error',
-                  error: data.error
+                  error: data.error,
+                  completed_at: new Date()
                 })
                 ws.close()
                 reject(new Error(data.error))
@@ -184,7 +186,8 @@ export function useGenerationQueue() {
                   status: 'completed',
                   progress: 1,
                   stage: 'Complete',
-                  audio_url: status.audio_url
+                  audio_url: status.audio_url,
+                  completed_at: new Date()
                 })
                 if (pollingRef.current) {
                   clearInterval(pollingRef.current)
@@ -194,7 +197,8 @@ export function useGenerationQueue() {
               } else if (status.status === 'error') {
                 updateSound(item.id, {
                   status: 'error',
-                  error: status.error || 'Generation failed'
+                  error: status.error || 'Generation failed',
+                  completed_at: new Date()
                 })
                 if (pollingRef.current) {
                   clearInterval(pollingRef.current)
@@ -218,7 +222,8 @@ export function useGenerationQueue() {
       setError(message)
       updateSound(item.id, {
         status: 'error',
-        error: message
+        error: message,
+        completed_at: new Date()
       })
     } finally {
       // Remove from queue and process next

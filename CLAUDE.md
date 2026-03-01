@@ -411,9 +411,9 @@ All settings can be overridden via environment variables with the `CCBELL_` pref
 | `CCBELL_DEFAULT_DURATION` | `2.0` | Default audio duration (seconds) |
 | `CCBELL_MAX_DURATION_SMALL` | `11.0` | Max duration for small model |
 | `CCBELL_MAX_DURATION_LARGE` | `47.0` | Max duration for 1.0 model |
-| `CCBELL_DEFAULT_STEPS_SMALL` | `8` | Diffusion steps for small model |
+| `CCBELL_DEFAULT_STEPS_SMALL` | `16` | Diffusion steps for small model |
 | `CCBELL_DEFAULT_STEPS_LARGE` | `100` | Diffusion steps for 1.0 model |
-| `CCBELL_DEFAULT_CFG_SCALE_SMALL` | `1.0` | CFG scale for small model |
+| `CCBELL_DEFAULT_CFG_SCALE_SMALL` | `3.0` | CFG scale for small model |
 | `CCBELL_DEFAULT_CFG_SCALE_LARGE` | `7.0` | CFG scale for 1.0 model |
 | `CCBELL_DEFAULT_SAMPLER_SMALL` | `pingpong` | Sampler for small model |
 | `CCBELL_DEFAULT_SAMPLER_LARGE` | `dpmpp-3m-sde` | Sampler for 1.0 model |
