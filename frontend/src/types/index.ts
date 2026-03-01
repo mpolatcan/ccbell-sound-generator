@@ -171,6 +171,8 @@ export interface GeneratedSound {
   created_at: Date
   started_at?: Date // When generation actually started (for elapsed time)
   completed_at?: Date // When generation completed or errored (for persistent elapsed time)
+  style_name?: string // Style preset name (e.g. "Plasma Resolve")
+  prompt_alias?: string // Prompt variant alias (e.g. "Neon Descent")
 }
 
 export interface SoundPack {

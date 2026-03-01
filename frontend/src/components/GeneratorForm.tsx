@@ -297,6 +297,26 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
       const soundId = crypto.randomUUID()
       const prompt = buildPrompt(hookId)
 
+      // Resolve style name and prompt alias for this hook
+      let styleName: string | undefined
+      let promptAlias: string | undefined
+      if (selectedTheme !== 'custom') {
+        const hook = hooks.find((h) => h.id === hookId)
+        if (hook) {
+          const config = perHookConfig[hookId]
+          const presets = hook.sound_style_presets[selectedTheme] ?? []
+          if (config?.stylePresetId) {
+            const preset = presets.find((p) => p.id === config.stylePresetId)
+            if (preset) styleName = preset.name
+          } else if (presets.length > 0) {
+            styleName = presets[0].name
+          }
+          const prompts = getPromptsForHook(hookId)
+          const idx = config?.selectedPromptIndex ?? 0
+          promptAlias = prompts[idx]?.alias
+        }
+      }
+
       // Add sound to library with 'generating' status (queued)
       addSound({
         id: soundId,
@@ -310,7 +330,9 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
         status: 'generating',
         progress: 0,
         stage: 'Queued',
-        created_at: new Date()
+        created_at: new Date(),
+        style_name: styleName,
+        prompt_alias: promptAlias,
       })
 
       // Add to generation queue
