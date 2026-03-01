@@ -90,11 +90,38 @@ jobs:
     runs-on: ubuntu-latest
     needs: validate
     steps:
-      - name: Wait for base image build if running
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check if base image files changed
+        id: check
+        run: |
+          # Find the previous tag to diff against
+          PREV_TAG=$(git tag --sort=-v:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+' | head -2 | tail -1)
+          if [[ -z "$PREV_TAG" ]]; then
+            echo "No previous tag found, assuming base image changed"
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff --name-only "$PREV_TAG"..HEAD -- \
+              backend/pyproject.toml backend/uv.lock Dockerfile.base)
+            if [[ -n "$CHANGED" ]]; then
+              echo "Base image files changed since $PREV_TAG:"
+              echo "$CHANGED"
+              echo "changed=true" >> $GITHUB_OUTPUT
+            else
+              echo "No base image files changed since $PREV_TAG. Skipping wait."
+              echo "changed=false" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+      - name: Wait for base image build
+        if: steps.check.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "Checking for in-progress base-image builds..."
+          echo "Base image files changed. Checking for in-progress builds..."
           while true; do
             ACTIVE=$(gh run list --repo ${{ github.repository }} \
               --workflow=base-image.yml \
