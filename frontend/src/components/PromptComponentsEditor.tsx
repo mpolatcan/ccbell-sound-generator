@@ -150,9 +150,15 @@ export const PromptComponentsEditor = memo(function PromptComponentsEditor({
       {assembledPrompt && (
         <div className="space-y-1.5">
           <Label className="text-muted-foreground text-xs">Generated Prompt</Label>
-          <p className="text-xs font-mono bg-muted/40 py-2.5 px-3 rounded-lg break-words leading-relaxed border border-border/40">
-            {assembledPrompt}
-          </p>
+          <div className="relative rounded-lg overflow-hidden border border-border/40 bg-muted/20">
+            <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary/60" />
+            <div className="flex items-start gap-2 py-2.5 pl-3.5 pr-3">
+              <span className="text-primary/50 text-xs font-mono select-none shrink-0 mt-px">&gt;</span>
+              <p className="text-xs font-mono break-words leading-relaxed text-foreground/80">
+                {assembledPrompt}
+              </p>
+            </div>
+          </div>
         </div>
       )}
     </div>

@@ -143,6 +143,18 @@ body::after {
   }
 }
 
+/* ── Generator scroll area fade mask ── */
+.generator-scroll-area {
+  mask-image: linear-gradient(to bottom, black calc(100% - 24px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 24px), transparent 100%);
+}
+
+/* ── Theme scroll strip edge fades ── */
+.theme-scroll-strip {
+  mask-image: linear-gradient(to right, transparent, black 8px, black calc(100% - 8px), transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8px, black calc(100% - 8px), transparent);
+}
+
 /* ── Progress bar smooth transitions ── */
 [role="progressbar"] > div {
   transition: width 0.4s ease-out;

@@ -42,6 +42,19 @@ interface GeneratorFormProps {
 const EMPTY_THEMES: ThemePreset[] = []
 const EMPTY_HOOKS: HookType[] = []
 
+/** Thin labeled divider between form sections */
+function SectionDivider({ label }: { label: string }) {
+  return (
+    <div className="flex items-center gap-3 pt-1">
+      <div className="h-px flex-1 bg-border/40" />
+      <span className="text-[10px] font-medium text-muted-foreground/40 uppercase tracking-widest select-none">
+        {label}
+      </span>
+      <div className="h-px flex-1 bg-border/40" />
+    </div>
+  )
+}
+
 export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(function GeneratorForm(
   { selectedModel, advancedSettings, modelReady },
   ref
@@ -389,8 +402,8 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
   const canGenerate = !isLoading && !hasApiError && selectedHooks.length > 0 && currentPrompt.trim() && modelReady
 
   return (
-    <Card className="card-elevated">
-      <CardHeader>
+    <Card className="card-elevated lg:max-h-[calc(100vh-160px)] flex flex-col">
+      <CardHeader className="shrink-0">
         <CardTitle className="flex items-center gap-2">
           <Sparkles className="h-5 w-5 text-primary" />
           Generate Sound
@@ -399,239 +412,254 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
           Create AI-powered notification sounds for Claude Code
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-5">
-        {/* API Error State */}
-        {hasApiError && (
-          <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg animate-fade-in">
-            <div className="flex items-start gap-3">
-              <AlertCircle className="h-5 w-5 text-destructive mt-0.5" />
-              <div className="flex-1">
-                <h4 className="font-medium text-destructive">Failed to load configuration</h4>
-                <p className="text-sm text-muted-foreground mt-1">
-                  Could not connect to the API. Please check if the backend server is running.
-                </p>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleRetryAll}
-                  className="mt-3"
+
+      {/* Scrollable configuration area */}
+      <CardContent className="flex-1 overflow-hidden flex flex-col gap-0 pt-0">
+        <div className="flex-1 overflow-y-auto pr-1 scrollbar-thin generator-scroll-area">
+          <div className="space-y-4 pb-2">
+            {/* API Error State */}
+            {hasApiError && (
+              <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg animate-fade-in">
+                <div className="flex items-start gap-3">
+                  <AlertCircle className="h-5 w-5 text-destructive mt-0.5" />
+                  <div className="flex-1">
+                    <h4 className="font-medium text-destructive">Failed to load configuration</h4>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      Could not connect to the API. Please check if the backend server is running.
+                    </p>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleRetryAll}
+                      className="mt-3"
+                    >
+                      <RefreshCw className="h-4 w-4 mr-2" />
+                      Retry
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* ═══ SECTION: Pack Config ═══ */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Hook Types */}
+              <div className="space-y-2">
+                <Label>Hook Types</Label>
+                {hooksLoading ? (
+                  <Skeleton className="h-10 w-full" />
+                ) : (
+                  <HookSelector
+                    hooks={hooks}
+                    selectedHooks={selectedHooks}
+                    onSelect={setSelectedHooks}
+                    promptDetailTier={promptDetailTier}
+                  />
+                )}
+              </div>
+
+              {/* Sound Pack Selection */}
+              <div className="space-y-2">
+                <Label className="flex items-center gap-2">
+                  <Package className="h-3.5 w-3.5" />
+                  Sound Pack
+                </Label>
+                <Select
+                  value={selectedPackId || 'new'}
+                  onValueChange={(v) => setSelectedPackId(v === 'new' ? null : v)}
                 >
-                  <RefreshCw className="h-4 w-4 mr-2" />
-                  Retry
-                </Button>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Create New Pack" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="new">
+                      <div className="flex items-center gap-2">
+                        <Plus className="h-4 w-4" />
+                        <span>Create New Pack</span>
+                      </div>
+                    </SelectItem>
+                    {packs.length > 0 && (
+                      <>
+                        <SelectSeparator />
+                        {packs.map((pack) => (
+                          <SelectItem key={pack.id} value={pack.id}>
+                            <div className="flex items-center gap-2">
+                              <Package className="h-4 w-4" />
+                              <span>{pack.name}</span>
+                              <span className="text-muted-foreground">
+                                ({getSoundsByPack(pack.id).length} sounds)
+                              </span>
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </>
+                    )}
+                  </SelectContent>
+                </Select>
               </div>
             </div>
-          </div>
-        )}
 
-        {/* Row 1: Hook Types + Sound Pack side-by-side */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {/* Hook Types */}
-          <div className="space-y-2">
-            <Label>Hook Types</Label>
-            {hooksLoading ? (
-              <Skeleton className="h-10 w-full" />
-            ) : (
-              <HookSelector
-                hooks={hooks}
-                selectedHooks={selectedHooks}
-                onSelect={setSelectedHooks}
-                promptDetailTier={promptDetailTier}
+            {/* Pack name input */}
+            {selectedPackId === null && (
+              <div className="space-y-1">
+                <Input
+                  placeholder={getDefaultPackName()}
+                  value={packName}
+                  onChange={(e) => setPackName(e.target.value)}
+                  className="placeholder:text-muted-foreground/50"
+                />
+                <p className="text-xs text-muted-foreground">
+                  Leave empty to auto-generate name from theme
+                </p>
+              </div>
+            )}
+
+            {/* ═══ SECTION: Sound Design ═══ */}
+            <SectionDivider label="Sound Design" />
+
+            {/* Theme Selection */}
+            <div className="space-y-2">
+              <Label>Theme</Label>
+              {themesLoading ? (
+                <div className="flex gap-2">
+                  {[...Array(5)].map((_, i) => (
+                    <Skeleton key={i} className="h-8 w-24 rounded-full shrink-0" />
+                  ))}
+                </div>
+              ) : (
+                <ThemeSelector
+                  themes={themes}
+                  selectedTheme={selectedTheme}
+                  onSelect={setSelectedTheme}
+                />
+              )}
+            </div>
+
+            {/* Prompt Detail Level */}
+            {selectedTheme !== 'custom' && (
+              <div className="space-y-2">
+                <Label>Prompt Detail</Label>
+                <div className="flex gap-2">
+                  {(['simple', 'standard', 'detailed'] as const).map((tier) => (
+                    <button
+                      key={tier}
+                      type="button"
+                      className={cn(
+                        'flex-1 px-3 py-1.5 rounded-full text-sm font-medium transition-all border cursor-pointer',
+                        promptDetailTier === tier
+                          ? 'border-primary bg-primary/15 text-primary shadow-sm shadow-primary/10'
+                          : 'border-border bg-muted/30 text-muted-foreground hover:border-primary/40 hover:text-foreground'
+                      )}
+                      onClick={() => setPromptDetailTier(tier)}
+                    >
+                      {tier.charAt(0).toUpperCase() + tier.slice(1)}
+                    </button>
+                  ))}
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  {promptDetailTier === 'simple' && 'Minimal descriptors for shorter, focused prompts'}
+                  {promptDetailTier === 'standard' && 'Balanced set of descriptors (recommended)'}
+                  {promptDetailTier === 'detailed' && 'Rich descriptors for more specific, detailed prompts'}
+                </p>
+              </div>
+            )}
+
+            {/* ═══ SECTION: Hook Config ═══ */}
+            {selectedTheme !== 'custom' && selectedHooks.length > 0 && (
+              <>
+                <SectionDivider label="Hook Config" />
+
+                {/* Hook Config Tabs */}
+                <div className="space-y-2">
+                  <Label>Hook Sound Config</Label>
+                  <HookConfigTabs
+                    hooks={hooks}
+                    selectedHooks={selectedHooks}
+                    activeTab={activeHookTab}
+                    onTabChange={setActiveHookTab}
+                  />
+                </div>
+
+                {/* Sound Style Presets */}
+                {activeHook && activeHook.sound_style_presets.length > 0 && (
+                  <div className="space-y-2">
+                    <Label>Sound Style</Label>
+                    <div className="flex flex-wrap gap-2">
+                      {activeHook.sound_style_presets.map((preset) => (
+                        <button
+                          key={preset.id}
+                          type="button"
+                          title={preset.description}
+                          className={cn(
+                            'px-3 py-1.5 rounded-full text-sm font-medium transition-all border cursor-pointer',
+                            (activePresetId === preset.id ||
+                              (!activePresetId && preset.id === activeHook.sound_style_presets[0]?.id))
+                              ? 'border-primary bg-primary/15 text-primary shadow-sm shadow-primary/10'
+                              : 'border-border bg-muted/30 text-muted-foreground hover:border-primary/40 hover:text-foreground'
+                          )}
+                          onClick={() => handleStylePresetChange(
+                            preset.id === activeHook.sound_style_presets[0]?.id && !activePresetId
+                              ? null
+                              : preset.id
+                          )}
+                        >
+                          {preset.name}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
+
+            {/* ═══ SECTION: Prompt ═══ */}
+            <SectionDivider label="Prompt" />
+
+            {/* Prompt Components Editor (hidden for Custom theme) */}
+            {selectedTheme !== 'custom' && (
+              <PromptComponentsEditor
+                chips={editorChips}
+                onChange={handleChipsChange}
+                assembledPrompt={currentPrompt}
               />
             )}
-          </div>
 
-          {/* Sound Pack Selection */}
-          <div className="space-y-2">
-            <Label className="flex items-center gap-2">
-              <Package className="h-3.5 w-3.5" />
-              Sound Pack
-            </Label>
-            <Select
-              value={selectedPackId || 'new'}
-              onValueChange={(v) => setSelectedPackId(v === 'new' ? null : v)}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Create New Pack" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="new">
-                  <div className="flex items-center gap-2">
-                    <Plus className="h-4 w-4" />
-                    <span>Create New Pack</span>
-                  </div>
-                </SelectItem>
-                {packs.length > 0 && (
-                  <>
-                    <SelectSeparator />
-                    {packs.map((pack) => (
-                      <SelectItem key={pack.id} value={pack.id}>
-                        <div className="flex items-center gap-2">
-                          <Package className="h-4 w-4" />
-                          <span>{pack.name}</span>
-                          <span className="text-muted-foreground">
-                            ({getSoundsByPack(pack.id).length} sounds)
-                          </span>
-                        </div>
-                      </SelectItem>
-                    ))}
-                  </>
-                )}
-              </SelectContent>
-            </Select>
+            {/* Custom Prompt (if custom theme selected) */}
+            {selectedTheme === 'custom' && (
+              <div className="space-y-2">
+                <Label>Custom Prompt</Label>
+                <Textarea
+                  placeholder="Describe the sound you want to generate..."
+                  value={customPrompt}
+                  onChange={(e) => setCustomPrompt(e.target.value)}
+                  rows={3}
+                  className="placeholder:text-muted-foreground/50"
+                />
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Pack name input - full width below, only when creating new pack */}
-        {selectedPackId === null && (
-          <div className="space-y-1">
-            <Input
-              placeholder={getDefaultPackName()}
-              value={packName}
-              onChange={(e) => setPackName(e.target.value)}
-              className="placeholder:text-muted-foreground/50"
-            />
-            <p className="text-xs text-muted-foreground">
-              Leave empty to auto-generate name from theme
-            </p>
-          </div>
-        )}
-
-        {/* Theme Selection (pills) */}
-        <div className="space-y-2">
-          <Label>Theme</Label>
-          {themesLoading ? (
-            <div className="flex flex-wrap gap-2">
-              {[...Array(6)].map((_, i) => (
-                <Skeleton key={i} className="h-8 w-24 rounded-full" />
-              ))}
+        {/* ═══ PINNED BOTTOM: Duration + Generate ═══ */}
+        <div className="shrink-0 border-t border-border/30 pt-4 mt-2 space-y-3 bg-card">
+          {/* Duration - compact inline */}
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between">
+              <Label className="text-xs">Duration</Label>
+              <span className="text-xs font-mono text-muted-foreground tabular-nums">
+                {formatDuration(duration)} / {maxDuration}s max
+              </span>
             </div>
-          ) : (
-            <ThemeSelector
-              themes={themes}
-              selectedTheme={selectedTheme}
-              onSelect={setSelectedTheme}
-            />
-          )}
-        </div>
-
-        {/* Prompt Detail Level */}
-        {selectedTheme !== 'custom' && (
-          <div className="space-y-2">
-            <Label>Prompt Detail</Label>
-            <div className="flex gap-2">
-              {(['simple', 'standard', 'detailed'] as const).map((tier) => (
-                <button
-                  key={tier}
-                  type="button"
-                  className={cn(
-                    'flex-1 px-3 py-1.5 rounded-full text-sm font-medium transition-all border cursor-pointer',
-                    promptDetailTier === tier
-                      ? 'border-primary bg-primary/15 text-primary shadow-sm shadow-primary/10'
-                      : 'border-border bg-muted/30 text-muted-foreground hover:border-primary/40 hover:text-foreground'
-                  )}
-                  onClick={() => setPromptDetailTier(tier)}
-                >
-                  {tier.charAt(0).toUpperCase() + tier.slice(1)}
-                </button>
-              ))}
-            </div>
-            <p className="text-xs text-muted-foreground">
-              {promptDetailTier === 'simple' && 'Minimal descriptors for shorter, focused prompts'}
-              {promptDetailTier === 'standard' && 'Balanced set of descriptors (recommended)'}
-              {promptDetailTier === 'detailed' && 'Rich descriptors for more specific, detailed prompts'}
-            </p>
-          </div>
-        )}
-
-        {/* Hook Config Tabs (shown when hooks selected and theme is not custom) */}
-        {selectedTheme !== 'custom' && selectedHooks.length > 0 && (
-          <div className="space-y-2">
-            <Label>Hook Sound Config</Label>
-            <HookConfigTabs
-              hooks={hooks}
-              selectedHooks={selectedHooks}
-              activeTab={activeHookTab}
-              onTabChange={setActiveHookTab}
+            <Slider
+              value={[duration]}
+              onValueChange={(v) => setDuration(v[0])}
+              min={0.5}
+              max={maxDuration}
+              step={0.5}
             />
           </div>
-        )}
 
-        {/* Sound Style Presets (per active hook, shown when theme is not custom) */}
-        {selectedTheme !== 'custom' && activeHook && activeHook.sound_style_presets.length > 0 && (
-          <div className="space-y-2">
-            <Label>Sound Style</Label>
-            <div className="flex flex-wrap gap-2">
-              {activeHook.sound_style_presets.map((preset) => (
-                <button
-                  key={preset.id}
-                  type="button"
-                  title={preset.description}
-                  className={cn(
-                    'px-3 py-1.5 rounded-full text-sm font-medium transition-all border cursor-pointer',
-                    (activePresetId === preset.id ||
-                      (!activePresetId && preset.id === activeHook.sound_style_presets[0]?.id))
-                      ? 'border-primary bg-primary/15 text-primary shadow-sm shadow-primary/10'
-                      : 'border-border bg-muted/30 text-muted-foreground hover:border-primary/40 hover:text-foreground'
-                  )}
-                  onClick={() => handleStylePresetChange(
-                    preset.id === activeHook.sound_style_presets[0]?.id && !activePresetId
-                      ? null
-                      : preset.id
-                  )}
-                >
-                  {preset.name}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Prompt Components Editor (hidden for Custom theme) */}
-        {selectedTheme !== 'custom' && (
-          <PromptComponentsEditor
-            chips={editorChips}
-            onChange={handleChipsChange}
-            assembledPrompt={currentPrompt}
-          />
-        )}
-
-        {/* Custom Prompt (if custom theme selected) */}
-        {selectedTheme === 'custom' && (
-          <div className="space-y-2">
-            <Label>Custom Prompt</Label>
-            <Textarea
-              placeholder="Describe the sound you want to generate..."
-              value={customPrompt}
-              onChange={(e) => setCustomPrompt(e.target.value)}
-              rows={3}
-              className="placeholder:text-muted-foreground/50"
-            />
-          </div>
-        )}
-
-        {/* Duration */}
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <Label>Duration</Label>
-            <span className="text-sm font-mono text-muted-foreground tabular-nums">
-              {formatDuration(duration)}
-            </span>
-          </div>
-          <Slider
-            value={[duration]}
-            onValueChange={(v) => setDuration(v[0])}
-            min={0.5}
-            max={maxDuration}
-            step={0.5}
-          />
-          <p className="text-xs text-muted-foreground">
-            Max {maxDuration}s for {selectedModel === 'small' ? 'Small' : '1.0'} model
-          </p>
-        </div>
-
-        {/* Generate Button */}
-        <div className="space-y-3 pt-1">
+          {/* Generate Button */}
           <Button
             className={cn(
               "w-full font-display font-semibold tracking-wide",
@@ -644,20 +672,21 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
             <Sparkles className="h-4 w-4 mr-2" />
             Generate {selectedHooks.length > 1 ? `${selectedHooks.length} Sounds` : 'Sound'}
           </Button>
+
           {queueLength > 0 && (
             <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground animate-fade-in">
               <ListOrdered className="h-4 w-4" />
               <span>{queueLength} {queueLength === 1 ? 'sound' : 'sounds'} in queue</span>
             </div>
           )}
-        </div>
 
-        {/* Error */}
-        {error && (
-          <div className="p-3 bg-destructive/10 border border-destructive/30 rounded-lg animate-fade-in">
-            <p className="text-sm text-destructive">{error}</p>
-          </div>
-        )}
+          {/* Error */}
+          {error && (
+            <div className="p-3 bg-destructive/10 border border-destructive/30 rounded-lg animate-fade-in">
+              <p className="text-sm text-destructive">{error}</p>
+            </div>
+          )}
+        </div>
       </CardContent>
     </Card>
   )
