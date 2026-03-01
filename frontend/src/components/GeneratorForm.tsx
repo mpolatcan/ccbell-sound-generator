@@ -574,12 +574,9 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
               </div>
             )}
 
-            {/* ═══ SECTION: Hook Config ═══ */}
+            {/* Hook Sound Config — inline within Sound Design */}
             {selectedTheme !== 'custom' && selectedHooks.length > 0 && (
               <>
-                <SectionDivider label="Hook Config" />
-
-                {/* Hook Config Tabs */}
                 <div className="space-y-2">
                   <Label>Hook Sound Config</Label>
                   <HookConfigTabs
@@ -621,9 +618,6 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
                 )}
               </>
             )}
-
-            {/* ═══ SECTION: Prompt ═══ */}
-            <SectionDivider label="Prompt" />
 
             {/* Prompt Components Editor (hidden for Custom theme) */}
             {selectedTheme !== 'custom' && (
