@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { cn } from '@/lib/utils'
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import type { HookType, HookTypeId } from '@/types'
 
 interface HookConfigTabsProps {
@@ -22,24 +22,17 @@ export const HookConfigTabs = memo(function HookConfigTabs({
     .filter((h): h is HookType => h !== undefined)
 
   return (
-    <div className="overflow-x-auto">
-      <div className="flex flex-nowrap gap-2">
+    <Tabs
+      value={activeTab ?? undefined}
+      onValueChange={(value) => onTabChange(value as HookTypeId)}
+    >
+      <TabsList className="flex-wrap h-auto gap-1 bg-muted/30 p-1">
         {selectedHooksData.map((hook) => (
-          <button
-            key={hook.id}
-            type="button"
-            className={cn(
-              'whitespace-nowrap px-3 py-1.5 rounded-full text-sm font-medium transition-all border cursor-pointer',
-              activeTab === hook.id
-                ? 'border-primary bg-primary/15 text-primary'
-                : 'border-border bg-muted/30 text-muted-foreground hover:border-primary/50 hover:text-foreground'
-            )}
-            onClick={() => onTabChange(hook.id)}
-          >
+          <TabsTrigger key={hook.id} value={hook.id} className="text-sm">
             {hook.name}
-          </button>
+          </TabsTrigger>
         ))}
-      </div>
-    </div>
+      </TabsList>
+    </Tabs>
   )
 })
