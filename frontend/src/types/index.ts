@@ -31,6 +31,11 @@ export interface EditablePromptChips {
   quality: ChipItem[]
 }
 
+export interface PerHookConfig {
+  soundTypeChips: ChipItem[]
+  stylePresetId: string | null
+}
+
 export type PromptDetailTier = 'simple' | 'standard' | 'detailed'
 
 export interface TieredPromptComponents {
