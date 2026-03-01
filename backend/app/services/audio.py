@@ -371,6 +371,9 @@ class AudioService:
                     # Clamp between 0.3 and 0.95, allowing progress beyond initial estimate
                     estimated_progress = min(max(raw_progress, 0.3), 0.95)
 
+                    # Enforce monotonically increasing progress (never go backward)
+                    estimated_progress = max(estimated_progress, last_reported_progress)
+
                     # Only notify if progress changed significantly (reduces CPU wake-ups)
                     if estimated_progress - last_reported_progress >= 0.01:
                         await self._notify_progress(job_id, estimated_progress, "generating")

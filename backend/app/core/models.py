@@ -139,6 +139,15 @@ class TieredSoundCharacters(BaseModel):
     detailed: list[str]
 
 
+class SoundStylePreset(BaseModel):
+    """A named sound style preset for a hook type."""
+
+    id: str
+    name: str
+    description: str
+    sound_characters: TieredSoundCharacters
+
+
 class HookType(BaseModel):
     """Claude Code hook type definition."""
 
@@ -146,6 +155,7 @@ class HookType(BaseModel):
     name: str
     description: str
     sound_characters: TieredSoundCharacters
+    sound_style_presets: list[SoundStylePreset] = Field(default_factory=list)
 
 
 class PublishRequest(BaseModel):

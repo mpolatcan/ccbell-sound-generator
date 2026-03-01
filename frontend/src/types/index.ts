@@ -66,11 +66,19 @@ export interface TieredSoundCharacters {
   detailed: string[]
 }
 
+export interface SoundStylePreset {
+  id: string
+  name: string
+  description: string
+  sound_characters: TieredSoundCharacters
+}
+
 export interface HookType {
   id: HookTypeId
   name: string
   description: string
   sound_characters: TieredSoundCharacters
+  sound_style_presets: SoundStylePreset[]
 }
 
 export interface GenerationSettings {

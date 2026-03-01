@@ -170,8 +170,13 @@ export function useGenerationQueue() {
 
               if (data.type === 'pong') return
 
+              // Enforce monotonically increasing progress (never go backward)
+              const currentSound = useSoundLibrary.getState().sounds.find((s) => s.id === item.id)
+              const currentProgress = currentSound?.progress ?? 0
+              const newProgress = Math.max(data.progress ?? 0, currentProgress)
+
               updateSound(item.id, {
-                progress: data.progress,
+                progress: newProgress,
                 stage: data.stage
               })
 
@@ -231,8 +236,15 @@ export function useGenerationQueue() {
             try {
               const status = await api.getAudioStatus(jobId)
 
+              // Enforce monotonically increasing progress (never go backward)
+              const currentSound = useSoundLibrary
+                .getState()
+                .sounds.find((s) => s.id === item.id)
+              const currentProgress = currentSound?.progress ?? 0
+              const newProgress = Math.max(status.progress ?? 0, currentProgress)
+
               updateSound(item.id, {
-                progress: status.progress,
+                progress: newProgress,
                 stage: status.stage || 'Generating'
               })
 

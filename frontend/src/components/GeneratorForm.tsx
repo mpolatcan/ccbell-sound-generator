@@ -72,6 +72,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
   const [packName, setPackName] = useState('')
   const [selectedPackId, setSelectedPackId] = useState<string | null>(null)
   const [promptDetailTier, setPromptDetailTier] = useState<PromptDetailTier>('standard')
+  const [selectedStylePresetId, setSelectedStylePresetId] = useState<string | null>(null)
   const toChips = (values: string[]): ChipItem[] =>
     values.map((label) => ({ label, enabled: true }))
 
@@ -129,16 +130,35 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
     }))
   }, [selectedTheme, themes, promptDetailTier])
 
-  // Sync sound_type chips when selected hooks or detail tier changes
+  // Track primary hook ID for dependency arrays
+  const primaryHookId = selectedHooks[0] ?? null
+
+  // Reset style preset when primary hook changes
   useEffect(() => {
-    if (selectedHooks.length === 0) return
-    const hook = hooks.find((h: HookType) => h.id === selectedHooks[0])
-    if (!hook) return
+    setSelectedStylePresetId(null)
+  }, [primaryHookId])
+
+  // Resolve the active sound characters for the primary hook
+  const primaryHook = hooks.find((h: HookType) => h.id === primaryHookId)
+  const activeSoundCharacters = useMemo(() => {
+    if (!primaryHook) return null
+    if (selectedStylePresetId) {
+      const preset = primaryHook.sound_style_presets.find(
+        (p) => p.id === selectedStylePresetId
+      )
+      if (preset) return preset.sound_characters
+    }
+    return primaryHook.sound_characters
+  }, [primaryHook, selectedStylePresetId])
+
+  // Sync sound_type chips when selected hooks, style preset, or detail tier changes
+  useEffect(() => {
+    if (!activeSoundCharacters) return
     setPromptChips((prev) => ({
       ...prev,
-      sound_type: toChips(hook.sound_characters[promptDetailTier]),
+      sound_type: toChips(activeSoundCharacters[promptDetailTier]),
     }))
-  }, [selectedHooks, hooks, promptDetailTier])
+  }, [activeSoundCharacters, promptDetailTier])
 
   // Generate default pack name from theme
   const getDefaultPackName = () => {
@@ -408,6 +428,36 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
               {promptDetailTier === 'standard' && 'Balanced set of descriptors (recommended)'}
               {promptDetailTier === 'detailed' && 'Rich descriptors for more specific, detailed prompts'}
             </p>
+          </div>
+        )}
+
+        {/* Sound Style Presets (shown when theme is not custom and hooks are selected) */}
+        {selectedTheme !== 'custom' && primaryHook && primaryHook.sound_style_presets.length > 0 && (
+          <div className="space-y-2">
+            <Label>Sound Style</Label>
+            <div className="flex flex-wrap gap-2">
+              {primaryHook.sound_style_presets.map((preset) => (
+                <button
+                  key={preset.id}
+                  type="button"
+                  title={preset.description}
+                  className={cn(
+                    'px-3 py-1.5 rounded-full text-sm font-medium transition-all border cursor-pointer',
+                    (selectedStylePresetId === preset.id ||
+                      (!selectedStylePresetId && preset.id === primaryHook.sound_style_presets[0]?.id))
+                      ? 'border-primary bg-primary/15 text-primary'
+                      : 'border-border bg-muted/30 text-muted-foreground hover:border-primary/50 hover:text-foreground'
+                  )}
+                  onClick={() => setSelectedStylePresetId(
+                    preset.id === primaryHook.sound_style_presets[0]?.id && !selectedStylePresetId
+                      ? null
+                      : preset.id
+                  )}
+                >
+                  {preset.name}
+                </button>
+              ))}
+            </div>
           </div>
         )}
 

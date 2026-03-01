@@ -230,7 +230,9 @@ async def delete_audio(job_id: str):
 @router.post("/packs", response_model=DownloadPackResponse)
 async def create_pack(request: DownloadPackRequest):
     """Create a downloadable ccbell-compatible sound pack ZIP."""
-    logger.info(f"Pack creation request: '{request.pack_name}' with {len(request.sound_files)} sounds")
+    logger.info(
+        f"Pack creation request: '{request.pack_name}' with {len(request.sound_files)} sounds"
+    )
     return await pack_service.create_pack(request)
 
 
