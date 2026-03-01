@@ -78,7 +78,7 @@ export const AudioPlayer = memo(function AudioPlayer({
 
       // Disconnect the internal ResizeObserver to prevent waveform redraws
       // when the page layout shifts (e.g., scrollbar appearing during pack generation).
-      const renderer = wavesurfer.getRenderer() as Record<string, unknown>
+      const renderer = wavesurfer.getRenderer() as unknown as Record<string, unknown>
       const ro = renderer?.resizeObserver
       if (ro && typeof (ro as ResizeObserver).disconnect === 'function') {
         ;(ro as ResizeObserver).disconnect()
