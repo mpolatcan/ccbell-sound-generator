@@ -98,45 +98,13 @@ class ModelInfo(BaseModel):
     parameters: str
 
 
-class PromptComponents(BaseModel):
-    """Structured prompt components for Stable Audio generation.
-
-    Following Stable Audio Open best practices, prompts are assembled as:
-    "{sound_type}, {style}, {instruments}, {mood}, {duration} seconds, {quality}"
-
-    Each field is a list of descriptors that can be individually toggled in the UI.
-    """
-
-    style: list[str]
-    instruments: list[str]
-    mood: list[str]
-    quality: list[str]
-
-
-class TieredPromptComponents(BaseModel):
-    """Prompt components at three detail levels."""
-
-    simple: PromptComponents
-    standard: PromptComponents
-    detailed: PromptComponents
-
-
 class ThemePreset(BaseModel):
     """Theme preset for sound generation."""
 
     id: str
     name: str
     description: str
-    prompt_components: TieredPromptComponents
     icon: str
-
-
-class TieredSoundCharacters(BaseModel):
-    """Sound character descriptors at three detail levels."""
-
-    simple: list[str]
-    standard: list[str]
-    detailed: list[str]
 
 
 class PromptEntry(BaseModel):
@@ -160,7 +128,6 @@ class HookType(BaseModel):
     id: str
     name: str
     description: str
-    sound_characters: TieredSoundCharacters
     sound_style_presets: dict[str, list[SoundStylePreset]] = Field(default_factory=dict)
 
 

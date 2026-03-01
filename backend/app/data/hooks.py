@@ -3,7 +3,7 @@
 import json
 from pathlib import Path
 
-from app.core.models import HookType, HookTypeId, SoundStylePreset, TieredSoundCharacters
+from app.core.models import HookType, HookTypeId, SoundStylePreset
 
 # Maps generator hook type IDs to ccbell plugin event names.
 HOOK_TO_EVENT_MAP: dict[HookTypeId, str] = {
@@ -71,84 +71,24 @@ HOOK_TYPES: list[HookType] = [
         id="Stop",
         name="Stop",
         description="Main agent has finished its task",
-        sound_characters=TieredSoundCharacters(
-            simple=["bright ascending tone resolving to major chord"],
-            standard=[
-                "bright ascending tone resolving to major chord",
-                "confident ring of a struck glass bell",
-                "triumphant landing on a warm final note",
-            ],
-            detailed=[
-                "bright ascending tone resolving to major chord",
-                "confident ring of a struck glass bell",
-                "triumphant landing on a warm final note",
-                "satisfying click of a lock sliding home",
-                "clear resonant chime fading into silence",
-            ],
-        ),
         sound_style_presets=_HOOK_STYLE_PRESETS.get("Stop", {}),
     ),
     HookType(
         id="SubagentStop",
         name="Subagent Stop",
         description="A subagent has finished its task",
-        sound_characters=TieredSoundCharacters(
-            simple=["gentle tap on porcelain cup"],
-            standard=[
-                "gentle tap on porcelain cup",
-                "distant wind chime touched by breeze",
-                "soft fingertip on muted bell",
-            ],
-            detailed=[
-                "gentle tap on porcelain cup",
-                "distant wind chime touched by breeze",
-                "soft fingertip on muted bell",
-                "quiet marble dropped on felt surface",
-                "whispered glass ping from far away",
-            ],
-        ),
         sound_style_presets=_HOOK_STYLE_PRESETS.get("SubagentStop", {}),
     ),
     HookType(
         id="PermissionPrompt",
         name="Permission Prompt",
         description="Tool needs user permission to proceed",
-        sound_characters=TieredSoundCharacters(
-            simple=["two-note rising question phrase"],
-            standard=[
-                "two-note rising question phrase",
-                "gentle knock asking may I enter",
-                "curious ascending pitch bend",
-            ],
-            detailed=[
-                "two-note rising question phrase",
-                "gentle knock asking may I enter",
-                "curious ascending pitch bend",
-                "expectant pause after bright ping",
-                "doorbell with polite urgency",
-            ],
-        ),
         sound_style_presets=_HOOK_STYLE_PRESETS.get("PermissionPrompt", {}),
     ),
     HookType(
         id="IdlePrompt",
         name="Idle Prompt",
         description="Agent is idle and waiting for user input",
-        sound_characters=TieredSoundCharacters(
-            simple=["slow breathing hum pulsing gently"],
-            standard=[
-                "slow breathing hum pulsing gently",
-                "warm sustained tone with subtle vibrato",
-                "patient ambient drone at low volume",
-            ],
-            detailed=[
-                "slow breathing hum pulsing gently",
-                "warm sustained tone with subtle vibrato",
-                "patient ambient drone at low volume",
-                "soft oscillating pad like quiet tide",
-                "mellow hovering note waiting calmly",
-            ],
-        ),
         sound_style_presets=_HOOK_STYLE_PRESETS.get("IdlePrompt", {}),
     ),
     # Session lifecycle events
@@ -156,42 +96,12 @@ HOOK_TYPES: list[HookType] = [
         id="SessionStart",
         name="Session Start",
         description="A new Claude Code session has started",
-        sound_characters=TieredSoundCharacters(
-            simple=["ascending energy blooming to life"],
-            standard=[
-                "ascending energy blooming to life",
-                "system powering up with warm glow",
-                "bright dawn-like tone opening upward",
-            ],
-            detailed=[
-                "ascending energy blooming to life",
-                "system powering up with warm glow",
-                "bright dawn-like tone opening upward",
-                "awakening sweep from silence into light",
-                "ignition spark expanding into full resonance",
-            ],
-        ),
         sound_style_presets=_HOOK_STYLE_PRESETS.get("SessionStart", {}),
     ),
     HookType(
         id="SessionEnd",
         name="Session End",
         description="Claude Code session has ended",
-        sound_characters=TieredSoundCharacters(
-            simple=["descending warmth fading into quiet"],
-            standard=[
-                "descending warmth fading into quiet",
-                "gentle closure like a book softly shut",
-                "last ember of sound cooling to silence",
-            ],
-            detailed=[
-                "descending warmth fading into quiet",
-                "gentle closure like a book softly shut",
-                "last ember of sound cooling to silence",
-                "farewell tone releasing like held breath",
-                "sunset colors draining slowly from sound",
-            ],
-        ),
         sound_style_presets=_HOOK_STYLE_PRESETS.get("SessionEnd", {}),
     ),
     # Tool lifecycle events
@@ -199,42 +109,12 @@ HOOK_TYPES: list[HookType] = [
         id="PreToolUse",
         name="Pre Tool Use",
         description="Triggered before a tool call executes",
-        sound_characters=TieredSoundCharacters(
-            simple=["quick readying click like cocking a mechanism"],
-            standard=[
-                "quick readying click like cocking a mechanism",
-                "brief metallic latch engaging",
-                "sharp intake before action",
-            ],
-            detailed=[
-                "quick readying click like cocking a mechanism",
-                "brief metallic latch engaging",
-                "sharp intake before action",
-                "taut string plucked once in preparation",
-                "crisp toggle switch flipped to armed position",
-            ],
-        ),
         sound_style_presets=_HOOK_STYLE_PRESETS.get("PreToolUse", {}),
     ),
     HookType(
         id="PostToolUse",
         name="Post Tool Use",
         description="Triggered after a tool completes execution",
-        sound_characters=TieredSoundCharacters(
-            simple=["satisfying snap of completed action"],
-            standard=[
-                "satisfying snap of completed action",
-                "crisp release like breaking a clean seal",
-                "bright pop confirming task is done",
-            ],
-            detailed=[
-                "satisfying snap of completed action",
-                "crisp release like breaking a clean seal",
-                "bright pop confirming task is done",
-                "quick harmonic tap with clean attack",
-                "sharp percussive ping with short decay",
-            ],
-        ),
         sound_style_presets=_HOOK_STYLE_PRESETS.get("PostToolUse", {}),
     ),
     # Agent events
@@ -242,42 +122,12 @@ HOOK_TYPES: list[HookType] = [
         id="SubagentStart",
         name="Subagent Start",
         description="A new subagent has been spawned",
-        sound_characters=TieredSoundCharacters(
-            simple=["spark flying off from main flame"],
-            standard=[
-                "spark flying off from main flame",
-                "energy splitting into diverging paths",
-                "bright fracture launching outward",
-            ],
-            detailed=[
-                "spark flying off from main flame",
-                "energy splitting into diverging paths",
-                "bright fracture launching outward",
-                "mitosis moment of one becoming two",
-                "rapid ascending sweep branching at the top",
-            ],
-        ),
         sound_style_presets=_HOOK_STYLE_PRESETS.get("SubagentStart", {}),
     ),
     HookType(
         id="UserPromptSubmit",
         name="User Prompt Submit",
         description="User has submitted a new prompt",
-        sound_characters=TieredSoundCharacters(
-            simple=["arrow released from bowstring with swift whoosh"],
-            standard=[
-                "arrow released from bowstring with swift whoosh",
-                "message launched with gentle propulsion",
-                "paper airplane thrown with graceful sweep",
-            ],
-            detailed=[
-                "arrow released from bowstring with swift whoosh",
-                "message launched with gentle propulsion",
-                "paper airplane thrown with graceful sweep",
-                "carrier pigeon taking flight with wing flutter",
-                "signal dispatched with ascending glide",
-            ],
-        ),
         sound_style_presets=_HOOK_STYLE_PRESETS.get("UserPromptSubmit", {}),
     ),
 ]

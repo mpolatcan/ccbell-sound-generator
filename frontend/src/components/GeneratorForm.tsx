@@ -43,49 +43,6 @@ const EMPTY_THEMES: ThemePreset[] = []
 const EMPTY_HOOKS: HookType[] = []
 const DEFAULT_HOOK_CONFIG: PerHookConfig = { stylePresetId: null, selectedPromptIndex: 0, editedPrompt: null }
 
-const QUALITY_BASE = '44.1kHz, stereo, high-quality'
-const QUALITY_AESTHETIC = ['crisp', 'studio-grade', 'pristine', 'clean', 'warm']
-const QUALITY_TAIL = ['with natural decay', 'smooth fade out', 'sustained resonance', 'with gentle release', 'with clean tail']
-
-/** Classify quality items from theme into aesthetic and tail categories */
-function classifyQuality(items: string[]): { aesthetic: string[]; tail: string[] } {
-  const base = new Set(['44.1kHz', 'stereo', 'high-quality'])
-  const aesthetic: string[] = []
-  const tail: string[] = []
-  for (const item of items) {
-    if (base.has(item)) continue
-    if (item.startsWith('with ') || item.includes('fade') || item.includes('resonance') || item.includes('release') || item.includes('tail') || item.includes('decay')) {
-      tail.push(item)
-    } else {
-      aesthetic.push(item)
-    }
-  }
-  return {
-    aesthetic: aesthetic.length > 0 ? aesthetic : QUALITY_AESTHETIC.slice(0, 1),
-    tail: tail.length > 0 ? tail : QUALITY_TAIL.slice(0, 1),
-  }
-}
-
-/** Build default prompt entries by cycling hook sound characters with theme components */
-function buildDefaultPrompts(hook: HookType, themeId: string, themes: ThemePreset[]): PromptEntry[] {
-  const theme = themes.find((t) => t.id === themeId)
-  if (!theme) return hook.sound_characters.detailed.map((c) => ({ alias: c, text: c }))
-
-  const pc = theme.prompt_components.detailed
-  const chars = hook.sound_characters.detailed
-  const { aesthetic, tail } = classifyQuality(pc.quality)
-
-  return chars.map((char, i) => {
-    const style = pc.style[i % pc.style.length] ?? ''
-    const instrument = pc.instruments[i % pc.instruments.length] ?? ''
-    const mood = pc.mood[i % pc.mood.length] ?? ''
-    const aes = aesthetic[i % aesthetic.length]
-    const tl = tail[i % tail.length]
-    const parts = [char, style, instrument, mood, QUALITY_BASE, aes, tl].filter(Boolean)
-    return { alias: char, text: parts.join(', ') }
-  })
-}
-
 /** Thin labeled divider between form sections */
 function SectionDivider({ label }: { label: string }) {
   return (
@@ -229,8 +186,8 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
     }
     // When no preset explicitly selected, use first preset if available (matches dropdown default)
     if (presets.length > 0) return presets[0].prompts
-    return buildDefaultPrompts(hook, selectedTheme, themes)
-  }, [hooks, perHookConfig, selectedTheme, themes])
+    return []
+  }, [hooks, perHookConfig, selectedTheme])
 
   // Handle style preset change for active hook
   const handleStylePresetChange = (presetId: string | null) => {
