@@ -85,10 +85,35 @@ jobs:
             README.md
           retention-days: 1
 
+  wait-for-base-image:
+    name: Wait for Base Image
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - name: Wait for base image build if running
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Checking for in-progress base-image builds..."
+          while true; do
+            ACTIVE=$(gh run list --repo ${{ github.repository }} \
+              --workflow=base-image.yml \
+              --json status \
+              --jq '[.[] | select(.status == "in_progress" or .status == "queued")] | length')
+
+            if [[ "$ACTIVE" == "0" ]]; then
+              echo "No base-image builds in progress. Proceeding with deploy."
+              break
+            fi
+
+            echo "Base image build in progress ($ACTIVE active). Waiting 15s..."
+            sleep 15
+          done
+
   deploy:
     name: Deploy to HuggingFace (${{ matrix.space }})
     runs-on: ubuntu-latest
-    needs: [validate, build]
+    needs: [validate, build, wait-for-base-image]
     environment: production
     strategy:
       fail-fast: false
