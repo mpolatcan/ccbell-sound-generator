@@ -25,7 +25,7 @@ import { useShallow } from 'zustand/react/shallow'
 import { useSoundLibrary } from '@/hooks/useSoundLibrary'
 import { MODEL_DEFAULTS, DEFAULT_DURATION } from '@/lib/constants'
 import { formatDuration } from '@/lib/utils'
-import { Sparkles, RefreshCw, AlertCircle, Package, ListOrdered, Plus } from 'lucide-react'
+import { Sparkles, RefreshCw, AlertCircle, Package, ListOrdered, Plus, ChevronDown, ChevronUp, Copy, Check } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { GenerationSettings, HookTypeId, HookType, ThemePreset, EditablePromptChips, ChipItem, PromptDetailTier, PerHookConfig } from '@/types'
 
@@ -399,6 +399,16 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
   // eslint-disable-next-line react-hooks/exhaustive-deps -- buildPrompt reads from multiple state values
   const currentPrompt = useMemo(() => buildPrompt(), [selectedTheme, customPrompt, promptChips, perHookConfig, activeHookTab, duration, hooks, promptDetailTier])
 
+  const [promptExpanded, setPromptExpanded] = useState(false)
+  const [promptCopied, setPromptCopied] = useState(false)
+
+  const handleCopyPrompt = useCallback(() => {
+    navigator.clipboard.writeText(currentPrompt).then(() => {
+      setPromptCopied(true)
+      setTimeout(() => setPromptCopied(false), 1500)
+    })
+  }, [currentPrompt])
+
   const canGenerate = !isLoading && !hasApiError && selectedHooks.length > 0 && currentPrompt.trim() && modelReady
 
   return (
@@ -535,20 +545,20 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
               )}
             </div>
 
-            {/* Prompt Detail Level */}
+            {/* Prompt Detail Level — segmented control */}
             {selectedTheme !== 'custom' && (
               <div className="space-y-2">
                 <Label>Prompt Detail</Label>
-                <div className="flex gap-2">
+                <div className="inline-flex rounded-lg border border-border/60 bg-muted/20 p-0.5">
                   {(['simple', 'standard', 'detailed'] as const).map((tier) => (
                     <button
                       key={tier}
                       type="button"
                       className={cn(
-                        'flex-1 px-3 py-1.5 rounded-full text-sm font-medium transition-all border cursor-pointer',
+                        'px-4 py-1.5 rounded-md text-sm font-medium transition-all cursor-pointer',
                         promptDetailTier === tier
-                          ? 'border-primary bg-primary/15 text-primary shadow-sm shadow-primary/10'
-                          : 'border-border bg-muted/30 text-muted-foreground hover:border-primary/40 hover:text-foreground'
+                          ? 'bg-primary/15 text-primary shadow-sm'
+                          : 'text-muted-foreground hover:text-foreground'
                       )}
                       onClick={() => setPromptDetailTier(tier)}
                     >
@@ -641,15 +651,48 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
 
         {/* ═══ PINNED BOTTOM: Prompt Preview + Duration + Generate ═══ */}
         <div className="shrink-0 border-t border-border/30 pt-4 mt-2 space-y-3 bg-card">
-          {/* Live prompt preview */}
+          {/* Live prompt preview — fully visible, expandable */}
           {currentPrompt.trim() && selectedTheme !== 'custom' && (
-            <div className="relative rounded-md overflow-hidden border border-border/30 bg-muted/10">
+            <div className="relative rounded-md overflow-hidden border border-border/30 bg-muted/10 group/prompt">
               <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary/40" />
-              <div className="flex items-start gap-2 py-2 pl-3 pr-3">
-                <span className="text-primary/40 text-[10px] font-mono select-none shrink-0 mt-px">&gt;</span>
-                <p className="text-[11px] font-mono break-words leading-relaxed text-foreground/60 line-clamp-2">
+              <div className="flex items-start gap-2 py-2 pl-3 pr-2">
+                <span className="text-primary/40 text-[10px] font-mono select-none shrink-0 mt-0.5">&gt;</span>
+                <p
+                  className={cn(
+                    "text-[11px] font-mono break-words leading-relaxed text-foreground/60 flex-1 cursor-pointer select-none transition-all",
+                    !promptExpanded && "line-clamp-3"
+                  )}
+                  onClick={() => setPromptExpanded((v) => !v)}
+                  title={promptExpanded ? "Click to collapse" : "Click to expand full prompt"}
+                >
                   {currentPrompt}
                 </p>
+                <div className="flex items-center gap-0.5 shrink-0 ml-1">
+                  <button
+                    type="button"
+                    onClick={handleCopyPrompt}
+                    className="p-1 rounded text-muted-foreground/40 hover:text-foreground/60 transition-colors"
+                    title="Copy prompt"
+                  >
+                    {promptCopied ? (
+                      <Check className="h-3 w-3 text-success" />
+                    ) : (
+                      <Copy className="h-3 w-3" />
+                    )}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPromptExpanded((v) => !v)}
+                    className="p-1 rounded text-muted-foreground/40 hover:text-foreground/60 transition-colors"
+                    title={promptExpanded ? "Collapse" : "Expand"}
+                  >
+                    {promptExpanded ? (
+                      <ChevronUp className="h-3 w-3" />
+                    ) : (
+                      <ChevronDown className="h-3 w-3" />
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
           )}

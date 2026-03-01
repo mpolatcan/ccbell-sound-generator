@@ -93,7 +93,7 @@ export const PromptComponentsEditor = memo(function PromptComponentsEditor({
   chips,
   onChange,
 }: PromptComponentsEditorProps) {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(true)
 
   const handleToggle = (category: keyof EditablePromptChips, index: number) => {
     const updated = [...chips[category]]

@@ -153,11 +153,7 @@ body::after {
   -webkit-mask-image: linear-gradient(to bottom, black calc(100% - 24px), transparent 100%);
 }
 
-/* ── Theme scroll strip edge fades ── */
-.theme-scroll-strip {
-  mask-image: linear-gradient(to right, transparent, black 8px, black calc(100% - 8px), transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 8px, black calc(100% - 8px), transparent);
-}
+/* ── (theme-scroll-strip removed — themes now use wrapping grid) ── */
 
 /* ── Progress bar smooth transitions + shimmer overlay ── */
 [role="progressbar"] > div {
