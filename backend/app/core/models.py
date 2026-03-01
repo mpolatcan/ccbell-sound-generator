@@ -50,7 +50,7 @@ class GenerateRequest(BaseModel):
 
     model: Literal["small", "1.0"] = Field("small", description="Model to use for generation")
     prompt: str = Field(
-        ..., min_length=1, max_length=500, description="Text prompt for audio generation"
+        ..., min_length=1, max_length=1500, description="Text prompt for audio generation"
     )
     hook_type: HookTypeId = Field(..., description="Claude Code hook type")
     duration: float = Field(2.0, ge=0.5, le=47.0, description="Duration in seconds")
