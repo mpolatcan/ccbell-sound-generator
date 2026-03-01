@@ -1,27 +1,26 @@
 {
   "id": "jazz-idle-prompt-empty-stage",
   "name": "Empty Stage",
-  "description": "Quiet jazz club before the musicians arrive",
   "prompts": [
     {
-      "label": "quiet jazz club stage with ambient hum before musicians arrive",
-      "text": "quiet jazz club stage with ambient hum before musicians arrive, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay"
+      "text": "quiet jazz club stage with ambient hum before musicians arrive, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
+      "alias": "Velvet Prelude"
     },
     {
-      "label": "empty spotlight on drum kit with room tone buzz",
-      "text": "empty spotlight on drum kit with room tone buzz, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out"
+      "text": "empty spotlight on drum kit with room tone buzz, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out",
+      "alias": "Spotlight Solitude"
     },
     {
-      "label": "music stand pages rustling in air-conditioned silence",
-      "text": "music stand pages rustling in air-conditioned silence, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance"
+      "text": "music stand pages rustling in air-conditioned silence, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance",
+      "alias": "Bourbon Stillness"
     },
     {
-      "label": "piano lid reflecting dim club lighting with expectant quiet",
-      "text": "piano lid reflecting dim club lighting with expectant quiet, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay"
+      "text": "piano lid reflecting dim club lighting with expectant quiet, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay",
+      "alias": "Blue Anticipation"
     },
     {
-      "label": "microphone feedback whisper from unmuted stage monitors",
-      "text": "microphone feedback whisper from unmuted stage monitors, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out"
+      "text": "microphone feedback whisper from unmuted stage monitors, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out",
+      "alias": "Phantom Set"
     }
   ]
 }

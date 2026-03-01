@@ -1,27 +1,26 @@
 {
   "id": "scifi-subagent-stop-drone-return",
   "name": "Drone Return",
-  "description": "Small drone docking back to mothership",
   "prompts": [
     {
-      "label": "small drone docking with quiet magnetic clamp",
-      "text": "small drone docking with quiet magnetic clamp, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "small drone docking with quiet magnetic clamp, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Phantom Dock"
     },
     {
-      "label": "reconnaissance probe returning with descending hover whine",
-      "text": "reconnaissance probe returning with descending hover whine, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+      "text": "reconnaissance probe returning with descending hover whine, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out",
+      "alias": "Mercury Descent"
     },
     {
-      "label": "micro-satellite latching home with soft mechanical click",
-      "text": "micro-satellite latching home with soft mechanical click, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "micro-satellite latching home with soft mechanical click, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Silent Harbor"
     },
     {
-      "label": "scout craft powering down after successful sweep",
-      "text": "scout craft powering down after successful sweep, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+      "text": "scout craft powering down after successful sweep, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay",
+      "alias": "Ember Recall"
     },
     {
-      "label": "nanodrone settling into charging bay with tiny hum",
-      "text": "nanodrone settling into charging bay with tiny hum, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "nanodrone settling into charging bay with tiny hum, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Luminous Berth"
     }
   ]
 }

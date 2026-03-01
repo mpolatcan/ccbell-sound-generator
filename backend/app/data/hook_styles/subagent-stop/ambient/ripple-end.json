@@ -1,27 +1,26 @@
 {
   "id": "amb-subagent-stop-ripple-end",
   "name": "Ripple End",
-  "description": "Last concentric ring reaching the shore and vanishing",
   "prompts": [
     {
-      "label": "last concentric ripple reaching shore and vanishing",
-      "text": "last concentric ripple reaching shore and vanishing, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay"
+      "text": "last concentric ripple reaching shore and vanishing, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
+      "alias": "Glass Shore"
     },
     {
-      "label": "water ring expanding to stillness with gentle fade",
-      "text": "water ring expanding to stillness with gentle fade, tape-saturated warmth, granular piano cloud, candlelight flickering softly, 44.1kHz, stereo, high-quality, wide, smooth fade out"
+      "text": "water ring expanding to stillness with gentle fade, tape-saturated warmth, granular piano cloud, candlelight flickering softly, 44.1kHz, stereo, high-quality, wide, smooth fade out",
+      "alias": "Twilight Pool"
     },
     {
-      "label": "surface disturbance settling into glassy calm",
-      "text": "surface disturbance settling into glassy calm, Brian Eno infinite space, reversed cymbal swell, underwater weightlessness, 44.1kHz, stereo, high-quality, lush, sustained resonance"
+      "text": "surface disturbance settling into glassy calm, Brian Eno infinite space, reversed cymbal swell, underwater weightlessness, 44.1kHz, stereo, high-quality, lush, sustained resonance",
+      "alias": "Infinite Calm"
     },
     {
-      "label": "pond surface returning to mirror perfection",
-      "text": "pond surface returning to mirror perfection, abandoned hall echo, harmonium drone with tape wobble, drifting between sleep and waking, 44.1kHz, stereo, high-quality, wide, with natural decay"
+      "text": "pond surface returning to mirror perfection, abandoned hall echo, harmonium drone with tape wobble, drifting between sleep and waking, 44.1kHz, stereo, high-quality, wide, with natural decay",
+      "alias": "Mirror Sigh"
     },
     {
-      "label": "final wave crest dissolving into smooth water",
-      "text": "final wave crest dissolving into smooth water, lo-fi cassette hiss and bloom, shimmer reverb pad wash, moonlight through frosted glass, 44.1kHz, stereo, high-quality, lush, smooth fade out"
+      "text": "final wave crest dissolving into smooth water, lo-fi cassette hiss and bloom, shimmer reverb pad wash, moonlight through frosted glass, 44.1kHz, stereo, high-quality, lush, smooth fade out",
+      "alias": "Silver Crest"
     }
   ]
 }

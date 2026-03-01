@@ -1,27 +1,26 @@
 {
   "id": "nature-stop-forest-chime",
   "name": "Forest Chime",
-  "description": "Wooden wind chime struck by a gentle forest breeze",
   "prompts": [
     {
-      "label": "wooden wind chime ringing in a quiet forest clearing",
-      "text": "wooden wind chime ringing in a quiet forest clearing, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay"
+      "text": "wooden wind chime ringing in a quiet forest clearing, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
+      "alias": "Dappled Clearing"
     },
     {
-      "label": "bamboo tubes clinking softly in warm breeze",
-      "text": "bamboo tubes clinking softly in warm breeze, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out"
+      "text": "bamboo tubes clinking softly in warm breeze, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out",
+      "alias": "Warm Breeze"
     },
     {
-      "label": "birdsong punctuating a peaceful woodland bell",
-      "text": "birdsong punctuating a peaceful woodland bell, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance"
+      "text": "birdsong punctuating a peaceful woodland bell, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance",
+      "alias": "Wren's Perch"
     },
     {
-      "label": "leaf rustle settling after gentle chime strike",
-      "text": "leaf rustle settling after gentle chime strike, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay"
+      "text": "leaf rustle settling after gentle chime strike, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay",
+      "alias": "Fallen Canopy"
     },
     {
-      "label": "mossy stone garden bell with natural reverb",
-      "text": "mossy stone garden bell with natural reverb, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out"
+      "text": "mossy stone garden bell with natural reverb, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out",
+      "alias": "Moss Temple"
     }
   ]
 }

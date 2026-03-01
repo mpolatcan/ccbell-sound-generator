@@ -1,27 +1,26 @@
 {
   "id": "scifi-subagent-start-warp-split",
   "name": "Warp Split",
-  "description": "Energy beam splitting into two diverging paths",
   "prompts": [
     {
-      "label": "energy beam splitting into two diverging warp paths",
-      "text": "energy beam splitting into two diverging warp paths, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "energy beam splitting into two diverging warp paths, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Forked Lightning"
     },
     {
-      "label": "photon stream forking with prismatic refraction flash",
-      "text": "photon stream forking with prismatic refraction flash, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+      "text": "photon stream forking with prismatic refraction flash, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out",
+      "alias": "Chromatic Schism"
     },
     {
-      "label": "warp field bifurcating with twin ascending tones",
-      "text": "warp field bifurcating with twin ascending tones, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "warp field bifurcating with twin ascending tones, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Twin Void"
     },
     {
-      "label": "quantum state duplicating with dual frequency burst",
-      "text": "quantum state duplicating with dual frequency burst, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+      "text": "quantum state duplicating with dual frequency burst, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay",
+      "alias": "Entangled Pulse"
     },
     {
-      "label": "ship launching probe with diminishing tethered signal",
-      "text": "ship launching probe with diminishing tethered signal, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "ship launching probe with diminishing tethered signal, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Tethered Comet"
     }
   ]
 }

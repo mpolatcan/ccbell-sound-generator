@@ -1,27 +1,26 @@
 {
   "id": "8bit-user-prompt-submit-message-sent",
   "name": "Message Sent",
-  "description": "In-game message dispatched with confirmation jingle",
   "prompts": [
     {
-      "label": "in-game message dispatched with cheerful 8-bit confirmation jingle",
-      "text": "in-game message dispatched with cheerful 8-bit confirmation jingle, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "in-game message dispatched with cheerful 8-bit confirmation jingle, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Victory Mail"
     },
     {
-      "label": "pixel mail icon flying away with chiptune departure sound",
-      "text": "pixel mail icon flying away with chiptune departure sound, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "pixel mail icon flying away with chiptune departure sound, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Joystick Farewell"
     },
     {
-      "label": "retro text sent with quick ascending square wave flourish",
-      "text": "retro text sent with quick ascending square wave flourish, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance"
+      "text": "retro text sent with quick ascending square wave flourish, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance",
+      "alias": "Bright Dispatch"
     },
     {
-      "label": "NES communication sent with brief triumphant melody",
-      "text": "NES communication sent with brief triumphant melody, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "NES communication sent with brief triumphant melody, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Chiptune Triumph"
     },
     {
-      "label": "bitcrushed envelope launching with departure bling",
-      "text": "bitcrushed envelope launching with departure bling, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "bitcrushed envelope launching with departure bling, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Pixel Courier"
     }
   ]
 }

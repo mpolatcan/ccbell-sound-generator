@@ -1,27 +1,26 @@
 {
   "id": "nature-subagent-stop-pebble-tap",
   "name": "Pebble Tap",
-  "description": "Small stone tapping against smooth river rock",
   "prompts": [
     {
-      "label": "small pebble tapping against smooth river rock",
-      "text": "small pebble tapping against smooth river rock, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay"
+      "text": "small pebble tapping against smooth river rock, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
+      "alias": "River Chime"
     },
     {
-      "label": "creek stone clicking softly underwater",
-      "text": "creek stone clicking softly underwater, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out"
+      "text": "creek stone clicking softly underwater, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out",
+      "alias": "Stone Whisper"
     },
     {
-      "label": "tiny rock landing on dry riverbed with gentle clack",
-      "text": "tiny rock landing on dry riverbed with gentle clack, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance"
+      "text": "tiny rock landing on dry riverbed with gentle clack, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance",
+      "alias": "Mineral Glint"
     },
     {
-      "label": "beach pebble rolling to rest with mineral ping",
-      "text": "beach pebble rolling to rest with mineral ping, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay"
+      "text": "beach pebble rolling to rest with mineral ping, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay",
+      "alias": "Tidal Click"
     },
     {
-      "label": "granite chip ticking against polished boulder",
-      "text": "granite chip ticking against polished boulder, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out"
+      "text": "granite chip ticking against polished boulder, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out",
+      "alias": "Creek Murmur"
     }
   ]
 }

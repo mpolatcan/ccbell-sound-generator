@@ -1,27 +1,26 @@
 {
   "id": "jazz-stop-final-note",
   "name": "Final Note",
-  "description": "Last note of a jazz standard held with feeling",
   "prompts": [
     {
-      "label": "jazz ensemble holding final note with warm sustain",
-      "text": "jazz ensemble holding final note with warm sustain, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay"
+      "text": "jazz ensemble holding final note with warm sustain, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
+      "alias": "Smoky Resolve"
     },
     {
-      "label": "muted trumpet sustaining last phrase with vibrato",
-      "text": "muted trumpet sustaining last phrase with vibrato, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out"
+      "text": "muted trumpet sustaining last phrase with vibrato, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out",
+      "alias": "Midnight Brass"
     },
     {
-      "label": "upright bass plucking resolving root note",
-      "text": "upright bass plucking resolving root note, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance"
+      "text": "upright bass plucking resolving root note, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance",
+      "alias": "Bourbon Root"
     },
     {
-      "label": "piano trio landing on warm major seventh chord",
-      "text": "piano trio landing on warm major seventh chord, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay"
+      "text": "piano trio landing on warm major seventh chord, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay",
+      "alias": "Seventh Heaven"
     },
     {
-      "label": "brushed cymbal shimmer fading after final bar",
-      "text": "brushed cymbal shimmer fading after final bar, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out"
+      "text": "brushed cymbal shimmer fading after final bar, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out",
+      "alias": "Silver Brush Fade"
     }
   ]
 }

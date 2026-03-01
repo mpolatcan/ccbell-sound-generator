@@ -1,27 +1,26 @@
 {
   "id": "mech-session-start-engine-start",
   "name": "Engine Start",
-  "description": "Heavy industrial engine turning over and catching",
   "prompts": [
     {
-      "label": "heavy industrial engine turning over and catching with roar",
-      "text": "heavy industrial engine turning over and catching with roar, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "heavy industrial engine turning over and catching with roar, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Iron Pulse"
     },
     {
-      "label": "diesel motor cranking with building combustion rhythm",
-      "text": "diesel motor cranking with building combustion rhythm, Victorian clocktower, ratchet wrench click, oiled-machine rhythm, 44.1kHz, stereo, high-quality, impactful, smooth fade out"
+      "text": "diesel motor cranking with building combustion rhythm, Victorian clocktower, ratchet wrench click, oiled-machine rhythm, 44.1kHz, stereo, high-quality, impactful, smooth fade out",
+      "alias": "Combustion Waltz"
     },
     {
-      "label": "factory main engine firing up with increasing RPM",
-      "text": "factory main engine firing up with increasing RPM, locomotive engine room, tempered steel spring release, riveted iron solidity, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "factory main engine firing up with increasing RPM, locomotive engine room, tempered steel spring release, riveted iron solidity, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Riveted Thunder"
     },
     {
-      "label": "steam locomotive boiler pressure building to operating level",
-      "text": "steam locomotive boiler pressure building to operating level, blacksmith anvil yard, cast iron lever thrown, pneumatic power hiss, 44.1kHz, stereo, high-quality, impactful, with natural decay"
+      "text": "steam locomotive boiler pressure building to operating level, blacksmith anvil yard, cast iron lever thrown, pneumatic power hiss, 44.1kHz, stereo, high-quality, impactful, with natural decay",
+      "alias": "Anvil Breath"
     },
     {
-      "label": "vintage motor sputtering then catching with confident rumble",
-      "text": "vintage motor sputtering then catching with confident rumble, submarine pressure hull, copper pipe resonance ping, precision clockwork ticking, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "vintage motor sputtering then catching with confident rumble, submarine pressure hull, copper pipe resonance ping, precision clockwork ticking, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Brass Rumble"
     }
   ]
 }

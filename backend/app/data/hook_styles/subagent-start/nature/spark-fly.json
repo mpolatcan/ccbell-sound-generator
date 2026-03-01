@@ -1,27 +1,26 @@
 {
   "id": "nature-subagent-start-spark-fly",
   "name": "Spark Fly",
-  "description": "Campfire ember launching upward into darkness",
   "prompts": [
     {
-      "label": "campfire ember launching upward into dark sky with crackle",
-      "text": "campfire ember launching upward into dark sky with crackle, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay"
+      "text": "campfire ember launching upward into dark sky with crackle, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
+      "alias": "Fireside Ascent"
     },
     {
-      "label": "fire spark ejecting with ascending trail of orange light",
-      "text": "fire spark ejecting with ascending trail of orange light, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out"
+      "text": "fire spark ejecting with ascending trail of orange light, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out",
+      "alias": "Orange Trail"
     },
     {
-      "label": "hot coal fragment shooting up from log collapse",
-      "text": "hot coal fragment shooting up from log collapse, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance"
+      "text": "hot coal fragment shooting up from log collapse, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance",
+      "alias": "Crimson Ember"
     },
     {
-      "label": "bonfire sending constellation of sparks spiraling skyward",
-      "text": "bonfire sending constellation of sparks spiraling skyward, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay"
+      "text": "bonfire sending constellation of sparks spiraling skyward, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay",
+      "alias": "Spark Constellation"
     },
     {
-      "label": "ember riding heat column with crackling ascent",
-      "text": "ember riding heat column with crackling ascent, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out"
+      "text": "ember riding heat column with crackling ascent, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out",
+      "alias": "Thermal Dancer"
     }
   ]
 }

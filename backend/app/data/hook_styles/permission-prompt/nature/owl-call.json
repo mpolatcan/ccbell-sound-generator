@@ -1,27 +1,26 @@
 {
   "id": "nature-permission-prompt-owl-call",
   "name": "Owl Call",
-  "description": "Wise owl hooting a question through moonlit trees",
   "prompts": [
     {
-      "label": "wise owl hooting a question through moonlit forest",
-      "text": "wise owl hooting a question through moonlit forest, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay"
+      "text": "wise owl hooting a question through moonlit forest, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
+      "alias": "Moonlit Sage"
     },
     {
-      "label": "great horned owl calling with deep inquisitive tone",
-      "text": "great horned owl calling with deep inquisitive tone, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out"
+      "text": "great horned owl calling with deep inquisitive tone, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out",
+      "alias": "Dusk Sovereign"
     },
     {
-      "label": "barn owl screech echoing across midnight meadow",
-      "text": "barn owl screech echoing across midnight meadow, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance"
+      "text": "barn owl screech echoing across midnight meadow, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance",
+      "alias": "Phantom Meadow"
     },
     {
-      "label": "nocturnal bird inquiry floating through misty branches",
-      "text": "nocturnal bird inquiry floating through misty branches, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay"
+      "text": "nocturnal bird inquiry floating through misty branches, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay",
+      "alias": "Misty Vigil"
     },
     {
-      "label": "owl pair exchanging questioning calls in dark canopy",
-      "text": "owl pair exchanging questioning calls in dark canopy, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out"
+      "text": "owl pair exchanging questioning calls in dark canopy, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out",
+      "alias": "Canopy Duet"
     }
   ]
 }

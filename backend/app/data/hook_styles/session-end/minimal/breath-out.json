@@ -1,27 +1,26 @@
 {
   "id": "min-session-end-breath-out",
   "name": "Breath Out",
-  "description": "Final exhale releasing all remaining tension",
   "prompts": [
     {
-      "label": "final exhale releasing all remaining tension into stillness",
-      "text": "final exhale releasing all remaining tension into stillness, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+      "text": "final exhale releasing all remaining tension into stillness, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+      "alias": "Quiet Release"
     },
     {
-      "label": "soft breath out settling body and mind to rest",
-      "text": "soft breath out settling body and mind to rest, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+      "text": "soft breath out settling body and mind to rest, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out",
+      "alias": "Zen Exhale"
     },
     {
-      "label": "last air leaving with warmth and gentle whisper",
-      "text": "last air leaving with warmth and gentle whisper, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+      "text": "last air leaving with warmth and gentle whisper, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance",
+      "alias": "Warm Absence"
     },
     {
-      "label": "diaphragm relaxing as lungs empty completely",
-      "text": "diaphragm relaxing as lungs empty completely, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+      "text": "diaphragm relaxing as lungs empty completely, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay",
+      "alias": "Hollow Calm"
     },
     {
-      "label": "silence rushing in to fill the space left by breath",
-      "text": "silence rushing in to fill the space left by breath, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+      "text": "silence rushing in to fill the space left by breath, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out",
+      "alias": "Still Water Hush"
     }
   ]
 }

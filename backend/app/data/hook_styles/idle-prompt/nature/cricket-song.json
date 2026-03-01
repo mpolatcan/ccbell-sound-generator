@@ -1,27 +1,26 @@
 {
   "id": "nature-idle-prompt-cricket-song",
   "name": "Cricket Song",
-  "description": "Evening crickets chirping in steady rhythm",
   "prompts": [
     {
-      "label": "evening crickets chirping in steady patient rhythm",
-      "text": "evening crickets chirping in steady patient rhythm, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay"
+      "text": "evening crickets chirping in steady patient rhythm, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
+      "alias": "Twilight Chorus"
     },
     {
-      "label": "summer night insect chorus pulsing with warm regularity",
-      "text": "summer night insect chorus pulsing with warm regularity, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out"
+      "text": "summer night insect chorus pulsing with warm regularity, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out",
+      "alias": "Summer Loom"
     },
     {
-      "label": "field cricket keeping time in moonlit grass",
-      "text": "field cricket keeping time in moonlit grass, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance"
+      "text": "field cricket keeping time in moonlit grass, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance",
+      "alias": "Moonlit Tempo"
     },
     {
-      "label": "katydid conversation echoing through warm evening air",
-      "text": "katydid conversation echoing through warm evening air, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay"
+      "text": "katydid conversation echoing through warm evening air, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay",
+      "alias": "Warm Dark Murmur"
     },
     {
-      "label": "cicada drone and cricket click alternating in darkness",
-      "text": "cicada drone and cricket click alternating in darkness, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out"
+      "text": "cicada drone and cricket click alternating in darkness, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out",
+      "alias": "Eventide Pulse"
     }
   ]
 }

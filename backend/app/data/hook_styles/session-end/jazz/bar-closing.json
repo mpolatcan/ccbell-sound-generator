@@ -1,27 +1,26 @@
 {
   "id": "jazz-session-end-bar-closing",
   "name": "Bar Closing",
-  "description": "Jazz club closing up for the night",
   "prompts": [
     {
-      "label": "jazz club bartender calling last orders as music fades",
-      "text": "jazz club bartender calling last orders as music fades, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay"
+      "text": "jazz club bartender calling last orders as music fades, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
+      "alias": "Smoky Curtain"
     },
     {
-      "label": "cocktail glasses being collected as house music softens",
-      "text": "cocktail glasses being collected as house music softens, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out"
+      "text": "cocktail glasses being collected as house music softens, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out",
+      "alias": "Crystal Nightcap"
     },
     {
-      "label": "club doors opening to late-night street sounds",
-      "text": "club doors opening to late-night street sounds, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance"
+      "text": "club doors opening to late-night street sounds, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance",
+      "alias": "Midnight Doorway"
     },
     {
-      "label": "cash register closing with final ring of the evening",
-      "text": "cash register closing with final ring of the evening, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay"
+      "text": "cash register closing with final ring of the evening, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay",
+      "alias": "Brass Register"
     },
     {
-      "label": "neon open sign clicking off with electrical buzz fade",
-      "text": "neon open sign clicking off with electrical buzz fade, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out"
+      "text": "neon open sign clicking off with electrical buzz fade, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out",
+      "alias": "Neon Farewell"
     }
   ]
 }

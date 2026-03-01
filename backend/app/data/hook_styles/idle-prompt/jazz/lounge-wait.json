@@ -1,27 +1,26 @@
 {
   "id": "jazz-idle-prompt-lounge-wait",
   "name": "Lounge Wait",
-  "description": "Cool jazz vamping softly between sets",
   "prompts": [
     {
-      "label": "cool jazz piano vamping softly between sets in dim lounge",
-      "text": "cool jazz piano vamping softly between sets in dim lounge, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay"
+      "text": "cool jazz piano vamping softly between sets in dim lounge, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
+      "alias": "Midnight Vamp"
     },
     {
-      "label": "Rhodes keyboard noodling gentle waiting patterns",
-      "text": "Rhodes keyboard noodling gentle waiting patterns, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out"
+      "text": "Rhodes keyboard noodling gentle waiting patterns, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out",
+      "alias": "Rhodes Reverie"
     },
     {
-      "label": "cocktail piano tinkling patient comping chords",
-      "text": "cocktail piano tinkling patient comping chords, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance"
+      "text": "cocktail piano tinkling patient comping chords, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance",
+      "alias": "Ivory Interlude"
     },
     {
-      "label": "vibraphone sustaining warm chord in empty club",
-      "text": "vibraphone sustaining warm chord in empty club, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay"
+      "text": "vibraphone sustaining warm chord in empty club, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay",
+      "alias": "Vibraphone Haze"
     },
     {
-      "label": "upright bass player quietly walking a slow pattern alone",
-      "text": "upright bass player quietly walking a slow pattern alone, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out"
+      "text": "upright bass player quietly walking a slow pattern alone, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out",
+      "alias": "Bass Walk Solitude"
     }
   ]
 }

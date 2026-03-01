@@ -1,27 +1,26 @@
 {
   "id": "8bit-subagent-start-split-path",
   "name": "Split Path",
-  "description": "Road forking into two adventure directions",
   "prompts": [
     {
-      "label": "adventure path splitting into two directions with choice chime",
-      "text": "adventure path splitting into two directions with choice chime, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "adventure path splitting into two directions with choice chime, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Forked Quest"
     },
     {
-      "label": "8-bit world map branching with dual melody fork",
-      "text": "8-bit world map branching with dual melody fork, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "8-bit world map branching with dual melody fork, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Pixel Crossroads"
     },
     {
-      "label": "retro journey diverging with ascending pair of tones",
-      "text": "retro journey diverging with ascending pair of tones, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance"
+      "text": "retro journey diverging with ascending pair of tones, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance",
+      "alias": "Twin Cartridge Path"
     },
     {
-      "label": "NES overworld splitting with stereo-panned square waves",
-      "text": "NES overworld splitting with stereo-panned square waves, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "NES overworld splitting with stereo-panned square waves, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Stereo Wanderer"
     },
     {
-      "label": "pixel crossroads activating with brief bitcrushed flourish",
-      "text": "pixel crossroads activating with brief bitcrushed flourish, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "pixel crossroads activating with brief bitcrushed flourish, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Lo-Fi Divergence"
     }
   ]
 }

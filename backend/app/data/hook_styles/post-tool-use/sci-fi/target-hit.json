@@ -1,27 +1,26 @@
 {
   "id": "scifi-post-tool-use-target-hit",
   "name": "Target Hit",
-  "description": "Weapon finding its mark with impact confirmation",
   "prompts": [
     {
-      "label": "weapon finding its mark with bright impact confirmation flash",
-      "text": "weapon finding its mark with bright impact confirmation flash, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "weapon finding its mark with bright impact confirmation flash, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Ion Strike"
     },
     {
-      "label": "tactical display registering direct hit with satisfied chirp",
-      "text": "tactical display registering direct hit with satisfied chirp, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+      "text": "tactical display registering direct hit with satisfied chirp, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out",
+      "alias": "Chrome Impact"
     },
     {
-      "label": "plasma bolt connecting with target in burst of energy",
-      "text": "plasma bolt connecting with target in burst of energy, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "plasma bolt connecting with target in burst of energy, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Nebula Shatter"
     },
     {
-      "label": "shields absorbing impact with dissipating energy ripple",
-      "text": "shields absorbing impact with dissipating energy ripple, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+      "text": "shields absorbing impact with dissipating energy ripple, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay",
+      "alias": "Quantum Ripple"
     },
     {
-      "label": "fire control system logging successful strike with data click",
-      "text": "fire control system logging successful strike with data click, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "fire control system logging successful strike with data click, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Zero Point Bloom"
     }
   ]
 }

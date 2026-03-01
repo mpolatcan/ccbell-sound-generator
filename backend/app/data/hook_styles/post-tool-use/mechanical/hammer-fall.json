@@ -1,27 +1,26 @@
 {
   "id": "mech-post-tool-use-hammer-fall",
   "name": "Hammer Fall",
-  "description": "Forge hammer striking with tremendous impact",
   "prompts": [
     {
-      "label": "forge hammer striking hot iron with tremendous ringing impact",
-      "text": "forge hammer striking hot iron with tremendous ringing impact, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "forge hammer striking hot iron with tremendous ringing impact, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Molten Thunder"
     },
     {
-      "label": "blacksmith blow landing on anvil with deep metallic clang",
-      "text": "blacksmith blow landing on anvil with deep metallic clang, Victorian clocktower, ratchet wrench click, oiled-machine rhythm, 44.1kHz, stereo, high-quality, impactful, smooth fade out"
+      "text": "blacksmith blow landing on anvil with deep metallic clang, Victorian clocktower, ratchet wrench click, oiled-machine rhythm, 44.1kHz, stereo, high-quality, impactful, smooth fade out",
+      "alias": "Anvil Verdict"
     },
     {
-      "label": "heavy tool head connecting with workpiece decisively",
-      "text": "heavy tool head connecting with workpiece decisively, locomotive engine room, tempered steel spring release, riveted iron solidity, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "heavy tool head connecting with workpiece decisively, locomotive engine room, tempered steel spring release, riveted iron solidity, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Riveted Dawn"
     },
     {
-      "label": "iron sparks flying from hammer contact point",
-      "text": "iron sparks flying from hammer contact point, blacksmith anvil yard, cast iron lever thrown, pneumatic power hiss, 44.1kHz, stereo, high-quality, impactful, with natural decay"
+      "text": "iron sparks flying from hammer contact point, blacksmith anvil yard, cast iron lever thrown, pneumatic power hiss, 44.1kHz, stereo, high-quality, impactful, with natural decay",
+      "alias": "Ember Shower"
     },
     {
-      "label": "workshop ringing with the authority of completed strike",
-      "text": "workshop ringing with the authority of completed strike, submarine pressure hull, copper pipe resonance ping, precision clockwork ticking, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "workshop ringing with the authority of completed strike, submarine pressure hull, copper pipe resonance ping, precision clockwork ticking, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Forge Echo"
     }
   ]
 }

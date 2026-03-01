@@ -1,27 +1,26 @@
 {
   "id": "amb-subagent-start-wave-fork",
   "name": "Wave Fork",
-  "description": "Ocean wave splitting around a rock formation",
   "prompts": [
     {
-      "label": "ocean wave splitting around rock formation into two streams",
-      "text": "ocean wave splitting around rock formation into two streams, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay"
+      "text": "ocean wave splitting around rock formation into two streams, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
+      "alias": "Tidal Parting"
     },
     {
-      "label": "water energy dividing and flowing separate paths",
-      "text": "water energy dividing and flowing separate paths, tape-saturated warmth, granular piano cloud, candlelight flickering softly, 44.1kHz, stereo, high-quality, wide, smooth fade out"
+      "text": "water energy dividing and flowing separate paths, tape-saturated warmth, granular piano cloud, candlelight flickering softly, 44.1kHz, stereo, high-quality, wide, smooth fade out",
+      "alias": "Candlelit Current"
     },
     {
-      "label": "tide current bifurcating around coastal obstacle",
-      "text": "tide current bifurcating around coastal obstacle, Brian Eno infinite space, reversed cymbal swell, underwater weightlessness, 44.1kHz, stereo, high-quality, lush, sustained resonance"
+      "text": "tide current bifurcating around coastal obstacle, Brian Eno infinite space, reversed cymbal swell, underwater weightlessness, 44.1kHz, stereo, high-quality, lush, sustained resonance",
+      "alias": "Floating Divide"
     },
     {
-      "label": "wavefront encountering barrier and flowing both sides",
-      "text": "wavefront encountering barrier and flowing both sides, abandoned hall echo, harmonium drone with tape wobble, drifting between sleep and waking, 44.1kHz, stereo, high-quality, wide, with natural decay"
+      "text": "wavefront encountering barrier and flowing both sides, abandoned hall echo, harmonium drone with tape wobble, drifting between sleep and waking, 44.1kHz, stereo, high-quality, wide, with natural decay",
+      "alias": "Sleepwalker's Path"
     },
     {
-      "label": "coastal diffraction creating twin wave propagation",
-      "text": "coastal diffraction creating twin wave propagation, lo-fi cassette hiss and bloom, shimmer reverb pad wash, moonlight through frosted glass, 44.1kHz, stereo, high-quality, lush, smooth fade out"
+      "text": "coastal diffraction creating twin wave propagation, lo-fi cassette hiss and bloom, shimmer reverb pad wash, moonlight through frosted glass, 44.1kHz, stereo, high-quality, lush, smooth fade out",
+      "alias": "Moonlit Riptide"
     }
   ]
 }

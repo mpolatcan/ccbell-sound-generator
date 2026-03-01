@@ -1,27 +1,26 @@
 {
   "id": "nature-user-prompt-submit-wind-carry",
   "name": "Wind Carry",
-  "description": "Message caught by wind and carried away",
   "prompts": [
     {
-      "label": "message caught by strong wind and carried swiftly away",
-      "text": "message caught by strong wind and carried swiftly away, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay"
+      "text": "message caught by strong wind and carried swiftly away, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
+      "alias": "Stolen Whisper"
     },
     {
-      "label": "leaf letter lifted by gust and sailing over trees",
-      "text": "leaf letter lifted by gust and sailing over trees, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out"
+      "text": "leaf letter lifted by gust and sailing over trees, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out",
+      "alias": "Emerald Drift"
     },
     {
-      "label": "dandelion seeds released into purposeful carrying breeze",
-      "text": "dandelion seeds released into purposeful carrying breeze, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance"
+      "text": "dandelion seeds released into purposeful carrying breeze, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance",
+      "alias": "Scattered Wishes"
     },
     {
-      "label": "paper caught in updraft and spiraling higher",
-      "text": "paper caught in updraft and spiraling higher, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay"
+      "text": "paper caught in updraft and spiraling higher, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay",
+      "alias": "Spiral Ascent"
     },
     {
-      "label": "autumn wind snatching sound and running with it",
-      "text": "autumn wind snatching sound and running with it, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out"
+      "text": "autumn wind snatching sound and running with it, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out",
+      "alias": "October Vanish"
     }
   ]
 }

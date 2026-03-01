@@ -1,27 +1,26 @@
 {
   "id": "scifi-session-end-last-signal",
   "name": "Last Signal",
-  "description": "Final transmission before entering comm silence",
   "prompts": [
     {
-      "label": "final transmission sent before entering communication silence",
-      "text": "final transmission sent before entering communication silence, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "final transmission sent before entering communication silence, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Distant Meridian"
     },
     {
-      "label": "last data burst broadcasting with fading carrier wave",
-      "text": "last data burst broadcasting with fading carrier wave, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+      "text": "last data burst broadcasting with fading carrier wave, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out",
+      "alias": "Fading Carrier"
     },
     {
-      "label": "radio silence protocol engaging with descending signal tone",
-      "text": "radio silence protocol engaging with descending signal tone, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "radio silence protocol engaging with descending signal tone, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Void Protocol"
     },
     {
-      "label": "deep space transmitter powering down with diminishing range",
-      "text": "deep space transmitter powering down with diminishing range, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+      "text": "deep space transmitter powering down with diminishing range, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay",
+      "alias": "Diminishing Range"
     },
     {
-      "label": "farewell beacon pulsing three times then going dark",
-      "text": "farewell beacon pulsing three times then going dark, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "farewell beacon pulsing three times then going dark, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Three Pulse Farewell"
     }
   ]
 }

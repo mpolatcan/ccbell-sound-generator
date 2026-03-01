@@ -1,27 +1,26 @@
 {
   "id": "scifi-subagent-stop-data-packet",
   "name": "Data Packet",
-  "description": "Small data transmission completing with digital chirp",
   "prompts": [
     {
-      "label": "small data packet received with quick digital chirp",
-      "text": "small data packet received with quick digital chirp, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "small data packet received with quick digital chirp, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Neon Whisper"
     },
     {
-      "label": "micro transmission confirmed with soft electronic ping",
-      "text": "micro transmission confirmed with soft electronic ping, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+      "text": "micro transmission confirmed with soft electronic ping, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out",
+      "alias": "Quantum Glint"
     },
     {
-      "label": "binary data burst completing with brief synth blip",
-      "text": "binary data burst completing with brief synth blip, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "binary data burst completing with brief synth blip, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Pulse Fragment"
     },
     {
-      "label": "network acknowledgment pulse with crystalline FM tick",
-      "text": "network acknowledgment pulse with crystalline FM tick, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+      "text": "network acknowledgment pulse with crystalline FM tick, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay",
+      "alias": "Crystal Byte"
     },
     {
-      "label": "satellite telemetry byte landing with gentle voltage click",
-      "text": "satellite telemetry byte landing with gentle voltage click, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "satellite telemetry byte landing with gentle voltage click, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Starlit Ping"
     }
   ]
 }

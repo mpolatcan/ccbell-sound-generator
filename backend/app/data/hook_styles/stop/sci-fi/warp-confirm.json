@@ -1,27 +1,26 @@
 {
   "id": "scifi-stop-warp-confirm",
   "name": "Warp Confirm",
-  "description": "Faster-than-light jump completing with dramatic deceleration",
   "prompts": [
     {
-      "label": "warp drive deceleration sweep with arrival confirmation",
-      "text": "warp drive deceleration sweep with arrival confirmation, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "warp drive deceleration sweep with arrival confirmation, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Horizon Anchor"
     },
     {
-      "label": "hyperspace exit flash with descending energy trail",
-      "text": "hyperspace exit flash with descending energy trail, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+      "text": "hyperspace exit flash with descending energy trail, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out",
+      "alias": "Prismatic Wake"
     },
     {
-      "label": "FTL jump completing with satisfying velocity drop",
-      "text": "FTL jump completing with satisfying velocity drop, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "FTL jump completing with satisfying velocity drop, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Deep Space Arrival"
     },
     {
-      "label": "spacetime fabric snapping back after warp bubble collapse",
-      "text": "spacetime fabric snapping back after warp bubble collapse, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+      "text": "spacetime fabric snapping back after warp bubble collapse, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay",
+      "alias": "Rift Closure"
     },
     {
-      "label": "navigation computer chirping destination reached",
-      "text": "navigation computer chirping destination reached, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "navigation computer chirping destination reached, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Celestial Landfall"
     }
   ]
 }

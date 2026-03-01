@@ -1,27 +1,26 @@
 {
   "id": "min-pre-tool-use-needle-drop",
   "name": "Needle Drop",
-  "description": "Record needle approaching the groove surface",
   "prompts": [
     {
-      "label": "record needle lowering toward vinyl groove surface",
-      "text": "record needle lowering toward vinyl groove surface, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+      "text": "record needle lowering toward vinyl groove surface, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+      "alias": "Vinyl Hush"
     },
     {
-      "label": "stylus descending through silent air before contact",
-      "text": "stylus descending through silent air before contact, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+      "text": "stylus descending through silent air before contact, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out",
+      "alias": "Suspended Grace"
     },
     {
-      "label": "turntable arm floating down with delicate precision",
-      "text": "turntable arm floating down with delicate precision, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+      "text": "turntable arm floating down with delicate precision, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance",
+      "alias": "Delicate Descent"
     },
     {
-      "label": "diamond tip approaching spinning surface with anticipation",
-      "text": "diamond tip approaching spinning surface with anticipation, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+      "text": "diamond tip approaching spinning surface with anticipation, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay",
+      "alias": "Precious Contact"
     },
     {
-      "label": "anti-skate mechanism guiding needle to perfect starting position",
-      "text": "anti-skate mechanism guiding needle to perfect starting position, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+      "text": "anti-skate mechanism guiding needle to perfect starting position, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out",
+      "alias": "First Groove"
     }
   ]
 }

@@ -1,27 +1,26 @@
 {
   "id": "min-pre-tool-use-edge-touch",
   "name": "Edge Touch",
-  "description": "Fingertip just reaching the edge of a surface",
   "prompts": [
     {
-      "label": "fingertip just reaching the very edge of smooth surface",
-      "text": "fingertip just reaching the very edge of smooth surface, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+      "text": "fingertip just reaching the very edge of smooth surface, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+      "alias": "Glass Threshold"
     },
     {
-      "label": "skin barely contacting glass boundary with electric potential",
-      "text": "skin barely contacting glass boundary with electric potential, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+      "text": "skin barely contacting glass boundary with electric potential, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out",
+      "alias": "Frost Margin"
     },
     {
-      "label": "touch approaching but not yet committing to contact",
-      "text": "touch approaching but not yet committing to contact, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+      "text": "touch approaching but not yet committing to contact, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance",
+      "alias": "Almost There"
     },
     {
-      "label": "nerve endings anticipating surface with microscopic gap",
-      "text": "nerve endings anticipating surface with microscopic gap, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+      "text": "nerve endings anticipating surface with microscopic gap, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay",
+      "alias": "Porcelain Whisper"
     },
     {
-      "label": "quantum tunnel distance between finger and material",
-      "text": "quantum tunnel distance between finger and material, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+      "text": "quantum tunnel distance between finger and material, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out",
+      "alias": "Invisible Bridge"
     }
   ]
 }

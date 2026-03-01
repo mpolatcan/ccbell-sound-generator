@@ -1,27 +1,26 @@
 {
   "id": "scifi-user-prompt-submit-data-burst",
   "name": "Data Burst",
-  "description": "Compressed data package firing at light speed",
   "prompts": [
     {
-      "label": "compressed data package firing at light speed with flash",
-      "text": "compressed data package firing at light speed with flash, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "compressed data package firing at light speed with flash, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Photon Salvo"
     },
     {
-      "label": "information beam launching with focused energy pulse",
-      "text": "information beam launching with focused energy pulse, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+      "text": "information beam launching with focused energy pulse, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out",
+      "alias": "Neon Volley"
     },
     {
-      "label": "digital payload accelerating to transmission velocity",
-      "text": "digital payload accelerating to transmission velocity, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "digital payload accelerating to transmission velocity, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Frozen Lightning"
     },
     {
-      "label": "terabyte burst compressing and shooting through fiber",
-      "text": "terabyte burst compressing and shooting through fiber, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+      "text": "terabyte burst compressing and shooting through fiber, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay",
+      "alias": "Plasma Spark"
     },
     {
-      "label": "encoded signal blasting from antenna array with sharp chirp",
-      "text": "encoded signal blasting from antenna array with sharp chirp, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "encoded signal blasting from antenna array with sharp chirp, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Orbital Flash"
     }
   ]
 }

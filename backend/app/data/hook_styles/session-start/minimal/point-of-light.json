@@ -1,27 +1,26 @@
 {
   "id": "min-session-start-point-of-light",
   "name": "Point of Light",
-  "description": "Single bright point appearing in darkness",
   "prompts": [
     {
-      "label": "single bright point of light appearing in total darkness",
-      "text": "single bright point of light appearing in total darkness, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+      "text": "single bright point of light appearing in total darkness, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+      "alias": "Quiet Ember"
     },
     {
-      "label": "luminous tone dot emerging from void with gentle fade-in",
-      "text": "luminous tone dot emerging from void with gentle fade-in, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+      "text": "luminous tone dot emerging from void with gentle fade-in, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out",
+      "alias": "Lucid Filament"
     },
     {
-      "label": "star-like frequency point igniting with quiet radiance",
-      "text": "star-like frequency point igniting with quiet radiance, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+      "text": "star-like frequency point igniting with quiet radiance, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance",
+      "alias": "Paper Lantern"
     },
     {
-      "label": "photon of sound appearing with perfectly clean attack",
-      "text": "photon of sound appearing with perfectly clean attack, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+      "text": "photon of sound appearing with perfectly clean attack, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay",
+      "alias": "Still Flare"
     },
     {
-      "label": "first particle of resonance materializing from empty space",
-      "text": "first particle of resonance materializing from empty space, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+      "text": "first particle of resonance materializing from empty space, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out",
+      "alias": "Snow On Water"
     }
   ]
 }

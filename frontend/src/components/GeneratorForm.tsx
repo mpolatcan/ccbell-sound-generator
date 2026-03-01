@@ -69,7 +69,7 @@ function classifyQuality(items: string[]): { aesthetic: string[]; tail: string[]
 /** Build default prompt entries by cycling hook sound characters with theme components */
 function buildDefaultPrompts(hook: HookType, themeId: string, themes: ThemePreset[]): PromptEntry[] {
   const theme = themes.find((t) => t.id === themeId)
-  if (!theme) return hook.sound_characters.detailed.map((c) => ({ label: c, text: c }))
+  if (!theme) return hook.sound_characters.detailed.map((c) => ({ alias: c, text: c }))
 
   const pc = theme.prompt_components.detailed
   const chars = hook.sound_characters.detailed
@@ -82,7 +82,7 @@ function buildDefaultPrompts(hook: HookType, themeId: string, themes: ThemePrese
     const aes = aesthetic[i % aesthetic.length]
     const tl = tail[i % tail.length]
     const parts = [char, style, instrument, mood, QUALITY_BASE, aes, tl].filter(Boolean)
-    return { label: char, text: parts.join(', ') }
+    return { alias: char, text: parts.join(', ') }
   })
 }
 
@@ -484,34 +484,28 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
                 {activeHook && (activeHook.sound_style_presets[selectedTheme]?.length ?? 0) > 0 && (
                   <div className="space-y-2">
                     <Label>Sound Style</Label>
-                    <div className="flex flex-wrap gap-2">
-                      {(activeHook.sound_style_presets[selectedTheme] ?? []).map((preset) => (
-                        <button
-                          key={preset.id}
-                          type="button"
-                          title={preset.description}
-                          className={cn(
-                            'px-3 py-1.5 rounded-full text-sm font-medium transition-all border cursor-pointer',
-                            (activePresetId === preset.id ||
-                              (!activePresetId && preset.id === (activeHook.sound_style_presets[selectedTheme] ?? [])[0]?.id))
-                              ? 'border-primary bg-primary/15 text-primary shadow-sm shadow-primary/10'
-                              : 'border-border bg-muted/30 text-muted-foreground hover:border-primary/40 hover:text-foreground'
-                          )}
-                          onClick={() => handleStylePresetChange(
-                            preset.id === (activeHook.sound_style_presets[selectedTheme] ?? [])[0]?.id && !activePresetId
-                              ? null
-                              : preset.id
-                          )}
-                        >
-                          {preset.name}
-                        </button>
-                      ))}
-                    </div>
+                    <Select
+                      value={activePresetId ?? (activeHook.sound_style_presets[selectedTheme] ?? [])[0]?.id ?? ''}
+                      onValueChange={(value) => handleStylePresetChange(value)}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a style..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {(activeHook.sound_style_presets[selectedTheme] ?? []).map((preset) => (
+                          <SelectItem key={preset.id} value={preset.id}>
+                            {preset.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
                 )}
 
                 {/* Prompt Variant Selector */}
                 {activeHookTab && (
+                  <div className="space-y-2">
+                  <Label>Prompt</Label>
                   <PromptVariantSelector
                     prompts={activePrompts}
                     selectedIndex={perHookConfig[activeHookTab]?.selectedPromptIndex ?? 0}
@@ -530,6 +524,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
                       }))
                     }}
                   />
+                  </div>
                 )}
               </>
             )}

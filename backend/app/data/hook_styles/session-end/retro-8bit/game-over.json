@@ -1,27 +1,26 @@
 {
   "id": "8bit-session-end-game-over",
   "name": "Game Over",
-  "description": "Classic game over screen with melancholy jingle",
   "prompts": [
     {
-      "label": "classic game over screen with melancholy chiptune jingle",
-      "text": "classic game over screen with melancholy chiptune jingle, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "classic game over screen with melancholy chiptune jingle, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Fading Quarters"
     },
     {
-      "label": "8-bit defeat melody descending with square wave sorrow",
-      "text": "8-bit defeat melody descending with square wave sorrow, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "8-bit defeat melody descending with square wave sorrow, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Pixel Elegy"
     },
     {
-      "label": "pixel screen fading with retro ending fanfare",
-      "text": "pixel screen fading with retro ending fanfare, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance"
+      "text": "pixel screen fading with retro ending fanfare, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance",
+      "alias": "CRT Fadeout"
     },
     {
-      "label": "NES continue countdown expiring with final bitcrushed tone",
-      "text": "NES continue countdown expiring with final bitcrushed tone, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "NES continue countdown expiring with final bitcrushed tone, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Zero Lives"
     },
     {
-      "label": "retro game session ending with descending arpeggio and silence",
-      "text": "retro game session ending with descending arpeggio and silence, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "retro game session ending with descending arpeggio and silence, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Descending Arcade"
     }
   ]
 }

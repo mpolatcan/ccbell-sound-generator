@@ -1,27 +1,26 @@
 {
   "id": "8bit-pre-tool-use-power-charge",
   "name": "Power Charge",
-  "description": "Special attack building power with growing intensity",
   "prompts": [
     {
-      "label": "special attack charging with growing chiptune intensity",
-      "text": "special attack charging with growing chiptune intensity, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "special attack charging with growing chiptune intensity, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Pixel Furnace"
     },
     {
-      "label": "8-bit power meter filling with ascending square wave sweep",
-      "text": "8-bit power meter filling with ascending square wave sweep, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "8-bit power meter filling with ascending square wave sweep, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Arcade Voltage"
     },
     {
-      "label": "retro energy gathering with building bitcrushed crescendo",
-      "text": "retro energy gathering with building bitcrushed crescendo, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance"
+      "text": "retro energy gathering with building bitcrushed crescendo, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance",
+      "alias": "Cartridge Glow"
     },
     {
-      "label": "NES charge beam accumulating with rapid blip acceleration",
-      "text": "NES charge beam accumulating with rapid blip acceleration, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "NES charge beam accumulating with rapid blip acceleration, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Warp Star Rising"
     },
     {
-      "label": "pixel aura glowing brighter with layered pulse wave buildup",
-      "text": "pixel aura glowing brighter with layered pulse wave buildup, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "pixel aura glowing brighter with layered pulse wave buildup, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Bonus Round Shimmer"
     }
   ]
 }

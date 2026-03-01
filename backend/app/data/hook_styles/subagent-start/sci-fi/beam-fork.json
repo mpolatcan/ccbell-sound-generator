@@ -1,27 +1,26 @@
 {
   "id": "scifi-subagent-start-beam-fork",
   "name": "Beam Fork",
-  "description": "Single beam refracting into multiple directions",
   "prompts": [
     {
-      "label": "single coherent beam refracting into multiple directions",
-      "text": "single coherent beam refracting into multiple directions, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "single coherent beam refracting into multiple directions, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Prismatic Dispatch"
     },
     {
-      "label": "laser hitting prism with colorful divergence burst",
-      "text": "laser hitting prism with colorful divergence burst, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+      "text": "laser hitting prism with colorful divergence burst, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out",
+      "alias": "Neon Divergence"
     },
     {
-      "label": "focused energy spreading into fan of separate paths",
-      "text": "focused energy spreading into fan of separate paths, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "focused energy spreading into fan of separate paths, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Stellar Scatter"
     },
     {
-      "label": "tractor beam splitting to grab multiple targets",
-      "text": "tractor beam splitting to grab multiple targets, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+      "text": "tractor beam splitting to grab multiple targets, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay",
+      "alias": "Plasma Tendril"
     },
     {
-      "label": "sensor array dispatching parallel scan beams simultaneously",
-      "text": "sensor array dispatching parallel scan beams simultaneously, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "sensor array dispatching parallel scan beams simultaneously, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Orbital Fanout"
     }
   ]
 }

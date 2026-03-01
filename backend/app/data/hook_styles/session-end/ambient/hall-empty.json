@@ -1,27 +1,26 @@
 {
   "id": "amb-session-end-hall-empty",
   "name": "Hall Empty",
-  "description": "Concert hall falling silent after last audience member leaves",
   "prompts": [
     {
-      "label": "concert hall falling silent after last audience member departs",
-      "text": "concert hall falling silent after last audience member departs, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay"
+      "text": "concert hall falling silent after last audience member departs, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
+      "alias": "Vacant Resonance"
     },
     {
-      "label": "vast performance space settling into empty reverberant quiet",
-      "text": "vast performance space settling into empty reverberant quiet, tape-saturated warmth, granular piano cloud, candlelight flickering softly, 44.1kHz, stereo, high-quality, wide, smooth fade out"
+      "text": "vast performance space settling into empty reverberant quiet, tape-saturated warmth, granular piano cloud, candlelight flickering softly, 44.1kHz, stereo, high-quality, wide, smooth fade out",
+      "alias": "Velvet Hollow"
     },
     {
-      "label": "theater seats folding up as hall returns to stillness",
-      "text": "theater seats folding up as hall returns to stillness, Brian Eno infinite space, reversed cymbal swell, underwater weightlessness, 44.1kHz, stereo, high-quality, lush, sustained resonance"
+      "text": "theater seats folding up as hall returns to stillness, Brian Eno infinite space, reversed cymbal swell, underwater weightlessness, 44.1kHz, stereo, high-quality, lush, sustained resonance",
+      "alias": "Folding Silence"
     },
     {
-      "label": "stage lights clicking off leaving only exit sign glow",
-      "text": "stage lights clicking off leaving only exit sign glow, abandoned hall echo, harmonium drone with tape wobble, drifting between sleep and waking, 44.1kHz, stereo, high-quality, wide, with natural decay"
+      "text": "stage lights clicking off leaving only exit sign glow, abandoned hall echo, harmonium drone with tape wobble, drifting between sleep and waking, 44.1kHz, stereo, high-quality, wide, with natural decay",
+      "alias": "Exit Sign Glow"
     },
     {
-      "label": "room tone of empty hall breathing with HVAC whisper",
-      "text": "room tone of empty hall breathing with HVAC whisper, lo-fi cassette hiss and bloom, shimmer reverb pad wash, moonlight through frosted glass, 44.1kHz, stereo, high-quality, lush, smooth fade out"
+      "text": "room tone of empty hall breathing with HVAC whisper, lo-fi cassette hiss and bloom, shimmer reverb pad wash, moonlight through frosted glass, 44.1kHz, stereo, high-quality, lush, smooth fade out",
+      "alias": "Breathing Walls"
     }
   ]
 }

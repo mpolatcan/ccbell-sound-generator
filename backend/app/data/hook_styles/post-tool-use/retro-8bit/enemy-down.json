@@ -1,27 +1,26 @@
 {
   "id": "8bit-post-tool-use-enemy-down",
   "name": "Enemy Down",
-  "description": "Defeated enemy blinking and disappearing",
   "prompts": [
     {
-      "label": "defeated enemy blinking and disappearing with 8-bit pop",
-      "text": "defeated enemy blinking and disappearing with 8-bit pop, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "defeated enemy blinking and disappearing with 8-bit pop, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Ghost Blink"
     },
     {
-      "label": "pixel foe vanquished with quick chiptune defeat jingle",
-      "text": "pixel foe vanquished with quick chiptune defeat jingle, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "pixel foe vanquished with quick chiptune defeat jingle, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Victory Flicker"
     },
     {
-      "label": "retro monster eliminated with flashing removal sound",
-      "text": "retro monster eliminated with flashing removal sound, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance"
+      "text": "retro monster eliminated with flashing removal sound, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance",
+      "alias": "Sprite Vanish"
     },
     {
-      "label": "NES enemy explosion with bitcrushed particles and points",
-      "text": "NES enemy explosion with bitcrushed particles and points, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "NES enemy explosion with bitcrushed particles and points, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Pixel Confetti"
     },
     {
-      "label": "8-bit bad guy dissolving with descending square wave",
-      "text": "8-bit bad guy dissolving with descending square wave, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "8-bit bad guy dissolving with descending square wave, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Fading Phantom"
     }
   ]
 }

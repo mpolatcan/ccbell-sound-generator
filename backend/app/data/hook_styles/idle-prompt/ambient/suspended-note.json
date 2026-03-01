@@ -1,27 +1,26 @@
 {
   "id": "amb-idle-prompt-suspended-note",
   "name": "Suspended Note",
-  "description": "Single note held in infinite reverb space",
   "prompts": [
     {
-      "label": "single note held in infinite reverberant space",
-      "text": "single note held in infinite reverberant space, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay"
+      "text": "single note held in infinite reverberant space, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
+      "alias": "Eternal Chime"
     },
     {
-      "label": "sustained tone floating through boundless acoustic void",
-      "text": "sustained tone floating through boundless acoustic void, tape-saturated warmth, granular piano cloud, candlelight flickering softly, 44.1kHz, stereo, high-quality, wide, smooth fade out"
+      "text": "sustained tone floating through boundless acoustic void, tape-saturated warmth, granular piano cloud, candlelight flickering softly, 44.1kHz, stereo, high-quality, wide, smooth fade out",
+      "alias": "Infinite Hovering"
     },
     {
-      "label": "frozen harmonic hovering without time or decay",
-      "text": "frozen harmonic hovering without time or decay, Brian Eno infinite space, reversed cymbal swell, underwater weightlessness, 44.1kHz, stereo, high-quality, lush, sustained resonance"
+      "text": "frozen harmonic hovering without time or decay, Brian Eno infinite space, reversed cymbal swell, underwater weightlessness, 44.1kHz, stereo, high-quality, lush, sustained resonance",
+      "alias": "Timeless Bell"
     },
     {
-      "label": "cathedral organ note held beyond natural sustain",
-      "text": "cathedral organ note held beyond natural sustain, abandoned hall echo, harmonium drone with tape wobble, drifting between sleep and waking, 44.1kHz, stereo, high-quality, wide, with natural decay"
+      "text": "cathedral organ note held beyond natural sustain, abandoned hall echo, harmonium drone with tape wobble, drifting between sleep and waking, 44.1kHz, stereo, high-quality, wide, with natural decay",
+      "alias": "Cathedral Breath"
     },
     {
-      "label": "time-stretched resonance existing in perpetual present",
-      "text": "time-stretched resonance existing in perpetual present, lo-fi cassette hiss and bloom, shimmer reverb pad wash, moonlight through frosted glass, 44.1kHz, stereo, high-quality, lush, smooth fade out"
+      "text": "time-stretched resonance existing in perpetual present, lo-fi cassette hiss and bloom, shimmer reverb pad wash, moonlight through frosted glass, 44.1kHz, stereo, high-quality, lush, smooth fade out",
+      "alias": "Moonspun Thread"
     }
   ]
 }

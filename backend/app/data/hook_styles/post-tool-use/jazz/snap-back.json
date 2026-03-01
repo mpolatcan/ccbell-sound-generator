@@ -1,27 +1,26 @@
 {
   "id": "jazz-post-tool-use-snap-back",
   "name": "Snap Back",
-  "description": "Quick finger snap confirming the groove",
   "prompts": [
     {
-      "label": "quick confident finger snap confirming the groove",
-      "text": "quick confident finger snap confirming the groove, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay"
+      "text": "quick confident finger snap confirming the groove, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
+      "alias": "Cool Confirmation"
     },
     {
-      "label": "sharp percussive snap on beats two and four",
-      "text": "sharp percussive snap on beats two and four, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out"
+      "text": "sharp percussive snap on beats two and four, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out",
+      "alias": "Backbeat Wink"
     },
     {
-      "label": "clean hand clap variant with dry crisp attack",
-      "text": "clean hand clap variant with dry crisp attack, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance"
+      "text": "clean hand clap variant with dry crisp attack, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance",
+      "alias": "Dry Applause"
     },
     {
-      "label": "cool cat finger snap in dim club lighting",
-      "text": "cool cat finger snap in dim club lighting, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay"
+      "text": "cool cat finger snap in dim club lighting, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay",
+      "alias": "Dim Light Snap"
     },
     {
-      "label": "rhythmic affirmation with natural body percussion",
-      "text": "rhythmic affirmation with natural body percussion, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out"
+      "text": "rhythmic affirmation with natural body percussion, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out",
+      "alias": "Rhodes Nod"
     }
   ]
 }

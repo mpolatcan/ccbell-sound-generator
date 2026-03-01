@@ -1,27 +1,26 @@
 {
   "id": "scifi-stop-plasma-resolve",
   "name": "Plasma Resolve",
-  "description": "Futuristic energy beam powering down to completion",
   "prompts": [
     {
-      "label": "plasma beam powering down with digital shimmer",
-      "text": "plasma beam powering down with digital shimmer, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "plasma beam powering down with digital shimmer, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Neon Descent"
     },
     {
-      "label": "neon circuit closing with crystalline confirmation",
-      "text": "neon circuit closing with crystalline confirmation, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+      "text": "neon circuit closing with crystalline confirmation, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out",
+      "alias": "Voltage Lullaby"
     },
     {
-      "label": "holographic interface dismissing with clean sweep",
-      "text": "holographic interface dismissing with clean sweep, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "holographic interface dismissing with clean sweep, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Ghost Protocol"
     },
     {
-      "label": "quantum computation resolving into harmonic lock",
-      "text": "quantum computation resolving into harmonic lock, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+      "text": "quantum computation resolving into harmonic lock, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay",
+      "alias": "Singularity Bloom"
     },
     {
-      "label": "starship console chirping mission complete",
-      "text": "starship console chirping mission complete, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "starship console chirping mission complete, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Stellar Resolve"
     }
   ]
 }

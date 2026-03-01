@@ -1,27 +1,26 @@
 {
   "id": "scifi-permission-prompt-incoming-hail",
   "name": "Incoming Hail",
-  "description": "Starship communication request with alert chirp",
   "prompts": [
     {
-      "label": "starship bridge receiving incoming hail with alert chirp",
-      "text": "starship bridge receiving incoming hail with alert chirp, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "starship bridge receiving incoming hail with alert chirp, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Stellar Beacon"
     },
     {
-      "label": "communication channel opening with rising frequency sweep",
-      "text": "communication channel opening with rising frequency sweep, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+      "text": "communication channel opening with rising frequency sweep, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out",
+      "alias": "Holographic Arrival"
     },
     {
-      "label": "alien transmission detected with two-tone query signal",
-      "text": "alien transmission detected with two-tone query signal, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "alien transmission detected with two-tone query signal, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "First Contact"
     },
     {
-      "label": "subspace frequency lock requesting acknowledgment",
-      "text": "subspace frequency lock requesting acknowledgment, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+      "text": "subspace frequency lock requesting acknowledgment, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay",
+      "alias": "Quantum Whisper"
     },
     {
-      "label": "holographic comm panel activating with questioning pulse",
-      "text": "holographic comm panel activating with questioning pulse, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "holographic comm panel activating with questioning pulse, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Nebula Pulse"
     }
   ]
 }

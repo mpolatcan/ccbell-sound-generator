@@ -1,27 +1,26 @@
 {
   "id": "8bit-subagent-start-player-two",
   "name": "Player Two",
-  "description": "Second player joining the game",
   "prompts": [
     {
-      "label": "player two joining game with chiptune entrance fanfare",
-      "text": "player two joining game with chiptune entrance fanfare, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "player two joining game with chiptune entrance fanfare, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Arcade Ally"
     },
     {
-      "label": "second sprite spawning with 8-bit materialization jingle",
-      "text": "second sprite spawning with 8-bit materialization jingle, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "second sprite spawning with 8-bit materialization jingle, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Pixel Sidekick"
     },
     {
-      "label": "co-op partner appearing with retro welcome melody",
-      "text": "co-op partner appearing with retro welcome melody, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance"
+      "text": "co-op partner appearing with retro welcome melody, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance",
+      "alias": "Cartridge Companion"
     },
     {
-      "label": "NES split-screen activating with dual channel blip",
-      "text": "NES split-screen activating with dual channel blip, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "NES split-screen activating with dual channel blip, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Split Screen Spark"
     },
     {
-      "label": "pixel ally arriving with square wave companion theme",
-      "text": "pixel ally arriving with square wave companion theme, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "pixel ally arriving with square wave companion theme, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Bonus Round Duo"
     }
   ]
 }

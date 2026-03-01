@@ -1,27 +1,26 @@
 {
   "id": "min-stop-crystal-ping",
   "name": "Crystal Ping",
-  "description": "Single pure crystal tone with clean sustain",
   "prompts": [
     {
-      "label": "pure crystal ping with pristine sustain",
-      "text": "pure crystal ping with pristine sustain, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+      "text": "pure crystal ping with pristine sustain, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+      "alias": "Ice Filament"
     },
     {
-      "label": "single glass point of light in silence",
-      "text": "single glass point of light in silence, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+      "text": "single glass point of light in silence, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out",
+      "alias": "Lucid Point"
     },
     {
-      "label": "clean sine tone resolving with transparent clarity",
-      "text": "clean sine tone resolving with transparent clarity, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+      "text": "clean sine tone resolving with transparent clarity, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance",
+      "alias": "Translucent Halo"
     },
     {
-      "label": "porcelain tap fading into absolute stillness",
-      "text": "porcelain tap fading into absolute stillness, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+      "text": "porcelain tap fading into absolute stillness, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay",
+      "alias": "China Hush"
     },
     {
-      "label": "whisper-thin harmonic dissolving to nothing",
-      "text": "whisper-thin harmonic dissolving to nothing, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+      "text": "whisper-thin harmonic dissolving to nothing, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out",
+      "alias": "Vanishing Thread"
     }
   ]
 }

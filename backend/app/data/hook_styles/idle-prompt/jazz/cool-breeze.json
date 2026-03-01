@@ -1,27 +1,26 @@
 {
   "id": "jazz-idle-prompt-cool-breeze",
   "name": "Cool Breeze",
-  "description": "West Coast jazz atmosphere floating in warm air",
   "prompts": [
     {
-      "label": "West Coast jazz atmosphere floating in warm California air",
-      "text": "West Coast jazz atmosphere floating in warm California air, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay"
+      "text": "West Coast jazz atmosphere floating in warm California air, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
+      "alias": "Pacific Reverie"
     },
     {
-      "label": "cool breeze carrying faint saxophone melody from open window",
-      "text": "cool breeze carrying faint saxophone melody from open window, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out"
+      "text": "cool breeze carrying faint saxophone melody from open window, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out",
+      "alias": "Saxophone Dusk"
     },
     {
-      "label": "laid-back jazz mood drifting with unhurried Pacific warmth",
-      "text": "laid-back jazz mood drifting with unhurried Pacific warmth, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance"
+      "text": "laid-back jazz mood drifting with unhurried Pacific warmth, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance",
+      "alias": "Malibu Drift"
     },
     {
-      "label": "Chet Baker-style trumpet whispering through palm tree evening",
-      "text": "Chet Baker-style trumpet whispering through palm tree evening, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay"
+      "text": "Chet Baker-style trumpet whispering through palm tree evening, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay",
+      "alias": "Trumpet Twilight"
     },
     {
-      "label": "breezy bossa nova guitar chord hanging in sunset air",
-      "text": "breezy bossa nova guitar chord hanging in sunset air, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out"
+      "text": "breezy bossa nova guitar chord hanging in sunset air, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out",
+      "alias": "Sunset Bossa"
     }
   ]
 }

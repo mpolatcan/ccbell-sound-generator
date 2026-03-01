@@ -18,8 +18,8 @@ export interface PromptComponents {
 }
 
 export interface PromptEntry {
-  label: string
   text: string
+  alias?: string
 }
 
 export interface PerHookConfig {
@@ -64,7 +64,6 @@ export interface TieredSoundCharacters {
 export interface SoundStylePreset {
   id: string
   name: string
-  description: string
   prompts: PromptEntry[]
 }
 

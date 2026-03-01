@@ -1,27 +1,26 @@
 {
   "id": "amb-post-tool-use-echo-fade",
   "name": "Echo Fade",
-  "description": "Sound bouncing away into distant silence",
   "prompts": [
     {
-      "label": "sound bouncing away into ever more distant silence",
-      "text": "sound bouncing away into ever more distant silence, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay"
+      "text": "sound bouncing away into ever more distant silence, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
+      "alias": "Distant Cathedral"
     },
     {
-      "label": "echo chain diminishing with each reflection",
-      "text": "echo chain diminishing with each reflection, tape-saturated warmth, granular piano cloud, candlelight flickering softly, 44.1kHz, stereo, high-quality, wide, smooth fade out"
+      "text": "echo chain diminishing with each reflection, tape-saturated warmth, granular piano cloud, candlelight flickering softly, 44.1kHz, stereo, high-quality, wide, smooth fade out",
+      "alias": "Candlelit Reverb"
     },
     {
-      "label": "reverberation trail disappearing into acoustic infinity",
-      "text": "reverberation trail disappearing into acoustic infinity, Brian Eno infinite space, reversed cymbal swell, underwater weightlessness, 44.1kHz, stereo, high-quality, lush, sustained resonance"
+      "text": "reverberation trail disappearing into acoustic infinity, Brian Eno infinite space, reversed cymbal swell, underwater weightlessness, 44.1kHz, stereo, high-quality, lush, sustained resonance",
+      "alias": "Infinite Corridor"
     },
     {
-      "label": "canyon echo repeating with progressive softening",
-      "text": "canyon echo repeating with progressive softening, abandoned hall echo, harmonium drone with tape wobble, drifting between sleep and waking, 44.1kHz, stereo, high-quality, wide, with natural decay"
+      "text": "canyon echo repeating with progressive softening, abandoned hall echo, harmonium drone with tape wobble, drifting between sleep and waking, 44.1kHz, stereo, high-quality, wide, with natural decay",
+      "alias": "Dusk Repetition"
     },
     {
-      "label": "sound memory fading through layers of atmospheric distance",
-      "text": "sound memory fading through layers of atmospheric distance, lo-fi cassette hiss and bloom, shimmer reverb pad wash, moonlight through frosted glass, 44.1kHz, stereo, high-quality, lush, smooth fade out"
+      "text": "sound memory fading through layers of atmospheric distance, lo-fi cassette hiss and bloom, shimmer reverb pad wash, moonlight through frosted glass, 44.1kHz, stereo, high-quality, lush, smooth fade out",
+      "alias": "Frosted Memory"
     }
   ]
 }

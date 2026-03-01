@@ -1,27 +1,26 @@
 {
   "id": "nature-pre-tool-use-hawk-dive",
   "name": "Hawk Dive",
-  "description": "Raptor folding wings and beginning steep dive",
   "prompts": [
     {
-      "label": "raptor folding wings beginning steep hunting dive",
-      "text": "raptor folding wings beginning steep hunting dive, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay"
+      "text": "raptor folding wings beginning steep hunting dive, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
+      "alias": "Skyfall Crescent"
     },
     {
-      "label": "hawk tucking into stooping descent with building wind rush",
-      "text": "hawk tucking into stooping descent with building wind rush, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out"
+      "text": "hawk tucking into stooping descent with building wind rush, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out",
+      "alias": "Wind Blade"
     },
     {
-      "label": "peregrine falcon initiating dive with accelerating air whistle",
-      "text": "peregrine falcon initiating dive with accelerating air whistle, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance"
+      "text": "peregrine falcon initiating dive with accelerating air whistle, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance",
+      "alias": "Terminal Velocity"
     },
     {
-      "label": "bird of prey's feathers tightening as gravity pulls",
-      "text": "bird of prey's feathers tightening as gravity pulls, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay"
+      "text": "bird of prey's feathers tightening as gravity pulls, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay",
+      "alias": "Raptor's Arrow"
     },
     {
-      "label": "predatory focus sharpening as terminal velocity approaches",
-      "text": "predatory focus sharpening as terminal velocity approaches, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out"
+      "text": "predatory focus sharpening as terminal velocity approaches, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out",
+      "alias": "Golden Descent"
     }
   ]
 }

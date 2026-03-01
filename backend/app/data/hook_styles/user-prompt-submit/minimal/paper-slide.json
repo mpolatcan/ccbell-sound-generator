@@ -1,27 +1,26 @@
 {
   "id": "min-user-prompt-submit-paper-slide",
   "name": "Paper Slide",
-  "description": "Single sheet of paper pushed across desk",
   "prompts": [
     {
-      "label": "single sheet of paper sliding across smooth desk surface",
-      "text": "single sheet of paper sliding across smooth desk surface, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+      "text": "single sheet of paper sliding across smooth desk surface, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+      "alias": "Quiet Passage"
     },
     {
-      "label": "crisp document pushed forward with clean friction whisper",
-      "text": "crisp document pushed forward with clean friction whisper, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+      "text": "crisp document pushed forward with clean friction whisper, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out",
+      "alias": "Zen Envelope"
     },
     {
-      "label": "paper edge meeting air as sheet moves with precision",
-      "text": "paper edge meeting air as sheet moves with precision, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+      "text": "paper edge meeting air as sheet moves with precision, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance",
+      "alias": "Silk Margin"
     },
     {
-      "label": "lightweight material gliding on polished wood with grace",
-      "text": "lightweight material gliding on polished wood with grace, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+      "text": "lightweight material gliding on polished wood with grace, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay",
+      "alias": "Birch Glide"
     },
     {
-      "label": "form submitted with minimal physical gesture",
-      "text": "form submitted with minimal physical gesture, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+      "text": "form submitted with minimal physical gesture, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out",
+      "alias": "Snow Letter"
     }
   ]
 }

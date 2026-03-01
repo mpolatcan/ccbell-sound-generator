@@ -210,6 +210,11 @@ interface SoundPack {
   created_at: Date
 }
 
+interface PromptEntry {
+  text: string
+  alias?: string             // Short thematic display name
+}
+
 interface GeneratedSound {
   id: string
   job_id: string

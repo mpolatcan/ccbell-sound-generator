@@ -1,27 +1,26 @@
 {
   "id": "scifi-subagent-stop-signal-received",
   "name": "Signal Received",
-  "description": "Faint deep-space signal acknowledged",
   "prompts": [
     {
-      "label": "faint deep-space signal acknowledged with soft confirmation tone",
-      "text": "faint deep-space signal acknowledged with soft confirmation tone, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "faint deep-space signal acknowledged with soft confirmation tone, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Astral Murmur"
     },
     {
-      "label": "distant relay ping bouncing back through subspace",
-      "text": "distant relay ping bouncing back through subspace, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+      "text": "distant relay ping bouncing back through subspace, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out",
+      "alias": "Void Answer"
     },
     {
-      "label": "quiet antenna lock chirp confirming transmission received",
-      "text": "quiet antenna lock chirp confirming transmission received, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "quiet antenna lock chirp confirming transmission received, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Nebula Trace"
     },
     {
-      "label": "radio telescope capturing brief cosmic whisper",
-      "text": "radio telescope capturing brief cosmic whisper, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+      "text": "radio telescope capturing brief cosmic whisper, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay",
+      "alias": "Cosmic Ember"
     },
     {
-      "label": "interstellar beacon responding with minimal energy pulse",
-      "text": "interstellar beacon responding with minimal energy pulse, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "interstellar beacon responding with minimal energy pulse, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Starborne Reply"
     }
   ]
 }

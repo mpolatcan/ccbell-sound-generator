@@ -1,27 +1,26 @@
 {
   "id": "min-idle-prompt-quiet-pulse",
   "name": "Quiet Pulse",
-  "description": "Rhythmic pulse at the edge of perception",
   "prompts": [
     {
-      "label": "rhythmic pulse at the very edge of perception",
-      "text": "rhythmic pulse at the very edge of perception, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+      "text": "rhythmic pulse at the very edge of perception, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+      "alias": "Ghost Metronome"
     },
     {
-      "label": "heartbeat-slow amplitude variation in near-silence",
-      "text": "heartbeat-slow amplitude variation in near-silence, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+      "text": "heartbeat-slow amplitude variation in near-silence, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out",
+      "alias": "Silk Heartbeat"
     },
     {
-      "label": "gentle volume swell and retreat like breathing glass",
-      "text": "gentle volume swell and retreat like breathing glass, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+      "text": "gentle volume swell and retreat like breathing glass, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance",
+      "alias": "Glass Breathing"
     },
     {
-      "label": "subliminal rhythm maintaining presence without intrusion",
-      "text": "subliminal rhythm maintaining presence without intrusion, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+      "text": "subliminal rhythm maintaining presence without intrusion, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay",
+      "alias": "Subliminal Tide"
     },
     {
-      "label": "ghost pulse keeping time in absolute quiet",
-      "text": "ghost pulse keeping time in absolute quiet, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+      "text": "ghost pulse keeping time in absolute quiet, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out",
+      "alias": "Phantom Cadence"
     }
   ]
 }

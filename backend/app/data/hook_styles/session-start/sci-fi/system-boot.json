@@ -1,27 +1,26 @@
 {
   "id": "scifi-session-start-system-boot",
   "name": "System Boot",
-  "description": "Computer systems initializing with sequential startup sounds",
   "prompts": [
     {
-      "label": "computer systems initializing with sequential digital startup sounds",
-      "text": "computer systems initializing with sequential digital startup sounds, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "computer systems initializing with sequential digital startup sounds, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Chrome Awakening"
     },
     {
-      "label": "BIOS boot sequence with cascading electronic chirps",
-      "text": "BIOS boot sequence with cascading electronic chirps, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+      "text": "BIOS boot sequence with cascading electronic chirps, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out",
+      "alias": "Neon Cascade"
     },
     {
-      "label": "holographic display flickering to life with data stream rush",
-      "text": "holographic display flickering to life with data stream rush, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "holographic display flickering to life with data stream rush, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Phantom Flicker"
     },
     {
-      "label": "neural network loading with synapse-like crackling activation",
-      "text": "neural network loading with synapse-like crackling activation, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+      "text": "neural network loading with synapse-like crackling activation, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay",
+      "alias": "Synaptic Bloom"
     },
     {
-      "label": "operating system kernel launching with ascending frequency ladder",
-      "text": "operating system kernel launching with ascending frequency ladder, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "operating system kernel launching with ascending frequency ladder, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Prismatic Ladder"
     }
   ]
 }

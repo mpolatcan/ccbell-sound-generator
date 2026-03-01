@@ -1,27 +1,26 @@
 {
   "id": "8bit-session-start-player-ready",
   "name": "Player Ready",
-  "description": "Player selection confirmed and adventure beginning",
   "prompts": [
     {
-      "label": "player selection confirmed with 8-bit ready fanfare",
-      "text": "player selection confirmed with 8-bit ready fanfare, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "player selection confirmed with 8-bit ready fanfare, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Pixel Knight Rising"
     },
     {
-      "label": "character chosen with ascending chiptune power-up melody",
-      "text": "character chosen with ascending chiptune power-up melody, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "character chosen with ascending chiptune power-up melody, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "8-Bit Valor"
     },
     {
-      "label": "retro game starting with pixel hero spawning jingle",
-      "text": "retro game starting with pixel hero spawning jingle, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance"
+      "text": "retro game starting with pixel hero spawning jingle, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance",
+      "alias": "Sprite Reveille"
     },
     {
-      "label": "NES player one ready with dramatic square wave buildup",
-      "text": "NES player one ready with dramatic square wave buildup, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "NES player one ready with dramatic square wave buildup, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Square Wave Anthem"
     },
     {
-      "label": "bitcrushed countdown completing with launch melody",
-      "text": "bitcrushed countdown completing with launch melody, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "bitcrushed countdown completing with launch melody, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Launchpad Crunch"
     }
   ]
 }

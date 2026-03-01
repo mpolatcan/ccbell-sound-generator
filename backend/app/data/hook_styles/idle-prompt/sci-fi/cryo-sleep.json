@@ -1,27 +1,26 @@
 {
   "id": "scifi-idle-prompt-cryo-sleep",
   "name": "Cryo Sleep",
-  "description": "Cryogenic chamber maintaining frozen stasis",
   "prompts": [
     {
-      "label": "cryogenic chamber maintaining frozen stasis with slow pulse",
-      "text": "cryogenic chamber maintaining frozen stasis with slow pulse, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "cryogenic chamber maintaining frozen stasis with slow pulse, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Frozen Reverie"
     },
     {
-      "label": "cryo-pod life signs monitor beeping at hibernation tempo",
-      "text": "cryo-pod life signs monitor beeping at hibernation tempo, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+      "text": "cryo-pod life signs monitor beeping at hibernation tempo, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out",
+      "alias": "Glacial Vigil"
     },
     {
-      "label": "frozen suspension field humming with crystalline patience",
-      "text": "frozen suspension field humming with crystalline patience, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "frozen suspension field humming with crystalline patience, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Stasis Lullaby"
     },
     {
-      "label": "ice forming on chamber glass with microscopic crackle",
-      "text": "ice forming on chamber glass with microscopic crackle, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+      "text": "ice forming on chamber glass with microscopic crackle, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay",
+      "alias": "Permafrost Dream"
     },
     {
-      "label": "deep freeze maintaining absolute zero with sub-bass drone",
-      "text": "deep freeze maintaining absolute zero with sub-bass drone, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "deep freeze maintaining absolute zero with sub-bass drone, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Absolute Stillness"
     }
   ]
 }

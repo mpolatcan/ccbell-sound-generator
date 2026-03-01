@@ -1,27 +1,26 @@
 {
   "id": "8bit-permission-prompt-menu-select",
   "name": "Menu Select",
-  "description": "Game menu cursor highlighting an option",
   "prompts": [
     {
-      "label": "game menu cursor moving to highlight option with blip",
-      "text": "game menu cursor moving to highlight option with blip, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "game menu cursor moving to highlight option with blip, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Arcade Glint"
     },
     {
-      "label": "8-bit selection indicator with crisp square wave tick",
-      "text": "8-bit selection indicator with crisp square wave tick, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "8-bit selection indicator with crisp square wave tick, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Joystick Wink"
     },
     {
-      "label": "pixel arrow pointing at menu choice with confirmation tone",
-      "text": "pixel arrow pointing at menu choice with confirmation tone, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance"
+      "text": "pixel arrow pointing at menu choice with confirmation tone, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance",
+      "alias": "Bright Cartridge"
     },
     {
-      "label": "retro interface navigation with clean chiptune cursor sound",
-      "text": "retro interface navigation with clean chiptune cursor sound, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "retro interface navigation with clean chiptune cursor sound, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Speed Run Tick"
     },
     {
-      "label": "NES menu highlight with brief ascending pulse",
-      "text": "NES menu highlight with brief ascending pulse, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "NES menu highlight with brief ascending pulse, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Pixel Flicker"
     }
   ]
 }

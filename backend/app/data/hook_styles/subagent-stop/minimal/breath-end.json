@@ -1,27 +1,26 @@
 {
   "id": "min-subagent-stop-breath-end",
   "name": "Breath End",
-  "description": "Quiet exhale completing with soft close",
   "prompts": [
     {
-      "label": "quiet exhale completing with soft gentle close",
-      "text": "quiet exhale completing with soft gentle close, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+      "text": "quiet exhale completing with soft gentle close, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+      "alias": "Porcelain Sigh"
     },
     {
-      "label": "breath trailing off into perfect stillness",
-      "text": "breath trailing off into perfect stillness, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+      "text": "breath trailing off into perfect stillness, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out",
+      "alias": "Glass Farewell"
     },
     {
-      "label": "whispered release settling like fine dust",
-      "text": "whispered release settling like fine dust, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+      "text": "whispered release settling like fine dust, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance",
+      "alias": "Arctic Wisp"
     },
     {
-      "label": "air leaving lungs with barely perceptible warmth",
-      "text": "air leaving lungs with barely perceptible warmth, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+      "text": "air leaving lungs with barely perceptible warmth, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay",
+      "alias": "Ivory Close"
     },
     {
-      "label": "silence rushing in after last wisp of sound",
-      "text": "silence rushing in after last wisp of sound, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+      "text": "silence rushing in after last wisp of sound, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out",
+      "alias": "Frost Dissolve"
     }
   ]
 }

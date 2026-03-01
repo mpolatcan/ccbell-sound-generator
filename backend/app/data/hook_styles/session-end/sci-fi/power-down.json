@@ -1,27 +1,26 @@
 {
   "id": "scifi-session-end-power-down",
   "name": "Power Down",
-  "description": "Ship systems shutting down in graceful sequence",
   "prompts": [
     {
-      "label": "ship systems shutting down in graceful powered sequence",
-      "text": "ship systems shutting down in graceful powered sequence, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "ship systems shutting down in graceful powered sequence, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Graceful Cascade"
     },
     {
-      "label": "console lights dimming with descending electronic cascade",
-      "text": "console lights dimming with descending electronic cascade, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+      "text": "console lights dimming with descending electronic cascade, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out",
+      "alias": "Neon Twilight"
     },
     {
-      "label": "reactor winding down with diminishing harmonic hum",
-      "text": "reactor winding down with diminishing harmonic hum, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "reactor winding down with diminishing harmonic hum, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Core Whisper"
     },
     {
-      "label": "quantum processor entering deep sleep with fading oscillation",
-      "text": "quantum processor entering deep sleep with fading oscillation, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+      "text": "quantum processor entering deep sleep with fading oscillation, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay",
+      "alias": "Silicon Lullaby"
     },
     {
-      "label": "bridge stations going dark one by one with quiet clicks",
-      "text": "bridge stations going dark one by one with quiet clicks, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "bridge stations going dark one by one with quiet clicks, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Last Console"
     }
   ]
 }

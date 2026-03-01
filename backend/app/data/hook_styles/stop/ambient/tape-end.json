@@ -1,27 +1,26 @@
 {
   "id": "amb-stop-tape-end",
   "name": "Tape End",
-  "description": "Analog tape running out with warm flutter and stop",
   "prompts": [
     {
-      "label": "analog tape reaching end with warm flutter and stop",
-      "text": "analog tape reaching end with warm flutter and stop, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay"
+      "text": "analog tape reaching end with warm flutter and stop, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
+      "alias": "Oxide Whisper"
     },
     {
-      "label": "cassette mechanism clicking to halt with tape hiss fade",
-      "text": "cassette mechanism clicking to halt with tape hiss fade, tape-saturated warmth, granular piano cloud, candlelight flickering softly, 44.1kHz, stereo, high-quality, wide, smooth fade out"
+      "text": "cassette mechanism clicking to halt with tape hiss fade, tape-saturated warmth, granular piano cloud, candlelight flickering softly, 44.1kHz, stereo, high-quality, wide, smooth fade out",
+      "alias": "Worn Cartridge"
     },
     {
-      "label": "reel-to-reel slowing with wobbling pitch descent",
-      "text": "reel-to-reel slowing with wobbling pitch descent, Brian Eno infinite space, reversed cymbal swell, underwater weightlessness, 44.1kHz, stereo, high-quality, lush, sustained resonance"
+      "text": "reel-to-reel slowing with wobbling pitch descent, Brian Eno infinite space, reversed cymbal swell, underwater weightlessness, 44.1kHz, stereo, high-quality, lush, sustained resonance",
+      "alias": "Drowsy Reel"
     },
     {
-      "label": "magnetic oxide whisper trailing into leader silence",
-      "text": "magnetic oxide whisper trailing into leader silence, abandoned hall echo, harmonium drone with tape wobble, drifting between sleep and waking, 44.1kHz, stereo, high-quality, wide, with natural decay"
+      "text": "magnetic oxide whisper trailing into leader silence, abandoned hall echo, harmonium drone with tape wobble, drifting between sleep and waking, 44.1kHz, stereo, high-quality, wide, with natural decay",
+      "alias": "Leader Silence"
     },
     {
-      "label": "vintage deck motor winding down with warm saturation",
-      "text": "vintage deck motor winding down with warm saturation, lo-fi cassette hiss and bloom, shimmer reverb pad wash, moonlight through frosted glass, 44.1kHz, stereo, high-quality, lush, smooth fade out"
+      "text": "vintage deck motor winding down with warm saturation, lo-fi cassette hiss and bloom, shimmer reverb pad wash, moonlight through frosted glass, 44.1kHz, stereo, high-quality, lush, smooth fade out",
+      "alias": "Warm Saturation"
     }
   ]
 }

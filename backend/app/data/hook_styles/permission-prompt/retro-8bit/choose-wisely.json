@@ -1,27 +1,26 @@
 {
   "id": "8bit-permission-prompt-choose-wisely",
   "name": "Choose Wisely",
-  "description": "RPG dialogue choice appearing with dramatic tone",
   "prompts": [
     {
-      "label": "RPG dialogue choice appearing with dramatic chiptune tone",
-      "text": "RPG dialogue choice appearing with dramatic chiptune tone, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "RPG dialogue choice appearing with dramatic chiptune tone, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Fate's Cursor"
     },
     {
-      "label": "pixel menu cursor blinking with 8-bit decision sound",
-      "text": "pixel menu cursor blinking with 8-bit decision sound, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "pixel menu cursor blinking with 8-bit decision sound, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Neon Crossroads"
     },
     {
-      "label": "retro text box opening with square wave question phrase",
-      "text": "retro text box opening with square wave question phrase, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance"
+      "text": "retro text box opening with square wave question phrase, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance",
+      "alias": "Pixelated Riddle"
     },
     {
-      "label": "NES dialogue branch with ascending choice melody",
-      "text": "NES dialogue branch with ascending choice melody, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "NES dialogue branch with ascending choice melody, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Dungeon Fork"
     },
     {
-      "label": "bitcrushed crossroads moment with suspenseful arpeggio",
-      "text": "bitcrushed crossroads moment with suspenseful arpeggio, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "bitcrushed crossroads moment with suspenseful arpeggio, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Bonus Gate"
     }
   ]
 }

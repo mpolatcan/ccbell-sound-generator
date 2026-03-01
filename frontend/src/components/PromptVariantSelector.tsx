@@ -1,7 +1,14 @@
 import { memo, useRef, useEffect } from 'react'
 import { Textarea } from '@/components/ui/textarea'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select'
 import { RotateCcw } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { getPromptAlias } from '@/lib/utils'
 import type { PromptEntry } from '@/types'
 
 interface PromptVariantSelectorProps {
@@ -39,36 +46,28 @@ export const PromptVariantSelector = memo(function PromptVariantSelector({
 
   return (
     <div className="space-y-2.5">
-      {/* Prompt variant list */}
-      <div className="space-y-1">
-        {prompts.map((prompt, i) => (
-          <button
-            key={i}
-            type="button"
-            className={cn(
-              'w-full text-left px-3 py-1.5 rounded-md text-xs transition-all duration-200',
-              'border cursor-pointer',
-              i === selectedIndex
-                ? 'border-primary/50 bg-primary/10 text-primary'
-                : 'border-transparent bg-muted/15 text-muted-foreground hover:bg-muted/30 hover:text-foreground'
-            )}
-            onClick={() => {
-              if (i !== selectedIndex) {
-                onSelectIndex(i)
-                onEditPrompt(null)
-              }
-            }}
-          >
-            <span className="flex items-center gap-2">
-              <span className={cn(
-                'h-1.5 w-1.5 rounded-full shrink-0 transition-colors duration-200',
-                i === selectedIndex ? 'bg-primary' : 'bg-muted-foreground/30'
-              )} />
-              <span className="truncate">{prompt.label}</span>
-            </span>
-          </button>
-        ))}
-      </div>
+      {/* Prompt variant dropdown */}
+      <Select
+        value={String(selectedIndex)}
+        onValueChange={(value) => {
+          const idx = Number(value)
+          if (idx !== selectedIndex) {
+            onSelectIndex(idx)
+            onEditPrompt(null)
+          }
+        }}
+      >
+        <SelectTrigger>
+          <SelectValue placeholder="Select a prompt variant..." />
+        </SelectTrigger>
+        <SelectContent>
+          {prompts.map((prompt, i) => (
+            <SelectItem key={i} value={String(i)}>
+              {getPromptAlias(prompt)}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
 
       {/* Editable prompt textarea */}
       <div className="relative">

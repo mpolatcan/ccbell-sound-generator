@@ -1,27 +1,26 @@
 {
   "id": "amb-session-start-morning-mist",
   "name": "Morning Mist",
-  "description": "Pre-dawn atmosphere slowly brightening",
   "prompts": [
     {
-      "label": "pre-dawn atmospheric mist slowly brightening with warm lift",
-      "text": "pre-dawn atmospheric mist slowly brightening with warm lift, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay"
+      "text": "pre-dawn atmospheric mist slowly brightening with warm lift, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
+      "alias": "Cathedral Haze"
     },
     {
-      "label": "morning fog layer illuminating from within with golden tone",
-      "text": "morning fog layer illuminating from within with golden tone, tape-saturated warmth, granular piano cloud, candlelight flickering softly, 44.1kHz, stereo, high-quality, wide, smooth fade out"
+      "text": "morning fog layer illuminating from within with golden tone, tape-saturated warmth, granular piano cloud, candlelight flickering softly, 44.1kHz, stereo, high-quality, wide, smooth fade out",
+      "alias": "Golden Gauze"
     },
     {
-      "label": "early hour ambience transitioning from dark to light",
-      "text": "early hour ambience transitioning from dark to light, Brian Eno infinite space, reversed cymbal swell, underwater weightlessness, 44.1kHz, stereo, high-quality, lush, sustained resonance"
+      "text": "early hour ambience transitioning from dark to light, Brian Eno infinite space, reversed cymbal swell, underwater weightlessness, 44.1kHz, stereo, high-quality, lush, sustained resonance",
+      "alias": "Liminal Drift"
     },
     {
-      "label": "dew point atmosphere warming with expanding reverb bloom",
-      "text": "dew point atmosphere warming with expanding reverb bloom, abandoned hall echo, harmonium drone with tape wobble, drifting between sleep and waking, 44.1kHz, stereo, high-quality, wide, with natural decay"
+      "text": "dew point atmosphere warming with expanding reverb bloom, abandoned hall echo, harmonium drone with tape wobble, drifting between sleep and waking, 44.1kHz, stereo, high-quality, wide, with natural decay",
+      "alias": "Drowsy Bloom"
     },
     {
-      "label": "silent landscape receiving first rays as ambient tone opens",
-      "text": "silent landscape receiving first rays as ambient tone opens, lo-fi cassette hiss and bloom, shimmer reverb pad wash, moonlight through frosted glass, 44.1kHz, stereo, high-quality, lush, smooth fade out"
+      "text": "silent landscape receiving first rays as ambient tone opens, lo-fi cassette hiss and bloom, shimmer reverb pad wash, moonlight through frosted glass, 44.1kHz, stereo, high-quality, lush, smooth fade out",
+      "alias": "Cassette Daybreak"
     }
   ]
 }

@@ -1,27 +1,26 @@
 {
   "id": "nature-pre-tool-use-bowstring-taut",
   "name": "Bowstring Taut",
-  "description": "Archer drawing natural sinew bowstring tight",
   "prompts": [
     {
-      "label": "archer drawing natural sinew bowstring to full tension",
-      "text": "archer drawing natural sinew bowstring to full tension, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay"
+      "text": "archer drawing natural sinew bowstring to full tension, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
+      "alias": "Drawn Moonlight"
     },
     {
-      "label": "wooden longbow creaking under maximum draw weight",
-      "text": "wooden longbow creaking under maximum draw weight, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out"
+      "text": "wooden longbow creaking under maximum draw weight, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out",
+      "alias": "Willow Tension"
     },
     {
-      "label": "gut string stretching taut with trembling potential energy",
-      "text": "gut string stretching taut with trembling potential energy, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance"
+      "text": "gut string stretching taut with trembling potential energy, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance",
+      "alias": "Trembling Reed"
     },
     {
-      "label": "yew wood bending with organic creaking tension",
-      "text": "yew wood bending with organic creaking tension, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay"
+      "text": "yew wood bending with organic creaking tension, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay",
+      "alias": "Ancient Curve"
     },
     {
-      "label": "feathered arrow nocked and ready with vibrating anticipation",
-      "text": "feathered arrow nocked and ready with vibrating anticipation, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out"
+      "text": "feathered arrow nocked and ready with vibrating anticipation, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out",
+      "alias": "Feathered Anticipation"
     }
   ]
 }

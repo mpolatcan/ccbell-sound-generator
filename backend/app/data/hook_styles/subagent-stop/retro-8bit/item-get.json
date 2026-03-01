@@ -1,27 +1,26 @@
 {
   "id": "8bit-subagent-stop-item-get",
   "name": "Item Get",
-  "description": "Small item acquired with cheerful pickup sound",
   "prompts": [
     {
-      "label": "small item acquired with cheerful 8-bit pickup jingle",
-      "text": "small item acquired with cheerful 8-bit pickup jingle, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "small item acquired with cheerful 8-bit pickup jingle, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Loot Bloom"
     },
     {
-      "label": "inventory item collected with quick chiptune flourish",
-      "text": "inventory item collected with quick chiptune flourish, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "inventory item collected with quick chiptune flourish, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Sprite Harvest"
     },
     {
-      "label": "pixel treasure chest opening with brief fanfare",
-      "text": "pixel treasure chest opening with brief fanfare, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance"
+      "text": "pixel treasure chest opening with brief fanfare, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance",
+      "alias": "Pixel Windfall"
     },
     {
-      "label": "retro power-up grabbed with ascending square wave trill",
-      "text": "retro power-up grabbed with ascending square wave trill, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "retro power-up grabbed with ascending square wave trill, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Cartridge Thrill"
     },
     {
-      "label": "NES item get with short triumphant pulse melody",
-      "text": "NES item get with short triumphant pulse melody, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "NES item get with short triumphant pulse melody, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Trophy Glow"
     }
   ]
 }

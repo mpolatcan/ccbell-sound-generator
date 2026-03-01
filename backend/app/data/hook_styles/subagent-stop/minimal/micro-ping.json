@@ -1,27 +1,26 @@
 {
   "id": "min-subagent-stop-micro-ping",
   "name": "Micro Ping",
-  "description": "Ultra-small precise ping with zero tail",
   "prompts": [
     {
-      "label": "ultra-small precise ping with zero decay tail",
-      "text": "ultra-small precise ping with zero decay tail, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+      "text": "ultra-small precise ping with zero decay tail, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+      "alias": "Crystal Atom"
     },
     {
-      "label": "atomic click with mathematical precision",
-      "text": "atomic click with mathematical precision, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+      "text": "atomic click with mathematical precision, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out",
+      "alias": "Silver Point"
     },
     {
-      "label": "clean micro-tone dot with instant release",
-      "text": "clean micro-tone dot with instant release, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+      "text": "clean micro-tone dot with instant release, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance",
+      "alias": "Prism Tick"
     },
     {
-      "label": "single sample of crystal frequency",
-      "text": "single sample of crystal frequency, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+      "text": "single sample of crystal frequency, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay",
+      "alias": "Glass Seed"
     },
     {
-      "label": "point-source resonance with clinical brevity",
-      "text": "point-source resonance with clinical brevity, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+      "text": "point-source resonance with clinical brevity, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out",
+      "alias": "Ice Needle"
     }
   ]
 }

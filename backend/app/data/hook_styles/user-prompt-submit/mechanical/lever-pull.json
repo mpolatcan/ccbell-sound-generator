@@ -1,27 +1,26 @@
 {
   "id": "mech-user-prompt-submit-lever-pull",
   "name": "Lever Pull",
-  "description": "Heavy lever pulled to activate mechanism",
   "prompts": [
     {
-      "label": "heavy lever pulled firmly to activate launching mechanism",
-      "text": "heavy lever pulled firmly to activate launching mechanism, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "heavy lever pulled firmly to activate launching mechanism, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Iron Resolve"
     },
     {
-      "label": "industrial control lever engaging with mechanical authority",
-      "text": "industrial control lever engaging with mechanical authority, Victorian clocktower, ratchet wrench click, oiled-machine rhythm, 44.1kHz, stereo, high-quality, impactful, smooth fade out"
+      "text": "industrial control lever engaging with mechanical authority, Victorian clocktower, ratchet wrench click, oiled-machine rhythm, 44.1kHz, stereo, high-quality, impactful, smooth fade out",
+      "alias": "Oiled Authority"
     },
     {
-      "label": "brass handle pulled with gear engagement and spring release",
-      "text": "brass handle pulled with gear engagement and spring release, locomotive engine room, tempered steel spring release, riveted iron solidity, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "brass handle pulled with gear engagement and spring release, locomotive engine room, tempered steel spring release, riveted iron solidity, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Locomotive Conviction"
     },
     {
-      "label": "railway signal lever changing position with weighted clunk",
-      "text": "railway signal lever changing position with weighted clunk, blacksmith anvil yard, cast iron lever thrown, pneumatic power hiss, 44.1kHz, stereo, high-quality, impactful, with natural decay"
+      "text": "railway signal lever changing position with weighted clunk, blacksmith anvil yard, cast iron lever thrown, pneumatic power hiss, 44.1kHz, stereo, high-quality, impactful, with natural decay",
+      "alias": "Forged Decision"
     },
     {
-      "label": "factory process initiated by decisive operator pull",
-      "text": "factory process initiated by decisive operator pull, submarine pressure hull, copper pipe resonance ping, precision clockwork ticking, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "factory process initiated by decisive operator pull, submarine pressure hull, copper pipe resonance ping, precision clockwork ticking, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Precision Mandate"
     }
   ]
 }

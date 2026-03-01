@@ -1,27 +1,26 @@
 {
   "id": "scifi-permission-prompt-scan-alert",
   "name": "Scan Alert",
-  "description": "Sensor detecting unknown object requiring analysis",
   "prompts": [
     {
-      "label": "sensor array detecting unknown object with alert ping",
-      "text": "sensor array detecting unknown object with alert ping, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "sensor array detecting unknown object with alert ping, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Unknown Signature"
     },
     {
-      "label": "radar sweep highlighting unidentified contact",
-      "text": "radar sweep highlighting unidentified contact, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+      "text": "radar sweep highlighting unidentified contact, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out",
+      "alias": "Ghost Blip"
     },
     {
-      "label": "tactical display flashing with questioning sensor tone",
-      "text": "tactical display flashing with questioning sensor tone, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "tactical display flashing with questioning sensor tone, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Cold Anomaly"
     },
     {
-      "label": "deep space scanner requesting classification input",
-      "text": "deep space scanner requesting classification input, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+      "text": "deep space scanner requesting classification input, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay",
+      "alias": "Plasma Riddle"
     },
     {
-      "label": "anomaly detection system chirping for operator attention",
-      "text": "anomaly detection system chirping for operator attention, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "anomaly detection system chirping for operator attention, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Orbital Tremor"
     }
   ]
 }

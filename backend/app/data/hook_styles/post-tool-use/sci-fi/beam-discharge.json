@@ -1,27 +1,26 @@
 {
   "id": "scifi-post-tool-use-beam-discharge",
   "name": "Beam Discharge",
-  "description": "Energy weapon releasing stored charge",
   "prompts": [
     {
-      "label": "energy weapon releasing stored charge with bright discharge",
-      "text": "energy weapon releasing stored charge with bright discharge, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "energy weapon releasing stored charge with bright discharge, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Nova Burst"
     },
     {
-      "label": "laser firing with sharp crystalline burst",
-      "text": "laser firing with sharp crystalline burst, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+      "text": "laser firing with sharp crystalline burst, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out",
+      "alias": "Neon Afterglow"
     },
     {
-      "label": "particle beam completing emission with cooling hiss",
-      "text": "particle beam completing emission with cooling hiss, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "particle beam completing emission with cooling hiss, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Cold Flare"
     },
     {
-      "label": "capacitor bank emptying with sudden electromagnetic release",
-      "text": "capacitor bank emptying with sudden electromagnetic release, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+      "text": "capacitor bank emptying with sudden electromagnetic release, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay",
+      "alias": "Plasma Exhale"
     },
     {
-      "label": "photon torpedo detonating at coordinates with flash",
-      "text": "photon torpedo detonating at coordinates with flash, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "photon torpedo detonating at coordinates with flash, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Stellar Cascade"
     }
   ]
 }

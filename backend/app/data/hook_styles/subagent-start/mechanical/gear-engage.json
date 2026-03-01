@@ -1,27 +1,26 @@
 {
   "id": "mech-subagent-start-gear-engage",
   "name": "Gear Engage",
-  "description": "New gear meshing into running mechanism",
   "prompts": [
     {
-      "label": "new gear teeth meshing into running clockwork mechanism",
-      "text": "new gear teeth meshing into running clockwork mechanism, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "new gear teeth meshing into running clockwork mechanism, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Brass Interlock"
     },
     {
-      "label": "additional cog engaging with existing drive train",
-      "text": "additional cog engaging with existing drive train, Victorian clocktower, ratchet wrench click, oiled-machine rhythm, 44.1kHz, stereo, high-quality, impactful, smooth fade out"
+      "text": "additional cog engaging with existing drive train, Victorian clocktower, ratchet wrench click, oiled-machine rhythm, 44.1kHz, stereo, high-quality, impactful, smooth fade out",
+      "alias": "Ratchet Harmony"
     },
     {
-      "label": "brass gear dropping into position with mechanical catch",
-      "text": "brass gear dropping into position with mechanical catch, locomotive engine room, tempered steel spring release, riveted iron solidity, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "brass gear dropping into position with mechanical catch, locomotive engine room, tempered steel spring release, riveted iron solidity, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Iron Embrace"
     },
     {
-      "label": "secondary mechanism coupling with primary drive shaft",
-      "text": "secondary mechanism coupling with primary drive shaft, blacksmith anvil yard, cast iron lever thrown, pneumatic power hiss, 44.1kHz, stereo, high-quality, impactful, with natural decay"
+      "text": "secondary mechanism coupling with primary drive shaft, blacksmith anvil yard, cast iron lever thrown, pneumatic power hiss, 44.1kHz, stereo, high-quality, impactful, with natural decay",
+      "alias": "Forged Alliance"
     },
     {
-      "label": "differential gear set activating with synchronized mesh",
-      "text": "differential gear set activating with synchronized mesh, submarine pressure hull, copper pipe resonance ping, precision clockwork ticking, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "differential gear set activating with synchronized mesh, submarine pressure hull, copper pipe resonance ping, precision clockwork ticking, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Clockwork Tandem"
     }
   ]
 }

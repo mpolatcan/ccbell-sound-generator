@@ -1,27 +1,26 @@
 {
   "id": "jazz-session-start-count-in",
   "name": "Count In",
-  "description": "Drummer counting the band in with stick clicks",
   "prompts": [
     {
-      "label": "drummer counting the band in with confident stick clicks",
-      "text": "drummer counting the band in with confident stick clicks, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay"
+      "text": "drummer counting the band in with confident stick clicks, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
+      "alias": "Midnight Countdown"
     },
     {
-      "label": "jazz trio getting the tempo with four click count",
-      "text": "jazz trio getting the tempo with four click count, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out"
+      "text": "jazz trio getting the tempo with four click count, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out",
+      "alias": "Blue Note Tempo"
     },
     {
-      "label": "bandleader snapping fingers to set the groove",
-      "text": "bandleader snapping fingers to set the groove, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance"
+      "text": "bandleader snapping fingers to set the groove, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance",
+      "alias": "Velvet Snap"
     },
     {
-      "label": "hi-hat clicking steady pulse before the downbeat",
-      "text": "hi-hat clicking steady pulse before the downbeat, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay"
+      "text": "hi-hat clicking steady pulse before the downbeat, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay",
+      "alias": "Bossa Heartbeat"
     },
     {
-      "label": "bass player thumping root note to anchor the key",
-      "text": "bass player thumping root note to anchor the key, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out"
+      "text": "bass player thumping root note to anchor the key, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out",
+      "alias": "Midnight Anchor"
     }
   ]
 }

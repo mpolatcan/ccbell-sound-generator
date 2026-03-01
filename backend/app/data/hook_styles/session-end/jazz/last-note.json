@@ -1,27 +1,26 @@
 {
   "id": "jazz-session-end-last-note",
   "name": "Last Note",
-  "description": "Final sustained note before the band goes quiet",
   "prompts": [
     {
-      "label": "final sustained jazz note hanging before the band goes quiet",
-      "text": "final sustained jazz note hanging before the band goes quiet, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay"
+      "text": "final sustained jazz note hanging before the band goes quiet, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
+      "alias": "Hanging Blue"
     },
     {
-      "label": "trumpet holding last pitch with warm vibrato fade",
-      "text": "trumpet holding last pitch with warm vibrato fade, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out"
+      "text": "trumpet holding last pitch with warm vibrato fade, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out",
+      "alias": "Vibrato Dusk"
     },
     {
-      "label": "piano sustain pedal releasing final chord into silence",
-      "text": "piano sustain pedal releasing final chord into silence, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance"
+      "text": "piano sustain pedal releasing final chord into silence, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance",
+      "alias": "Bourbon Resonance"
     },
     {
-      "label": "saxophone breath trailing off at end of ballad",
-      "text": "saxophone breath trailing off at end of ballad, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay"
+      "text": "saxophone breath trailing off at end of ballad, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay",
+      "alias": "Ballad's End"
     },
     {
-      "label": "cymbal ring decaying naturally to complete stillness",
-      "text": "cymbal ring decaying naturally to complete stillness, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out"
+      "text": "cymbal ring decaying naturally to complete stillness, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out",
+      "alias": "Golden Decay"
     }
   ]
 }

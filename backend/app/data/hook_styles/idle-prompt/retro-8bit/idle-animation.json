@@ -1,27 +1,26 @@
 {
   "id": "8bit-idle-prompt-idle-animation",
   "name": "Idle Animation",
-  "description": "Character fidgeting in place waiting for input",
   "prompts": [
     {
-      "label": "pixel character idle animation loop with soft chiptune pulse",
-      "text": "pixel character idle animation loop with soft chiptune pulse, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "pixel character idle animation loop with soft chiptune pulse, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Pixel Daydream"
     },
     {
-      "label": "8-bit sprite tapping foot with rhythmic square wave blip",
-      "text": "8-bit sprite tapping foot with rhythmic square wave blip, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "8-bit sprite tapping foot with rhythmic square wave blip, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Joystick Reverie"
     },
     {
-      "label": "retro game waiting screen with gentle looping melody",
-      "text": "retro game waiting screen with gentle looping melody, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance"
+      "text": "retro game waiting screen with gentle looping melody, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance",
+      "alias": "Sprite Lullaby"
     },
     {
-      "label": "NES character blinking animation with periodic chiptune tick",
-      "text": "NES character blinking animation with periodic chiptune tick, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "NES character blinking animation with periodic chiptune tick, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Cartridge Twilight"
     },
     {
-      "label": "pixel hero looking around impatiently with 8-bit shuffling sound",
-      "text": "pixel hero looking around impatiently with 8-bit shuffling sound, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "pixel hero looking around impatiently with 8-bit shuffling sound, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Arcade Siesta"
     }
   ]
 }

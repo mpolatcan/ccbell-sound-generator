@@ -1,27 +1,26 @@
 {
   "id": "8bit-session-end-credits-roll",
   "name": "Credits Roll",
-  "description": "End credits scrolling with grateful chiptune melody",
   "prompts": [
     {
-      "label": "end credits scrolling with grateful chiptune melody",
-      "text": "end credits scrolling with grateful chiptune melody, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "end credits scrolling with grateful chiptune melody, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Pixel Curtain Call"
     },
     {
-      "label": "8-bit credits theme playing with warm square wave harmony",
-      "text": "8-bit credits theme playing with warm square wave harmony, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "8-bit credits theme playing with warm square wave harmony, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Warm Cartridge Glow"
     },
     {
-      "label": "pixel names scrolling up with reflective bitcrushed tune",
-      "text": "pixel names scrolling up with reflective bitcrushed tune, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance"
+      "text": "pixel names scrolling up with reflective bitcrushed tune, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance",
+      "alias": "Grateful Scroll"
     },
     {
-      "label": "NES ending sequence with bittersweet pulse wave melody",
-      "text": "NES ending sequence with bittersweet pulse wave melody, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "NES ending sequence with bittersweet pulse wave melody, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Bittersweet Pulse"
     },
     {
-      "label": "retro game complete screen with serene chiptune farewell",
-      "text": "retro game complete screen with serene chiptune farewell, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "retro game complete screen with serene chiptune farewell, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Chiptune Epilogue"
     }
   ]
 }

@@ -1,27 +1,26 @@
 {
   "id": "8bit-pre-tool-use-ready-set",
   "name": "Ready Set",
-  "description": "Countdown before action with anticipatory blips",
   "prompts": [
     {
-      "label": "countdown before action with anticipatory 8-bit blips",
-      "text": "countdown before action with anticipatory 8-bit blips, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "countdown before action with anticipatory 8-bit blips, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Starting Grid Flicker"
     },
     {
-      "label": "retro race start countdown with three chiptune beeps",
-      "text": "retro race start countdown with three chiptune beeps, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "retro race start countdown with three chiptune beeps, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Neon Countdown"
     },
     {
-      "label": "pixel traffic light changing with square wave ready signals",
-      "text": "pixel traffic light changing with square wave ready signals, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance"
+      "text": "pixel traffic light changing with square wave ready signals, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance",
+      "alias": "Quarter Drop"
     },
     {
-      "label": "NES pre-action pause with tense bitcrushed buildup",
-      "text": "NES pre-action pause with tense bitcrushed buildup, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "NES pre-action pause with tense bitcrushed buildup, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Joystick Tension"
     },
     {
-      "label": "8-bit starting line tension with accelerating pulse pattern",
-      "text": "8-bit starting line tension with accelerating pulse pattern, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "8-bit starting line tension with accelerating pulse pattern, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Turbo Spark"
     }
   ]
 }

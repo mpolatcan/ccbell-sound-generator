@@ -1,27 +1,26 @@
 {
   "id": "8bit-permission-prompt-question-block",
   "name": "Question Block",
-  "description": "Mystery block hovering with curious pulsing glow",
   "prompts": [
     {
-      "label": "mystery question block pulsing with curious chiptune glow",
-      "text": "mystery question block pulsing with curious chiptune glow, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "mystery question block pulsing with curious chiptune glow, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Golden Mystery"
     },
     {
-      "label": "pixel question mark bouncing with 8-bit anticipation",
-      "text": "pixel question mark bouncing with 8-bit anticipation, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "pixel question mark bouncing with 8-bit anticipation, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Lucky Shimmer"
     },
     {
-      "label": "retro mystery item hovering with square wave shimmer",
-      "text": "retro mystery item hovering with square wave shimmer, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance"
+      "text": "retro mystery item hovering with square wave shimmer, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance",
+      "alias": "Hidden Treasure"
     },
     {
-      "label": "NES question block cycling with blinking tone pattern",
-      "text": "NES question block cycling with blinking tone pattern, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "NES question block cycling with blinking tone pattern, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Blinking Rune"
     },
     {
-      "label": "hidden item reveal waiting for player input with chiptune suspense",
-      "text": "hidden item reveal waiting for player input with chiptune suspense, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "hidden item reveal waiting for player input with chiptune suspense, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Pixel Suspense"
     }
   ]
 }

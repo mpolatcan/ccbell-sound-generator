@@ -142,8 +142,8 @@ class TieredSoundCharacters(BaseModel):
 class PromptEntry(BaseModel):
     """A single pre-composed prompt variant."""
 
-    label: str
     text: str
+    alias: str | None = None
 
 
 class SoundStylePreset(BaseModel):
@@ -151,7 +151,6 @@ class SoundStylePreset(BaseModel):
 
     id: str
     name: str
-    description: str
     prompts: list[PromptEntry]
 
 

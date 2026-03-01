@@ -1,27 +1,26 @@
 {
   "id": "8bit-session-start-insert-coin",
   "name": "Insert Coin",
-  "description": "Arcade cabinet attracting players with coin prompt",
   "prompts": [
     {
-      "label": "arcade cabinet coin slot flashing with beckoning chiptune melody",
-      "text": "arcade cabinet coin slot flashing with beckoning chiptune melody, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "arcade cabinet coin slot flashing with beckoning chiptune melody, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Pixel Overture"
     },
     {
-      "label": "insert coin prompt pulsing with 8-bit anticipation jingle",
-      "text": "insert coin prompt pulsing with 8-bit anticipation jingle, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "insert coin prompt pulsing with 8-bit anticipation jingle, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Neon Quarter"
     },
     {
-      "label": "retro arcade attract mode with inviting square wave tune",
-      "text": "retro arcade attract mode with inviting square wave tune, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance"
+      "text": "retro arcade attract mode with inviting square wave tune, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance",
+      "alias": "Joystick Serenade"
     },
     {
-      "label": "coin mechanism accepting quarter with satisfying mechanical bling",
-      "text": "coin mechanism accepting quarter with satisfying mechanical bling, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "coin mechanism accepting quarter with satisfying mechanical bling, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Brass Token Drop"
     },
     {
-      "label": "arcade startup with CRT buzz and attract mode melody",
-      "text": "arcade startup with CRT buzz and attract mode melody, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "arcade startup with CRT buzz and attract mode melody, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Cathode Glow"
     }
   ]
 }

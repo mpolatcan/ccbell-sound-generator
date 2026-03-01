@@ -1,27 +1,26 @@
 {
   "id": "jazz-session-end-goodnight",
   "name": "Goodnight",
-  "description": "Warm farewell from the stage with gentle applause",
   "prompts": [
     {
-      "label": "warm goodnight from the stage with gentle audience applause",
-      "text": "warm goodnight from the stage with gentle audience applause, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay"
+      "text": "warm goodnight from the stage with gentle audience applause, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
+      "alias": "Velvet Bow"
     },
     {
-      "label": "jazz musician saying thanks with final muted horn phrase",
-      "text": "jazz musician saying thanks with final muted horn phrase, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out"
+      "text": "jazz musician saying thanks with final muted horn phrase, Blue Note session warmth, walking bass string pluck, last-set-of-the-night mellowness, 44.1kHz, stereo, high-quality, analog warmth, smooth fade out",
+      "alias": "Muted Gratitude"
     },
     {
-      "label": "crowd murmuring appreciatively as performers take a bow",
-      "text": "crowd murmuring appreciatively as performers take a bow, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance"
+      "text": "crowd murmuring appreciatively as performers take a bow, velvet curtain lounge, vibraphone mallet on metal bar, bourbon warmth on the tongue, 44.1kHz, stereo, high-quality, rich, sustained resonance",
+      "alias": "Warm Ovation"
     },
     {
-      "label": "instrument cases clicking shut backstage",
-      "text": "instrument cases clicking shut backstage, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay"
+      "text": "instrument cases clicking shut backstage, bossa nova beachside patio, wire brushes swirling on snare head, slow-nod groove, 44.1kHz, stereo, high-quality, analog warmth, with natural decay",
+      "alias": "Backstage Hush"
     },
     {
-      "label": "footsteps leaving empty stage with satisfied echo",
-      "text": "footsteps leaving empty stage with satisfied echo, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out"
+      "text": "footsteps leaving empty stage with satisfied echo, cool jazz after-hours session, Rhodes electric piano with tremolo, spotlight-on-the-soloist focus, 44.1kHz, stereo, high-quality, rich, smooth fade out",
+      "alias": "Empty Stage Echo"
     }
   ]
 }

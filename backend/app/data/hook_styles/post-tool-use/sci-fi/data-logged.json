@@ -1,27 +1,26 @@
 {
   "id": "scifi-post-tool-use-data-logged",
   "name": "Data Logged",
-  "description": "Scan results saved with digital confirmation",
   "prompts": [
     {
-      "label": "scan results saved to database with digital confirmation ping",
-      "text": "scan results saved to database with digital confirmation ping, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "scan results saved to database with digital confirmation ping, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Crystal Archive"
     },
     {
-      "label": "analysis complete with data written to crystal storage",
-      "text": "analysis complete with data written to crystal storage, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+      "text": "analysis complete with data written to crystal storage, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out",
+      "alias": "Hologram Sealed"
     },
     {
-      "label": "information processed and logged with quick electronic stamp",
-      "text": "information processed and logged with quick electronic stamp, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "information processed and logged with quick electronic stamp, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Void Imprint"
     },
     {
-      "label": "quantum memory banks accepting new data with soft click",
-      "text": "quantum memory banks accepting new data with soft click, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+      "text": "quantum memory banks accepting new data with soft click, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay",
+      "alias": "Phantom Inscription"
     },
     {
-      "label": "holographic file closing with compressed whoosh",
-      "text": "holographic file closing with compressed whoosh, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "holographic file closing with compressed whoosh, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Orbital Bookmark"
     }
   ]
 }

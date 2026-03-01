@@ -1,27 +1,26 @@
 {
   "id": "min-session-end-silent-close",
   "name": "Silent Close",
-  "description": "Door of sound closing without any noise at all",
   "prompts": [
     {
-      "label": "door of sound closing with perfectly silent precision",
-      "text": "door of sound closing with perfectly silent precision, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+      "text": "door of sound closing with perfectly silent precision, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+      "alias": "Invisible Seal"
     },
     {
-      "label": "clean termination of all frequency with surgical cut",
-      "text": "clean termination of all frequency with surgical cut, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+      "text": "clean termination of all frequency with surgical cut, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out",
+      "alias": "Surgical Quiet"
     },
     {
-      "label": "audio boundary snapping shut with zero residual noise",
-      "text": "audio boundary snapping shut with zero residual noise, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+      "text": "audio boundary snapping shut with zero residual noise, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance",
+      "alias": "Clean Horizon"
     },
     {
-      "label": "mathematical function reaching zero crossing cleanly",
-      "text": "mathematical function reaching zero crossing cleanly, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+      "text": "mathematical function reaching zero crossing cleanly, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay",
+      "alias": "Porcelain Equation"
     },
     {
-      "label": "last bit of energy absorbed leaving absolute stillness",
-      "text": "last bit of energy absorbed leaving absolute stillness, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+      "text": "last bit of energy absorbed leaving absolute stillness, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out",
+      "alias": "Perfect Stillness"
     }
   ]
 }

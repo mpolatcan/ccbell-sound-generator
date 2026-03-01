@@ -1,27 +1,26 @@
 {
   "id": "8bit-session-start-title-screen",
   "name": "Title Screen",
-  "description": "Classic game title screen appearing with fanfare",
   "prompts": [
     {
-      "label": "classic game title screen appearing with chiptune fanfare",
-      "text": "classic game title screen appearing with chiptune fanfare, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "classic game title screen appearing with chiptune fanfare, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Pixel Marquee"
     },
     {
-      "label": "8-bit logo reveal with dramatic square wave melody",
-      "text": "8-bit logo reveal with dramatic square wave melody, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "8-bit logo reveal with dramatic square wave melody, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Chiptune Fanfare"
     },
     {
-      "label": "retro game boot with pixel-art title and ascending arpeggio",
-      "text": "retro game boot with pixel-art title and ascending arpeggio, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance"
+      "text": "retro game boot with pixel-art title and ascending arpeggio, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance",
+      "alias": "Pixel Warmth"
     },
     {
-      "label": "NES power-on with CRT warm-up and opening jingle",
-      "text": "NES power-on with CRT warm-up and opening jingle, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "NES power-on with CRT warm-up and opening jingle, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Phosphor Heartbeat"
     },
     {
-      "label": "bitcrushed orchestra hit introducing game title with authority",
-      "text": "bitcrushed orchestra hit introducing game title with authority, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "bitcrushed orchestra hit introducing game title with authority, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Lo-Fi Coronation"
     }
   ]
 }

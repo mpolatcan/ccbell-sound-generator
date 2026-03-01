@@ -1,27 +1,26 @@
 {
   "id": "8bit-stop-power-star",
   "name": "Power Star",
-  "description": "Invincibility star collected with sparkling cascade",
   "prompts": [
     {
-      "label": "power star collected with sparkling bitcrushed cascade",
-      "text": "power star collected with sparkling bitcrushed cascade, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "power star collected with sparkling bitcrushed cascade, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Prismatic Rush"
     },
     {
-      "label": "invincibility theme burst in square wave glory",
-      "text": "invincibility theme burst in square wave glory, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "invincibility theme burst in square wave glory, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Invincible Glow"
     },
     {
-      "label": "shimmering 8-bit power-up with rapid arpeggios",
-      "text": "shimmering 8-bit power-up with rapid arpeggios, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance"
+      "text": "shimmering 8-bit power-up with rapid arpeggios, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance",
+      "alias": "Turbo Shimmer"
     },
     {
-      "label": "pixel rainbow trail with ascending chiptune scales",
-      "text": "pixel rainbow trail with ascending chiptune scales, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "pixel rainbow trail with ascending chiptune scales, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Rainbow Warp"
     },
     {
-      "label": "NES triumph sparkle with layered pulse channels",
-      "text": "NES triumph sparkle with layered pulse channels, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "NES triumph sparkle with layered pulse channels, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Cosmic Bonus"
     }
   ]
 }

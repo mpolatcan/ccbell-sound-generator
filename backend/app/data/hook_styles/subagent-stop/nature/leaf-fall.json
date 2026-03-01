@@ -1,27 +1,26 @@
 {
   "id": "nature-subagent-stop-leaf-fall",
   "name": "Leaf Fall",
-  "description": "Single leaf touching down on soft ground",
   "prompts": [
     {
-      "label": "single leaf floating down to rest on soft forest floor",
-      "text": "single leaf floating down to rest on soft forest floor, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay"
+      "text": "single leaf floating down to rest on soft forest floor, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
+      "alias": "Gilded Flutter"
     },
     {
-      "label": "autumn leaf landing on mossy ground with gentle rustle",
-      "text": "autumn leaf landing on mossy ground with gentle rustle, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out"
+      "text": "autumn leaf landing on mossy ground with gentle rustle, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out",
+      "alias": "October Sigh"
     },
     {
-      "label": "delicate foliage settling after quiet descent",
-      "text": "delicate foliage settling after quiet descent, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance"
+      "text": "delicate foliage settling after quiet descent, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance",
+      "alias": "Featherfall"
     },
     {
-      "label": "papery leaf touching damp earth with whisper",
-      "text": "papery leaf touching damp earth with whisper, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay"
+      "text": "papery leaf touching damp earth with whisper, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay",
+      "alias": "Copper Sigh"
     },
     {
-      "label": "tiny twig snap as leaf comes to rest in undergrowth",
-      "text": "tiny twig snap as leaf comes to rest in undergrowth, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out"
+      "text": "tiny twig snap as leaf comes to rest in undergrowth, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out",
+      "alias": "Mossy Hush"
     }
   ]
 }

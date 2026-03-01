@@ -1,27 +1,26 @@
 {
   "id": "scifi-session-start-warp-drive",
   "name": "Warp Drive",
-  "description": "Faster-than-light engines spooling up for jump",
   "prompts": [
     {
-      "label": "warp drive engines spooling up for faster-than-light jump",
-      "text": "warp drive engines spooling up for faster-than-light jump, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "warp drive engines spooling up for faster-than-light jump, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Starbound Surge"
     },
     {
-      "label": "FTL motivator charging with building harmonic whine",
-      "text": "FTL motivator charging with building harmonic whine, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+      "text": "FTL motivator charging with building harmonic whine, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out",
+      "alias": "Violet Threshold"
     },
     {
-      "label": "hyperspace field generator powering up with swirling energy",
-      "text": "hyperspace field generator powering up with swirling energy, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "hyperspace field generator powering up with swirling energy, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Void Spiral"
     },
     {
-      "label": "spacetime distortion field expanding with rising electromagnetic hum",
-      "text": "spacetime distortion field expanding with rising electromagnetic hum, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+      "text": "spacetime distortion field expanding with rising electromagnetic hum, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay",
+      "alias": "Quantum Horizon"
     },
     {
-      "label": "jump coordinates locked with dramatic acceleration buildup",
-      "text": "jump coordinates locked with dramatic acceleration buildup, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "jump coordinates locked with dramatic acceleration buildup, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Celestial Slingshot"
     }
   ]
 }

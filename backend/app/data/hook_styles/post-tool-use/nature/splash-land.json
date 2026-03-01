@@ -1,27 +1,26 @@
 {
   "id": "nature-post-tool-use-splash-land",
   "name": "Splash Land",
-  "description": "Object completing its fall into water",
   "prompts": [
     {
-      "label": "object completing its fall into water with clean splash",
-      "text": "object completing its fall into water with clean splash, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay"
+      "text": "object completing its fall into water with clean splash, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
+      "alias": "Liquid Resolve"
     },
     {
-      "label": "stone hitting pond surface with satisfying plop",
-      "text": "stone hitting pond surface with satisfying plop, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out"
+      "text": "stone hitting pond surface with satisfying plop, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out",
+      "alias": "Still Water Ring"
     },
     {
-      "label": "fish jumping and landing back with circular ripple splash",
-      "text": "fish jumping and landing back with circular ripple splash, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance"
+      "text": "fish jumping and landing back with circular ripple splash, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance",
+      "alias": "Silver Arc"
     },
     {
-      "label": "frog leaping into stream with crisp water entry",
-      "text": "frog leaping into stream with crisp water entry, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay"
+      "text": "frog leaping into stream with crisp water entry, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay",
+      "alias": "Creek Jewel"
     },
     {
-      "label": "waterfall droplet hitting rock pool below",
-      "text": "waterfall droplet hitting rock pool below, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out"
+      "text": "waterfall droplet hitting rock pool below, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out",
+      "alias": "Mist Chime"
     }
   ]
 }

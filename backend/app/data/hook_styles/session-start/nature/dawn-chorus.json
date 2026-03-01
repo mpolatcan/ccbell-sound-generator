@@ -1,27 +1,26 @@
 {
   "id": "nature-session-start-dawn-chorus",
   "name": "Dawn Chorus",
-  "description": "Morning birds beginning their sunrise symphony",
   "prompts": [
     {
-      "label": "morning birds beginning sunrise symphony in misty forest",
-      "text": "morning birds beginning sunrise symphony in misty forest, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay"
+      "text": "morning birds beginning sunrise symphony in misty forest, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
+      "alias": "Misty Canopy"
     },
     {
-      "label": "dawn chorus swelling with layered birdsong and first light",
-      "text": "dawn chorus swelling with layered birdsong and first light, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out"
+      "text": "dawn chorus swelling with layered birdsong and first light, moss-covered stone garden, rain droplet on broad leaf, sun-warmed earth, 44.1kHz, stereo, high-quality, airy, smooth fade out",
+      "alias": "Sunlit Feathers"
     },
     {
-      "label": "woodland awakening with robin and thrush greeting new day",
-      "text": "woodland awakening with robin and thrush greeting new day, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance"
+      "text": "woodland awakening with robin and thrush greeting new day, bamboo grove in gentle wind, smooth river stones clinking, birdsong tranquility, 44.1kHz, stereo, high-quality, soft, sustained resonance",
+      "alias": "Thrush And Dew"
     },
     {
-      "label": "sunrise painting sky as songbirds build cascading melody",
-      "text": "sunrise painting sky as songbirds build cascading melody, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay"
+      "text": "sunrise painting sky as songbirds build cascading melody, creek bed after summer rain, fingertip-plucked kalimba tine, deep forest solitude, 44.1kHz, stereo, high-quality, airy, with natural decay",
+      "alias": "Golden Trill"
     },
     {
-      "label": "dew-covered meadow coming alive with morning bird orchestra",
-      "text": "dew-covered meadow coming alive with morning bird orchestra, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out"
+      "text": "dew-covered meadow coming alive with morning bird orchestra, meadow with distant thunder, ceramic wind chime in breeze, waterfall mist on skin, 44.1kHz, stereo, high-quality, soft, smooth fade out",
+      "alias": "Meadow Chorus"
     }
   ]
 }

@@ -1,27 +1,26 @@
 {
   "id": "min-post-tool-use-dot-placed",
   "name": "Dot Placed",
-  "description": "Single precise mark made on clean surface",
   "prompts": [
     {
-      "label": "single precise dot placed on perfectly clean surface",
-      "text": "single precise dot placed on perfectly clean surface, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+      "text": "single precise dot placed on perfectly clean surface, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+      "alias": "White Punctum"
     },
     {
-      "label": "ink point touching paper with minimal contact",
-      "text": "ink point touching paper with minimal contact, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+      "text": "ink point touching paper with minimal contact, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out",
+      "alias": "Silk Impression"
     },
     {
-      "label": "pen nib making one exact mark then lifting",
-      "text": "pen nib making one exact mark then lifting, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+      "text": "pen nib making one exact mark then lifting, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance",
+      "alias": "Perfect Period"
     },
     {
-      "label": "mathematical coordinate plotted with zero error",
-      "text": "mathematical coordinate plotted with zero error, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+      "text": "mathematical coordinate plotted with zero error, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay",
+      "alias": "Origin Mark"
     },
     {
-      "label": "single pixel of work completed in vast empty canvas",
-      "text": "single pixel of work completed in vast empty canvas, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+      "text": "single pixel of work completed in vast empty canvas, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out",
+      "alias": "Snow Atom"
     }
   ]
 }

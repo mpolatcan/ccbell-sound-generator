@@ -1,27 +1,26 @@
 {
   "id": "min-post-tool-use-tap-done",
   "name": "Tap Done",
-  "description": "One clean tap confirming completion",
   "prompts": [
     {
-      "label": "one clean precise tap confirming task completion",
-      "text": "one clean precise tap confirming task completion, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+      "text": "one clean precise tap confirming task completion, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+      "alias": "Marble Touch"
     },
     {
-      "label": "fingertip touching surface once with finality",
-      "text": "fingertip touching surface once with finality, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+      "text": "fingertip touching surface once with finality, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out",
+      "alias": "Glass Finality"
     },
     {
-      "label": "minimal percussion point marking done with clarity",
-      "text": "minimal percussion point marking done with clarity, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+      "text": "minimal percussion point marking done with clarity, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance",
+      "alias": "Paper Silence"
     },
     {
-      "label": "porcelain struck once at exact center",
-      "text": "porcelain struck once at exact center, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+      "text": "porcelain struck once at exact center, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay",
+      "alias": "Bone White"
     },
     {
-      "label": "glass contact point with instant clean release",
-      "text": "glass contact point with instant clean release, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+      "text": "glass contact point with instant clean release, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out",
+      "alias": "Still Point"
     }
   ]
 }

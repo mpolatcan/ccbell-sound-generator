@@ -1,27 +1,26 @@
 {
   "id": "scifi-pre-tool-use-beam-charge",
   "name": "Beam Charge",
-  "description": "Energy weapon charging up before discharge",
   "prompts": [
     {
-      "label": "energy weapon charging up with building plasma whine",
-      "text": "energy weapon charging up with building plasma whine, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "energy weapon charging up with building plasma whine, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Plasma Dawn"
     },
     {
-      "label": "laser capacitor accumulating power with rising frequency",
-      "text": "laser capacitor accumulating power with rising frequency, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+      "text": "laser capacitor accumulating power with rising frequency, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out",
+      "alias": "Neon Coil Rising"
     },
     {
-      "label": "particle beam accelerator spooling with intense energy buildup",
-      "text": "particle beam accelerator spooling with intense energy buildup, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "particle beam accelerator spooling with intense energy buildup, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Void Surge"
     },
     {
-      "label": "photon torpedo loading into launch tube with magnetic clunk",
-      "text": "photon torpedo loading into launch tube with magnetic clunk, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+      "text": "photon torpedo loading into launch tube with magnetic clunk, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay",
+      "alias": "Quantum Ember"
     },
     {
-      "label": "shield generator diverting power with electrical crackling",
-      "text": "shield generator diverting power with electrical crackling, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "shield generator diverting power with electrical crackling, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Stellar Ignition"
     }
   ]
 }

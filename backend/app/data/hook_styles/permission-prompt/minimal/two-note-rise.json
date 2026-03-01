@@ -1,27 +1,26 @@
 {
   "id": "min-permission-prompt-two-note-rise",
   "name": "Two-Note Rise",
-  "description": "Simple two-note interval ascending with inquiry",
   "prompts": [
     {
-      "label": "simple two-note interval ascending with gentle inquiry",
-      "text": "simple two-note interval ascending with gentle inquiry, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+      "text": "simple two-note interval ascending with gentle inquiry, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+      "alias": "Quiet Ascension"
     },
     {
-      "label": "clean minor third rising with questioning intent",
-      "text": "clean minor third rising with questioning intent, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out"
+      "text": "clean minor third rising with questioning intent, Swiss design precision, tapped crystal glass rim, zen garden calm, 44.1kHz, stereo, high-quality, transparent, smooth fade out",
+      "alias": "Glass Staircase"
     },
     {
-      "label": "paired sine tones stepping upward with open ending",
-      "text": "paired sine tones stepping upward with open ending, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance"
+      "text": "paired sine tones stepping upward with open ending, white gallery silence, single piano key softly pressed, paper-thin delicacy, 44.1kHz, stereo, high-quality, pristine, sustained resonance",
+      "alias": "Delicate Ladder"
     },
     {
-      "label": "whisper-thin dual frequency lift with suspended resolution",
-      "text": "whisper-thin dual frequency lift with suspended resolution, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay"
+      "text": "whisper-thin dual frequency lift with suspended resolution, Scandinavian living room, porcelain bowl struck with felt tip, breath-held anticipation, 44.1kHz, stereo, high-quality, transparent, with natural decay",
+      "alias": "Suspended Thought"
     },
     {
-      "label": "mathematical interval pair leaving space for answer",
-      "text": "mathematical interval pair leaving space for answer, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out"
+      "text": "mathematical interval pair leaving space for answer, frosted glass partition, tuning fork resonating on wood, snow falling on still water, 44.1kHz, stereo, high-quality, pristine, smooth fade out",
+      "alias": "Frost And Air"
     }
   ]
 }

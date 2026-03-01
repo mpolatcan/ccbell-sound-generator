@@ -1,27 +1,26 @@
 {
   "id": "8bit-subagent-stop-coin-collect",
   "name": "Coin Collect",
-  "description": "Satisfying coin pickup with classic bling",
   "prompts": [
     {
-      "label": "classic coin collected with bright chiptune bling",
-      "text": "classic coin collected with bright chiptune bling, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "classic coin collected with bright chiptune bling, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Gilded Catch"
     },
     {
-      "label": "gold pixel coin grabbed with ascending two-note jingle",
-      "text": "gold pixel coin grabbed with ascending two-note jingle, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "gold pixel coin grabbed with ascending two-note jingle, pixel game power-up, pulse wave arpeggio, joystick-era nostalgia, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Treasure Spark"
     },
     {
-      "label": "8-bit treasure pickup with sparkling square wave",
-      "text": "8-bit treasure pickup with sparkling square wave, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance"
+      "text": "8-bit treasure pickup with sparkling square wave, Game Boy startup melody, triangle wave bass note, high-score elation, 44.1kHz, stereo, high-quality, bright, sustained resonance",
+      "alias": "Pixel Fortune"
     },
     {
-      "label": "retro money sound with bitcrushed metallic ring",
-      "text": "retro money sound with bitcrushed metallic ring, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "retro money sound with bitcrushed metallic ring, SID chip tracker groove, noise channel snare hit, speed-run intensity, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Chrome Shimmer"
     },
     {
-      "label": "NES coin register with brief pulse channel celebration",
-      "text": "NES coin register with brief pulse channel celebration, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out"
+      "text": "NES coin register with brief pulse channel celebration, 16-bit victory screen, lo-fi sample playback crunch, bonus-stage energy, 44.1kHz, stereo, high-quality, punchy, smooth fade out",
+      "alias": "Victory Mint"
     }
   ]
 }

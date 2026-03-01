@@ -1,27 +1,26 @@
 {
   "id": "amb-subagent-stop-echo-trace",
   "name": "Echo Trace",
-  "description": "Ghost of a sound reflecting back from far away",
   "prompts": [
     {
-      "label": "ghost of a sound reflecting back from distant wall",
-      "text": "ghost of a sound reflecting back from distant wall, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay"
+      "text": "ghost of a sound reflecting back from distant wall, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
+      "alias": "Cathedral Ghost"
     },
     {
-      "label": "faint echo trace returning through vast empty space",
-      "text": "faint echo trace returning through vast empty space, tape-saturated warmth, granular piano cloud, candlelight flickering softly, 44.1kHz, stereo, high-quality, wide, smooth fade out"
+      "text": "faint echo trace returning through vast empty space, tape-saturated warmth, granular piano cloud, candlelight flickering softly, 44.1kHz, stereo, high-quality, wide, smooth fade out",
+      "alias": "Midnight Return"
     },
     {
-      "label": "distant reverberation whisper arriving after long delay",
-      "text": "distant reverberation whisper arriving after long delay, Brian Eno infinite space, reversed cymbal swell, underwater weightlessness, 44.1kHz, stereo, high-quality, lush, sustained resonance"
+      "text": "distant reverberation whisper arriving after long delay, Brian Eno infinite space, reversed cymbal swell, underwater weightlessness, 44.1kHz, stereo, high-quality, lush, sustained resonance",
+      "alias": "Starlit Cavern"
     },
     {
-      "label": "cavern echo dissolving at the edge of perception",
-      "text": "cavern echo dissolving at the edge of perception, abandoned hall echo, harmonium drone with tape wobble, drifting between sleep and waking, 44.1kHz, stereo, high-quality, wide, with natural decay"
+      "text": "cavern echo dissolving at the edge of perception, abandoned hall echo, harmonium drone with tape wobble, drifting between sleep and waking, 44.1kHz, stereo, high-quality, wide, with natural decay",
+      "alias": "Dreamwalk Fade"
     },
     {
-      "label": "sonic memory fading through layers of atmospheric haze",
-      "text": "sonic memory fading through layers of atmospheric haze, lo-fi cassette hiss and bloom, shimmer reverb pad wash, moonlight through frosted glass, 44.1kHz, stereo, high-quality, lush, smooth fade out"
+      "text": "sonic memory fading through layers of atmospheric haze, lo-fi cassette hiss and bloom, shimmer reverb pad wash, moonlight through frosted glass, 44.1kHz, stereo, high-quality, lush, smooth fade out",
+      "alias": "Lunar Haze"
     }
   ]
 }

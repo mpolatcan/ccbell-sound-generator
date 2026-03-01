@@ -1,27 +1,26 @@
 {
   "id": "scifi-pre-tool-use-targeting-lock",
   "name": "Targeting Lock",
-  "description": "Weapon system acquiring target with tracking tone",
   "prompts": [
     {
-      "label": "weapon system acquiring target with escalating tracking tone",
-      "text": "weapon system acquiring target with escalating tracking tone, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+      "text": "weapon system acquiring target with escalating tracking tone, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+      "alias": "Crimson Focus"
     },
     {
-      "label": "tactical display locking crosshairs with focusing beep",
-      "text": "tactical display locking crosshairs with focusing beep, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out"
+      "text": "tactical display locking crosshairs with focusing beep, cyberpunk neon-lit, voltage-controlled resonant filter sweep, holographic clarity, 44.1kHz, stereo, high-quality, studio-grade, smooth fade out",
+      "alias": "Neon Crosshair"
     },
     {
-      "label": "fire control computer achieving lock with ascending pulse",
-      "text": "fire control computer achieving lock with ascending pulse, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance"
+      "text": "fire control computer achieving lock with ascending pulse, deep space station, granular synth texture, cold vacuum stillness, 44.1kHz, stereo, high-quality, crisp, sustained resonance",
+      "alias": "Zero Gravity Tether"
     },
     {
-      "label": "plasma cannon aligning with target using servo whine",
-      "text": "plasma cannon aligning with target using servo whine, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay"
+      "text": "plasma cannon aligning with target using servo whine, quantum computer hum, plasma crackle discharge, alien intelligence awakening, 44.1kHz, stereo, high-quality, studio-grade, with natural decay",
+      "alias": "Phantom Convergence"
     },
     {
-      "label": "heads-up display flashing target acquired confirmation",
-      "text": "heads-up display flashing target acquired confirmation, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out"
+      "text": "heads-up display flashing target acquired confirmation, orbital relay signal, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, smooth fade out",
+      "alias": "Orbital Latch"
     }
   ]
 }
