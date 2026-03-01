@@ -28,7 +28,8 @@ ccbell-sound-generator/
 │   │   ├── services/
 │   │   │   ├── audio.py      # Audio generation
 │   │   │   ├── github.py     # GitHub releases
-│   │   │   └── model_loader.py
+│   │   │   ├── model_loader.py
+│   │   │   └── pack.py       # Sound pack ZIP creation
 │   │   └── data/
 │   │       ├── themes.py     # Theme presets
 │   │       └── hooks.py      # Hook definitions
@@ -52,6 +53,7 @@ ccbell-sound-generator/
 │   ├── commands/             # Gemini commands
 │   └── skills/               # Gemini skills
 ├── Dockerfile                # Production build with uv
+├── Dockerfile.base           # Base image with system dependencies
 ├── docker-compose.yml        # Local development
 └── README.md                 # HuggingFace Space config
 ```
@@ -249,6 +251,8 @@ Sound library state is managed with Zustand (`useSoundLibrary` hook):
 | GET | `/api/audio/{job_id}/status` | Get job status and progress |
 | GET | `/api/audio/{job_id}` | Download generated audio |
 | DELETE | `/api/audio/{job_id}` | Delete job and audio file |
+| POST | `/api/packs` | Create downloadable sound pack ZIP |
+| GET | `/api/packs/{pack_id}` | Download pack ZIP file |
 | POST | `/api/publish` | Publish to GitHub release |
 | WS | `/api/ws/{job_id}` | Real-time progress updates |
 
@@ -283,7 +287,7 @@ The app generates sounds for these Claude Code hook events (10 types, aligned wi
 
 ## Theme Presets
 
-- Sci-Fi, Retro 8-bit, Nature, Minimal, Mechanical, Custom
+- Sci-Fi, Retro 8-bit, Nature, Minimal, Mechanical, Ambient, Jazz, Custom
 - Custom theme allows user-written prompts
 
 ## Dependencies
@@ -351,6 +355,7 @@ cd frontend && npm run lint -- --fix
 - **After every code change, review and update CLAUDE.md and GEMINI.md to reflect changes** (new files, dependencies, environment variables, etc.)
 - **Before committing, ALWAYS run linting locally**: `ruff check .`, `ruff format .`, `ty check .`, and `npm run lint`
 - **ALWAYS use `agent-browser` skill to visually verify UI changes** during local development - take screenshots, interact with elements, and confirm everything renders correctly
+- **ALWAYS use `frontend-design` skill for ANY frontend work** - UI components, pages, styling, layout changes, or any React/TypeScript frontend modifications must use the `frontend-design` skill to ensure production-grade design quality
 
 ## Dependency Management
 
