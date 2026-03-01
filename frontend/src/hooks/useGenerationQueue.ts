@@ -53,8 +53,9 @@ export function useGenerationQueue() {
   const wsRef = useRef<WebSocket | null>(null)
   const processingRef = useRef(false)
   const pollingRef = useRef<number | null>(null)
+  const abortControllerRef = useRef<AbortController | null>(null)
 
-  // Clean up WebSocket and polling on unmount
+  // Clean up WebSocket, polling, and abort controller on unmount
   useEffect(() => {
     return () => {
       if (wsRef.current) {
@@ -64,6 +65,10 @@ export function useGenerationQueue() {
       if (pollingRef.current) {
         clearInterval(pollingRef.current)
         pollingRef.current = null
+      }
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort()
+        abortControllerRef.current = null
       }
     }
   }, [])
@@ -78,6 +83,21 @@ export function useGenerationQueue() {
 
     processingRef.current = true
     const item = queue[0]
+
+    // Ghost guard: skip if sound was already deleted from library while waiting in queue
+    const soundStillExists = useSoundLibrary.getState().sounds.some((s) => s.id === item.id)
+    if (!soundStillExists) {
+      removeFromQueue(item.id)
+      processingRef.current = false
+      setTimeout(() => processNextInQueue(), 0)
+      return
+    }
+
+    // Create abort controller for this processing cycle
+    const abortController = new AbortController()
+    abortControllerRef.current = abortController
+    const signal = abortController.signal
+
     setProcessing(true, item.id)
 
     // Update sound to show it's starting
@@ -93,12 +113,44 @@ export function useGenerationQueue() {
       const response = await api.generateAudio(item.request)
       const jobId = response.job_id
 
+      // Check abort after API call returns
+      if (signal.aborted) {
+        // Best-effort cleanup of the backend job we just created
+        api.deleteAudio(jobId).catch(() => {})
+        throw new DOMException('Aborted', 'AbortError')
+      }
+
       // Update sound with job ID
       updateSound(item.id, { job_id: jobId })
 
       // Set up WebSocket for progress updates
       await new Promise<void>((resolve, reject) => {
         let usePolling = false
+
+        // Listen for abort signal
+        const onAbort = () => {
+          if (wsRef.current) {
+            wsRef.current.close()
+            wsRef.current = null
+          }
+          if (pollingRef.current) {
+            clearInterval(pollingRef.current)
+            pollingRef.current = null
+          }
+          // Best-effort cleanup of backend job
+          api.deleteAudio(jobId).catch(() => {})
+          reject(new DOMException('Aborted', 'AbortError'))
+        }
+
+        if (signal.aborted) {
+          onAbort()
+          return
+        }
+        signal.addEventListener('abort', onAbort, { once: true })
+
+        const cleanup = () => {
+          signal.removeEventListener('abort', onAbort)
+        }
 
         const connectWebSocket = () => {
           const ws = new WebSocket(`${WS_BASE_URL}/api/ws/${jobId}`)
@@ -134,6 +186,7 @@ export function useGenerationQueue() {
                   completed_at: new Date()
                 })
                 ws.close()
+                cleanup()
                 resolve()
               }
 
@@ -145,6 +198,7 @@ export function useGenerationQueue() {
                   completed_at: new Date()
                 })
                 ws.close()
+                cleanup()
                 reject(new Error(data.error))
               }
             } catch {
@@ -153,7 +207,7 @@ export function useGenerationQueue() {
           }
 
           ws.onerror = () => {
-            if (!usePolling && !completed) {
+            if (!usePolling && !completed && !signal.aborted) {
               usePolling = true
               ws.close()
               startPolling()
@@ -164,7 +218,8 @@ export function useGenerationQueue() {
             clearInterval(pingInterval)
             wsRef.current = null
             // If WebSocket closed before completion, switch to polling
-            if (!completed && !usePolling) {
+            // but not if aborted (abort handler already rejected)
+            if (!completed && !usePolling && !signal.aborted) {
               usePolling = true
               startPolling()
             }
@@ -193,6 +248,7 @@ export function useGenerationQueue() {
                   clearInterval(pollingRef.current)
                   pollingRef.current = null
                 }
+                cleanup()
                 resolve()
               } else if (status.status === 'error') {
                 updateSound(item.id, {
@@ -204,10 +260,22 @@ export function useGenerationQueue() {
                   clearInterval(pollingRef.current)
                   pollingRef.current = null
                 }
+                cleanup()
                 reject(new Error(status.error || 'Generation failed'))
               }
-            } catch {
-              // Continue polling on network errors
+            } catch (err) {
+              const msg = err instanceof Error ? err.message : ''
+              if (msg.includes('not found') || msg.includes('404')) {
+                // Job deleted — terminal error, stop polling
+                if (pollingRef.current) {
+                  clearInterval(pollingRef.current)
+                  pollingRef.current = null
+                }
+                cleanup()
+                reject(new Error('Job not found'))
+                return
+              }
+              // Transient network error — continue polling
             }
           }
 
@@ -218,17 +286,23 @@ export function useGenerationQueue() {
         connectWebSocket()
       })
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Generation failed'
-      setError(message)
-      updateSound(item.id, {
-        status: 'error',
-        error: message,
-        completed_at: new Date()
-      })
+      // If aborted (sound was deleted), don't set error on the sound
+      if (err instanceof DOMException && err.name === 'AbortError') {
+        // Sound was deleted — nothing to update
+      } else {
+        const message = err instanceof Error ? err.message : 'Generation failed'
+        setError(message)
+        updateSound(item.id, {
+          status: 'error',
+          error: message,
+          completed_at: new Date()
+        })
+      }
     } finally {
       // Remove from queue and process next
       removeFromQueue(item.id)
       processingRef.current = false
+      abortControllerRef.current = null
       setProcessing(false, null)
 
       // Process next item if available
@@ -259,10 +333,39 @@ export function useGenerationQueue() {
 
   const cancelGeneration = useCallback(
     (soundId: string) => {
+      const { currentSoundId } = useGenerationQueueStore.getState()
+      if (currentSoundId === soundId && abortControllerRef.current) {
+        abortControllerRef.current.abort()
+      }
       queueStore.removeFromQueue(soundId)
     },
     [queueStore]
   )
+
+  const cancelByPackId = useCallback(
+    (packId: string) => {
+      const { queue, currentSoundId } = useGenerationQueueStore.getState()
+      // Abort active item if it belongs to this pack
+      const activeItem = queue.find((q) => q.id === currentSoundId)
+      if (activeItem && activeItem.packId === packId && abortControllerRef.current) {
+        abortControllerRef.current.abort()
+      }
+      // Remove all queued items for this pack
+      for (const item of queue) {
+        if (item.packId === packId) {
+          queueStore.removeFromQueue(item.id)
+        }
+      }
+    },
+    [queueStore]
+  )
+
+  const cancelAll = useCallback(() => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort()
+    }
+    queueStore.clearQueue()
+  }, [queueStore])
 
   return {
     queue: queueStore.queue,
@@ -271,6 +374,8 @@ export function useGenerationQueue() {
     queueLength: queueStore.queue.length,
     addToQueue,
     cancelGeneration,
+    cancelByPackId,
+    cancelAll,
     clearQueue: queueStore.clearQueue,
     error
   }

@@ -54,7 +54,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
         clearAll: s.clearAll,
       }))
     )
-    const { addToQueue } = useGenerationQueue()
+    const { addToQueue, cancelGeneration, cancelByPackId, cancelAll: cancelAllQueue } = useGenerationQueue()
     const [previewingSoundId, setPreviewingSoundId] = useState<string | null>(null)
     const [expandedPacks, setExpandedPacks] = useState<Set<string>>(new Set())
     const [editingPackId, setEditingPackId] = useState<string | null>(null)
@@ -175,6 +175,8 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
 
     // Delete a single sound from both backend (filesystem) and frontend state
     const handleDeleteSound = useCallback(async (sound: GeneratedSound) => {
+      // Cancel generation if sound is queued or actively generating
+      cancelGeneration(sound.id)
       // Delete from backend if sound has a job_id (completed sounds)
       if (sound.job_id) {
         try {
@@ -186,7 +188,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
       }
       // Always remove from frontend state
       removeSound(sound.id)
-    }, [removeSound])
+    }, [removeSound, cancelGeneration])
 
     // Regenerate a single sound: reset state and re-queue
     const handleRegenerateSound = useCallback(async (sound: GeneratedSound) => {
@@ -222,6 +224,9 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
 
     // Delete all sounds in a pack from backend, then remove pack from state
     const handleDeletePack = useCallback(async (packId: string) => {
+      // Cancel any queued or active generations for this pack
+      cancelByPackId(packId)
+
       const packSounds = soundsByPack.all.get(packId) ?? []
 
       // Delete all sounds from backend in parallel
@@ -239,10 +244,13 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
 
       // Remove pack and all its sounds from frontend state
       removePack(packId)
-    }, [soundsByPack, removePack])
+    }, [soundsByPack, removePack, cancelByPackId])
 
     // Clear all sounds from backend, then clear frontend state
     const handleClearAll = useCallback(async () => {
+      // Cancel all queued and active generations
+      cancelAllQueue()
+
       // Delete all sounds from backend in parallel
       await Promise.all(
         sounds
@@ -258,7 +266,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
 
       // Clear all from frontend state
       clearAll()
-    }, [sounds, clearAll])
+    }, [sounds, clearAll, cancelAllQueue])
 
     useImperativeHandle(ref, () => ({
       clearAll: handleClearAll
