@@ -10,6 +10,12 @@ import { Input } from '@/components/ui/input'
 import { AudioPlayer } from './AudioPlayer'
 import { ElapsedTime } from './ElapsedTime'
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import {
   Trash2,
   Download,
   Loader2,
@@ -22,10 +28,13 @@ import {
   X,
   Music,
   RefreshCw,
-  Sparkles
+  Sparkles,
+  MoreHorizontal,
+  Upload
 } from 'lucide-react'
 import { useGenerationQueue } from '@/hooks/useGenerationQueue'
-import { formatDuration } from '@/lib/utils'
+import { formatDuration, cn } from '@/lib/utils'
+import { HOOK_TYPE_COLORS } from '@/lib/constants'
 import type { SoundPack, GeneratedSound, PublishPackData, DownloadPackData } from '@/types'
 import {
   Collapsible,
@@ -40,6 +49,25 @@ export interface SoundLibraryRef {
 interface SoundLibraryProps {
   onSelectForPublish?: (data: PublishPackData) => void
   onSelectForDownload?: (data: DownloadPackData) => void
+}
+
+/** Animated waveform bars for empty state */
+function AnimatedWaveform() {
+  const bars = [0.6, 0.9, 0.4, 1.0, 0.5, 0.8, 0.3]
+  return (
+    <div className="flex items-end gap-1 h-10">
+      {bars.map((height, i) => (
+        <div
+          key={i}
+          className="waveform-bar w-1 rounded-full bg-primary/30"
+          style={{
+            height: `${height * 100}%`,
+            animationDelay: `${i * 0.12}s`,
+          }}
+        />
+      ))}
+    </div>
+  )
 }
 
 export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
@@ -279,7 +307,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
           <CardContent className="py-16">
             <div className="flex flex-col items-center text-center">
               <div className="p-4 rounded-2xl bg-muted/30 border border-border/40 mb-4">
-                <Music className="h-8 w-8 text-muted-foreground/50" />
+                <AnimatedWaveform />
               </div>
               <h3 className="font-display font-semibold text-lg text-foreground/80 mb-1">Sound Library</h3>
               <p className="text-sm text-muted-foreground max-w-sm">
@@ -376,63 +404,115 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                               {completedSounds.length}/{packSounds.length}
                             </Badge>
                             <Badge variant="outline" className="text-xs font-mono">{pack.model}</Badge>
-                            {!editingPackId && (
+
+                            {/* Desktop: full action buttons */}
+                            <div className="hidden sm:flex items-center gap-1">
+                              {!editingPackId && (
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className="h-7 w-7"
+                                  onClick={(e) => {
+                                    e.stopPropagation()
+                                    startEditingPack(pack)
+                                  }}
+                                  aria-label="Rename pack"
+                                >
+                                  <Pencil className="h-3 w-3" />
+                                </Button>
+                              )}
+                              {onSelectForDownload && (
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="h-7 text-xs"
+                                  onClick={(e) => {
+                                    e.stopPropagation()
+                                    handleDownloadPackDialog(pack)
+                                  }}
+                                  disabled={completedSounds.length === 0}
+                                  aria-label="Download pack"
+                                >
+                                  <Download className="h-3 w-3 mr-1" />
+                                  Download
+                                </Button>
+                              )}
+                              {onSelectForPublish && (
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="h-7 text-xs"
+                                  onClick={(e) => {
+                                    e.stopPropagation()
+                                    handlePublishPack(pack)
+                                  }}
+                                  disabled={completedSounds.length === 0}
+                                  aria-label="Publish pack to GitHub"
+                                >
+                                  Publish
+                                </Button>
+                              )}
                               <Button
                                 variant="ghost"
                                 size="icon"
-                                className="h-7 w-7"
+                                className="h-7 w-7 text-muted-foreground hover:text-destructive"
                                 onClick={(e) => {
                                   e.stopPropagation()
-                                  startEditingPack(pack)
+                                  handleDeletePack(pack.id)
                                 }}
-                                aria-label="Rename pack"
+                                aria-label="Delete pack"
                               >
-                                <Pencil className="h-3 w-3" />
+                                <Trash2 className="h-3 w-3" />
                               </Button>
-                            )}
-                            {onSelectForDownload && (
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                className="h-7 text-xs"
-                                onClick={(e) => {
-                                  e.stopPropagation()
-                                  handleDownloadPackDialog(pack)
-                                }}
-                                disabled={completedSounds.length === 0}
-                                aria-label="Download pack"
-                              >
-                                <Download className="h-3 w-3 mr-1" />
-                                Download
-                              </Button>
-                            )}
-                            {onSelectForPublish && (
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                className="h-7 text-xs"
-                                onClick={(e) => {
-                                  e.stopPropagation()
-                                  handlePublishPack(pack)
-                                }}
-                                disabled={completedSounds.length === 0}
-                                aria-label="Publish pack to GitHub"
-                              >
-                                Publish
-                              </Button>
-                            )}
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              className="h-7 w-7 text-muted-foreground hover:text-destructive"
-                              onClick={(e) => {
-                                e.stopPropagation()
-                                handleDeletePack(pack.id)
-                              }}
-                              aria-label="Delete pack"
-                            >
-                              <Trash2 className="h-3 w-3" />
-                            </Button>
+                            </div>
+
+                            {/* Mobile: overflow dropdown */}
+                            <div className="sm:hidden">
+                              <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                  <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className="h-7 w-7"
+                                    onClick={(e) => e.stopPropagation()}
+                                    aria-label="Pack actions"
+                                  >
+                                    <MoreHorizontal className="h-4 w-4" />
+                                  </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="end">
+                                  <DropdownMenuItem onClick={() => startEditingPack(pack)}>
+                                    <Pencil className="h-3.5 w-3.5 mr-2" />
+                                    Rename
+                                  </DropdownMenuItem>
+                                  {onSelectForDownload && (
+                                    <DropdownMenuItem
+                                      onClick={() => handleDownloadPackDialog(pack)}
+                                      disabled={completedSounds.length === 0}
+                                    >
+                                      <Download className="h-3.5 w-3.5 mr-2" />
+                                      Download
+                                    </DropdownMenuItem>
+                                  )}
+                                  {onSelectForPublish && (
+                                    <DropdownMenuItem
+                                      onClick={() => handlePublishPack(pack)}
+                                      disabled={completedSounds.length === 0}
+                                    >
+                                      <Upload className="h-3.5 w-3.5 mr-2" />
+                                      Publish
+                                    </DropdownMenuItem>
+                                  )}
+                                  <DropdownMenuItem
+                                    onClick={() => handleDeletePack(pack.id)}
+                                    className="text-destructive focus:text-destructive"
+                                  >
+                                    <Trash2 className="h-3.5 w-3.5 mr-2" />
+                                    Delete
+                                  </DropdownMenuItem>
+                                </DropdownMenuContent>
+                              </DropdownMenu>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -440,100 +520,110 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                       {/* Pack Contents */}
                       <CollapsibleContent>
                         <div className="p-3 space-y-2.5">
-                          {packSounds.map((sound) => (
-                            <div
-                              key={sound.id}
-                              className={`p-3 rounded-lg border transition-colors ${
-                                sound.status === 'generating'
-                                  ? 'bg-primary/3 border-primary/15'
-                                  : sound.status === 'error'
-                                    ? 'bg-destructive/3 border-destructive/15'
-                                    : 'bg-muted/15 border-border/30'
-                              }`}
-                            >
-                              <div className="flex items-start justify-between mb-2">
-                                <div
-                                  className="flex-1 cursor-pointer min-w-0"
-                                  onMouseEnter={() => handlePreviewStart(sound)}
-                                  onMouseLeave={handlePreviewStop}
-                                >
-                                  <div className="flex items-center gap-2 flex-wrap">
-                                    <h4 className="font-display font-medium text-sm">{sound.hook_type}</h4>
-                                    <Badge
-                                      variant={
-                                        sound.status === 'completed'
-                                          ? 'default'
-                                          : sound.status === 'generating'
-                                            ? 'secondary'
-                                            : 'destructive'
-                                      }
-                                      className="text-[10px]"
-                                    >
-                                      {sound.status === 'generating'
-                                        ? sound.stage || 'Generating'
-                                        : sound.status}
-                                    </Badge>
-                                    <Badge variant="outline" className="text-[10px] font-mono">{formatDuration(sound.duration)}</Badge>
-                                    <ElapsedTime
-                                      startTime={sound.started_at}
-                                      endTime={sound.completed_at}
-                                      isRunning={sound.status === 'generating'}
-                                    />
-                                    {previewingSoundId === sound.id && (
-                                      <Volume2 className="h-3.5 w-3.5 text-primary animate-pulse" />
-                                    )}
+                          {packSounds.map((sound, index) => {
+                            const hookColor = HOOK_TYPE_COLORS[sound.hook_type]
+                            const isGenerating = sound.status === 'generating'
+                            const isError = sound.status === 'error'
+                            const isCompleted = sound.status === 'completed'
+
+                            return (
+                              <div
+                                key={sound.id}
+                                className={cn(
+                                  'p-3 rounded-lg border-l-[3px] border transition-colors sound-card-enter',
+                                  hookColor?.border || 'border-l-primary',
+                                  isGenerating
+                                    ? 'bg-primary/3 border-primary/15 generating-card'
+                                    : isError
+                                      ? 'bg-destructive/3 border-destructive/15'
+                                      : 'bg-muted/15 border-border/30'
+                                )}
+                                style={{ animationDelay: `${index * 50}ms` }}
+                              >
+                                <div className="flex items-start justify-between mb-2">
+                                  <div
+                                    className="flex-1 cursor-pointer min-w-0"
+                                    onMouseEnter={() => handlePreviewStart(sound)}
+                                    onMouseLeave={handlePreviewStop}
+                                  >
+                                    <div className="flex items-center gap-2 flex-wrap">
+                                      <span className={cn('h-2 w-2 rounded-full shrink-0', hookColor?.dot || 'bg-primary')} />
+                                      <h4 className="font-display font-medium text-sm">{sound.hook_type}</h4>
+                                      <Badge
+                                        variant={isCompleted ? 'default' : isGenerating ? 'secondary' : 'destructive'}
+                                        className={cn(
+                                          'text-[10px]',
+                                          isCompleted && 'bg-success text-success-foreground hover:bg-success/80'
+                                        )}
+                                      >
+                                        {isGenerating
+                                          ? sound.stage || 'Generating'
+                                          : isCompleted
+                                            ? 'Completed'
+                                            : sound.status}
+                                      </Badge>
+                                      <Badge variant="outline" className="text-[10px] font-mono">{formatDuration(sound.duration)}</Badge>
+                                      <ElapsedTime
+                                        startTime={sound.started_at}
+                                        endTime={sound.completed_at}
+                                        isRunning={isGenerating}
+                                      />
+                                      {previewingSoundId === sound.id && (
+                                        <Volume2 className="h-3.5 w-3.5 text-primary animate-pulse" />
+                                      )}
+                                    </div>
+                                    <p className="text-xs text-muted-foreground mt-1 line-clamp-1 font-mono">
+                                      {sound.prompt}
+                                    </p>
                                   </div>
-                                  <p className="text-xs text-muted-foreground mt-1 line-clamp-1 font-mono">
-                                    {sound.prompt}
-                                  </p>
-                                </div>
-                                <div className="flex items-center gap-0.5 ml-2">
-                                  {sound.status !== 'generating' && (
+                                  <div className="flex items-center gap-0.5 ml-2">
+                                    {!isGenerating && (
+                                      <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="h-7 w-7"
+                                        onClick={() => handleRegenerateSound(sound)}
+                                        aria-label={`Regenerate ${sound.hook_type} sound`}
+                                      >
+                                        <RefreshCw className="h-3.5 w-3.5" />
+                                      </Button>
+                                    )}
                                     <Button
                                       variant="ghost"
                                       size="icon"
-                                      className="h-7 w-7"
-                                      onClick={() => handleRegenerateSound(sound)}
-                                      aria-label={`Regenerate ${sound.hook_type} sound`}
+                                      className="h-7 w-7 text-muted-foreground hover:text-destructive"
+                                      onClick={() => handleDeleteSound(sound)}
+                                      aria-label={`Delete ${sound.hook_type} sound`}
                                     >
-                                      <RefreshCw className="h-3.5 w-3.5" />
+                                      <Trash2 className="h-3.5 w-3.5" />
                                     </Button>
-                                  )}
-                                  <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    className="h-7 w-7 text-muted-foreground hover:text-destructive"
-                                    onClick={() => handleDeleteSound(sound)}
-                                    aria-label={`Delete ${sound.hook_type} sound`}
-                                  >
-                                    <Trash2 className="h-3.5 w-3.5" />
-                                  </Button>
+                                  </div>
                                 </div>
+
+                                {/* Progress for generating sounds */}
+                                {isGenerating && (
+                                  <div className="mt-2">
+                                    <Progress value={(sound.progress || 0) * 100} className="h-1.5" />
+                                    <p className="text-[10px] text-muted-foreground mt-1 font-mono tabular-nums">
+                                      {sound.stage} ({Math.round((sound.progress || 0) * 100)}%)
+                                    </p>
+                                  </div>
+                                )}
+
+                                {/* Error message */}
+                                {isError && sound.error && (
+                                  <p className="text-xs text-destructive mt-2">{sound.error}</p>
+                                )}
+
+                                {/* Audio player for completed sounds */}
+                                {isCompleted && sound.audio_url && (
+                                  <AudioPlayer
+                                    audioUrl={sound.audio_url}
+                                  />
+                                )}
                               </div>
-
-                              {/* Progress for generating sounds */}
-                              {sound.status === 'generating' && (
-                                <div className="mt-2">
-                                  <Progress value={(sound.progress || 0) * 100} className="h-1.5" />
-                                  <p className="text-[10px] text-muted-foreground mt-1 font-mono tabular-nums">
-                                    {sound.stage} ({Math.round((sound.progress || 0) * 100)}%)
-                                  </p>
-                                </div>
-                              )}
-
-                              {/* Error message */}
-                              {sound.status === 'error' && sound.error && (
-                                <p className="text-xs text-destructive mt-2">{sound.error}</p>
-                              )}
-
-                              {/* Audio player for completed sounds */}
-                              {sound.status === 'completed' && sound.audio_url && (
-                                <AudioPlayer
-                                  audioUrl={sound.audio_url}
-                                />
-                              )}
-                            </div>
-                          ))}
+                            )
+                          })}
                         </div>
                       </CollapsibleContent>
                     </div>

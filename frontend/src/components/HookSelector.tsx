@@ -11,6 +11,7 @@ import {
 import { ChevronDown, X } from 'lucide-react'
 import type { HookType, HookTypeId, PromptDetailTier } from '@/types'
 import { cn } from '@/lib/utils'
+import { HOOK_TYPE_COLORS } from '@/lib/constants'
 
 interface HookSelectorProps {
   hooks: HookType[]
@@ -110,7 +111,10 @@ export const HookSelector = memo(function HookSelector({ hooks, selectedHooks, o
                     className="mt-0.5"
                   />
                   <div className="flex-1 min-w-0">
-                    <span className="font-medium">{hook.name}</span>
+                    <span className="flex items-center gap-2 font-medium">
+                      <span className={cn('h-2 w-2 rounded-full shrink-0', HOOK_TYPE_COLORS[hook.id]?.dot || 'bg-primary')} />
+                      {hook.name}
+                    </span>
                     <p className="text-xs text-muted-foreground mt-0.5">
                       {hook.description}
                     </p>

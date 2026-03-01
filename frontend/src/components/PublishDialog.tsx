@@ -111,7 +111,7 @@ export function PublishDialog({ open, onOpenChange, packData }: PublishDialogPro
         {releaseUrl ? (
           <div className="py-8 text-center animate-fade-in">
             <div className="mb-4">
-              <CheckCircle2 className="h-14 w-14 mx-auto text-green-500" />
+              <CheckCircle2 className="h-14 w-14 mx-auto text-success" />
             </div>
             <h3 className="text-lg font-display font-semibold mb-2">Pack Published!</h3>
             <p className="text-sm text-muted-foreground mb-1">

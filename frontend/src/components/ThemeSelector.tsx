@@ -65,16 +65,16 @@ export const ThemeSelector = memo(function ThemeSelector({ themes, selectedTheme
                 key={theme.id}
                 type="button"
                 className={cn(
-                  'inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-medium transition-all duration-200 shrink-0',
-                  'border cursor-pointer',
+                  'inline-flex items-center gap-1.5 px-3.5 py-2 sm:py-1.5 rounded-full text-sm font-medium shrink-0',
+                  'border cursor-pointer transition-all duration-300 ease-out',
                   isSelected
-                    ? 'border-primary/60 bg-primary/12 text-primary shadow-sm shadow-primary/10'
-                    : 'border-border/60 bg-muted/20 text-muted-foreground hover:border-primary/40 hover:text-foreground hover:bg-muted/40'
+                    ? 'border-primary/60 bg-primary/12 text-primary shadow-md shadow-primary/15 scale-[1.03]'
+                    : 'border-border/60 bg-muted/20 text-muted-foreground hover:border-primary/40 hover:text-foreground hover:bg-muted/40 hover:scale-[1.01]'
                 )}
                 onClick={() => onSelect(theme.id)}
                 aria-pressed={isSelected}
               >
-                <Icon className="h-3.5 w-3.5" />
+                <Icon className={cn("h-3.5 w-3.5 transition-transform duration-300", isSelected && "scale-110")} />
                 {theme.name}
               </button>
             )

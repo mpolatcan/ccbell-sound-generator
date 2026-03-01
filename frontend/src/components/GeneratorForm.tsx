@@ -640,8 +640,21 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
           </div>
         </div>
 
-        {/* ═══ PINNED BOTTOM: Duration + Generate ═══ */}
+        {/* ═══ PINNED BOTTOM: Prompt Preview + Duration + Generate ═══ */}
         <div className="shrink-0 border-t border-border/30 pt-4 mt-2 space-y-3 bg-card">
+          {/* Live prompt preview */}
+          {currentPrompt.trim() && selectedTheme !== 'custom' && (
+            <div className="relative rounded-md overflow-hidden border border-border/30 bg-muted/10">
+              <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-primary/40" />
+              <div className="flex items-start gap-2 py-2 pl-3 pr-3">
+                <span className="text-primary/40 text-[10px] font-mono select-none shrink-0 mt-px">&gt;</span>
+                <p className="text-[11px] font-mono break-words leading-relaxed text-foreground/60 line-clamp-2">
+                  {currentPrompt}
+                </p>
+              </div>
+            </div>
+          )}
+
           {/* Duration - compact inline */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
@@ -662,14 +675,15 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
           {/* Generate Button */}
           <Button
             className={cn(
-              "w-full font-display font-semibold tracking-wide",
+              "w-full font-display font-semibold tracking-wide btn-press transition-transform",
               canGenerate && "btn-glow"
             )}
             size="lg"
             onClick={handleGenerate}
             disabled={!canGenerate}
+            title="Generate Sound (G)"
           >
-            <Sparkles className="h-4 w-4 mr-2" />
+            <Sparkles className={cn("h-4 w-4 mr-2", queueLength > 0 && "sparkle-spin")} />
             Generate {selectedHooks.length > 1 ? `${selectedHooks.length} Sounds` : 'Sound'}
           </Button>
 

@@ -20,6 +20,10 @@
     --accent-foreground: 35 10% 92%;
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 95%;
+    --success: 152 56% 42%;
+    --success-foreground: 150 10% 98%;
+    --info: 192 30% 45%;
+    --info-foreground: 190 10% 98%;
     --border: 24 6% 15%;
     --input: 24 6% 15%;
     --ring: 30 85% 54%;
@@ -155,7 +159,95 @@ body::after {
   -webkit-mask-image: linear-gradient(to right, transparent, black 8px, black calc(100% - 8px), transparent);
 }
 
-/* ── Progress bar smooth transitions ── */
+/* ── Progress bar smooth transitions + shimmer overlay ── */
 [role="progressbar"] > div {
   transition: width 0.4s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+[role="progressbar"] > div::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsl(30 85% 70% / 0.3) 50%,
+    transparent 100%
+  );
+  animation: progress-shimmer 1.5s ease-in-out infinite;
+}
+@keyframes progress-shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ── Generate button press animation ── */
+.btn-press:active {
+  transform: scale(0.97);
+  transition: transform 0.1s ease-out;
+}
+
+/* ── Staggered sound card entrance ── */
+.sound-card-enter {
+  animation: slide-up-fade 0.35s ease-out both;
+}
+@keyframes slide-up-fade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Animated waveform bars for empty state ── */
+.waveform-bar {
+  animation: waveform-bounce 1.2s ease-in-out infinite;
+}
+@keyframes waveform-bounce {
+  0%, 100% { transform: scaleY(0.3); }
+  50%      { transform: scaleY(1); }
+}
+
+/* ── Sound wave rings emanating from logo ── */
+.sound-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid hsl(30 85% 54% / 0.25);
+  animation: ring-emanate 2.5s ease-out forwards;
+}
+@keyframes ring-emanate {
+  0%   { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* ── Generating sound card pulsing border ── */
+.generating-card {
+  animation: generating-pulse 2s ease-in-out infinite;
+}
+@keyframes generating-pulse {
+  0%, 100% { border-color: hsl(30 85% 54% / 0.15); }
+  50%      { border-color: hsl(30 85% 54% / 0.35); }
+}
+
+/* ── Active playback ring ── */
+.playback-ring {
+  animation: playback-pulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 0 0 hsl(30 85% 54% / 0.4);
+}
+@keyframes playback-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 hsl(30 85% 54% / 0.4); }
+  50%      { box-shadow: 0 0 0 4px hsl(30 85% 54% / 0); }
+}
+
+/* ── Sparkle spin for generating state ── */
+.sparkle-spin {
+  animation: sparkle-rotate 2s linear infinite;
+}
+@keyframes sparkle-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }

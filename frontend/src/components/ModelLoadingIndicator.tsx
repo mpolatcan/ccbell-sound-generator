@@ -31,7 +31,7 @@ export const ModelLoadingIndicator = memo(function ModelLoadingIndicator({
 }: ModelLoadingIndicatorProps) {
   if (status === 'ready') {
     return (
-      <div className="flex items-center gap-2 text-sm text-green-400 animate-fade-in">
+      <div className="flex items-center gap-2 text-sm text-success animate-fade-in">
         <CheckCircle2 className="h-4 w-4" />
         <span>{modelName} ready</span>
       </div>

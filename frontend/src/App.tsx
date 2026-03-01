@@ -99,8 +99,11 @@ function AppContent() {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="relative p-2.5 bg-primary/10 rounded-xl border border-primary/20">
-              <Bell className="h-5 w-5 text-primary" />
-              <div className="absolute inset-0 rounded-xl bg-primary/5 animate-glow-pulse" />
+              <Bell className="h-5 w-5 text-primary relative z-10" />
+              {/* Sound wave rings */}
+              <span className="sound-ring absolute inset-0" style={{ animationDelay: '0s' }} />
+              <span className="sound-ring absolute inset-0" style={{ animationDelay: '0.6s' }} />
+              <span className="sound-ring absolute inset-0" style={{ animationDelay: '1.2s' }} />
             </div>
             <div>
               <h1 className="text-xl font-display font-bold tracking-tight">
@@ -119,7 +122,7 @@ function AppContent() {
               onClick={() => setShortcutsHelpOpen(true)}
               aria-label="Keyboard shortcuts"
               title="Keyboard shortcuts (?)"
-              className="text-muted-foreground hover:text-foreground"
+              className="text-muted-foreground hover:text-foreground h-9 w-9 sm:h-8 sm:w-8"
             >
               <Keyboard className="h-4 w-4" />
             </Button>
@@ -198,9 +201,10 @@ function AppContent() {
             </a>
           </p>
           <p className="text-muted-foreground/60">
-            Press{' '}
+            <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-muted border border-border/60 rounded">G</kbd>
+            {' '}Generate{' '}&middot;{' '}
             <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-muted border border-border/60 rounded">?</kbd>
-            {' '}for shortcuts
+            {' '}All shortcuts
           </p>
         </div>
       </footer>

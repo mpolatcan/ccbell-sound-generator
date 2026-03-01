@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useCallback, memo } from 'react'
 import WaveSurfer from 'wavesurfer.js'
+import Hover from 'wavesurfer.js/dist/plugins/hover.esm.js'
 import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
 import { Play, Pause, Volume2, VolumeX, RotateCcw, AlertCircle, RefreshCw } from 'lucide-react'
@@ -55,6 +56,15 @@ export const AudioPlayer = memo(function AudioPlayer({
       barRadius: 2,
       height: 56,
       normalize: true,
+      plugins: [
+        Hover.create({
+          lineColor: 'hsl(30 85% 54% / 0.4)',
+          lineWidth: 1,
+          labelBackground: 'hsl(24 6% 12%)',
+          labelColor: 'hsl(35 10% 92%)',
+          labelSize: '10px',
+        }),
+      ],
     })
 
     wavesurfer.load(audioUrl)
@@ -183,7 +193,10 @@ export const AudioPlayer = memo(function AudioPlayer({
           <Button
             variant="outline"
             size="icon"
-            className="h-8 w-8 rounded-full border-border/50"
+            className={cn(
+              "h-8 w-8 rounded-full border-border/50 transition-all",
+              isPlaying && "playback-ring border-primary/40"
+            )}
             onClick={togglePlay}
             aria-label={isPlaying ? 'Pause audio' : 'Play audio'}
           >

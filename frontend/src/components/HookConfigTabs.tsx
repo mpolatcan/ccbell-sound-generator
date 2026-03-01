@@ -3,6 +3,7 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { HookType, HookTypeId } from '@/types'
+import { HOOK_TYPE_COLORS } from '@/lib/constants'
 
 interface HookConfigTabsProps {
   hooks: HookType[]
@@ -78,7 +79,8 @@ export const HookConfigTabs = memo(function HookConfigTabs({
         >
           <TabsList className="inline-flex w-max bg-muted/30 p-1">
             {selectedHooksData.map((hook) => (
-              <TabsTrigger key={hook.id} value={hook.id} className="text-sm">
+              <TabsTrigger key={hook.id} value={hook.id} className="text-sm gap-1.5">
+                <span className={cn('h-1.5 w-1.5 rounded-full shrink-0', HOOK_TYPE_COLORS[hook.id]?.dot || 'bg-primary')} />
                 {hook.name}
               </TabsTrigger>
             ))}
