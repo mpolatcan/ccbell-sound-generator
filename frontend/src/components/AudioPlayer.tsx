@@ -158,24 +158,25 @@ export const AudioPlayer = memo(function AudioPlayer({
 
   return (
     <div className={cn('space-y-2', className)}>
-      {/* Waveform - always mounted so retry works */}
+      {/* Waveform - container always keeps final dimensions so WaveSurfer renders at correct size */}
       <div className="relative">
         <div
           ref={containerRef}
           className={cn(
             'w-full rounded-lg bg-muted/20 p-2 border border-border/30 transition-opacity duration-300',
-            (isLoading || hasError) && 'opacity-0 h-0 overflow-hidden p-0 border-0'
+            (isLoading || hasError) && 'opacity-0'
           )}
         />
+        {/* Loading/error overlays positioned on top of the waveform container */}
         {isLoading && (
-          <div className="flex items-center justify-center h-[56px] rounded-lg bg-muted/20 border border-border/30">
+          <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-muted/20 border border-border/30">
             <div className="h-1 w-16 bg-muted rounded-full overflow-hidden">
               <div className="h-full w-1/2 bg-primary/50 rounded-full animate-shimmer" />
             </div>
           </div>
         )}
         {hasError && (
-          <div className="flex items-center gap-3 p-3 rounded-lg bg-destructive/5 border border-destructive/20">
+          <div className="absolute inset-0 flex items-center gap-3 p-3 rounded-lg bg-destructive/5 border border-destructive/20">
             <AlertCircle className="h-4 w-4 text-destructive shrink-0" />
             <p className="text-xs text-destructive/80 flex-1">Failed to load audio</p>
             <Button variant="ghost" size="sm" onClick={handleRetry} className="h-7 text-xs">

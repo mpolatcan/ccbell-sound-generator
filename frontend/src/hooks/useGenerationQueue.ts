@@ -170,18 +170,8 @@ export function useGenerationQueue() {
 
               if (data.type === 'pong') return
 
-              // Enforce monotonically increasing progress (never go backward)
-              const currentSound = useSoundLibrary.getState().sounds.find((s) => s.id === item.id)
-              const currentProgress = currentSound?.progress ?? 0
-              const newProgress = Math.max(data.progress ?? 0, currentProgress)
-
-              updateSound(item.id, {
-                progress: newProgress,
-                stage: data.stage
-              })
-
               if (data.audio_url) {
-                // Completed
+                // Completed — single atomic update with audio_url
                 completed = true
                 updateSound(item.id, {
                   status: 'completed',
@@ -193,6 +183,7 @@ export function useGenerationQueue() {
                 ws.close()
                 cleanup()
                 resolve()
+                return
               }
 
               if (data.error) {
@@ -205,7 +196,20 @@ export function useGenerationQueue() {
                 ws.close()
                 cleanup()
                 reject(new Error(data.error))
+                return
               }
+
+              // Progress update — only for in-flight sounds
+              const currentSound = useSoundLibrary.getState().sounds.find((s) => s.id === item.id)
+              if (currentSound?.status === 'completed') return
+
+              const currentProgress = currentSound?.progress ?? 0
+              const newProgress = Math.max(data.progress ?? 0, currentProgress)
+
+              updateSound(item.id, {
+                progress: newProgress,
+                stage: data.stage
+              })
             } catch {
               // Ignore parse errors
             }
@@ -236,19 +240,8 @@ export function useGenerationQueue() {
             try {
               const status = await api.getAudioStatus(jobId)
 
-              // Enforce monotonically increasing progress (never go backward)
-              const currentSound = useSoundLibrary
-                .getState()
-                .sounds.find((s) => s.id === item.id)
-              const currentProgress = currentSound?.progress ?? 0
-              const newProgress = Math.max(status.progress ?? 0, currentProgress)
-
-              updateSound(item.id, {
-                progress: newProgress,
-                stage: status.stage || 'Generating'
-              })
-
               if (status.status === 'completed' && status.audio_url) {
+                // Completed — single atomic update with audio_url
                 updateSound(item.id, {
                   status: 'completed',
                   progress: 1,
@@ -274,6 +267,19 @@ export function useGenerationQueue() {
                 }
                 cleanup()
                 reject(new Error(status.error || 'Generation failed'))
+              } else {
+                // Progress update — only for in-flight sounds
+                const currentSound = useSoundLibrary
+                  .getState()
+                  .sounds.find((s) => s.id === item.id)
+                if (currentSound?.status !== 'completed') {
+                  const currentProgress = currentSound?.progress ?? 0
+                  const newProgress = Math.max(status.progress ?? 0, currentProgress)
+                  updateSound(item.id, {
+                    progress: newProgress,
+                    stage: status.stage || 'Generating'
+                  })
+                }
               }
             } catch (err) {
               const msg = err instanceof Error ? err.message : ''

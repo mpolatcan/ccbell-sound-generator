@@ -518,19 +518,14 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                             ? 'Completed'
                                             : sound.status}
                                       </Badge>
-                                      <Badge variant="outline" className="text-[10px] font-mono">{formatDuration(sound.duration)}</Badge>
-                                      <ElapsedTime
-                                        startTime={sound.started_at}
-                                        endTime={sound.completed_at}
-                                        isRunning={isGenerating}
-                                      />
+                                      <Badge variant="outline" className="text-[10px]">{formatDuration(sound.duration)}</Badge>
                                       {sound.style_name && (
-                                        <Badge variant="outline" className="text-[10px] font-normal px-1.5 py-0">
+                                        <Badge variant="outline" className="text-[10px]">
                                           {sound.style_name}
                                         </Badge>
                                       )}
                                       {sound.prompt_alias && (
-                                        <Badge variant="outline" className="text-[10px] font-normal px-1.5 py-0">
+                                        <Badge variant="outline" className="text-[10px]">
                                           {sound.prompt_alias}
                                         </Badge>
                                       )}
@@ -539,7 +534,12 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                       {sound.prompt}
                                     </p>
                                   </div>
-                                  <div className="flex items-center gap-0.5 ml-2">
+                                  <div className="flex items-center gap-1 ml-2 shrink-0">
+                                    <ElapsedTime
+                                      startTime={sound.started_at}
+                                      endTime={sound.completed_at}
+                                      isRunning={isGenerating}
+                                    />
                                     {!isGenerating && (
                                       <Button
                                         variant="ghost"

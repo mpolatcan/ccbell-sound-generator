@@ -32,9 +32,14 @@ export const useSoundLibrary = create<SoundLibraryState>()((set, get) => ({
 
   updateSound: (id: string, updates: Partial<GeneratedSound>) =>
     set((state) => ({
-      sounds: state.sounds.map((s) =>
-        s.id === id ? { ...s, ...updates } : s
-      )
+      sounds: state.sounds.map((s) => {
+        if (s.id !== id) return s
+        // Guard: don't allow progress-only updates to overwrite a completed sound's audio_url
+        if (s.status === 'completed' && s.audio_url && !('audio_url' in updates)) {
+          return s
+        }
+        return { ...s, ...updates }
+      })
     })),
 
   removeSound: (id: string) =>
