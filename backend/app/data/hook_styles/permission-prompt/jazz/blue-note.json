@@ -1,0 +1,55 @@
+{
+  "id": "jazz-permission-prompt-blue-note",
+  "name": "Blue Note",
+  "description": "Sultry blue note hanging in smoky air",
+  "sound_characters": {
+    "simple": [
+      "sultry blue note hanging in smoky club air"
+    ],
+    "standard": [
+      "sultry blue note hanging in smoky club air",
+      "bent pitch sliding into questioning blue territory",
+      "jazz minor third bending with expressive vibrato"
+    ],
+    "detailed": [
+      "sultry blue note hanging in smoky club air",
+      "bent pitch sliding into questioning blue territory",
+      "jazz minor third bending with expressive vibrato",
+      "tenor saxophone blue note held with breathy sustain",
+      "piano flatted fifth ringing with unresolved tension"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "late-night jazz club",
+      "Blue Note session warmth",
+      "velvet curtain lounge",
+      "bossa nova beachside patio",
+      "cool jazz after-hours session"
+    ],
+    "instruments": [
+      "harmon-muted trumpet breath",
+      "walking bass string pluck",
+      "vibraphone mallet on metal bar",
+      "wire brushes swirling on snare head",
+      "Rhodes electric piano with tremolo"
+    ],
+    "mood": [
+      "smoky room intimacy",
+      "last-set-of-the-night mellowness",
+      "bourbon warmth on the tongue",
+      "slow-nod groove",
+      "spotlight-on-the-soloist focus"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "rich",
+      "analog warmth",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

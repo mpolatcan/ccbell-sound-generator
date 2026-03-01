@@ -1,0 +1,55 @@
+{
+  "id": "mech-post-tool-use-stamp-press",
+  "name": "Stamp Press",
+  "description": "Industrial stamp pressing down with authoritative force",
+  "sound_characters": {
+    "simple": [
+      "industrial stamp pressing down with authoritative mechanical force"
+    ],
+    "standard": [
+      "industrial stamp pressing down with authoritative mechanical force",
+      "heavy die press completing cycle with hydraulic thump",
+      "manufacturing stamp leaving clean impression with solid impact"
+    ],
+    "detailed": [
+      "industrial stamp pressing down with authoritative mechanical force",
+      "heavy die press completing cycle with hydraulic thump",
+      "manufacturing stamp leaving clean impression with solid impact",
+      "embossing press creating mark with precise tonnage",
+      "rubber seal meeting paper with decisive compression"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "steam workshop furnace glow",
+      "Victorian clocktower",
+      "locomotive engine room",
+      "blacksmith anvil yard",
+      "submarine pressure hull"
+    ],
+    "instruments": [
+      "brass gear clank on iron plate",
+      "ratchet wrench click",
+      "tempered steel spring release",
+      "cast iron lever thrown",
+      "copper pipe resonance ping"
+    ],
+    "mood": [
+      "forge-hot determination",
+      "oiled-machine rhythm",
+      "riveted iron solidity",
+      "pneumatic power hiss",
+      "precision clockwork ticking"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "impactful",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

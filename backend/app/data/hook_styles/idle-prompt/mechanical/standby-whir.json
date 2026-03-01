@@ -1,0 +1,55 @@
+{
+  "id": "mech-idle-prompt-standby-whir",
+  "name": "Standby Whir",
+  "description": "Machine motor idling with low electrical whir",
+  "sound_characters": {
+    "simple": [
+      "machine motor idling with low steady electrical whir"
+    ],
+    "standard": [
+      "machine motor idling with low steady electrical whir",
+      "standby motor humming at minimum power with soft vibration",
+      "electric generator purring in ready state"
+    ],
+    "detailed": [
+      "machine motor idling with low steady electrical whir",
+      "standby motor humming at minimum power with soft vibration",
+      "electric generator purring in ready state",
+      "servo mechanism holding position with quiet frequency hum",
+      "industrial fan spinning at lowest setting with gentle drone"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "steam workshop furnace glow",
+      "Victorian clocktower",
+      "locomotive engine room",
+      "blacksmith anvil yard",
+      "submarine pressure hull"
+    ],
+    "instruments": [
+      "brass gear clank on iron plate",
+      "ratchet wrench click",
+      "tempered steel spring release",
+      "cast iron lever thrown",
+      "copper pipe resonance ping"
+    ],
+    "mood": [
+      "forge-hot determination",
+      "oiled-machine rhythm",
+      "riveted iron solidity",
+      "pneumatic power hiss",
+      "precision clockwork ticking"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "impactful",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

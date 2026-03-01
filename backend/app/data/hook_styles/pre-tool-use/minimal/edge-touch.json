@@ -1,0 +1,55 @@
+{
+  "id": "min-pre-tool-use-edge-touch",
+  "name": "Edge Touch",
+  "description": "Fingertip just reaching the edge of a surface",
+  "sound_characters": {
+    "simple": [
+      "fingertip just reaching the very edge of smooth surface"
+    ],
+    "standard": [
+      "fingertip just reaching the very edge of smooth surface",
+      "skin barely contacting glass boundary with electric potential",
+      "touch approaching but not yet committing to contact"
+    ],
+    "detailed": [
+      "fingertip just reaching the very edge of smooth surface",
+      "skin barely contacting glass boundary with electric potential",
+      "touch approaching but not yet committing to contact",
+      "nerve endings anticipating surface with microscopic gap",
+      "quantum tunnel distance between finger and material"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "ultra-clean UI interaction",
+      "Swiss design precision",
+      "white gallery silence",
+      "Scandinavian living room",
+      "frosted glass partition"
+    ],
+    "instruments": [
+      "pure sine tone at concert pitch",
+      "tapped crystal glass rim",
+      "single piano key softly pressed",
+      "porcelain bowl struck with felt tip",
+      "tuning fork resonating on wood"
+    ],
+    "mood": [
+      "whisper-quiet elegance",
+      "zen garden calm",
+      "paper-thin delicacy",
+      "breath-held anticipation",
+      "snow falling on still water"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "pristine",
+      "transparent",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

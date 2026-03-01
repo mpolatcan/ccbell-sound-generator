@@ -1,0 +1,55 @@
+{
+  "id": "nature-post-tool-use-branch-break",
+  "name": "Branch Break",
+  "description": "Dead wood snapping cleanly with decisive crack",
+  "sound_characters": {
+    "simple": [
+      "dead wood branch snapping cleanly with decisive crack"
+    ],
+    "standard": [
+      "dead wood branch snapping cleanly with decisive crack",
+      "dry timber fracturing with sharp woody split",
+      "fallen tree limb breaking underfoot with crisp snap"
+    ],
+    "detailed": [
+      "dead wood branch snapping cleanly with decisive crack",
+      "dry timber fracturing with sharp woody split",
+      "fallen tree limb breaking underfoot with crisp snap",
+      "pine branch cracking in two with resinous pop",
+      "forest floor deadfall splitting with natural percussion"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "forest clearing at dawn",
+      "moss-covered stone garden",
+      "bamboo grove in gentle wind",
+      "creek bed after summer rain",
+      "meadow with distant thunder"
+    ],
+    "instruments": [
+      "wooden mallet on hollow log",
+      "rain droplet on broad leaf",
+      "smooth river stones clinking",
+      "fingertip-plucked kalimba tine",
+      "ceramic wind chime in breeze"
+    ],
+    "mood": [
+      "morning dew stillness",
+      "sun-warmed earth",
+      "birdsong tranquility",
+      "deep forest solitude",
+      "waterfall mist on skin"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "soft",
+      "airy",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

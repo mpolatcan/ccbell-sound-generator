@@ -1,0 +1,55 @@
+{
+  "id": "mech-session-end-final-click",
+  "name": "Final Click",
+  "description": "Last switch flipped to off with decisive click",
+  "sound_characters": {
+    "simple": [
+      "last switch flipped to off position with decisive click"
+    ],
+    "standard": [
+      "last switch flipped to off position with decisive click",
+      "master power breaker disengaging with solid metallic snap",
+      "control panel going dark with final toggle switch"
+    ],
+    "detailed": [
+      "last switch flipped to off position with decisive click",
+      "master power breaker disengaging with solid metallic snap",
+      "control panel going dark with final toggle switch",
+      "circuit board receiving shutdown signal with relay click",
+      "main fuse disconnecting with authoritative mechanical sound"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "steam workshop furnace glow",
+      "Victorian clocktower",
+      "locomotive engine room",
+      "blacksmith anvil yard",
+      "submarine pressure hull"
+    ],
+    "instruments": [
+      "brass gear clank on iron plate",
+      "ratchet wrench click",
+      "tempered steel spring release",
+      "cast iron lever thrown",
+      "copper pipe resonance ping"
+    ],
+    "mood": [
+      "forge-hot determination",
+      "oiled-machine rhythm",
+      "riveted iron solidity",
+      "pneumatic power hiss",
+      "precision clockwork ticking"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "impactful",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

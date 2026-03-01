@@ -1,0 +1,55 @@
+{
+  "id": "amb-session-end-light-dims",
+  "name": "Light Dims",
+  "description": "Stage lighting fading to darkness with warm glow",
+  "sound_characters": {
+    "simple": [
+      "stage lighting fading to warm darkness with gentle dimming glow"
+    ],
+    "standard": [
+      "stage lighting fading to warm darkness with gentle dimming glow",
+      "incandescent bulb filament cooling from bright to dark",
+      "theater lights transitioning through amber to blackout"
+    ],
+    "detailed": [
+      "stage lighting fading to warm darkness with gentle dimming glow",
+      "incandescent bulb filament cooling from bright to dark",
+      "theater lights transitioning through amber to blackout",
+      "neon sign flickering off with gas tube discharge fade",
+      "room illumination descending through twilight to shadow"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "cathedral reverb at midnight",
+      "tape-saturated warmth",
+      "Brian Eno infinite space",
+      "abandoned hall echo",
+      "lo-fi cassette hiss and bloom"
+    ],
+    "instruments": [
+      "bowed singing bowl overtone",
+      "granular piano cloud",
+      "reversed cymbal swell",
+      "harmonium drone with tape wobble",
+      "shimmer reverb pad wash"
+    ],
+    "mood": [
+      "warm fog dissolving slowly",
+      "candlelight flickering softly",
+      "underwater weightlessness",
+      "drifting between sleep and waking",
+      "moonlight through frosted glass"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "lush",
+      "wide",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

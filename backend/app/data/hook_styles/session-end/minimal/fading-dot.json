@@ -1,0 +1,55 @@
+{
+  "id": "min-session-end-fading-dot",
+  "name": "Fading Dot",
+  "description": "Single point of sound diminishing to nothing",
+  "sound_characters": {
+    "simple": [
+      "single point of sound diminishing gracefully to nothing"
+    ],
+    "standard": [
+      "single point of sound diminishing gracefully to nothing",
+      "lone frequency dot shrinking until imperceptible",
+      "pure tone reducing to zero with mathematical precision"
+    ],
+    "detailed": [
+      "single point of sound diminishing gracefully to nothing",
+      "lone frequency dot shrinking until imperceptible",
+      "pure tone reducing to zero with mathematical precision",
+      "last visible star of sound winking out cleanly",
+      "pixel of resonance dissolving into absolute void"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "ultra-clean UI interaction",
+      "Swiss design precision",
+      "white gallery silence",
+      "Scandinavian living room",
+      "frosted glass partition"
+    ],
+    "instruments": [
+      "pure sine tone at concert pitch",
+      "tapped crystal glass rim",
+      "single piano key softly pressed",
+      "porcelain bowl struck with felt tip",
+      "tuning fork resonating on wood"
+    ],
+    "mood": [
+      "whisper-quiet elegance",
+      "zen garden calm",
+      "paper-thin delicacy",
+      "breath-held anticipation",
+      "snow falling on still water"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "pristine",
+      "transparent",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "id": "nature-session-end-last-bird",
+  "name": "Last Bird",
+  "description": "Final songbird of evening singing its goodnight call",
+  "sound_characters": {
+    "simple": [
+      "final songbird of evening singing its goodnight call"
+    ],
+    "standard": [
+      "final songbird of evening singing its goodnight call",
+      "solitary thrush delivering last melody before roosting",
+      "twilight bird offering single farewell phrase from high branch"
+    ],
+    "detailed": [
+      "final songbird of evening singing its goodnight call",
+      "solitary thrush delivering last melody before roosting",
+      "twilight bird offering single farewell phrase from high branch",
+      "nightjar taking over as day singers fall silent",
+      "last robin note dissolving into cricket-filled dusk"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "forest clearing at dawn",
+      "moss-covered stone garden",
+      "bamboo grove in gentle wind",
+      "creek bed after summer rain",
+      "meadow with distant thunder"
+    ],
+    "instruments": [
+      "wooden mallet on hollow log",
+      "rain droplet on broad leaf",
+      "smooth river stones clinking",
+      "fingertip-plucked kalimba tine",
+      "ceramic wind chime in breeze"
+    ],
+    "mood": [
+      "morning dew stillness",
+      "sun-warmed earth",
+      "birdsong tranquility",
+      "deep forest solitude",
+      "waterfall mist on skin"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "soft",
+      "airy",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

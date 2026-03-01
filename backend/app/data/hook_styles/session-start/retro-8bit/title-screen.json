@@ -1,0 +1,55 @@
+{
+  "id": "8bit-session-start-title-screen",
+  "name": "Title Screen",
+  "description": "Classic game title screen appearing with fanfare",
+  "sound_characters": {
+    "simple": [
+      "classic game title screen appearing with chiptune fanfare"
+    ],
+    "standard": [
+      "classic game title screen appearing with chiptune fanfare",
+      "8-bit logo reveal with dramatic square wave melody",
+      "retro game boot with pixel-art title and ascending arpeggio"
+    ],
+    "detailed": [
+      "classic game title screen appearing with chiptune fanfare",
+      "8-bit logo reveal with dramatic square wave melody",
+      "retro game boot with pixel-art title and ascending arpeggio",
+      "NES power-on with CRT warm-up and opening jingle",
+      "bitcrushed orchestra hit introducing game title with authority"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "NES coin-collect jingle",
+      "pixel game power-up",
+      "Game Boy startup melody",
+      "SID chip tracker groove",
+      "16-bit victory screen"
+    ],
+    "instruments": [
+      "bitcrushed square wave blip",
+      "pulse wave arpeggio",
+      "triangle wave bass note",
+      "noise channel snare hit",
+      "lo-fi sample playback crunch"
+    ],
+    "mood": [
+      "arcade cabinet excitement",
+      "joystick-era nostalgia",
+      "high-score elation",
+      "speed-run intensity",
+      "bonus-stage energy"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "crisp",
+      "punchy",
+      "bright",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

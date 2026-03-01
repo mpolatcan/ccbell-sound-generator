@@ -1,0 +1,55 @@
+{
+  "id": "amb-subagent-start-wave-fork",
+  "name": "Wave Fork",
+  "description": "Ocean wave splitting around a rock formation",
+  "sound_characters": {
+    "simple": [
+      "ocean wave splitting around rock formation into two streams"
+    ],
+    "standard": [
+      "ocean wave splitting around rock formation into two streams",
+      "water energy dividing and flowing separate paths",
+      "tide current bifurcating around coastal obstacle"
+    ],
+    "detailed": [
+      "ocean wave splitting around rock formation into two streams",
+      "water energy dividing and flowing separate paths",
+      "tide current bifurcating around coastal obstacle",
+      "wavefront encountering barrier and flowing both sides",
+      "coastal diffraction creating twin wave propagation"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "cathedral reverb at midnight",
+      "tape-saturated warmth",
+      "Brian Eno infinite space",
+      "abandoned hall echo",
+      "lo-fi cassette hiss and bloom"
+    ],
+    "instruments": [
+      "bowed singing bowl overtone",
+      "granular piano cloud",
+      "reversed cymbal swell",
+      "harmonium drone with tape wobble",
+      "shimmer reverb pad wash"
+    ],
+    "mood": [
+      "warm fog dissolving slowly",
+      "candlelight flickering softly",
+      "underwater weightlessness",
+      "drifting between sleep and waking",
+      "moonlight through frosted glass"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "lush",
+      "wide",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "id": "amb-subagent-stop-ripple-end",
+  "name": "Ripple End",
+  "description": "Last concentric ring reaching the shore and vanishing",
+  "sound_characters": {
+    "simple": [
+      "last concentric ripple reaching shore and vanishing"
+    ],
+    "standard": [
+      "last concentric ripple reaching shore and vanishing",
+      "water ring expanding to stillness with gentle fade",
+      "surface disturbance settling into glassy calm"
+    ],
+    "detailed": [
+      "last concentric ripple reaching shore and vanishing",
+      "water ring expanding to stillness with gentle fade",
+      "surface disturbance settling into glassy calm",
+      "pond surface returning to mirror perfection",
+      "final wave crest dissolving into smooth water"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "cathedral reverb at midnight",
+      "tape-saturated warmth",
+      "Brian Eno infinite space",
+      "abandoned hall echo",
+      "lo-fi cassette hiss and bloom"
+    ],
+    "instruments": [
+      "bowed singing bowl overtone",
+      "granular piano cloud",
+      "reversed cymbal swell",
+      "harmonium drone with tape wobble",
+      "shimmer reverb pad wash"
+    ],
+    "mood": [
+      "warm fog dissolving slowly",
+      "candlelight flickering softly",
+      "underwater weightlessness",
+      "drifting between sleep and waking",
+      "moonlight through frosted glass"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "lush",
+      "wide",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

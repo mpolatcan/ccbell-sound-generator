@@ -1,0 +1,53 @@
+{
+  "id": "scifi-permission-prompt-access-query",
+  "name": "Access Query",
+  "description": "Security system requesting identity verification",
+  "sound_characters": {
+    "simple": [
+      "security system requesting identity verification with scanning tone"
+    ],
+    "standard": [
+      "security system requesting identity verification with scanning tone",
+      "biometric scanner activating with interrogative sweep",
+      "access control panel pulsing with authorization query"
+    ],
+    "detailed": [
+      "security system requesting identity verification with scanning tone",
+      "biometric scanner activating with interrogative sweep",
+      "access control panel pulsing with authorization query",
+      "retinal scanner powering up with ascending digital whine",
+      "quantum encryption handshake requesting clearance code"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "futuristic spacecraft interface",
+      "cyberpunk neon-lit",
+      "deep space station",
+      "quantum computer hum",
+      "orbital relay signal"
+    ],
+    "instruments": [
+      "crystalline FM synthesis bell",
+      "voltage-controlled resonant filter sweep",
+      "granular synth texture",
+      "plasma crackle discharge"
+    ],
+    "mood": [
+      "otherworldly precision",
+      "holographic clarity",
+      "cold vacuum stillness",
+      "alien intelligence awakening"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "studio-grade",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

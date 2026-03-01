@@ -1,0 +1,55 @@
+{
+  "id": "nature-permission-prompt-thunder-rumble",
+  "name": "Thunder Rumble",
+  "description": "Distant storm rolling in with questioning growl",
+  "sound_characters": {
+    "simple": [
+      "distant thunder rolling in with low questioning growl"
+    ],
+    "standard": [
+      "distant thunder rolling in with low questioning growl",
+      "approaching storm rumble asking for attention",
+      "far-off lightning crack followed by contemplative thunder"
+    ],
+    "detailed": [
+      "distant thunder rolling in with low questioning growl",
+      "approaching storm rumble asking for attention",
+      "far-off lightning crack followed by contemplative thunder",
+      "atmospheric pressure drop with ominous low frequency roll",
+      "summer storm warning with deep sky vibration"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "forest clearing at dawn",
+      "moss-covered stone garden",
+      "bamboo grove in gentle wind",
+      "creek bed after summer rain",
+      "meadow with distant thunder"
+    ],
+    "instruments": [
+      "wooden mallet on hollow log",
+      "rain droplet on broad leaf",
+      "smooth river stones clinking",
+      "fingertip-plucked kalimba tine",
+      "ceramic wind chime in breeze"
+    ],
+    "mood": [
+      "morning dew stillness",
+      "sun-warmed earth",
+      "birdsong tranquility",
+      "deep forest solitude",
+      "waterfall mist on skin"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "soft",
+      "airy",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

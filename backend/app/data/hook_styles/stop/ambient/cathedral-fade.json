@@ -1,0 +1,55 @@
+{
+  "id": "amb-stop-cathedral-fade",
+  "name": "Cathedral Fade",
+  "description": "Vast reverberant hall absorbing the last sound",
+  "sound_characters": {
+    "simple": [
+      "vast cathedral reverb absorbing final resonance into silence"
+    ],
+    "standard": [
+      "vast cathedral reverb absorbing final resonance into silence",
+      "stone hall echo trail dissolving into sacred quiet",
+      "organ chord fading through arched ceiling space"
+    ],
+    "detailed": [
+      "vast cathedral reverb absorbing final resonance into silence",
+      "stone hall echo trail dissolving into sacred quiet",
+      "organ chord fading through arched ceiling space",
+      "candlelit nave swallowing last shimmer of sound",
+      "gothic vault resonance settling like dust motes"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "cathedral reverb at midnight",
+      "tape-saturated warmth",
+      "Brian Eno infinite space",
+      "abandoned hall echo",
+      "lo-fi cassette hiss and bloom"
+    ],
+    "instruments": [
+      "bowed singing bowl overtone",
+      "granular piano cloud",
+      "reversed cymbal swell",
+      "harmonium drone with tape wobble",
+      "shimmer reverb pad wash"
+    ],
+    "mood": [
+      "warm fog dissolving slowly",
+      "candlelight flickering softly",
+      "underwater weightlessness",
+      "drifting between sleep and waking",
+      "moonlight through frosted glass"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "lush",
+      "wide",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

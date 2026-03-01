@@ -1,0 +1,53 @@
+{
+  "id": "scifi-idle-prompt-cryo-sleep",
+  "name": "Cryo Sleep",
+  "description": "Cryogenic chamber maintaining frozen stasis",
+  "sound_characters": {
+    "simple": [
+      "cryogenic chamber maintaining frozen stasis with slow pulse"
+    ],
+    "standard": [
+      "cryogenic chamber maintaining frozen stasis with slow pulse",
+      "cryo-pod life signs monitor beeping at hibernation tempo",
+      "frozen suspension field humming with crystalline patience"
+    ],
+    "detailed": [
+      "cryogenic chamber maintaining frozen stasis with slow pulse",
+      "cryo-pod life signs monitor beeping at hibernation tempo",
+      "frozen suspension field humming with crystalline patience",
+      "ice forming on chamber glass with microscopic crackle",
+      "deep freeze maintaining absolute zero with sub-bass drone"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "futuristic spacecraft interface",
+      "cyberpunk neon-lit",
+      "deep space station",
+      "quantum computer hum",
+      "orbital relay signal"
+    ],
+    "instruments": [
+      "crystalline FM synthesis bell",
+      "voltage-controlled resonant filter sweep",
+      "granular synth texture",
+      "plasma crackle discharge"
+    ],
+    "mood": [
+      "otherworldly precision",
+      "holographic clarity",
+      "cold vacuum stillness",
+      "alien intelligence awakening"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "studio-grade",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

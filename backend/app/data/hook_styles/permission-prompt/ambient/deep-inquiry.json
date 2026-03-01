@@ -1,0 +1,55 @@
+{
+  "id": "amb-permission-prompt-deep-inquiry",
+  "name": "Deep Inquiry",
+  "description": "Subterranean drone rising to ask a question",
+  "sound_characters": {
+    "simple": [
+      "subterranean drone rising with contemplative inquiry"
+    ],
+    "standard": [
+      "subterranean drone rising with contemplative inquiry",
+      "deep earth tone ascending with questioning vibration",
+      "cave resonance shifting upward with mysterious intent"
+    ],
+    "detailed": [
+      "subterranean drone rising with contemplative inquiry",
+      "deep earth tone ascending with questioning vibration",
+      "cave resonance shifting upward with mysterious intent",
+      "underground stream echo creating natural question phrase",
+      "geological hum bending upward through layers of stone"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "cathedral reverb at midnight",
+      "tape-saturated warmth",
+      "Brian Eno infinite space",
+      "abandoned hall echo",
+      "lo-fi cassette hiss and bloom"
+    ],
+    "instruments": [
+      "bowed singing bowl overtone",
+      "granular piano cloud",
+      "reversed cymbal swell",
+      "harmonium drone with tape wobble",
+      "shimmer reverb pad wash"
+    ],
+    "mood": [
+      "warm fog dissolving slowly",
+      "candlelight flickering softly",
+      "underwater weightlessness",
+      "drifting between sleep and waking",
+      "moonlight through frosted glass"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "lush",
+      "wide",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

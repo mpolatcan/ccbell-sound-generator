@@ -34,9 +34,13 @@ export interface EditablePromptChips {
 export interface PerHookConfig {
   soundTypeChips: ChipItem[]
   stylePresetId: string | null
+  promptComponentChips: {
+    style: ChipItem[]
+    instruments: ChipItem[]
+    mood: ChipItem[]
+    quality: ChipItem[]
+  } | null
 }
-
-export type PromptDetailTier = 'simple' | 'standard' | 'detailed'
 
 export interface TieredPromptComponents {
   simple: PromptComponents
@@ -76,6 +80,7 @@ export interface SoundStylePreset {
   name: string
   description: string
   sound_characters: TieredSoundCharacters
+  prompt_components?: PromptComponents
 }
 
 export interface HookType {
@@ -83,7 +88,7 @@ export interface HookType {
   name: string
   description: string
   sound_characters: TieredSoundCharacters
-  sound_style_presets: SoundStylePreset[]
+  sound_style_presets: Record<string, SoundStylePreset[]>
 }
 
 export interface GenerationSettings {

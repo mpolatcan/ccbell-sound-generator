@@ -1,0 +1,55 @@
+{
+  "id": "amb-user-prompt-submit-cloud-push",
+  "name": "Cloud Push",
+  "description": "Atmospheric mass set in motion by force",
+  "sound_characters": {
+    "simple": [
+      "atmospheric cloud mass set in gentle purposeful motion"
+    ],
+    "standard": [
+      "atmospheric cloud mass set in gentle purposeful motion",
+      "weather system nudged forward by invisible hand",
+      "fog bank advancing with slow deliberate momentum"
+    ],
+    "detailed": [
+      "atmospheric cloud mass set in gentle purposeful motion",
+      "weather system nudged forward by invisible hand",
+      "fog bank advancing with slow deliberate momentum",
+      "sky texture shifting as pressure gradient takes hold",
+      "cumulus formation drifting with building wind energy"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "cathedral reverb at midnight",
+      "tape-saturated warmth",
+      "Brian Eno infinite space",
+      "abandoned hall echo",
+      "lo-fi cassette hiss and bloom"
+    ],
+    "instruments": [
+      "bowed singing bowl overtone",
+      "granular piano cloud",
+      "reversed cymbal swell",
+      "harmonium drone with tape wobble",
+      "shimmer reverb pad wash"
+    ],
+    "mood": [
+      "warm fog dissolving slowly",
+      "candlelight flickering softly",
+      "underwater weightlessness",
+      "drifting between sleep and waking",
+      "moonlight through frosted glass"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "lush",
+      "wide",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "id": "scifi-subagent-stop-data-packet",
+  "name": "Data Packet",
+  "description": "Small data transmission completing with digital chirp",
+  "sound_characters": {
+    "simple": [
+      "small data packet received with quick digital chirp"
+    ],
+    "standard": [
+      "small data packet received with quick digital chirp",
+      "micro transmission confirmed with soft electronic ping",
+      "binary data burst completing with brief synth blip"
+    ],
+    "detailed": [
+      "small data packet received with quick digital chirp",
+      "micro transmission confirmed with soft electronic ping",
+      "binary data burst completing with brief synth blip",
+      "network acknowledgment pulse with crystalline FM tick",
+      "satellite telemetry byte landing with gentle voltage click"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "futuristic spacecraft interface",
+      "cyberpunk neon-lit",
+      "deep space station",
+      "quantum computer hum",
+      "orbital relay signal"
+    ],
+    "instruments": [
+      "crystalline FM synthesis bell",
+      "voltage-controlled resonant filter sweep",
+      "granular synth texture",
+      "plasma crackle discharge"
+    ],
+    "mood": [
+      "otherworldly precision",
+      "holographic clarity",
+      "cold vacuum stillness",
+      "alien intelligence awakening"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "studio-grade",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

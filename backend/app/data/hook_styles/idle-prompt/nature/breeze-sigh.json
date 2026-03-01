@@ -1,0 +1,55 @@
+{
+  "id": "nature-idle-prompt-breeze-sigh",
+  "name": "Breeze Sigh",
+  "description": "Gentle wind breathing through tall grass",
+  "sound_characters": {
+    "simple": [
+      "gentle wind breathing through tall meadow grass"
+    ],
+    "standard": [
+      "gentle wind breathing through tall meadow grass",
+      "soft breeze sighing through wheat field with slow rhythm",
+      "air moving lazily through wildflower stalks"
+    ],
+    "detailed": [
+      "gentle wind breathing through tall meadow grass",
+      "soft breeze sighing through wheat field with slow rhythm",
+      "air moving lazily through wildflower stalks",
+      "prairie wind exhaling with patient seasonal cadence",
+      "hillside grass bending in slow hypnotic waves of sound"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "forest clearing at dawn",
+      "moss-covered stone garden",
+      "bamboo grove in gentle wind",
+      "creek bed after summer rain",
+      "meadow with distant thunder"
+    ],
+    "instruments": [
+      "wooden mallet on hollow log",
+      "rain droplet on broad leaf",
+      "smooth river stones clinking",
+      "fingertip-plucked kalimba tine",
+      "ceramic wind chime in breeze"
+    ],
+    "mood": [
+      "morning dew stillness",
+      "sun-warmed earth",
+      "birdsong tranquility",
+      "deep forest solitude",
+      "waterfall mist on skin"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "soft",
+      "airy",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

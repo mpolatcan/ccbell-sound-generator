@@ -1,0 +1,55 @@
+{
+  "id": "nature-subagent-start-seed-launch",
+  "name": "Seed Launch",
+  "description": "Seed pod bursting and launching seeds into wind",
+  "sound_characters": {
+    "simple": [
+      "seed pod bursting open and launching seeds into the wind"
+    ],
+    "standard": [
+      "seed pod bursting open and launching seeds into the wind",
+      "dandelion head exploding with tiny parachutes scattering",
+      "milkweed releasing silk-carried seeds with popping burst"
+    ],
+    "detailed": [
+      "seed pod bursting open and launching seeds into the wind",
+      "dandelion head exploding with tiny parachutes scattering",
+      "milkweed releasing silk-carried seeds with popping burst",
+      "pine cone opening in heat to scatter winged seeds",
+      "explosive fern spore release with microscopic puff"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "forest clearing at dawn",
+      "moss-covered stone garden",
+      "bamboo grove in gentle wind",
+      "creek bed after summer rain",
+      "meadow with distant thunder"
+    ],
+    "instruments": [
+      "wooden mallet on hollow log",
+      "rain droplet on broad leaf",
+      "smooth river stones clinking",
+      "fingertip-plucked kalimba tine",
+      "ceramic wind chime in breeze"
+    ],
+    "mood": [
+      "morning dew stillness",
+      "sun-warmed earth",
+      "birdsong tranquility",
+      "deep forest solitude",
+      "waterfall mist on skin"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "soft",
+      "airy",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

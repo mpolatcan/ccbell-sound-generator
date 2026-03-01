@@ -1,0 +1,55 @@
+{
+  "id": "mech-subagent-stop-latch-click",
+  "name": "Latch Click",
+  "description": "Small mechanical latch catching quietly",
+  "sound_characters": {
+    "simple": [
+      "small mechanical latch catching with quiet click"
+    ],
+    "standard": [
+      "small mechanical latch catching with quiet click",
+      "cabinet door clasp engaging with gentle snap",
+      "brass catch finding its keeper with soft metallic tick"
+    ],
+    "detailed": [
+      "small mechanical latch catching with quiet click",
+      "cabinet door clasp engaging with gentle snap",
+      "brass catch finding its keeper with soft metallic tick",
+      "pocket watch cover closing with precise click",
+      "miniature lock cylinder rotating to locked position"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "steam workshop furnace glow",
+      "Victorian clocktower",
+      "locomotive engine room",
+      "blacksmith anvil yard",
+      "submarine pressure hull"
+    ],
+    "instruments": [
+      "brass gear clank on iron plate",
+      "ratchet wrench click",
+      "tempered steel spring release",
+      "cast iron lever thrown",
+      "copper pipe resonance ping"
+    ],
+    "mood": [
+      "forge-hot determination",
+      "oiled-machine rhythm",
+      "riveted iron solidity",
+      "pneumatic power hiss",
+      "precision clockwork ticking"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "impactful",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

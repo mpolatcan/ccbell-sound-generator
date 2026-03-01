@@ -1,0 +1,55 @@
+{
+  "id": "min-session-end-silent-close",
+  "name": "Silent Close",
+  "description": "Door of sound closing without any noise at all",
+  "sound_characters": {
+    "simple": [
+      "door of sound closing with perfectly silent precision"
+    ],
+    "standard": [
+      "door of sound closing with perfectly silent precision",
+      "clean termination of all frequency with surgical cut",
+      "audio boundary snapping shut with zero residual noise"
+    ],
+    "detailed": [
+      "door of sound closing with perfectly silent precision",
+      "clean termination of all frequency with surgical cut",
+      "audio boundary snapping shut with zero residual noise",
+      "mathematical function reaching zero crossing cleanly",
+      "last bit of energy absorbed leaving absolute stillness"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "ultra-clean UI interaction",
+      "Swiss design precision",
+      "white gallery silence",
+      "Scandinavian living room",
+      "frosted glass partition"
+    ],
+    "instruments": [
+      "pure sine tone at concert pitch",
+      "tapped crystal glass rim",
+      "single piano key softly pressed",
+      "porcelain bowl struck with felt tip",
+      "tuning fork resonating on wood"
+    ],
+    "mood": [
+      "whisper-quiet elegance",
+      "zen garden calm",
+      "paper-thin delicacy",
+      "breath-held anticipation",
+      "snow falling on still water"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "pristine",
+      "transparent",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

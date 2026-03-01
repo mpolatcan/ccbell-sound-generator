@@ -1,0 +1,55 @@
+{
+  "id": "jazz-post-tool-use-snap-back",
+  "name": "Snap Back",
+  "description": "Quick finger snap confirming the groove",
+  "sound_characters": {
+    "simple": [
+      "quick confident finger snap confirming the groove"
+    ],
+    "standard": [
+      "quick confident finger snap confirming the groove",
+      "sharp percussive snap on beats two and four",
+      "clean hand clap variant with dry crisp attack"
+    ],
+    "detailed": [
+      "quick confident finger snap confirming the groove",
+      "sharp percussive snap on beats two and four",
+      "clean hand clap variant with dry crisp attack",
+      "cool cat finger snap in dim club lighting",
+      "rhythmic affirmation with natural body percussion"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "late-night jazz club",
+      "Blue Note session warmth",
+      "velvet curtain lounge",
+      "bossa nova beachside patio",
+      "cool jazz after-hours session"
+    ],
+    "instruments": [
+      "harmon-muted trumpet breath",
+      "walking bass string pluck",
+      "vibraphone mallet on metal bar",
+      "wire brushes swirling on snare head",
+      "Rhodes electric piano with tremolo"
+    ],
+    "mood": [
+      "smoky room intimacy",
+      "last-set-of-the-night mellowness",
+      "bourbon warmth on the tongue",
+      "slow-nod groove",
+      "spotlight-on-the-soloist focus"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "rich",
+      "analog warmth",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

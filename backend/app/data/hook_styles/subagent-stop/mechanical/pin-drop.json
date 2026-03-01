@@ -1,0 +1,55 @@
+{
+  "id": "mech-subagent-stop-pin-drop",
+  "name": "Pin Drop",
+  "description": "Tiny metal pin landing on hard surface",
+  "sound_characters": {
+    "simple": [
+      "tiny metal pin dropping on polished steel surface"
+    ],
+    "standard": [
+      "tiny metal pin dropping on polished steel surface",
+      "miniature brass needle landing with precise tick",
+      "small watch gear falling onto workbench with click"
+    ],
+    "detailed": [
+      "tiny metal pin dropping on polished steel surface",
+      "miniature brass needle landing with precise tick",
+      "small watch gear falling onto workbench with click",
+      "jeweler's tool tapping on metal tray",
+      "escapement pin settling into its track"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "steam workshop furnace glow",
+      "Victorian clocktower",
+      "locomotive engine room",
+      "blacksmith anvil yard",
+      "submarine pressure hull"
+    ],
+    "instruments": [
+      "brass gear clank on iron plate",
+      "ratchet wrench click",
+      "tempered steel spring release",
+      "cast iron lever thrown",
+      "copper pipe resonance ping"
+    ],
+    "mood": [
+      "forge-hot determination",
+      "oiled-machine rhythm",
+      "riveted iron solidity",
+      "pneumatic power hiss",
+      "precision clockwork ticking"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "impactful",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

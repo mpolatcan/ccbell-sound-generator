@@ -1,0 +1,55 @@
+{
+  "id": "amb-user-prompt-submit-wave-launch",
+  "name": "Wave Launch",
+  "description": "Ocean swell building and releasing forward",
+  "sound_characters": {
+    "simple": [
+      "ocean swell building energy and releasing forward with wash"
+    ],
+    "standard": [
+      "ocean swell building energy and releasing forward with wash",
+      "wave cresting and breaking toward shore with rushing foam",
+      "tidal energy gathering and pushing with ambient force"
+    ],
+    "detailed": [
+      "ocean swell building energy and releasing forward with wash",
+      "wave cresting and breaking toward shore with rushing foam",
+      "tidal energy gathering and pushing with ambient force",
+      "tsunami of sound beginning as subtle deep water movement",
+      "ocean power translated into forward-moving sonic wall"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "cathedral reverb at midnight",
+      "tape-saturated warmth",
+      "Brian Eno infinite space",
+      "abandoned hall echo",
+      "lo-fi cassette hiss and bloom"
+    ],
+    "instruments": [
+      "bowed singing bowl overtone",
+      "granular piano cloud",
+      "reversed cymbal swell",
+      "harmonium drone with tape wobble",
+      "shimmer reverb pad wash"
+    ],
+    "mood": [
+      "warm fog dissolving slowly",
+      "candlelight flickering softly",
+      "underwater weightlessness",
+      "drifting between sleep and waking",
+      "moonlight through frosted glass"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "lush",
+      "wide",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

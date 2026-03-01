@@ -1,0 +1,53 @@
+{
+  "id": "scifi-session-start-system-boot",
+  "name": "System Boot",
+  "description": "Computer systems initializing with sequential startup sounds",
+  "sound_characters": {
+    "simple": [
+      "computer systems initializing with sequential digital startup sounds"
+    ],
+    "standard": [
+      "computer systems initializing with sequential digital startup sounds",
+      "BIOS boot sequence with cascading electronic chirps",
+      "holographic display flickering to life with data stream rush"
+    ],
+    "detailed": [
+      "computer systems initializing with sequential digital startup sounds",
+      "BIOS boot sequence with cascading electronic chirps",
+      "holographic display flickering to life with data stream rush",
+      "neural network loading with synapse-like crackling activation",
+      "operating system kernel launching with ascending frequency ladder"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "futuristic spacecraft interface",
+      "cyberpunk neon-lit",
+      "deep space station",
+      "quantum computer hum",
+      "orbital relay signal"
+    ],
+    "instruments": [
+      "crystalline FM synthesis bell",
+      "voltage-controlled resonant filter sweep",
+      "granular synth texture",
+      "plasma crackle discharge"
+    ],
+    "mood": [
+      "otherworldly precision",
+      "holographic clarity",
+      "cold vacuum stillness",
+      "alien intelligence awakening"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "studio-grade",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

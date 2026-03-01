@@ -1,0 +1,55 @@
+{
+  "id": "nature-pre-tool-use-hawk-dive",
+  "name": "Hawk Dive",
+  "description": "Raptor folding wings and beginning steep dive",
+  "sound_characters": {
+    "simple": [
+      "raptor folding wings beginning steep hunting dive"
+    ],
+    "standard": [
+      "raptor folding wings beginning steep hunting dive",
+      "hawk tucking into stooping descent with building wind rush",
+      "peregrine falcon initiating dive with accelerating air whistle"
+    ],
+    "detailed": [
+      "raptor folding wings beginning steep hunting dive",
+      "hawk tucking into stooping descent with building wind rush",
+      "peregrine falcon initiating dive with accelerating air whistle",
+      "bird of prey's feathers tightening as gravity pulls",
+      "predatory focus sharpening as terminal velocity approaches"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "forest clearing at dawn",
+      "moss-covered stone garden",
+      "bamboo grove in gentle wind",
+      "creek bed after summer rain",
+      "meadow with distant thunder"
+    ],
+    "instruments": [
+      "wooden mallet on hollow log",
+      "rain droplet on broad leaf",
+      "smooth river stones clinking",
+      "fingertip-plucked kalimba tine",
+      "ceramic wind chime in breeze"
+    ],
+    "mood": [
+      "morning dew stillness",
+      "sun-warmed earth",
+      "birdsong tranquility",
+      "deep forest solitude",
+      "waterfall mist on skin"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "soft",
+      "airy",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "id": "nature-session-end-embers-cool",
+  "name": "Embers Cool",
+  "description": "Campfire dying to glowing coals in the dark",
+  "sound_characters": {
+    "simple": [
+      "campfire dying to glowing coals crackling softly in darkness"
+    ],
+    "standard": [
+      "campfire dying to glowing coals crackling softly in darkness",
+      "fire embers pulsing with fading orange warmth",
+      "last sparks floating upward as flames settle to ash"
+    ],
+    "detailed": [
+      "campfire dying to glowing coals crackling softly in darkness",
+      "fire embers pulsing with fading orange warmth",
+      "last sparks floating upward as flames settle to ash",
+      "wood collapsing in fire pit with quiet crumble",
+      "smoke curling from dying fire under starlit sky"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "forest clearing at dawn",
+      "moss-covered stone garden",
+      "bamboo grove in gentle wind",
+      "creek bed after summer rain",
+      "meadow with distant thunder"
+    ],
+    "instruments": [
+      "wooden mallet on hollow log",
+      "rain droplet on broad leaf",
+      "smooth river stones clinking",
+      "fingertip-plucked kalimba tine",
+      "ceramic wind chime in breeze"
+    ],
+    "mood": [
+      "morning dew stillness",
+      "sun-warmed earth",
+      "birdsong tranquility",
+      "deep forest solitude",
+      "waterfall mist on skin"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "soft",
+      "airy",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "id": "scifi-idle-prompt-orbit-hold",
+  "name": "Orbit Hold",
+  "description": "Satellite maintaining steady orbit with periodic ping",
+  "sound_characters": {
+    "simple": [
+      "satellite maintaining steady orbit with periodic gentle ping"
+    ],
+    "standard": [
+      "satellite maintaining steady orbit with periodic gentle ping",
+      "space station maintaining altitude with soft thruster pulse",
+      "orbital beacon transmitting patient keepalive signal"
+    ],
+    "detailed": [
+      "satellite maintaining steady orbit with periodic gentle ping",
+      "space station maintaining altitude with soft thruster pulse",
+      "orbital beacon transmitting patient keepalive signal",
+      "geostationary platform humming in weightless equilibrium",
+      "deep space probe sending heartbeat telemetry at slow interval"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "futuristic spacecraft interface",
+      "cyberpunk neon-lit",
+      "deep space station",
+      "quantum computer hum",
+      "orbital relay signal"
+    ],
+    "instruments": [
+      "crystalline FM synthesis bell",
+      "voltage-controlled resonant filter sweep",
+      "granular synth texture",
+      "plasma crackle discharge"
+    ],
+    "mood": [
+      "otherworldly precision",
+      "holographic clarity",
+      "cold vacuum stillness",
+      "alien intelligence awakening"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "studio-grade",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

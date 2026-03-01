@@ -146,6 +146,7 @@ class SoundStylePreset(BaseModel):
     name: str
     description: str
     sound_characters: TieredSoundCharacters
+    prompt_components: PromptComponents | None = None
 
 
 class HookType(BaseModel):
@@ -155,7 +156,7 @@ class HookType(BaseModel):
     name: str
     description: str
     sound_characters: TieredSoundCharacters
-    sound_style_presets: list[SoundStylePreset] = Field(default_factory=list)
+    sound_style_presets: dict[str, list[SoundStylePreset]] = Field(default_factory=dict)
 
 
 class PublishRequest(BaseModel):

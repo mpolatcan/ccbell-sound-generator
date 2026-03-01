@@ -1,0 +1,55 @@
+{
+  "id": "min-subagent-start-light-fork",
+  "name": "Light Fork",
+  "description": "Beam of light splitting through a prism",
+  "sound_characters": {
+    "simple": [
+      "beam of pure light splitting through crystalline prism"
+    ],
+    "standard": [
+      "beam of pure light splitting through crystalline prism",
+      "single frequency refracting into divergent paths",
+      "coherent tone dispersing into component directions"
+    ],
+    "detailed": [
+      "beam of pure light splitting through crystalline prism",
+      "single frequency refracting into divergent paths",
+      "coherent tone dispersing into component directions",
+      "white sound separating into spectral elements",
+      "optical split creating rainbow of frequency paths"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "ultra-clean UI interaction",
+      "Swiss design precision",
+      "white gallery silence",
+      "Scandinavian living room",
+      "frosted glass partition"
+    ],
+    "instruments": [
+      "pure sine tone at concert pitch",
+      "tapped crystal glass rim",
+      "single piano key softly pressed",
+      "porcelain bowl struck with felt tip",
+      "tuning fork resonating on wood"
+    ],
+    "mood": [
+      "whisper-quiet elegance",
+      "zen garden calm",
+      "paper-thin delicacy",
+      "breath-held anticipation",
+      "snow falling on still water"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "pristine",
+      "transparent",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

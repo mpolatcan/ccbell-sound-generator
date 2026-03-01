@@ -1,0 +1,55 @@
+{
+  "id": "amb-post-tool-use-echo-fade",
+  "name": "Echo Fade",
+  "description": "Sound bouncing away into distant silence",
+  "sound_characters": {
+    "simple": [
+      "sound bouncing away into ever more distant silence"
+    ],
+    "standard": [
+      "sound bouncing away into ever more distant silence",
+      "echo chain diminishing with each reflection",
+      "reverberation trail disappearing into acoustic infinity"
+    ],
+    "detailed": [
+      "sound bouncing away into ever more distant silence",
+      "echo chain diminishing with each reflection",
+      "reverberation trail disappearing into acoustic infinity",
+      "canyon echo repeating with progressive softening",
+      "sound memory fading through layers of atmospheric distance"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "cathedral reverb at midnight",
+      "tape-saturated warmth",
+      "Brian Eno infinite space",
+      "abandoned hall echo",
+      "lo-fi cassette hiss and bloom"
+    ],
+    "instruments": [
+      "bowed singing bowl overtone",
+      "granular piano cloud",
+      "reversed cymbal swell",
+      "harmonium drone with tape wobble",
+      "shimmer reverb pad wash"
+    ],
+    "mood": [
+      "warm fog dissolving slowly",
+      "candlelight flickering softly",
+      "underwater weightlessness",
+      "drifting between sleep and waking",
+      "moonlight through frosted glass"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "lush",
+      "wide",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

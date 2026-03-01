@@ -1,0 +1,55 @@
+{
+  "id": "mech-pre-tool-use-clutch-in",
+  "name": "Clutch In",
+  "description": "Clutch pedal depressing to disengage drive",
+  "sound_characters": {
+    "simple": [
+      "clutch pedal depressing with mechanical disengage clunk"
+    ],
+    "standard": [
+      "clutch pedal depressing with mechanical disengage clunk",
+      "drivetrain disconnecting with spring-loaded pedal travel",
+      "gearbox freewheeling as clutch plate separates"
+    ],
+    "detailed": [
+      "clutch pedal depressing with mechanical disengage clunk",
+      "drivetrain disconnecting with spring-loaded pedal travel",
+      "gearbox freewheeling as clutch plate separates",
+      "hydraulic cylinder compressing with building fluid pressure",
+      "transmission ready for gear selection with neutral whir"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "steam workshop furnace glow",
+      "Victorian clocktower",
+      "locomotive engine room",
+      "blacksmith anvil yard",
+      "submarine pressure hull"
+    ],
+    "instruments": [
+      "brass gear clank on iron plate",
+      "ratchet wrench click",
+      "tempered steel spring release",
+      "cast iron lever thrown",
+      "copper pipe resonance ping"
+    ],
+    "mood": [
+      "forge-hot determination",
+      "oiled-machine rhythm",
+      "riveted iron solidity",
+      "pneumatic power hiss",
+      "precision clockwork ticking"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "impactful",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "id": "mech-session-start-engine-start",
+  "name": "Engine Start",
+  "description": "Heavy industrial engine turning over and catching",
+  "sound_characters": {
+    "simple": [
+      "heavy industrial engine turning over and catching with roar"
+    ],
+    "standard": [
+      "heavy industrial engine turning over and catching with roar",
+      "diesel motor cranking with building combustion rhythm",
+      "factory main engine firing up with increasing RPM"
+    ],
+    "detailed": [
+      "heavy industrial engine turning over and catching with roar",
+      "diesel motor cranking with building combustion rhythm",
+      "factory main engine firing up with increasing RPM",
+      "steam locomotive boiler pressure building to operating level",
+      "vintage motor sputtering then catching with confident rumble"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "steam workshop furnace glow",
+      "Victorian clocktower",
+      "locomotive engine room",
+      "blacksmith anvil yard",
+      "submarine pressure hull"
+    ],
+    "instruments": [
+      "brass gear clank on iron plate",
+      "ratchet wrench click",
+      "tempered steel spring release",
+      "cast iron lever thrown",
+      "copper pipe resonance ping"
+    ],
+    "mood": [
+      "forge-hot determination",
+      "oiled-machine rhythm",
+      "riveted iron solidity",
+      "pneumatic power hiss",
+      "precision clockwork ticking"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "impactful",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

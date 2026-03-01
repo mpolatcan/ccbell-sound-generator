@@ -1,0 +1,55 @@
+{
+  "id": "nature-user-prompt-submit-wind-carry",
+  "name": "Wind Carry",
+  "description": "Message caught by wind and carried away",
+  "sound_characters": {
+    "simple": [
+      "message caught by strong wind and carried swiftly away"
+    ],
+    "standard": [
+      "message caught by strong wind and carried swiftly away",
+      "leaf letter lifted by gust and sailing over trees",
+      "dandelion seeds released into purposeful carrying breeze"
+    ],
+    "detailed": [
+      "message caught by strong wind and carried swiftly away",
+      "leaf letter lifted by gust and sailing over trees",
+      "dandelion seeds released into purposeful carrying breeze",
+      "paper caught in updraft and spiraling higher",
+      "autumn wind snatching sound and running with it"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "forest clearing at dawn",
+      "moss-covered stone garden",
+      "bamboo grove in gentle wind",
+      "creek bed after summer rain",
+      "meadow with distant thunder"
+    ],
+    "instruments": [
+      "wooden mallet on hollow log",
+      "rain droplet on broad leaf",
+      "smooth river stones clinking",
+      "fingertip-plucked kalimba tine",
+      "ceramic wind chime in breeze"
+    ],
+    "mood": [
+      "morning dew stillness",
+      "sun-warmed earth",
+      "birdsong tranquility",
+      "deep forest solitude",
+      "waterfall mist on skin"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "soft",
+      "airy",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

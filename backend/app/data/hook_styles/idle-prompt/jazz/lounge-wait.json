@@ -1,0 +1,55 @@
+{
+  "id": "jazz-idle-prompt-lounge-wait",
+  "name": "Lounge Wait",
+  "description": "Cool jazz vamping softly between sets",
+  "sound_characters": {
+    "simple": [
+      "cool jazz piano vamping softly between sets in dim lounge"
+    ],
+    "standard": [
+      "cool jazz piano vamping softly between sets in dim lounge",
+      "Rhodes keyboard noodling gentle waiting patterns",
+      "cocktail piano tinkling patient comping chords"
+    ],
+    "detailed": [
+      "cool jazz piano vamping softly between sets in dim lounge",
+      "Rhodes keyboard noodling gentle waiting patterns",
+      "cocktail piano tinkling patient comping chords",
+      "vibraphone sustaining warm chord in empty club",
+      "upright bass player quietly walking a slow pattern alone"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "late-night jazz club",
+      "Blue Note session warmth",
+      "velvet curtain lounge",
+      "bossa nova beachside patio",
+      "cool jazz after-hours session"
+    ],
+    "instruments": [
+      "harmon-muted trumpet breath",
+      "walking bass string pluck",
+      "vibraphone mallet on metal bar",
+      "wire brushes swirling on snare head",
+      "Rhodes electric piano with tremolo"
+    ],
+    "mood": [
+      "smoky room intimacy",
+      "last-set-of-the-night mellowness",
+      "bourbon warmth on the tongue",
+      "slow-nod groove",
+      "spotlight-on-the-soloist focus"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "rich",
+      "analog warmth",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

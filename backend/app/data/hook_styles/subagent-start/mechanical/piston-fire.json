@@ -1,0 +1,55 @@
+{
+  "id": "mech-subagent-start-piston-fire",
+  "name": "Piston Fire",
+  "description": "Additional piston beginning its power stroke",
+  "sound_characters": {
+    "simple": [
+      "additional piston beginning its power stroke with firing burst"
+    ],
+    "standard": [
+      "additional piston beginning its power stroke with firing burst",
+      "new cylinder joining engine rhythm with combustion kick",
+      "extra mechanical arm engaging with pneumatic punch"
+    ],
+    "detailed": [
+      "additional piston beginning its power stroke with firing burst",
+      "new cylinder joining engine rhythm with combustion kick",
+      "extra mechanical arm engaging with pneumatic punch",
+      "V-engine adding cylinder to firing sequence",
+      "hydraulic ram extending with decisive pressurized thrust"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "steam workshop furnace glow",
+      "Victorian clocktower",
+      "locomotive engine room",
+      "blacksmith anvil yard",
+      "submarine pressure hull"
+    ],
+    "instruments": [
+      "brass gear clank on iron plate",
+      "ratchet wrench click",
+      "tempered steel spring release",
+      "cast iron lever thrown",
+      "copper pipe resonance ping"
+    ],
+    "mood": [
+      "forge-hot determination",
+      "oiled-machine rhythm",
+      "riveted iron solidity",
+      "pneumatic power hiss",
+      "precision clockwork ticking"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "impactful",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

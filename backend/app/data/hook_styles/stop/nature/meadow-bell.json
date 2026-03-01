@@ -1,0 +1,55 @@
+{
+  "id": "nature-stop-meadow-bell",
+  "name": "Meadow Bell",
+  "description": "Distant cowbell across a sunlit alpine meadow",
+  "sound_characters": {
+    "simple": [
+      "distant cowbell ringing across sunlit alpine meadow"
+    ],
+    "standard": [
+      "distant cowbell ringing across sunlit alpine meadow",
+      "pastoral bell tone carried on warm grass-scented wind",
+      "gentle copper bell with mountain echo decay"
+    ],
+    "detailed": [
+      "distant cowbell ringing across sunlit alpine meadow",
+      "pastoral bell tone carried on warm grass-scented wind",
+      "gentle copper bell with mountain echo decay",
+      "highland chime drifting through wildflower field",
+      "serene meadow resonance fading into birdsong"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "forest clearing at dawn",
+      "moss-covered stone garden",
+      "bamboo grove in gentle wind",
+      "creek bed after summer rain",
+      "meadow with distant thunder"
+    ],
+    "instruments": [
+      "wooden mallet on hollow log",
+      "rain droplet on broad leaf",
+      "smooth river stones clinking",
+      "fingertip-plucked kalimba tine",
+      "ceramic wind chime in breeze"
+    ],
+    "mood": [
+      "morning dew stillness",
+      "sun-warmed earth",
+      "birdsong tranquility",
+      "deep forest solitude",
+      "waterfall mist on skin"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "soft",
+      "airy",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

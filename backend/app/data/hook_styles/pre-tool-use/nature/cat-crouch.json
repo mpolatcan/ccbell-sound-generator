@@ -1,0 +1,55 @@
+{
+  "id": "nature-pre-tool-use-cat-crouch",
+  "name": "Cat Crouch",
+  "description": "Predator cat lowering into ready position",
+  "sound_characters": {
+    "simple": [
+      "predator cat lowering into tense crouching position silently"
+    ],
+    "standard": [
+      "predator cat lowering into tense crouching position silently",
+      "feline muscles coiling with barely audible shifting",
+      "hunting cat's tail twitching as focus narrows"
+    ],
+    "detailed": [
+      "predator cat lowering into tense crouching position silently",
+      "feline muscles coiling with barely audible shifting",
+      "hunting cat's tail twitching as focus narrows",
+      "wild cat's breathing slowing before explosive pounce",
+      "jungle predator locking gaze with concentrated stillness"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "forest clearing at dawn",
+      "moss-covered stone garden",
+      "bamboo grove in gentle wind",
+      "creek bed after summer rain",
+      "meadow with distant thunder"
+    ],
+    "instruments": [
+      "wooden mallet on hollow log",
+      "rain droplet on broad leaf",
+      "smooth river stones clinking",
+      "fingertip-plucked kalimba tine",
+      "ceramic wind chime in breeze"
+    ],
+    "mood": [
+      "morning dew stillness",
+      "sun-warmed earth",
+      "birdsong tranquility",
+      "deep forest solitude",
+      "waterfall mist on skin"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "soft",
+      "airy",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

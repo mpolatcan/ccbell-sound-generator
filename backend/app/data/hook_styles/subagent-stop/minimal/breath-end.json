@@ -1,0 +1,55 @@
+{
+  "id": "min-subagent-stop-breath-end",
+  "name": "Breath End",
+  "description": "Quiet exhale completing with soft close",
+  "sound_characters": {
+    "simple": [
+      "quiet exhale completing with soft gentle close"
+    ],
+    "standard": [
+      "quiet exhale completing with soft gentle close",
+      "breath trailing off into perfect stillness",
+      "whispered release settling like fine dust"
+    ],
+    "detailed": [
+      "quiet exhale completing with soft gentle close",
+      "breath trailing off into perfect stillness",
+      "whispered release settling like fine dust",
+      "air leaving lungs with barely perceptible warmth",
+      "silence rushing in after last wisp of sound"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "ultra-clean UI interaction",
+      "Swiss design precision",
+      "white gallery silence",
+      "Scandinavian living room",
+      "frosted glass partition"
+    ],
+    "instruments": [
+      "pure sine tone at concert pitch",
+      "tapped crystal glass rim",
+      "single piano key softly pressed",
+      "porcelain bowl struck with felt tip",
+      "tuning fork resonating on wood"
+    ],
+    "mood": [
+      "whisper-quiet elegance",
+      "zen garden calm",
+      "paper-thin delicacy",
+      "breath-held anticipation",
+      "snow falling on still water"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "pristine",
+      "transparent",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

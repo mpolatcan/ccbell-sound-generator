@@ -1,0 +1,53 @@
+{
+  "id": "scifi-permission-prompt-scan-alert",
+  "name": "Scan Alert",
+  "description": "Sensor detecting unknown object requiring analysis",
+  "sound_characters": {
+    "simple": [
+      "sensor array detecting unknown object with alert ping"
+    ],
+    "standard": [
+      "sensor array detecting unknown object with alert ping",
+      "radar sweep highlighting unidentified contact",
+      "tactical display flashing with questioning sensor tone"
+    ],
+    "detailed": [
+      "sensor array detecting unknown object with alert ping",
+      "radar sweep highlighting unidentified contact",
+      "tactical display flashing with questioning sensor tone",
+      "deep space scanner requesting classification input",
+      "anomaly detection system chirping for operator attention"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "futuristic spacecraft interface",
+      "cyberpunk neon-lit",
+      "deep space station",
+      "quantum computer hum",
+      "orbital relay signal"
+    ],
+    "instruments": [
+      "crystalline FM synthesis bell",
+      "voltage-controlled resonant filter sweep",
+      "granular synth texture",
+      "plasma crackle discharge"
+    ],
+    "mood": [
+      "otherworldly precision",
+      "holographic clarity",
+      "cold vacuum stillness",
+      "alien intelligence awakening"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "studio-grade",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

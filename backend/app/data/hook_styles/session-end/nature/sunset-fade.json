@@ -1,0 +1,55 @@
+{
+  "id": "nature-session-end-sunset-fade",
+  "name": "Sunset Fade",
+  "description": "Sun sinking below horizon painting sky in warm tones",
+  "sound_characters": {
+    "simple": [
+      "sun sinking below horizon painting sky in warm fading tones"
+    ],
+    "standard": [
+      "sun sinking below horizon painting sky in warm fading tones",
+      "golden hour light diminishing with cooling evening colors",
+      "daylight draining from landscape with gentle descending warmth"
+    ],
+    "detailed": [
+      "sun sinking below horizon painting sky in warm fading tones",
+      "golden hour light diminishing with cooling evening colors",
+      "daylight draining from landscape with gentle descending warmth",
+      "purple twilight settling over quiet countryside",
+      "last amber streak dissolving into star-pricked darkness"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "forest clearing at dawn",
+      "moss-covered stone garden",
+      "bamboo grove in gentle wind",
+      "creek bed after summer rain",
+      "meadow with distant thunder"
+    ],
+    "instruments": [
+      "wooden mallet on hollow log",
+      "rain droplet on broad leaf",
+      "smooth river stones clinking",
+      "fingertip-plucked kalimba tine",
+      "ceramic wind chime in breeze"
+    ],
+    "mood": [
+      "morning dew stillness",
+      "sun-warmed earth",
+      "birdsong tranquility",
+      "deep forest solitude",
+      "waterfall mist on skin"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "soft",
+      "airy",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

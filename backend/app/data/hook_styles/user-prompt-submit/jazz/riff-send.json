@@ -1,0 +1,55 @@
+{
+  "id": "jazz-user-prompt-submit-riff-send",
+  "name": "Riff Send",
+  "description": "Quick melodic phrase tossed out with cool confidence",
+  "sound_characters": {
+    "simple": [
+      "quick melodic jazz riff tossed out with cool confidence"
+    ],
+    "standard": [
+      "quick melodic jazz riff tossed out with cool confidence",
+      "bebop lick fired off with casual virtuosity",
+      "improvisational phrase launched with rhythmic authority"
+    ],
+    "detailed": [
+      "quick melodic jazz riff tossed out with cool confidence",
+      "bebop lick fired off with casual virtuosity",
+      "improvisational phrase launched with rhythmic authority",
+      "saxophone run executed with effortless forward motion",
+      "piano phrase dispatched with swinging momentum"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "late-night jazz club",
+      "Blue Note session warmth",
+      "velvet curtain lounge",
+      "bossa nova beachside patio",
+      "cool jazz after-hours session"
+    ],
+    "instruments": [
+      "harmon-muted trumpet breath",
+      "walking bass string pluck",
+      "vibraphone mallet on metal bar",
+      "wire brushes swirling on snare head",
+      "Rhodes electric piano with tremolo"
+    ],
+    "mood": [
+      "smoky room intimacy",
+      "last-set-of-the-night mellowness",
+      "bourbon warmth on the tongue",
+      "slow-nod groove",
+      "spotlight-on-the-soloist focus"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "rich",
+      "analog warmth",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

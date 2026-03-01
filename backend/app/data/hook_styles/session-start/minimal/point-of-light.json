@@ -1,0 +1,55 @@
+{
+  "id": "min-session-start-point-of-light",
+  "name": "Point of Light",
+  "description": "Single bright point appearing in darkness",
+  "sound_characters": {
+    "simple": [
+      "single bright point of light appearing in total darkness"
+    ],
+    "standard": [
+      "single bright point of light appearing in total darkness",
+      "luminous tone dot emerging from void with gentle fade-in",
+      "star-like frequency point igniting with quiet radiance"
+    ],
+    "detailed": [
+      "single bright point of light appearing in total darkness",
+      "luminous tone dot emerging from void with gentle fade-in",
+      "star-like frequency point igniting with quiet radiance",
+      "photon of sound appearing with perfectly clean attack",
+      "first particle of resonance materializing from empty space"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "ultra-clean UI interaction",
+      "Swiss design precision",
+      "white gallery silence",
+      "Scandinavian living room",
+      "frosted glass partition"
+    ],
+    "instruments": [
+      "pure sine tone at concert pitch",
+      "tapped crystal glass rim",
+      "single piano key softly pressed",
+      "porcelain bowl struck with felt tip",
+      "tuning fork resonating on wood"
+    ],
+    "mood": [
+      "whisper-quiet elegance",
+      "zen garden calm",
+      "paper-thin delicacy",
+      "breath-held anticipation",
+      "snow falling on still water"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "pristine",
+      "transparent",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

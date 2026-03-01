@@ -1,0 +1,55 @@
+{
+  "id": "nature-idle-prompt-still-water",
+  "name": "Still Water",
+  "description": "Perfectly calm lake with occasional tiny ripple",
+  "sound_characters": {
+    "simple": [
+      "perfectly calm lake surface with occasional tiny ripple"
+    ],
+    "standard": [
+      "perfectly calm lake surface with occasional tiny ripple",
+      "still pond reflecting sky with rare gentle lap",
+      "mirror-flat water with almost imperceptible movement"
+    ],
+    "detailed": [
+      "perfectly calm lake surface with occasional tiny ripple",
+      "still pond reflecting sky with rare gentle lap",
+      "mirror-flat water with almost imperceptible movement",
+      "mountain tarn in perfect stillness with rare fish dimple",
+      "forest pool breathing with barely visible surface tension"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "forest clearing at dawn",
+      "moss-covered stone garden",
+      "bamboo grove in gentle wind",
+      "creek bed after summer rain",
+      "meadow with distant thunder"
+    ],
+    "instruments": [
+      "wooden mallet on hollow log",
+      "rain droplet on broad leaf",
+      "smooth river stones clinking",
+      "fingertip-plucked kalimba tine",
+      "ceramic wind chime in breeze"
+    ],
+    "mood": [
+      "morning dew stillness",
+      "sun-warmed earth",
+      "birdsong tranquility",
+      "deep forest solitude",
+      "waterfall mist on skin"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "soft",
+      "airy",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

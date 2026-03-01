@@ -1,0 +1,55 @@
+{
+  "id": "min-subagent-stop-micro-ping",
+  "name": "Micro Ping",
+  "description": "Ultra-small precise ping with zero tail",
+  "sound_characters": {
+    "simple": [
+      "ultra-small precise ping with zero decay tail"
+    ],
+    "standard": [
+      "ultra-small precise ping with zero decay tail",
+      "atomic click with mathematical precision",
+      "clean micro-tone dot with instant release"
+    ],
+    "detailed": [
+      "ultra-small precise ping with zero decay tail",
+      "atomic click with mathematical precision",
+      "clean micro-tone dot with instant release",
+      "single sample of crystal frequency",
+      "point-source resonance with clinical brevity"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "ultra-clean UI interaction",
+      "Swiss design precision",
+      "white gallery silence",
+      "Scandinavian living room",
+      "frosted glass partition"
+    ],
+    "instruments": [
+      "pure sine tone at concert pitch",
+      "tapped crystal glass rim",
+      "single piano key softly pressed",
+      "porcelain bowl struck with felt tip",
+      "tuning fork resonating on wood"
+    ],
+    "mood": [
+      "whisper-quiet elegance",
+      "zen garden calm",
+      "paper-thin delicacy",
+      "breath-held anticipation",
+      "snow falling on still water"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "pristine",
+      "transparent",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

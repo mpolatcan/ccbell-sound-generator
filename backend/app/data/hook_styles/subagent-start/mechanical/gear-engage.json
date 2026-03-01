@@ -1,0 +1,55 @@
+{
+  "id": "mech-subagent-start-gear-engage",
+  "name": "Gear Engage",
+  "description": "New gear meshing into running mechanism",
+  "sound_characters": {
+    "simple": [
+      "new gear teeth meshing into running clockwork mechanism"
+    ],
+    "standard": [
+      "new gear teeth meshing into running clockwork mechanism",
+      "additional cog engaging with existing drive train",
+      "brass gear dropping into position with mechanical catch"
+    ],
+    "detailed": [
+      "new gear teeth meshing into running clockwork mechanism",
+      "additional cog engaging with existing drive train",
+      "brass gear dropping into position with mechanical catch",
+      "secondary mechanism coupling with primary drive shaft",
+      "differential gear set activating with synchronized mesh"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "steam workshop furnace glow",
+      "Victorian clocktower",
+      "locomotive engine room",
+      "blacksmith anvil yard",
+      "submarine pressure hull"
+    ],
+    "instruments": [
+      "brass gear clank on iron plate",
+      "ratchet wrench click",
+      "tempered steel spring release",
+      "cast iron lever thrown",
+      "copper pipe resonance ping"
+    ],
+    "mood": [
+      "forge-hot determination",
+      "oiled-machine rhythm",
+      "riveted iron solidity",
+      "pneumatic power hiss",
+      "precision clockwork ticking"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "impactful",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

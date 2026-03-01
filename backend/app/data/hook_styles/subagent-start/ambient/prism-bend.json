@@ -1,0 +1,55 @@
+{
+  "id": "amb-subagent-start-prism-bend",
+  "name": "Prism Bend",
+  "description": "Sound refracting through atmospheric layers",
+  "sound_characters": {
+    "simple": [
+      "sound bending through atmospheric layers like light through prism"
+    ],
+    "standard": [
+      "sound bending through atmospheric layers like light through prism",
+      "acoustic spectrum separating through density gradient",
+      "harmonic content dispersing into colorful frequency spread"
+    ],
+    "detailed": [
+      "sound bending through atmospheric layers like light through prism",
+      "acoustic spectrum separating through density gradient",
+      "harmonic content dispersing into colorful frequency spread",
+      "thermal inversion layer creating sonic mirage and split",
+      "atmospheric lens bending sound into divergent paths"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "cathedral reverb at midnight",
+      "tape-saturated warmth",
+      "Brian Eno infinite space",
+      "abandoned hall echo",
+      "lo-fi cassette hiss and bloom"
+    ],
+    "instruments": [
+      "bowed singing bowl overtone",
+      "granular piano cloud",
+      "reversed cymbal swell",
+      "harmonium drone with tape wobble",
+      "shimmer reverb pad wash"
+    ],
+    "mood": [
+      "warm fog dissolving slowly",
+      "candlelight flickering softly",
+      "underwater weightlessness",
+      "drifting between sleep and waking",
+      "moonlight through frosted glass"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "lush",
+      "wide",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

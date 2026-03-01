@@ -1,0 +1,55 @@
+{
+  "id": "mech-idle-prompt-ticking-clock",
+  "name": "Ticking Clock",
+  "description": "Grandfather clock marking time with steady tick",
+  "sound_characters": {
+    "simple": [
+      "grandfather clock marking time with steady brass tick"
+    ],
+    "standard": [
+      "grandfather clock marking time with steady brass tick",
+      "clockwork escapement clicking with precise regularity",
+      "pendulum mechanism ticking in wood-paneled room"
+    ],
+    "detailed": [
+      "grandfather clock marking time with steady brass tick",
+      "clockwork escapement clicking with precise regularity",
+      "pendulum mechanism ticking in wood-paneled room",
+      "antique mantel clock counting seconds with mechanical patience",
+      "horological movement keeping faithful metronomic time"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "steam workshop furnace glow",
+      "Victorian clocktower",
+      "locomotive engine room",
+      "blacksmith anvil yard",
+      "submarine pressure hull"
+    ],
+    "instruments": [
+      "brass gear clank on iron plate",
+      "ratchet wrench click",
+      "tempered steel spring release",
+      "cast iron lever thrown",
+      "copper pipe resonance ping"
+    ],
+    "mood": [
+      "forge-hot determination",
+      "oiled-machine rhythm",
+      "riveted iron solidity",
+      "pneumatic power hiss",
+      "precision clockwork ticking"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "impactful",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

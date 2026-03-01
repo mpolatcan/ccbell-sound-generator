@@ -1,0 +1,55 @@
+{
+  "id": "8bit-subagent-stop-bonus-ding",
+  "name": "Bonus Ding",
+  "description": "Quick bonus points awarded with bright ding",
+  "sound_characters": {
+    "simple": [
+      "quick bonus points awarded with bright chiptune ding"
+    ],
+    "standard": [
+      "quick bonus points awarded with bright chiptune ding",
+      "score multiplier tick with crisp pixel bell",
+      "8-bit bonus collected with short ascending ping"
+    ],
+    "detailed": [
+      "quick bonus points awarded with bright chiptune ding",
+      "score multiplier tick with crisp pixel bell",
+      "8-bit bonus collected with short ascending ping",
+      "retro combo counter incrementing with square wave blip",
+      "NES bonus round ding with bitcrushed sparkle"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "NES coin-collect jingle",
+      "pixel game power-up",
+      "Game Boy startup melody",
+      "SID chip tracker groove",
+      "16-bit victory screen"
+    ],
+    "instruments": [
+      "bitcrushed square wave blip",
+      "pulse wave arpeggio",
+      "triangle wave bass note",
+      "noise channel snare hit",
+      "lo-fi sample playback crunch"
+    ],
+    "mood": [
+      "arcade cabinet excitement",
+      "joystick-era nostalgia",
+      "high-score elation",
+      "speed-run intensity",
+      "bonus-stage energy"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "crisp",
+      "punchy",
+      "bright",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

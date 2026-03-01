@@ -1,5 +1,8 @@
 """Claude Code hook type definitions."""
 
+import json
+from pathlib import Path
+
 from app.core.models import HookType, HookTypeId, SoundStylePreset, TieredSoundCharacters
 
 # Maps generator hook type IDs to ccbell plugin event names.
@@ -15,6 +18,52 @@ HOOK_TO_EVENT_MAP: dict[HookTypeId, str] = {
     "SubagentStart": "subagent_start",
     "UserPromptSubmit": "user_prompt_submit",
 }
+
+# Map directory names to hook IDs
+_DIR_TO_HOOK_ID: dict[str, str] = {
+    "stop": "Stop",
+    "subagent-stop": "SubagentStop",
+    "permission-prompt": "PermissionPrompt",
+    "idle-prompt": "IdlePrompt",
+    "session-start": "SessionStart",
+    "session-end": "SessionEnd",
+    "pre-tool-use": "PreToolUse",
+    "post-tool-use": "PostToolUse",
+    "subagent-start": "SubagentStart",
+    "user-prompt-submit": "UserPromptSubmit",
+}
+
+
+def _load_hook_style_presets() -> dict[str, dict[str, list[SoundStylePreset]]]:
+    """Load theme-keyed style presets from JSON directory tree.
+
+    Structure: hook_styles/<hook-dir>/<theme-dir>/<preset-name>.json
+    Each JSON file is a single SoundStylePreset object.
+    Returns: {hook_id: {theme_id: [SoundStylePreset, ...]}}
+    """
+    base_dir = Path(__file__).parent / "hook_styles"
+    result: dict[str, dict[str, list[SoundStylePreset]]] = {}
+    for hook_dir in sorted(base_dir.iterdir()):
+        if not hook_dir.is_dir():
+            continue
+        hook_id = _DIR_TO_HOOK_ID.get(hook_dir.name)
+        if not hook_id:
+            continue
+        result[hook_id] = {}
+        for theme_dir in sorted(hook_dir.iterdir()):
+            if not theme_dir.is_dir():
+                continue
+            presets: list[SoundStylePreset] = []
+            for preset_file in sorted(theme_dir.glob("*.json")):
+                with open(preset_file) as f:
+                    preset_raw = json.load(f)
+                presets.append(SoundStylePreset(**preset_raw))
+            if presets:
+                result[hook_id][theme_dir.name] = presets
+    return result
+
+
+_HOOK_STYLE_PRESETS = _load_hook_style_presets()
 
 HOOK_TYPES: list[HookType] = [
     # Core events (currently supported in ccbell binary)
@@ -37,88 +86,7 @@ HOOK_TYPES: list[HookType] = [
                 "clear resonant chime fading into silence",
             ],
         ),
-        sound_style_presets=[
-            SoundStylePreset(
-                id="glass-cathedral",
-                name="Glass Cathedral",
-                description="Resonant bell in a vast reverberant space",
-                sound_characters=TieredSoundCharacters(
-                    simple=["cathedral bell struck with padded mallet"],
-                    standard=[
-                        "cathedral bell struck with padded mallet",
-                        "glass resonance blooming in stone hall",
-                        "warm overtones spreading through arched ceiling",
-                    ],
-                    detailed=[
-                        "cathedral bell struck with padded mallet",
-                        "glass resonance blooming in stone hall",
-                        "warm overtones spreading through arched ceiling",
-                        "shimmering harmonic tail dissolving upward",
-                        "peaceful major chord ringing into reverent silence",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="victory-spark",
-                name="Victory Spark",
-                description="Short triumphant burst of bright energy",
-                sound_characters=TieredSoundCharacters(
-                    simple=["quick triumphant brass stab ascending"],
-                    standard=[
-                        "quick triumphant brass stab ascending",
-                        "bright spark of metallic energy",
-                        "sharp celebratory horn flourish",
-                    ],
-                    detailed=[
-                        "quick triumphant brass stab ascending",
-                        "bright spark of metallic energy",
-                        "sharp celebratory horn flourish",
-                        "rapid major arpeggio fired upward",
-                        "golden confetti burst of harmonics",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="zen-bowl",
-                name="Zen Bowl",
-                description="Meditative singing bowl with long sustain",
-                sound_characters=TieredSoundCharacters(
-                    simple=["singing bowl rim struck gently"],
-                    standard=[
-                        "singing bowl rim struck gently",
-                        "warm bronze overtone spreading",
-                        "peaceful resonance settling like still water",
-                    ],
-                    detailed=[
-                        "singing bowl rim struck gently",
-                        "warm bronze overtone spreading",
-                        "peaceful resonance settling like still water",
-                        "soft harmonic bloom fading to silence",
-                        "calm completion tone with slow natural decay",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="neon-pulse",
-                name="Neon Pulse",
-                description="Futuristic digital confirmation flash",
-                sound_characters=TieredSoundCharacters(
-                    simple=["crisp digital pulse with synthetic shimmer"],
-                    standard=[
-                        "crisp digital pulse with synthetic shimmer",
-                        "neon-bright synth confirmation ping",
-                        "clean electronic resolve with filter sweep",
-                    ],
-                    detailed=[
-                        "crisp digital pulse with synthetic shimmer",
-                        "neon-bright synth confirmation ping",
-                        "clean electronic resolve with filter sweep",
-                        "futuristic binary cascade completing",
-                        "voltage spike settling into warm hum",
-                    ],
-                ),
-            ),
-        ],
+        sound_style_presets=_HOOK_STYLE_PRESETS.get("Stop", {}),
     ),
     HookType(
         id="SubagentStop",
@@ -139,68 +107,7 @@ HOOK_TYPES: list[HookType] = [
                 "whispered glass ping from far away",
             ],
         ),
-        sound_style_presets=[
-            SoundStylePreset(
-                id="distant-chime",
-                name="Distant Chime",
-                description="Far-away bell barely audible",
-                sound_characters=TieredSoundCharacters(
-                    simple=["distant bell heard through open window"],
-                    standard=[
-                        "distant bell heard through open window",
-                        "faraway chime carried on gentle wind",
-                        "muted resonance from another room",
-                    ],
-                    detailed=[
-                        "distant bell heard through open window",
-                        "faraway chime carried on gentle wind",
-                        "muted resonance from another room",
-                        "echo of a tap on thin crystal",
-                        "soft shimmer dissolving into ambient hush",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="dewdrop",
-                name="Dewdrop",
-                description="Single water drop on a still surface",
-                sound_characters=TieredSoundCharacters(
-                    simple=["single water droplet on calm surface"],
-                    standard=[
-                        "single water droplet on calm surface",
-                        "tiny ripple spreading outward",
-                        "crystalline plip on smooth stone",
-                    ],
-                    detailed=[
-                        "single water droplet on calm surface",
-                        "tiny ripple spreading outward",
-                        "crystalline plip on smooth stone",
-                        "delicate splash with brief reverb tail",
-                        "miniature aquatic ping fading gently",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="pixel-wink",
-                name="Pixel Wink",
-                description="Tiny digital micro-blip",
-                sound_characters=TieredSoundCharacters(
-                    simple=["ultra-short digital micro-blip"],
-                    standard=[
-                        "ultra-short digital micro-blip",
-                        "tiny pixel click at high pitch",
-                        "brief electronic sparkle point",
-                    ],
-                    detailed=[
-                        "ultra-short digital micro-blip",
-                        "tiny pixel click at high pitch",
-                        "brief electronic sparkle point",
-                        "miniature synth pip with instant decay",
-                        "crisp binary acknowledgment dot",
-                    ],
-                ),
-            ),
-        ],
+        sound_style_presets=_HOOK_STYLE_PRESETS.get("SubagentStop", {}),
     ),
     HookType(
         id="PermissionPrompt",
@@ -221,88 +128,7 @@ HOOK_TYPES: list[HookType] = [
                 "doorbell with polite urgency",
             ],
         ),
-        sound_style_presets=[
-            SoundStylePreset(
-                id="crystal-question",
-                name="Crystal Question",
-                description="Clear glass tone rising with curiosity",
-                sound_characters=TieredSoundCharacters(
-                    simple=["crystal glass tone rising questioningly"],
-                    standard=[
-                        "crystal glass tone rising questioningly",
-                        "bright transparent ping with upward bend",
-                        "clear inquiry chime lifting at the end",
-                    ],
-                    detailed=[
-                        "crystal glass tone rising questioningly",
-                        "bright transparent ping with upward bend",
-                        "clear inquiry chime lifting at the end",
-                        "shimmering glass harmonic asking permission",
-                        "delicate ascending tone ending on open note",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="red-alert-siren",
-                name="Red Alert Siren",
-                description="Urgent pulsing alarm demanding attention",
-                sound_characters=TieredSoundCharacters(
-                    simple=["sharp pulsing alert siren two short bursts"],
-                    standard=[
-                        "sharp pulsing alert siren two short bursts",
-                        "rapid warning klaxon with metallic edge",
-                        "urgent oscillating tone demanding attention",
-                    ],
-                    detailed=[
-                        "sharp pulsing alert siren two short bursts",
-                        "rapid warning klaxon with metallic edge",
-                        "urgent oscillating tone demanding attention",
-                        "piercing alarm cutting through silence",
-                        "emergency horn blast with vibrato",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="oak-door-tap",
-                name="Oak Door Tap",
-                description="Warm wooden knock asking to come in",
-                sound_characters=TieredSoundCharacters(
-                    simple=["knuckle tapping on thick oak door"],
-                    standard=[
-                        "knuckle tapping on thick oak door",
-                        "warm hollow wooden knock pattern",
-                        "polite rap on mahogany surface",
-                    ],
-                    detailed=[
-                        "knuckle tapping on thick oak door",
-                        "warm hollow wooden knock pattern",
-                        "polite rap on mahogany surface",
-                        "three gentle taps on dense hardwood",
-                        "courteous knock with woody resonance",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="curious-whistle",
-                name="Curious Whistle",
-                description="Playful upward whistle wondering aloud",
-                sound_characters=TieredSoundCharacters(
-                    simple=["short whistle sliding upward curiously"],
-                    standard=[
-                        "short whistle sliding upward curiously",
-                        "playful rising pitch like a question mark",
-                        "breathy ascending tone with inquisitive lilt",
-                    ],
-                    detailed=[
-                        "short whistle sliding upward curiously",
-                        "playful rising pitch like a question mark",
-                        "breathy ascending tone with inquisitive lilt",
-                        "wondering bird-call inflection upward",
-                        "lighthearted inquiry slide with airy tail",
-                    ],
-                ),
-            ),
-        ],
+        sound_style_presets=_HOOK_STYLE_PRESETS.get("PermissionPrompt", {}),
     ),
     HookType(
         id="IdlePrompt",
@@ -323,68 +149,7 @@ HOOK_TYPES: list[HookType] = [
                 "mellow hovering note waiting calmly",
             ],
         ),
-        sound_style_presets=[
-            SoundStylePreset(
-                id="breathing-glow",
-                name="Breathing Glow",
-                description="Slowly pulsing warm light in sound",
-                sound_characters=TieredSoundCharacters(
-                    simple=["soft warm pulse rising and falling like breathing"],
-                    standard=[
-                        "soft warm pulse rising and falling like breathing",
-                        "gentle glowing hum with slow volume swell",
-                        "ambient pad inhaling and exhaling",
-                    ],
-                    detailed=[
-                        "soft warm pulse rising and falling like breathing",
-                        "gentle glowing hum with slow volume swell",
-                        "ambient pad inhaling and exhaling",
-                        "candlelight flicker translated to sound",
-                        "patient warmth expanding and contracting",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="pendulum-tick",
-                name="Pendulum Tick",
-                description="Steady clock marking patient time",
-                sound_characters=TieredSoundCharacters(
-                    simple=["grandfather clock pendulum swinging slowly"],
-                    standard=[
-                        "grandfather clock pendulum swinging slowly",
-                        "brass pendulum ticking in quiet room",
-                        "steady wooden metronome at rest tempo",
-                    ],
-                    detailed=[
-                        "grandfather clock pendulum swinging slowly",
-                        "brass pendulum ticking in quiet room",
-                        "steady wooden metronome at rest tempo",
-                        "clockwork escapement click with room reverb",
-                        "patient timepiece marking seconds softly",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="cloud-drift",
-                name="Cloud Drift",
-                description="Weightless atmospheric texture floating",
-                sound_characters=TieredSoundCharacters(
-                    simple=["ethereal pad drifting through open sky"],
-                    standard=[
-                        "ethereal pad drifting through open sky",
-                        "weightless ambient cloud passing slowly",
-                        "airy sustained shimmer with no edges",
-                    ],
-                    detailed=[
-                        "ethereal pad drifting through open sky",
-                        "weightless ambient cloud passing slowly",
-                        "airy sustained shimmer with no edges",
-                        "spacious reverb wash hovering in place",
-                        "translucent tone floating without gravity",
-                    ],
-                ),
-            ),
-        ],
+        sound_style_presets=_HOOK_STYLE_PRESETS.get("IdlePrompt", {}),
     ),
     # Session lifecycle events
     HookType(
@@ -406,68 +171,7 @@ HOOK_TYPES: list[HookType] = [
                 "ignition spark expanding into full resonance",
             ],
         ),
-        sound_style_presets=[
-            SoundStylePreset(
-                id="dawn-bloom",
-                name="Dawn Bloom",
-                description="Sunrise unfolding in warm ascending tones",
-                sound_characters=TieredSoundCharacters(
-                    simple=["warm sunrise tone blooming gradually upward"],
-                    standard=[
-                        "warm sunrise tone blooming gradually upward",
-                        "golden morning light translated to melody",
-                        "gentle awakening swell from dark to bright",
-                    ],
-                    detailed=[
-                        "warm sunrise tone blooming gradually upward",
-                        "golden morning light translated to melody",
-                        "gentle awakening swell from dark to bright",
-                        "dawn chorus of harmonics opening",
-                        "first light filtering through sound curtain",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="engine-ignition",
-                name="Engine Ignition",
-                description="Dramatic power-up with building intensity",
-                sound_characters=TieredSoundCharacters(
-                    simple=["dramatic engine ignition roaring to life"],
-                    standard=[
-                        "dramatic engine ignition roaring to life",
-                        "turbine spinning up from silence to power",
-                        "systems activating in rapid sequence",
-                    ],
-                    detailed=[
-                        "dramatic engine ignition roaring to life",
-                        "turbine spinning up from silence to power",
-                        "systems activating in rapid sequence",
-                        "capacitor charging to full with rising whine",
-                        "reactor coming online with deep harmonic build",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="soft-wake",
-                name="Soft Wake",
-                description="Gentle, barely-there system coming alive",
-                sound_characters=TieredSoundCharacters(
-                    simple=["barely audible hum fading in from silence"],
-                    standard=[
-                        "barely audible hum fading in from silence",
-                        "soft electronic whisper powering on",
-                        "delicate activation ping at low volume",
-                    ],
-                    detailed=[
-                        "barely audible hum fading in from silence",
-                        "soft electronic whisper powering on",
-                        "delicate activation ping at low volume",
-                        "quiet breath of warm static becoming tone",
-                        "subtle glow of sound emerging from nothing",
-                    ],
-                ),
-            ),
-        ],
+        sound_style_presets=_HOOK_STYLE_PRESETS.get("SessionStart", {}),
     ),
     HookType(
         id="SessionEnd",
@@ -488,68 +192,7 @@ HOOK_TYPES: list[HookType] = [
                 "sunset colors draining slowly from sound",
             ],
         ),
-        sound_style_presets=[
-            SoundStylePreset(
-                id="sunset-fade",
-                name="Sunset Fade",
-                description="Warm colors draining into peaceful dusk",
-                sound_characters=TieredSoundCharacters(
-                    simple=["warm descending tone like sun setting slowly"],
-                    standard=[
-                        "warm descending tone like sun setting slowly",
-                        "golden hour fading to purple twilight",
-                        "gentle melody sinking below the horizon",
-                    ],
-                    detailed=[
-                        "warm descending tone like sun setting slowly",
-                        "golden hour fading to purple twilight",
-                        "gentle melody sinking below the horizon",
-                        "last warm light dissolving into dusk",
-                        "evening calm settling over quiet landscape",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="gentle-goodbye",
-                name="Gentle Goodbye",
-                description="Warm parting with lingering affection",
-                sound_characters=TieredSoundCharacters(
-                    simple=["soft farewell melody with bittersweet warmth"],
-                    standard=[
-                        "soft farewell melody with bittersweet warmth",
-                        "gentle lullaby note trailing off",
-                        "peaceful parting chime with long decay",
-                    ],
-                    detailed=[
-                        "soft farewell melody with bittersweet warmth",
-                        "gentle lullaby note trailing off",
-                        "peaceful parting chime with long decay",
-                        "tender goodbye shimmer fading to nothing",
-                        "serene closing tone like whispered goodnight",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="turbine-down",
-                name="Turbine Down",
-                description="Machine winding down to standby",
-                sound_characters=TieredSoundCharacters(
-                    simple=["turbine spinning down from high to low pitch"],
-                    standard=[
-                        "turbine spinning down from high to low pitch",
-                        "mechanical systems powering off in sequence",
-                        "motor decelerating with descending whir",
-                    ],
-                    detailed=[
-                        "turbine spinning down from high to low pitch",
-                        "mechanical systems powering off in sequence",
-                        "motor decelerating with descending whir",
-                        "circuit boards clicking off one by one",
-                        "final relay disengaging with soft clunk",
-                    ],
-                ),
-            ),
-        ],
+        sound_style_presets=_HOOK_STYLE_PRESETS.get("SessionEnd", {}),
     ),
     # Tool lifecycle events
     HookType(
@@ -571,68 +214,7 @@ HOOK_TYPES: list[HookType] = [
                 "crisp toggle switch flipped to armed position",
             ],
         ),
-        sound_style_presets=[
-            SoundStylePreset(
-                id="lever-prime",
-                name="Lever Prime",
-                description="Mechanical lever pulled to ready position",
-                sound_characters=TieredSoundCharacters(
-                    simple=["metal lever pulled into locked position"],
-                    standard=[
-                        "metal lever pulled into locked position",
-                        "mechanical latch clicking into place",
-                        "spring-loaded mechanism primed and ready",
-                    ],
-                    detailed=[
-                        "metal lever pulled into locked position",
-                        "mechanical latch clicking into place",
-                        "spring-loaded mechanism primed and ready",
-                        "heavy bolt sliding forward with authority",
-                        "precision gear engaging with smooth clunk",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="bow-draw",
-                name="Bow Draw",
-                description="Taut string being pulled back with tension",
-                sound_characters=TieredSoundCharacters(
-                    simple=["bowstring drawn taut with building tension"],
-                    standard=[
-                        "bowstring drawn taut with building tension",
-                        "elastic energy stored in vibrating string",
-                        "creak of bent wood under pressure",
-                    ],
-                    detailed=[
-                        "bowstring drawn taut with building tension",
-                        "elastic energy stored in vibrating string",
-                        "creak of bent wood under pressure",
-                        "tense anticipation of imminent release",
-                        "fiber stretching to maximum potential",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="circuit-arm",
-                name="Circuit Arm",
-                description="Electronic system arming with digital click",
-                sound_characters=TieredSoundCharacters(
-                    simple=["digital circuit arming with crisp electronic click"],
-                    standard=[
-                        "digital circuit arming with crisp electronic click",
-                        "electronic system charging with rising tone",
-                        "synthesized activation trigger pulse",
-                    ],
-                    detailed=[
-                        "digital circuit arming with crisp electronic click",
-                        "electronic system charging with rising tone",
-                        "synthesized activation trigger pulse",
-                        "binary countdown blip before execution",
-                        "capacitor whine building to ready state",
-                    ],
-                ),
-            ),
-        ],
+        sound_style_presets=_HOOK_STYLE_PRESETS.get("PreToolUse", {}),
     ),
     HookType(
         id="PostToolUse",
@@ -653,68 +235,7 @@ HOOK_TYPES: list[HookType] = [
                 "sharp percussive ping with short decay",
             ],
         ),
-        sound_style_presets=[
-            SoundStylePreset(
-                id="stamp-press",
-                name="Stamp Press",
-                description="Heavy stamp pressing down with finality",
-                sound_characters=TieredSoundCharacters(
-                    simple=["heavy rubber stamp pressing firmly on paper"],
-                    standard=[
-                        "heavy rubber stamp pressing firmly on paper",
-                        "decisive thunk of approval seal",
-                        "solid impact of stamp on desktop",
-                    ],
-                    detailed=[
-                        "heavy rubber stamp pressing firmly on paper",
-                        "decisive thunk of approval seal",
-                        "solid impact of stamp on desktop",
-                        "ink pad compression with brief suction release",
-                        "authoritative press leaving clean impression",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="bubble-pop",
-                name="Bubble Pop",
-                description="Satisfying bubble bursting cleanly",
-                sound_characters=TieredSoundCharacters(
-                    simple=["crisp soap bubble popping at close range"],
-                    standard=[
-                        "crisp soap bubble popping at close range",
-                        "bright snappy burst with airy release",
-                        "clean percussive pop with micro-shimmer",
-                    ],
-                    detailed=[
-                        "crisp soap bubble popping at close range",
-                        "bright snappy burst with airy release",
-                        "clean percussive pop with micro-shimmer",
-                        "satisfying membrane rupture with sparkle",
-                        "tiny implosion of air with pleasant ring",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="relay-click",
-                name="Relay Click",
-                description="Electrical relay contact closing shut",
-                sound_characters=TieredSoundCharacters(
-                    simple=["electrical relay snapping shut with click"],
-                    standard=[
-                        "electrical relay snapping shut with click",
-                        "circuit breaker engaging with metallic contact",
-                        "processor finishing task with sharp chirp",
-                    ],
-                    detailed=[
-                        "electrical relay snapping shut with click",
-                        "circuit breaker engaging with metallic contact",
-                        "processor finishing task with sharp chirp",
-                        "capacitor discharge with brief buzz",
-                        "digital handshake completing with confirmation tone",
-                    ],
-                ),
-            ),
-        ],
+        sound_style_presets=_HOOK_STYLE_PRESETS.get("PostToolUse", {}),
     ),
     # Agent events
     HookType(
@@ -736,68 +257,7 @@ HOOK_TYPES: list[HookType] = [
                 "rapid ascending sweep branching at the top",
             ],
         ),
-        sound_style_presets=[
-            SoundStylePreset(
-                id="spark-launch",
-                name="Spark Launch",
-                description="Hot spark ejected with crackling energy",
-                sound_characters=TieredSoundCharacters(
-                    simple=["bright spark ejecting with electrical crackle"],
-                    standard=[
-                        "bright spark ejecting with electrical crackle",
-                        "hot ember launching from fire with sizzle",
-                        "rapid ignition point shooting outward",
-                    ],
-                    detailed=[
-                        "bright spark ejecting with electrical crackle",
-                        "hot ember launching from fire with sizzle",
-                        "rapid ignition point shooting outward",
-                        "welding arc flash with rising whistle",
-                        "firework fuse catching with upward hiss",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="cell-divide",
-                name="Cell Divide",
-                description="Organic splitting into two distinct parts",
-                sound_characters=TieredSoundCharacters(
-                    simple=["liquid splitting sound of one becoming two"],
-                    standard=[
-                        "liquid splitting sound of one becoming two",
-                        "organic membrane dividing with soft stretch",
-                        "gentle bifurcation with dual tones emerging",
-                    ],
-                    detailed=[
-                        "liquid splitting sound of one becoming two",
-                        "organic membrane dividing with soft stretch",
-                        "gentle bifurcation with dual tones emerging",
-                        "frequency doubling as signal branches",
-                        "smooth divergence of parallel tone paths",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="portal-open",
-                name="Portal Open",
-                description="Dimensional gateway tearing open briefly",
-                sound_characters=TieredSoundCharacters(
-                    simple=["swirling vortex opening with rising energy"],
-                    standard=[
-                        "swirling vortex opening with rising energy",
-                        "dimensional tear crackling with power",
-                        "portal spinning up with expanding whoosh",
-                    ],
-                    detailed=[
-                        "swirling vortex opening with rising energy",
-                        "dimensional tear crackling with power",
-                        "portal spinning up with expanding whoosh",
-                        "space-time fabric stretching with harmonic whine",
-                        "wormhole activating with radiant surge",
-                    ],
-                ),
-            ),
-        ],
+        sound_style_presets=_HOOK_STYLE_PRESETS.get("SubagentStart", {}),
     ),
     HookType(
         id="UserPromptSubmit",
@@ -818,68 +278,7 @@ HOOK_TYPES: list[HookType] = [
                 "signal dispatched with ascending glide",
             ],
         ),
-        sound_style_presets=[
-            SoundStylePreset(
-                id="arrow-release",
-                name="Arrow Release",
-                description="Taut string releasing projectile forward",
-                sound_characters=TieredSoundCharacters(
-                    simple=["bowstring snapping forward releasing arrow"],
-                    standard=[
-                        "bowstring snapping forward releasing arrow",
-                        "swift projectile whoosh cutting through air",
-                        "taut release with sharp twang and fade",
-                    ],
-                    detailed=[
-                        "bowstring snapping forward releasing arrow",
-                        "swift projectile whoosh cutting through air",
-                        "taut release with sharp twang and fade",
-                        "feathered shaft whistling as it flies",
-                        "elastic tension converting to kinetic swoosh",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="key-strike",
-                name="Key Strike",
-                description="Satisfying mechanical keyboard enter press",
-                sound_characters=TieredSoundCharacters(
-                    simple=["mechanical keyboard enter key pressed firmly"],
-                    standard=[
-                        "mechanical keyboard enter key pressed firmly",
-                        "satisfying tactile click with spring return",
-                        "crisp key bottoming out on solid base",
-                    ],
-                    detailed=[
-                        "mechanical keyboard enter key pressed firmly",
-                        "satisfying tactile click with spring return",
-                        "crisp key bottoming out on solid base",
-                        "cherry switch actuating with clean snap",
-                        "typing confirmation with decisive authority",
-                    ],
-                ),
-            ),
-            SoundStylePreset(
-                id="bird-dispatch",
-                name="Bird Dispatch",
-                description="Carrier bird taking flight with message",
-                sound_characters=TieredSoundCharacters(
-                    simple=["bird taking flight with rapid wing flutter"],
-                    standard=[
-                        "bird taking flight with rapid wing flutter",
-                        "feathers cutting air as message departs",
-                        "swift ascending launch with organic whoosh",
-                    ],
-                    detailed=[
-                        "bird taking flight with rapid wing flutter",
-                        "feathers cutting air as message departs",
-                        "swift ascending launch with organic whoosh",
-                        "messenger wings beating upward into distance",
-                        "graceful departure sweep fading skyward",
-                    ],
-                ),
-            ),
-        ],
+        sound_style_presets=_HOOK_STYLE_PRESETS.get("UserPromptSubmit", {}),
     ),
 ]
 

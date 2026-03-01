@@ -1,0 +1,53 @@
+{
+  "id": "scifi-session-end-power-down",
+  "name": "Power Down",
+  "description": "Ship systems shutting down in graceful sequence",
+  "sound_characters": {
+    "simple": [
+      "ship systems shutting down in graceful powered sequence"
+    ],
+    "standard": [
+      "ship systems shutting down in graceful powered sequence",
+      "console lights dimming with descending electronic cascade",
+      "reactor winding down with diminishing harmonic hum"
+    ],
+    "detailed": [
+      "ship systems shutting down in graceful powered sequence",
+      "console lights dimming with descending electronic cascade",
+      "reactor winding down with diminishing harmonic hum",
+      "quantum processor entering deep sleep with fading oscillation",
+      "bridge stations going dark one by one with quiet clicks"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "futuristic spacecraft interface",
+      "cyberpunk neon-lit",
+      "deep space station",
+      "quantum computer hum",
+      "orbital relay signal"
+    ],
+    "instruments": [
+      "crystalline FM synthesis bell",
+      "voltage-controlled resonant filter sweep",
+      "granular synth texture",
+      "plasma crackle discharge"
+    ],
+    "mood": [
+      "otherworldly precision",
+      "holographic clarity",
+      "cold vacuum stillness",
+      "alien intelligence awakening"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "studio-grade",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "id": "min-stop-glass-point",
+  "name": "Glass Point",
+  "description": "Precise glass tap like a single pixel of sound",
+  "sound_characters": {
+    "simple": [
+      "single precise glass tap like a pixel of sound"
+    ],
+    "standard": [
+      "single precise glass tap like a pixel of sound",
+      "pinpoint crystal strike with zero excess",
+      "clean glass dot with mathematical decay"
+    ],
+    "detailed": [
+      "single precise glass tap like a pixel of sound",
+      "pinpoint crystal strike with zero excess",
+      "clean glass dot with mathematical decay",
+      "atomic-thin resonance point fading cleanly",
+      "pure frequency point dissolving into void"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "ultra-clean UI interaction",
+      "Swiss design precision",
+      "white gallery silence",
+      "Scandinavian living room",
+      "frosted glass partition"
+    ],
+    "instruments": [
+      "pure sine tone at concert pitch",
+      "tapped crystal glass rim",
+      "single piano key softly pressed",
+      "porcelain bowl struck with felt tip",
+      "tuning fork resonating on wood"
+    ],
+    "mood": [
+      "whisper-quiet elegance",
+      "zen garden calm",
+      "paper-thin delicacy",
+      "breath-held anticipation",
+      "snow falling on still water"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "pristine",
+      "transparent",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

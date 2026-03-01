@@ -1,0 +1,55 @@
+{
+  "id": "mech-stop-steam-release",
+  "name": "Steam Release",
+  "description": "Pressure valve venting with a satisfying hiss",
+  "sound_characters": {
+    "simple": [
+      "steam pressure valve releasing with satisfying hiss"
+    ],
+    "standard": [
+      "steam pressure valve releasing with satisfying hiss",
+      "brass relief valve venting hot steam burst",
+      "industrial boiler exhaling with descending pressure whistle"
+    ],
+    "detailed": [
+      "steam pressure valve releasing with satisfying hiss",
+      "brass relief valve venting hot steam burst",
+      "industrial boiler exhaling with descending pressure whistle",
+      "copper pipe steam jet settling to quiet simmer",
+      "locomotive brake release with iron and vapor sigh"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "steam workshop furnace glow",
+      "Victorian clocktower",
+      "locomotive engine room",
+      "blacksmith anvil yard",
+      "submarine pressure hull"
+    ],
+    "instruments": [
+      "brass gear clank on iron plate",
+      "ratchet wrench click",
+      "tempered steel spring release",
+      "cast iron lever thrown",
+      "copper pipe resonance ping"
+    ],
+    "mood": [
+      "forge-hot determination",
+      "oiled-machine rhythm",
+      "riveted iron solidity",
+      "pneumatic power hiss",
+      "precision clockwork ticking"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "impactful",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

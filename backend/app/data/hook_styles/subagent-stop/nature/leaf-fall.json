@@ -1,0 +1,55 @@
+{
+  "id": "nature-subagent-stop-leaf-fall",
+  "name": "Leaf Fall",
+  "description": "Single leaf touching down on soft ground",
+  "sound_characters": {
+    "simple": [
+      "single leaf floating down to rest on soft forest floor"
+    ],
+    "standard": [
+      "single leaf floating down to rest on soft forest floor",
+      "autumn leaf landing on mossy ground with gentle rustle",
+      "delicate foliage settling after quiet descent"
+    ],
+    "detailed": [
+      "single leaf floating down to rest on soft forest floor",
+      "autumn leaf landing on mossy ground with gentle rustle",
+      "delicate foliage settling after quiet descent",
+      "papery leaf touching damp earth with whisper",
+      "tiny twig snap as leaf comes to rest in undergrowth"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "forest clearing at dawn",
+      "moss-covered stone garden",
+      "bamboo grove in gentle wind",
+      "creek bed after summer rain",
+      "meadow with distant thunder"
+    ],
+    "instruments": [
+      "wooden mallet on hollow log",
+      "rain droplet on broad leaf",
+      "smooth river stones clinking",
+      "fingertip-plucked kalimba tine",
+      "ceramic wind chime in breeze"
+    ],
+    "mood": [
+      "morning dew stillness",
+      "sun-warmed earth",
+      "birdsong tranquility",
+      "deep forest solitude",
+      "waterfall mist on skin"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "soft",
+      "airy",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

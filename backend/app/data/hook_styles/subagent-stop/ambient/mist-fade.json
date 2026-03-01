@@ -1,0 +1,55 @@
+{
+  "id": "amb-subagent-stop-mist-fade",
+  "name": "Mist Fade",
+  "description": "Fog dissipating to reveal quiet clarity",
+  "sound_characters": {
+    "simple": [
+      "gentle fog layer dissipating to reveal quiet clarity"
+    ],
+    "standard": [
+      "gentle fog layer dissipating to reveal quiet clarity",
+      "mist texture thinning to transparent whisper",
+      "atmospheric haze clearing with soft warm lift"
+    ],
+    "detailed": [
+      "gentle fog layer dissipating to reveal quiet clarity",
+      "mist texture thinning to transparent whisper",
+      "atmospheric haze clearing with soft warm lift",
+      "morning vapor burning off with golden warmth",
+      "cloud bank retreating to expose still silence"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "cathedral reverb at midnight",
+      "tape-saturated warmth",
+      "Brian Eno infinite space",
+      "abandoned hall echo",
+      "lo-fi cassette hiss and bloom"
+    ],
+    "instruments": [
+      "bowed singing bowl overtone",
+      "granular piano cloud",
+      "reversed cymbal swell",
+      "harmonium drone with tape wobble",
+      "shimmer reverb pad wash"
+    ],
+    "mood": [
+      "warm fog dissolving slowly",
+      "candlelight flickering softly",
+      "underwater weightlessness",
+      "drifting between sleep and waking",
+      "moonlight through frosted glass"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "lush",
+      "wide",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

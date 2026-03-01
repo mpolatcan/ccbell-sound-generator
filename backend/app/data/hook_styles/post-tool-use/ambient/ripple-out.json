@@ -1,0 +1,55 @@
+{
+  "id": "amb-post-tool-use-ripple-out",
+  "name": "Ripple Out",
+  "description": "Impact creating expanding concentric circles of sound",
+  "sound_characters": {
+    "simple": [
+      "impact creating expanding concentric circles of sound"
+    ],
+    "standard": [
+      "impact creating expanding concentric circles of sound",
+      "central event radiating outward in diminishing waves",
+      "sonic pebble dropped creating spreading reverb rings"
+    ],
+    "detailed": [
+      "impact creating expanding concentric circles of sound",
+      "central event radiating outward in diminishing waves",
+      "sonic pebble dropped creating spreading reverb rings",
+      "energy dissipating in perfect circular patterns",
+      "wavefront expanding through acoustic space with gentle decay"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "cathedral reverb at midnight",
+      "tape-saturated warmth",
+      "Brian Eno infinite space",
+      "abandoned hall echo",
+      "lo-fi cassette hiss and bloom"
+    ],
+    "instruments": [
+      "bowed singing bowl overtone",
+      "granular piano cloud",
+      "reversed cymbal swell",
+      "harmonium drone with tape wobble",
+      "shimmer reverb pad wash"
+    ],
+    "mood": [
+      "warm fog dissolving slowly",
+      "candlelight flickering softly",
+      "underwater weightlessness",
+      "drifting between sleep and waking",
+      "moonlight through frosted glass"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "lush",
+      "wide",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

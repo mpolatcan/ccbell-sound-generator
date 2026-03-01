@@ -1,0 +1,53 @@
+{
+  "id": "scifi-subagent-stop-signal-received",
+  "name": "Signal Received",
+  "description": "Faint deep-space signal acknowledged",
+  "sound_characters": {
+    "simple": [
+      "faint deep-space signal acknowledged with soft confirmation tone"
+    ],
+    "standard": [
+      "faint deep-space signal acknowledged with soft confirmation tone",
+      "distant relay ping bouncing back through subspace",
+      "quiet antenna lock chirp confirming transmission received"
+    ],
+    "detailed": [
+      "faint deep-space signal acknowledged with soft confirmation tone",
+      "distant relay ping bouncing back through subspace",
+      "quiet antenna lock chirp confirming transmission received",
+      "radio telescope capturing brief cosmic whisper",
+      "interstellar beacon responding with minimal energy pulse"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "futuristic spacecraft interface",
+      "cyberpunk neon-lit",
+      "deep space station",
+      "quantum computer hum",
+      "orbital relay signal"
+    ],
+    "instruments": [
+      "crystalline FM synthesis bell",
+      "voltage-controlled resonant filter sweep",
+      "granular synth texture",
+      "plasma crackle discharge"
+    ],
+    "mood": [
+      "otherworldly precision",
+      "holographic clarity",
+      "cold vacuum stillness",
+      "alien intelligence awakening"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "studio-grade",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

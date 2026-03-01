@@ -1,0 +1,55 @@
+{
+  "id": "amb-idle-prompt-fog-hover",
+  "name": "Fog Hover",
+  "description": "Dense atmospheric texture hanging motionless",
+  "sound_characters": {
+    "simple": [
+      "dense atmospheric fog texture hanging perfectly motionless"
+    ],
+    "standard": [
+      "dense atmospheric fog texture hanging perfectly motionless",
+      "thick ambient mist layer suspended without movement",
+      "gray noise blanket hovering at constant gentle level"
+    ],
+    "detailed": [
+      "dense atmospheric fog texture hanging perfectly motionless",
+      "thick ambient mist layer suspended without movement",
+      "gray noise blanket hovering at constant gentle level",
+      "ground-level cloud maintaining static presence",
+      "weather system stalled in place with unchanging drone"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "cathedral reverb at midnight",
+      "tape-saturated warmth",
+      "Brian Eno infinite space",
+      "abandoned hall echo",
+      "lo-fi cassette hiss and bloom"
+    ],
+    "instruments": [
+      "bowed singing bowl overtone",
+      "granular piano cloud",
+      "reversed cymbal swell",
+      "harmonium drone with tape wobble",
+      "shimmer reverb pad wash"
+    ],
+    "mood": [
+      "warm fog dissolving slowly",
+      "candlelight flickering softly",
+      "underwater weightlessness",
+      "drifting between sleep and waking",
+      "moonlight through frosted glass"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "lush",
+      "wide",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

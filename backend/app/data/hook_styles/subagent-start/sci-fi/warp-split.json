@@ -1,0 +1,53 @@
+{
+  "id": "scifi-subagent-start-warp-split",
+  "name": "Warp Split",
+  "description": "Energy beam splitting into two diverging paths",
+  "sound_characters": {
+    "simple": [
+      "energy beam splitting into two diverging warp paths"
+    ],
+    "standard": [
+      "energy beam splitting into two diverging warp paths",
+      "photon stream forking with prismatic refraction flash",
+      "warp field bifurcating with twin ascending tones"
+    ],
+    "detailed": [
+      "energy beam splitting into two diverging warp paths",
+      "photon stream forking with prismatic refraction flash",
+      "warp field bifurcating with twin ascending tones",
+      "quantum state duplicating with dual frequency burst",
+      "ship launching probe with diminishing tethered signal"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "futuristic spacecraft interface",
+      "cyberpunk neon-lit",
+      "deep space station",
+      "quantum computer hum",
+      "orbital relay signal"
+    ],
+    "instruments": [
+      "crystalline FM synthesis bell",
+      "voltage-controlled resonant filter sweep",
+      "granular synth texture",
+      "plasma crackle discharge"
+    ],
+    "mood": [
+      "otherworldly precision",
+      "holographic clarity",
+      "cold vacuum stillness",
+      "alien intelligence awakening"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "studio-grade",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

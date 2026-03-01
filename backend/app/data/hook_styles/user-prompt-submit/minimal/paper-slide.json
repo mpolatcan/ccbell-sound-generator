@@ -1,0 +1,55 @@
+{
+  "id": "min-user-prompt-submit-paper-slide",
+  "name": "Paper Slide",
+  "description": "Single sheet of paper pushed across desk",
+  "sound_characters": {
+    "simple": [
+      "single sheet of paper sliding across smooth desk surface"
+    ],
+    "standard": [
+      "single sheet of paper sliding across smooth desk surface",
+      "crisp document pushed forward with clean friction whisper",
+      "paper edge meeting air as sheet moves with precision"
+    ],
+    "detailed": [
+      "single sheet of paper sliding across smooth desk surface",
+      "crisp document pushed forward with clean friction whisper",
+      "paper edge meeting air as sheet moves with precision",
+      "lightweight material gliding on polished wood with grace",
+      "form submitted with minimal physical gesture"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "ultra-clean UI interaction",
+      "Swiss design precision",
+      "white gallery silence",
+      "Scandinavian living room",
+      "frosted glass partition"
+    ],
+    "instruments": [
+      "pure sine tone at concert pitch",
+      "tapped crystal glass rim",
+      "single piano key softly pressed",
+      "porcelain bowl struck with felt tip",
+      "tuning fork resonating on wood"
+    ],
+    "mood": [
+      "whisper-quiet elegance",
+      "zen garden calm",
+      "paper-thin delicacy",
+      "breath-held anticipation",
+      "snow falling on still water"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "pristine",
+      "transparent",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

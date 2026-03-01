@@ -1,0 +1,55 @@
+{
+  "id": "min-session-end-breath-out",
+  "name": "Breath Out",
+  "description": "Final exhale releasing all remaining tension",
+  "sound_characters": {
+    "simple": [
+      "final exhale releasing all remaining tension into stillness"
+    ],
+    "standard": [
+      "final exhale releasing all remaining tension into stillness",
+      "soft breath out settling body and mind to rest",
+      "last air leaving with warmth and gentle whisper"
+    ],
+    "detailed": [
+      "final exhale releasing all remaining tension into stillness",
+      "soft breath out settling body and mind to rest",
+      "last air leaving with warmth and gentle whisper",
+      "diaphragm relaxing as lungs empty completely",
+      "silence rushing in to fill the space left by breath"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "ultra-clean UI interaction",
+      "Swiss design precision",
+      "white gallery silence",
+      "Scandinavian living room",
+      "frosted glass partition"
+    ],
+    "instruments": [
+      "pure sine tone at concert pitch",
+      "tapped crystal glass rim",
+      "single piano key softly pressed",
+      "porcelain bowl struck with felt tip",
+      "tuning fork resonating on wood"
+    ],
+    "mood": [
+      "whisper-quiet elegance",
+      "zen garden calm",
+      "paper-thin delicacy",
+      "breath-held anticipation",
+      "snow falling on still water"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "pristine",
+      "transparent",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

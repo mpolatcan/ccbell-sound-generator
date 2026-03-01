@@ -1,0 +1,53 @@
+{
+  "id": "scifi-user-prompt-submit-data-burst",
+  "name": "Data Burst",
+  "description": "Compressed data package firing at light speed",
+  "sound_characters": {
+    "simple": [
+      "compressed data package firing at light speed with flash"
+    ],
+    "standard": [
+      "compressed data package firing at light speed with flash",
+      "information beam launching with focused energy pulse",
+      "digital payload accelerating to transmission velocity"
+    ],
+    "detailed": [
+      "compressed data package firing at light speed with flash",
+      "information beam launching with focused energy pulse",
+      "digital payload accelerating to transmission velocity",
+      "terabyte burst compressing and shooting through fiber",
+      "encoded signal blasting from antenna array with sharp chirp"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "futuristic spacecraft interface",
+      "cyberpunk neon-lit",
+      "deep space station",
+      "quantum computer hum",
+      "orbital relay signal"
+    ],
+    "instruments": [
+      "crystalline FM synthesis bell",
+      "voltage-controlled resonant filter sweep",
+      "granular synth texture",
+      "plasma crackle discharge"
+    ],
+    "mood": [
+      "otherworldly precision",
+      "holographic clarity",
+      "cold vacuum stillness",
+      "alien intelligence awakening"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "studio-grade",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

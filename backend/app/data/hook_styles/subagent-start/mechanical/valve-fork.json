@@ -1,0 +1,55 @@
+{
+  "id": "mech-subagent-start-valve-fork",
+  "name": "Valve Fork",
+  "description": "Distribution valve splitting flow to new path",
+  "sound_characters": {
+    "simple": [
+      "distribution valve opening new flow path with brass click"
+    ],
+    "standard": [
+      "distribution valve opening new flow path with brass click",
+      "steam manifold diverting pressure to additional line",
+      "hydraulic junction creating parallel circuit with valve turn"
+    ],
+    "detailed": [
+      "distribution valve opening new flow path with brass click",
+      "steam manifold diverting pressure to additional line",
+      "hydraulic junction creating parallel circuit with valve turn",
+      "pipeline tee activating with fluid division hiss",
+      "industrial process splitting workload to new machine"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "steam workshop furnace glow",
+      "Victorian clocktower",
+      "locomotive engine room",
+      "blacksmith anvil yard",
+      "submarine pressure hull"
+    ],
+    "instruments": [
+      "brass gear clank on iron plate",
+      "ratchet wrench click",
+      "tempered steel spring release",
+      "cast iron lever thrown",
+      "copper pipe resonance ping"
+    ],
+    "mood": [
+      "forge-hot determination",
+      "oiled-machine rhythm",
+      "riveted iron solidity",
+      "pneumatic power hiss",
+      "precision clockwork ticking"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "impactful",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

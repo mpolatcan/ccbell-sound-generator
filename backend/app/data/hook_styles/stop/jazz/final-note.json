@@ -1,0 +1,55 @@
+{
+  "id": "jazz-stop-final-note",
+  "name": "Final Note",
+  "description": "Last note of a jazz standard held with feeling",
+  "sound_characters": {
+    "simple": [
+      "jazz ensemble holding final note with warm sustain"
+    ],
+    "standard": [
+      "jazz ensemble holding final note with warm sustain",
+      "muted trumpet sustaining last phrase with vibrato",
+      "upright bass plucking resolving root note"
+    ],
+    "detailed": [
+      "jazz ensemble holding final note with warm sustain",
+      "muted trumpet sustaining last phrase with vibrato",
+      "upright bass plucking resolving root note",
+      "piano trio landing on warm major seventh chord",
+      "brushed cymbal shimmer fading after final bar"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "late-night jazz club",
+      "Blue Note session warmth",
+      "velvet curtain lounge",
+      "bossa nova beachside patio",
+      "cool jazz after-hours session"
+    ],
+    "instruments": [
+      "harmon-muted trumpet breath",
+      "walking bass string pluck",
+      "vibraphone mallet on metal bar",
+      "wire brushes swirling on snare head",
+      "Rhodes electric piano with tremolo"
+    ],
+    "mood": [
+      "smoky room intimacy",
+      "last-set-of-the-night mellowness",
+      "bourbon warmth on the tongue",
+      "slow-nod groove",
+      "spotlight-on-the-soloist focus"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "rich",
+      "analog warmth",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

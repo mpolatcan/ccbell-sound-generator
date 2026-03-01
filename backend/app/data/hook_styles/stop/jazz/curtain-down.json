@@ -1,0 +1,55 @@
+{
+  "id": "jazz-stop-curtain-down",
+  "name": "Curtain Down",
+  "description": "Theater curtain descending as the show ends",
+  "sound_characters": {
+    "simple": [
+      "theater curtain descending with velvet whoosh and final applause"
+    ],
+    "standard": [
+      "theater curtain descending with velvet whoosh and final applause",
+      "jazz club spotlight dimming with warm fade",
+      "swing band hitting final accent with brass stab"
+    ],
+    "detailed": [
+      "theater curtain descending with velvet whoosh and final applause",
+      "jazz club spotlight dimming with warm fade",
+      "swing band hitting final accent with brass stab",
+      "audience murmur settling after standing ovation",
+      "house lights coming up with gentle warmth"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "late-night jazz club",
+      "Blue Note session warmth",
+      "velvet curtain lounge",
+      "bossa nova beachside patio",
+      "cool jazz after-hours session"
+    ],
+    "instruments": [
+      "harmon-muted trumpet breath",
+      "walking bass string pluck",
+      "vibraphone mallet on metal bar",
+      "wire brushes swirling on snare head",
+      "Rhodes electric piano with tremolo"
+    ],
+    "mood": [
+      "smoky room intimacy",
+      "last-set-of-the-night mellowness",
+      "bourbon warmth on the tongue",
+      "slow-nod groove",
+      "spotlight-on-the-soloist focus"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "rich",
+      "analog warmth",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

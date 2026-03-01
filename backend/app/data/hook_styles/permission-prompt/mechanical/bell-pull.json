@@ -1,0 +1,55 @@
+{
+  "id": "mech-permission-prompt-bell-pull",
+  "name": "Bell Pull",
+  "description": "Servant's bell pulled requesting attention",
+  "sound_characters": {
+    "simple": [
+      "servant's bell pulled with questioning brass ring"
+    ],
+    "standard": [
+      "servant's bell pulled with questioning brass ring",
+      "mechanical bell pull activating with wire tension and ring",
+      "workshop attention bell with lever-activated clear tone"
+    ],
+    "detailed": [
+      "servant's bell pulled with questioning brass ring",
+      "mechanical bell pull activating with wire tension and ring",
+      "workshop attention bell with lever-activated clear tone",
+      "spring-loaded bell mechanism releasing with bright clang",
+      "brass annunciator bell dropping with clear inquiry ring"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "steam workshop furnace glow",
+      "Victorian clocktower",
+      "locomotive engine room",
+      "blacksmith anvil yard",
+      "submarine pressure hull"
+    ],
+    "instruments": [
+      "brass gear clank on iron plate",
+      "ratchet wrench click",
+      "tempered steel spring release",
+      "cast iron lever thrown",
+      "copper pipe resonance ping"
+    ],
+    "mood": [
+      "forge-hot determination",
+      "oiled-machine rhythm",
+      "riveted iron solidity",
+      "pneumatic power hiss",
+      "precision clockwork ticking"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "impactful",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

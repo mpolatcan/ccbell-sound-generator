@@ -1,0 +1,55 @@
+{
+  "id": "nature-subagent-stop-pebble-tap",
+  "name": "Pebble Tap",
+  "description": "Small stone tapping against smooth river rock",
+  "sound_characters": {
+    "simple": [
+      "small pebble tapping against smooth river rock"
+    ],
+    "standard": [
+      "small pebble tapping against smooth river rock",
+      "creek stone clicking softly underwater",
+      "tiny rock landing on dry riverbed with gentle clack"
+    ],
+    "detailed": [
+      "small pebble tapping against smooth river rock",
+      "creek stone clicking softly underwater",
+      "tiny rock landing on dry riverbed with gentle clack",
+      "beach pebble rolling to rest with mineral ping",
+      "granite chip ticking against polished boulder"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "forest clearing at dawn",
+      "moss-covered stone garden",
+      "bamboo grove in gentle wind",
+      "creek bed after summer rain",
+      "meadow with distant thunder"
+    ],
+    "instruments": [
+      "wooden mallet on hollow log",
+      "rain droplet on broad leaf",
+      "smooth river stones clinking",
+      "fingertip-plucked kalimba tine",
+      "ceramic wind chime in breeze"
+    ],
+    "mood": [
+      "morning dew stillness",
+      "sun-warmed earth",
+      "birdsong tranquility",
+      "deep forest solitude",
+      "waterfall mist on skin"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "soft",
+      "airy",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

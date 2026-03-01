@@ -1,0 +1,55 @@
+{
+  "id": "min-post-tool-use-mark-set",
+  "name": "Mark Set",
+  "description": "Check mark drawn with swift confident stroke",
+  "sound_characters": {
+    "simple": [
+      "check mark drawn with swift confident single stroke"
+    ],
+    "standard": [
+      "check mark drawn with swift confident single stroke",
+      "pen completing tick with quick downward flick",
+      "approval mark rendered with efficient precision"
+    ],
+    "detailed": [
+      "check mark drawn with swift confident single stroke",
+      "pen completing tick with quick downward flick",
+      "approval mark rendered with efficient precision",
+      "graphite meeting paper in one decisive gesture",
+      "verification symbol completed with clean lift"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "ultra-clean UI interaction",
+      "Swiss design precision",
+      "white gallery silence",
+      "Scandinavian living room",
+      "frosted glass partition"
+    ],
+    "instruments": [
+      "pure sine tone at concert pitch",
+      "tapped crystal glass rim",
+      "single piano key softly pressed",
+      "porcelain bowl struck with felt tip",
+      "tuning fork resonating on wood"
+    ],
+    "mood": [
+      "whisper-quiet elegance",
+      "zen garden calm",
+      "paper-thin delicacy",
+      "breath-held anticipation",
+      "snow falling on still water"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "pristine",
+      "transparent",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

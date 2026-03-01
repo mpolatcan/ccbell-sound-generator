@@ -1,0 +1,55 @@
+{
+  "id": "amb-subagent-start-echo-split",
+  "name": "Echo Split",
+  "description": "Single sound creating two distinct reflections",
+  "sound_characters": {
+    "simple": [
+      "single sound creating two distinct diverging echo reflections"
+    ],
+    "standard": [
+      "single sound creating two distinct diverging echo reflections",
+      "reverb path splitting at architectural corner",
+      "acoustic reflection forking into separate delay lines"
+    ],
+    "detailed": [
+      "single sound creating two distinct diverging echo reflections",
+      "reverb path splitting at architectural corner",
+      "acoustic reflection forking into separate delay lines",
+      "canyon echo returning from two different walls",
+      "sonic energy dividing at reflective boundary"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "cathedral reverb at midnight",
+      "tape-saturated warmth",
+      "Brian Eno infinite space",
+      "abandoned hall echo",
+      "lo-fi cassette hiss and bloom"
+    ],
+    "instruments": [
+      "bowed singing bowl overtone",
+      "granular piano cloud",
+      "reversed cymbal swell",
+      "harmonium drone with tape wobble",
+      "shimmer reverb pad wash"
+    ],
+    "mood": [
+      "warm fog dissolving slowly",
+      "candlelight flickering softly",
+      "underwater weightlessness",
+      "drifting between sleep and waking",
+      "moonlight through frosted glass"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "lush",
+      "wide",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

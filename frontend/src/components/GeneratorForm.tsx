@@ -27,7 +27,7 @@ import { MODEL_DEFAULTS, DEFAULT_DURATION } from '@/lib/constants'
 import { formatDuration } from '@/lib/utils'
 import { Sparkles, RefreshCw, AlertCircle, Package, ListOrdered, Plus, ChevronDown, ChevronUp, Copy, Check } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import type { GenerationSettings, HookTypeId, HookType, ThemePreset, EditablePromptChips, ChipItem, PromptDetailTier, PerHookConfig } from '@/types'
+import type { GenerationSettings, HookTypeId, HookType, ThemePreset, EditablePromptChips, ChipItem, PerHookConfig } from '@/types'
 
 export interface GeneratorFormRef {
   generate: () => void
@@ -88,17 +88,8 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
   const [duration, setDuration] = useState(DEFAULT_DURATION)
   const [packName, setPackName] = useState('')
   const [selectedPackId, setSelectedPackId] = useState<string | null>(null)
-  const [promptDetailTier, setPromptDetailTier] = useState<PromptDetailTier>('standard')
   const toChips = (values: string[]): ChipItem[] =>
     values.map((label) => ({ label, enabled: true }))
-
-  const [promptChips, setPromptChips] = useState<EditablePromptChips>({
-    sound_type: [],
-    style: [],
-    instruments: [],
-    mood: [],
-    quality: [],
-  })
 
   // Per-hook configuration (sound_type chips + style preset per hook)
   const [perHookConfig, setPerHookConfig] = useState<Record<string, PerHookConfig>>({})
@@ -135,21 +126,6 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
     }
   }, [selectedModel, maxDuration, duration])
 
-  // Sync shared prompt chips (style, instruments, mood, quality) when theme or detail tier changes
-  useEffect(() => {
-    if (selectedTheme === 'custom') return
-    const theme = themes.find((t: ThemePreset) => t.id === selectedTheme)
-    if (!theme) return
-    const tierComponents = theme.prompt_components[promptDetailTier]
-    setPromptChips((prev) => ({
-      ...prev,
-      style: toChips(tierComponents.style),
-      instruments: toChips(tierComponents.instruments),
-      mood: toChips(tierComponents.mood),
-      quality: toChips(tierComponents.quality),
-    }))
-  }, [selectedTheme, themes, promptDetailTier])
-
   // Effect 1: Sync perHookConfig keys with selectedHooks — init new hooks, remove deselected, preserve existing
   useEffect(() => {
     setPerHookConfig((prev) => {
@@ -161,8 +137,9 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
         } else {
           const hook = hooks.find((h) => h.id === hookId)
           next[hookId] = {
-            soundTypeChips: hook ? toChips(hook.sound_characters[promptDetailTier]) : [],
+            soundTypeChips: hook ? toChips(hook.sound_characters.detailed) : [],
             stylePresetId: null,
+            promptComponentChips: null,
           }
           changed = true
         }
@@ -173,7 +150,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
       }
       return next
     })
-  }, [selectedHooks, hooks, promptDetailTier])
+  }, [selectedHooks, hooks])
 
   // Effect 2: Keep activeHookTab valid — default to first selected hook, move if active deselected
   useEffect(() => {
@@ -184,32 +161,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
     })
   }, [selectedHooks])
 
-  // Effect 3: Re-init soundTypeChips on promptDetailTier change — re-resolve each hook from its current preset at new tier
-  const prevTierRef = useRef(promptDetailTier)
-  useEffect(() => {
-    if (prevTierRef.current === promptDetailTier) return
-    prevTierRef.current = promptDetailTier
-    setPerHookConfig((prev) => {
-      if (Object.keys(prev).length === 0) return prev
-      const next: Record<string, PerHookConfig> = {}
-      for (const [hookId, config] of Object.entries(prev)) {
-        const hook = hooks.find((h) => h.id === hookId)
-        if (!hook) { next[hookId] = config; continue }
-        let chips: ChipItem[]
-        if (config.stylePresetId) {
-          const preset = hook.sound_style_presets.find((p) => p.id === config.stylePresetId)
-          chips = preset ? toChips(preset.sound_characters[promptDetailTier]) : toChips(hook.sound_characters[promptDetailTier])
-        } else {
-          chips = toChips(hook.sound_characters[promptDetailTier])
-        }
-        next[hookId] = { ...config, soundTypeChips: chips }
-      }
-      return next
-    })
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- Only re-resolve when tier changes; hooks read from closure is current
-  }, [promptDetailTier])
-
-  // Effect 4: Reset all per-hook configs on theme change — theme is a major context switch
+  // Effect 3: Reset all per-hook configs on theme change — theme is a major context switch
   const prevThemeRef = useRef(selectedTheme)
   useEffect(() => {
     if (prevThemeRef.current === selectedTheme) return
@@ -220,63 +172,84 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
       for (const hookId of Object.keys(prev)) {
         const hook = hooks.find((h) => h.id === hookId)
         next[hookId] = {
-          soundTypeChips: hook ? toChips(hook.sound_characters[promptDetailTier]) : [],
+          soundTypeChips: hook ? toChips(hook.sound_characters.detailed) : [],
           stylePresetId: null,
+          promptComponentChips: null,
         }
       }
       return next
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- Only reset when theme changes; hooks/tier read from closure is current
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- Only reset when theme changes; hooks read from closure is current
   }, [selectedTheme])
 
   // Derived values for active hook tab
   const activeHook = hooks.find((h: HookType) => h.id === activeHookTab)
   const activePresetId = activeHookTab ? perHookConfig[activeHookTab]?.stylePresetId ?? null : null
 
-  // Construct editor chips: sound_type from active hook's perHookConfig, rest from shared promptChips
-  const editorChips: EditablePromptChips = useMemo(() => ({
-    sound_type: activeHookTab ? perHookConfig[activeHookTab]?.soundTypeChips ?? [] : [],
-    style: promptChips.style,
-    instruments: promptChips.instruments,
-    mood: promptChips.mood,
-    quality: promptChips.quality,
-  }), [activeHookTab, perHookConfig, promptChips])
+  // Get theme default prompt component chips (always uses detailed tier)
+  const getThemeDefaultChips = useCallback(() => {
+    const theme = themes.find((t: ThemePreset) => t.id === selectedTheme)
+    if (!theme) return { style: [] as ChipItem[], instruments: [] as ChipItem[], mood: [] as ChipItem[], quality: [] as ChipItem[] }
+    const c = theme.prompt_components.detailed
+    return { style: toChips(c.style), instruments: toChips(c.instruments), mood: toChips(c.mood), quality: toChips(c.quality) }
+  }, [themes, selectedTheme])
+
+  // Construct editor chips: all from active hook's perHookConfig, falling back to theme defaults
+  const editorChips: EditablePromptChips = useMemo(() => {
+    const hookChips = activeHookTab ? perHookConfig[activeHookTab]?.promptComponentChips : null
+    const defaults = getThemeDefaultChips()
+    return {
+      sound_type: activeHookTab ? perHookConfig[activeHookTab]?.soundTypeChips ?? [] : [],
+      style: hookChips?.style ?? defaults.style,
+      instruments: hookChips?.instruments ?? defaults.instruments,
+      mood: hookChips?.mood ?? defaults.mood,
+      quality: hookChips?.quality ?? defaults.quality,
+    }
+  }, [activeHookTab, perHookConfig, getThemeDefaultChips])
 
   // Handle style preset change for active hook
   const handleStylePresetChange = (presetId: string | null) => {
     if (!activeHookTab) return
     const hook = hooks.find((h: HookType) => h.id === activeHookTab)
     if (!hook) return
-    let chips: ChipItem[]
+    let soundTypeChips: ChipItem[]
+    let promptComponentChips: PerHookConfig['promptComponentChips'] = null
     if (presetId) {
-      const preset = hook.sound_style_presets.find((p) => p.id === presetId)
-      chips = preset ? toChips(preset.sound_characters[promptDetailTier]) : toChips(hook.sound_characters[promptDetailTier])
+      const preset = (hook.sound_style_presets[selectedTheme] ?? []).find((p) => p.id === presetId)
+      soundTypeChips = preset ? toChips(preset.sound_characters.detailed) : toChips(hook.sound_characters.detailed)
+      if (preset?.prompt_components) {
+        const pc = preset.prompt_components
+        promptComponentChips = {
+          style: toChips(pc.style),
+          instruments: toChips(pc.instruments),
+          mood: toChips(pc.mood),
+          quality: toChips(pc.quality),
+        }
+      }
     } else {
-      chips = toChips(hook.sound_characters[promptDetailTier])
+      soundTypeChips = toChips(hook.sound_characters.detailed)
     }
     setPerHookConfig((prev) => ({
       ...prev,
-      [activeHookTab]: { soundTypeChips: chips, stylePresetId: presetId },
+      [activeHookTab]: { soundTypeChips, stylePresetId: presetId, promptComponentChips },
     }))
   }
 
-  // Handle chips change — route sound_type to active hook's perHookConfig, shared categories to promptChips
+  // Handle chips change — route ALL categories to active hook's perHookConfig
   const handleChipsChange = useCallback((updated: EditablePromptChips) => {
-    if (activeHookTab) {
-      setPerHookConfig((prev) => ({
-        ...prev,
-        [activeHookTab]: {
-          ...prev[activeHookTab],
-          soundTypeChips: updated.sound_type,
-        },
-      }))
-    }
-    setPromptChips((prev) => ({
+    if (!activeHookTab) return
+    setPerHookConfig((prev) => ({
       ...prev,
-      style: updated.style,
-      instruments: updated.instruments,
-      mood: updated.mood,
-      quality: updated.quality,
+      [activeHookTab]: {
+        ...prev[activeHookTab],
+        soundTypeChips: updated.sound_type,
+        promptComponentChips: {
+          style: updated.style,
+          instruments: updated.instruments,
+          mood: updated.mood,
+          quality: updated.quality,
+        },
+      },
     }))
   }, [activeHookTab])
 
@@ -302,21 +275,29 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
 
     const targetHookId = hookId ?? activeHookTab
     let soundTypeChips: ChipItem[] = []
+    let componentChips: { style: ChipItem[]; instruments: ChipItem[]; mood: ChipItem[]; quality: ChipItem[] }
+    const defaults = getThemeDefaultChips()
+
     if (targetHookId && perHookConfig[targetHookId]) {
       soundTypeChips = perHookConfig[targetHookId].soundTypeChips
+      const hookPc = perHookConfig[targetHookId].promptComponentChips
+      componentChips = hookPc ?? defaults
     } else if (targetHookId) {
       // Fallback: use hook's default sound_characters
       const hook = hooks.find((h: HookType) => h.id === targetHookId)
-      if (hook) soundTypeChips = toChips(hook.sound_characters[promptDetailTier])
+      if (hook) soundTypeChips = toChips(hook.sound_characters.detailed)
+      componentChips = defaults
+    } else {
+      componentChips = defaults
     }
 
     const chipGroups = [
       soundTypeChips,
-      promptChips.style,
-      promptChips.instruments,
-      promptChips.mood,
+      componentChips.style,
+      componentChips.instruments,
+      componentChips.mood,
       [{ label: `${duration} seconds`, enabled: true }],
-      promptChips.quality,
+      componentChips.quality,
     ]
 
     const parts = chipGroups
@@ -397,7 +378,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
   }))
 
   // eslint-disable-next-line react-hooks/exhaustive-deps -- buildPrompt reads from multiple state values
-  const currentPrompt = useMemo(() => buildPrompt(), [selectedTheme, customPrompt, promptChips, perHookConfig, activeHookTab, duration, hooks, promptDetailTier])
+  const currentPrompt = useMemo(() => buildPrompt(), [selectedTheme, customPrompt, perHookConfig, activeHookTab, duration, hooks, getThemeDefaultChips])
 
   const [promptExpanded, setPromptExpanded] = useState(false)
   const [promptCopied, setPromptCopied] = useState(false)
@@ -463,7 +444,6 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
                     hooks={hooks}
                     selectedHooks={selectedHooks}
                     onSelect={setSelectedHooks}
-                    promptDetailTier={promptDetailTier}
                   />
                 )}
               </div>
@@ -545,35 +525,6 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
               )}
             </div>
 
-            {/* Prompt Detail Level — segmented control */}
-            {selectedTheme !== 'custom' && (
-              <div className="space-y-2">
-                <Label>Prompt Detail</Label>
-                <div className="inline-flex rounded-lg border border-border/60 bg-muted/20 p-0.5">
-                  {(['simple', 'standard', 'detailed'] as const).map((tier) => (
-                    <button
-                      key={tier}
-                      type="button"
-                      className={cn(
-                        'px-4 py-1.5 rounded-md text-sm font-medium transition-all cursor-pointer',
-                        promptDetailTier === tier
-                          ? 'bg-primary/15 text-primary shadow-sm'
-                          : 'text-muted-foreground hover:text-foreground'
-                      )}
-                      onClick={() => setPromptDetailTier(tier)}
-                    >
-                      {tier.charAt(0).toUpperCase() + tier.slice(1)}
-                    </button>
-                  ))}
-                </div>
-                <p className="text-xs text-muted-foreground">
-                  {promptDetailTier === 'simple' && 'Minimal descriptors for shorter, focused prompts'}
-                  {promptDetailTier === 'standard' && 'Balanced set of descriptors (recommended)'}
-                  {promptDetailTier === 'detailed' && 'Rich descriptors for more specific, detailed prompts'}
-                </p>
-              </div>
-            )}
-
             {/* Hook Sound Config — inline within Sound Design */}
             {selectedTheme !== 'custom' && selectedHooks.length > 0 && (
               <>
@@ -588,11 +539,11 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
                 </div>
 
                 {/* Sound Style Presets */}
-                {activeHook && activeHook.sound_style_presets.length > 0 && (
+                {activeHook && (activeHook.sound_style_presets[selectedTheme]?.length ?? 0) > 0 && (
                   <div className="space-y-2">
                     <Label>Sound Style</Label>
                     <div className="flex flex-wrap gap-2">
-                      {activeHook.sound_style_presets.map((preset) => (
+                      {(activeHook.sound_style_presets[selectedTheme] ?? []).map((preset) => (
                         <button
                           key={preset.id}
                           type="button"
@@ -600,12 +551,12 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
                           className={cn(
                             'px-3 py-1.5 rounded-full text-sm font-medium transition-all border cursor-pointer',
                             (activePresetId === preset.id ||
-                              (!activePresetId && preset.id === activeHook.sound_style_presets[0]?.id))
+                              (!activePresetId && preset.id === (activeHook.sound_style_presets[selectedTheme] ?? [])[0]?.id))
                               ? 'border-primary bg-primary/15 text-primary shadow-sm shadow-primary/10'
                               : 'border-border bg-muted/30 text-muted-foreground hover:border-primary/40 hover:text-foreground'
                           )}
                           onClick={() => handleStylePresetChange(
-                            preset.id === activeHook.sound_style_presets[0]?.id && !activePresetId
+                            preset.id === (activeHook.sound_style_presets[selectedTheme] ?? [])[0]?.id && !activePresetId
                               ? null
                               : preset.id
                           )}

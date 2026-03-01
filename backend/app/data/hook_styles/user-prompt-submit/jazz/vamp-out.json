@@ -1,0 +1,55 @@
+{
+  "id": "jazz-user-prompt-submit-vamp-out",
+  "name": "Vamp Out",
+  "description": "Band vamping to send off the soloist",
+  "sound_characters": {
+    "simple": [
+      "jazz band vamping energetically to send off the soloist"
+    ],
+    "standard": [
+      "jazz band vamping energetically to send off the soloist",
+      "rhythm section building groove beneath departing melody",
+      "ensemble cooking on repeating riff with increasing intensity"
+    ],
+    "detailed": [
+      "jazz band vamping energetically to send off the soloist",
+      "rhythm section building groove beneath departing melody",
+      "ensemble cooking on repeating riff with increasing intensity",
+      "organ and drums locking into propulsive send-off pattern",
+      "bass and piano driving forward with unstoppable swing"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "late-night jazz club",
+      "Blue Note session warmth",
+      "velvet curtain lounge",
+      "bossa nova beachside patio",
+      "cool jazz after-hours session"
+    ],
+    "instruments": [
+      "harmon-muted trumpet breath",
+      "walking bass string pluck",
+      "vibraphone mallet on metal bar",
+      "wire brushes swirling on snare head",
+      "Rhodes electric piano with tremolo"
+    ],
+    "mood": [
+      "smoky room intimacy",
+      "last-set-of-the-night mellowness",
+      "bourbon warmth on the tongue",
+      "slow-nod groove",
+      "spotlight-on-the-soloist focus"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "rich",
+      "analog warmth",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

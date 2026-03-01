@@ -1,0 +1,53 @@
+{
+  "id": "scifi-pre-tool-use-scan-init",
+  "name": "Scan Init",
+  "description": "Sensor sweep beginning with rotating detection field",
+  "sound_characters": {
+    "simple": [
+      "sensor sweep beginning with rotating detection field activation"
+    ],
+    "standard": [
+      "sensor sweep beginning with rotating detection field activation",
+      "deep scan initializing with expanding frequency pulse",
+      "tricorder powering up with diagnostic chirp sequence"
+    ],
+    "detailed": [
+      "sensor sweep beginning with rotating detection field activation",
+      "deep scan initializing with expanding frequency pulse",
+      "tricorder powering up with diagnostic chirp sequence",
+      "radar dish beginning rotation with ascending sweep tone",
+      "analysis module calibrating with rapid clicking sequence"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "futuristic spacecraft interface",
+      "cyberpunk neon-lit",
+      "deep space station",
+      "quantum computer hum",
+      "orbital relay signal"
+    ],
+    "instruments": [
+      "crystalline FM synthesis bell",
+      "voltage-controlled resonant filter sweep",
+      "granular synth texture",
+      "plasma crackle discharge"
+    ],
+    "mood": [
+      "otherworldly precision",
+      "holographic clarity",
+      "cold vacuum stillness",
+      "alien intelligence awakening"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "studio-grade",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

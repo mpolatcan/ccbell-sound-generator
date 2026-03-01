@@ -1,0 +1,55 @@
+{
+  "id": "min-permission-prompt-two-note-rise",
+  "name": "Two-Note Rise",
+  "description": "Simple two-note interval ascending with inquiry",
+  "sound_characters": {
+    "simple": [
+      "simple two-note interval ascending with gentle inquiry"
+    ],
+    "standard": [
+      "simple two-note interval ascending with gentle inquiry",
+      "clean minor third rising with questioning intent",
+      "paired sine tones stepping upward with open ending"
+    ],
+    "detailed": [
+      "simple two-note interval ascending with gentle inquiry",
+      "clean minor third rising with questioning intent",
+      "paired sine tones stepping upward with open ending",
+      "whisper-thin dual frequency lift with suspended resolution",
+      "mathematical interval pair leaving space for answer"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "ultra-clean UI interaction",
+      "Swiss design precision",
+      "white gallery silence",
+      "Scandinavian living room",
+      "frosted glass partition"
+    ],
+    "instruments": [
+      "pure sine tone at concert pitch",
+      "tapped crystal glass rim",
+      "single piano key softly pressed",
+      "porcelain bowl struck with felt tip",
+      "tuning fork resonating on wood"
+    ],
+    "mood": [
+      "whisper-quiet elegance",
+      "zen garden calm",
+      "paper-thin delicacy",
+      "breath-held anticipation",
+      "snow falling on still water"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "pristine",
+      "transparent",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

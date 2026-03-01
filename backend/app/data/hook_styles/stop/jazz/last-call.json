@@ -1,0 +1,55 @@
+{
+  "id": "jazz-stop-last-call",
+  "name": "Last Call",
+  "description": "Bar closing announcement with smooth lounge tone",
+  "sound_characters": {
+    "simple": [
+      "smooth lounge piano playing last call chord"
+    ],
+    "standard": [
+      "smooth lounge piano playing last call chord",
+      "cocktail glass set down on polished bar counter",
+      "Rhodes electric piano playing gentle closing phrase"
+    ],
+    "detailed": [
+      "smooth lounge piano playing last call chord",
+      "cocktail glass set down on polished bar counter",
+      "Rhodes electric piano playing gentle closing phrase",
+      "vibraphone note floating through dim club lighting",
+      "walking bass line arriving home with satisfied thump"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "late-night jazz club",
+      "Blue Note session warmth",
+      "velvet curtain lounge",
+      "bossa nova beachside patio",
+      "cool jazz after-hours session"
+    ],
+    "instruments": [
+      "harmon-muted trumpet breath",
+      "walking bass string pluck",
+      "vibraphone mallet on metal bar",
+      "wire brushes swirling on snare head",
+      "Rhodes electric piano with tremolo"
+    ],
+    "mood": [
+      "smoky room intimacy",
+      "last-set-of-the-night mellowness",
+      "bourbon warmth on the tongue",
+      "slow-nod groove",
+      "spotlight-on-the-soloist focus"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "rich",
+      "analog warmth",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

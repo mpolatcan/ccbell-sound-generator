@@ -1,0 +1,53 @@
+{
+  "id": "scifi-user-prompt-submit-warp-mail",
+  "name": "Warp Mail",
+  "description": "Message entering faster-than-light delivery system",
+  "sound_characters": {
+    "simple": [
+      "message entering faster-than-light postal delivery system"
+    ],
+    "standard": [
+      "message entering faster-than-light postal delivery system",
+      "interstellar courier capsule launching from docking bay",
+      "FTL mailbox accepting message with departure confirmation"
+    ],
+    "detailed": [
+      "message entering faster-than-light postal delivery system",
+      "interstellar courier capsule launching from docking bay",
+      "FTL mailbox accepting message with departure confirmation",
+      "warp-capable message drone accelerating away from ship",
+      "priority transmission punching into subspace with urgency"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "futuristic spacecraft interface",
+      "cyberpunk neon-lit",
+      "deep space station",
+      "quantum computer hum",
+      "orbital relay signal"
+    ],
+    "instruments": [
+      "crystalline FM synthesis bell",
+      "voltage-controlled resonant filter sweep",
+      "granular synth texture",
+      "plasma crackle discharge"
+    ],
+    "mood": [
+      "otherworldly precision",
+      "holographic clarity",
+      "cold vacuum stillness",
+      "alien intelligence awakening"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "studio-grade",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}

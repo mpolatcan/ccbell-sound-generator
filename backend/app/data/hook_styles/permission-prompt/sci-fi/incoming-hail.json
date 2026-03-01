@@ -1,0 +1,53 @@
+{
+  "id": "scifi-permission-prompt-incoming-hail",
+  "name": "Incoming Hail",
+  "description": "Starship communication request with alert chirp",
+  "sound_characters": {
+    "simple": [
+      "starship bridge receiving incoming hail with alert chirp"
+    ],
+    "standard": [
+      "starship bridge receiving incoming hail with alert chirp",
+      "communication channel opening with rising frequency sweep",
+      "alien transmission detected with two-tone query signal"
+    ],
+    "detailed": [
+      "starship bridge receiving incoming hail with alert chirp",
+      "communication channel opening with rising frequency sweep",
+      "alien transmission detected with two-tone query signal",
+      "subspace frequency lock requesting acknowledgment",
+      "holographic comm panel activating with questioning pulse"
+    ]
+  },
+  "prompt_components": {
+    "style": [
+      "futuristic spacecraft interface",
+      "cyberpunk neon-lit",
+      "deep space station",
+      "quantum computer hum",
+      "orbital relay signal"
+    ],
+    "instruments": [
+      "crystalline FM synthesis bell",
+      "voltage-controlled resonant filter sweep",
+      "granular synth texture",
+      "plasma crackle discharge"
+    ],
+    "mood": [
+      "otherworldly precision",
+      "holographic clarity",
+      "cold vacuum stillness",
+      "alien intelligence awakening"
+    ],
+    "quality": [
+      "44.1kHz",
+      "stereo",
+      "high-quality",
+      "crisp",
+      "studio-grade",
+      "with natural decay",
+      "smooth fade out",
+      "sustained resonance"
+    ]
+  }
+}
