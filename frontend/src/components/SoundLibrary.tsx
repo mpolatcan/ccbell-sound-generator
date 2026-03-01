@@ -524,21 +524,17 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                         endTime={sound.completed_at}
                                         isRunning={isGenerating}
                                       />
+                                      {sound.style_name && (
+                                        <Badge variant="outline" className="text-[10px] font-normal px-1.5 py-0">
+                                          {sound.style_name}
+                                        </Badge>
+                                      )}
+                                      {sound.prompt_alias && (
+                                        <Badge variant="outline" className="text-[10px] font-normal px-1.5 py-0">
+                                          {sound.prompt_alias}
+                                        </Badge>
+                                      )}
                                     </div>
-                                    {(sound.style_name || sound.prompt_alias) && (
-                                      <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
-                                        {sound.style_name && (
-                                          <Badge variant="outline" className="text-[10px] font-normal px-1.5 py-0">
-                                            {sound.style_name}
-                                          </Badge>
-                                        )}
-                                        {sound.prompt_alias && (
-                                          <Badge variant="outline" className="text-[10px] font-normal px-1.5 py-0">
-                                            {sound.prompt_alias}
-                                          </Badge>
-                                        )}
-                                      </div>
-                                    )}
                                     <p className="text-xs text-muted-foreground mt-1 font-mono">
                                       {sound.prompt}
                                     </p>
