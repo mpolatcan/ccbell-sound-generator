@@ -21,7 +21,8 @@ import {
   Check,
   X,
   Music,
-  RefreshCw
+  RefreshCw,
+  Sparkles
 } from 'lucide-react'
 import { useGenerationQueue } from '@/hooks/useGenerationQueue'
 import { formatDuration } from '@/lib/utils'
@@ -274,41 +275,50 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
 
     if (packs.length === 0) {
       return (
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg flex items-center gap-2">
-              <Music className="h-5 w-5" />
-              Sound Library
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground text-center py-8">
-              Generated sounds will appear here. Start by creating your first sound pack!
-            </p>
+        <Card className="card-elevated">
+          <CardContent className="py-16">
+            <div className="flex flex-col items-center text-center">
+              <div className="p-4 rounded-2xl bg-muted/30 border border-border/40 mb-4">
+                <Music className="h-8 w-8 text-muted-foreground/50" />
+              </div>
+              <h3 className="font-display font-semibold text-lg text-foreground/80 mb-1">Sound Library</h3>
+              <p className="text-sm text-muted-foreground max-w-sm">
+                Your generated sound packs will appear here. Select a theme and hooks above, then hit Generate to create your first pack.
+              </p>
+              <div className="flex items-center gap-2 mt-4 text-xs text-muted-foreground/50">
+                <Sparkles className="h-3.5 w-3.5" />
+                <span>Sounds are generated using Stable Audio Open AI</span>
+              </div>
+            </div>
           </CardContent>
         </Card>
       )
     }
 
     return (
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+      <Card className="card-elevated">
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
           <CardTitle className="text-lg flex items-center gap-2">
-            <Music className="h-5 w-5" />
+            <Music className="h-5 w-5 text-primary" />
             Sound Library
-            <Badge variant="secondary" className="ml-2">
-              {packs.length} {packs.length === 1 ? 'pack' : 'packs'}
+            <Badge variant="secondary" className="ml-1 font-mono text-xs">
+              {packs.length}
             </Badge>
           </CardTitle>
-          <div className="flex gap-2">
-            <Button variant="ghost" size="sm" onClick={handleClearAll} title="Ctrl+Shift+C">
-              Clear All
-            </Button>
-          </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleClearAll}
+            className="text-muted-foreground hover:text-destructive"
+            aria-label="Clear all sound packs"
+            title="Clear all (Ctrl+Shift+C)"
+          >
+            Clear All
+          </Button>
         </CardHeader>
         <CardContent>
           <div className="max-h-[600px] overflow-y-auto pr-1 scrollbar-thin">
-            <div className="space-y-4">
+            <div className="space-y-3">
               {packs.map((pack) => {
                 const packSounds = soundsByPack.all.get(pack.id) ?? []
                 const completedSounds = soundsByPack.completed.get(pack.id) ?? []
@@ -321,19 +331,19 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                     open={isExpanded}
                     onOpenChange={() => togglePack(pack.id)}
                   >
-                    <div className="border rounded-lg overflow-hidden">
+                    <div className="border border-border/50 rounded-lg overflow-hidden bg-card/50">
                       {/* Pack Header */}
-                      <div className="bg-muted/30 p-3">
-                        <div className="flex items-center justify-between">
-                          <CollapsibleTrigger className="flex items-center gap-2 flex-1 text-left">
+                      <div className="bg-muted/20 px-3 py-2.5">
+                        <div className="flex items-center justify-between gap-2">
+                          <CollapsibleTrigger className="flex items-center gap-2 flex-1 min-w-0 text-left">
                             {isExpanded ? (
-                              <ChevronDown className="h-4 w-4" />
+                              <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground" />
                             ) : (
-                              <ChevronRight className="h-4 w-4" />
+                              <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground" />
                             )}
-                            <Package className="h-4 w-4 text-primary" />
+                            <Package className="h-4 w-4 shrink-0 text-primary" />
                             {editingPackId === pack.id ? (
-                              <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
+                              <div className="flex items-center gap-1.5" onClick={(e) => e.stopPropagation()}>
                                 <Input
                                   value={editingName}
                                   onChange={(e) => setEditingName(e.target.value)}
@@ -344,28 +354,28 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                     if (e.key === 'Escape') cancelEditingPack()
                                   }}
                                 />
-                                <Button variant="ghost" size="icon" className="h-6 w-6" onClick={savePackName}>
+                                <Button variant="ghost" size="icon" className="h-6 w-6" onClick={savePackName} aria-label="Save pack name">
                                   <Check className="h-3 w-3" />
                                 </Button>
-                                <Button variant="ghost" size="icon" className="h-6 w-6" onClick={cancelEditingPack}>
+                                <Button variant="ghost" size="icon" className="h-6 w-6" onClick={cancelEditingPack} aria-label="Cancel editing">
                                   <X className="h-3 w-3" />
                                 </Button>
                               </div>
                             ) : (
-                              <span className="font-medium">{pack.name}</span>
+                              <span className="font-medium truncate">{pack.name}</span>
                             )}
                           </CollapsibleTrigger>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-1.5 shrink-0">
                             {hasGenerating && (
-                              <Badge variant="outline" className="animate-pulse">
+                              <Badge variant="outline" className="animate-pulse text-xs border-primary/30 text-primary">
                                 <Loader2 className="h-3 w-3 mr-1 animate-spin" />
                                 Generating
                               </Badge>
                             )}
-                            <Badge variant="secondary">
-                              {completedSounds.length}/{packSounds.length} sounds
+                            <Badge variant="secondary" className="text-xs font-mono">
+                              {completedSounds.length}/{packSounds.length}
                             </Badge>
-                            <Badge variant="outline">{pack.model}</Badge>
+                            <Badge variant="outline" className="text-xs font-mono">{pack.model}</Badge>
                             {!editingPackId && (
                               <Button
                                 variant="ghost"
@@ -375,6 +385,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                   e.stopPropagation()
                                   startEditingPack(pack)
                                 }}
+                                aria-label="Rename pack"
                               >
                                 <Pencil className="h-3 w-3" />
                               </Button>
@@ -383,12 +394,13 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                               <Button
                                 variant="ghost"
                                 size="sm"
-                                className="h-7"
+                                className="h-7 text-xs"
                                 onClick={(e) => {
                                   e.stopPropagation()
                                   handleDownloadPackDialog(pack)
                                 }}
                                 disabled={completedSounds.length === 0}
+                                aria-label="Download pack"
                               >
                                 <Download className="h-3 w-3 mr-1" />
                                 Download
@@ -398,12 +410,13 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                               <Button
                                 variant="ghost"
                                 size="sm"
-                                className="h-7"
+                                className="h-7 text-xs"
                                 onClick={(e) => {
                                   e.stopPropagation()
                                   handlePublishPack(pack)
                                 }}
                                 disabled={completedSounds.length === 0}
+                                aria-label="Publish pack to GitHub"
                               >
                                 Publish
                               </Button>
@@ -411,11 +424,12 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                             <Button
                               variant="ghost"
                               size="icon"
-                              className="h-7 w-7 text-destructive hover:text-destructive"
+                              className="h-7 w-7 text-muted-foreground hover:text-destructive"
                               onClick={(e) => {
                                 e.stopPropagation()
                                 handleDeletePack(pack.id)
                               }}
+                              aria-label="Delete pack"
                             >
                               <Trash2 className="h-3 w-3" />
                             </Button>
@@ -425,26 +439,26 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
 
                       {/* Pack Contents */}
                       <CollapsibleContent>
-                        <div className="p-3 space-y-3">
+                        <div className="p-3 space-y-2.5">
                           {packSounds.map((sound) => (
                             <div
                               key={sound.id}
-                              className={`p-3 rounded-md border ${
+                              className={`p-3 rounded-lg border transition-colors ${
                                 sound.status === 'generating'
-                                  ? 'bg-primary/5 border-primary/20'
+                                  ? 'bg-primary/3 border-primary/15'
                                   : sound.status === 'error'
-                                    ? 'bg-destructive/5 border-destructive/20'
-                                    : 'bg-muted/20'
+                                    ? 'bg-destructive/3 border-destructive/15'
+                                    : 'bg-muted/15 border-border/30'
                               }`}
                             >
                               <div className="flex items-start justify-between mb-2">
                                 <div
-                                  className="flex-1 cursor-pointer"
+                                  className="flex-1 cursor-pointer min-w-0"
                                   onMouseEnter={() => handlePreviewStart(sound)}
                                   onMouseLeave={handlePreviewStop}
                                 >
-                                  <div className="flex items-center gap-2">
-                                    <h4 className="font-medium">{sound.hook_type}</h4>
+                                  <div className="flex items-center gap-2 flex-wrap">
+                                    <h4 className="font-display font-medium text-sm">{sound.hook_type}</h4>
                                     <Badge
                                       variant={
                                         sound.status === 'completed'
@@ -453,42 +467,46 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                             ? 'secondary'
                                             : 'destructive'
                                       }
+                                      className="text-[10px]"
                                     >
                                       {sound.status === 'generating'
                                         ? sound.stage || 'Generating'
                                         : sound.status}
                                     </Badge>
-                                    <Badge variant="outline">{formatDuration(sound.duration)}</Badge>
+                                    <Badge variant="outline" className="text-[10px] font-mono">{formatDuration(sound.duration)}</Badge>
                                     <ElapsedTime
                                       startTime={sound.started_at}
                                       endTime={sound.completed_at}
                                       isRunning={sound.status === 'generating'}
                                     />
                                     {previewingSoundId === sound.id && (
-                                      <Volume2 className="h-4 w-4 text-primary animate-pulse" />
+                                      <Volume2 className="h-3.5 w-3.5 text-primary animate-pulse" />
                                     )}
                                   </div>
-                                  <p className="text-sm text-muted-foreground mt-1 line-clamp-1">
+                                  <p className="text-xs text-muted-foreground mt-1 line-clamp-1 font-mono">
                                     {sound.prompt}
                                   </p>
                                 </div>
-                                <div className="flex items-center gap-1">
+                                <div className="flex items-center gap-0.5 ml-2">
                                   {sound.status !== 'generating' && (
                                     <Button
                                       variant="ghost"
                                       size="icon"
+                                      className="h-7 w-7"
                                       onClick={() => handleRegenerateSound(sound)}
-                                      title="Regenerate"
+                                      aria-label={`Regenerate ${sound.hook_type} sound`}
                                     >
-                                      <RefreshCw className="h-4 w-4" />
+                                      <RefreshCw className="h-3.5 w-3.5" />
                                     </Button>
                                   )}
                                   <Button
                                     variant="ghost"
                                     size="icon"
+                                    className="h-7 w-7 text-muted-foreground hover:text-destructive"
                                     onClick={() => handleDeleteSound(sound)}
+                                    aria-label={`Delete ${sound.hook_type} sound`}
                                   >
-                                    <Trash2 className="h-4 w-4" />
+                                    <Trash2 className="h-3.5 w-3.5" />
                                   </Button>
                                 </div>
                               </div>
@@ -496,8 +514,8 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                               {/* Progress for generating sounds */}
                               {sound.status === 'generating' && (
                                 <div className="mt-2">
-                                  <Progress value={(sound.progress || 0) * 100} className="h-2" />
-                                  <p className="text-xs text-muted-foreground mt-1">
+                                  <Progress value={(sound.progress || 0) * 100} className="h-1.5" />
+                                  <p className="text-[10px] text-muted-foreground mt-1 font-mono tabular-nums">
                                     {sound.stage} ({Math.round((sound.progress || 0) * 100)}%)
                                   </p>
                                 </div>

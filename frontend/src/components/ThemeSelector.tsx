@@ -44,13 +44,14 @@ export const ThemeSelector = memo(function ThemeSelector({ themes, selectedTheme
               key={theme.id}
               type="button"
               className={cn(
-                'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-all',
+                'inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-medium transition-all duration-200',
                 'border cursor-pointer',
                 isSelected
-                  ? 'border-primary bg-primary/15 text-primary'
-                  : 'border-border bg-muted/30 text-muted-foreground hover:border-primary/50 hover:text-foreground'
+                  ? 'border-primary/60 bg-primary/12 text-primary shadow-sm shadow-primary/10'
+                  : 'border-border/60 bg-muted/20 text-muted-foreground hover:border-primary/40 hover:text-foreground hover:bg-muted/40'
               )}
               onClick={() => onSelect(theme.id)}
+              aria-pressed={isSelected}
             >
               <Icon className="h-3.5 w-3.5" />
               {theme.name}

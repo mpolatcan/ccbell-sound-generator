@@ -31,7 +31,7 @@ export const ModelLoadingIndicator = memo(function ModelLoadingIndicator({
 }: ModelLoadingIndicatorProps) {
   if (status === 'ready') {
     return (
-      <div className="flex items-center gap-2 text-sm text-green-400">
+      <div className="flex items-center gap-2 text-sm text-green-400 animate-fade-in">
         <CheckCircle2 className="h-4 w-4" />
         <span>{modelName} ready</span>
       </div>
@@ -40,10 +40,10 @@ export const ModelLoadingIndicator = memo(function ModelLoadingIndicator({
 
   if (status === 'error') {
     return (
-      <div className="p-3 bg-destructive/10 border border-destructive/20 rounded-lg">
+      <div className="p-3 bg-destructive/8 border border-destructive/20 rounded-lg animate-fade-in">
         <div className="flex items-start gap-3">
-          <AlertCircle className="h-5 w-5 text-destructive mt-0.5" />
-          <div className="flex-1">
+          <AlertCircle className="h-4 w-4 text-destructive mt-0.5 shrink-0" />
+          <div className="flex-1 min-w-0">
             <h4 className="font-medium text-destructive text-sm">Failed to load {modelName}</h4>
             <p className="text-xs text-muted-foreground mt-1 break-words">
               {error || 'An unknown error occurred'}
@@ -53,7 +53,7 @@ export const ModelLoadingIndicator = memo(function ModelLoadingIndicator({
                 variant="outline"
                 size="sm"
                 onClick={onRetry}
-                className="mt-2"
+                className="mt-2 h-7 text-xs"
               >
                 <RefreshCw className="h-3 w-3 mr-1" />
                 Retry
@@ -67,13 +67,13 @@ export const ModelLoadingIndicator = memo(function ModelLoadingIndicator({
 
   if (status === 'loading') {
     return (
-      <div className="space-y-2 p-3 bg-primary/5 border border-primary/20 rounded-lg">
+      <div className="space-y-2 p-3 bg-primary/5 border border-primary/15 rounded-lg animate-fade-in">
         <div className="flex items-center gap-2 text-sm">
           <Loader2 className="h-4 w-4 animate-spin text-primary" />
           <span className="font-medium">Loading {modelName}</span>
         </div>
-        <Progress value={progress * 100} className="h-2" />
-        <p className="text-xs text-muted-foreground">
+        <Progress value={progress * 100} className="h-1.5" />
+        <p className="text-xs text-muted-foreground font-mono tabular-nums">
           {stage ? stageLabels[stage] || stage : 'Please wait...'} ({Math.round(progress * 100)}%)
         </p>
       </div>

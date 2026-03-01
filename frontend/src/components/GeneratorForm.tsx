@@ -386,21 +386,23 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
   // eslint-disable-next-line react-hooks/exhaustive-deps -- buildPrompt reads from multiple state values
   const currentPrompt = useMemo(() => buildPrompt(), [selectedTheme, customPrompt, promptChips, perHookConfig, activeHookTab, duration, hooks, promptDetailTier])
 
+  const canGenerate = !isLoading && !hasApiError && selectedHooks.length > 0 && currentPrompt.trim() && modelReady
+
   return (
-    <Card>
+    <Card className="card-elevated">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Sparkles className="h-5 w-5 text-primary" />
           Generate Sound
         </CardTitle>
         <CardDescription>
-          Create AI-powered notification sounds for Claude Code ccbell plugin
+          Create AI-powered notification sounds for Claude Code
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-5">
         {/* API Error State */}
         {hasApiError && (
-          <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg">
+          <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg animate-fade-in">
             <div className="flex items-start gap-3">
               <AlertCircle className="h-5 w-5 text-destructive mt-0.5" />
               <div className="flex-1">
@@ -442,7 +444,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
           {/* Sound Pack Selection */}
           <div className="space-y-2">
             <Label className="flex items-center gap-2">
-              <Package className="h-4 w-4" />
+              <Package className="h-3.5 w-3.5" />
               Sound Pack
             </Label>
             <Select
@@ -487,6 +489,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
               placeholder={getDefaultPackName()}
               value={packName}
               onChange={(e) => setPackName(e.target.value)}
+              className="placeholder:text-muted-foreground/50"
             />
             <p className="text-xs text-muted-foreground">
               Leave empty to auto-generate name from theme
@@ -524,8 +527,8 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
                   className={cn(
                     'flex-1 px-3 py-1.5 rounded-full text-sm font-medium transition-all border cursor-pointer',
                     promptDetailTier === tier
-                      ? 'border-primary bg-primary/15 text-primary'
-                      : 'border-border bg-muted/30 text-muted-foreground hover:border-primary/50 hover:text-foreground'
+                      ? 'border-primary bg-primary/15 text-primary shadow-sm shadow-primary/10'
+                      : 'border-border bg-muted/30 text-muted-foreground hover:border-primary/40 hover:text-foreground'
                   )}
                   onClick={() => setPromptDetailTier(tier)}
                 >
@@ -568,8 +571,8 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
                     'px-3 py-1.5 rounded-full text-sm font-medium transition-all border cursor-pointer',
                     (activePresetId === preset.id ||
                       (!activePresetId && preset.id === activeHook.sound_style_presets[0]?.id))
-                      ? 'border-primary bg-primary/15 text-primary'
-                      : 'border-border bg-muted/30 text-muted-foreground hover:border-primary/50 hover:text-foreground'
+                      ? 'border-primary bg-primary/15 text-primary shadow-sm shadow-primary/10'
+                      : 'border-border bg-muted/30 text-muted-foreground hover:border-primary/40 hover:text-foreground'
                   )}
                   onClick={() => handleStylePresetChange(
                     preset.id === activeHook.sound_style_presets[0]?.id && !activePresetId
@@ -602,6 +605,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
               value={customPrompt}
               onChange={(e) => setCustomPrompt(e.target.value)}
               rows={3}
+              className="placeholder:text-muted-foreground/50"
             />
           </div>
         )}
@@ -610,7 +614,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <Label>Duration</Label>
-            <span className="text-sm text-muted-foreground">
+            <span className="text-sm font-mono text-muted-foreground tabular-nums">
               {formatDuration(duration)}
             </span>
           </div>
@@ -627,18 +631,21 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
         </div>
 
         {/* Generate Button */}
-        <div className="space-y-2">
+        <div className="space-y-3 pt-1">
           <Button
-            className="w-full"
+            className={cn(
+              "w-full font-display font-semibold tracking-wide",
+              canGenerate && "btn-glow"
+            )}
             size="lg"
             onClick={handleGenerate}
-            disabled={isLoading || hasApiError || selectedHooks.length === 0 || !currentPrompt.trim() || !modelReady}
+            disabled={!canGenerate}
           >
             <Sparkles className="h-4 w-4 mr-2" />
             Generate {selectedHooks.length > 1 ? `${selectedHooks.length} Sounds` : 'Sound'}
           </Button>
           {queueLength > 0 && (
-            <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+            <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground animate-fade-in">
               <ListOrdered className="h-4 w-4" />
               <span>{queueLength} {queueLength === 1 ? 'sound' : 'sounds'} in queue</span>
             </div>
@@ -647,7 +654,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
 
         {/* Error */}
         {error && (
-          <div className="p-3 bg-destructive/10 border border-destructive rounded-md">
+          <div className="p-3 bg-destructive/10 border border-destructive/30 rounded-lg animate-fade-in">
             <p className="text-sm text-destructive">{error}</p>
           </div>
         )}

@@ -134,7 +134,7 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
 
   return (
     <TooltipProvider>
-      <Card>
+      <Card className="card-elevated">
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
@@ -148,14 +148,15 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
               variant="ghost"
               size="sm"
               onClick={resetToDefaults}
-              className="h-7 text-xs"
+              className="h-7 text-xs text-muted-foreground hover:text-foreground"
+              aria-label="Reset to defaults"
             >
               <RotateCcw className="h-3 w-3 mr-1" />
               Reset
             </Button>
           </div>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-5">
           {/* Model Selection */}
           <div className="space-y-2">
             <Label>Model</Label>
@@ -172,7 +173,7 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
                       <div className="flex flex-col">
                         <span>{m.name}</span>
                         <span className="text-xs text-muted-foreground">
-                          {m.parameters} · Max {m.max_duration}s
+                          {m.parameters} &middot; Max {m.max_duration}s
                         </span>
                       </div>
                     </SelectItem>
@@ -218,8 +219,8 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
                         className={cn(
                           "flex-1 transition-all duration-200",
                           activePreset === key
-                            ? "ring-2 ring-primary shadow-md shadow-primary/25 scale-[1.02]"
-                            : "opacity-75 hover:opacity-100"
+                            ? "ring-1 ring-primary/50 shadow-md shadow-primary/15"
+                            : "opacity-70 hover:opacity-100"
                         )}
                       >
                         <Icon className="h-4 w-4 mr-1.5" />
@@ -262,7 +263,7 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
                   </TooltipContent>
                 </Tooltip>
               </Label>
-              <Badge variant="secondary">{currentSteps}</Badge>
+              <Badge variant="secondary" className="font-mono tabular-nums">{currentSteps}</Badge>
             </div>
             <Slider
               value={[currentSteps]}
@@ -295,7 +296,7 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
                   </TooltipContent>
                 </Tooltip>
               </Label>
-              <Badge variant="secondary">{currentCfgScale.toFixed(1)}</Badge>
+              <Badge variant="secondary" className="font-mono tabular-nums">{currentCfgScale.toFixed(1)}</Badge>
             </div>
             <Slider
               value={[currentCfgScale]}
@@ -371,6 +372,7 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
               placeholder="Random (leave empty)"
               value={settings.seed ?? ''}
               onChange={handleSeedChange}
+              className="font-mono placeholder:text-muted-foreground/50"
             />
           </div>
         </CardContent>

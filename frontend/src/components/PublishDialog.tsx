@@ -11,9 +11,10 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import { api } from '@/lib/api'
 import { toast } from '@/hooks/useToast'
-import { Loader2, Github, ExternalLink } from 'lucide-react'
+import { Loader2, Github, ExternalLink, CheckCircle2 } from 'lucide-react'
 import type { PublishPackData } from '@/types'
 import { HOOK_TO_EVENT_MAP } from '@/types'
 
@@ -97,72 +98,71 @@ export function PublishDialog({ open, onOpenChange, packData }: PublishDialogPro
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
+          <DialogTitle className="flex items-center gap-2 font-display">
             <Github className="h-5 w-5" />
             Publish Sound Pack
           </DialogTitle>
           <DialogDescription>
             Publish <strong>{packData?.packName}</strong> ({eventMapping.length} sound{eventMapping.length !== 1 ? 's' : ''}) to{' '}
-            <code className="text-xs bg-muted px-1 py-0.5 rounded">mpolatcan/ccbell-sound-packs</code>
+            <code className="text-[10px] font-mono bg-muted px-1.5 py-0.5 rounded">mpolatcan/ccbell-sound-packs</code>
           </DialogDescription>
         </DialogHeader>
 
         {releaseUrl ? (
-          <div className="py-6 text-center">
-            <div className="mb-4 text-green-600">
-              <svg
-                className="h-16 w-16 mx-auto"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
+          <div className="py-8 text-center animate-fade-in">
+            <div className="mb-4">
+              <CheckCircle2 className="h-14 w-14 mx-auto text-green-500" />
             </div>
-            <h3 className="text-lg font-medium mb-2">Pack Published!</h3>
-            <p className="text-sm text-muted-foreground mb-2">
-              Install with: <code className="bg-muted px-1 py-0.5 rounded text-xs">ccbell packs install {packId}</code>
+            <h3 className="text-lg font-display font-semibold mb-2">Pack Published!</h3>
+            <p className="text-sm text-muted-foreground mb-1">
+              Install with:
             </p>
-            <Button asChild>
-              <a href={releaseUrl} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="h-4 w-4 mr-2" />
-                View Release
-              </a>
-            </Button>
+            <code className="inline-block bg-muted/60 px-3 py-1.5 rounded-lg text-xs font-mono border border-border/30 mb-4">
+              ccbell packs install {packId}
+            </code>
+            <div>
+              <Button asChild>
+                <a href={releaseUrl} target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="h-4 w-4 mr-2" />
+                  View Release
+                </a>
+              </Button>
+            </div>
           </div>
         ) : (
           <div>
             {/* Pack Metadata */}
             <div className="space-y-3 py-2">
               <div className="grid grid-cols-2 gap-3">
-                <div className="space-y-1">
-                  <label className="text-xs font-medium text-muted-foreground">Author</label>
+                <div className="space-y-1.5">
+                  <Label htmlFor="publish-author" className="text-xs text-muted-foreground">Author</Label>
                   <Input
+                    id="publish-author"
                     value={packAuthor}
                     onChange={(e) => setPackAuthor(e.target.value)}
                     placeholder="ccbell-sound-generator"
+                    className="placeholder:text-muted-foreground/50"
                   />
                 </div>
-                <div className="space-y-1">
-                  <label className="text-xs font-medium text-muted-foreground">Version</label>
+                <div className="space-y-1.5">
+                  <Label htmlFor="publish-version" className="text-xs text-muted-foreground">Version</Label>
                   <Input
+                    id="publish-version"
                     value={packVersion}
                     onChange={(e) => setPackVersion(e.target.value)}
                     placeholder="1.0.0"
+                    className="font-mono placeholder:text-muted-foreground/50"
                   />
                 </div>
               </div>
-              <div className="space-y-1">
-                <label className="text-xs font-medium text-muted-foreground">Description</label>
+              <div className="space-y-1.5">
+                <Label htmlFor="publish-description" className="text-xs text-muted-foreground">Description</Label>
                 <Input
+                  id="publish-description"
                   value={packDescription}
                   onChange={(e) => setPackDescription(e.target.value)}
                   placeholder="AI-generated notification sounds for Claude Code"
+                  className="placeholder:text-muted-foreground/50"
                 />
               </div>
             </div>
@@ -170,9 +170,9 @@ export function PublishDialog({ open, onOpenChange, packData }: PublishDialogPro
             {/* Event Mapping Preview */}
             {eventMapping.length > 0 && (
               <div className="space-y-2 py-4">
-                <Separator />
-                <div className="rounded-md border">
-                  <div className="grid grid-cols-3 gap-2 p-2 bg-muted/50 text-xs font-medium text-muted-foreground">
+                <Separator className="opacity-50" />
+                <div className="rounded-lg border border-border/40 overflow-hidden">
+                  <div className="grid grid-cols-3 gap-2 p-2 bg-muted/30 text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
                     <span>Hook Type</span>
                     <span>Event Name</span>
                     <span>Filename</span>
@@ -180,13 +180,13 @@ export function PublishDialog({ open, onOpenChange, packData }: PublishDialogPro
                   {eventMapping.map((mapping) => (
                     <div
                       key={mapping.hookType}
-                      className="grid grid-cols-3 gap-2 p-2 border-t text-sm"
+                      className="grid grid-cols-3 gap-2 p-2 border-t border-border/30 text-sm"
                     >
-                      <span>{mapping.hookType}</span>
-                      <Badge variant="secondary" className="w-fit text-xs">
+                      <span className="text-xs">{mapping.hookType}</span>
+                      <Badge variant="secondary" className="w-fit text-[10px] font-mono">
                         {mapping.eventName}
                       </Badge>
-                      <span className="text-muted-foreground text-xs font-mono">
+                      <span className="text-muted-foreground text-[10px] font-mono">
                         {mapping.filename}
                       </span>
                     </div>

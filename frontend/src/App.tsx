@@ -93,56 +93,62 @@ function AppContent() {
   ])
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
-      <header className="border-b">
+      <header className="border-b border-border/60 backdrop-blur-sm bg-background/80 sticky top-0 z-30">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-primary/10 rounded-lg">
-              <Bell className="h-6 w-6 text-primary" />
+            <div className="relative p-2.5 bg-primary/10 rounded-xl border border-primary/20">
+              <Bell className="h-5 w-5 text-primary" />
+              <div className="absolute inset-0 rounded-xl bg-primary/5 animate-glow-pulse" />
             </div>
             <div>
-              <h1 className="text-xl font-bold">CCBell Sound Generator</h1>
-              <p className="text-sm text-muted-foreground">
-                AI-powered notification sounds for Claude Code ccbell plugin
+              <h1 className="text-xl font-display font-bold tracking-tight">
+                <span className="text-gradient">CCBell</span>{' '}
+                <span className="text-foreground/80">Sound Generator</span>
+              </h1>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                AI-powered notification sounds for Claude Code
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <nav className="flex items-center gap-1.5">
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setShortcutsHelpOpen(true)}
+              aria-label="Keyboard shortcuts"
               title="Keyboard shortcuts (?)"
+              className="text-muted-foreground hover:text-foreground"
             >
               <Keyboard className="h-4 w-4" />
             </Button>
-            <Button variant="ghost" size="sm" asChild>
+            <Button variant="ghost" size="sm" asChild className="text-muted-foreground hover:text-foreground">
               <a
                 href="https://docs.anthropic.com/en/docs/claude-code/hooks"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <ExternalLink className="h-4 w-4 mr-2" />
-                Hooks Docs
+                <ExternalLink className="h-4 w-4 mr-1.5" />
+                <span className="hidden sm:inline">Hooks Docs</span>
               </a>
             </Button>
-            <Button variant="outline" size="sm" asChild>
+            <Button variant="outline" size="sm" asChild className="border-border/60">
               <a
                 href="https://github.com/anthropics/ccbell"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Github className="h-4 w-4 mr-2" />
+                <Github className="h-4 w-4 mr-1.5" />
                 CCBell
               </a>
             </Button>
-          </div>
+          </nav>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8 space-y-6">
+      <main className="container mx-auto px-4 py-8 space-y-6 flex-1">
         {/* Row 1: Generator Form + Model Settings */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <GeneratorForm
@@ -169,29 +175,31 @@ function AppContent() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t mt-auto">
-        <div className="container mx-auto px-4 py-4 text-center text-sm text-muted-foreground">
+      <footer className="border-t border-border/40 mt-auto">
+        <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-muted-foreground">
           <p>
             Powered by{' '}
             <a
               href="https://huggingface.co/stabilityai/stable-audio-open-small"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:text-foreground"
+              className="text-foreground/60 hover:text-primary transition-colors"
             >
               Stable Audio Open
             </a>
-            {' '}· Built for{' '}
+            {' '}&middot;{' '}Built for{' '}
             <a
               href="https://github.com/anthropics/claude-code"
               target="_blank"
               rel="noopener noreferrer"
-              className="underline hover:text-foreground"
+              className="text-foreground/60 hover:text-primary transition-colors"
             >
               Claude Code
             </a>
-            {' '}· Press{' '}
-            <kbd className="px-1 py-0.5 text-xs bg-muted border rounded">?</kbd>
+          </p>
+          <p className="text-muted-foreground/60">
+            Press{' '}
+            <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-muted border border-border/60 rounded">?</kbd>
             {' '}for shortcuts
           </p>
         </div>

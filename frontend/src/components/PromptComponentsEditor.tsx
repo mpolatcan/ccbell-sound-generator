@@ -43,7 +43,7 @@ const ChipRow = memo(function ChipRow({
   }
 
   return (
-    <div className="space-y-1">
+    <div className="space-y-1.5">
       <Label className="text-xs text-muted-foreground">{label}</Label>
       <div className="flex flex-wrap gap-1.5 items-center">
         {items.map((item, index) => (
@@ -51,11 +51,11 @@ const ChipRow = memo(function ChipRow({
             key={`${item.label}-${index}`}
             type="button"
             className={cn(
-              'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium transition-all',
+              'inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium transition-all duration-150',
               'border cursor-pointer',
               item.enabled
-                ? 'border-primary bg-primary/15 text-primary'
-                : 'border-border bg-muted/30 text-muted-foreground line-through opacity-60'
+                ? 'border-primary/50 bg-primary/10 text-primary hover:bg-primary/15'
+                : 'border-border/40 bg-muted/20 text-muted-foreground/50 line-through opacity-50 hover:opacity-70'
             )}
             onClick={() => onToggle(index)}
           >
@@ -82,7 +82,8 @@ const ChipRow = memo(function ChipRow({
             }
           }}
           placeholder="Add..."
-          className="h-5 w-20 px-1.5 text-xs border border-dashed border-muted-foreground/30 rounded-full bg-transparent outline-none focus:border-primary focus:w-28 transition-all placeholder:text-muted-foreground/40"
+          className="h-5 w-20 px-2 text-xs border border-dashed border-muted-foreground/25 rounded-full bg-transparent outline-none focus:border-primary/60 focus:w-28 transition-all placeholder:text-muted-foreground/40"
+          aria-label={`Add custom ${label.toLowerCase()} chip`}
         />
       </div>
     </div>
@@ -147,9 +148,9 @@ export const PromptComponentsEditor = memo(function PromptComponentsEditor({
       </Collapsible>
 
       {assembledPrompt && (
-        <div className="space-y-1">
+        <div className="space-y-1.5">
           <Label className="text-muted-foreground text-xs">Generated Prompt</Label>
-          <p className="text-xs bg-muted/50 py-2 px-3 rounded-md break-words">
+          <p className="text-xs font-mono bg-muted/40 py-2.5 px-3 rounded-lg break-words leading-relaxed border border-border/40">
             {assembledPrompt}
           </p>
         </div>

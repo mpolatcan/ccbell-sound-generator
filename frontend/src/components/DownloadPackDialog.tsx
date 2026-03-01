@@ -119,8 +119,8 @@ export function DownloadPackDialog({ open, onOpenChange, packData }: DownloadPac
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <Package className="h-5 w-5" />
+          <DialogTitle className="flex items-center gap-2 font-display">
+            <Package className="h-5 w-5 text-primary" />
             Download Sound Pack
           </DialogTitle>
           <DialogDescription>
@@ -142,9 +142,9 @@ export function DownloadPackDialog({ open, onOpenChange, packData }: DownloadPac
           <div className="space-y-4">
             {/* Install Command */}
             <div className="space-y-2">
-              <label className="text-sm font-medium">Install in Claude Code</label>
+              <label htmlFor="install-command" className="text-sm font-medium">Install in Claude Code</label>
               <div className="flex gap-2">
-                <code className="flex-1 bg-muted px-3 py-2 rounded-md text-xs font-mono break-all">
+                <code id="install-command" className="flex-1 bg-muted/60 px-3 py-2 rounded-lg text-xs font-mono break-all border border-border/30">
                   {installCommand}
                 </code>
                 <Button
@@ -152,9 +152,10 @@ export function DownloadPackDialog({ open, onOpenChange, packData }: DownloadPac
                   size="icon"
                   onClick={handleCopyCommand}
                   className="shrink-0"
+                  aria-label="Copy install command"
                 >
                   {copied ? (
-                    <Check className="h-4 w-4 text-green-600" />
+                    <Check className="h-4 w-4 text-green-500" />
                   ) : (
                     <Copy className="h-4 w-4" />
                   )}
@@ -175,10 +176,10 @@ export function DownloadPackDialog({ open, onOpenChange, packData }: DownloadPac
             {/* Event Mapping */}
             {eventMapping.length > 0 && (
               <div className="space-y-2">
-                <Separator />
-                <label className="text-xs font-medium text-muted-foreground">Pack Contents</label>
-                <div className="rounded-md border">
-                  <div className="grid grid-cols-3 gap-2 p-2 bg-muted/50 text-xs font-medium text-muted-foreground">
+                <Separator className="opacity-50" />
+                <p className="text-xs font-medium text-muted-foreground">Pack Contents</p>
+                <div className="rounded-lg border border-border/40 overflow-hidden">
+                  <div className="grid grid-cols-3 gap-2 p-2 bg-muted/30 text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
                     <span>Hook Type</span>
                     <span>Event Name</span>
                     <span>Filename</span>
@@ -186,13 +187,13 @@ export function DownloadPackDialog({ open, onOpenChange, packData }: DownloadPac
                   {eventMapping.map((mapping) => (
                     <div
                       key={mapping.hookType}
-                      className="grid grid-cols-3 gap-2 p-2 border-t text-sm"
+                      className="grid grid-cols-3 gap-2 p-2 border-t border-border/30 text-sm"
                     >
-                      <span>{mapping.hookType}</span>
-                      <Badge variant="secondary" className="w-fit text-xs">
+                      <span className="text-xs">{mapping.hookType}</span>
+                      <Badge variant="secondary" className="w-fit text-[10px] font-mono">
                         {mapping.eventName}
                       </Badge>
-                      <span className="text-muted-foreground text-xs font-mono">
+                      <span className="text-muted-foreground text-[10px] font-mono">
                         {mapping.filename}
                       </span>
                     </div>
@@ -201,7 +202,7 @@ export function DownloadPackDialog({ open, onOpenChange, packData }: DownloadPac
               </div>
             )}
 
-            <p className="text-xs text-muted-foreground text-center">
+            <p className="text-[10px] text-muted-foreground/60 text-center">
               Pack link expires in 30 minutes
             </p>
           </div>

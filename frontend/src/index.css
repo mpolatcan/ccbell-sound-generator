@@ -4,26 +4,26 @@
 
 @layer base {
   :root {
-    --background: 0 0% 5%;
-    --foreground: 0 0% 93%;
-    --card: 0 0% 9%;
-    --card-foreground: 0 0% 93%;
-    --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 93%;
-    --primary: 24 80% 55%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 93%;
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 55%;
-    --accent: 0 0% 14%;
-    --accent-foreground: 0 0% 93%;
-    --destructive: 0 65% 55%;
-    --destructive-foreground: 0 0% 93%;
-    --border: 0 0% 16%;
-    --input: 0 0% 16%;
-    --ring: 24 80% 55%;
-    --radius: 0.5rem;
+    --background: 24 8% 5%;
+    --foreground: 35 10% 92%;
+    --card: 24 6% 8%;
+    --card-foreground: 35 10% 92%;
+    --popover: 24 6% 8%;
+    --popover-foreground: 35 10% 92%;
+    --primary: 30 85% 54%;
+    --primary-foreground: 24 10% 4%;
+    --secondary: 24 5% 12%;
+    --secondary-foreground: 35 10% 92%;
+    --muted: 24 5% 13%;
+    --muted-foreground: 24 5% 50%;
+    --accent: 24 6% 15%;
+    --accent-foreground: 35 10% 92%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 95%;
+    --border: 24 6% 15%;
+    --input: 24 6% 15%;
+    --ring: 30 85% 54%;
+    --radius: 0.625rem;
   }
 }
 
@@ -32,11 +32,40 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
   }
 }
 
-/* Hidden scrollbar for arrow-button scroll containers */
+/* ── Background texture ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.03;
+  background-image: radial-gradient(circle at 1px 1px, hsl(30 20% 60%) 0.5px, transparent 0);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+/* ── Ambient glow at top ── */
+body::after {
+  content: '';
+  position: fixed;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse, hsl(30 85% 54% / 0.06) 0%, transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ── Hidden scrollbar for arrow-button scroll containers ── */
 .scrollbar-none {
   scrollbar-width: none;
 }
@@ -44,7 +73,7 @@
   display: none;
 }
 
-/* Always-visible thin scrollbar for the sound library */
+/* ── Thin scrollbar for the sound library ── */
 .scrollbar-thin {
   scrollbar-width: thin;
   scrollbar-color: hsl(var(--border)) transparent;
@@ -61,4 +90,60 @@
 }
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
   background-color: hsl(var(--muted-foreground));
+}
+
+/* ── Primary button glow ── */
+@layer utilities {
+  .btn-glow {
+    position: relative;
+  }
+  .btn-glow::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: hsl(var(--primary));
+    opacity: 0;
+    filter: blur(12px);
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+  .btn-glow:hover::after {
+    opacity: 0.3;
+  }
+
+  .card-elevated {
+    box-shadow:
+      0 0 0 1px hsl(var(--border)),
+      0 2px 8px -2px hsl(0 0% 0% / 0.3),
+      0 0 24px -8px hsl(var(--primary) / 0.04);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(30 85% 60%), hsl(36 90% 50%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* ── Smooth dialog animations ── */
+[data-state="open"][role="dialog"] {
+  animation: scale-in 0.2s ease-out;
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ── Progress bar smooth transitions ── */
+[role="progressbar"] > div {
+  transition: width 0.4s ease-out;
 }
