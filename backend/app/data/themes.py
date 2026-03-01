@@ -9,15 +9,22 @@ THEME_PRESETS: list[ThemePreset] = [
         description="Futuristic digital sounds with electronic textures",
         prompt_components=TieredPromptComponents(
             simple=PromptComponents(
-                style=["sci-fi", "futuristic"],
-                instruments=["digital synthesizer"],
-                mood=["technological"],
+                style=["futuristic spacecraft interface", "cyberpunk neon-lit"],
+                instruments=["crystalline FM synthesis bell"],
+                mood=["otherworldly precision"],
                 quality=["44.1kHz", "stereo", "with natural decay"],
             ),
             standard=PromptComponents(
-                style=["sci-fi", "futuristic", "space age"],
-                instruments=["digital synthesizer", "electronic oscillator"],
-                mood=["technological", "clean"],
+                style=[
+                    "futuristic spacecraft interface",
+                    "cyberpunk neon-lit",
+                    "deep space station",
+                ],
+                instruments=[
+                    "crystalline FM synthesis bell",
+                    "voltage-controlled resonant filter sweep",
+                ],
+                mood=["otherworldly precision", "holographic clarity"],
                 quality=[
                     "44.1kHz",
                     "stereo",
@@ -27,14 +34,25 @@ THEME_PRESETS: list[ThemePreset] = [
                 ],
             ),
             detailed=PromptComponents(
-                style=["sci-fi", "futuristic", "space age", "digital", "cybernetic"],
-                instruments=[
-                    "digital synthesizer",
-                    "electronic oscillator",
-                    "frequency modulation pad",
-                    "modular synth pad",
+                style=[
+                    "futuristic spacecraft interface",
+                    "cyberpunk neon-lit",
+                    "deep space station",
+                    "quantum computer hum",
+                    "orbital relay signal",
                 ],
-                mood=["technological", "clean", "precise", "immersive"],
+                instruments=[
+                    "crystalline FM synthesis bell",
+                    "voltage-controlled resonant filter sweep",
+                    "granular synth texture",
+                    "plasma crackle discharge",
+                ],
+                mood=[
+                    "otherworldly precision",
+                    "holographic clarity",
+                    "cold vacuum stillness",
+                    "alien intelligence awakening",
+                ],
                 quality=[
                     "44.1kHz",
                     "stereo",
@@ -55,27 +73,43 @@ THEME_PRESETS: list[ThemePreset] = [
         description="Classic video game style chiptune sounds",
         prompt_components=TieredPromptComponents(
             simple=PromptComponents(
-                style=["retro 8-bit", "chiptune"],
-                instruments=["chiptune synthesizer"],
-                mood=["playful"],
+                style=["NES coin-collect jingle", "pixel game power-up"],
+                instruments=["bitcrushed square wave blip"],
+                mood=["arcade cabinet excitement"],
                 quality=["44.1kHz", "stereo", "with natural decay"],
             ),
             standard=PromptComponents(
-                style=["retro 8-bit", "chiptune", "classic arcade"],
-                instruments=["chiptune synthesizer", "square wave", "pulse wave"],
-                mood=["playful", "nostalgic"],
+                style=["NES coin-collect jingle", "pixel game power-up", "Game Boy startup melody"],
+                instruments=[
+                    "bitcrushed square wave blip",
+                    "pulse wave arpeggio",
+                    "triangle wave bass note",
+                ],
+                mood=["arcade cabinet excitement", "joystick-era nostalgia"],
                 quality=["44.1kHz", "stereo", "crisp", "with natural decay", "smooth fade out"],
             ),
             detailed=PromptComponents(
-                style=["retro 8-bit", "chiptune", "classic arcade", "pixel game", "lo-fi digital"],
-                instruments=[
-                    "chiptune synthesizer",
-                    "square wave",
-                    "pulse wave",
-                    "8-bit drum machine",
-                    "triangle wave",
+                style=[
+                    "NES coin-collect jingle",
+                    "pixel game power-up",
+                    "Game Boy startup melody",
+                    "SID chip tracker groove",
+                    "16-bit victory screen",
                 ],
-                mood=["playful", "nostalgic", "energetic", "fun", "bouncy"],
+                instruments=[
+                    "bitcrushed square wave blip",
+                    "pulse wave arpeggio",
+                    "triangle wave bass note",
+                    "noise channel snare hit",
+                    "lo-fi sample playback crunch",
+                ],
+                mood=[
+                    "arcade cabinet excitement",
+                    "joystick-era nostalgia",
+                    "high-score elation",
+                    "speed-run intensity",
+                    "bonus-stage energy",
+                ],
                 quality=[
                     "44.1kHz",
                     "stereo",
@@ -96,15 +130,23 @@ THEME_PRESETS: list[ThemePreset] = [
         description="Organic sounds inspired by natural elements",
         prompt_components=TieredPromptComponents(
             simple=PromptComponents(
-                style=["nature", "organic"],
-                instruments=["bamboo wind chime"],
-                mood=["warm"],
+                style=["forest clearing at dawn", "moss-covered stone garden"],
+                instruments=["wooden mallet on hollow log"],
+                mood=["morning dew stillness"],
                 quality=["44.1kHz", "stereo", "with natural decay"],
             ),
             standard=PromptComponents(
-                style=["nature", "organic", "acoustic"],
-                instruments=["bamboo wind chime", "wooden percussion", "acoustic bell"],
-                mood=["warm", "gentle", "soothing"],
+                style=[
+                    "forest clearing at dawn",
+                    "moss-covered stone garden",
+                    "bamboo grove in gentle wind",
+                ],
+                instruments=[
+                    "wooden mallet on hollow log",
+                    "rain droplet on broad leaf",
+                    "smooth river stones clinking",
+                ],
+                mood=["morning dew stillness", "sun-warmed earth", "birdsong tranquility"],
                 quality=[
                     "44.1kHz",
                     "stereo",
@@ -114,15 +156,27 @@ THEME_PRESETS: list[ThemePreset] = [
                 ],
             ),
             detailed=PromptComponents(
-                style=["nature", "organic", "acoustic", "earthy", "ambient"],
-                instruments=[
-                    "bamboo wind chime",
-                    "wooden percussion",
-                    "acoustic bell",
-                    "kalimba",
-                    "finger cymbal",
+                style=[
+                    "forest clearing at dawn",
+                    "moss-covered stone garden",
+                    "bamboo grove in gentle wind",
+                    "creek bed after summer rain",
+                    "meadow with distant thunder",
                 ],
-                mood=["warm", "gentle", "soothing", "peaceful", "meditative"],
+                instruments=[
+                    "wooden mallet on hollow log",
+                    "rain droplet on broad leaf",
+                    "smooth river stones clinking",
+                    "fingertip-plucked kalimba tine",
+                    "ceramic wind chime in breeze",
+                ],
+                mood=[
+                    "morning dew stillness",
+                    "sun-warmed earth",
+                    "birdsong tranquility",
+                    "deep forest solitude",
+                    "waterfall mist on skin",
+                ],
                 quality=[
                     "44.1kHz",
                     "stereo",
@@ -143,15 +197,23 @@ THEME_PRESETS: list[ThemePreset] = [
         description="Clean, subtle, professional notification sounds",
         prompt_components=TieredPromptComponents(
             simple=PromptComponents(
-                style=["minimal", "clean"],
-                instruments=["pure melodic tone"],
-                mood=["subtle"],
+                style=["ultra-clean UI interaction", "Swiss design precision"],
+                instruments=["pure sine tone at concert pitch"],
+                mood=["whisper-quiet elegance"],
                 quality=["44.1kHz", "stereo", "with natural decay"],
             ),
             standard=PromptComponents(
-                style=["minimal", "clean", "modern"],
-                instruments=["pure melodic tone", "clean bell", "soft piano note"],
-                mood=["subtle", "refined", "understated"],
+                style=[
+                    "ultra-clean UI interaction",
+                    "Swiss design precision",
+                    "white gallery silence",
+                ],
+                instruments=[
+                    "pure sine tone at concert pitch",
+                    "tapped crystal glass rim",
+                    "single piano key softly pressed",
+                ],
+                mood=["whisper-quiet elegance", "zen garden calm", "paper-thin delicacy"],
                 quality=[
                     "44.1kHz",
                     "stereo",
@@ -161,15 +223,27 @@ THEME_PRESETS: list[ThemePreset] = [
                 ],
             ),
             detailed=PromptComponents(
-                style=["minimal", "clean", "modern", "professional", "elegant"],
-                instruments=[
-                    "pure melodic tone",
-                    "clean bell",
-                    "soft piano note",
-                    "glass chime",
-                    "crystal singing bowl",
+                style=[
+                    "ultra-clean UI interaction",
+                    "Swiss design precision",
+                    "white gallery silence",
+                    "Scandinavian living room",
+                    "frosted glass partition",
                 ],
-                mood=["subtle", "refined", "understated", "elegant", "calm"],
+                instruments=[
+                    "pure sine tone at concert pitch",
+                    "tapped crystal glass rim",
+                    "single piano key softly pressed",
+                    "porcelain bowl struck with felt tip",
+                    "tuning fork resonating on wood",
+                ],
+                mood=[
+                    "whisper-quiet elegance",
+                    "zen garden calm",
+                    "paper-thin delicacy",
+                    "breath-held anticipation",
+                    "snow falling on still water",
+                ],
                 quality=[
                     "44.1kHz",
                     "stereo",
@@ -190,15 +264,23 @@ THEME_PRESETS: list[ThemePreset] = [
         description="Industrial and mechanical textures",
         prompt_components=TieredPromptComponents(
             simple=PromptComponents(
-                style=["mechanical", "industrial"],
-                instruments=["metal percussion"],
-                mood=["precise"],
+                style=["steam workshop furnace glow", "Victorian clocktower"],
+                instruments=["brass gear clank on iron plate"],
+                mood=["forge-hot determination"],
                 quality=["44.1kHz", "stereo", "with natural decay"],
             ),
             standard=PromptComponents(
-                style=["mechanical", "industrial", "metallic"],
-                instruments=["metal percussion", "anvil strike", "metal clink"],
-                mood=["precise", "robust", "utilitarian"],
+                style=[
+                    "steam workshop furnace glow",
+                    "Victorian clocktower",
+                    "locomotive engine room",
+                ],
+                instruments=[
+                    "brass gear clank on iron plate",
+                    "ratchet wrench click",
+                    "tempered steel spring release",
+                ],
+                mood=["forge-hot determination", "oiled-machine rhythm", "riveted iron solidity"],
                 quality=[
                     "44.1kHz",
                     "stereo",
@@ -209,20 +291,26 @@ THEME_PRESETS: list[ThemePreset] = [
             ),
             detailed=PromptComponents(
                 style=[
-                    "mechanical",
-                    "industrial",
-                    "metallic",
-                    "steampunk",
-                    "raw",
+                    "steam workshop furnace glow",
+                    "Victorian clocktower",
+                    "locomotive engine room",
+                    "blacksmith anvil yard",
+                    "submarine pressure hull",
                 ],
                 instruments=[
-                    "metal percussion",
-                    "anvil strike",
-                    "metal clink",
-                    "steel resonator",
-                    "spring resonance",
+                    "brass gear clank on iron plate",
+                    "ratchet wrench click",
+                    "tempered steel spring release",
+                    "cast iron lever thrown",
+                    "copper pipe resonance ping",
                 ],
-                mood=["precise", "robust", "utilitarian", "sharp", "powerful"],
+                mood=[
+                    "forge-hot determination",
+                    "oiled-machine rhythm",
+                    "riveted iron solidity",
+                    "pneumatic power hiss",
+                    "precision clockwork ticking",
+                ],
                 quality=[
                     "44.1kHz",
                     "stereo",
@@ -243,15 +331,27 @@ THEME_PRESETS: list[ThemePreset] = [
         description="Warm, atmospheric, and dreamy textures",
         prompt_components=TieredPromptComponents(
             simple=PromptComponents(
-                style=["ambient", "atmospheric"],
-                instruments=["warm synth pad"],
-                mood=["dreamy"],
+                style=["cathedral reverb at midnight", "tape-saturated warmth"],
+                instruments=["bowed singing bowl overtone"],
+                mood=["warm fog dissolving slowly"],
                 quality=["44.1kHz", "stereo", "with natural decay"],
             ),
             standard=PromptComponents(
-                style=["ambient", "atmospheric", "ethereal"],
-                instruments=["warm synth pad", "reverb piano", "soft string ensemble"],
-                mood=["dreamy", "spacious", "tranquil"],
+                style=[
+                    "cathedral reverb at midnight",
+                    "tape-saturated warmth",
+                    "Brian Eno infinite space",
+                ],
+                instruments=[
+                    "bowed singing bowl overtone",
+                    "granular piano cloud",
+                    "reversed cymbal swell",
+                ],
+                mood=[
+                    "warm fog dissolving slowly",
+                    "candlelight flickering softly",
+                    "underwater weightlessness",
+                ],
                 quality=[
                     "44.1kHz",
                     "stereo",
@@ -261,15 +361,27 @@ THEME_PRESETS: list[ThemePreset] = [
                 ],
             ),
             detailed=PromptComponents(
-                style=["ambient", "atmospheric", "ethereal", "downtempo", "lo-fi"],
-                instruments=[
-                    "warm synth pad",
-                    "reverb piano",
-                    "soft string ensemble",
-                    "tape echo",
-                    "shimmer reverb",
+                style=[
+                    "cathedral reverb at midnight",
+                    "tape-saturated warmth",
+                    "Brian Eno infinite space",
+                    "abandoned hall echo",
+                    "lo-fi cassette hiss and bloom",
                 ],
-                mood=["dreamy", "spacious", "tranquil", "floating", "hazy"],
+                instruments=[
+                    "bowed singing bowl overtone",
+                    "granular piano cloud",
+                    "reversed cymbal swell",
+                    "harmonium drone with tape wobble",
+                    "shimmer reverb pad wash",
+                ],
+                mood=[
+                    "warm fog dissolving slowly",
+                    "candlelight flickering softly",
+                    "underwater weightlessness",
+                    "drifting between sleep and waking",
+                    "moonlight through frosted glass",
+                ],
                 quality=[
                     "44.1kHz",
                     "stereo",
@@ -290,15 +402,27 @@ THEME_PRESETS: list[ThemePreset] = [
         description="Smooth jazz tones with warm acoustic character",
         prompt_components=TieredPromptComponents(
             simple=PromptComponents(
-                style=["jazz", "smooth"],
-                instruments=["muted trumpet"],
-                mood=["warm"],
+                style=["late-night jazz club", "Blue Note session warmth"],
+                instruments=["harmon-muted trumpet breath"],
+                mood=["smoky room intimacy"],
                 quality=["44.1kHz", "stereo", "with natural decay"],
             ),
             standard=PromptComponents(
-                style=["jazz", "smooth", "lounge"],
-                instruments=["muted trumpet", "upright bass", "vibraphone"],
-                mood=["warm", "mellow", "sophisticated"],
+                style=[
+                    "late-night jazz club",
+                    "Blue Note session warmth",
+                    "velvet curtain lounge",
+                ],
+                instruments=[
+                    "harmon-muted trumpet breath",
+                    "walking bass string pluck",
+                    "vibraphone mallet on metal bar",
+                ],
+                mood=[
+                    "smoky room intimacy",
+                    "last-set-of-the-night mellowness",
+                    "bourbon warmth on the tongue",
+                ],
                 quality=[
                     "44.1kHz",
                     "stereo",
@@ -308,15 +432,27 @@ THEME_PRESETS: list[ThemePreset] = [
                 ],
             ),
             detailed=PromptComponents(
-                style=["jazz", "smooth", "lounge", "bossa nova", "cool jazz"],
-                instruments=[
-                    "muted trumpet",
-                    "upright bass",
-                    "vibraphone",
-                    "brushed snare",
-                    "rhodes electric piano",
+                style=[
+                    "late-night jazz club",
+                    "Blue Note session warmth",
+                    "velvet curtain lounge",
+                    "bossa nova beachside patio",
+                    "cool jazz after-hours session",
                 ],
-                mood=["warm", "mellow", "sophisticated", "groovy", "intimate"],
+                instruments=[
+                    "harmon-muted trumpet breath",
+                    "walking bass string pluck",
+                    "vibraphone mallet on metal bar",
+                    "wire brushes swirling on snare head",
+                    "Rhodes electric piano with tremolo",
+                ],
+                mood=[
+                    "smoky room intimacy",
+                    "last-set-of-the-night mellowness",
+                    "bourbon warmth on the tongue",
+                    "slow-nod groove",
+                    "spotlight-on-the-soloist focus",
+                ],
                 quality=[
                     "44.1kHz",
                     "stereo",
