@@ -218,7 +218,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
     const basePrompt = getPromptForHook(hookId)
     if (!basePrompt) return ''
     const text = config?.editedPrompt ?? basePrompt
-    return `${text}, ${duration} seconds`
+    return text
   }
 
   // Handle generation - create pack (if new) and queue all sounds
@@ -298,7 +298,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
   // Inline prompt display for the active hook tab
   const activeHookBasePrompt = activeHookTab ? getPromptForHook(activeHookTab) : ''
   const activeHookConfig = activeHookTab ? perHookConfig[activeHookTab] : undefined
-  const activeHookFullOriginal = activeHookBasePrompt ? `${activeHookBasePrompt}, ${duration} seconds` : ''
+  const activeHookFullOriginal = activeHookBasePrompt || ''
   const activeHookDisplayText = activeHookConfig?.editedPrompt ?? activeHookFullOriginal
 
   // Auto-resize textarea ref
@@ -443,10 +443,10 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
               )}
             </div>
 
-            {/* Sound Style — global sub-theme selector */}
+            {/* Sub Theme — global sub-theme selector */}
             {selectedTheme !== 'custom' && subThemes.length > 0 && (
               <div className="space-y-2">
-                <Label>Sound Style</Label>
+                <Label>Sub Theme</Label>
                 <Select
                   value={effectiveSubThemeId ?? ''}
                   onValueChange={handleSubThemeChange}
@@ -465,11 +465,11 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
               </div>
             )}
 
-            {/* Hook Sound Config — inline within Sound Design */}
+            {/* Prompts — per-hook prompt preview/edit */}
             {selectedTheme !== 'custom' && selectedHooks.length > 0 && (
               <>
                 <div className="space-y-2">
-                  <Label>Hook Sound Config</Label>
+                  <Label>Prompts</Label>
                   <HookConfigTabs
                     hooks={hooks}
                     selectedHooks={selectedHooks}

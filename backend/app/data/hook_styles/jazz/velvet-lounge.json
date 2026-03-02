@@ -2,15 +2,15 @@
   "id": "jazz-velvet-lounge",
   "name": "Velvet Lounge",
   "prompts": {
-    "SessionStart": "first emphatic downbeat launching a new jazz tune with warm fullness, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
-    "SessionEnd": "warm goodnight from the stage with gentle audience applause fading, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
-    "Stop": "rich velvet chord sustained by piano pedal slowly releasing, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
-    "PreToolUse": "quick pickup note before the downbeat launches the phrase, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
-    "PostToolUse": "drummer hitting rim shot with sharp decisive crack and ring, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
-    "PermissionPrompt": "playful jazz riff ending on curious unresolved dominant seventh, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
-    "IdlePrompt": "quiet jazz club stage with ambient room hum and distant glass clink, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
-    "SubagentStart": "cellist drawing bow to add a new warm voice to the ensemble, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
-    "SubagentStop": "dampened upright bass string plucked with soft muted pizzicato, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
-    "UserPromptSubmit": "quick melodic jazz riff tossed out with cool confident flair, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay"
+    "SessionStart": "first emphatic downbeat launching a new jazz tune with warm fullness, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich",
+    "SessionEnd": "warm goodnight from the stage with gentle audience applause fading, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich",
+    "Stop": "velvet piano chord resolving to warm definitive landing with full richness, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich",
+    "PreToolUse": "quick pickup note before the downbeat launches the phrase, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich",
+    "PostToolUse": "drummer hitting rim shot with sharp decisive crack and ring, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich",
+    "PermissionPrompt": "playful jazz riff ending on curious unresolved dominant seventh, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich",
+    "IdlePrompt": "quiet jazz club stage with ambient room hum and distant glass clink, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich",
+    "SubagentStart": "cellist drawing bow to add a new warm voice to the ensemble, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich",
+    "SubagentStop": "dampened upright bass string plucked with soft muted pizzicato, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich",
+    "UserPromptSubmit": "quick melodic jazz riff tossed out with cool confident flair, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich"
   }
 }

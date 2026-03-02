@@ -2,15 +2,15 @@
   "id": "jazz-cool-breeze",
   "name": "Cool Breeze",
   "prompts": {
-    "SessionStart": "jazz club set opening with warm audience murmur and first chord, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
-    "SessionEnd": "band packing up instruments with gentle case latches and fading room tone, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
-    "Stop": "smooth lounge piano resolving to final major seventh chord, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
-    "PreToolUse": "cool breath across bottle top creating airy anticipatory tone, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
-    "PostToolUse": "quick confident finger snap confirming the groove, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
-    "PermissionPrompt": "vibraphone playing two ascending notes like a gentle question, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
-    "IdlePrompt": "cool jazz piano vamping softly between sets in dim lounge, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
-    "SubagentStart": "saxophone joining in on a parallel melody line with breathy entrance, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
-    "SubagentStop": "muted trombone completing a quiet phrase with warm descending note, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay",
-    "UserPromptSubmit": "jazz band vamping energetically to send off the soloist, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich, with natural decay"
+    "SessionStart": "jazz club set opening with warm audience murmur and first chord, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich",
+    "SessionEnd": "band packing up instruments with gentle case latches and fading room tone, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich",
+    "Stop": "smooth lounge piano resolving to final major seventh chord, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich",
+    "PreToolUse": "cool breath across bottle top creating airy anticipatory tone, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich",
+    "PostToolUse": "quick confident finger snap confirming the groove, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich",
+    "PermissionPrompt": "vibraphone striking two clear ascending notes with bright expectant ring, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich",
+    "IdlePrompt": "cool jazz piano vamping softly between sets in dim lounge, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich",
+    "SubagentStart": "saxophone joining in on a parallel melody line with breathy entrance, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich",
+    "SubagentStop": "muted trombone completing a quiet phrase with warm descending note, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich",
+    "UserPromptSubmit": "jazz band vamping energetically to send off the soloist, late-night jazz club, harmon-muted trumpet breath, smoky room intimacy, 44.1kHz, stereo, high-quality, rich"
   }
 }

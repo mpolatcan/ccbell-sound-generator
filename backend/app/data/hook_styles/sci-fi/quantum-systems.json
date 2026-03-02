@@ -2,15 +2,15 @@
   "id": "sci-fi-quantum-systems",
   "name": "Quantum Systems",
   "prompts": {
-    "SessionStart": "quantum processor initializing qubit array with cascading entanglement tones, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "SessionEnd": "quantum decoherence spreading as entangled states dissolve into thermal noise, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "Stop": "quantum wavefunction collapsing into single definite state with crystalline bell, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "PreToolUse": "quantum measurement apparatus aligning with narrowing probability field hum, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "PostToolUse": "quantum observation completing with eigenstate confirmation chirp, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "PermissionPrompt": "Heisenberg uncertainty alert requesting observer decision with dual-tone query, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "IdlePrompt": "qubits maintaining superposition with shimmering probability cloud hum, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "SubagentStart": "quantum state splitting into entangled pair with symmetric diverging tones, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "SubagentStop": "entangled particle reporting back with instantaneous correlation ping, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "UserPromptSubmit": "quantum teleportation protocol transmitting state information with phase burst, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    "SessionStart": "quantum processor initializing qubit array with cascading entanglement tones, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "quantum decoherence spreading as entangled states dissolve into thermal noise, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "quantum wavefunction collapsing into single definite state with crystalline bell, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quantum measurement apparatus aligning with narrowing probability field hum, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "quantum observation completing with eigenstate confirmation chirp, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "Heisenberg uncertainty alert requesting observer decision with dual-tone query, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "qubits maintaining superposition with shimmering probability cloud hum, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "quantum state splitting into entangled pair with symmetric diverging tones, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "entangled particle reporting back with instantaneous correlation ping, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "quantum teleportation protocol transmitting state information with phase burst, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp"
   }
 }

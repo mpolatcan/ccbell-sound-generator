@@ -2,15 +2,15 @@
   "id": "minimal-light-point",
   "name": "Light Point",
   "prompts": {
-    "SessionStart": "single pure sine tone appearing from total silence like a point of light, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "SessionEnd": "single point of sound diminishing gracefully to absolute nothing, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "Stop": "precise high-frequency click like a camera shutter closing cleanly, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "PreToolUse": "focused laser-thin tone narrowing to pinpoint with rising pitch, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "PostToolUse": "swift descending micro-tone confirming completion with clean dot, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "PermissionPrompt": "two quick ascending pips asking for confirmation at high register, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "IdlePrompt": "rhythmic pulse at the very edge of perception barely blinking, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "SubagentStart": "straight sonic line splitting into a new branching direction, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "SubagentStop": "small returning ping arriving from distance with minimal tail, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "UserPromptSubmit": "swift bright pulse launched forward like a photon in motion, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+    "SessionStart": "single pure sine tone appearing from total silence like a point of light, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine",
+    "SessionEnd": "single point of sound diminishing gracefully to absolute nothing, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine",
+    "Stop": "precise high-frequency click like a camera shutter closing cleanly, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine",
+    "PreToolUse": "focused laser-thin tone narrowing to pinpoint with rising pitch, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine",
+    "PostToolUse": "swift descending micro-tone confirming completion with clean dot, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine",
+    "PermissionPrompt": "two quick ascending pips asking for confirmation at high register, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine",
+    "IdlePrompt": "rhythmic pulse at the very edge of perception barely blinking, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine",
+    "SubagentStart": "straight sonic line splitting into a new branching direction, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine",
+    "SubagentStop": "small returning ping arriving from distance with minimal tail, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine",
+    "UserPromptSubmit": "swift bright pulse launched forward like a photon in motion, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine"
   }
 }

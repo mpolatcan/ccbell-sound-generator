@@ -2,15 +2,15 @@
   "id": "mechanical-anvil-forge",
   "name": "Anvil Forge",
   "prompts": {
-    "SessionStart": "forge bellows pumping air into furnace with roaring flame ignition, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "SessionEnd": "forge fire banked for the night with dying ember crackle, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "Stop": "heavy blacksmith hammer ringing final strike on cooling iron, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "PreToolUse": "tongs gripping hot iron and lifting it from forge coals, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "PostToolUse": "industrial stamp pressing down with authoritative mechanical force, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "PermissionPrompt": "pressure gauge entering caution zone with brass alert whistle, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "IdlePrompt": "forge coals glowing with slow rhythmic bellows creak, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "SubagentStart": "distribution valve opening new flow path with brass click, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "SubagentStop": "hot finished piece dropped into quench bucket with sharp hiss, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "UserPromptSubmit": "heavy lever pulled firmly to activate launching mechanism, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    "SessionStart": "forge bellows pumping air into furnace with roaring flame ignition, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "forge fire banked for the night with dying ember crackle, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "heavy blacksmith hammer ringing final strike on cooling iron, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "tongs gripping hot iron and lifting it from forge coals, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "small finished pin clicking into socket with quick satisfying snap, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "pressure gauge entering caution zone with brass alert whistle, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "forge coals glowing with slow rhythmic bellows creak, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "distribution valve opening new flow path with brass click, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "small finished rivet sliding into collection tray with quiet clink, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "heavy lever pulled firmly to activate launching mechanism, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp"
   }
 }

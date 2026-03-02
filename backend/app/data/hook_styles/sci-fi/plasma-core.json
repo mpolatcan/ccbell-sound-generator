@@ -2,15 +2,15 @@
   "id": "sci-fi-plasma-core",
   "name": "Plasma Core",
   "prompts": {
-    "SessionStart": "main plasma reactor igniting with dramatic energy surge and rising harmonic hum, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "SessionEnd": "plasma containment field slowly contracting as reactor dims to ember glow, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "Stop": "plasma beam powering down with bright digital shimmer and resolving tone, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "PreToolUse": "plasma conduit charging up with building electromagnetic whine, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "PostToolUse": "plasma discharge releasing stored energy with bright crackling burst, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "PermissionPrompt": "plasma core access panel requesting biometric scan with pulsing interrogation tone, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "IdlePrompt": "plasma containment field humming at low idle with gentle magnetic pulse, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "SubagentStart": "single plasma stream splitting into multiple diverging arcs of energy, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "SubagentStop": "returning plasma arc merging back into core with soft electromagnetic chime, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "UserPromptSubmit": "plasma bolt firing through accelerator tube with bright ionized flash, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    "SessionStart": "main plasma reactor igniting with dramatic energy surge and rising harmonic hum, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "plasma containment field slowly contracting as reactor dims to ember glow, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "plasma core achieving peak resonance with bright crystalline confirmation chime, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "tiny plasma relay clicking into ready position with brief electromagnetic tick, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "plasma status indicator switching to green with quick confirming chirp, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "plasma core access panel requesting biometric scan with pulsing interrogation tone, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "plasma containment field humming at low idle with gentle magnetic pulse, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "single plasma stream splitting into multiple diverging arcs of energy, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "returning plasma arc merging back into core with soft electromagnetic chime, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "plasma bolt firing through accelerator tube with bright ionized flash, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp"
   }
 }
