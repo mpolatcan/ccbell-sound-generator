@@ -2,15 +2,15 @@
   "id": "retro-8bit-power-up",
   "name": "Power-Up",
   "prompts": {
-    "IdlePrompt": "pixel character idle animation loop with soft chiptune pulse, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "PermissionPrompt": "RPG dialogue choice appearing with dramatic chiptune tone, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SessionStart": "arcade cabinet coin inserted with classic chiptune insert-coin melody, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SessionEnd": "end credits scrolling with grateful winding-down chiptune melody, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "Stop": "power star collected with sparkling bitcrushed ascending cascade, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "PreToolUse": "special attack charging with growing pulsing chiptune intensity, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
     "PostToolUse": "destructible block shattering into pixel pieces with 8-bit crunch, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "PreToolUse": "special attack charging with growing chiptune intensity, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "SessionEnd": "end credits scrolling with grateful chiptune melody, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "SessionStart": "arcade cabinet coin slot flashing with beckoning chiptune melody, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "Stop": "boss defeated explosion with dramatic chiptune resolution, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "SubagentStart": "player two joining game with chiptune entrance fanfare, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "SubagentStop": "quick bonus points awarded with bright chiptune ding, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "UserPromptSubmit": "pixel archer releasing arrow with classic 8-bit twang, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    "PermissionPrompt": "inventory selection cursor blinking with rhythmic chiptune inquiry tone, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "IdlePrompt": "pixel character idle animation with soft bouncing chiptune loop, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SubagentStart": "player two joining game with energetic chiptune entrance jingle, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SubagentStop": "health potion consumed with bubbly restorative 8-bit gulp, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "UserPromptSubmit": "pixel archer releasing arrow with classic 8-bit twang and whoosh, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
   }
 }

@@ -2,15 +2,15 @@
   "id": "minimal-silk-thread",
   "name": "Silk Thread",
   "prompts": {
-    "IdlePrompt": "slow sine wave drifting with subtle gradual pitch shift, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "PermissionPrompt": "simple two-note interval ascending with gentle inquiry, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "PostToolUse": "one clean precise tap confirming task completion, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "PreToolUse": "record needle lowering toward vinyl groove surface, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "SessionEnd": "door of sound closing with perfectly silent precision, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "SessionStart": "delicate opening gesture like a flower slowly unfurling, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "Stop": "silk fabric brushing across polished surface, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "SubagentStart": "single point of sound splitting cleanly into two separate dots, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "SubagentStop": "barely audible whisper dot appearing in silence, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "UserPromptSubmit": "quick decisive line drawn with confident single stroke, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+    "SessionStart": "delicate thread of sound being drawn from silence like spinning silk, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "SessionEnd": "silk thread of tone thinning to nothing as it reaches its end, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "Stop": "silk fabric brushing across polished surface with smooth whisper, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "PreToolUse": "thread being pulled taut with building tension before the stitch, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "PostToolUse": "needle piercing through with one precise satisfying pop, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "PermissionPrompt": "simple two-note interval ascending with gentle questioning lilt, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "IdlePrompt": "slow sine wave drifting like suspended thread with subtle pitch shift, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "SubagentStart": "single thread dividing cleanly into two parallel running lines, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "SubagentStop": "loose thread end tucked into weave with tiny resolving click, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "UserPromptSubmit": "swift needle pulling thread through fabric with decisive whoosh, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
   }
 }

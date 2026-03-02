@@ -2,15 +2,15 @@
   "id": "sci-fi-warp-drive",
   "name": "Warp Drive",
   "prompts": {
-    "IdlePrompt": "system in low-power standby with gentle electronic hum, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "PermissionPrompt": "sensor array detecting unknown object with alert ping, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "PostToolUse": "weapon finding its mark with bright impact confirmation flash, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "PreToolUse": "weapon system acquiring target with escalating tracking tone, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "SessionEnd": "ship systems shutting down in graceful powered sequence, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "SessionStart": "warp drive engines spooling up for faster-than-light jump, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "Stop": "warp drive deceleration sweep with arrival confirmation, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "SubagentStart": "energy beam splitting into two diverging warp paths, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "SubagentStop": "faint deep-space signal acknowledged with soft confirmation tone, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "UserPromptSubmit": "message entering faster-than-light postal delivery system, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    "SessionStart": "warp drive engines spooling up for faster-than-light jump with rising harmonic whine, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SessionEnd": "warp core powering down through descending frequencies to dormant silence, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "Stop": "warp drive deceleration sweep with bright arrival confirmation chime, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "PreToolUse": "FTL navigation computer calculating jump coordinates with accelerating chirps, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "PostToolUse": "hyperspace coordinates locked in with satisfying dimensional snap, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "PermissionPrompt": "warp safety interlock requesting captain authorization with two-tone alert, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "IdlePrompt": "warp coils resonating at idle with low thrumming standby harmonic, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SubagentStart": "warp field splitting into two diverging faster-than-light trajectories, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SubagentStop": "scout ship dropping out of warp with quiet reversion ping, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "UserPromptSubmit": "message capsule launching into FTL postal stream with bright flash, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp, with natural decay"
   }
 }

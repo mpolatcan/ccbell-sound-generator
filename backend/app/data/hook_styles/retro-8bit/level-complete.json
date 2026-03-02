@@ -2,15 +2,15 @@
   "id": "retro-8bit-level-complete",
   "name": "Level Complete",
   "prompts": {
-    "IdlePrompt": "game pause screen with suspended looping chiptune tone, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "PermissionPrompt": "game menu cursor moving to highlight option with blip, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "PostToolUse": "defeated enemy blinking and disappearing with 8-bit pop, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "PreToolUse": "countdown before action with anticipatory 8-bit blips, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "SessionEnd": "classic game over screen with melancholy chiptune jingle, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "SessionStart": "player selection confirmed with 8-bit ready fanfare, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "Stop": "chiptune level clear fanfare with ascending arpeggios, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "SubagentStart": "new pixel entity materializing with sparkling 8-bit effect, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "SubagentStop": "classic coin collected with bright chiptune bling, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
-    "UserPromptSubmit": "magic fireball cast with dramatic chiptune burst of flame, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
+    "SessionStart": "player selection confirmed with 8-bit ready fanfare and blip, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SessionEnd": "high score screen appearing with nostalgic chiptune farewell melody, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "Stop": "chiptune level clear fanfare with bright ascending arpeggios, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "PreToolUse": "countdown timer ticking with anticipatory 8-bit blips before action, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "PostToolUse": "treasure chest opening with sparkling 8-bit reward cascade, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "PermissionPrompt": "yes-no dialogue box appearing with curious chiptune question mark tone, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "IdlePrompt": "game pause screen with suspended looping chiptune holding pattern, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SubagentStart": "new pixel companion materializing with sparkling 8-bit spawn effect, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "SubagentStop": "stage flag captured with short triumphant checkpoint chime, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay",
+    "UserPromptSubmit": "magic spell cast with dramatic chiptune burst of crackling energy, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp, with natural decay"
   }
 }

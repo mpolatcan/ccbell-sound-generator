@@ -2,15 +2,15 @@
   "id": "minimal-glass-touch",
   "name": "Glass Touch",
   "prompts": {
-    "IdlePrompt": "suspended silence with barely audible held tone, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "PermissionPrompt": "clear glass tone with upward questioning inflection, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "PostToolUse": "single precise dot placed on perfectly clean surface, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "PreToolUse": "fingertip just reaching the very edge of smooth surface, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "SessionEnd": "final exhale releasing all remaining tension into stillness, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "SessionStart": "pure beginning from absolute silence to single clean tone, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "Stop": "pure crystal ping with pristine sustain, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "SubagentStart": "beam of pure light splitting through crystalline prism, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "SubagentStop": "quiet exhale completing with soft gentle close, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
-    "UserPromptSubmit": "message dispatched with pristine clinical efficiency, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
+    "SessionStart": "fingertip touching crystal glass rim producing pure rising tone, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "SessionEnd": "glass resonance gradually fading to absolute pristine silence, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "Stop": "pure crystal ping with pristine sustain and clean decay, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "PreToolUse": "fingertip approaching glass surface with building static crackle, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "PostToolUse": "glass chime struck once with bright clear confirming ring, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "PermissionPrompt": "clear glass tone with upward questioning inflection seeking response, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "IdlePrompt": "suspended glass harmonic hovering at barely audible threshold, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "SubagentStart": "single glass tone splitting into two diverging harmonic partials, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "SubagentStop": "tiny glass bead landing on porcelain with delicate click, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay",
+    "UserPromptSubmit": "glass marble released down smooth crystal chute with bright roll, ultra-clean UI interaction, pure sine tone at concert pitch, whisper-quiet elegance, 44.1kHz, stereo, high-quality, pristine, with natural decay"
   }
 }

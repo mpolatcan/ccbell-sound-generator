@@ -2,15 +2,15 @@
   "id": "ambient-cathedral",
   "name": "Cathedral",
   "prompts": {
-    "IdlePrompt": "dense atmospheric fog texture hanging perfectly motionless, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
-    "PermissionPrompt": "subterranean drone rising with contemplative inquiry, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
-    "PostToolUse": "sound bouncing away into ever more distant silence, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
-    "PreToolUse": "deep inhalation gathering atmospheric energy before action, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
-    "SessionEnd": "concert hall falling silent after last audience member departs, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
-    "SessionStart": "theatrical curtain rising to reveal expanding sonic landscape, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
-    "Stop": "vast cathedral reverb absorbing final resonance into silence, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
-    "SubagentStart": "single sound creating two distinct diverging echo reflections, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
-    "SubagentStop": "ghost of a sound reflecting back from distant wall, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
-    "UserPromptSubmit": "exhaled breath carrying intention and sound outward into space, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay"
+    "SessionStart": "cathedral organ drone swelling from silence with vast reverberant bloom, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
+    "SessionEnd": "final organ note decaying through cathedral nave into sacred stillness, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
+    "Stop": "singing bowl struck once and resonating through vast stone chamber, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
+    "PreToolUse": "deep inhalation gathering atmospheric energy within stone walls, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
+    "PostToolUse": "bell clapper striking bronze with rich overtone ringing through arches, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
+    "PermissionPrompt": "low choir tone rising with questioning inflection echoing through nave, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
+    "IdlePrompt": "dense atmospheric fog texture hanging motionless in stone chamber, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
+    "SubagentStart": "single tone creating two distinct diverging echo reflections in vault, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
+    "SubagentStop": "distant echo returning from far chapel wall with fading whisper, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay",
+    "UserPromptSubmit": "chanted syllable projected outward through cathedral with reverberant force, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush, with natural decay"
   }
 }

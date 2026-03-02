@@ -2,15 +2,15 @@
   "id": "nature-meadow",
   "name": "Meadow",
   "prompts": {
-    "IdlePrompt": "evening crickets chirping in steady patient rhythm, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
-    "PermissionPrompt": "wise owl hooting a question through moonlit forest, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
-    "PostToolUse": "dead wood branch snapping cleanly with decisive crack, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
-    "PreToolUse": "predator cat lowering into tense crouching position silently, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
-    "SessionEnd": "final songbird of evening singing its goodnight call, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
-    "SessionStart": "first ray of sunlight breaking over mountain horizon, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
-    "Stop": "distant cowbell ringing across sunlit alpine meadow, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
-    "SubagentStart": "campfire ember launching upward into dark sky with crackle, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
-    "SubagentStop": "single leaf floating down to rest on soft forest floor, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
-    "UserPromptSubmit": "caged bird set free and soaring skyward with joyful call, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay"
+    "SessionStart": "meadow lark singing first bright call as warm breeze stirs tall grass, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
+    "SessionEnd": "final songbird of evening singing its goodnight call across meadow, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
+    "Stop": "distant cowbell ringing across sunlit alpine meadow with echo, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
+    "PreToolUse": "grasshopper tensing hind legs with building potential energy click, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
+    "PostToolUse": "ripe apple detaching from branch and thumping onto soft meadow grass, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
+    "PermissionPrompt": "cuckoo bird calling two questioning notes across open field, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
+    "IdlePrompt": "evening crickets chirping in steady patient rhythm through warm grass, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
+    "SubagentStart": "dandelion puff scattering seeds in many directions on breeze, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
+    "SubagentStop": "butterfly landing softly on wildflower petal with gentle rest, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay",
+    "UserPromptSubmit": "hawk launching from perch with powerful wing beat into open sky, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft, with natural decay"
   }
 }
