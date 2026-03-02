@@ -3,7 +3,7 @@
   "name": "Quantum Systems",
   "prompts": {
     "SessionStart": "quantum processor initializing qubit array with cascading entanglement tones, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
-    "SessionEnd": "quantum decoherence spreading as entangled states dissolve into thermal noise, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "quantum decoherence cascading as entangled states collapse with descending crystalline tones, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
     "Stop": "quantum wavefunction collapsing into single definite state with crystalline bell, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
     "PreToolUse": "quantum measurement apparatus aligning with narrowing probability field hum, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
     "PostToolUse": "quantum observation completing with eigenstate confirmation chirp, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",

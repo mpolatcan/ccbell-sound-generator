@@ -5,12 +5,12 @@
     "SessionStart": "morning birds beginning sunrise symphony in misty canopy, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft",
     "SessionEnd": "campfire dying to glowing coals crackling softly in darkness, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft",
     "Stop": "wooden wind chime ringing in a quiet forest clearing, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft",
-    "PreToolUse": "small twig bending slightly underfoot with faint quiet creak, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft",
+    "PreToolUse": "twig snapping crisply underfoot with distinct woody crack, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft",
     "PostToolUse": "acorn falling from oak tree and landing with solid tap on root, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft",
     "PermissionPrompt": "woodpecker tapping questioning rhythm on hollow tree trunk, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft",
     "IdlePrompt": "gentle wind breathing through tall pine needles with soft sigh, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft",
     "SubagentStart": "seed pod bursting open and launching seeds into the wind, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft",
-    "SubagentStop": "morning dewdrop falling from fern leaf into still forest pool, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft",
+    "SubagentStop": "pinecone dropping from branch onto forest floor with solid thump, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft",
     "UserPromptSubmit": "natural yew bow releasing arrow through dappled forest light, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft"
   }
 }
