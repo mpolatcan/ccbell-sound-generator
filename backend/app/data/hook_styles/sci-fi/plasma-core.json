@@ -2,15 +2,15 @@
   "id": "sci-fi-plasma-core",
   "name": "Plasma Core",
   "prompts": {
-    "SessionStart": "main plasma reactor igniting with dramatic energy surge and rising harmonic hum, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
-    "SessionEnd": "plasma containment field slowly contracting as reactor dims to ember glow, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
-    "Stop": "plasma core achieving peak resonance with bright crystalline confirmation chime, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
-    "PreToolUse": "tiny plasma relay clicking into ready position with brief electromagnetic tick, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
-    "PostToolUse": "plasma status indicator switching to green with quick confirming chirp, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
-    "PermissionPrompt": "plasma core access panel requesting biometric scan with pulsing interrogation tone, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
-    "IdlePrompt": "plasma containment field humming at low idle with gentle magnetic pulse, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStart": "single plasma stream splitting into multiple diverging arcs of energy, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStop": "returning plasma arc merging back into core with soft electromagnetic chime, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
-    "UserPromptSubmit": "plasma bolt firing through accelerator tube with bright ionized flash, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp"
+    "SessionStart": "bright ascending FM synthesis sweep rising two octaves with warm resonance, electronic bell tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "gentle descending FM synthesis tone fading with warm harmonic decay, resonant electronic bell, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "satisfying FM synthesis bell chime with bright harmonic ring and sustain, warm electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick soft FM synthesis tick with brief electronic click, warm resonant tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short confirming FM synthesis chirp with bright upward ping, warm electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two-tone FM synthesis alert with rising questioning inflection, warm resonant electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "gentle pulsing FM synthesis hum at low pitch with soft warmth, resonant electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "FM synthesis tone splitting into two diverging pitches, warm resonant electronic sound, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "soft returning FM synthesis ping with warm harmonic decay, resonant electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright energetic FM synthesis burst with ascending harmonic sweep, warm resonant electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
   }
 }

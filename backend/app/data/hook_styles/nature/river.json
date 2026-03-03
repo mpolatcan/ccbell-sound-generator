@@ -2,15 +2,15 @@
   "id": "nature-river",
   "name": "River",
   "prompts": {
-    "SessionStart": "frozen landscape cracking and melting awake with spring thaw rushing water, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft",
-    "SessionEnd": "river current slowing as water spreads into wide quiet delta, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft",
-    "Stop": "waterfall pouring over smooth rock ledge into clear bright splash below, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft",
-    "PreToolUse": "fish leaping from water with bright clear splash, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft",
-    "PostToolUse": "smooth river stone skipping across water surface with bright taps, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft",
-    "PermissionPrompt": "distant thunder rolling across river valley with low questioning growl, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft",
-    "IdlePrompt": "gentle brook babbling over stones with soft continuous murmur, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft",
-    "SubagentStart": "river dividing around island into two flowing channels with splash, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft",
-    "SubagentStop": "small pebble carried by current tapping against smooth river rock, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft",
-    "UserPromptSubmit": "leaf boat released onto swift current and carried rushing downstream, forest clearing at dawn, wooden mallet on hollow log, morning dew stillness, 44.1kHz, stereo, high-quality, soft"
+    "SessionStart": "ascending kalimba notes plucked in gentle rising melody, plucked string tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionEnd": "descending kalimba notes fading with soft plucked decay, plucked string tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "Stop": "single bright kalimba note with satisfying plucked ring, plucked string tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PreToolUse": "quick water drop tone with brief clear ping, kalimba pluck, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PostToolUse": "short harp string pluck confirming with bright tone, plucked string, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PermissionPrompt": "two kalimba notes with questioning rising interval, plucked string tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "IdlePrompt": "gentle kalimba sustain at low pitch with soft resonance, plucked string tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStart": "kalimba playing two notes diverging in opposite directions, plucked string tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStop": "soft harp string ping returning with gentle plucked ring, plucked string tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "UserPromptSubmit": "bright energetic kalimba burst with rapid ascending plucks, plucked string tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm"
   }
 }

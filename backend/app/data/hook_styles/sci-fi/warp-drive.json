@@ -2,15 +2,15 @@
   "id": "sci-fi-warp-drive",
   "name": "Warp Drive",
   "prompts": {
-    "SessionStart": "warp drive engines spooling up for faster-than-light jump with rising harmonic whine, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
-    "SessionEnd": "warp core powering down through descending frequencies to dormant silence, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
-    "Stop": "warp drive deceleration sweep with bright arrival confirmation chime, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
-    "PreToolUse": "navigation console readiness indicator blipping once with quick soft chirp, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
-    "PostToolUse": "hyperspace coordinates locked in with satisfying dimensional snap, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
-    "PermissionPrompt": "warp safety interlock requesting captain authorization with two-tone alert, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
-    "IdlePrompt": "warp coils resonating at idle with low thrumming standby harmonic, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStart": "warp field splitting into two diverging faster-than-light trajectories, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStop": "scout ship dropping out of warp with quiet reversion ping, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp",
-    "UserPromptSubmit": "message capsule launching into FTL postal stream with bright flash, futuristic spacecraft interface, crystalline FM synthesis bell, otherworldly precision, 44.1kHz, stereo, high-quality, crisp"
+    "SessionStart": "sweeping ascending synth tone with doppler-like pitch rise, pitch-shifted electronic sweep, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "descending synth sweep with doppler-like pitch drop fading gently, pitch-shifted electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "bright synth chime with satisfying doppler arrival sweep, pitch-shifted electronic bell, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick subtle synth blip with slight pitch shift, electronic tick, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short confirming synth ping with brief doppler chirp, pitch-shifted electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two-tone pitch-shifted synth alert with questioning upward sweep, electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "gentle low synth drone with slow pitch modulation, electronic hum, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "synth tone branching into two doppler-shifted diverging sweeps, electronic sound, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "soft returning synth ping with gentle doppler deceleration, electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright accelerating synth sweep with energetic doppler burst, pitch-shifted electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
   }
 }

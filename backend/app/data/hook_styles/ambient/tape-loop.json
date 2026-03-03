@@ -2,15 +2,15 @@
   "id": "ambient-tape-loop",
   "name": "Tape Loop",
   "prompts": {
-    "SessionStart": "reel-to-reel tape threading through heads and beginning warm playback hiss, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush",
-    "SessionEnd": "tape machine stopping with characteristic pitch-dropping slowdown, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush",
-    "Stop": "tape playback capturing the perfect take with satisfying warm completion click, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush",
-    "PreToolUse": "tape rewind accelerating with rising magnetic whir before playback, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush",
-    "PostToolUse": "tape punch-in recording captured with satisfying magnetic click, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush",
-    "PermissionPrompt": "tape loop reaching decision point with warbling hesitant wobble tone, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush",
-    "IdlePrompt": "blank tape running through heads with soft continuous hiss and hum, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush",
-    "SubagentStart": "tape dubbed onto second deck creating parallel running copy, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush",
-    "SubagentStop": "overdub layer completing and folding back into main tape mix, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush",
-    "UserPromptSubmit": "tape fast-forwarding with bright chattering speed before snapping to play, cathedral reverb at midnight, bowed singing bowl overtone, warm fog dissolving slowly, 44.1kHz, stereo, high-quality, lush"
+    "SessionStart": "warm analog synth tone ascending with vintage tape saturation, tape loop character, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionEnd": "analog synth tone descending gently with warm tape fade, vintage character, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "Stop": "single warm analog synth chime with tape-saturated ring, vintage tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PreToolUse": "quick analog synth click with brief warm tape pop, vintage tick, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PostToolUse": "short warm analog synth chirp confirming with tape character, vintage tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PermissionPrompt": "two warm analog synth tones with questioning wobble, vintage tape sound, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "IdlePrompt": "gentle analog synth hum with warm tape loop pulse, vintage character, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStart": "analog synth tone splitting into two warm diverging voices, tape character, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStop": "soft analog synth ping returning with gentle tape warmth, vintage tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "UserPromptSubmit": "bright warm analog synth burst with energetic tape-saturated attack, vintage tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm"
   }
 }

@@ -2,15 +2,15 @@
   "id": "mechanical-steam-works",
   "name": "Steam Works",
   "prompts": {
-    "SessionStart": "steam boiler reaching operating pressure with triumphant whistle blast, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
-    "SessionEnd": "steam engine exhaling last vapor as pistons slow to silence, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
-    "Stop": "steam pressure valve releasing with clean satisfying hiss, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
-    "PreToolUse": "clutch pedal depressing with mechanical disengage clunk before action, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
-    "PostToolUse": "bolt torqued to specification with final satisfying wrench click, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
-    "PermissionPrompt": "steam whistle blowing short questioning burst awaiting operator response, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
-    "IdlePrompt": "resting steam engine with slow periodic exhale of warm vapor, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStart": "new gear teeth meshing into running clockwork mechanism with whir, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStop": "rotary dial completing return to rest position with settling tick, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
-    "UserPromptSubmit": "pneumatic tube canister launched with whooshing compressed air burst, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp"
+    "SessionStart": "bright ascending brass bell ringing with welcoming resonance, clean valve whistle, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "gentle descending brass bell fading with warm closing ring, clean valve sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "satisfying brass bell strike with clear bright ring and sustain, clean valve click, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick clean valve click with brief metallic tap, brass sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short brass chime confirming with quick bright ring, valve click, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two brass bell tones with questioning whistle accent, valve sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "gentle brass bell pulse at low volume with steady rhythm, valve hum, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "brass bell tone splitting into two parallel ringing notes, valve sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "soft brass ping returning with gentle metallic ring, valve click, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright brass bell burst with energetic short whistle accent, valve sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
   }
 }

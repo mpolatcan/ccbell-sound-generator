@@ -2,15 +2,15 @@
   "id": "retro-8bit-boss-battle",
   "name": "Boss Battle",
   "prompts": {
-    "SessionStart": "dramatic boss encounter intro with ominous chiptune fanfare, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp",
-    "SessionEnd": "game saving progress to cartridge with confirmation chime, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp",
-    "Stop": "boss defeated explosion with triumphant 8-bit victory fanfare, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp",
-    "PreToolUse": "battle cursor blinking once at command line with quick 8-bit tick, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp",
-    "PostToolUse": "damage number popping up briefly with quick 8-bit confirmation blip, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp",
-    "PermissionPrompt": "RPG battle menu appearing with dramatic chiptune choice tone, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp",
-    "IdlePrompt": "save room ambient loop with steady pulsing 8-bit hum, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStart": "ally character summoned into battle with heroic 8-bit entrance, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStop": "experience points gained with quick ascending chiptune tally, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp",
-    "UserPromptSubmit": "special attack command selected with bold chiptune activation burst, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp"
+    "SessionStart": "bold triangle wave fanfare with dramatic ascending two-note opening, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "deep triangle wave tone descending with firm closing resolution, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "triumphant triangle wave victory chime with punchy bright ring, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick punchy triangle wave tick at low pitch, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short bold triangle wave confirmation blip ascending, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "dramatic two-tone triangle wave alert with questioning rise, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady low triangle wave pulse with rhythmic beat, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "bold triangle wave tone forking into two parallel voices, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "quick triangle wave ping returning with resolving descent, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "punchy energetic triangle wave burst with bold attack, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
   }
 }

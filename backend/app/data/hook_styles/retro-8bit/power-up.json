@@ -2,15 +2,15 @@
   "id": "retro-8bit-power-up",
   "name": "Power-Up",
   "prompts": {
-    "SessionStart": "arcade cabinet coin inserted with classic chiptune insert-coin melody, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp",
-    "SessionEnd": "end credits scrolling with grateful winding-down chiptune melody, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp",
-    "Stop": "power star collected with sparkling bitcrushed ascending cascade, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp",
-    "PreToolUse": "single inventory slot highlighting with distinct 8-bit selection blip, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp",
-    "PostToolUse": "item block bumped from below with quick hollow 8-bit knock, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp",
-    "PermissionPrompt": "inventory selection cursor blinking with rhythmic chiptune inquiry tone, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp",
-    "IdlePrompt": "pixel character idle animation with soft bouncing chiptune loop, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStart": "player two joining game with energetic chiptune entrance jingle, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStop": "health potion consumed with bubbly restorative 8-bit gulp, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp",
-    "UserPromptSubmit": "pixel archer releasing arrow with classic 8-bit twang and whoosh, NES coin-collect jingle, bitcrushed square wave blip, arcade cabinet excitement, 44.1kHz, stereo, high-quality, crisp"
+    "SessionStart": "bright ascending NES square wave arpeggio climbing three notes, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "gentle descending square wave arpeggio falling three notes softly, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "satisfying NES square wave completion chime with bright ring, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick single square wave blip at mid pitch, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short confirming square wave chirp ascending one step, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two-note square wave question tone with rising interval, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "soft pulsing square wave at low pitch with gentle rhythm, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "square wave tone splitting into two ascending parallel arpeggios, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "soft returning square wave ping descending one note, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright energetic NES square wave burst ascending rapidly, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
   }
 }

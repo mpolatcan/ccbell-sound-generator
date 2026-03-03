@@ -2,15 +2,15 @@
   "id": "mechanical-anvil-forge",
   "name": "Anvil Forge",
   "prompts": {
-    "SessionStart": "forge bellows pumping air into furnace with roaring flame ignition, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
-    "SessionEnd": "forge fire banked for the night with dying ember crackle, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
-    "Stop": "heavy blacksmith hammer ringing final strike on cooling iron, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
-    "PreToolUse": "tongs gripping hot iron and lifting it from forge coals, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
-    "PostToolUse": "small finished pin clicking into socket with quick satisfying snap, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
-    "PermissionPrompt": "pressure gauge entering caution zone with brass alert whistle, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
-    "IdlePrompt": "forge coals glowing with slow rhythmic bellows creak, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStart": "distribution valve opening new flow path with brass click, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStop": "small finished rivet sliding into collection tray with quiet clink, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp",
-    "UserPromptSubmit": "heavy lever pulled firmly to activate launching mechanism, steam workshop furnace glow, brass gear clank on iron plate, forge-hot determination, 44.1kHz, stereo, high-quality, crisp"
+    "SessionStart": "ascending anvil ring struck with bright hammer on metal, heavy metal bell, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "gentle anvil ring fading with descending heavy bell decay, metal bell, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "single heavy anvil strike ringing with satisfying metallic sustain, hammer on metal bell, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick light hammer tap on metal with brief ring, anvil tick, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short anvil ping confirming with bright metallic chirp, hammer tap, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two anvil strikes with questioning rising ring, heavy metal bell, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "gentle heavy bell sustain humming at low volume, anvil resonance, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "anvil ring splitting into two diverging metallic tones, hammer sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "soft anvil ping returning with gentle metallic ring, hammer tap, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright heavy anvil strike with energetic ringing burst, hammer on metal, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
   }
 }
