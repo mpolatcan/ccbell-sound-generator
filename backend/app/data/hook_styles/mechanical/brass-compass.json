@@ -1,0 +1,16 @@
+{
+  "id": "mechanical-brass-compass",
+  "name": "Brass Compass",
+  "prompts": {
+    "SessionStart": "brass compass click ascending with bright precise instrument ping, brass compass tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "brass compass click descending with smooth precise instrument decay, brass compass tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "single bright brass compass snap with satisfying precise ring, brass instrument ping, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick distinct brass compass tick with crisp precise click, brass tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short brass compass chirp confirming with bright precise ping, brass tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two brass compass clicks with questioning rising precise interval, brass tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady brass compass tick with clear rhythmic precise clicking, brass tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "brass compass splitting into two diverging precise directional tones, brass sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear brass compass ping returning with distinct precise ring, brass tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright brass compass burst with energetic precise clicking attack, brass tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "ambient-starlight",
+  "name": "Starlight",
+  "prompts": {
+    "SessionStart": "twinkling celestial ping ascending with bright star-like shimmer, celestial bell synth, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionEnd": "celestial ping descending with smooth star-like twinkling decay, celestial bell, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "Stop": "single bright celestial ping with satisfying star-like ring, celestial bell chime, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PreToolUse": "quick distinct celestial tick with crisp star-like click, celestial tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PostToolUse": "short celestial chirp confirming with bright star-like ping, celestial bell, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PermissionPrompt": "two celestial tones with questioning rising star-like interval, celestial bell, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "IdlePrompt": "steady celestial twinkle with clear rhythmic star-like pulsing, celestial bell, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStart": "celestial ping splitting into two diverging star-like voices, celestial sound, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStop": "clear celestial ping returning with distinct star-like ring, celestial bell, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "UserPromptSubmit": "bright celestial burst with energetic star-like twinkling attack, celestial bell synth, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm"
+  }
+}

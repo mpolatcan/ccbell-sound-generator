@@ -1,0 +1,16 @@
+{
+  "id": "mechanical-telegraph",
+  "name": "Telegraph",
+  "prompts": {
+    "SessionStart": "morse code key clicking ascending with bright telegraph rhythm, telegraph key percussion, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "telegraph key clicking descending with smooth morse code decay, telegraph percussion, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "single crisp telegraph key strike with bright morse code ring, telegraph click, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick distinct telegraph key click with crisp morse dot, telegraph percussion, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short telegraph key confirming with bright morse code ping, telegraph click, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two telegraph key clicks with questioning morse code rhythm, telegraph percussion, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady telegraph key pulse with clear rhythmic morse tapping, telegraph click, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "telegraph key splitting into two parallel morse code streams, telegraph sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear telegraph key returning with distinct morse code ring, telegraph click, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright rapid telegraph key burst with energetic morse code attack, telegraph percussion, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
+  }
+}

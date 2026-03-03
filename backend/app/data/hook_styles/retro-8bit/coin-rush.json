@@ -1,0 +1,16 @@
+{
+  "id": "retro-8bit-coin-rush",
+  "name": "Coin Rush",
+  "prompts": {
+    "SessionStart": "bright rapid coin-collect arpeggio ascending with metallic 8-bit sparkle, chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "coin-collect arpeggio descending with smooth metallic 8-bit decay, chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "satisfying coin-collect chime with bright metallic 8-bit ring, chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick single coin blip with crisp metallic 8-bit tick, chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short coin-collect ding confirming with bright 8-bit ping, chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two coin-collect tones with questioning rising metallic interval, chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady coin-bounce rhythm with clear metallic 8-bit pulse, chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "coin-collect tone splitting into two parallel metallic arpeggios, chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear coin-collect ping returning with bright metallic ring, chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright rapid coin-rush cascade with energetic metallic 8-bit burst, chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
+  }
+}

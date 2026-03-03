@@ -1,0 +1,16 @@
+{
+  "id": "jazz-walking-bass",
+  "name": "Walking Bass",
+  "prompts": {
+    "SessionStart": "deep upright bass pluck ascending with bright warm walking line, acoustic bass tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SessionEnd": "upright bass pluck descending with smooth warm walking decay, acoustic bass tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "Stop": "single deep upright bass pluck with satisfying warm round ring, acoustic bass, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PreToolUse": "quick distinct upright bass pluck with crisp warm tick, acoustic bass, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PostToolUse": "short upright bass pluck confirming with bright warm ping, acoustic bass, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PermissionPrompt": "two upright bass plucks with questioning rising warm interval, acoustic bass, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "IdlePrompt": "steady upright bass walking with clear rhythmic warm plucking, acoustic bass, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SubagentStart": "upright bass splitting into two parallel warm walking lines, acoustic bass sound, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SubagentStop": "clear upright bass pluck returning with distinct warm round ring, acoustic bass, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "UserPromptSubmit": "bright energetic upright bass burst with rapid warm plucking attack, acoustic bass, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich"
+  }
+}

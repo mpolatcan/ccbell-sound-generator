@@ -1,0 +1,16 @@
+{
+  "id": "minimal-dot-matrix",
+  "name": "Dot Matrix",
+  "prompts": {
+    "SessionStart": "precise staccato digital dot ascending with bright crisp pattern, dot matrix click, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
+    "SessionEnd": "staccato digital dot descending with smooth crisp decay, dot matrix tone, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
+    "Stop": "single precise digital dot with bright crisp impact ring, dot matrix click, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
+    "PreToolUse": "quick precise digital dot with crisp staccato click, dot matrix tick, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
+    "PostToolUse": "short digital dot confirming with bright crisp staccato ping, dot matrix, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
+    "PermissionPrompt": "two precise digital dots with questioning rising staccato interval, dot matrix, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
+    "IdlePrompt": "steady digital dot pulse with clear rhythmic staccato pattern, dot matrix tone, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
+    "SubagentStart": "digital dot splitting into two diverging staccato streams, dot matrix sound, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
+    "SubagentStop": "clear digital dot returning with distinct crisp staccato ring, dot matrix tone, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
+    "UserPromptSubmit": "bright rapid digital dot burst with energetic staccato attack, dot matrix tone, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine"
+  }
+}

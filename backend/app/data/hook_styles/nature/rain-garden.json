@@ -1,0 +1,16 @@
+{
+  "id": "nature-rain-garden",
+  "name": "Rain Garden",
+  "prompts": {
+    "SessionStart": "rainstick ascending with bright water percussion cascade, rain percussion tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionEnd": "rainstick descending with smooth water percussion decay, rain percussion tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "Stop": "single bright rainstick shake with satisfying water percussion ring, rain tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PreToolUse": "quick distinct water drop percussion with crisp raindrop click, rain tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PostToolUse": "short rainstick chirp confirming with bright water percussion ping, rain tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PermissionPrompt": "two rainstick tones with questioning rising water percussion interval, rain tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "IdlePrompt": "steady rainstick pulse with clear rhythmic water percussion, rain tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStart": "rainstick cascade splitting into two diverging water streams, rain sound, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStop": "clear rainstick ping returning with distinct water drop ring, rain tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "UserPromptSubmit": "bright energetic rainstick burst with rapid water percussion cascade, rain tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm"
+  }
+}

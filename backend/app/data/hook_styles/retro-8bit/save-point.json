@@ -1,0 +1,16 @@
+{
+  "id": "retro-8bit-save-point",
+  "name": "Save Point",
+  "prompts": {
+    "SessionStart": "calm checkpoint chiptune ascending with warm save-state melody, 8-bit save tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "checkpoint chiptune descending with smooth save-state resolution, 8-bit save tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "satisfying save-complete chiptune chime with bright confirmation ring, 8-bit save tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick save-state chiptune tick with crisp checkpoint click, 8-bit save tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short save-confirmed chiptune chirp with bright checkpoint ping, 8-bit save tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two save-state chiptune tones with questioning checkpoint rise, 8-bit save tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady save-point chiptune loop with clear checkpoint rhythm, 8-bit save tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "save-point chiptune forking into two parallel checkpoint voices, 8-bit save tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear save-point chiptune ping returning with bright checkpoint ring, 8-bit save tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright save-state chiptune burst with energetic checkpoint attack, 8-bit save tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
+  }
+}

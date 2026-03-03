@@ -1,0 +1,16 @@
+{
+  "id": "nature-mountain",
+  "name": "Mountain",
+  "prompts": {
+    "SessionStart": "tibetan singing bowl ascending with deep resonant bell bloom, mountain bell tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionEnd": "tibetan singing bowl descending with smooth deep bell decay, mountain bell tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "Stop": "single deep tibetan singing bowl strike with bright resonant ring, mountain bell, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PreToolUse": "quick distinct tibetan bell tap with crisp resonant click, mountain tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PostToolUse": "short tibetan bell chirp confirming with bright deep ping, mountain tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PermissionPrompt": "two tibetan bell tones with questioning rising resonant interval, mountain bell, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "IdlePrompt": "steady tibetan singing bowl with clear rhythmic resonant pulse, mountain bell, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStart": "tibetan bell tone splitting into two diverging resonant voices, mountain sound, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStop": "clear tibetan bell ping returning with distinct deep ring, mountain tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "UserPromptSubmit": "bright tibetan singing bowl burst with energetic resonant strike, mountain bell, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm"
+  }
+}

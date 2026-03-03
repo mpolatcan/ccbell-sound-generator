@@ -1,0 +1,16 @@
+{
+  "id": "ambient-moss-garden",
+  "name": "Moss Garden",
+  "prompts": {
+    "SessionStart": "earth tone organic pad ascending with bright warm bloom, organic synth pad, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionEnd": "organic pad descending with smooth warm earth tone decay, organic synth, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "Stop": "single bright organic pad chime with satisfying earth tone ring, organic synth, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PreToolUse": "quick distinct organic pad tick with crisp earth tone click, organic synth, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PostToolUse": "short organic pad chirp confirming with bright earth tone ping, organic synth, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PermissionPrompt": "two organic pad tones with questioning rising earth interval, organic synth, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "IdlePrompt": "steady organic pad with clear rhythmic earth tone pulsing, organic synth, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStart": "organic pad splitting into two diverging earth tone voices, organic synth, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStop": "clear organic pad ping returning with distinct earth tone ring, organic synth, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "UserPromptSubmit": "bright organic pad burst with energetic warm earth tone attack, organic synth, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm"
+  }
+}

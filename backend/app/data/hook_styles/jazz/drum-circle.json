@@ -1,0 +1,16 @@
+{
+  "id": "jazz-drum-circle",
+  "name": "Drum Circle",
+  "prompts": {
+    "SessionStart": "jazz brush on snare ascending with bright rhythmic sweep, rim click percussion, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SessionEnd": "brush on snare descending with smooth rhythmic sweep decay, rim click, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "Stop": "single crisp rim click with bright satisfying snare ring, brush percussion, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PreToolUse": "quick distinct rim click with crisp snare tick, brush percussion, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PostToolUse": "short rim click confirming with bright snare brush ping, drum percussion, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PermissionPrompt": "two rim clicks with questioning rising rhythmic pattern, brush snare, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "IdlePrompt": "steady brush sweep with clear rhythmic snare pulsing, rim click, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SubagentStart": "brush rhythm splitting into two parallel snare percussion voices, rim click, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SubagentStop": "clear rim click returning with distinct snare brush ring, drum percussion, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "UserPromptSubmit": "bright energetic rim click burst with rapid brush snare attack, drum percussion, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich"
+  }
+}

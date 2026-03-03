@@ -1,0 +1,16 @@
+{
+  "id": "mechanical-piston-engine",
+  "name": "Piston Engine",
+  "prompts": {
+    "SessionStart": "pneumatic burst ascending with bright piston pump attack, compressed air tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "piston pump descending with smooth pneumatic release decay, compressed air tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "single crisp pneumatic burst with bright piston ring, compressed air chime, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick distinct piston tick with crisp pneumatic click, compressed air, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short pneumatic chirp confirming with bright piston ping, compressed air, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two pneumatic burst tones with questioning piston rhythm, compressed air, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady piston pump pulse with clear rhythmic pneumatic pattern, compressed air, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "pneumatic burst splitting into two parallel piston streams, compressed air, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear piston ping returning with distinct pneumatic ring, compressed air, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright energetic pneumatic burst with rapid piston pump attack, compressed air, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
+  }
+}

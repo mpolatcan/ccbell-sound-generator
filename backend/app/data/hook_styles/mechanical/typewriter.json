@@ -1,0 +1,16 @@
+{
+  "id": "mechanical-typewriter",
+  "name": "Typewriter",
+  "prompts": {
+    "SessionStart": "typewriter key strike ascending with bright carriage bell ring, typewriter percussion, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "typewriter key descending with smooth carriage return decay, typewriter percussion, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "single crisp typewriter carriage bell with bright satisfying ring, typewriter chime, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick distinct typewriter key strike with crisp mechanical click, typewriter tap, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short typewriter key confirming with bright carriage ping, typewriter click, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two typewriter key strikes with questioning carriage bell rhythm, typewriter tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady typewriter rhythm with clear carriage key tapping, typewriter click, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "typewriter splitting into two parallel typing streams, typewriter sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear typewriter key returning with distinct carriage ring, typewriter click, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright rapid typewriter burst with energetic key strike attack, typewriter percussion, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
+  }
+}

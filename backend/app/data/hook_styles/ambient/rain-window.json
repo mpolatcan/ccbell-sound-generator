@@ -1,0 +1,16 @@
+{
+  "id": "ambient-rain-window",
+  "name": "Rain Window",
+  "prompts": {
+    "SessionStart": "rain droplet percussion ascending with bright rhythmic water tone, rain drop bell, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionEnd": "rain droplet descending with smooth rhythmic water decay, rain drop bell, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "Stop": "single bright rain droplet with satisfying water bell ring, rain drop tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PreToolUse": "quick distinct rain drop tick with crisp water percussion click, rain tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PostToolUse": "short rain drop chirp confirming with bright water percussion ping, rain tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PermissionPrompt": "two rain drop tones with questioning rising water percussion interval, rain bell, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "IdlePrompt": "steady rain drop pulse with clear rhythmic water percussion, rain tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStart": "rain drops splitting into two diverging water percussion voices, rain sound, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStop": "clear rain drop ping returning with distinct water bell ring, rain tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "UserPromptSubmit": "bright energetic rain drop burst with rapid water percussion attack, rain bell tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "jazz-bossa-nova",
+  "name": "Bossa Nova",
+  "prompts": {
+    "SessionStart": "nylon acoustic guitar ascending with bright bossa nova melodic strum, acoustic guitar tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SessionEnd": "acoustic guitar descending with smooth bossa nova strum decay, nylon guitar tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "Stop": "single bright nylon guitar pluck with satisfying bossa nova ring, acoustic guitar, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PreToolUse": "quick distinct nylon guitar tick with crisp bossa nova pluck, acoustic tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PostToolUse": "short nylon guitar chirp confirming with bright bossa nova ping, acoustic tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PermissionPrompt": "two nylon guitar tones with questioning rising bossa nova interval, acoustic guitar, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "IdlePrompt": "steady nylon guitar pulse with clear rhythmic bossa nova pattern, acoustic tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SubagentStart": "nylon guitar splitting into two parallel bossa nova melodic voices, acoustic sound, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SubagentStop": "clear nylon guitar ping returning with distinct bossa nova ring, acoustic tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "UserPromptSubmit": "bright energetic nylon guitar burst with rapid bossa nova strum attack, acoustic tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich"
+  }
+}

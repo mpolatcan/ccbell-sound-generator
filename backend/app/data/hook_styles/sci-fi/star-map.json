@@ -1,0 +1,16 @@
+{
+  "id": "sci-fi-star-map",
+  "name": "Star Map",
+  "prompts": {
+    "SessionStart": "bright plucked synth arpeggio ascending like constellation points, star map tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "plucked synth arpeggio descending with smooth stellar decay, star map tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "single bright plucked synth note with satisfying star-like ring, star map chime, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick distinct plucked synth tick with brief stellar ping, star map tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short plucked synth chirp confirming with bright point of sound, star map tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two plucked synth notes with questioning ascending interval, star map tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady plucked synth pulse with clear rhythmic twinkling, star map tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "plucked synth tone branching into two diverging star points, star map sound, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear plucked synth ping returning with bright stellar ring, star map tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright energetic plucked synth burst with rapid ascending arpeggio, star map tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
+  }
+}

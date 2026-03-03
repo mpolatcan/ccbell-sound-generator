@@ -1,0 +1,16 @@
+{
+  "id": "retro-8bit-dungeon-key",
+  "name": "Dungeon Key",
+  "prompts": {
+    "SessionStart": "mysterious minor-key chiptune ascending with dark dungeon melody, 8-bit dungeon tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "minor-key chiptune descending with smooth dark resolution, 8-bit dungeon tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "satisfying key-found chiptune chime with bright minor ring, 8-bit dungeon tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick dungeon chiptune tick with crisp minor-key click, 8-bit dungeon tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short dungeon chirp confirming with bright minor-key ping, 8-bit dungeon tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two minor-key chiptune tones with questioning dark interval, 8-bit dungeon tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady dungeon chiptune pulse with clear minor-key rhythm, 8-bit dungeon tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "dungeon chiptune forking into two parallel minor-key voices, 8-bit dungeon tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear dungeon chiptune ping returning with bright minor ring, 8-bit dungeon tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright minor-key chiptune burst with energetic dungeon attack, 8-bit dungeon tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
+  }
+}

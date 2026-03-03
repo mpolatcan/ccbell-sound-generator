@@ -1,0 +1,16 @@
+{
+  "id": "ambient-tide-pool",
+  "name": "Tide Pool",
+  "prompts": {
+    "SessionStart": "tidal resonance ascending with bright pool echo bloom, tidal bell tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionEnd": "tidal resonance descending with smooth pool echo decay, tidal bell tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "Stop": "single bright tidal bell with satisfying pool echo ring, tidal resonance, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PreToolUse": "quick distinct tidal tick with crisp pool echo click, tidal tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PostToolUse": "short tidal chirp confirming with bright pool echo ping, tidal tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PermissionPrompt": "two tidal tones with questioning rising pool echo interval, tidal bell, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "IdlePrompt": "steady tidal pulse with clear rhythmic pool echo pattern, tidal tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStart": "tidal tone splitting into two diverging pool echo voices, tidal sound, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStop": "clear tidal ping returning with distinct pool echo ring, tidal tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "UserPromptSubmit": "bright tidal burst with energetic pool echo resonant attack, tidal bell tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm"
+  }
+}

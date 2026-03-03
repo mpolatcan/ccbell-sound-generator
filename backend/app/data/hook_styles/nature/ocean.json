@@ -1,0 +1,16 @@
+{
+  "id": "nature-ocean",
+  "name": "Ocean",
+  "prompts": {
+    "SessionStart": "steel drum ascending with bright rolling tropical percussion, ocean drum tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionEnd": "steel drum descending with smooth rolling wave-like decay, ocean drum tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "Stop": "single bright steel drum strike with satisfying tropical ring, ocean drum, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PreToolUse": "quick distinct steel drum tap with crisp tropical click, ocean tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PostToolUse": "short steel drum chirp confirming with bright rolling ping, ocean tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PermissionPrompt": "two steel drum tones with questioning rising tropical interval, ocean drum, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "IdlePrompt": "steady steel drum pulse with clear rhythmic rolling pattern, ocean tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStart": "steel drum tone splitting into two diverging rolling voices, ocean sound, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStop": "clear steel drum ping returning with distinct tropical ring, ocean tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "UserPromptSubmit": "bright energetic steel drum burst with rapid rolling attack, ocean drum tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm"
+  }
+}

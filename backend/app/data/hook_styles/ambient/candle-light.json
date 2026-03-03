@@ -1,0 +1,16 @@
+{
+  "id": "ambient-candle-light",
+  "name": "Candle Light",
+  "prompts": {
+    "SessionStart": "warm flickering tone ascending with bright candle-like modulation, warm flame synth, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionEnd": "flickering tone descending with smooth warm candle decay, warm flame synth, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "Stop": "single warm flickering chime with bright candle-like ring, warm flame tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PreToolUse": "quick distinct flicker tick with crisp warm candle click, flame tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PostToolUse": "short flickering chirp confirming with bright warm candle ping, flame tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PermissionPrompt": "two warm flickering tones with questioning rising candle interval, flame synth, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "IdlePrompt": "steady warm flicker with clear rhythmic candle-like pulsing, flame tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStart": "flickering tone splitting into two diverging warm candle voices, flame synth, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStop": "clear flickering ping returning with distinct warm candle ring, flame tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "UserPromptSubmit": "bright warm flickering burst with energetic candle-like modulated attack, flame synth, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm"
+  }
+}

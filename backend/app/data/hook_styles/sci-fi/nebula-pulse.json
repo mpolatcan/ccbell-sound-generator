@@ -1,0 +1,16 @@
+{
+  "id": "sci-fi-nebula-pulse",
+  "name": "Nebula Pulse",
+  "prompts": {
+    "SessionStart": "warm pulsing pad synth ascending with rhythmic modulation, deep space pad, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "pulsing pad synth descending smoothly with warm modulated decay, deep space pad, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "single warm pad synth chime with satisfying pulsing ring, deep space tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick distinct pad synth tick with brief pulsing click, space tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short pad synth chirp confirming with bright modulated ping, deep space tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two pulsing pad synth tones with questioning rising interval, space pad, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady pulsing pad synth with warm rhythmic modulation, deep space hum, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "pulsing pad synth splitting into two diverging modulated voices, space tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear pulsing pad synth ping returning with warm modulated ring, space tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright pulsing pad synth burst with energetic modulated attack, deep space tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
+  }
+}

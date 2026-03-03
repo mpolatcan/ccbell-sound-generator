@@ -1,0 +1,16 @@
+{
+  "id": "ambient-aurora",
+  "name": "Aurora",
+  "prompts": {
+    "SessionStart": "shimmering aurora synth ascending with bright northern lights bloom, aurora borealis tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionEnd": "aurora synth descending with smooth shimmering northern lights decay, aurora tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "Stop": "single bright aurora synth chime with satisfying shimmering ring, aurora borealis tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PreToolUse": "quick distinct aurora shimmer tick with crisp northern lights click, aurora tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PostToolUse": "short aurora synth chirp confirming with bright shimmering ping, aurora tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PermissionPrompt": "two shimmering aurora tones with questioning rising northern lights interval, aurora tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "IdlePrompt": "steady aurora shimmer with clear rhythmic northern lights pulsing, aurora tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStart": "aurora synth splitting into two diverging shimmering voices, aurora sound, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStop": "clear aurora synth ping returning with distinct shimmering ring, aurora tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "UserPromptSubmit": "bright aurora synth burst with energetic shimmering northern lights attack, aurora tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm"
+  }
+}

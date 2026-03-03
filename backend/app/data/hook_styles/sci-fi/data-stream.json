@@ -1,0 +1,16 @@
+{
+  "id": "sci-fi-data-stream",
+  "name": "Data Stream",
+  "prompts": {
+    "SessionStart": "rapid staccato digital synth ascending with bright data burst, digital stream tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "staccato digital synth descending with crisp data wind-down, digital stream tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "single crisp staccato digital synth chime with bright data ring, digital stream, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick distinct digital staccato tick with brief data click, stream tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short staccato digital chirp confirming with bright data ping, stream tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two staccato digital tones with questioning rapid rise, data stream sound, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady staccato digital pulse with clear rhythmic data pattern, stream hum, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "staccato digital synth splitting into two parallel data streams, digital tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear staccato digital ping returning with crisp data ring, stream tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright rapid staccato digital burst with energetic data attack, stream tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
+  }
+}

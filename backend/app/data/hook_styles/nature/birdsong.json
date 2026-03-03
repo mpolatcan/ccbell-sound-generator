@@ -1,0 +1,16 @@
+{
+  "id": "nature-birdsong",
+  "name": "Birdsong",
+  "prompts": {
+    "SessionStart": "bright piccolo whistle ascending with clear high bird-call melody, piccolo flute tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionEnd": "piccolo whistle descending with smooth high bird-call decay, piccolo flute tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "Stop": "single bright piccolo whistle note with satisfying bird-like ring, piccolo tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PreToolUse": "quick distinct piccolo chirp with crisp high bird tick, piccolo tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PostToolUse": "short piccolo trill confirming with bright bird-call ping, piccolo tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PermissionPrompt": "two piccolo whistle tones with questioning rising bird-call interval, piccolo flute, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "IdlePrompt": "steady piccolo whistle with clear rhythmic bird-call pattern, piccolo tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStart": "piccolo whistle splitting into two diverging bird-call voices, piccolo sound, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStop": "clear piccolo whistle ping returning with distinct bird-call ring, piccolo tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "UserPromptSubmit": "bright energetic piccolo whistle burst with rapid bird-call trill, piccolo tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm"
+  }
+}

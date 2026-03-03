@@ -1,0 +1,16 @@
+{
+  "id": "nature-coral-reef",
+  "name": "Coral Reef",
+  "prompts": {
+    "SessionStart": "steel pan ascending with bright tropical melodic percussion, caribbean steel drum, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionEnd": "steel pan descending with smooth tropical melodic decay, caribbean steel drum, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "Stop": "single bright steel pan strike with satisfying tropical ring, caribbean steel drum, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PreToolUse": "quick distinct steel pan tap with crisp tropical click, steel drum, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PostToolUse": "short steel pan chirp confirming with bright tropical ping, steel drum, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PermissionPrompt": "two steel pan tones with questioning rising tropical interval, caribbean drum, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "IdlePrompt": "steady steel pan pulse with clear rhythmic tropical pattern, steel drum, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStart": "steel pan splitting into two diverging tropical voices, caribbean drum, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStop": "clear steel pan ping returning with distinct tropical ring, steel drum, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "UserPromptSubmit": "bright energetic steel pan burst with rapid tropical melodic attack, caribbean steel drum, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm"
+  }
+}

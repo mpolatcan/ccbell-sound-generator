@@ -1,0 +1,16 @@
+{
+  "id": "nature-stone-path",
+  "name": "Stone Path",
+  "prompts": {
+    "SessionStart": "stone chime ascending with bright smooth pebble percussion, stone bell tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionEnd": "stone chime descending with smooth pebble percussion decay, stone bell tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "Stop": "single bright stone chime strike with satisfying pebble ring, stone bell, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PreToolUse": "quick distinct pebble click with crisp stone tap, stone percussion, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PostToolUse": "short stone chime confirming with bright pebble ping, stone tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PermissionPrompt": "two stone chime tones with questioning rising pebble interval, stone bell, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "IdlePrompt": "steady stone chime pulse with clear rhythmic pebble tapping, stone tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStart": "stone chime splitting into two diverging pebble tones, stone sound, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStop": "clear stone chime ping returning with distinct pebble ring, stone tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "UserPromptSubmit": "bright energetic stone chime burst with rapid pebble percussion, stone bell tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm"
+  }
+}

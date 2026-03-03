@@ -1,0 +1,16 @@
+{
+  "id": "retro-8bit-high-score",
+  "name": "High Score",
+  "prompts": {
+    "SessionStart": "celebratory point-tally chiptune ascending with bright counting rhythm, 8-bit score tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "point-tally chiptune descending with smooth score resolution, 8-bit score tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "satisfying high-score chiptune chime with bright achievement ring, 8-bit score tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick score-tick chiptune blip with crisp counting click, 8-bit score tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short point-scored chiptune chirp confirming with bright ping, 8-bit score tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two score-tally chiptune tones with questioning ascending rise, 8-bit score tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady score-counter chiptune pulse with clear rhythmic ticking, 8-bit score tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "score-tally chiptune forking into two parallel counting voices, 8-bit score tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear score-tally chiptune ping returning with bright count ring, 8-bit score tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright rapid score-tally chiptune burst with energetic counting attack, 8-bit score tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "jazz-midnight-sax",
+  "name": "Midnight Sax",
+  "prompts": {
+    "SessionStart": "rich tenor saxophone ascending with bright full-bodied warm tone, tenor sax, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SessionEnd": "tenor saxophone descending with smooth full warm decay, tenor sax tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "Stop": "single rich tenor saxophone note with satisfying warm brassy ring, tenor sax, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PreToolUse": "quick distinct tenor sax blip with crisp warm tone, saxophone tick, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PostToolUse": "short tenor sax chirp confirming with bright warm ping, saxophone tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PermissionPrompt": "two tenor sax notes with questioning rising warm interval, saxophone tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "IdlePrompt": "steady tenor sax sustain with clear warm rhythmic breath, saxophone tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SubagentStart": "tenor sax splitting into two parallel warm melodic voices, saxophone sound, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SubagentStop": "clear tenor sax ping returning with distinct warm brassy ring, saxophone tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "UserPromptSubmit": "bright energetic tenor sax burst with rapid full warm attack, saxophone tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich"
+  }
+}

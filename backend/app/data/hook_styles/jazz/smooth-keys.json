@@ -1,0 +1,16 @@
+{
+  "id": "jazz-smooth-keys",
+  "name": "Smooth Keys",
+  "prompts": {
+    "SessionStart": "Rhodes electric piano ascending with bright warm shimmering tone, electric piano keys, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SessionEnd": "Rhodes piano descending with smooth warm electric decay, electric piano tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "Stop": "single bright Rhodes piano chord with satisfying warm electric ring, electric piano, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PreToolUse": "quick distinct Rhodes key with crisp warm electric click, electric piano, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PostToolUse": "short Rhodes key confirming with bright warm electric ping, electric piano, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PermissionPrompt": "two Rhodes piano tones with questioning rising warm interval, electric piano, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "IdlePrompt": "steady Rhodes piano with clear rhythmic warm electric pulsing, electric piano tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SubagentStart": "Rhodes piano splitting into two parallel warm electric voices, electric piano sound, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SubagentStop": "clear Rhodes piano ping returning with distinct warm electric ring, electric piano tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "UserPromptSubmit": "bright energetic Rhodes piano burst with rapid warm electric chord attack, electric piano, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich"
+  }
+}

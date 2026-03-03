@@ -1,0 +1,16 @@
+{
+  "id": "jazz-swing-time",
+  "name": "Swing Time",
+  "prompts": {
+    "SessionStart": "clarinet ascending with bright swing band melodic entry, swing clarinet tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SessionEnd": "clarinet descending with smooth swing band melodic close, swing clarinet tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "Stop": "single bright clarinet note with satisfying swing band ring, swing clarinet, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PreToolUse": "quick distinct clarinet blip with crisp swing tick, swing clarinet tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PostToolUse": "short clarinet chirp confirming with bright swing band ping, swing tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PermissionPrompt": "two clarinet tones with questioning rising swing interval, swing band tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "IdlePrompt": "steady clarinet sustain with clear rhythmic swing pulse, swing band tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SubagentStart": "clarinet melody splitting into two parallel swing voices, swing band sound, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SubagentStop": "clear clarinet ping returning with distinct swing band ring, swing tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "UserPromptSubmit": "bright energetic clarinet burst with rapid swing band melodic attack, swing tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "ambient-deep-space",
+  "name": "Deep Space",
+  "prompts": {
+    "SessionStart": "cosmic resonant drone ascending with bright deep space bloom, space drone tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionEnd": "cosmic drone descending with smooth deep space resonant decay, space drone tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "Stop": "single bright cosmic drone chime with satisfying deep space ring, space drone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PreToolUse": "quick distinct cosmic tick with crisp deep space click, space drone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PostToolUse": "short cosmic drone chirp confirming with bright deep space ping, space tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PermissionPrompt": "two cosmic drone tones with questioning rising deep space interval, space drone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "IdlePrompt": "steady cosmic drone with clear rhythmic deep space pulsing, space tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStart": "cosmic drone splitting into two diverging deep space voices, space sound, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStop": "clear cosmic drone ping returning with distinct deep space ring, space tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "UserPromptSubmit": "bright cosmic drone burst with energetic deep space resonant attack, space tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm"
+  }
+}

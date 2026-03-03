@@ -1,0 +1,16 @@
+{
+  "id": "mechanical-windup-box",
+  "name": "Windup Box",
+  "prompts": {
+    "SessionStart": "music box mechanism ascending with bright spring-wound melody, music box chime, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "music box melody descending with smooth spring-wound decay, music box tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "single bright music box note with satisfying spring-wound ring, music box chime, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick distinct music box tick with crisp spring click, music box tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short music box note confirming with bright spring-wound ping, music box chime, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two music box notes with questioning rising spring-wound interval, music box chime, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady music box pulse with clear rhythmic spring-wound ticking, music box tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "music box melody splitting into two parallel spring-wound voices, music box sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear music box ping returning with distinct spring-wound ring, music box tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright energetic music box burst with rapid spring-wound melodic attack, music box chime, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
+  }
+}

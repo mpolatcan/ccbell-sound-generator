@@ -1,0 +1,16 @@
+{
+  "id": "jazz-brass-section",
+  "name": "Brass Section",
+  "prompts": {
+    "SessionStart": "full brass trumpet ensemble ascending with bright powerful fanfare, brass section horn, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SessionEnd": "brass trumpet ensemble descending with smooth powerful decay, brass section horn, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "Stop": "single bright brass section hit with satisfying powerful ring, trumpet ensemble, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PreToolUse": "quick distinct brass stab with crisp trumpet tick, brass section, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PostToolUse": "short brass section chirp confirming with bright trumpet ping, brass horn, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PermissionPrompt": "two brass section hits with questioning rising trumpet interval, brass horn, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "IdlePrompt": "steady brass section sustain with clear rhythmic trumpet pulsing, brass horn, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SubagentStart": "brass section splitting into two parallel trumpet ensemble voices, brass horn, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SubagentStop": "clear brass section ping returning with distinct trumpet ring, brass horn, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "UserPromptSubmit": "bright energetic brass section burst with rapid powerful trumpet attack, brass horn, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich"
+  }
+}

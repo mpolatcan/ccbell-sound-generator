@@ -1,0 +1,16 @@
+{
+  "id": "sci-fi-ion-drive",
+  "name": "Ion Drive",
+  "prompts": {
+    "SessionStart": "resonant filtered sweep synth ascending with bright filter opening, ion drive tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "filtered sweep synth descending with smooth resonant closing, ion drive tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "single resonant filter sweep landing with satisfying bright ring, ion drive chime, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick distinct filter click with brief resonant snap, ion drive tick, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short filtered sweep chirp confirming with bright resonant ping, ion drive tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two resonant filter tones with questioning ascending sweep, ion drive sound, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady resonant filter hum with clear rhythmic sweep pulse, ion drive tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "filtered sweep splitting into two diverging resonant tones, ion drive sound, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear resonant filter ping returning with bright sweep ring, ion drive tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright resonant filter sweep burst with energetic ascending attack, ion drive tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
+  }
+}

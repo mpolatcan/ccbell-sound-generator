@@ -1,0 +1,16 @@
+{
+  "id": "retro-8bit-pixel-quest",
+  "name": "Pixel Quest",
+  "prompts": {
+    "SessionStart": "adventurous chiptune melody ascending with bright quest fanfare, 8-bit adventure tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "chiptune quest melody descending with smooth adventure resolution, 8-bit adventure tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "satisfying chiptune quest completion chime with bright ring, 8-bit adventure tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick chiptune cursor blip with crisp adventure tick, 8-bit quest tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short chiptune discovery chirp confirming with bright ping, 8-bit adventure tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two chiptune quest tones with questioning rising adventure melody, 8-bit tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady chiptune exploration loop with clear adventure rhythm, 8-bit quest tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "chiptune quest melody forking into two parallel adventure voices, 8-bit tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear chiptune quest ping returning with bright adventure ring, 8-bit tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright energetic chiptune quest burst with rapid adventure attack, 8-bit tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "sci-fi-zero-gravity",
+  "name": "Zero Gravity",
+  "prompts": {
+    "SessionStart": "floating reverb synth ascending with bright weightless bloom, zero-g reverb tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "reverb synth descending smoothly with weightless floating decay, zero-g tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "single floating reverb synth chime with bright weightless ring, zero-g tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick distinct reverb synth tick with brief floating click, zero-g tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short reverb synth chirp confirming with bright floating ping, zero-g tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two floating reverb synth tones with questioning ascending rise, zero-g sound, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady reverb synth with clear floating rhythmic pulse, zero-g hum, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "floating reverb synth splitting into two weightless diverging tones, zero-g sound, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear reverb synth ping returning with bright floating ring, zero-g tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright floating reverb synth burst with energetic weightless attack, zero-g tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
+  }
+}
