@@ -1,6 +1,13 @@
 import { create } from 'zustand'
 import type { SoundLibraryState, GeneratedSound, SoundPack } from '@/types'
 
+/** Revoke a blob URL to free memory. No-op for server URLs. */
+function revokeBlobUrl(url: string | undefined) {
+  if (url?.startsWith('blob:')) {
+    URL.revokeObjectURL(url)
+  }
+}
+
 export const useSoundLibrary = create<SoundLibraryState>()((set, get) => ({
   packs: [],
   sounds: [],
@@ -12,10 +19,16 @@ export const useSoundLibrary = create<SoundLibraryState>()((set, get) => ({
     })),
 
   removePack: (id: string) =>
-    set((state) => ({
-      packs: state.packs.filter((p) => p.id !== id),
-      sounds: state.sounds.filter((s) => s.pack_id !== id)
-    })),
+    set((state) => {
+      // Revoke blob URLs for all sounds in this pack
+      for (const s of state.sounds) {
+        if (s.pack_id === id) revokeBlobUrl(s.audio_url)
+      }
+      return {
+        packs: state.packs.filter((p) => p.id !== id),
+        sounds: state.sounds.filter((s) => s.pack_id !== id)
+      }
+    }),
 
   renamePack: (id: string, name: string) =>
     set((state) => ({
@@ -38,17 +51,29 @@ export const useSoundLibrary = create<SoundLibraryState>()((set, get) => ({
         if (s.status === 'completed' && s.audio_url && !('audio_url' in updates)) {
           return s
         }
+        // Revoke old blob URL if audio_url is being replaced
+        if ('audio_url' in updates && updates.audio_url !== s.audio_url) {
+          revokeBlobUrl(s.audio_url)
+        }
         return { ...s, ...updates }
       })
     })),
 
   removeSound: (id: string) =>
-    set((state) => ({
-      sounds: state.sounds.filter((s) => s.id !== id)
-    })),
+    set((state) => {
+      const sound = state.sounds.find((s) => s.id === id)
+      revokeBlobUrl(sound?.audio_url)
+      return { sounds: state.sounds.filter((s) => s.id !== id) }
+    }),
 
   // Bulk operations
-  clearAll: () => set({ packs: [], sounds: [] }),
+  clearAll: () => {
+    // Revoke all blob URLs before clearing
+    for (const s of get().sounds) {
+      revokeBlobUrl(s.audio_url)
+    }
+    set({ packs: [], sounds: [] })
+  },
 
   getSoundsByPack: (packId: string) => {
     return get().sounds.filter((s) => s.pack_id === packId)

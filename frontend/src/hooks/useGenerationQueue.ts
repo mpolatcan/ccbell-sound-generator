@@ -5,6 +5,17 @@ import { useSoundLibrary } from './useSoundLibrary'
 import type { GenerateRequest } from '@/types'
 import { WS_BASE_URL } from '@/lib/constants'
 
+/**
+ * Fetch audio from server and create a blob URL for stable client-side playback.
+ * Blob URLs are immutable — the audio never changes even if the server file
+ * is deleted or the component remounts.  Falls back to the server URL on error.
+ */
+async function toBlobUrl(serverUrl: string): Promise<string> {
+  const res = await fetch(serverUrl)
+  const blob = await res.blob()
+  return URL.createObjectURL(blob)
+}
+
 interface QueuedGeneration {
   id: string // sound ID
   packId: string
@@ -164,20 +175,26 @@ export function useGenerationQueue() {
             }
           }, 30000)
 
-          ws.onmessage = (event) => {
+          ws.onmessage = async (event) => {
             try {
               const data = JSON.parse(event.data)
 
               if (data.type === 'pong') return
 
               if (data.audio_url) {
-                // Completed — single atomic update with audio_url
+                // Completed — cache audio as blob URL for stable playback
                 completed = true
+                let audioUrl = data.audio_url
+                try {
+                  audioUrl = await toBlobUrl(data.audio_url)
+                } catch {
+                  // Fallback to server URL
+                }
                 updateSound(item.id, {
                   status: 'completed',
                   progress: 1,
                   stage: 'Complete',
-                  audio_url: data.audio_url,
+                  audio_url: audioUrl,
                   completed_at: new Date()
                 })
                 ws.close()
@@ -241,12 +258,18 @@ export function useGenerationQueue() {
               const status = await api.getAudioStatus(jobId)
 
               if (status.status === 'completed' && status.audio_url) {
-                // Completed — single atomic update with audio_url
+                // Completed — cache audio as blob URL for stable playback
+                let audioUrl = status.audio_url
+                try {
+                  audioUrl = await toBlobUrl(status.audio_url)
+                } catch {
+                  // Fallback to server URL
+                }
                 updateSound(item.id, {
                   status: 'completed',
                   progress: 1,
                   stage: 'Complete',
-                  audio_url: status.audio_url,
+                  audio_url: audioUrl,
                   completed_at: new Date()
                 })
                 if (pollingRef.current) {
