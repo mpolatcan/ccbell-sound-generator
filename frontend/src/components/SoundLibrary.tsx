@@ -37,7 +37,6 @@ import { HOOK_TYPE_COLORS } from '@/lib/constants'
 import type { SoundPack, GeneratedSound, PublishPackData, DownloadPackData } from '@/types'
 import {
   Collapsible,
-  CollapsibleContent,
   CollapsibleTrigger
 } from '@/components/ui/collapsible'
 
@@ -477,8 +476,8 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                         </div>
                       </div>
 
-                      {/* Pack Contents */}
-                      <CollapsibleContent>
+                      {/* Pack Contents — always mounted to preserve WaveSurfer instances */}
+                      <div className={cn(!isExpanded && "hidden")}>
                         <div className="p-3 space-y-2.5">
                           {packSounds.map((sound, index) => {
                             const hookColor = HOOK_TYPE_COLORS[sound.hook_type]
@@ -588,7 +587,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                             )
                           })}
                         </div>
-                      </CollapsibleContent>
+                      </div>
                     </div>
                   </Collapsible>
                 )

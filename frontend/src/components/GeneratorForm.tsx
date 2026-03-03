@@ -481,7 +481,6 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
                 {/* Inline prompt display */}
                 {activeHookTab && activeHookBasePrompt && (
                   <div className="space-y-2">
-                    <Label>Prompt</Label>
                     <div className="relative">
                       <Textarea
                         ref={promptTextareaRef}
