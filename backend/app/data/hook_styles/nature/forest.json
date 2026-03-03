@@ -2,15 +2,15 @@
   "id": "nature-forest",
   "name": "Forest",
   "prompts": {
-    "SessionStart": "warm ascending marimba notes climbing a major scale gently, wooden mallet percussion, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "SessionEnd": "soft descending marimba notes fading with wooden warmth, wooden mallet percussion, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionStart": "warm ascending marimba notes climbing a major scale, wooden mallet percussion, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionEnd": "descending marimba notes with wooden warmth and smooth decay, wooden mallet percussion, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "Stop": "single bright marimba strike with satisfying wooden ring and sustain, wooden mallet percussion, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "PreToolUse": "quick woodblock click with crisp short tap, wooden percussion, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "PostToolUse": "short xylophone ping confirming with bright wooden tone, wooden mallet percussion, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "PermissionPrompt": "two marimba notes with questioning rising interval, wooden mallet percussion, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "IdlePrompt": "gentle soft marimba pulse at low pitch with warm decay, wooden mallet percussion, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "IdlePrompt": "steady marimba pulse with warm rhythmic wooden tapping, wooden mallet percussion, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "SubagentStart": "marimba tone branching into two notes played simultaneously, wooden mallet percussion, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "SubagentStop": "soft marimba ping returning with gentle wooden tap, wooden mallet percussion, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStop": "clear marimba ping returning with distinct wooden tap, wooden mallet percussion, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "UserPromptSubmit": "bright energetic marimba roll with ascending wooden tones, wooden mallet percussion, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm"
   }
 }

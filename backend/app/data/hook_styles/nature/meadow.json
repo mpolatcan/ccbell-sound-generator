@@ -2,15 +2,15 @@
   "id": "nature-meadow",
   "name": "Meadow",
   "prompts": {
-    "SessionStart": "bright ascending finger cymbal ring with delicate shimmering overtones, small bell chime, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "SessionEnd": "gentle descending wind chime tones fading with soft decay, small bell chime, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionStart": "bright ascending finger cymbal ring with shimmering overtones, small bell chime, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionEnd": "descending wind chime tones with smooth ringing decay, small bell chime, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "Stop": "single tiny bell strike with bright clear ring and sustain, small bell chime, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "PreToolUse": "quick delicate finger cymbal tick with brief shimmer, small bell, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "PostToolUse": "short wind chime ping confirming with bright gentle ring, small bell chime, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PreToolUse": "quick distinct finger cymbal tick with brief shimmer, small bell, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PostToolUse": "short wind chime ping confirming with bright ring, small bell chime, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "PermissionPrompt": "two tiny bell tones with questioning rising melody, small bell chime, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "IdlePrompt": "gentle sustained finger cymbal ring at low volume fading slowly, small bell, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "IdlePrompt": "steady finger cymbal ring with clear rhythmic shimmer, small bell, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "SubagentStart": "wind chime struck producing two diverging bell tones, small bell chime, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "SubagentStop": "soft tiny bell ping returning with delicate ring, small bell chime, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStop": "clear tiny bell ping returning with distinct ring, small bell chime, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "UserPromptSubmit": "bright energetic finger cymbal strike with shimmering burst, small bell chime, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm"
   }
 }

@@ -3,14 +3,14 @@
   "name": "Steam Works",
   "prompts": {
     "SessionStart": "bright ascending brass bell ringing with welcoming resonance, clean valve whistle, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "SessionEnd": "gentle descending brass bell fading with warm closing ring, clean valve sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "smooth descending brass bell with warm closing ring, clean valve sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "Stop": "satisfying brass bell strike with clear bright ring and sustain, clean valve click, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "PreToolUse": "quick clean valve click with brief metallic tap, brass sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "PostToolUse": "short brass chime confirming with quick bright ring, valve click, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "PermissionPrompt": "two brass bell tones with questioning whistle accent, valve sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "IdlePrompt": "gentle brass bell pulse at low volume with steady rhythm, valve hum, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady brass bell pulse with clear rhythmic tapping, valve hum, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SubagentStart": "brass bell tone splitting into two parallel ringing notes, valve sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStop": "soft brass ping returning with gentle metallic ring, valve click, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear brass ping returning with distinct metallic ring, valve click, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "UserPromptSubmit": "bright brass bell burst with energetic short whistle accent, valve sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
   }
 }

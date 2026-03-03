@@ -3,14 +3,14 @@
   "name": "Tape Loop",
   "prompts": {
     "SessionStart": "warm analog synth tone ascending with vintage tape saturation, tape loop character, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "SessionEnd": "analog synth tone descending gently with warm tape fade, vintage character, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionEnd": "analog synth tone descending smoothly with warm tape decay, vintage character, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "Stop": "single warm analog synth chime with tape-saturated ring, vintage tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "PreToolUse": "quick analog synth click with brief warm tape pop, vintage tick, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "PostToolUse": "short warm analog synth chirp confirming with tape character, vintage tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "PermissionPrompt": "two warm analog synth tones with questioning wobble, vintage tape sound, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "IdlePrompt": "gentle analog synth hum with warm tape loop pulse, vintage character, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "IdlePrompt": "steady analog synth hum with warm tape loop pulsing, vintage character, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "SubagentStart": "analog synth tone splitting into two warm diverging voices, tape character, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "SubagentStop": "soft analog synth ping returning with gentle tape warmth, vintage tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStop": "clear analog synth ping returning with warm tape tone, vintage sound, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "UserPromptSubmit": "bright warm analog synth burst with energetic tape-saturated attack, vintage tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm"
   }
 }

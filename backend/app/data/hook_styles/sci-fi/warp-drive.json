@@ -3,14 +3,14 @@
   "name": "Warp Drive",
   "prompts": {
     "SessionStart": "sweeping ascending synth tone with doppler-like pitch rise, pitch-shifted electronic sweep, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "SessionEnd": "descending synth sweep with doppler-like pitch drop fading gently, pitch-shifted electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "descending synth sweep with doppler-like pitch drop decaying smoothly, pitch-shifted electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "Stop": "bright synth chime with satisfying doppler arrival sweep, pitch-shifted electronic bell, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "PreToolUse": "quick subtle synth blip with slight pitch shift, electronic tick, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick distinct synth blip with crisp pitch shift, electronic tick, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "PostToolUse": "short confirming synth ping with brief doppler chirp, pitch-shifted electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "PermissionPrompt": "two-tone pitch-shifted synth alert with questioning upward sweep, electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "IdlePrompt": "gentle low synth drone with slow pitch modulation, electronic hum, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady synth drone with rhythmic pitch modulation, electronic hum, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SubagentStart": "synth tone branching into two doppler-shifted diverging sweeps, electronic sound, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStop": "soft returning synth ping with gentle doppler deceleration, electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear returning synth ping with smooth doppler deceleration, electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "UserPromptSubmit": "bright accelerating synth sweep with energetic doppler burst, pitch-shifted electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
   }
 }

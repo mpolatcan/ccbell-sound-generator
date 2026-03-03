@@ -2,15 +2,15 @@
   "id": "minimal-glass-touch",
   "name": "Glass Touch",
   "prompts": {
-    "SessionStart": "crystal glass rim tone rising gently with clear harmonic ring, glass bell, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
-    "SessionEnd": "crystal glass tone fading smoothly to pristine silence, glass bell, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
+    "SessionStart": "crystal glass rim tone rising with clear harmonic ring, glass bell, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
+    "SessionEnd": "crystal glass tone decaying smoothly to pristine silence, glass bell, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
     "Stop": "single crystal glass strike with bright ringing sustain, glass bell, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
     "PreToolUse": "quick glass tap with brief crystalline click, glass bell tick, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
     "PostToolUse": "short glass chime confirming with clear bright ring, glass bell, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
     "PermissionPrompt": "two crystal glass tones with questioning upward inflection, glass bell, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
-    "IdlePrompt": "gentle glass harmonic hovering with sustained soft ring, glass bell, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
+    "IdlePrompt": "steady glass harmonic ringing with sustained clear tone, glass bell, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
     "SubagentStart": "crystal glass tone splitting into two diverging harmonics, glass bell, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
-    "SubagentStop": "soft glass ping returning with delicate clear ring, glass bell, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
+    "SubagentStop": "clear glass ping returning with distinct bright ring, glass bell, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
     "UserPromptSubmit": "bright crystal glass strike with energetic ringing burst, glass bell, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine"
   }
 }

@@ -3,14 +3,14 @@
   "name": "Level Complete",
   "prompts": {
     "SessionStart": "celebratory chiptune fanfare with bright ascending major arpeggio, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "SessionEnd": "gentle chiptune farewell melody descending with soft resolution, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "smooth chiptune farewell melody descending with clear resolution, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "Stop": "triumphant chiptune level-clear jingle with ascending fanfare, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "PreToolUse": "quick chiptune tick with anticipatory single blip, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "PostToolUse": "bright chiptune coin-collect ding with quick ring, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "PermissionPrompt": "chiptune two-note question melody with curious rising tone, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "IdlePrompt": "soft chiptune holding pattern with gentle repeating loop, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady chiptune holding pattern with clear repeating loop, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SubagentStart": "chiptune spawn jingle with sparkling two-voice harmony, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStop": "soft chiptune acknowledgment tone with brief descending note, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear chiptune acknowledgment tone with brief descending note, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "UserPromptSubmit": "energetic chiptune activation burst with bright crackling notes, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
   }
 }

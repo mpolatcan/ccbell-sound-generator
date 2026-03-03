@@ -3,14 +3,14 @@
   "name": "Velvet Lounge",
   "prompts": {
     "SessionStart": "warm piano chord ascending with rich velvet tone and sustain, upright bass pluck, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
-    "SessionEnd": "gentle piano chord descending with warm fading resolution, bass pluck, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SessionEnd": "piano chord descending smoothly with warm resolution, bass pluck, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "Stop": "single warm piano chord landing with satisfying rich depth, upright bass, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "PreToolUse": "quick upright bass pluck with brief warm thump, piano tick, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "PostToolUse": "short piano note confirming with bright warm ring, bass pluck, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "PermissionPrompt": "two piano notes with questioning unresolved seventh interval, bass pluck, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
-    "IdlePrompt": "gentle upright bass sustain at low volume with warm resonance, piano hum, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "IdlePrompt": "steady upright bass sustain with warm clear resonance, piano hum, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "SubagentStart": "piano and bass entering together in warm parallel voices, jazz tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
-    "SubagentStop": "soft upright bass pizzicato returning with warm round note, piano tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SubagentStop": "clear upright bass pizzicato returning with warm round note, piano tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "UserPromptSubmit": "bright piano chord burst with energetic warm attack, upright bass accent, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich"
   }
 }

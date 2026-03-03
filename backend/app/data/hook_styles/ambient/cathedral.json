@@ -3,14 +3,14 @@
   "name": "Cathedral",
   "prompts": {
     "SessionStart": "singing bowl ascending with warm resonant bloom and overtones, organ bell tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "SessionEnd": "singing bowl fading gently with descending warm decay, organ bell tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionEnd": "singing bowl decaying smoothly with descending warm tone, organ bell tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "Stop": "single singing bowl strike with rich resonant ring and sustain, organ bell, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "PreToolUse": "quick soft bell tap with brief warm resonance, singing bowl tick, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PreToolUse": "quick distinct bell tap with brief warm resonance, singing bowl tick, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "PostToolUse": "short resonant bell chime confirming with warm ring, singing bowl, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "PermissionPrompt": "two singing bowl tones with questioning rising interval, resonant bell, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "IdlePrompt": "gentle singing bowl sustain humming softly with warm overtones, organ tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "IdlePrompt": "steady singing bowl sustain with warm pulsing overtones, organ tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "SubagentStart": "singing bowl ring splitting into two diverging overtone voices, resonant bell, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "SubagentStop": "soft singing bowl ping returning with gentle warm ring, resonant bell, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStop": "clear singing bowl ping returning with warm resonant ring, resonant bell, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "UserPromptSubmit": "bright singing bowl strike with energetic resonant burst, organ bell, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm"
   }
 }

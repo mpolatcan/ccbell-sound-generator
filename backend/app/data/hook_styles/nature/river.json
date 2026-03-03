@@ -2,15 +2,15 @@
   "id": "nature-river",
   "name": "River",
   "prompts": {
-    "SessionStart": "ascending kalimba notes plucked in gentle rising melody, plucked string tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "SessionEnd": "descending kalimba notes fading with soft plucked decay, plucked string tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionStart": "ascending kalimba notes plucked in bright rising melody, plucked string tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionEnd": "descending kalimba notes with smooth plucked decay, plucked string tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "Stop": "single bright kalimba note with satisfying plucked ring, plucked string tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "PreToolUse": "quick water drop tone with brief clear ping, kalimba pluck, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "PostToolUse": "short harp string pluck confirming with bright tone, plucked string, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "PermissionPrompt": "two kalimba notes with questioning rising interval, plucked string tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "IdlePrompt": "gentle kalimba sustain at low pitch with soft resonance, plucked string tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "IdlePrompt": "steady kalimba pluck with clear rhythmic resonance, plucked string tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "SubagentStart": "kalimba playing two notes diverging in opposite directions, plucked string tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "SubagentStop": "soft harp string ping returning with gentle plucked ring, plucked string tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStop": "clear harp string ping returning with distinct plucked ring, plucked string tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "UserPromptSubmit": "bright energetic kalimba burst with rapid ascending plucks, plucked string tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm"
   }
 }

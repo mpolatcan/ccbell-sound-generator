@@ -2,15 +2,15 @@
   "id": "ambient-cloud-drift",
   "name": "Cloud Drift",
   "prompts": {
-    "SessionStart": "soft ethereal pad chime ascending with airy shimmering bloom, ethereal bell tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "SessionEnd": "ethereal pad chime fading gently with airy descending decay, soft bell, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "Stop": "single airy bell chime with soft ethereal ring and sustain, pad tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "PreToolUse": "quick soft ethereal tick with brief airy shimmer, bell click, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionStart": "ethereal pad chime ascending with airy shimmering bloom, ethereal bell tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionEnd": "ethereal pad chime decaying with airy descending tone, bell sound, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "Stop": "single airy bell chime with bright ethereal ring and sustain, pad tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "PreToolUse": "quick distinct ethereal tick with brief airy shimmer, bell click, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "PostToolUse": "short airy bell ping confirming with ethereal ring, pad chime, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "PermissionPrompt": "two ethereal bell tones with questioning airy rising melody, pad chime, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "IdlePrompt": "gentle ethereal pad sustain with soft airy pulse, bell tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "IdlePrompt": "steady ethereal pad with clear airy pulsing rhythm, bell tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "SubagentStart": "ethereal pad chime splitting into two drifting airy voices, bell tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
-    "SubagentStop": "soft airy bell returning with gentle ethereal ring, pad chime, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SubagentStop": "clear airy bell returning with distinct ethereal ring, pad chime, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "UserPromptSubmit": "bright ethereal pad burst with energetic airy bell shimmer, chime tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm"
   }
 }

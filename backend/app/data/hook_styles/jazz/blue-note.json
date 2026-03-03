@@ -3,14 +3,14 @@
   "name": "Blue Note",
   "prompts": {
     "SessionStart": "warm muted trumpet ascending with breathy welcoming tone, jazz horn, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
-    "SessionEnd": "gentle muted trumpet descending with soft breathy fade, jazz horn, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SessionEnd": "muted trumpet descending smoothly with breathy warm decay, jazz horn, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "Stop": "satisfying muted trumpet note landing with warm brassy ring, jazz horn, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
-    "PreToolUse": "quick soft saxophone breath with brief warm tone, jazz horn tick, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "PreToolUse": "quick distinct saxophone note with brief warm tone, jazz horn tick, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "PostToolUse": "short muted trumpet chirp confirming with bright brassy ping, jazz horn, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "PermissionPrompt": "two muted trumpet notes with questioning rising flat fifth, jazz horn, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
-    "IdlePrompt": "gentle saxophone sustain at low volume with breathy warmth, jazz horn, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "IdlePrompt": "steady saxophone sustain with breathy warm presence, jazz horn, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "SubagentStart": "muted trumpet and saxophone entering together in parallel voices, jazz horn, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
-    "SubagentStop": "soft saxophone note returning with gentle breathy close, jazz horn, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SubagentStop": "clear saxophone note returning with warm breathy close, jazz horn, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "UserPromptSubmit": "bright muted trumpet blast with energetic brassy attack, jazz horn, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich"
   }
 }

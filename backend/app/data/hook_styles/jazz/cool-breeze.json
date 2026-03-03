@@ -3,14 +3,14 @@
   "name": "Cool Breeze",
   "prompts": {
     "SessionStart": "vibraphone ascending with bright shimmering bars and warm ring, jazz piano chord, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
-    "SessionEnd": "vibraphone descending gently with soft dampened bars fading, jazz piano, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SessionEnd": "vibraphone descending smoothly with dampened bars decaying, jazz piano, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "Stop": "single vibraphone strike with bright satisfying ring and sustain, jazz piano chord, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "PreToolUse": "quick finger snap with crisp dry click, jazz percussion, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "PostToolUse": "short vibraphone ping confirming with bright clear ring, finger snap, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "PermissionPrompt": "two vibraphone notes with questioning rising interval, jazz bell tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
-    "IdlePrompt": "gentle jazz piano key sustaining softly with warm tone, vibraphone hum, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "IdlePrompt": "steady jazz piano key with warm sustained tone, vibraphone hum, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "SubagentStart": "vibraphone and piano entering together in bright parallel melody, jazz tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
-    "SubagentStop": "soft vibraphone note returning with gentle dampened ring, jazz chime, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
+    "SubagentStop": "clear vibraphone note returning with dampened ring, jazz chime, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "UserPromptSubmit": "bright vibraphone burst with energetic shimmering attack, jazz piano accent, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich"
   }
 }

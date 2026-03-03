@@ -3,14 +3,14 @@
   "name": "Plasma Core",
   "prompts": {
     "SessionStart": "bright ascending FM synthesis sweep rising two octaves with warm resonance, electronic bell tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "SessionEnd": "gentle descending FM synthesis tone fading with warm harmonic decay, resonant electronic bell, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "smooth descending FM synthesis tone with warm harmonic decay, resonant electronic bell, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "Stop": "satisfying FM synthesis bell chime with bright harmonic ring and sustain, warm electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "PreToolUse": "quick soft FM synthesis tick with brief electronic click, warm resonant tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick distinct FM synthesis tick with crisp electronic click, warm resonant tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "PostToolUse": "short confirming FM synthesis chirp with bright upward ping, warm electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "PermissionPrompt": "two-tone FM synthesis alert with rising questioning inflection, warm resonant electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "IdlePrompt": "gentle pulsing FM synthesis hum at low pitch with soft warmth, resonant electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady pulsing FM synthesis hum with warm rhythmic throb, resonant electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SubagentStart": "FM synthesis tone splitting into two diverging pitches, warm resonant electronic sound, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStop": "soft returning FM synthesis ping with warm harmonic decay, resonant electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear returning FM synthesis ping with warm harmonic decay, resonant electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "UserPromptSubmit": "bright energetic FM synthesis burst with ascending harmonic sweep, warm resonant electronic tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
   }
 }

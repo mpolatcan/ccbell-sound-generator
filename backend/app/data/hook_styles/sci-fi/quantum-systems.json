@@ -3,14 +3,14 @@
   "name": "Quantum Systems",
   "prompts": {
     "SessionStart": "crystalline digital bell ascending with precise cold harmonic overtones, digital bell tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "SessionEnd": "precise digital bell descending with cold crystalline decay fading, digital bell tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "precise digital bell descending with cold crystalline decay, digital bell tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "Stop": "single crystalline digital bell strike with bright precise ring, cold digital tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "PreToolUse": "quick precise digital click with cold crystalline edge, digital bell tick, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "PostToolUse": "short crystalline digital chirp confirming with bright cold ping, digital bell tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "PermissionPrompt": "two crystalline digital bell tones with questioning rising interval, cold precise tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "IdlePrompt": "gentle shimmering digital bell sustain at low volume, cold crystalline hum, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady shimmering digital bell with crystalline pulsing rhythm, cold electronic hum, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SubagentStart": "crystalline digital bell splitting into two symmetric diverging tones, precise cold sound, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStop": "soft crystalline digital ping returning with brief cold ring, digital bell tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear crystalline digital ping returning with brief cold ring, digital bell tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "UserPromptSubmit": "bright crystalline digital bell burst with energetic precise attack, cold digital tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
   }
 }
