@@ -543,6 +543,14 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                           CFG {sound.cfg_scale}
                                         </Badge>
                                       )}
+                                      <Badge variant="outline" className="text-[10px] font-mono">
+                                        {sound.model === 'small' ? 'Small' : '1.0'}
+                                      </Badge>
+                                      {sound.sampler && (
+                                        <Badge variant="outline" className="text-[10px] font-mono">
+                                          {sound.sampler}
+                                        </Badge>
+                                      )}
                                     </div>
                                     <p className="text-xs text-muted-foreground mt-1 font-mono">
                                       {sound.prompt}

@@ -257,6 +257,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
       const defaults = MODEL_DEFAULTS[selectedModel]
       const steps = advancedSettings.steps ?? defaults.default_steps
       const cfgScale = advancedSettings.cfg_scale ?? defaults.cfg_scale
+      const sampler = advancedSettings.sampler ?? defaults.default_sampler
 
       // Add sound to library with 'generating' status (queued)
       addSound({
@@ -276,6 +277,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
         theme_name: themeName,
         steps,
         cfg_scale: cfgScale,
+        sampler,
       })
 
       // Add to generation queue

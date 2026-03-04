@@ -148,6 +148,7 @@ export interface GeneratedSound {
   theme_name?: string // Theme name (e.g. "Sci-Fi")
   steps?: number // Diffusion steps used for generation
   cfg_scale?: number // CFG scale used for generation
+  sampler?: string // Sampler used for generation (e.g. "pingpong")
 }
 
 export interface SoundPack {
