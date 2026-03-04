@@ -518,6 +518,11 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                             : sound.status}
                                       </Badge>
                                       <Badge variant="outline" className="text-[10px]">{formatDuration(sound.duration)}</Badge>
+                                      {sound.theme_name && (
+                                        <Badge variant="outline" className="text-[10px]">
+                                          {sound.theme_name}
+                                        </Badge>
+                                      )}
                                       {sound.style_name && (
                                         <Badge variant="outline" className="text-[10px]">
                                           {sound.style_name}
@@ -526,6 +531,16 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                       {sound.prompt_alias && (
                                         <Badge variant="outline" className="text-[10px]">
                                           {sound.prompt_alias}
+                                        </Badge>
+                                      )}
+                                      {sound.steps != null && (
+                                        <Badge variant="outline" className="text-[10px] font-mono">
+                                          {sound.steps} steps
+                                        </Badge>
+                                      )}
+                                      {sound.cfg_scale != null && (
+                                        <Badge variant="outline" className="text-[10px] font-mono">
+                                          CFG {sound.cfg_scale}
                                         </Badge>
                                       )}
                                     </div>

@@ -253,6 +253,10 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
 
       // Resolve style name for this hook
       const styleName = selectedTheme !== 'custom' ? effectiveSubTheme?.name : undefined
+      const themeName = selectedThemeObj?.name
+      const defaults = MODEL_DEFAULTS[selectedModel]
+      const steps = advancedSettings.steps ?? defaults.default_steps
+      const cfgScale = advancedSettings.cfg_scale ?? defaults.cfg_scale
 
       // Add sound to library with 'generating' status (queued)
       addSound({
@@ -269,6 +273,9 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
         stage: 'Queued',
         created_at: new Date(),
         style_name: styleName,
+        theme_name: themeName,
+        steps,
+        cfg_scale: cfgScale,
       })
 
       // Add to generation queue

@@ -145,6 +145,9 @@ export interface GeneratedSound {
   completed_at?: Date // When generation completed or errored (for persistent elapsed time)
   style_name?: string // Style preset name (e.g. "Plasma Resolve")
   prompt_alias?: string // Prompt variant alias (e.g. "Neon Descent")
+  theme_name?: string // Theme name (e.g. "Sci-Fi")
+  steps?: number // Diffusion steps used for generation
+  cfg_scale?: number // CFG scale used for generation
 }
 
 export interface SoundPack {
