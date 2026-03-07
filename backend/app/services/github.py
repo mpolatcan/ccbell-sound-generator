@@ -150,7 +150,7 @@ class GitHubService:
                 "source": {
                     "provider": "ccbell-sound-generator",
                     "model": f"stable-audio-open-{model_name or 'small'}",
-                    "license": "stabilityai/stable-audio-open-1.0",
+                    "license": "stabilityai/stable-audio-open-small",
                 },
             }
 

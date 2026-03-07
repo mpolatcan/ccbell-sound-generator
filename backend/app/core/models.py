@@ -19,12 +19,8 @@ HookTypeId = Literal[
 ]
 
 # Valid sampler types supported by stable-audio-tools
-# Small model: only "pingpong"
-# 1.0 model: only "dpmpp-3m-sde" and "dpmpp-2m-sde"
 SamplerType = Literal[
-    "pingpong",  # Small model only
-    "dpmpp-3m-sde",  # 1.0 model only
-    "dpmpp-2m-sde",  # 1.0 model only
+    "pingpong",  # Small model
 ]
 
 
@@ -48,12 +44,12 @@ class GenerationSettings(BaseModel):
 class GenerateRequest(BaseModel):
     """Request model for audio generation."""
 
-    model: Literal["small", "1.0"] = Field("small", description="Model to use for generation")
+    model: str = Field("small", description="Model to use for generation")
     prompt: str = Field(
         ..., min_length=1, max_length=1500, description="Text prompt for audio generation"
     )
     hook_type: HookTypeId = Field(..., description="Claude Code hook type")
-    duration: float = Field(2.0, ge=0.5, le=47.0, description="Duration in seconds")
+    duration: float = Field(2.0, ge=0.5, le=5.0, description="Duration in seconds")
     settings: GenerationSettings | None = Field(None, description="Advanced generation settings")
 
 

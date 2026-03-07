@@ -2,15 +2,15 @@
   "id": "minimal-light-point",
   "name": "Light Point",
   "prompts": {
-    "SessionStart": "precise sharp ping ascending with focused bright attack, digital click tone, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
+    "SessionStart": "precise soft ping ascending with focused bright tone, digital click tone, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
     "SessionEnd": "precise ping descending with focused clean decay, digital click tone, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
-    "Stop": "single sharp click with focused bright ring and clean tail, digital click tone, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
+    "Stop": "single clear click with focused bright ring and clean tail, digital click tone, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
     "PreToolUse": "quick precise micro-click with crisp instant attack, digital tick, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
     "PostToolUse": "short focused ping confirming with bright clean dot, digital click, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
-    "PermissionPrompt": "two sharp pings with questioning ascending interval, digital click tone, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
+    "PermissionPrompt": "two gentle pings with questioning ascending interval, digital click tone, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
     "IdlePrompt": "steady rhythmic ping pulsing with clear consistent beat, digital click tone, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
-    "SubagentStart": "single sharp ping splitting into two diverging clicks, digital click tone, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
+    "SubagentStart": "single soft ping splitting into two diverging clicks, digital click tone, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
     "SubagentStop": "clear returning ping arriving with crisp clean tail, digital click tone, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
-    "UserPromptSubmit": "bright focused ping burst with sharp energetic attack, digital click tone, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine"
+    "UserPromptSubmit": "bright focused ping melody with soft energetic tone, digital click tone, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine"
   }
 }

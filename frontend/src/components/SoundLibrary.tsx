@@ -544,7 +544,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                         </Badge>
                                       )}
                                       <Badge variant="outline" className="text-[10px] font-mono">
-                                        {sound.model === 'small' ? 'Small' : '1.0'}
+                                        {sound.model === 'small' ? 'Small' : sound.model}
                                       </Badge>
                                       {sound.sampler && (
                                         <Badge variant="outline" className="text-[10px] font-mono">

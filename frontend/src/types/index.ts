@@ -57,7 +57,7 @@ export interface GenerationSettings {
 }
 
 export interface GenerateRequest {
-  model: 'small' | '1.0'
+  model: string
   prompt: string
   hook_type: HookTypeId
   duration: number
@@ -133,7 +133,7 @@ export interface GeneratedSound {
   pack_id: string
   hook_type: HookTypeId
   prompt: string
-  model: 'small' | '1.0'
+  model: string
   duration: number
   audio_url: string
   status: SoundStatus
@@ -155,7 +155,7 @@ export interface SoundPack {
   id: string
   name: string
   theme: string
-  model: 'small' | '1.0'
+  model: string
   created_at: Date
 }
 
@@ -214,7 +214,7 @@ export interface DownloadPackData {
 export interface PublishPackData {
   packName: string
   theme: string
-  model: 'small' | '1.0'
+  model: string
   sounds: GeneratedSound[]
 }
 

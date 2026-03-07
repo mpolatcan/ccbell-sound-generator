@@ -29,42 +29,32 @@ import type { GenerationSettings } from '@/types'
 import type { UseModelStatusReturn } from '@/hooks/useModelStatus'
 
 interface ModelSettingsProps {
-  model: 'small' | '1.0'
-  onModelChange: (model: 'small' | '1.0') => void
+  model: string
+  onModelChange: (model: string) => void
   modelStatus: UseModelStatusReturn
   settings: GenerationSettings
   onChange: (settings: GenerationSettings) => void
 }
 
 // Presets for different use cases
-// Note: Small model ONLY supports 'pingpong' sampler
 const PRESETS = {
   fast: {
     name: 'Fast',
-    description: 'Quick generation, good for testing',
+    description: 'Quick generation (~15s)',
     icon: Zap,
-    settings: {
-      small: { steps: 8, cfg_scale: 1.0, sampler: 'pingpong' },
-      '1.0': { steps: 40, cfg_scale: 3.0, sampler: 'dpmpp-3m-sde' }
-    }
+    settings: { steps: 4, cfg_scale: 1.0, sampler: 'pingpong' }
   },
   balanced: {
     name: 'Balanced',
-    description: 'Good quality with reasonable speed',
+    description: 'Good quality (~30s)',
     icon: Scale,
-    settings: {
-      small: { steps: 16, cfg_scale: 3.0, sampler: 'pingpong' },
-      '1.0': { steps: 100, cfg_scale: 7.0, sampler: 'dpmpp-3m-sde' }
-    }
+    settings: { steps: 8, cfg_scale: 1.0, sampler: 'pingpong' }
   },
   quality: {
     name: 'Quality',
-    description: 'Higher quality, longer generation time',
+    description: 'Higher quality (~60s)',
     icon: Gem,
-    settings: {
-      small: { steps: 24, cfg_scale: 5.0, sampler: 'pingpong' },
-      '1.0': { steps: 150, cfg_scale: 8.0, sampler: 'dpmpp-3m-sde' }
-    }
+    settings: { steps: 16, cfg_scale: 3.0, sampler: 'pingpong' }
   }
 } as const
 
@@ -100,12 +90,11 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
 
   const applyPreset = (presetKey: keyof typeof PRESETS) => {
     const preset = PRESETS[presetKey]
-    const presetSettings = preset.settings[model]
     onChange({
       ...settings,
-      steps: presetSettings.steps,
-      cfg_scale: presetSettings.cfg_scale,
-      sampler: presetSettings.sampler
+      steps: preset.settings.steps,
+      cfg_scale: preset.settings.cfg_scale,
+      sampler: preset.settings.sampler
     })
   }
 
@@ -117,10 +106,11 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
   const currentSteps = settings.steps ?? defaults.default_steps
   const currentCfgScale = settings.cfg_scale ?? defaults.cfg_scale
   const availableSamplers = getSamplersForModel(model)
+  const currentModel = models.find(m => m.id === model)
 
   const activePreset = useMemo(() => {
     for (const [key, preset] of Object.entries(PRESETS)) {
-      const p = preset.settings[model]
+      const p = preset.settings
       if (
         currentSteps === p.steps &&
         currentCfgScale === p.cfg_scale &&
@@ -130,7 +120,7 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
       }
     }
     return null
-  }, [model, currentSteps, currentCfgScale, currentSampler])
+  }, [currentSteps, currentCfgScale, currentSampler])
 
   return (
     <TooltipProvider>
@@ -142,7 +132,7 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
                 <Cpu className="h-5 w-5 text-primary" />
                 Model Settings
               </CardTitle>
-              <CardDescription>Select model and fine-tune generation parameters</CardDescription>
+              <CardDescription>Fine-tune generation parameters</CardDescription>
             </div>
             <Button
               variant="ghost"
@@ -157,13 +147,13 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
           </div>
         </CardHeader>
         <CardContent className="space-y-5">
-          {/* Model Selection */}
-          <div className="space-y-2">
-            <Label>Model</Label>
-            {modelsLoading ? (
-              <Skeleton className="h-10 w-full" />
-            ) : (
-              <Select value={model} onValueChange={(v) => onModelChange(v as 'small' | '1.0')}>
+          {/* Model & Sampler info */}
+          {modelsLoading ? (
+            <Skeleton className="h-8 w-full" />
+          ) : models.length > 1 ? (
+            <div className="space-y-2">
+              <Label>Model</Label>
+              <Select value={model} onValueChange={onModelChange}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
@@ -180,8 +170,16 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
                   ))}
                 </SelectContent>
               </Select>
-            )}
-          </div>
+            </div>
+          ) : currentModel ? (
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <span className="font-medium text-foreground">{currentModel.name}</span>
+              <span>&middot;</span>
+              <span>{currentModel.parameters}</span>
+              <span>&middot;</span>
+              <span>Sampler: {currentSampler}</span>
+            </div>
+          ) : null}
 
           {/* Model Loading Status */}
           <ModelLoadingIndicator
@@ -189,7 +187,7 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
             progress={modelStatus.progress}
             stage={modelStatus.stage}
             error={modelStatus.error}
-            modelName={models.find(m => m.id === model)?.name || model}
+            modelName={currentModel?.name || model}
             onRetry={modelStatus.loadModel}
           />
 
@@ -202,7 +200,7 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
                   <Info className="h-3.5 w-3.5 text-muted-foreground cursor-help" />
                 </TooltipTrigger>
                 <TooltipContent className="max-w-xs">
-                  <p>Quick configurations for different use cases. These adjust steps, CFG scale, and sampler together.</p>
+                  <p>Quick configurations for different use cases. These adjust steps and CFG scale together.</p>
                 </TooltipContent>
               </Tooltip>
             </Label>
@@ -230,7 +228,7 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
                     <TooltipContent>
                       <p>{preset.description}</p>
                       <p className="text-xs text-muted-foreground mt-1">
-                        Steps: {preset.settings[model].steps}, CFG: {preset.settings[model].cfg_scale}
+                        Steps: {preset.settings.steps}, CFG: {preset.settings.cfg_scale}
                       </p>
                     </TooltipContent>
                   </Tooltip>
@@ -258,7 +256,7 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
                       <li><strong>Fewer steps (lower)</strong> = Faster generation, but may sound rougher or have artifacts</li>
                     </ul>
                     <p className="text-xs text-muted-foreground mt-2">
-                      For the small model, 4-16 steps work well. For 1.0 model, 80-150 is optimal.
+                      For notification sounds, 4-16 steps work well. Default: 8 steps.
                     </p>
                   </TooltipContent>
                 </Tooltip>
@@ -310,45 +308,27 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
             </p>
           </div>
 
-          {/* Sampler */}
-          <div className="space-y-2">
-            <Label className="flex items-center gap-2">
-              Sampler
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Info className="h-3.5 w-3.5 text-muted-foreground cursor-help" />
-                </TooltipTrigger>
-                <TooltipContent className="max-w-xs">
-                  <p className="font-medium mb-1">The algorithm used to denoise:</p>
-                  <ul className="text-xs space-y-1">
-                    <li><strong>Pingpong</strong> - Only option for small model</li>
-                    <li><strong>DPM++ 3M SDE</strong> - Best quality for 1.0</li>
-                    <li><strong>DPM++ 2M SDE</strong> - Faster for 1.0</li>
-                  </ul>
-                </TooltipContent>
-              </Tooltip>
-            </Label>
-            <Select
-              value={currentSampler}
-              onValueChange={handleSamplerChange}
-            >
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {availableSamplers.map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
-                    <span>{option.label}</span>
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {model === 'small' && (
-              <p className="text-xs text-primary/70">
-                Small model only supports Pingpong sampler
-              </p>
-            )}
-          </div>
+          {/* Sampler - only show dropdown if multiple options */}
+          {availableSamplers.length > 1 && (
+            <div className="space-y-2">
+              <Label>Sampler</Label>
+              <Select
+                value={currentSampler}
+                onValueChange={handleSamplerChange}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {availableSamplers.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      <span>{option.label}</span>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          )}
 
           {/* Seed */}
           <div className="space-y-2">

@@ -96,7 +96,6 @@ class ModelLoader:
     # Model HuggingFace repository IDs
     MODEL_REPOS = {
         "small": "stabilityai/stable-audio-open-small",
-        "1.0": "stabilityai/stable-audio-open-1.0",
     }
 
     def __init__(self):
@@ -106,7 +105,6 @@ class ModelLoader:
         self._device: str | None = None
         self._loading_states: dict[str, LoadingState] = {
             "small": LoadingState(),
-            "1.0": LoadingState(),
         }
         self._loading_lock = asyncio.Lock()
         logger.debug("ModelLoader initialized")
@@ -175,7 +173,7 @@ class ModelLoader:
                 f"Model {model_id} state updated: {status} ({progress * 100:.0f}%) - {stage}"
             )
 
-    async def load_model_background(self, model_id: Literal["small", "1.0"]) -> None:
+    async def load_model_background(self, model_id: str) -> None:
         """
         Load a model in the background with progress tracking.
         """
@@ -271,7 +269,7 @@ class ModelLoader:
             logger.opt(exception=True).debug("Model loading traceback:")
             self._update_loading_state(model_id, "error", error=error_msg)
 
-    async def load_model(self, model_id: Literal["small", "1.0"]) -> tuple[Any, Any]:
+    async def load_model(self, model_id: str) -> tuple[Any, Any]:
         """
         Load a model, unloading others if necessary to manage memory.
 
@@ -364,28 +362,18 @@ class ModelLoader:
             return ModelInfo(
                 id="small",
                 name="Stable Audio Open Small",
-                description="Fast model optimized for CPUs. Best for quick iteration.",
+                description="Fast model optimized for short notification sounds on CPU.",
                 max_duration=settings.max_duration_small,
                 default_steps=settings.default_steps_small,
                 default_sampler=settings.default_sampler_small,
                 parameters="341 million",
-            )
-        elif model_id == "1.0":
-            return ModelInfo(
-                id="1.0",
-                name="Stable Audio Open 1.0",
-                description="Higher quality model. Longer generation times.",
-                max_duration=settings.max_duration_large,
-                default_steps=settings.default_steps_large,
-                default_sampler=settings.default_sampler_large,
-                parameters="1.1 billion",
             )
         else:
             raise ValueError(f"Unknown model ID: {model_id}")
 
     def get_all_models_info(self) -> "list[ModelInfo]":
         """Get information about all available models."""
-        return [self.get_model_info("small"), self.get_model_info("1.0")]
+        return [self.get_model_info(model_id) for model_id in self.MODEL_REPOS]
 
 
 # Global model loader instance

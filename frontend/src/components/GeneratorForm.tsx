@@ -33,7 +33,7 @@ export interface GeneratorFormRef {
 }
 
 interface GeneratorFormProps {
-  selectedModel: 'small' | '1.0'
+  selectedModel: string
   advancedSettings: GenerationSettings
   modelReady: boolean
 }
@@ -402,6 +402,21 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
                     )}
                   </SelectContent>
                 </Select>
+
+                {/* Pack name input */}
+                {selectedPackId === null && (
+                  <div className="space-y-1">
+                    <Input
+                      placeholder={getDefaultPackName()}
+                      value={packName}
+                      onChange={(e) => setPackName(e.target.value)}
+                      className="placeholder:text-muted-foreground/50"
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      Leave empty to auto-generate name from theme
+                    </p>
+                  </div>
+                )}
               </div>
 
               {/* Hook Types */}
@@ -418,21 +433,6 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
                 )}
               </div>
             </div>
-
-            {/* Pack name input */}
-            {selectedPackId === null && (
-              <div className="space-y-1">
-                <Input
-                  placeholder={getDefaultPackName()}
-                  value={packName}
-                  onChange={(e) => setPackName(e.target.value)}
-                  className="placeholder:text-muted-foreground/50"
-                />
-                <p className="text-xs text-muted-foreground">
-                  Leave empty to auto-generate name from theme
-                </p>
-              </div>
-            )}
 
             {/* ═══ SECTION: Sound Design ═══ */}
             <SectionDivider label="Sound Design" />

@@ -1,7 +1,6 @@
 """REST API endpoints."""
 
 import asyncio
-from typing import Literal, cast
 
 from fastapi import APIRouter, BackgroundTasks, HTTPException
 from fastapi.responses import FileResponse
@@ -96,7 +95,7 @@ async def get_models_status():
 @router.get("/models/{model_id}/status", response_model=ModelLoadingStatus)
 async def get_model_status(model_id: str):
     """Get loading status for a specific model."""
-    if model_id not in ["small", "1.0"]:
+    if model_id not in model_loader.MODEL_REPOS:
         logger.warning(f"Unknown model requested: {model_id}")
         raise HTTPException(status_code=404, detail="Model not found")
     return model_loader.get_loading_status(model_id)
@@ -105,7 +104,7 @@ async def get_model_status(model_id: str):
 @router.post("/models/{model_id}/load")
 async def load_model(model_id: str, background_tasks: BackgroundTasks):
     """Trigger background loading of a model."""
-    if model_id not in ["small", "1.0"]:
+    if model_id not in model_loader.MODEL_REPOS:
         logger.warning(f"Unknown model load request: {model_id}")
         raise HTTPException(status_code=404, detail="Model not found")
 
@@ -120,9 +119,7 @@ async def load_model(model_id: str, background_tasks: BackgroundTasks):
 
     # Start background loading
     logger.info(f"Starting background load for model: {model_id}")
-    # Cast model_id to Literal type since we validated it above
-    model_id_literal = cast(Literal["small", "1.0"], model_id)
-    background_tasks.add_task(model_loader.load_model_background, model_id_literal)
+    background_tasks.add_task(model_loader.load_model_background, model_id)
 
     return {"status": "loading_started", "model_id": model_id}
 

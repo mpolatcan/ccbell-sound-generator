@@ -255,23 +255,14 @@ class AudioService:
             # Get generation parameters
             gen_settings = job.request.settings or GenerationSettings()
 
-            # Set defaults based on model
-            if job.request.model == "small":
-                steps = gen_settings.steps or settings.default_steps_small
-                cfg_scale = (
-                    gen_settings.cfg_scale
-                    if gen_settings.cfg_scale is not None
-                    else settings.default_cfg_scale_small
-                )
-                sampler = gen_settings.sampler or settings.default_sampler_small
-            else:
-                steps = gen_settings.steps or settings.default_steps_large
-                cfg_scale = (
-                    gen_settings.cfg_scale
-                    if gen_settings.cfg_scale is not None
-                    else settings.default_cfg_scale_large
-                )
-                sampler = gen_settings.sampler or settings.default_sampler_large
+            # Set defaults
+            steps = gen_settings.steps or settings.default_steps_small
+            cfg_scale = (
+                gen_settings.cfg_scale
+                if gen_settings.cfg_scale is not None
+                else settings.default_cfg_scale_small
+            )
+            sampler = gen_settings.sampler or settings.default_sampler_small
 
             # Sigma values (noise levels)
             sigma_min = (
@@ -286,11 +277,7 @@ class AudioService:
             )
 
             # Validate duration
-            max_duration = (
-                settings.max_duration_small
-                if job.request.model == "small"
-                else settings.max_duration_large
-            )
+            max_duration = settings.max_duration_small
             duration = min(job.request.duration, max_duration)
             if job.request.duration > max_duration:
                 logger.warning(
@@ -327,9 +314,9 @@ class AudioService:
                 {"prompt": job.request.prompt, "seconds_start": 0, "seconds_total": duration}
             ]
 
-            # Negative conditioning for better quality (only effective when cfg_scale > 1.0).
-            # Note: Small model default cfg_scale=1.0 disables classifier-free guidance,
-            # so this negative prompt has no effect for the small model.
+            # Negative conditioning (only effective when cfg_scale > 1.0).
+            # With cfg_scale=1.0 (default), CFG is disabled and this is ignored,
+            # but we still pass it for users who increase cfg_scale manually.
             negative_conditioning = [
                 {
                     "prompt": "low quality, noise, distortion, clipping, reverb, echo, background noise, hiss",
@@ -391,7 +378,7 @@ class AudioService:
                 if seed is not None:
                     torch.manual_seed(seed)
                     logger.debug(f"Job {job_id}: seed {seed} set in worker thread")
-                with torch.no_grad():
+                with torch.inference_mode():
                     # Note: conditioning is List[Dict] per MultiConditioner.forward signature,
                     # but generate_diffusion_cond type hint incorrectly says dict
                     output = generate_diffusion_cond(

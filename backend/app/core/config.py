@@ -20,22 +20,18 @@ class Settings(BaseSettings):
     port: int = 7860
 
     # Model settings
-    default_model: Literal["small", "1.0"] = "small"
+    default_model: str = "small"
     models_cache_dir: Path = Path.home() / ".cache" / "ccbell-models"
 
     # Audio settings
     sample_rate: int = 44100
     default_duration: float = 2.0
-    max_duration_small: float = 11.0
-    max_duration_large: float = 47.0
+    max_duration_small: float = 5.0
 
-    # Generation settings (from official HuggingFace documentation)
-    default_steps_small: int = 16
-    default_steps_large: int = 100
-    default_cfg_scale_small: float = 3.0
-    default_cfg_scale_large: float = 7.0  # Official default for 1.0 model
+    # Generation settings (optimized for short notification sounds on CPU)
+    default_steps_small: int = 8
+    default_cfg_scale_small: float = 1.0  # 1.0 = no CFG, single pass per step (2x faster)
     default_sampler_small: str = "pingpong"
-    default_sampler_large: str = "dpmpp-3m-sde"
     # Noise level parameters
     default_sigma_min: float = 0.3
     default_sigma_max: float = 500.0

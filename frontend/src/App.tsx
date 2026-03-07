@@ -31,7 +31,7 @@ function AppContent() {
   const [downloadDialogOpen, setDownloadDialogOpen] = useState(false)
   const [packDataToDownload, setPackDataToDownload] = useState<DownloadPackData | null>(null)
   const [shortcutsHelpOpen, setShortcutsHelpOpen] = useState(false)
-  const [selectedModel, setSelectedModel] = useState<'small' | '1.0'>('small')
+  const [selectedModel, setSelectedModel] = useState('small')
   const [advancedSettings, setAdvancedSettings] = useState<GenerationSettings>({})
   const modelStatus = useModelStatus({
     modelId: selectedModel,

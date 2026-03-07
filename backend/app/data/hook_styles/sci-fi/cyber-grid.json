@@ -2,15 +2,15 @@
   "id": "sci-fi-cyber-grid",
   "name": "Cyber Grid",
   "prompts": {
-    "SessionStart": "sharp digital square wave ascending with crisp grid-like precision, cyber synth tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionStart": "clean digital square wave ascending with crisp grid-like precision, cyber synth tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SessionEnd": "digital square wave descending with crisp structured decay, cyber synth tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "Stop": "single sharp digital square wave chime with bright grid ring, cyber synth, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "single clear digital square wave chime with bright grid ring, cyber synth, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "PreToolUse": "quick crisp digital square wave tick with precise click, cyber tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "PostToolUse": "short digital square wave chirp confirming with bright ping, cyber synth, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "PermissionPrompt": "two sharp digital square wave tones with questioning rise, cyber synth, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two clean digital square wave tones with questioning rise, cyber synth, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "IdlePrompt": "steady digital square wave pulse with crisp rhythmic pattern, cyber synth hum, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SubagentStart": "digital square wave splitting into two parallel grid tones, cyber synth, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SubagentStop": "clear digital square wave ping returning with crisp ring, cyber synth tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "UserPromptSubmit": "bright sharp digital square wave burst with energetic attack, cyber synth, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
+    "UserPromptSubmit": "bright clean digital square wave melody with energetic tone, cyber synth, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
   }
 }

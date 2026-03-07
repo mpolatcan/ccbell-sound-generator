@@ -2,7 +2,7 @@
   "id": "ambient-cloud-drift",
   "name": "Cloud Drift",
   "prompts": {
-    "SessionStart": "ethereal pad chime ascending with airy shimmering bloom, ethereal bell tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
+    "SessionStart": "ethereal pad chime ascending with airy shimmering bloom, crystalline bell tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "SessionEnd": "ethereal pad chime decaying with airy descending tone, bell sound, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "Stop": "single airy bell chime with bright ethereal ring and sustain, pad tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "PreToolUse": "quick distinct ethereal tick with brief airy shimmer, bell click, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
