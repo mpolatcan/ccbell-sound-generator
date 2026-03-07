@@ -50,4 +50,6 @@ RUN mkdir -p /tmp/ccbell-audio && \
 
 ENV HOME=/home/user \
     PATH="/home/user/app/.venv/bin:$PATH" \
-    PYTHONUNBUFFERED=1
+    PYTHONUNBUFFERED=1 \
+    OMP_NUM_THREADS=2 \
+    MKL_NUM_THREADS=2
