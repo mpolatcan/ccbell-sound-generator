@@ -7,7 +7,7 @@ AI-powered notification sound generator for the Claude Code plugin "ccbell", dep
 This is a full-stack web application with:
 - **Backend**: FastAPI (Python 3.11-3.12) - serves API and static files
 - **Frontend**: React 19 + TypeScript + Vite 6 + Tailwind CSS + shadcn/ui
-- **AI Models**: Stable Audio Open (Small & 1.0) for audio generation
+- **AI Models**: Stable Audio Open Small (341M) for audio generation
 - **Deployment**: HuggingFace Spaces Docker SDK on free CPU tier
 - **Tooling**: uv (package manager), ruff (linter/formatter), ty>=0.0.1a5 (type checker)
 
@@ -206,7 +206,7 @@ interface SoundPack {
   id: string
   name: string
   theme: string
-  model: 'small' | '1.0'
+  model: string
   created_at: Date
 }
 
@@ -221,7 +221,7 @@ interface GeneratedSound {
   pack_id: string           // Links sound to pack
   hook_type: HookTypeId
   prompt: string
-  model: 'small' | '1.0'
+  model: string
   duration: number
   audio_url: string
   status: 'generating' | 'completed' | 'error'
@@ -265,8 +265,7 @@ Sound library state is managed with Zustand (`useSoundLibrary` hook):
 
 | Model | Parameters | Max Duration | Best For |
 |-------|-----------|--------------|----------|
-| Stable Audio Open Small | 341M | 11 sec | Fast iteration, CPU |
-| Stable Audio Open 1.0 | 1.1B | 47 sec | Higher quality |
+| Stable Audio Open Small | 341M | 5 sec | Notification sounds, CPU |
 
 ## Claude Code Hook Types
 
@@ -411,22 +410,18 @@ All settings can be overridden via environment variables with the `CCBELL_` pref
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `CCBELL_APP_NAME` | `CCBell Sound Generator` | Application name |
-| `CCBELL_APP_VERSION` | `1.0.30` | Application version |
+| `CCBELL_APP_VERSION` | `1.1.0` | Application version |
 | `CCBELL_DEBUG` | `false` | Enable debug mode |
 | `CCBELL_HOST` | `0.0.0.0` | Server host |
 | `CCBELL_PORT` | `7860` | Server port (use 8000 for local dev via uvicorn --reload) |
-| `CCBELL_DEFAULT_MODEL` | `small` | Default model (`small` or `1.0`) |
+| `CCBELL_DEFAULT_MODEL` | `small` | Default model |
 | `CCBELL_MODELS_CACHE_DIR` | `~/.cache/ccbell-models` | Model cache directory |
 | `CCBELL_SAMPLE_RATE` | `44100` | Audio sample rate |
 | `CCBELL_DEFAULT_DURATION` | `2.0` | Default audio duration (seconds) |
-| `CCBELL_MAX_DURATION_SMALL` | `11.0` | Max duration for small model |
-| `CCBELL_MAX_DURATION_LARGE` | `47.0` | Max duration for 1.0 model |
-| `CCBELL_DEFAULT_STEPS_SMALL` | `16` | Diffusion steps for small model |
-| `CCBELL_DEFAULT_STEPS_LARGE` | `100` | Diffusion steps for 1.0 model |
-| `CCBELL_DEFAULT_CFG_SCALE_SMALL` | `3.0` | CFG scale for small model |
-| `CCBELL_DEFAULT_CFG_SCALE_LARGE` | `7.0` | CFG scale for 1.0 model |
+| `CCBELL_MAX_DURATION_SMALL` | `5.0` | Max duration for small model |
+| `CCBELL_DEFAULT_STEPS_SMALL` | `8` | Diffusion steps for small model |
+| `CCBELL_DEFAULT_CFG_SCALE_SMALL` | `1.0` | CFG scale for small model |
 | `CCBELL_DEFAULT_SAMPLER_SMALL` | `pingpong` | Sampler for small model |
-| `CCBELL_DEFAULT_SAMPLER_LARGE` | `dpmpp-3m-sde` | Sampler for 1.0 model |
 | `CCBELL_DEFAULT_SIGMA_MIN` | `0.3` | Minimum noise level for diffusion |
 | `CCBELL_DEFAULT_SIGMA_MAX` | `500.0` | Maximum noise level for diffusion |
 | `CCBELL_TEMP_AUDIO_DIR` | `/tmp/ccbell-audio` | Temporary audio directory |

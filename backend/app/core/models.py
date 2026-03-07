@@ -164,7 +164,7 @@ class HealthResponse(BaseModel):
     """Health check response."""
 
     status: str = "healthy"
-    version: str = "1.0.30"
+    version: str = "1.1.0"
     models_loaded: list[str] = []
     publish_enabled: bool = False
 
