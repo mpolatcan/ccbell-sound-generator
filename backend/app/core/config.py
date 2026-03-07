@@ -25,7 +25,7 @@ class Settings(BaseSettings):
 
     # Audio settings
     sample_rate: int = 44100
-    default_duration: float = 2.0
+    default_duration: float = 1.0
     max_duration_small: float = 5.0
 
     # Generation settings (optimized for short notification sounds on CPU)

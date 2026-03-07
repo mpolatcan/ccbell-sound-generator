@@ -49,7 +49,7 @@ class GenerateRequest(BaseModel):
         ..., min_length=1, max_length=1500, description="Text prompt for audio generation"
     )
     hook_type: HookTypeId = Field(..., description="Claude Code hook type")
-    duration: float = Field(2.0, ge=0.5, le=5.0, description="Duration in seconds")
+    duration: float = Field(1.0, ge=0.5, le=5.0, description="Duration in seconds")
     settings: GenerationSettings | None = Field(None, description="Advanced generation settings")
 
 

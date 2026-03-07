@@ -26,7 +26,7 @@ export const MODEL_DEFAULTS: Record<string, {
 }
 
 // Default generation settings
-export const DEFAULT_DURATION = 2.0
+export const DEFAULT_DURATION = 1.0
 
 // Sampler options per model
 export const SAMPLER_OPTIONS = [

@@ -417,7 +417,7 @@ All settings can be overridden via environment variables with the `CCBELL_` pref
 | `CCBELL_DEFAULT_MODEL` | `small` | Default model |
 | `CCBELL_MODELS_CACHE_DIR` | `~/.cache/ccbell-models` | Model cache directory |
 | `CCBELL_SAMPLE_RATE` | `44100` | Audio sample rate |
-| `CCBELL_DEFAULT_DURATION` | `2.0` | Default audio duration (seconds) |
+| `CCBELL_DEFAULT_DURATION` | `1.0` | Default audio duration (seconds) |
 | `CCBELL_MAX_DURATION_SMALL` | `5.0` | Max duration for small model |
 | `CCBELL_DEFAULT_STEPS_SMALL` | `8` | Diffusion steps for small model |
 | `CCBELL_DEFAULT_CFG_SCALE_SMALL` | `1.0` | CFG scale for small model |
