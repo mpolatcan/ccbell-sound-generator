@@ -244,6 +244,9 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
         model: selectedModel,
         created_at: new Date()
       })
+
+      // Auto-select the newly created pack so subsequent generates add to it
+      setSelectedPackId(packId)
     }
 
     // Add all sounds to library and queue them for generation
@@ -360,21 +363,7 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
             )}
 
             {/* ═══ SECTION: Pack Config ═══ */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Hook Types */}
-              <div className="space-y-2">
-                <Label>Hook Types</Label>
-                {hooksLoading ? (
-                  <Skeleton className="h-10 w-full" />
-                ) : (
-                  <HookSelector
-                    hooks={hooks}
-                    selectedHooks={selectedHooks}
-                    onSelect={setSelectedHooks}
-                  />
-                )}
-              </div>
-
+            <div className="space-y-4">
               {/* Sound Pack Selection */}
               <div className="space-y-2">
                 <Label className="flex items-center gap-2">
@@ -413,6 +402,20 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
                     )}
                   </SelectContent>
                 </Select>
+              </div>
+
+              {/* Hook Types */}
+              <div className="space-y-2">
+                <Label>Hook Types</Label>
+                {hooksLoading ? (
+                  <Skeleton className="h-10 w-full" />
+                ) : (
+                  <HookSelector
+                    hooks={hooks}
+                    selectedHooks={selectedHooks}
+                    onSelect={setSelectedHooks}
+                  />
+                )}
               </div>
             </div>
 
