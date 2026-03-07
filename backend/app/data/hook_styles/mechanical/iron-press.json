@@ -2,15 +2,15 @@
   "id": "mechanical-iron-press",
   "name": "Iron Press",
   "prompts": {
-    "SessionStart": "heavy press stamp ascending with bright industrial clamp ring, iron press percussion, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "SessionEnd": "press stamp descending with smooth industrial clamp decay, iron press tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "Stop": "single heavy press stamp with bright satisfying industrial ring, iron press chime, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "PreToolUse": "quick distinct press stamp tick with crisp industrial click, iron press, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "PostToolUse": "short press stamp confirming with bright industrial clamp ping, iron press, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "PermissionPrompt": "two press stamp tones with questioning industrial rhythm, iron press sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "IdlePrompt": "steady press stamp pulse with clear rhythmic industrial pattern, iron press tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStart": "press stamp splitting into two parallel industrial clamp voices, iron press, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStop": "clear press stamp returning with distinct industrial ring, iron press tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "UserPromptSubmit": "bright heavy press stamp burst with energetic industrial attack, iron press percussion, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
+    "SessionStart": "crisp press click ascending with bright mechanical chime ring, iron press tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "press click descending with smooth mechanical chime decay, iron press tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "single crisp press click with bright satisfying mechanical ring, iron press chime, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick distinct press click tick with crisp mechanical tap, iron press, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short press click confirming with bright mechanical chime ping, iron press, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two press click tones with questioning mechanical rhythm, iron press sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady press click pulse with clear rhythmic mechanical pattern, iron press tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "press click splitting into two parallel mechanical chime voices, iron press, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear press click returning with distinct mechanical ring, iron press tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright energetic press click with rapid mechanical chime melody, iron press tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
   }
 }

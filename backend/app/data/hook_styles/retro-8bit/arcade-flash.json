@@ -1,16 +1,16 @@
 {
   "id": "retro-8bit-arcade-flash",
-  "name": "Arcade Flash",
+  "name": "Arcade Glow",
   "prompts": {
-    "SessionStart": "bright flashy arcade cabinet chiptune ascending with attract-mode sparkle, 8-bit arcade tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionStart": "bright warm arcade cabinet chiptune ascending with attract-mode sparkle, 8-bit arcade tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SessionEnd": "arcade cabinet chiptune descending with smooth attract-mode decay, 8-bit arcade tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "Stop": "satisfying arcade chiptune chime with bright flashy ring, 8-bit arcade tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "PreToolUse": "quick arcade blip with crisp flashy 8-bit tick, arcade cabinet tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "PostToolUse": "short arcade chirp confirming with bright flashy 8-bit ping, arcade tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "PermissionPrompt": "two flashy arcade tones with questioning rising 8-bit interval, arcade tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "IdlePrompt": "steady arcade attract-mode pulse with clear flashy 8-bit rhythm, arcade tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStart": "arcade chiptune splitting into two parallel flashy voices, 8-bit arcade tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStop": "clear arcade ping returning with bright flashy 8-bit ring, arcade tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "UserPromptSubmit": "bright energetic arcade burst with rapid flashy 8-bit attack, arcade cabinet tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
+    "Stop": "satisfying arcade chiptune chime with bright colorful ring, 8-bit arcade tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick arcade blip with crisp vivid 8-bit tick, arcade cabinet tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short arcade chirp confirming with bright vivid 8-bit ping, arcade tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two vivid arcade tones with questioning rising 8-bit interval, arcade tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady arcade attract-mode pulse with clear gentle 8-bit rhythm, arcade tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "arcade chiptune splitting into two parallel vivid voices, 8-bit arcade tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear arcade ping returning with bright vivid 8-bit ring, arcade tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright energetic arcade chime with rapid vivid 8-bit melody, arcade cabinet tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
   }
 }

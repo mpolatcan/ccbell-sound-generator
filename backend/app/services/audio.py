@@ -445,8 +445,35 @@ class AudioService:
                 output = output / max_val * 0.95
                 logger.debug(f"Job {job_id}: normalized audio (max_val={max_val:.4f})")
 
-            # Save using torchaudio
+            # Trim leading and trailing silence so waveform displays fully
             sample_rate = model_config["sample_rate"]
+            original_samples = output.shape[1]
+            silence_threshold = 0.01  # Linear amplitude threshold
+            amplitude = output.abs().max(dim=0).values
+            above_threshold = (amplitude > silence_threshold).nonzero(as_tuple=True)[0]
+
+            if len(above_threshold) > 0:
+                start_idx = above_threshold[0].item()
+                end_idx = above_threshold[-1].item() + 1
+                # Add a small margin (10ms) on each side to avoid abrupt cuts
+                margin = int(0.01 * sample_rate)
+                start_idx = max(0, start_idx - margin)
+                end_idx = min(original_samples, end_idx + margin)
+                output = output[:, start_idx:end_idx]
+                logger.debug(
+                    f"Job {job_id}: trimmed silence "
+                    f"({original_samples} -> {output.shape[1]} samples)"
+                )
+
+                # Apply short fade-in/out (5ms) to prevent clicks
+                fade_samples = int(0.005 * sample_rate)
+                if output.shape[1] > fade_samples * 2:
+                    fade_in = torch.linspace(0, 1, fade_samples)
+                    fade_out = torch.linspace(1, 0, fade_samples)
+                    output[:, :fade_samples] *= fade_in
+                    output[:, -fade_samples:] *= fade_out
+
+            # Save using torchaudio
             torchaudio.save(str(output_path), output, sample_rate)
 
             job.audio_path = output_path

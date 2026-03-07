@@ -2,15 +2,15 @@
   "id": "mechanical-anvil-forge",
   "name": "Anvil Forge",
   "prompts": {
-    "SessionStart": "ascending anvil ring struck with bright hammer on metal, heavy metal bell, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "SessionEnd": "anvil ring decaying smoothly with descending heavy bell tone, metal bell, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "Stop": "single heavy anvil strike ringing with satisfying metallic sustain, hammer on metal bell, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "PreToolUse": "quick hammer tap on metal with brief distinct ring, anvil tick, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "PostToolUse": "short anvil ping confirming with bright metallic chirp, hammer tap, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "PermissionPrompt": "two anvil strikes with questioning rising ring, heavy metal bell, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "IdlePrompt": "steady heavy bell ringing with clear rhythmic resonance, anvil tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStart": "anvil ring splitting into two diverging metallic tones, hammer sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStop": "clear anvil ping returning with distinct metallic ring, hammer tap, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "UserPromptSubmit": "bright heavy anvil strike with energetic ringing burst, hammer on metal, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
+    "SessionStart": "ascending metallic bell ring with bright mallet on anvil chime, resonant metal bell, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "metallic bell ring decaying smoothly with descending resonant tone, metal bell, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "Stop": "single bright anvil bell ring with satisfying metallic sustain, mallet on metal bell, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick mallet tap on metal with brief distinct ring, anvil tick, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short anvil ping confirming with bright metallic chirp, mallet tap, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two anvil bell tones with questioning rising ring, resonant metal bell, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "IdlePrompt": "steady resonant bell ringing with clear rhythmic metallic tone, anvil chime, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStart": "anvil bell ring splitting into two diverging metallic tones, mallet sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear anvil ping returning with distinct metallic ring, mallet tap, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright anvil bell ring with energetic melodic chime, mallet on metal bell, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
   }
 }

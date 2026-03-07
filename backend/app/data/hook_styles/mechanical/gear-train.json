@@ -2,15 +2,15 @@
   "id": "mechanical-gear-train",
   "name": "Gear Train",
   "prompts": {
-    "SessionStart": "ascending metallic click sequence with crisp ratchet ticking up, gear tooth percussion, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "SessionEnd": "descending metallic clicks slowing with smooth ratchet wind-down, gear tooth percussion, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionStart": "ascending metallic click sequence with crisp gentle ticking up, gear tooth percussion, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SessionEnd": "descending metallic clicks slowing with smooth gentle wind-down, gear tooth percussion, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "Stop": "single precise metallic click locking into place with ring, gear tooth, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "PreToolUse": "quick crisp ratchet tick with brief metallic snap, gear click, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "PostToolUse": "short gear tooth click confirming with precise metallic tap, ratchet sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "PermissionPrompt": "two metallic clicks with questioning ratchet rhythm, gear tooth, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PreToolUse": "quick crisp gear tick with brief metallic tap, gear click, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PostToolUse": "short gear tooth click confirming with precise metallic tap, gear sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "PermissionPrompt": "two metallic clicks with questioning gentle rhythm, gear tooth, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "IdlePrompt": "steady metallic tick pulsing with clear consistent rhythm, gear hum, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStart": "metallic click branching into two parallel ratchet sequences, gear tooth, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "SubagentStop": "clear metallic click returning with brief ratchet settle, gear tooth, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
-    "UserPromptSubmit": "bright rapid metallic ratchet burst with energetic clicking, gear tooth, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
+    "SubagentStart": "metallic click branching into two parallel gentle sequences, gear tooth, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "SubagentStop": "clear metallic click returning with brief gentle settle, gear tooth, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
+    "UserPromptSubmit": "bright rapid metallic click cascade with energetic gentle ticking, gear tooth, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp"
   }
 }
