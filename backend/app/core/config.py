@@ -19,7 +19,7 @@ class Settings(BaseSettings):
     port: int = 7860
 
     # Model settings
-    default_model: str = "small"
+    default_model: str = "stable-audio-open-small"
     models_cache_dir: Path = Path.home() / ".cache" / "ccbell-models"
     # GitHub Releases URL for model weights (no HuggingFace account needed)
     model_download_base_url: str = (
@@ -29,12 +29,12 @@ class Settings(BaseSettings):
     # Audio settings
     sample_rate: int = 44100
     default_duration: float = 1.0
-    max_duration_small: float = 5.0
+    max_duration: float = 5.0
 
     # Generation settings (optimized for short notification sounds on CPU)
-    default_steps_small: int = 8
-    default_cfg_scale_small: float = 1.0  # 1.0 = no CFG, single pass per step (2x faster)
-    default_sampler_small: str = "pingpong"
+    default_steps: int = 8
+    default_cfg_scale: float = 1.0  # 1.0 = no CFG, single pass per step (2x faster)
+    default_sampler: str = "pingpong"
     # Noise level parameters
     default_sigma_min: float = 0.3
     default_sigma_max: float = 500.0

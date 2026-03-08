@@ -44,7 +44,7 @@ class GenerationSettings(BaseModel):
 class GenerateRequest(BaseModel):
     """Request model for audio generation."""
 
-    model: str = Field("small", description="Model to use for generation")
+    model: str = Field("stable-audio-open-small", description="Model to use for generation")
     prompt: str = Field(
         ..., min_length=1, max_length=1500, description="Text prompt for audio generation"
     )

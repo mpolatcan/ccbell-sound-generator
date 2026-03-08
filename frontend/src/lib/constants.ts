@@ -20,7 +20,7 @@ export const MODEL_DEFAULTS: Record<string, {
   sigma_min: number
   sigma_max: number
 }> = {
-  small: {
+  'stable-audio-open-small': {
     default_steps: 8,
     cfg_scale: 1.0,
     default_sampler: 'pingpong',
@@ -35,7 +35,7 @@ export const DEFAULT_DURATION = 1.0
 
 // Sampler options per model
 export const SAMPLER_OPTIONS = [
-  { value: 'pingpong', label: 'Pingpong', models: ['small'] as const }
+  { value: 'pingpong', label: 'Pingpong', models: ['stable-audio-open-small'] as const }
 ] as const
 
 // Get samplers compatible with a model

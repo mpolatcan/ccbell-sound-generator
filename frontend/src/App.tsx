@@ -36,7 +36,7 @@ function AppContent() {
   const [packDataToDownload, setPackDataToDownload] = useState<DownloadPackData | null>(null)
   const [shortcutsHelpOpen, setShortcutsHelpOpen] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
-  const [selectedModel, setSelectedModel] = useState('small')
+  const [selectedModel, setSelectedModel] = useState('stable-audio-open-small')
   const [advancedSettings, setAdvancedSettings] = useState<GenerationSettings>({
     steps: 16,
     cfg_scale: 2.0,

@@ -255,13 +255,13 @@ class AudioService:
             gen_settings = job.request.settings or GenerationSettings()
 
             # Set defaults
-            steps = gen_settings.steps or settings.default_steps_small
+            steps = gen_settings.steps or settings.default_steps
             cfg_scale = (
                 gen_settings.cfg_scale
                 if gen_settings.cfg_scale is not None
-                else settings.default_cfg_scale_small
+                else settings.default_cfg_scale
             )
-            sampler = gen_settings.sampler or settings.default_sampler_small
+            sampler = gen_settings.sampler or settings.default_sampler
 
             # Sigma values (noise levels)
             sigma_min = (
@@ -276,7 +276,7 @@ class AudioService:
             )
 
             # Validate duration
-            max_duration = settings.max_duration_small
+            max_duration = settings.max_duration
             duration = min(job.request.duration, max_duration)
             if job.request.duration > max_duration:
                 logger.warning(

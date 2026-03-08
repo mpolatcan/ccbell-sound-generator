@@ -58,7 +58,7 @@ def _get_device() -> str:
 
 # Files needed for each model (GitHub Releases naming)
 MODEL_FILES = {
-    "small": {
+    "stable-audio-open-small": {
         "config": "stable-audio-open-small-model_config.json",
         "weights": "stable-audio-open-small-model.safetensors",
     },
@@ -66,7 +66,7 @@ MODEL_FILES = {
 
 # Original filenames in HuggingFace repos
 HF_MODEL_FILES = {
-    "small": {
+    "stable-audio-open-small": {
         "config": "model_config.json",
         "weights": "model.safetensors",
     },
@@ -75,7 +75,7 @@ HF_MODEL_FILES = {
 
 def _get_model_cache_dir(model_id: str) -> Path:
     """Get the local cache directory for a model."""
-    return settings.models_cache_dir / f"stable-audio-open-{model_id}"
+    return settings.models_cache_dir / model_id
 
 
 def _download_file(url: str, dest: Path, progress_callback: Any = None) -> None:
@@ -254,7 +254,7 @@ class ModelLoader:
 
     # Model HuggingFace repository IDs (used as fallback)
     MODEL_REPOS = {
-        "small": "stabilityai/stable-audio-open-small",
+        "stable-audio-open-small": "stabilityai/stable-audio-open-small",
     }
 
     def __init__(self):
@@ -263,7 +263,7 @@ class ModelLoader:
         self._current_model: str | None = None
         self._device: str | None = None
         self._loading_states: dict[str, LoadingState] = {
-            "small": LoadingState(),
+            "stable-audio-open-small": LoadingState(),
         }
         self._loading_lock = asyncio.Lock()
         logger.debug("ModelLoader initialized")
@@ -524,14 +524,14 @@ class ModelLoader:
         """Get information about a model."""
         from app.core.models import ModelInfo
 
-        if model_id == "small":
+        if model_id == "stable-audio-open-small":
             return ModelInfo(
-                id="small",
+                id="stable-audio-open-small",
                 name="Stable Audio Open Small",
                 description="Fast model optimized for short notification sounds on CPU.",
-                max_duration=settings.max_duration_small,
-                default_steps=settings.default_steps_small,
-                default_sampler=settings.default_sampler_small,
+                max_duration=settings.max_duration,
+                default_steps=settings.default_steps,
+                default_sampler=settings.default_sampler,
                 parameters="341 million",
             )
         else:

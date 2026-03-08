@@ -107,7 +107,7 @@ class PackService:
             "prompts": prompts,
             "source": {
                 "provider": "ccbell-sound-generator",
-                "model": f"stable-audio-open-{model_name or 'small'}",
+                "model": model_name or "stable-audio-open-small",
                 "license": "stabilityai/stable-audio-open-small",
             },
         }
