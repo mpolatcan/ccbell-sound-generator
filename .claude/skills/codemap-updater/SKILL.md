@@ -7,66 +7,92 @@ disable-model-invocation: true
 
 # Codemap Updater
 
-Scan the entire codebase and regenerate `.claude/rules/codemap.md` with an accurate, up-to-date map of all source files, their key exports, and one-line descriptions.
+Regenerate `.claude/rules/codemap.md` — a fast-lookup index of all source files.
+
+## Design Principles
+
+- **"What's WHERE" not "what's INSIDE"** — file path + 1-line purpose, not implementation details
+- **Under 100 lines** — loaded every conversation, every token counts
+- **No exhaustive listings** — don't list every type/model name; just say "All request/response models"
+- **Group by layer** — Backend → Frontend → Desktop → CI/CD
 
 ## Instructions
 
-### 1. Scan Source Files
+### 1. Discover Source Files
 
-Scan these directories for source files:
-
-**Backend (Python):**
 ```bash
+# All source files (excludes __init__.py, node_modules, venv, tests)
 find backend/app -name "*.py" -not -name "__init__.py" | sort
-```
-
-**Frontend (TypeScript):**
-```bash
-find frontend/src -name "*.ts" -o -name "*.tsx" | sort
-```
-
-**Desktop (Rust):**
-```bash
+find frontend/src -name "*.ts" -o -name "*.tsx" | grep -v node_modules | sort
 find frontend/src-tauri/src -name "*.rs" | sort
-```
-
-**Data files:**
-```bash
-ls backend/app/data/hook_styles/  # Theme directories
-```
-
-**CI/CD:**
-```bash
 ls .github/workflows/
+ls backend/app/data/hook_styles/
 ```
 
-### 2. For Each Source File, Extract:
-- File path (relative to project root)
-- One-line description of its purpose
-- Key exports: classes, functions, constants, types, hooks, components
-- Only include PUBLIC/EXPORTED items, skip internal helpers
-- For Python: list class names, top-level function names, module-level constants/instances
-- For TypeScript: list exported types, interfaces, hooks, components, constants
-- For Rust: list pub structs, pub fns, Tauri commands
+### 2. Extract Key Exports (grep, NOT full file reads)
+
+Use grep to extract exports efficiently — do NOT read entire files:
+
+```bash
+# Python: classes, singletons, top-level constants
+grep -n "^class \|^def \|^[A-Z_].*=" backend/app/**/*.py
+
+# TypeScript: exported hooks, components, classes, constants
+grep -n "^export " frontend/src/**/*.ts frontend/src/**/*.tsx
+
+# Rust: pub functions, structs, Tauri commands
+grep -n "^pub \|#\[tauri::command\]" frontend/src-tauri/src/*.rs
+```
+
+Only read a file if grep output is insufficient to determine its purpose.
 
 ### 3. Write Codemap
 
-Write the result to `.claude/rules/codemap.md` using the exact format shown in the current codemap. Keep it concise:
-- One file per section (use `###` heading with path)
-- Bullet list of key exports
-- Keep under 200 lines total
-- Group by layer: Backend → Frontend → Desktop → Config/CI
+Write to `.claude/rules/codemap.md` following this format:
 
-### 4. Verify
-After writing, count lines to ensure it's under 200:
+```markdown
+# Codemap — Last updated: YYYY-MM-DD
+
+## Backend — Python (FastAPI)
+
+### path/to/file.py — One-line purpose
+- Key exports, singletons, constants (1-3 bullets max)
+
+## Frontend — TypeScript/React
+
+### path/to/file.ts — One-line purpose
+- Key exports (1-3 bullets max)
+
+## Desktop — Rust (Tauri v2)
+
+### path/to/file.rs — One-line purpose
+- Key exports (1-3 bullets max)
+
+## CI/CD — GitHub Actions
+
+### .github/workflows/
+- One bullet per workflow file
+```
+
+### Format Rules
+
+- **1 line per file** for simple files (e.g., `### backend/app/core/logging.py — Loguru config`)
+- **1-3 bullets max** for complex files (key classes, singletons, constants)
+- **Never list every type/model/component name** — summarize instead
+- **Group related small files** (e.g., all components in one block, all workflows in one block)
+- **Include singleton instances** (`audio_service`, `model_loader`, `api`)
+- **Skip**: test files, __init__.py, build artifacts, node_modules
+
+### 4. Verify Line Count
+
 ```bash
 wc -l .claude/rules/codemap.md
 ```
 
+Must be under 100 lines. If over, cut implementation details first, then consolidate related files.
+
 ## Important Notes
-- The codemap is loaded into EVERY conversation, so brevity matters
-- Focus on "what's WHERE" not "how it works"
-- Include singleton instances (e.g., `audio_service`, `model_loader`, `api`)
-- Include data constants (e.g., `THEME_PRESETS`, `HOOK_TYPES`)
-- Do NOT include test files, migration scripts, or build artifacts
-- Update the "Last updated" timestamp at the top
+- This file is loaded into EVERY conversation — brevity is critical
+- Focus on navigation speed: "I need to find X" → scan codemap → go to file
+- Update the "Last updated" timestamp
+- Do NOT include "Details:" lines with implementation info

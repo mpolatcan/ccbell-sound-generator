@@ -3,145 +3,87 @@
 ## Backend — Python (FastAPI)
 
 ### backend/app/main.py — App entry point
-- `app` FastAPI instance, `lifespan()` startup/shutdown
-- Mounts: API routes at `/api`, WebSocket at `/api`, static at `/assets`
-- CORS: localhost:5173, localhost:3000, Tauri origins
-- `serve_index()` GET `/` — SPA index, `serve_spa()` GET `/{path}` — SPA fallback
+- `app` FastAPI instance, `lifespan()`, static/SPA serving, CORS
 
 ### backend/app/api/routes.py — REST API (14 endpoints)
-- `health_check()` GET `/api/health`
-- `get_models()` GET `/api/models`, `get_models_status()` GET `/api/models/status`
-- `get_model_status()` GET `/api/models/{model_id}/status`
-- `load_model()` POST `/api/models/{model_id}/load`
-- `get_themes()` GET `/api/themes`, `get_hooks()` GET `/api/hooks`
-- `generate_audio()` POST `/api/generate` → creates async job
-- `get_audio_status()` GET `/api/audio/{job_id}/status`
-- `get_audio()` GET `/api/audio/{job_id}` → WAV file
-- `delete_audio()` DELETE `/api/audio/{job_id}`
-- `publish_release()` POST `/api/publish` → GitHub release
-- `create_pack()` POST `/api/packs` → ZIP, `download_pack()` GET `/api/packs/{pack_id}`
+- `/api/health`, `/api/models/*`, `/api/themes`, `/api/hooks`
+- `/api/generate`, `/api/audio/{job_id}/*`, `/api/publish`, `/api/packs/*`
 
 ### backend/app/api/websocket.py — Real-time progress
-- `websocket_progress()` WS `/api/ws/{job_id}` — keepalive pings, 60s idle timeout
+- `websocket_progress()` WS `/api/ws/{job_id}`
 
 ### backend/app/core/config.py — Settings
-- `Settings` class (env_prefix `CCBELL_`), `settings` singleton
-- Key: port(7860), default_model("small"), sample_rate(44100), max_concurrent_generations(2), job_max_lifetime(1800s), gh_token
+- `Settings` (env_prefix `CCBELL_`), `settings` singleton
 
 ### backend/app/core/models.py — Pydantic schemas
-- Requests: `GenerateRequest`, `PublishRequest`, `DownloadPackRequest`
-- Responses: `GenerateResponse`, `AudioStatusResponse`, `HealthResponse`, `PublishResponse`, `DownloadPackResponse`, `ModelLoadingStatus`, `ModelsStatusResponse`
-- Data: `ModelInfo`, `ThemePreset`, `SubTheme`, `HookType`, `ProgressUpdate`, `GenerationSettings`
-- Types: `HookTypeId` (10 literal values), `SamplerType`
+- All request/response models, data types, `HookTypeId`, `SamplerType`
 
 ### backend/app/core/logging.py — Loguru config
-- `setup_logging()` — colored console output
+- `setup_logging()`
 
 ### backend/app/services/audio.py — Audio generation
-- `AudioGenerationJob` — job state (id, status, progress, stage, audio_path, error)
-- `AudioService` — `create_job()`, `generate_audio()`, `get_audio_path()`, `cleanup_job()`, `register_progress_callback()`
-- `audio_service` singleton
-- Details: thread pool executor, silence trimming, 5ms fade, stereo conversion, float32 WAV
+- `AudioGenerationJob`, `AudioService`, `audio_service` singleton
 
 ### backend/app/services/model_loader.py — ML model management
-- `ModelLoader` — `load_model()`, `load_model_background()`, `is_loaded()`, `is_ready()`, `get_model_info()`, `get_all_models_info()`
-- `model_loader` singleton
-- `_ensure_model_files()` — downloads from GitHub Releases (primary) or HuggingFace Hub (fallback)
-- `_download_file()` — atomic .tmp rename pattern
-- Cache: `~/.cache/ccbell-models/stable-audio-open-{model_id}/`
+- `ModelLoader`, `model_loader` singleton
+- Downloads from GitHub Releases (primary) or HuggingFace Hub (fallback)
 
 ### backend/app/services/pack.py — Sound pack ZIP creation
-- `PackService` — `create_pack()`, `get_pack_path()`
-- `pack_service` singleton
-- ZIP contains: `pack.json` manifest + per-event `.wav` files
+- `PackService`, `pack_service` singleton
 
 ### backend/app/services/github.py — GitHub release publishing
-- `GitHubService` — `publish_release()` → publishes to `mpolatcan/ccbell-sound-packs`
-- `github_service` singleton
+- `GitHubService`, `github_service` singleton
 
 ### backend/app/data/themes.py — Theme presets
-- `THEME_PRESETS` — 8 themes: sci-fi, retro-8bit, nature, minimal, mechanical, ambient, jazz, custom
-- `get_all_themes()`, `_load_sub_themes()` — loads from `hook_styles/{theme}/*.json`
+- `THEME_PRESETS` (8 themes), `get_all_themes()`
 
 ### backend/app/data/hooks.py — Hook definitions
-- `HOOK_TYPES` — 10 hook types (Stop, SubagentStop, PermissionPrompt, IdlePrompt, SessionStart, SessionEnd, PreToolUse, PostToolUse, SubagentStart, UserPromptSubmit)
-- `HOOK_TO_EVENT_MAP` — maps HookTypeId → ccbell event name
-- `get_all_hooks()`
+- `HOOK_TYPES` (10 types), `HOOK_TO_EVENT_MAP`, `get_all_hooks()`
 
 ### backend/app/data/hook_styles/ — Per-theme prompt configs
-- 7 directories (sci-fi, retro-8bit, nature, minimal, mechanical, ambient, jazz) × 10 JSON substyle files each
+- 7 dirs × 10 JSON substyle files each
 
 ## Frontend — TypeScript/React
 
 ### frontend/src/App.tsx — Main app component
-- `<AppContent>` — header, GeneratorForm, ModelSettings, SoundLibrary, dialogs (Publish, Download, Settings, Shortcuts)
-- State: selectedModel, advancedSettings, dialog open states
+- `<AppContent>` — orchestrates all UI panels and dialogs
 
 ### frontend/src/lib/api.ts — API client
-- `ApiClient` class — 14 methods matching backend routes
-- `api` singleton (base URL: `127.0.0.1:7860` in Tauri, relative in web)
+- `ApiClient`, `api` singleton
 
 ### frontend/src/lib/constants.ts — Global constants
-- `isTauri`, `API_BASE_URL`, `WS_BASE_URL`
-- `MODEL_DEFAULTS` — per-model generation params (steps, cfg, sampler, duration, sigma)
-- `HOOK_TYPE_COLORS` — Tailwind color classes per hook type
-- `getSamplersForModel()`
+- `isTauri`, `API_BASE_URL`, `WS_BASE_URL`, `MODEL_DEFAULTS`, `HOOK_TYPE_COLORS`
 
 ### frontend/src/types/index.ts — All TypeScript types
-- API types: `ModelInfo`, `ThemePreset`, `SubTheme`, `HookType`, `HookTypeId`, `GenerateRequest`, `GenerateResponse`, `AudioStatusResponse`, `HealthResponse`, `GenerationSettings`
-- App types: `GeneratedSound`, `SoundPack`, `SoundLibraryState`, `SoundStatus`
-- Dialog types: `PublishPackData`, `DownloadPackData`, `PublishRequest/Response`, `DownloadPackRequest/Response`
-- `HOOK_TO_EVENT_MAP` — frontend copy of hook→event mapping
+- API types, app types, dialog types, `HOOK_TO_EVENT_MAP`
 
-### frontend/src/hooks/useGenerationQueue.ts — Generation queue
-- `useGenerationQueue()` — `addToQueue()`, `cancelGeneration()`, `cancelByPackId()`, `cancelAll()`
-- Zustand store: queue, isProcessing, currentSoundId
-- WebSocket progress + polling fallback (2s), blob URL caching
-
-### frontend/src/hooks/useSoundLibrary.ts — Sound/pack storage
-- `useSoundLibrary` Zustand store — `addPack()`, `removePack()`, `addSound()`, `updateSound()`, `removeSound()`, `clearAll()`
-
-### frontend/src/hooks/useModelStatus.ts — Model loading status
-- `useModelStatus({modelId, autoLoad})` — polls status, auto-loads on mount
-- Returns: status, progress, stage, isReady, isLoading, loadModel()
-
-### frontend/src/hooks/useTauriBackend.ts — Desktop backend lifecycle
-- `useTauriBackend()` — setup_backend → start_backend → health poll
-- Returns: ready, stage, error, isDesktop, retry()
-
-### frontend/src/hooks/useSettings.ts — Desktop settings
-- `useSettings()` — get/save `AppSettings` (github_token) via Tauri commands
-
-### frontend/src/hooks/useKeyboardShortcuts.ts — Keyboard shortcuts
-- `useKeyboardShortcuts(shortcuts[])` — registers key handlers, skips in input fields
-
-### frontend/src/hooks/useToast.ts — Toast notifications
-- `useToast()`, `toast()` — shadcn-style toast system
+### frontend/src/hooks/ — 7 React hooks
+- `useGenerationQueue` — generation queue + WebSocket progress (Zustand)
+- `useSoundLibrary` — sound/pack CRUD (Zustand)
+- `useModelStatus` — model loading status polling
+- `useTauriBackend` — desktop backend lifecycle
+- `useSettings` — desktop settings persistence
+- `useKeyboardShortcuts` — keyboard shortcut registration
+- `useToast` — toast notifications
 
 ### frontend/src/components/ — 14 React components
-- `GeneratorForm` — theme/hook selection, prompt editing, generate button
-- `SoundLibrary` — collapsible sound packs with play/delete
-- `AudioPlayer` — wavesurfer.js audio playback
-- `ThemeSelector`, `HookSelector`, `HookConfigTabs` — generation config UI
-- `ModelSettings`, `ModelLoadingIndicator` — model management
-- `SettingsDialog` — desktop settings (GitHub token)
-- `PublishDialog`, `DownloadPackDialog` — pack export dialogs
-- `DesktopBootScreen` — Tauri boot sequence UI
-- `KeyboardShortcutsHelp`, `ElapsedTime` — utility components
+- `GeneratorForm`, `SoundLibrary`, `AudioPlayer`
+- `ThemeSelector`, `HookSelector`, `HookConfigTabs`
+- `ModelSettings`, `ModelLoadingIndicator`
+- `SettingsDialog`, `PublishDialog`, `DownloadPackDialog`
+- `DesktopBootScreen`, `KeyboardShortcutsHelp`, `ElapsedTime`
 
 ## Desktop — Rust (Tauri v2)
 
 ### frontend/src-tauri/src/lib.rs — Tauri app with Python sidecar
-- Commands: `setup_backend()`, `start_backend()`, `stop_backend()`, `check_backend_health()`, `get_settings()`, `save_settings()`
-- `find_or_install_uv()`, `find_python()`, `auto_install_python()` — multi-fallback Python detection
-- `SidecarState` — holds running uvicorn process
-- `SetupGuard` — AtomicBool to prevent concurrent setup (React StrictMode)
-- `.setup-complete` marker file for first-run detection
+- Commands: `setup_backend`, `start_backend`, `stop_backend`, `check_backend_health`, `get_settings`, `save_settings`
+- `SidecarState`, `SetupGuard`, Python auto-install flow
 
 ## CI/CD — GitHub Actions
 
-### .github/workflows/ci.yml — Lint, build, Docker validation (push to master, PRs)
-### .github/workflows/deploy-huggingface.yml — HuggingFace Spaces deployment (v* tags, manual)
-### .github/workflows/build-desktop-tauri.yml — macOS/Linux Tauri installers (v* tags, manual)
-### .github/workflows/build-base-image.yml — Base Docker image (push to master, path-filtered)
-### .github/workflows/upload-model-weights.yml — Model weight management (manual)
+### .github/workflows/
+- `ci.yml` — lint, build, Docker validation (push/PR)
+- `deploy-huggingface.yml` — HF Spaces deployment (v* tags)
+- `build-desktop-tauri.yml` — macOS/Linux Tauri installers (v* tags)
+- `build-base-image.yml` — base Docker image (path-filtered)
+- `upload-model-weights.yml` — model weight management (manual)
