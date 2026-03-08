@@ -199,6 +199,16 @@ Before creating a release tag, all checks must pass:
 - [ ] End-to-end audio generation works via UI or API
 - [ ] UI visually verified with `agent-browser` skill
 
+### Running Locally via Docker
+
+Users can run the published Docker image without any installation:
+
+```bash
+docker run -p 7860:7860 -v ~/.cache/ccbell-models:/home/user/.cache/ccbell-models ghcr.io/mpolatcan/ccbell-sound-generator:latest
+```
+
+Access at http://localhost:7860. Models are cached on the host for fast restarts.
+
 ### Docker Testing
 
 Docker testing is required before deployment — it simulates the HuggingFace Spaces environment:
@@ -215,6 +225,7 @@ Access at http://localhost:7860. Test: load model -> generate -> download audio.
 | Pipeline | File | Trigger | Purpose |
 |----------|------|---------|---------|
 | Deploy | `deploy-huggingface.yml` | Version tags (`v*.*.*`), manual | Build + push to HuggingFace Spaces |
+| Docker Image | `publish-docker-image.yml` | Version tags (`v*.*.*`), manual | Build + push app image to GHCR for local use |
 | Build Desktop | `build-desktop-tauri.yml` | Version tags (`v*.*.*`), manual | macOS universal + Linux x64 Tauri installers via GitHub Release |
 | Base Image | `build-base-image.yml` | Push to `master` (path-filtered), manual | Build `Dockerfile.base` with system deps |
 | Upload Model | `upload-model-weights.yml` | Manual | Download weights from HF, upload to GitHub Release (`models-v1.0`) |

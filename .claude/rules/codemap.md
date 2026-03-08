@@ -26,7 +26,8 @@
 
 ### backend/app/services/model_loader.py — ML model management
 - `ModelLoader`, `model_loader` singleton
-- Downloads from GitHub Releases (primary) or HuggingFace Hub (fallback)
+- `_is_hf_spaces()`, `_download_from_github()`, `_download_from_huggingface()`
+- HF Spaces: HF Hub primary, GitHub fallback. Desktop: GitHub primary, HF Hub fallback
 
 ### backend/app/services/pack.py — Sound pack ZIP creation
 - `PackService`, `pack_service` singleton
@@ -83,6 +84,7 @@
 
 ### .github/workflows/
 - `deploy-huggingface.yml` — HF Spaces deployment (v* tags)
+- `publish-docker-image.yml` — app Docker image to GHCR (v* tags)
 - `build-desktop-tauri.yml` — macOS/Linux Tauri installers (v* tags)
 - `build-base-image.yml` — base Docker image (path-filtered)
 - `upload-model-weights.yml` — model weight management (manual)
