@@ -40,17 +40,19 @@ def _check_torch() -> bool:
 
 
 def _get_device() -> str:
-    """Get the compute device."""
+    """Get the compute device (CUDA > MPS > CPU)."""
     if _check_torch():
         import torch
 
-        device = "cuda" if torch.cuda.is_available() else "cpu"
-        if device == "cuda":
-            device_name = torch.cuda.get_device_name(0) if torch.cuda.is_available() else "Unknown"
-            logger.info(f"Using GPU: {device_name}")
-        else:
-            logger.info("Using CPU for inference")
-        return device
+        if torch.cuda.is_available():
+            device_name = torch.cuda.get_device_name(0)
+            logger.info(f"Using CUDA GPU: {device_name}")
+            return "cuda"
+        if torch.backends.mps.is_available():
+            logger.info("Using Apple Metal (MPS) GPU")
+            return "mps"
+        logger.info("Using CPU for inference")
+        return "cpu"
     return "cpu"
 
 
@@ -403,13 +405,14 @@ class ModelLoader:
 
             self._update_loading_state(model_id, "loading", progress=0.8, stage="moving_to_device")
 
-            # Convert to float32 for CPU inference (float16 is extremely slow on CPU)
-            if self.device == "cpu":
+            # Convert to float32 for CPU/MPS inference
+            # float16 is extremely slow on CPU, and MPS has incomplete float16 op support
+            if self.device in ("cpu", "mps"):
                 import torch
 
                 model.pretransform.model_half = False
                 model = model.to(torch.float32)
-                logger.info(f"Converted model {model_id} to float32 for CPU inference")
+                logger.info(f"Converted model {model_id} to float32 for {self.device} inference")
 
             # Move to device
             model = model.to(self.device)
