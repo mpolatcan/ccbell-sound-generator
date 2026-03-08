@@ -2,6 +2,7 @@
 name: deployment-workflow
 description: Deploy to HuggingFace Spaces, create releases, check deployment status, verify before release, push to production. Use when deploying, releasing, or checking deployment logs.
 allowed-tools: Bash, Read
+disable-model-invocation: true
 ---
 
 # Deployment Workflow
@@ -65,7 +66,7 @@ git push origin v1.0.0
 ```
 
 ### 3. Monitor Deployment
-- **GitHub Actions**: https://github.com/mpolatcan/ccbell-sound-generator/actions/workflows/deploy.yml
+- **GitHub Actions**: https://github.com/mpolatcan/ccbell-sound-generator/actions/workflows/deploy-huggingface.yml
 - **HuggingFace Space**: https://huggingface.co/spaces/mpolatcan/ccbell-sound-generator
 - **Live App**: https://mpolatcan-ccbell-sound-generator.hf.space
 
@@ -84,19 +85,23 @@ cp secrets.env.example secrets.env
 
 ## CI/CD Workflows
 
-### CI Pipeline (on push/PR)
+### CI Pipeline (`ci.yml`, on push/PR)
 - Lint frontend (ESLint + TypeScript)
 - Lint backend (ruff)
 - Type check backend (ty)
 - Build frontend (Vite)
 - Build Docker image
 
-### Deploy Pipeline (on version tag)
+### Deploy Pipeline (`deploy-huggingface.yml`, on version tag)
 - Validate semver version
 - Build application
 - Update version in config
 - Test Docker build
 - Deploy to HuggingFace Spaces
+
+### Desktop Build (`build-desktop-tauri.yml`, on version tag)
+- Build macOS universal + Linux x64 Tauri installers
+- Upload to GitHub Release
 
 ## Required Secrets (GitHub)
 

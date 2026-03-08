@@ -1,0 +1,217 @@
+name: Deploy to HuggingFace Spaces
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to deploy (e.g., 1.0.0)'
+        required: false
+        default: ''
+
+jobs:
+  validate:
+    name: Validate Tag
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - name: Extract version from tag
+        id: version
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && -n "${{ github.event.inputs.version }}" ]]; then
+            VERSION="${{ github.event.inputs.version }}"
+          elif [[ "${{ github.ref }}" == refs/tags/v* ]]; then
+            VERSION="${GITHUB_REF#refs/tags/v}"
+          else
+            echo "Error: Could not determine version"
+            exit 1
+          fi
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+          echo "Deploying version: ${VERSION}"
+
+      - name: Validate semver format
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9]+)?$ ]]; then
+            echo "Error: Version '$VERSION' is not valid semver format"
+            exit 1
+          fi
+          echo "Version $VERSION is valid"
+
+  build:
+    name: Build Application
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm ci
+
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm run build
+
+      - name: Update version in config
+        run: |
+          VERSION="${{ needs.validate.outputs.version }}"
+          sed -i "s/app_version: str = \".*\"/app_version: str = \"${VERSION}\"/" backend/app/core/config.py
+          echo "Updated config.py with version ${VERSION}"
+          grep "app_version" backend/app/core/config.py
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: build-artifacts
+          path: |
+            frontend/dist
+            backend
+            Dockerfile
+            README.md
+          retention-days: 1
+
+  wait-for-base-image:
+    name: Wait for Base Image
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Check if base image files changed
+        id: check
+        run: |
+          # Find the previous tag to diff against
+          PREV_TAG=$(git tag --sort=-v:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+' | head -2 | tail -1)
+          if [[ -z "$PREV_TAG" ]]; then
+            echo "No previous tag found, assuming base image changed"
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            CHANGED=$(git diff --name-only "$PREV_TAG"..HEAD -- \
+              backend/pyproject.toml backend/uv.lock Dockerfile.base)
+            if [[ -n "$CHANGED" ]]; then
+              echo "Base image files changed since $PREV_TAG:"
+              echo "$CHANGED"
+              echo "changed=true" >> $GITHUB_OUTPUT
+            else
+              echo "No base image files changed since $PREV_TAG. Skipping wait."
+              echo "changed=false" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+      - name: Wait for base image build
+        if: steps.check.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Base image files changed. Checking for in-progress builds..."
+          while true; do
+            ACTIVE=$(gh run list --repo ${{ github.repository }} \
+              --workflow=build-base-image.yml \
+              --json status \
+              --jq '[.[] | select(.status == "in_progress" or .status == "queued")] | length')
+
+            if [[ "$ACTIVE" == "0" ]]; then
+              echo "No base-image builds in progress. Proceeding with deploy."
+              break
+            fi
+
+            echo "Base image build in progress ($ACTIVE active). Waiting 15s..."
+            sleep 15
+          done
+
+  deploy:
+    name: Deploy to HuggingFace (${{ matrix.space }})
+    runs-on: ubuntu-latest
+    needs: [validate, build, wait-for-base-image]
+    environment: production
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - space: ccbell-sound-generator
+          - space: ccbell-sound-generator-admin
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v7
+        with:
+          name: build-artifacts
+          path: .
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Prepare deployment
+        run: |
+          VERSION="${{ needs.validate.outputs.version }}"
+          DEPLOY_TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          # Update deploy version marker in README to force HF rebuild
+          sed -i "s/<!-- deploy-version: .* -->/<!-- deploy-version: v${VERSION} deployed at ${DEPLOY_TIMESTAMP} -->/" README.md
+
+          # Customize Space title for admin variant
+          if [[ "${{ matrix.space }}" == "ccbell-sound-generator-admin" ]]; then
+            sed -i 's/^title: CCBell Sound Generator$/title: CCBell Sound Generator (Admin)/' README.md
+          fi
+
+          # Stage all changes including frontend dist
+          git add -f frontend/dist
+          git add -f backend/app/core/config.py
+          git add -f README.md
+
+          # Create deployment commit
+          git commit -m "Deploy v${VERSION}" --allow-empty
+
+      - name: Push to HuggingFace Spaces (${{ matrix.space }})
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_USERNAME: ${{ secrets.HF_USERNAME }}
+          HF_SPACE: ${{ matrix.space }}
+        run: |
+          VERSION="${{ needs.validate.outputs.version }}"
+
+          # Add HuggingFace remote
+          git remote add hf https://oauth2:${HF_TOKEN}@huggingface.co/spaces/${HF_USERNAME}/${HF_SPACE} || true
+
+          # Push to HuggingFace
+          git push hf HEAD:main --force
+
+          echo "Successfully deployed v${VERSION} to HuggingFace Spaces"
+          echo "URL: https://huggingface.co/spaces/${HF_USERNAME}/${HF_SPACE}"
+
+      - name: Create deployment summary
+        run: |
+          VERSION="${{ needs.validate.outputs.version }}"
+          HF_SPACE="${{ matrix.space }}"
+          echo "## Deployment Summary (${{ matrix.space }})" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Version:** v${VERSION}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Environment:** HuggingFace Spaces" >> $GITHUB_STEP_SUMMARY
+          echo "- **Space:** [${{ secrets.HF_USERNAME }}/${HF_SPACE}](https://huggingface.co/spaces/${{ secrets.HF_USERNAME }}/${HF_SPACE})" >> $GITHUB_STEP_SUMMARY
+          echo "- **Triggered by:** ${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit:** ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY

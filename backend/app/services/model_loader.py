@@ -1,10 +1,16 @@
-"""ML model management with lazy loading."""
+"""ML model management with lazy loading.
+
+Downloads model weights from GitHub Releases (no HuggingFace account needed).
+Falls back to HuggingFace if GitHub download fails and HF token is available.
+"""
 
 import asyncio
 import concurrent.futures
 import gc
+import json
 import os
 from dataclasses import dataclass
+from pathlib import Path
 from typing import TYPE_CHECKING, Any, Literal
 
 from loguru import logger
@@ -16,39 +22,6 @@ if TYPE_CHECKING:
 
 # Lazy import flag
 _torch_available: bool | None = None
-_hf_logged_in: bool = False
-
-
-def _get_hf_token() -> str | None:
-    """Get HuggingFace token from environment.
-
-    Uses CCBELL_HF_TOKEN env var (Space-specific config).
-    Falls back to HF_TOKEN (standard HF env var).
-    """
-    return os.environ.get("CCBELL_HF_TOKEN") or os.environ.get("HF_TOKEN")
-
-
-def _ensure_hf_login() -> None:
-    """Ensure HuggingFace login for gated model access."""
-    global _hf_logged_in
-    if _hf_logged_in:
-        return
-
-    token = _get_hf_token()
-    if token:
-        try:
-            from huggingface_hub import login
-
-            login(token=token, add_to_git_credential=False)
-            logger.info("Successfully logged in to HuggingFace")
-            _hf_logged_in = True
-        except Exception as e:
-            logger.error(f"Failed to login to HuggingFace: {e}")
-            logger.opt(exception=True).debug("HuggingFace login traceback:")
-    else:
-        logger.warning(
-            "No HuggingFace token configured. Set CCBELL_HF_TOKEN env var to access gated models."
-        )
 
 
 def _check_torch() -> bool:
@@ -80,6 +53,141 @@ def _get_device() -> str:
     return "cpu"
 
 
+# Files needed for each model
+MODEL_FILES = {
+    "small": {
+        "config": "stable-audio-open-small-model_config.json",
+        "weights": "stable-audio-open-small-model.safetensors",
+    },
+}
+
+
+def _get_model_cache_dir(model_id: str) -> Path:
+    """Get the local cache directory for a model."""
+    return settings.models_cache_dir / f"stable-audio-open-{model_id}"
+
+
+def _download_file(url: str, dest: Path, progress_callback: Any = None) -> None:
+    """Download a file from URL with optional progress reporting.
+
+    Downloads to a .tmp file first, then renames on success to avoid
+    partial files from interrupted downloads.
+    """
+    import urllib.request
+
+    logger.info(f"Downloading {url} -> {dest}")
+    dest.parent.mkdir(parents=True, exist_ok=True)
+
+    tmp_path = dest.with_suffix(dest.suffix + ".tmp")
+
+    req = urllib.request.Request(url)
+    with urllib.request.urlopen(req, timeout=30) as response:
+        total_size = int(response.headers.get("Content-Length", 0))
+        downloaded = 0
+
+        with open(tmp_path, "wb") as f:
+            while True:
+                chunk = response.read(1024 * 1024)  # 1MB chunks
+                if not chunk:
+                    break
+                f.write(chunk)
+                downloaded += len(chunk)
+                if progress_callback and total_size > 0:
+                    progress_callback(downloaded / total_size)
+
+    # Rename to final path on success
+    tmp_path.rename(dest)
+    logger.info(f"Downloaded {dest.name} ({downloaded / 1024 / 1024:.1f} MB)")
+
+
+def _ensure_model_files(model_id: str, progress_callback: Any = None) -> tuple[Path, Path]:
+    """Ensure model files are available locally, downloading if needed.
+
+    Downloads from GitHub Releases (no HuggingFace account required).
+    Falls back to HuggingFace if GitHub fails and HF_TOKEN is set.
+
+    Returns:
+        Tuple of (config_path, weights_path)
+    """
+    if model_id not in MODEL_FILES:
+        raise ValueError(f"Unknown model: {model_id}")
+
+    files = MODEL_FILES[model_id]
+    cache_dir = _get_model_cache_dir(model_id)
+    config_path = cache_dir / files["config"]
+    weights_path = cache_dir / files["weights"]
+
+    # Check if already cached
+    if config_path.exists() and weights_path.exists():
+        logger.info(f"Model {model_id} found in cache at {cache_dir}")
+        return config_path, weights_path
+
+    # Clean up any partial downloads
+    for f in cache_dir.glob("*.tmp"):
+        f.unlink()
+        logger.debug(f"Cleaned up partial download: {f}")
+
+    # Try GitHub Releases first (no auth needed)
+    base_url = settings.model_download_base_url
+    github_ok = True
+
+    if not config_path.exists():
+        url = f"{base_url}/{files['config']}"
+        try:
+            _download_file(url, config_path)
+        except Exception as e:
+            logger.warning(f"GitHub download failed for {files['config']}: {e}")
+            github_ok = False
+
+    if github_ok and not weights_path.exists():
+        url = f"{base_url}/{files['weights']}"
+        try:
+            _download_file(url, weights_path, progress_callback=progress_callback)
+        except Exception as e:
+            logger.warning(f"GitHub download failed for {files['weights']}: {e}")
+            github_ok = False
+            # Clean up config if weights failed
+            if config_path.exists():
+                config_path.unlink()
+
+    if config_path.exists() and weights_path.exists():
+        return config_path, weights_path
+
+    # Fallback: try HuggingFace (requires HF_TOKEN for gated models)
+    hf_token = os.environ.get("CCBELL_HF_TOKEN") or os.environ.get("HF_TOKEN")
+    if hf_token:
+        logger.info("Falling back to HuggingFace download...")
+        try:
+            from huggingface_hub import hf_hub_download, login
+
+            login(token=hf_token, add_to_git_credential=False)
+
+            repo_id = ModelLoader.MODEL_REPOS[model_id]
+
+            if not config_path.exists():
+                hf_path = hf_hub_download(repo_id, filename=files["config"], repo_type="model")
+                cache_dir.mkdir(parents=True, exist_ok=True)
+                import shutil
+
+                shutil.copy2(hf_path, config_path)
+
+            if not weights_path.exists():
+                hf_path = hf_hub_download(repo_id, filename=files["weights"], repo_type="model")
+                cache_dir.mkdir(parents=True, exist_ok=True)
+                import shutil
+
+                shutil.copy2(hf_path, weights_path)
+
+            if config_path.exists() and weights_path.exists():
+                return config_path, weights_path
+        except Exception as e:
+            logger.error(f"HuggingFace fallback failed: {e}")
+
+    raise RuntimeError(
+        f"Failed to download model {model_id}. Check your internet connection and try again."
+    )
+
+
 @dataclass
 class LoadingState:
     """Tracks the loading state of a model."""
@@ -93,7 +201,7 @@ class LoadingState:
 class ModelLoader:
     """Manages Stable Audio Open models with lazy loading."""
 
-    # Model HuggingFace repository IDs
+    # Model HuggingFace repository IDs (used as fallback)
     MODEL_REPOS = {
         "small": "stabilityai/stable-audio-open-small",
     }
@@ -217,27 +325,36 @@ class ModelLoader:
         self._update_loading_state(model_id, "loading", progress=0.1, stage="initializing")
 
         try:
-            # Ensure HuggingFace login for gated models
-            _ensure_hf_login()
-
             # Unload other models to save memory
             self._unload_all_models_sync()
-            self._update_loading_state(model_id, "loading", progress=0.2, stage="downloading")
+            self._update_loading_state(model_id, "loading", progress=0.15, stage="downloading")
 
-            # Import stable_audio_tools here to avoid loading at startup
-            from stable_audio_tools import get_pretrained_model
+            # Download model files (from GitHub Releases, no HF account needed)
+            def download_progress(pct: float):
+                # Map download progress to 0.15-0.7 range
+                p = 0.15 + pct * 0.55
+                self._update_loading_state(model_id, "loading", progress=p, stage="downloading")
 
-            self._update_loading_state(model_id, "loading", progress=0.3, stage="loading_weights")
+            config_path, weights_path = _ensure_model_files(
+                model_id, progress_callback=download_progress
+            )
 
-            logger.debug(f"Downloading/loading weights for {model_id}...")
-            # Load the model
-            model, model_config = get_pretrained_model(self.MODEL_REPOS[model_id])
+            self._update_loading_state(model_id, "loading", progress=0.7, stage="loading_weights")
+
+            # Load model from local files (same as stable_audio_tools.get_pretrained_model)
+            from stable_audio_tools.models.factory import create_model_from_config
+            from stable_audio_tools.models.utils import load_ckpt_state_dict
+
+            with open(config_path) as f:
+                model_config = json.load(f)
+
+            model = create_model_from_config(model_config)
+            model.load_state_dict(load_ckpt_state_dict(str(weights_path)))
             logger.info(f"Model weights loaded for {model_id}")
 
             self._update_loading_state(model_id, "loading", progress=0.8, stage="moving_to_device")
 
             # Convert to float32 for CPU inference (float16 is extremely slow on CPU)
-            # See: https://huggingface.co/stabilityai/stable-audio-open-small/discussions/1
             if self.device == "cpu":
                 import torch
 
@@ -272,9 +389,6 @@ class ModelLoader:
     async def load_model(self, model_id: str) -> tuple[Any, Any]:
         """
         Load a model, unloading others if necessary to manage memory.
-
-        Uses the loading lock to prevent concurrent loading and runs
-        heavy sync work in a thread pool to avoid blocking the event loop.
 
         Returns:
             Tuple of (model, model_config)

@@ -11,16 +11,19 @@ dist/
 frontend/dist/
 *.egg-info/
 
+# Tauri build artifacts
+frontend/src-tauri/target/
+
 # IDE
 .idea/
 .vscode/
 *.swp
 *.swo
 
-# Claude Code (keep commands and skills for project sharing)
+# Claude Code (keep skills and rules for project sharing)
 .claude/*
-!.claude/commands/
 !.claude/skills/
+!.claude/rules/
 
 # Environment
 .env

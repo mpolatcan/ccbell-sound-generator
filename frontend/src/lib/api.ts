@@ -139,6 +139,10 @@ class ApiClient {
 
   // Get pack download URL
   getPackDownloadUrl = (packId: string): string => {
+    // In Tauri mode, baseUrl already contains the full origin
+    if (this.baseUrl.startsWith('http')) {
+      return `${this.baseUrl}/api/packs/${packId}`
+    }
     return `${window.location.origin}${this.baseUrl}/api/packs/${packId}`
   }
 }

@@ -1,10 +1,15 @@
-// API base URL - empty string for same-origin requests
-export const API_BASE_URL = ''
+// Detect Tauri desktop environment
+const isTauri = typeof window !== 'undefined' && '__TAURI_INTERNALS__' in window
 
-// WebSocket URL
-export const WS_BASE_URL = typeof window !== 'undefined'
-  ? `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}`
-  : ''
+// API base URL - in Tauri mode, point to the local sidecar backend
+export const API_BASE_URL = isTauri ? 'http://127.0.0.1:7860' : ''
+
+// WebSocket URL - in Tauri mode, point to the local sidecar backend
+export const WS_BASE_URL = isTauri
+  ? 'ws://127.0.0.1:7860'
+  : typeof window !== 'undefined'
+    ? `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}`
+    : ''
 
 // Model defaults (optimized for short notification sounds on CPU)
 export const MODEL_DEFAULTS: Record<string, {

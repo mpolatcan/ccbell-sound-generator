@@ -1,100 +1,33 @@
 # CCBell Sound Generator
 
-AI-powered notification sound generator for the Claude Code plugin "ccbell", deployed on HuggingFace Spaces.
+AI-powered notification sound generator for the Claude Code plugin "ccbell". Available as a web app (HuggingFace Spaces) and a native desktop app (Tauri v2).
 
 ## Project Overview
 
-This is a full-stack web application with:
+This is a full-stack application with two deployment targets:
 - **Backend**: FastAPI (Python 3.11-3.12) - serves API and static files
 - **Frontend**: React 19 + TypeScript + Vite 6 + Tailwind CSS + shadcn/ui
-- **AI Models**: Stable Audio Open Small (341M) for audio generation
-- **Deployment**: HuggingFace Spaces Docker SDK on free CPU tier
+- **Desktop App**: Tauri v2 with Python sidecar (auto-installs Python via `uv`)
+- **AI Models**: Stable Audio Open Small (341M) - weights hosted on GitHub Releases (no HF account needed)
+- **Deployment**: HuggingFace Spaces (web), GitHub Releases (desktop installers)
 - **Tooling**: uv (package manager), ruff (linter/formatter), ty>=0.0.1a5 (type checker)
 
-## Directory Structure
+## Quick Start
 
-```
-ccbell-sound-generator/
-├── backend/
-│   ├── app/
-│   │   ├── main.py           # FastAPI entry point
-│   │   ├── api/
-│   │   │   ├── routes.py     # REST API endpoints
-│   │   │   └── websocket.py  # WebSocket for progress
-│   │   ├── core/
-│   │   │   ├── config.py     # Settings
-│   │   │   ├── logging.py    # Loguru logging configuration
-│   │   │   └── models.py     # Pydantic models
-│   │   ├── services/
-│   │   │   ├── audio.py      # Audio generation
-│   │   │   ├── github.py     # GitHub releases
-│   │   │   ├── model_loader.py
-│   │   │   └── pack.py       # Sound pack ZIP creation
-│   │   └── data/
-│   │       ├── themes.py     # Theme presets
-│   │       └── hooks.py      # Hook definitions
-│   ├── pyproject.toml        # Dependencies and tool config
-│   └── uv.lock               # Lockfile for reproducible builds
-├── frontend/
-│   ├── src/
-│   │   ├── components/       # React components
-│   │   ├── hooks/            # Custom hooks
-│   │   ├── lib/              # Utilities, API client
-│   │   ├── types/            # TypeScript types
-│   │   ├── App.tsx
-│   │   └── main.tsx
-│   ├── package.json
-│   ├── vite.config.ts
-│   └── tailwind.config.js
-├── .claude/
-│   ├── commands/             # Slash commands (14 commands)
-│   └── skills/               # Auto-triggered skills (4 skills)
-├── .gemini/
-│   ├── commands/             # Gemini commands
-│   └── skills/               # Gemini skills
-├── Dockerfile                # Production build with uv
-├── Dockerfile.base           # Base image with system dependencies
-├── docker-compose.yml        # Local development
-└── README.md                 # HuggingFace Space config
+```bash
+# Backend
+cd backend && uv venv venv && uv sync --group dev && source venv/bin/activate
+uvicorn app.main:app --reload --port 8000
+
+# Frontend (separate terminal)
+cd frontend && npm install && npm run dev
 ```
 
-## Claude Code Integration
+## Codemap
 
-### Auto-Triggered Skills
+Detailed file-level codemap with all exports, classes, functions, and types is in `.claude/rules/codemap.md` (auto-loaded every session).
 
-Skills are automatically invoked by Claude when relevant based on context:
-
-| Skill | Triggers When |
-|-------|---------------|
-| `agent-browser` | Testing UI in browser, visual verification, form interactions, screenshots |
-| `code-quality` | Fixing lint errors, formatting code, type checking |
-| `project-architecture` | Explaining codebase, understanding structure |
-| `deployment-workflow` | Deploying, releasing, checking deployment status |
-
-Skills are located in `.claude/skills/` and use auto-discovery.
-
-### Slash Commands
-
-Manual commands for common tasks:
-
-| Command | Description |
-|---------|-------------|
-| `/setup` | First-time project setup for local development |
-| `/dev` | Start development servers (backend + frontend) |
-| `/lint` | Run linting for both backend and frontend |
-| `/format` | Format Python code using ruff |
-| `/typecheck` | Run type checking (Python ty + TypeScript) |
-| `/build` | Build the frontend application with Vite |
-| `/verify` | Run complete pre-deployment verification checklist |
-| `/release <version>` | Create version release tag and trigger deployment |
-| `/docker-build` | Build production Docker image |
-| `/docker-run` | Run Docker container locally for testing |
-| `/sync-deps` | Update and sync Python dependencies using uv |
-| `/check-hf-logs` | Check HuggingFace Space deployment logs |
-| `/status` | Show project status (git, deps, environment) |
-| `/clean` | Clean build artifacts, caches, and temp files |
-
-Commands are located in `.claude/commands/`.
+**CRITICAL: ALWAYS run `/codemap-updater` after ANY code changes (new files, renamed files, added/removed functions, changed exports, structural refactors). This is mandatory — never skip it.**
 
 ## Key Commands
 
@@ -108,46 +41,22 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 # Or with Homebrew: brew install uv
 ```
 
-### Virtual Environment (REQUIRED)
-
-**IMPORTANT**: Always activate the virtual environment before running ANY Python-related commands, including `ruff` and `ty` which are installed in the venv.
-
-```bash
-# From backend directory - activate venv
-cd backend
-source venv/bin/activate
-
-# Or from project root (if venv exists at backend/venv)
-source backend/venv/bin/activate
-
-# Verify activation (should show venv path)
-which python
-
-# ruff and ty are available after activation
-which ruff  # Should show venv/bin/ruff
-which ty    # Should show venv/bin/ty
-```
-
 ### Backend Development
+
+**IMPORTANT**: Always activate the venv before running Python commands (`ruff`, `ty`, `uvicorn`): `source backend/venv/bin/activate`
 
 ```bash
 # First-time setup (from backend directory):
 cd backend
 uv venv venv  # Create venv directory
 uv sync --group dev  # Install all deps from lockfile into venv
-
-# Activate the virtual environment
 source venv/bin/activate
 
 # Run development server (from backend directory)
 uvicorn app.main:app --reload --port 8000  # Local dev uses port 8000
 
-# Lint and format (from backend directory, venv must be active)
-ruff check .
-ruff format .
-
-# Type checking with ty (from backend directory, venv must be active)
-ty check .
+# After changing pyproject.toml
+uv lock && uv sync --group dev
 ```
 
 ### Frontend Development
@@ -157,158 +66,59 @@ cd frontend
 npm install          # Install dependencies
 npm run dev          # Development server (http://localhost:5173)
 npm run build        # Production build
-npm run lint         # Run ESLint
+npm run lint         # ESLint only
 ```
 
-### Docker Development
-
-```bash
-# Full stack with Docker
-docker-compose up --build
-
-# Build production image
-docker build -t ccbell-sound-generator .
-```
-
-### shadcn/ui Components
+### Desktop App (Tauri) Development
 
 ```bash
 cd frontend
-npx shadcn@latest add button card input label select slider accordion dialog toast progress badge separator scroll-area skeleton textarea collapsible
+npm run tauri dev        # Run desktop app in dev mode (auto-starts backend sidecar)
+npm run tauri build      # Build production installer
 ```
+
+**First launch behavior**: The desktop app auto-installs Python 3.12 via `uv` and all dependencies on first run. Subsequent launches start instantly using cached venv.
 
 ## Architecture
 
+### Web App (HuggingFace Spaces)
 - FastAPI serves React static files at root and API at `/api/*`
 - **Static Files**: Frontend build artifacts (`frontend/dist`) are served from `backend/static` in production
 - WebSocket at `/api/ws/{job_id}` for real-time progress during generation
 - Models lazy-loaded to manage memory on free CPU tier
 - Single container exposes port 7860 for HuggingFace Spaces
 
-## UI Components
+### Desktop App (Tauri v2)
+- Tauri wraps the React frontend as a native app
+- Python FastAPI backend runs as a sidecar process on port 7860
+- **Auto-install flow** (`lib.rs`): find/install `uv` -> install Python 3.12 -> create venv -> install deps from `requirements.txt` -> start uvicorn
+- `AtomicBool` setup guard prevents race conditions from React StrictMode double-invoke
+- `.setup-complete` marker file tracks successful setup (not individual binary checks)
+- Settings persisted to app data dir (`~/Library/Application Support/com.ccbell.soundgenerator/` on macOS)
+- `CARGO_MANIFEST_DIR` compile-time constant used for reliable path resolution in dev mode
 
-### Sound Packs
+### Model Loading
+- **Primary**: Downloads from GitHub Releases (no HuggingFace account needed)
+- **Fallback**: HuggingFace Hub (only if GitHub fails AND `HF_TOKEN` is set)
+- Files cached at `~/.cache/ccbell-models/stable-audio-open-{model_id}/`
+- Uses `create_model_from_config` + `load_ckpt_state_dict` from `stable_audio_tools` (not `get_pretrained_model`)
+- Atomic downloads via `.tmp` file rename pattern
 
-Generated sounds are organized into **Sound Packs** - named, collapsible groups of sounds:
+## Domain Concepts
 
-- **Pack Selection**: Users can create a new pack or add sounds to an existing pack via dropdown
-- **Pack Name Input**: When creating new packs, users can name their pack or use auto-generated name (theme + timestamp)
-- **Add to Existing**: Select an existing pack from the dropdown to add more sounds (shows sound count)
-- **Real-time Progress**: Sounds appear in library immediately when generation starts with progress bar
-- **Pack Actions**: Rename, download as ZIP, publish to GitHub, delete
-- **Collapsible UI**: Each pack can be expanded/collapsed independently
-- **Persistence**: Packs stored in session storage (cleared on page refresh)
-
-### Key Frontend Types
-
-```typescript
-interface SoundPack {
-  id: string
-  name: string
-  theme: string
-  model: string
-  created_at: Date
-}
-
-interface PromptEntry {
-  text: string
-  alias?: string             // Short thematic display name
-}
-
-interface GeneratedSound {
-  id: string
-  job_id: string
-  pack_id: string           // Links sound to pack
-  hook_type: HookTypeId
-  prompt: string
-  model: string
-  duration: number
-  audio_url: string
-  status: 'generating' | 'completed' | 'error'
-  progress?: number         // 0-1 during generation
-  stage?: string            // Current generation stage
-  error?: string
-  created_at: Date
-}
-```
-
-### State Management
-
-Sound library state is managed with Zustand (`useSoundLibrary` hook):
-- `packs`: Array of SoundPack objects
-- `sounds`: Array of GeneratedSound objects
-- Pack operations: `addPack`, `removePack`, `renamePack`
-- Sound operations: `addSound`, `updateSound`, `removeSound`
-- Bulk: `clearAll`, `getSoundsByPack`
+- **Sound Packs**: Named, collapsible groups of generated sounds with download/publish/delete. State managed with Zustand (`useSoundLibrary` hook). Core types in `frontend/src/types/`.
+- **Themes**: 7 presets (Sci-Fi, Retro 8-bit, Nature, Minimal, Mechanical, Ambient, Jazz) + Custom (user-written prompts, no preset config). Per-theme prompt configs in `backend/app/data/hook_styles/`.
+- **Hook Events**: 10 types aligned with Claude Code hooks. Defined in `backend/app/data/hooks.py`.
 
 ## API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/health` | Health check |
-| GET | `/api/models` | List available models |
-| GET | `/api/models/status` | Get loading status for all models |
-| GET | `/api/models/{model_id}/status` | Get loading status for a specific model |
-| POST | `/api/models/{model_id}/load` | Trigger background loading of a model |
-| GET | `/api/themes` | Get theme presets |
-| GET | `/api/hooks` | Get hook types with metadata |
-| POST | `/api/generate` | Start audio generation (returns job_id) |
-| GET | `/api/audio/{job_id}/status` | Get job status and progress |
-| GET | `/api/audio/{job_id}` | Download generated audio |
-| DELETE | `/api/audio/{job_id}` | Delete job and audio file |
-| POST | `/api/packs` | Create downloadable sound pack ZIP |
-| GET | `/api/packs/{pack_id}` | Download pack ZIP file |
-| POST | `/api/publish` | Publish to GitHub release |
-| WS | `/api/ws/{job_id}` | Real-time progress updates |
+All endpoints under `/api/*`. See `backend/app/api/routes.py` for full definitions.
 
-## Models
+Key routes: `GET /health`, `POST /models/{id}/load`, `POST /generate`, `GET /audio/{job_id}`, `WS /ws/{job_id}` (real-time progress).
 
-| Model | Parameters | Max Duration | Best For |
-|-------|-----------|--------------|----------|
-| Stable Audio Open Small | 341M | 5 sec | Notification sounds, CPU |
+## Testing
 
-## Claude Code Hook Types
-
-The app generates sounds for these Claude Code hook events (10 types, aligned with official Claude Code hooks):
-
-**Core Events (currently supported in ccbell binary):**
-- **Stop** (`stop`) - Main agent has finished its task
-- **SubagentStop** (`subagent`) - A subagent has finished its task
-- **PermissionPrompt** (`permission_prompt`) - Tool needs user permission to proceed
-- **IdlePrompt** (`idle_prompt`) - Agent is idle and waiting for user input
-
-**Session Lifecycle:**
-- **SessionStart** (`session_start`) - A new Claude Code session has started
-- **SessionEnd** (`session_end`) - Claude Code session has ended
-
-**Tool Lifecycle:**
-- **PreToolUse** (`pre_tool_use`) - Before a tool call executes
-- **PostToolUse** (`post_tool_use`) - After a tool completes execution
-
-**Agent Events:**
-- **SubagentStart** (`subagent_start`) - A new subagent has been spawned
-- **UserPromptSubmit** (`user_prompt_submit`) - User has submitted a new prompt
-
-## Theme Presets
-
-- Sci-Fi, Retro 8-bit, Nature, Minimal, Mechanical, Ambient, Jazz, Custom
-- Custom theme allows user-written prompts
-
-## Dependencies
-
-### Backend (Python 3.11-3.12)
-- **Runtime**: FastAPI 0.115.6, uvicorn 0.34.0, pydantic-settings 2.7.1
-- **Logging**: loguru 0.7.2
-- **ML**: torch 2.5.1 (CPU), torchaudio 2.5.1, torchvision 0.20.1, stable-audio-tools 0.0.19
-- **Audio**: numpy 1.23.5, scipy 1.11.4
-- **Integrations**: PyGithub 2.5.0
-- **Dev Tools**: ruff 0.9+, ty>=0.0.1a5 (type checker)
-
-### Frontend (Node.js 22)
-- React 19, TypeScript 5.7
-- Vite 6, Tailwind CSS 3.4
-- @tanstack/react-query 5.62, zustand 5
-- lucide-react, jszip 3.10, wavesurfer.js 7.8
+No automated test suite yet. Manual verification via the pre-deployment checklist below. For API testing: start the backend, load a model (`POST /api/models/small/load`), generate audio (`POST /api/generate`), verify output.
 
 ## Code Quality Requirements
 
@@ -319,24 +129,15 @@ The app generates sounds for these Claude Code hook events (10 types, aligned wi
 ```bash
 # Backend (from backend directory, venv must be active)
 cd backend
-source venv/bin/activate
 ruff check .              # Linting
 ruff format --check .     # Format verification (use 'ruff format .' to auto-fix)
 ty check .                # Type checking
 
 # Frontend (from frontend directory)
 cd frontend
-npm run lint              # ESLint + TypeScript type checking
+npm run lint              # ESLint
+npx tsc --noEmit          # TypeScript type checking
 ```
-
-### CI Pipeline Verification
-
-The CI pipeline (`.github/workflows/ci.yml`) runs the same checks automatically on every push and PR. **Your code must pass CI before merging.**
-
-After pushing, always verify CI status:
-1. Check GitHub Actions: https://github.com/mpolatcan/ccbell-sound-generator/actions/workflows/ci.yml
-2. Fix any failures locally and push again
-3. Never merge or deploy if CI is failing
 
 ### Quick Fix Commands
 
@@ -348,318 +149,80 @@ cd backend && ruff format .
 cd frontend && npm run lint -- --fix
 ```
 
+**Tip**: Use the `/verify` slash command to run the full pre-deployment checklist including all quality checks.
+
+## Versioning
+
+Versions are managed independently per stack: backend (`pyproject.toml`), frontend (`package.json`), and desktop (`tauri.conf.json`). They are **not** kept in sync. Git tags (`v*`) trigger CI/CD pipelines for all targets simultaneously.
+
 ## Implementation Notes
 
-- Use async/await consistently in FastAPI routes
-- Handle WebSocket disconnections gracefully
 - Lazy load ML models to stay under 16GB memory limit
-- Frontend state managed with Zustand for sound library
-- Use React Query for API calls with proper caching
 - All audio files are 44.1kHz stereo WAV
-- **After every code change, review and update CLAUDE.md and GEMINI.md to reflect changes** (new files, dependencies, environment variables, etc.)
-- **Before committing, ALWAYS run linting locally**: `ruff check .`, `ruff format .`, `ty check .`, and `npm run lint`
-- **ALWAYS use `agent-browser` skill to visually verify UI changes** during local development - take screenshots, interact with elements, and confirm everything renders correctly
-- **ALWAYS use `frontend-design` skill for ANY frontend work** - UI components, pages, styling, layout changes, or any React/TypeScript frontend modifications must use the `frontend-design` skill to ensure production-grade design quality
+- Max 2 concurrent generations; excess jobs queue with `waiting_in_queue` status
+- Jobs auto-expire after 30 minutes regardless of status
 
-## Dependency Management
+## Dependencies
 
-Dependencies are managed using **uv lockfile** for reproducible builds:
+- **Backend** (Python 3.11-3.12): `backend/pyproject.toml`. Key: FastAPI, torch (CPU-only), stable-audio-tools, loguru. Dev: ruff, ty>=0.0.1a5.
+- **Frontend** (Node.js 22): `frontend/package.json`. Key: React 19, Vite 6, Tailwind CSS, zustand, @tanstack/react-query, wavesurfer.js.
+- **Desktop** (Rust): `frontend/src-tauri/Cargo.toml`. Key: tauri 2, tauri-plugin-shell 2, reqwest, tokio.
 
-- **pyproject.toml**: Declares dependencies and version constraints
-- **uv.lock**: Generated lockfile with exact resolved versions (committed to git)
-- **uv sync**: Installs dependencies from lockfile (used in Docker and local dev)
-
-### Key Configuration (pyproject.toml)
-
-```toml
-[tool.uv]
-# Pin critical dependencies
-constraint-dependencies = ["numpy==1.23.5", "scipy==1.11.4"]
-
-# Exclude unused transitive dependencies
-exclude-dependencies = ["gradio"]
-
-# PyTorch CPU-only index
-[tool.uv.sources]
-torch = [{ index = "pytorch-cpu" }]
-torchaudio = [{ index = "pytorch-cpu" }]
-torchvision = [{ index = "pytorch-cpu" }]
-
-[[tool.uv.index]]
-name = "pytorch-cpu"
-url = "https://download.pytorch.org/whl/cpu"
-explicit = true
-```
-
-### Updating Dependencies
-
-```bash
-cd backend
-
-# Update lockfile after changing pyproject.toml
-uv lock
-
-# Sync environment with lockfile
-uv sync --group dev
-```
+Managed via `uv` lockfile (`pyproject.toml` + `uv.lock`). Key gotchas: numpy/scipy pinned via `constraint-dependencies`, PyTorch uses CPU-only index (`pytorch-cpu`), `gradio` excluded.
 
 ## Environment Variables
 
-All settings can be overridden via environment variables with the `CCBELL_` prefix:
+All settings use the `CCBELL_` prefix. See `backend/app/core/config.py` for the full list with defaults.
+
+**Key variables to know:**
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `CCBELL_APP_NAME` | `CCBell Sound Generator` | Application name |
-| `CCBELL_APP_VERSION` | `1.1.0` | Application version |
+| `CCBELL_PORT` | `7860` | Server port (use 8000 for local dev via `uvicorn --reload`) |
 | `CCBELL_DEBUG` | `false` | Enable debug mode |
-| `CCBELL_HOST` | `0.0.0.0` | Server host |
-| `CCBELL_PORT` | `7860` | Server port (use 8000 for local dev via uvicorn --reload) |
-| `CCBELL_DEFAULT_MODEL` | `small` | Default model |
-| `CCBELL_MODELS_CACHE_DIR` | `~/.cache/ccbell-models` | Model cache directory |
-| `CCBELL_SAMPLE_RATE` | `44100` | Audio sample rate |
-| `CCBELL_DEFAULT_DURATION` | `1.0` | Default audio duration (seconds) |
-| `CCBELL_MAX_DURATION_SMALL` | `5.0` | Max duration for small model |
-| `CCBELL_DEFAULT_STEPS_SMALL` | `8` | Diffusion steps for small model |
-| `CCBELL_DEFAULT_CFG_SCALE_SMALL` | `1.0` | CFG scale for small model |
-| `CCBELL_DEFAULT_SAMPLER_SMALL` | `pingpong` | Sampler for small model |
-| `CCBELL_DEFAULT_SIGMA_MIN` | `0.3` | Minimum noise level for diffusion |
-| `CCBELL_DEFAULT_SIGMA_MAX` | `500.0` | Maximum noise level for diffusion |
-| `CCBELL_TEMP_AUDIO_DIR` | `/tmp/ccbell-audio` | Temporary audio directory |
-| `CCBELL_MAX_AUDIO_FILES` | `100` | Max stored audio files |
-| `CCBELL_MAX_CONCURRENT_GENERATIONS` | `2` | Max concurrent audio generation jobs |
-| `CCBELL_GENERATION_THREAD_POOL_WORKERS` | `2` | Thread pool size for generation |
-| `CCBELL_WS_IDLE_TIMEOUT` | `60` | Seconds before WebSocket keepalive ping |
-| `CCBELL_WS_MAX_MISSED_PINGS` | `2` | Consecutive missed pings before close |
-| `CCBELL_JOB_MAX_LIFETIME_SECONDS` | `1800` | Max job lifetime (30 min) before cleanup |
+| `CCBELL_MODEL_DOWNLOAD_BASE_URL` | GitHub Releases URL | Base URL for model weight downloads |
 | `CCBELL_GH_TOKEN` | `null` | GitHub token for publishing (also supports `CCBELL_GITHUB_TOKEN`) |
-| `HF_TOKEN` | `null` | HuggingFace token for gated model access (also checks `CCBELL_HF_TOKEN`) |
+| `HF_TOKEN` | `null` | HuggingFace token - only needed as fallback if GitHub Releases is unreachable |
+| `CCBELL_MAX_CONCURRENT_GENERATIONS` | `2` | Max parallel audio generations |
+| `CCBELL_JOB_MAX_LIFETIME_SECONDS` | `1800` | Job expiry timeout (30 min) |
 
-## Local Testing Before Deployment
+This table covers key variables only. See `backend/app/core/config.py` for all 24 configurable settings (model defaults, audio params, WebSocket timeouts, etc.).
 
-**CRITICAL: Always test locally before deploying to HuggingFace Spaces via GitHub Actions.** This prevents wasted CI/CD cycles and ensures the application works correctly in a production-like environment.
+## Pre-Deployment Checklist
 
-### Pre-Deployment Checklist
+Before creating a release tag, all checks must pass:
 
-Before creating a release tag, complete ALL of the following:
+- [ ] Code quality passes (see [Code Quality Requirements](#code-quality-requirements))
+- [ ] CI pipeline passes: https://github.com/mpolatcan/ccbell-sound-generator/actions/workflows/ci.yml
+- [ ] Frontend builds: `cd frontend && npm run build`
+- [ ] Docker builds and runs: `docker build -t ccbell-sound-generator . && docker run -p 7860:7860 ccbell-sound-generator`
+- [ ] Health check: `curl http://localhost:7860/api/health`
+- [ ] End-to-end audio generation works via UI or API
+- [ ] UI visually verified with `agent-browser` skill
 
-**Code Quality (see [Code Quality Requirements](#code-quality-requirements) for details):**
-- [ ] Backend linting passes: `cd backend && ruff check . && ruff format --check .`
-- [ ] Backend type checking passes: `cd backend && ty check .`
-- [ ] Frontend linting passes: `cd frontend && npm run lint`
-- [ ] **CI pipeline passes**: Check https://github.com/mpolatcan/ccbell-sound-generator/actions/workflows/ci.yml
+### Docker Testing
 
-**Build & Runtime (MANDATORY Docker Testing):**
-- [ ] Frontend builds successfully: `cd frontend && npm run build`
-- [ ] Docker image builds: `docker build -t ccbell-sound-generator .`
-- [ ] Docker container runs: `docker run -p 7860:7860 -e HF_TOKEN="$HF_TOKEN" ccbell-sound-generator`
-- [ ] Health check passes: `curl http://localhost:7860/api/health`
-- [ ] Audio generation works end-to-end in Docker (see [Docker-Based Local Testing](#docker-based-local-testing-mandatory))
-
-**UI Visual Verification (MANDATORY):**
-- [ ] Use `agent-browser` to visually verify UI (see [UI-Based Testing](#ui-based-testing-with-agent-browser-mandatory))
-- [ ] Take screenshots to confirm UI renders correctly
-- [ ] Verify all interactive elements are present and functional
-
-### Docker-Based Local Testing (MANDATORY)
-
-**CRITICAL: Docker-based testing is MANDATORY before any deployment.** This is NOT optional or just recommended - you MUST test with Docker before creating a release tag. This simulates the exact HuggingFace Spaces environment and catches issues that won't appear in development server testing:
+Docker testing is required before deployment — it simulates the HuggingFace Spaces environment:
 
 ```bash
-# Build the production Docker image
-docker build -t ccbell-sound-generator .
-
-# Run the container (matches HF Spaces port)
-docker run -p 7860:7860 ccbell-sound-generator
-
-# Or with environment variables for debugging
-docker run -p 7860:7860 -e CCBELL_DEBUG=true ccbell-sound-generator
-
-# Or mount a local cache directory to persist models between runs
-docker run -p 7860:7860 \
-  -v ~/.cache/ccbell-models:/home/user/.cache/ccbell-models \
-  ccbell-sound-generator
+docker-compose up --build              # Quick start
+# Or: docker build -t ccbell-sound-generator . && docker run -p 7860:7860 -e CCBELL_DEBUG=true -v ~/.cache/ccbell-models:/home/user/.cache/ccbell-models ccbell-sound-generator
 ```
 
-Access the application at http://localhost:7860
-
-### Audio Generation Testing
-
-Test the complete audio generation flow:
-
-```bash
-# 1. Start the application (Docker or local dev server)
-docker run -p 7860:7860 ccbell-sound-generator
-
-# 2. Verify API is healthy
-curl http://localhost:7860/api/health
-
-# 3. Check available models
-curl http://localhost:7860/api/models
-
-# 4. Load a model (first time takes a while to download)
-curl -X POST http://localhost:7860/api/models/small/load
-
-# 5. Check model loading status (wait until "loaded")
-curl http://localhost:7860/api/models/small/status
-
-# 6. Generate audio (hook_type is required)
-curl -X POST http://localhost:7860/api/generate \
-  -H "Content-Type: application/json" \
-  -d '{
-    "prompt": "short notification chime, bright and clear",
-    "model": "small",
-    "hook_type": "Notification",
-    "duration": 2.0
-  }'
-# Returns: {"job_id": "xxx-xxx-xxx"}
-
-# 7. Check job status (wait until "completed")
-curl http://localhost:7860/api/audio/{job_id}/status
-
-# 8. Download the generated audio
-curl http://localhost:7860/api/audio/{job_id} --output test.wav
-
-# 9. Play the audio to verify
-afplay test.wav  # macOS
-# or: aplay test.wav  # Linux
-```
-
-### UI-Based Testing with agent-browser (MANDATORY)
-
-**CRITICAL: ALWAYS use the `agent-browser` skill to visually verify the UI during local development.** This ensures you can see exactly what's happening in the browser and catch visual issues before deployment.
-
-The `agent-browser` skill provides automated browser control for testing. Use it to:
-- Navigate to the application
-- Take screenshots to verify UI state
-- Interact with forms and buttons
-- Verify visual elements are rendering correctly
-
-#### Standard UI Testing Workflow
-
-```bash
-# 1. Start the dev server first (Docker or local)
-docker run -p 7860:7860 ccbell-sound-generator
-# Or: npm run dev (frontend) + uvicorn (backend)
-
-# 2. Open the application in browser
-agent-browser open http://localhost:7860
-
-# 3. Take a snapshot to see interactive elements
-agent-browser snapshot -i
-
-# 4. Take a screenshot to visually verify the UI
-agent-browser screenshot ui-check.png
-
-# 5. Test theme selection (use refs from snapshot)
-agent-browser click @e1  # Click theme dropdown
-agent-browser snapshot -i
-agent-browser click @e2  # Select a theme option
-
-# 6. Test hook type selection
-agent-browser click @e3  # Click hook type dropdown
-agent-browser snapshot -i
-agent-browser click @e4  # Select a hook type
-
-# 7. Test audio generation
-agent-browser click @e5  # Click Generate button
-agent-browser wait 5000  # Wait for generation
-agent-browser screenshot generation-result.png
-
-# 8. Verify progress bar animation
-agent-browser snapshot -i  # Check for progress element
-
-# 9. Test audio playback controls
-agent-browser click @e6  # Click play button
-
-# 10. Close browser when done
-agent-browser close
-```
-
-#### Quick Visual Verification Checklist
-
-```bash
-# Minimum verification before any PR or deployment:
-agent-browser open http://localhost:7860
-agent-browser wait --load networkidle
-agent-browser screenshot full-page.png --full
-agent-browser snapshot -i  # Verify all interactive elements exist
-agent-browser close
-```
-
-#### Record UI Testing Sessions
-
-For debugging or documentation:
-
-```bash
-agent-browser open http://localhost:7860
-agent-browser record start ./ui-test.webm
-# Perform all testing steps...
-agent-browser record stop
-```
-
-#### Manual Verification (Alternative)
-
-If agent-browser is unavailable, manually verify:
-
-1. Open http://localhost:7860 in browser
-2. Select a theme (e.g., "Sci-Fi")
-3. Select a hook type (e.g., "Notification")
-4. Click "Generate" and wait for completion
-5. Play the generated audio
-6. Verify WebSocket progress updates work (progress bar should animate)
-7. Test downloading the audio file
-8. Test multiple generations in sequence
-
-### Common Issues and Solutions
-
-| Issue | Solution |
-|-------|----------|
-| Model download fails | Check HF_TOKEN is set for gated models |
-| Out of memory | Use the `small` model for local testing |
-| Audio generation hangs | Ensure torch is using CPU correctly |
-| WebSocket not connecting | Check browser console for CORS issues |
-| Container exits immediately | Check logs with `docker logs <container_id>` |
-
-### Development Server Testing (For Fast Iteration Only)
-
-**NOTE: This is NOT a replacement for Docker testing.** Use development servers only for fast iteration while coding. You MUST still run Docker-based testing before any deployment or release.
-
-For faster iteration during active development:
-
-```bash
-# Terminal 1: Backend
-cd backend
-source venv/bin/activate
-uvicorn app.main:app --reload --port 8000
-
-# Terminal 2: Frontend (with API proxy to backend)
-cd frontend
-npm run dev
-```
-
-Access frontend at http://localhost:5173 (proxies API calls to port 8000)
-
-**Remember:** Always follow up with Docker testing before committing or deploying.
+Access at http://localhost:7860. Test: load model -> generate -> download audio.
 
 ## CI/CD Pipelines
 
-### CI Pipeline (`.github/workflows/ci.yml`)
+| Pipeline | File | Trigger | Purpose |
+|----------|------|---------|---------|
+| CI | `ci.yml` | Push to `master`, PRs | Lint, build, Docker validation |
+| Deploy | `deploy-huggingface.yml` | Version tags (`v*.*.*`), manual | Build + push to HuggingFace Spaces |
+| Build Desktop | `build-desktop-tauri.yml` | Version tags (`v*.*.*`), manual | macOS universal + Linux x64 Tauri installers via GitHub Release |
+| Base Image | `build-base-image.yml` | Push to `master` (path-filtered), manual | Build `Dockerfile.base` with system deps |
+| Upload Model | `upload-model-weights.yml` | Manual | Download weights from HF, upload to GitHub Release (`models-v1.0`) |
+| Deploy | `deploy-huggingface.yml` | — | Uses `production` environment for deployment approvals (optional) |
 
-Runs on every push to `main`/`master` and pull requests:
-
-1. **Lint Frontend** - ESLint and TypeScript type checking
-2. **Lint Backend** - Ruff check and format verification
-3. **Build Frontend** - Produces build artifacts
-4. **Build Docker** - Validates Docker image builds correctly
-
-### Deploy Pipeline (`.github/workflows/deploy.yml`)
-
-Triggered by version tags (e.g., `v1.0.0`) or manual workflow dispatch:
-
-1. **Validate** - Extracts and validates semver version from tag
-2. **Build** - Builds frontend and updates version in config
-3. **Test Docker** - Verifies Docker image builds
-4. **Deploy** - Pushes to HuggingFace Spaces
+Model assets prefixed with model name: `stable-audio-open-small-model.safetensors`, `stable-audio-open-small-model_config.json`.
 
 ### Creating a Release
 
@@ -687,7 +250,7 @@ cp secrets.env.example secrets.env
 ```
 
 **Steps after deployment:**
-1. Check deployment status: https://github.com/mpolatcan/ccbell-sound-generator/actions/workflows/deploy.yml
+1. Check deployment status: https://github.com/mpolatcan/ccbell-sound-generator/actions/workflows/deploy-huggingface.yml
 2. Verify Space is running: https://huggingface.co/spaces/mpolatcan/ccbell-sound-generator
 3. Check Space logs using the script above
 
@@ -700,6 +263,3 @@ cp secrets.env.example secrets.env
 | `HF_TOKEN` | HuggingFace API token with write access (for CI/CD deployment) |
 | `HF_USERNAME` | HuggingFace username/organization |
 
-### Environment
-
-The deploy workflow uses a `production` environment for deployment approvals (optional).

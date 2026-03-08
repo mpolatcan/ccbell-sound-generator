@@ -22,6 +22,8 @@ class Settings(BaseSettings):
     # Model settings
     default_model: str = "small"
     models_cache_dir: Path = Path.home() / ".cache" / "ccbell-models"
+    # GitHub Releases URL for model weights (no HuggingFace account needed)
+    model_download_base_url: str = "https://github.com/mpolatcan/ccbell-sound-generator/releases/download/models-v1.0"
 
     # Audio settings
     sample_rate: int = 44100

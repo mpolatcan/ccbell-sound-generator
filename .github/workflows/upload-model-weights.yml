@@ -1,0 +1,87 @@
+name: Upload Model to GitHub Releases
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag for model assets (e.g. models-v1.0)"
+        required: true
+        default: "models-v1.0"
+
+permissions:
+  contents: write
+
+jobs:
+  upload-model:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install huggingface_hub
+
+      - name: Download model from HuggingFace
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          python - <<'PYEOF'
+          import os
+          from huggingface_hub import hf_hub_download, login
+
+          token = os.environ["HF_TOKEN"]
+          login(token=token, add_to_git_credential=False)
+
+          repo_id = "stabilityai/stable-audio-open-small"
+          out_dir = "model-files"
+          os.makedirs(out_dir, exist_ok=True)
+
+          # Map HF filenames to prefixed release asset names
+          files = {
+              "model_config.json": "stable-audio-open-small-model_config.json",
+              "model.safetensors": "stable-audio-open-small-model.safetensors",
+          }
+
+          import shutil
+          for hf_name, release_name in files.items():
+              path = hf_hub_download(repo_id, filename=hf_name, repo_type="model")
+              dest = os.path.join(out_dir, release_name)
+              shutil.copy2(path, dest)
+              size_mb = os.path.getsize(dest) / 1024 / 1024
+              print(f"Downloaded {hf_name} -> {release_name} ({size_mb:.1f} MB)")
+          PYEOF
+
+      - name: Create GitHub Release and upload assets
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ github.event.inputs.tag }}"
+
+          # Create release if it doesn't exist
+          if ! gh release view "$TAG" &>/dev/null; then
+            gh release create "$TAG" \
+              --title "Model Weights: Stable Audio Open Small" \
+              --notes "Pre-trained model weights for CCBell Sound Generator.
+
+          **Model:** Stable Audio Open Small (341M parameters)
+          **License:** Stability AI Community License
+          **Source:** [stabilityai/stable-audio-open-small](https://huggingface.co/stabilityai/stable-audio-open-small)
+
+          These weights are redistributed under the Stability AI Community License.
+          See [LICENSE](https://huggingface.co/stabilityai/stable-audio-open-small/blob/main/LICENSE) for details.
+
+          > Powered by Stability AI" \
+              --latest=false
+          fi
+
+          # Upload model files
+          gh release upload "$TAG" \
+            model-files/stable-audio-open-small-model_config.json \
+            model-files/stable-audio-open-small-model.safetensors \
+            --clobber

@@ -1,1 +1,1 @@
-{}
+{"default":{"identifier":"default","description":"Default permissions for the CCBell Sound Generator desktop app","local":true,"windows":["main"],"permissions":["core:default","shell:allow-spawn","shell:allow-execute","shell:allow-open","shell:allow-kill","core:event:default"]}}

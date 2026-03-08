@@ -1,15 +1,17 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useTauriBackend } from '@/hooks/useTauriBackend'
+import { useSettings } from '@/hooks/useSettings'
 import { DesktopBootScreen } from '@/components/DesktopBootScreen'
 import { GeneratorForm, GeneratorFormRef } from '@/components/GeneratorForm'
 import { ModelSettings } from '@/components/ModelSettings'
 import { SoundLibrary, SoundLibraryRef } from '@/components/SoundLibrary'
 import { PublishDialog } from '@/components/PublishDialog'
 import { DownloadPackDialog } from '@/components/DownloadPackDialog'
+import { SettingsDialog } from '@/components/SettingsDialog'
 import { KeyboardShortcutsHelp } from '@/components/KeyboardShortcutsHelp'
 import { Toaster } from '@/components/ui/toaster'
-import { Bell, Github, ExternalLink, Keyboard } from 'lucide-react'
+import { Bell, Github, ExternalLink, Keyboard, Settings } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts'
 import { toast } from '@/hooks/useToast'
@@ -33,8 +35,10 @@ function AppContent() {
   const [downloadDialogOpen, setDownloadDialogOpen] = useState(false)
   const [packDataToDownload, setPackDataToDownload] = useState<DownloadPackData | null>(null)
   const [shortcutsHelpOpen, setShortcutsHelpOpen] = useState(false)
+  const [settingsOpen, setSettingsOpen] = useState(false)
   const [selectedModel, setSelectedModel] = useState('small')
   const [advancedSettings, setAdvancedSettings] = useState<GenerationSettings>({})
+  const { settings, saveSettings, isDesktop } = useSettings()
   const modelStatus = useModelStatus({
     modelId: selectedModel,
     pollInterval: 2000,
@@ -118,6 +122,18 @@ function AppContent() {
             </div>
           </div>
           <nav className="flex items-center gap-1.5">
+            {isDesktop && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSettingsOpen(true)}
+                aria-label="Settings"
+                title="Settings"
+                className="text-muted-foreground hover:text-foreground h-9 w-9 sm:h-8 sm:w-8"
+              >
+                <Settings className="h-4 w-4" />
+              </Button>
+            )}
             <Button
               variant="ghost"
               size="sm"
@@ -174,7 +190,7 @@ function AppContent() {
         {/* Row 2: Sound Library (full width) */}
         <SoundLibrary
           ref={soundLibraryRef}
-          onSelectForPublish={publishEnabled ? handleSelectForPublish : undefined}
+          onSelectForPublish={(publishEnabled || Boolean(settings.github_token)) ? handleSelectForPublish : undefined}
           onSelectForDownload={handleSelectForDownload}
         />
       </main>
@@ -224,6 +240,16 @@ function AppContent() {
         onOpenChange={setPublishDialogOpen}
         packData={packDataToPublish}
       />
+
+      {/* Settings Dialog (desktop only) */}
+      {isDesktop && (
+        <SettingsDialog
+          open={settingsOpen}
+          onOpenChange={setSettingsOpen}
+          settings={settings}
+          onSave={saveSettings}
+        />
+      )}
 
       {/* Keyboard Shortcuts Help */}
       <KeyboardShortcutsHelp

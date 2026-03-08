@@ -24,24 +24,23 @@ Generate AI-powered notification sounds for the [Claude Code](https://github.com
 - 🎭 **Theme Presets** - Sci-Fi, Retro 8-bit, Nature, Minimal, Mechanical, Ambient, Jazz, Custom
 - 🔔 **All Hook Types** - Generate sounds for all Claude Code events
 - 📦 **Sound Packs** - Organize sounds in named packs; add to existing packs or create new ones
-- ⏱️ **Custom Duration** - Generate sounds from 0.5s to 11s (or 47s with 1.0 model)
+- ⏱️ **Custom Duration** - Generate sounds from 0.5s to 5s
 - 🔄 **Real-time Progress** - Watch generation progress in the Sound Library
 - 💾 **Download** - Individual sounds or batch ZIP (organized by pack)
 - 🚀 **GitHub Release** - Publish sound packs directly to GitHub (admin space only)
 
-## Models
+## Model
 
 | Model | Parameters | Max Duration | Best For |
 |-------|-----------|--------------|----------|
-| **Stable Audio Open Small** | 341M | 11 sec | Fast iteration, CPU |
-| **Stable Audio Open 1.0** | 1.1B | 47 sec | Higher quality |
+| **Stable Audio Open Small** | 341M | 5 sec | Fast iteration, CPU |
 
 ## Usage
 
 1. **Select or create a pack** - Choose an existing pack to add sounds, or create a new one
 2. **Select a theme** - Choose from preset themes or write a custom prompt
 3. **Choose hook types** - Select one or more Claude Code events
-4. **Adjust duration** - Set how long the sound should be (0.5s to 11s)
+4. **Adjust duration** - Set how long the sound should be (0.5s to 5s)
 5. **Generate** - Click "Generate Sound" and watch progress in the Sound Library
 6. **Preview** - Listen to generated sounds with waveform visualization
 7. **Download or Publish** - Save pack as ZIP or publish to GitHub
@@ -67,7 +66,7 @@ The app generates sounds for these Claude Code hook events:
 
 ### Prerequisites
 
-- Python 3.11+
+- Python 3.11-3.12
 - Node.js 22+
 - Docker (optional)
 
@@ -119,12 +118,27 @@ npm run dev
 
 Visit http://localhost:5173 (frontend) or http://localhost:8000 (API)
 
+### Desktop App (Tauri v2)
+
+The project also ships as a native desktop app via Tauri v2:
+
+```bash
+cd frontend
+npm run tauri dev        # Dev mode (auto-starts Python backend sidecar)
+npm run tauri build      # Build production installer
+```
+
+**First launch**: The desktop app auto-installs Python 3.12 via `uv` and all dependencies. Subsequent launches start instantly using cached venv.
+
+**Requirements**: Rust toolchain, system dependencies for Tauri (see [Tauri prerequisites](https://v2.tauri.app/start/prerequisites/))
+
 ## Tech Stack
 
-- **Backend**: FastAPI, Python 3.11, Stable Audio Tools
+- **Backend**: FastAPI, Python 3.11-3.12, Stable Audio Tools
 - **Frontend**: React 19, TypeScript, Vite 6, Tailwind CSS, shadcn/ui
-- **AI Models**: Stable Audio Open (Small & 1.0)
-- **Deployment**: HuggingFace Spaces (Docker SDK)
+- **Desktop**: Tauri v2 with Python sidecar (macOS, Linux)
+- **AI Model**: Stable Audio Open Small (341M) — weights hosted on GitHub Releases
+- **Deployment**: HuggingFace Spaces (web), GitHub Releases (desktop installers)
 
 ## API Reference
 
@@ -142,6 +156,8 @@ Visit http://localhost:5173 (frontend) or http://localhost:8000 (API)
 | GET | `/api/audio/{job_id}` | Download generated audio |
 | DELETE | `/api/audio/{job_id}` | Delete job and audio file |
 | WS | `/api/ws/{job_id}` | Real-time progress updates |
+| POST | `/api/packs` | Create downloadable sound pack ZIP |
+| GET | `/api/packs/{pack_id}` | Download pack ZIP file |
 | POST | `/api/publish` | Publish to GitHub release (requires `CCBELL_GITHUB_TOKEN`) |
 
 ## Deployment
@@ -168,7 +184,7 @@ Set these in each Space's settings:
 
 | Secret | Space | Purpose |
 |--------|-------|---------|
-| `CCBELL_HF_TOKEN` | Both | Access to gated Stable Audio models |
+| `CCBELL_HF_TOKEN` | Both | Fallback model download from HuggingFace (only if GitHub Releases is unreachable) |
 | `CCBELL_GITHUB_TOKEN` | Admin only | Enables GitHub publish feature |
 
 ## License

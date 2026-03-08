@@ -460,8 +460,12 @@ class AudioService:
                     output[:, :fade_samples] *= fade_in
                     output[:, -fade_samples:] *= fade_out
 
-            # Save using torchaudio
-            torchaudio.save(str(output_path), output, sample_rate)
+            # Save as float32 WAV using soundfile directly.
+            # Avoids torchaudio.save() which requires torchcodec in torchaudio 2.10+
+            # and ignores the backend= parameter.
+            import soundfile as sf
+            audio_np = output.cpu().numpy().T  # (channels, samples) -> (samples, channels)
+            sf.write(str(output_path), audio_np, sample_rate, subtype="FLOAT")
 
             job.audio_path = output_path
             job.status = "completed"

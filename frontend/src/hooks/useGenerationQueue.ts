@@ -3,15 +3,19 @@ import { create } from 'zustand'
 import { api } from '@/lib/api'
 import { useSoundLibrary } from './useSoundLibrary'
 import type { GenerateRequest } from '@/types'
-import { WS_BASE_URL } from '@/lib/constants'
+import { API_BASE_URL, WS_BASE_URL } from '@/lib/constants'
 
 /**
  * Fetch audio from server and create a blob URL for stable client-side playback.
  * Blob URLs are immutable — the audio never changes even if the server file
  * is deleted or the component remounts.  Falls back to the server URL on error.
+ *
+ * In Tauri mode the WebView origin is tauri://localhost, so relative URLs like
+ * /api/audio/xxx must be resolved against the backend's real origin.
  */
 async function toBlobUrl(serverUrl: string): Promise<string> {
-  const res = await fetch(serverUrl)
+  const url = serverUrl.startsWith('http') ? serverUrl : `${API_BASE_URL}${serverUrl}`
+  const res = await fetch(url)
   const blob = await res.blob()
   return URL.createObjectURL(blob)
 }

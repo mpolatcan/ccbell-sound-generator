@@ -12,8 +12,8 @@ interface AudioPlayerProps {
   onPlayStateChange?: (isPlaying: boolean) => void
 }
 
-const MAX_AUTO_RETRIES = 2
-const RETRY_DELAY_MS = 1500
+const MAX_AUTO_RETRIES = 3
+const RETRY_DELAY_MS = 800
 
 export const AudioPlayer = memo(function AudioPlayer({
   audioUrl,
@@ -22,6 +22,7 @@ export const AudioPlayer = memo(function AudioPlayer({
 }: AudioPlayerProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const wavesurferRef = useRef<WaveSurfer | null>(null)
+  const audioBlobRef = useRef<Blob | null>(null)
   const autoRetryCount = useRef(0)
   const [isPlaying, setIsPlaying] = useState(false)
   const [duration, setDuration] = useState(0)
@@ -32,18 +33,14 @@ export const AudioPlayer = memo(function AudioPlayer({
   const [hasError, setHasError] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
 
-  const createWaveSurfer = useCallback(() => {
+  // Build WaveSurfer from a pre-fetched blob (no internal fetch to be aborted)
+  const initWaveSurfer = useCallback((blob: Blob) => {
     if (!containerRef.current) return
 
-    // Destroy existing instance
     if (wavesurferRef.current) {
       wavesurferRef.current.destroy()
       wavesurferRef.current = null
     }
-
-    setIsLoading(true)
-    setHasError(false)
-    setIsReady(false)
 
     const wavesurfer = WaveSurfer.create({
       container: containerRef.current,
@@ -67,7 +64,8 @@ export const AudioPlayer = memo(function AudioPlayer({
       ],
     })
 
-    wavesurfer.load(audioUrl)
+    // loadBlob avoids WaveSurfer's internal fetch — no abort issues
+    wavesurfer.loadBlob(blob)
 
     wavesurfer.on('ready', () => {
       autoRetryCount.current = 0
@@ -86,12 +84,6 @@ export const AudioPlayer = memo(function AudioPlayer({
     })
 
     wavesurfer.on('error', () => {
-      // Auto-retry a few times before showing error
-      if (autoRetryCount.current < MAX_AUTO_RETRIES) {
-        autoRetryCount.current++
-        setTimeout(() => createWaveSurfer(), RETRY_DELAY_MS)
-        return
-      }
       setHasError(true)
       setIsLoading(false)
     })
@@ -117,14 +109,65 @@ export const AudioPlayer = memo(function AudioPlayer({
 
     wavesurferRef.current = wavesurfer
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [audioUrl])
+  }, [])
+
+  // Fetch audio blob then initialize WaveSurfer.
+  // Pre-fetching decouples the network request from WaveSurfer's lifecycle,
+  // so React StrictMode unmount/remount doesn't abort in-flight fetches.
+  const createWaveSurfer = useCallback(() => {
+    if (!containerRef.current) return
+
+    if (wavesurferRef.current) {
+      wavesurferRef.current.destroy()
+      wavesurferRef.current = null
+    }
+
+    setIsLoading(true)
+    setHasError(false)
+    setIsReady(false)
+
+    // If we already have the blob cached, skip the fetch
+    if (audioBlobRef.current) {
+      initWaveSurfer(audioBlobRef.current)
+      return
+    }
+
+    let cancelled = false
+    const doFetch = () => {
+      fetch(audioUrl)
+        .then((res) => {
+          if (!res.ok) throw new Error(`HTTP ${res.status}`)
+          return res.blob()
+        })
+        .then((blob) => {
+          if (cancelled) return
+          audioBlobRef.current = blob
+          initWaveSurfer(blob)
+        })
+        .catch(() => {
+          if (cancelled) return
+          if (autoRetryCount.current < MAX_AUTO_RETRIES) {
+            autoRetryCount.current++
+            setTimeout(doFetch, RETRY_DELAY_MS)
+            return
+          }
+          setHasError(true)
+          setIsLoading(false)
+        })
+    }
+    doFetch()
+
+    // Return cancel function for cleanup
+    return () => { cancelled = true }
+  }, [audioUrl, initWaveSurfer])
 
   // Initialize WaveSurfer
   useEffect(() => {
     autoRetryCount.current = 0
-    createWaveSurfer()
+    const cancel = createWaveSurfer()
 
     return () => {
+      cancel?.()
       if (wavesurferRef.current) {
         wavesurferRef.current.destroy()
         wavesurferRef.current = null
@@ -161,6 +204,7 @@ export const AudioPlayer = memo(function AudioPlayer({
 
   const handleRetry = useCallback(() => {
     autoRetryCount.current = 0
+    audioBlobRef.current = null
     createWaveSurfer()
   }, [createWaveSurfer])
 
