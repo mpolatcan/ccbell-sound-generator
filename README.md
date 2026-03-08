@@ -29,11 +29,44 @@ Generate AI-powered notification sounds for the [Claude Code](https://github.com
 - 💾 **Download** - Individual sounds or batch ZIP (organized by pack)
 - 🚀 **GitHub Release** - Publish sound packs directly to GitHub (admin space only)
 
-## Model
+## Getting Started
 
-| Model | Parameters | Max Duration | Best For |
-|-------|-----------|--------------|----------|
-| **Stable Audio Open Small** | 341M | 5 sec | Fast iteration, CPU |
+Choose the option that works best for you:
+
+| Option | Best For | Requirements |
+|--------|----------|-------------|
+| [**Web App**](#option-1-web-app) | Quick use, no install | Browser |
+| [**Docker**](#option-2-docker) | Local use, corporate machines | Docker |
+| [**Desktop App**](#option-3-desktop-app) | Native experience | macOS or Linux |
+
+### Option 1: Web App
+
+Use the hosted version on HuggingFace Spaces — no installation required:
+
+**[Launch CCBell Sound Generator](https://huggingface.co/spaces/mpolatcan/ccbell-sound-generator)**
+
+### Option 2: Docker
+
+Run locally with a single command. Works on any machine with Docker — no signing or verification issues.
+
+```bash
+docker run -p 7860:7860 -v ~/.cache/ccbell-models:/home/user/.cache/ccbell-models ghcr.io/mpolatcan/ccbell-sound-generator:latest
+```
+
+Open http://localhost:7860 in your browser. Models are cached on the host so subsequent starts are fast.
+
+To stop: press `Ctrl+C` in the terminal.
+
+### Option 3: Desktop App
+
+Native desktop app for macOS (universal) and Linux (x64). Download the latest installer from [GitHub Releases](https://github.com/mpolatcan/ccbell-sound-generator/releases).
+
+**First launch**: The app auto-installs Python 3.12 and all dependencies (requires internet, takes 1-2 minutes). Subsequent launches start instantly.
+
+> **macOS note**: The app is not signed with an Apple Developer certificate. If macOS blocks the app, run this command to allow it:
+> ```bash
+> xattr -cr "/Applications/CCBell Sound Generator.app"
+> ```
 
 ## Usage
 
@@ -44,6 +77,12 @@ Generate AI-powered notification sounds for the [Claude Code](https://github.com
 5. **Generate** - Click "Generate Sound" and watch progress in the Sound Library
 6. **Preview** - Listen to generated sounds with waveform visualization
 7. **Download or Publish** - Save pack as ZIP or publish to GitHub
+
+## Model
+
+| Model | Parameters | Max Duration | Best For |
+|-------|-----------|--------------|----------|
+| **Stable Audio Open Small** | 341M | 5 sec | Fast iteration, CPU |
 
 ## Claude Code Hook Types
 
@@ -118,17 +157,13 @@ npm run dev
 
 Visit http://localhost:5173 (frontend) or http://localhost:8000 (API)
 
-### Desktop App (Tauri v2)
-
-The project also ships as a native desktop app via Tauri v2:
+### Desktop App Development (Tauri v2)
 
 ```bash
 cd frontend
 npm run tauri dev        # Dev mode (auto-starts Python backend sidecar)
 npm run tauri build      # Build production installer
 ```
-
-**First launch**: The desktop app auto-installs Python 3.12 via `uv` and all dependencies. Subsequent launches start instantly using cached venv.
 
 **Requirements**: Rust toolchain, system dependencies for Tauri (see [Tauri prerequisites](https://v2.tauri.app/start/prerequisites/))
 
@@ -138,7 +173,7 @@ npm run tauri build      # Build production installer
 - **Frontend**: React 19, TypeScript, Vite 6, Tailwind CSS, shadcn/ui
 - **Desktop**: Tauri v2 with Python sidecar (macOS, Linux)
 - **AI Model**: Stable Audio Open Small (341M) — weights hosted on GitHub Releases
-- **Deployment**: HuggingFace Spaces (web), GitHub Releases (desktop installers)
+- **Deployment**: HuggingFace Spaces (web), GHCR Docker image (local), GitHub Releases (desktop installers)
 
 ## API Reference
 
@@ -162,14 +197,14 @@ npm run tauri build      # Build production installer
 
 ## Deployment
 
-This app auto-deploys to two HuggingFace Spaces via GitHub Actions using a matrix strategy:
+All deployments are triggered by version tags (`v*.*.*`) or manual workflow dispatch.
 
-| Space | Purpose | Publish Feature |
-|-------|---------|-----------------|
-| `ccbell-sound-generator` | Public — anyone can generate sounds | Hidden |
-| `ccbell-sound-generator-admin` | Admin — includes GitHub publish | Visible |
-
-Deployment is triggered by version tags (`v*.*.*`) or manual workflow dispatch.
+| Target | Image / URL | Purpose |
+|--------|-------------|---------|
+| HF Spaces (`ccbell-sound-generator`) | [huggingface.co/spaces/mpolatcan/ccbell-sound-generator](https://huggingface.co/spaces/mpolatcan/ccbell-sound-generator) | Public web app |
+| HF Spaces (`ccbell-sound-generator-admin`) | Same, with GitHub publish enabled | Admin web app |
+| Docker (GHCR) | `ghcr.io/mpolatcan/ccbell-sound-generator` | Local use via Docker |
+| Desktop (GitHub Releases) | [Releases page](https://github.com/mpolatcan/ccbell-sound-generator/releases) | macOS / Linux installers |
 
 ### GitHub Repository Secrets
 
@@ -184,7 +219,7 @@ Set these in each Space's settings:
 
 | Secret | Space | Purpose |
 |--------|-------|---------|
-| `CCBELL_HF_TOKEN` | Both | Fallback model download from HuggingFace (only if GitHub Releases is unreachable) |
+| `CCBELL_HF_TOKEN` | Both | Model download from HuggingFace Hub (primary source on HF Spaces) |
 | `CCBELL_GITHUB_TOKEN` | Admin only | Enables GitHub publish feature |
 
 ## License
