@@ -249,18 +249,6 @@ class ModelLoader:
             model = model.to(self.device)
             logger.debug(f"Model {model_id} moved to device: {self.device}")
 
-            self._update_loading_state(model_id, "loading", progress=0.85, stage="compiling")
-
-            # Compile model with torch.compile for faster inference
-            # One-time cost (~30s) but subsequent generations are 25-40% faster
-            try:
-                import torch
-
-                model = torch.compile(model)
-                logger.info(f"Model {model_id} compiled with torch.compile for optimized inference")
-            except Exception as compile_err:
-                logger.warning(f"torch.compile failed, using eager mode: {compile_err}")
-
             # Store references
             self._models[model_id] = model
             self._model_configs[model_id] = model_config
