@@ -677,6 +677,46 @@ async fn stop_backend(app: AppHandle) -> Result<String, String> {
     }
 }
 
+/// Remove all CCBell-specific data from the system (venv, settings, model cache).
+/// Stops the backend first if running. Does NOT remove uv or uv-managed Python.
+#[tauri::command]
+async fn uninstall_cleanup(app: AppHandle) -> Result<serde_json::Value, String> {
+    // Stop backend first
+    let state = app.state::<SidecarState>();
+    if let Ok(mut child_lock) = state.0.lock() {
+        if let Some(child) = child_lock.take() {
+            let _ = child.kill();
+            eprintln!("[CCBell] Backend stopped for uninstall");
+        }
+    }
+
+    let mut removed = Vec::<String>::new();
+
+    // Remove app data directory (venv, settings, setup marker)
+    let data_dir = get_data_dir(&app)?;
+    if data_dir.exists() {
+        std::fs::remove_dir_all(&data_dir)
+            .map_err(|e| format!("Failed to remove app data: {e}"))?;
+        removed.push(format!("App data: {}", data_dir.display()));
+        eprintln!("[CCBell] Removed app data: {}", data_dir.display());
+    }
+
+    // Remove model cache (~/.cache/ccbell-models/)
+    let home = std::env::var("HOME").unwrap_or_default();
+    let model_cache = std::path::PathBuf::from(&home).join(".cache").join("ccbell-models");
+    if model_cache.exists() {
+        std::fs::remove_dir_all(&model_cache)
+            .map_err(|e| format!("Failed to remove model cache: {e}"))?;
+        removed.push(format!("Model cache: {}", model_cache.display()));
+        eprintln!("[CCBell] Removed model cache: {}", model_cache.display());
+    }
+
+    Ok(serde_json::json!({
+        "success": true,
+        "removed": removed,
+    }))
+}
+
 /// Check if the backend is healthy.
 #[tauri::command]
 async fn check_backend_health() -> Result<bool, String> {
@@ -705,6 +745,7 @@ pub fn run() {
             check_backend_health,
             get_settings,
             save_settings,
+            uninstall_cleanup,
         ])
         .on_window_event(|window, event| {
             if let tauri::WindowEvent::Destroyed = event {

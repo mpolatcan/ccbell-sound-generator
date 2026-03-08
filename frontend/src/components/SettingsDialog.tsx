@@ -7,11 +7,22 @@ import {
   DialogHeader,
   DialogTitle
 } from '@/components/ui/dialog'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { toast } from '@/hooks/useToast'
-import { Save, Eye, EyeOff, Github, RotateCcw, CheckCircle2 } from 'lucide-react'
+import { Save, Eye, EyeOff, Github, RotateCcw, CheckCircle2, Trash2, Loader2 } from 'lucide-react'
 import type { AppSettings } from '@/hooks/useSettings'
 
 interface SettingsDialogProps {
@@ -26,6 +37,7 @@ export function SettingsDialog({ open, onOpenChange, settings, onSave }: Setting
   const [showToken, setShowToken] = useState(false)
   const [saving, setSaving] = useState(false)
   const [dirty, setDirty] = useState(false)
+  const [uninstalling, setUninstalling] = useState(false)
 
   // Sync from props when dialog opens
   useEffect(() => {
@@ -59,6 +71,39 @@ export function SettingsDialog({ open, onOpenChange, settings, onSave }: Setting
       })
     } finally {
       setSaving(false)
+    }
+  }
+
+  const handleUninstall = async () => {
+    setUninstalling(true)
+    try {
+      const { invoke } = await import('@tauri-apps/api/core')
+      const result = await invoke<{ success: boolean; removed: string[] }>('uninstall_cleanup')
+
+      if (result.success) {
+        toast({
+          title: 'Cleanup complete',
+          description: `Removed ${result.removed.length} item(s). You can now delete the app.`,
+        })
+
+        // Close the app after a short delay so the user sees the toast
+        setTimeout(async () => {
+          try {
+            const { getCurrentWindow } = await import('@tauri-apps/api/window')
+            await getCurrentWindow().close()
+          } catch {
+            // Fallback: just close the dialog
+            onOpenChange(false)
+          }
+        }, 2000)
+      }
+    } catch (err) {
+      toast({
+        title: 'Uninstall failed',
+        description: String(err),
+        variant: 'destructive',
+      })
+      setUninstalling(false)
     }
   }
 
@@ -136,6 +181,61 @@ export function SettingsDialog({ open, onOpenChange, settings, onSave }: Setting
                 Token configured
               </p>
             )}
+          </div>
+
+          {/* Uninstall */}
+          <div className="space-y-2.5 border-t pt-5">
+            <Label className="flex items-center gap-2 text-sm font-medium text-destructive">
+              <Trash2 className="h-4 w-4" />
+              Uninstall
+            </Label>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Remove all app data including the Python environment, cached model weights,
+              and settings. The app will close after cleanup.
+            </p>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="destructive" size="sm" disabled={uninstalling}>
+                  {uninstalling ? (
+                    <span className="flex items-center gap-1.5">
+                      <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                      Removing data...
+                    </span>
+                  ) : (
+                    <span className="flex items-center gap-1.5">
+                      <Trash2 className="h-3.5 w-3.5" />
+                      Uninstall App Data
+                    </span>
+                  )}
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                  <AlertDialogDescription className="space-y-2">
+                    <span className="block">This will permanently remove:</span>
+                    <span className="block text-xs font-mono bg-muted p-2 rounded space-y-0.5">
+                      <span className="block">Python virtual environment (~1-2 GB)</span>
+                      <span className="block">Cached model weights (~1.5 GB)</span>
+                      <span className="block">App settings and preferences</span>
+                    </span>
+                    <span className="block">
+                      The app will close after cleanup. You can then drag it to the Trash
+                      to complete the uninstall.
+                    </span>
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction
+                    onClick={handleUninstall}
+                    className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                  >
+                    Uninstall
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </div>
         </div>
 
