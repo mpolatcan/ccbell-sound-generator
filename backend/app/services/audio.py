@@ -228,9 +228,8 @@ class AudioService:
         # Lazy import torch and related modules
         try:
             import torch
-            import torchaudio
         except ImportError as e:
-            error_msg = f"PyTorch/torchaudio not installed: {e}"
+            error_msg = f"PyTorch not installed: {e}"
             logger.error(error_msg)
             raise RuntimeError(error_msg) from e
 
@@ -464,6 +463,7 @@ class AudioService:
             # Avoids torchaudio.save() which requires torchcodec in torchaudio 2.10+
             # and ignores the backend= parameter.
             import soundfile as sf
+
             audio_np = output.cpu().numpy().T  # (channels, samples) -> (samples, channels)
             sf.write(str(output_path), audio_np, sample_rate, subtype="FLOAT")
 
