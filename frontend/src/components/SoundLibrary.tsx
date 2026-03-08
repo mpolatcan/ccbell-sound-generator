@@ -390,10 +390,10 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                     handleDownloadPackDialog(pack)
                                   }}
                                   disabled={completedSounds.length === 0}
-                                  aria-label="Download pack"
+                                  aria-label="Install pack"
                                 >
                                   <Download className="h-3 w-3 mr-1" />
-                                  Download
+                                  Install
                                 </Button>
                               )}
                               {onSelectForPublish && (
@@ -450,7 +450,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                       disabled={completedSounds.length === 0}
                                     >
                                       <Download className="h-3.5 w-3.5 mr-2" />
-                                      Download
+                                      Install
                                     </DropdownMenuItem>
                                   )}
                                   {onSelectForPublish && (

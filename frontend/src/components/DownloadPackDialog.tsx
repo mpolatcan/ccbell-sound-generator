@@ -121,10 +121,10 @@ export function DownloadPackDialog({ open, onOpenChange, packData }: DownloadPac
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 font-display">
             <Package className="h-5 w-5 text-primary" />
-            Download Sound Pack
+            Install Sound Pack
           </DialogTitle>
           <DialogDescription>
-            Download <strong>{packData?.packName}</strong> ({eventMapping.length} sound{eventMapping.length !== 1 ? 's' : ''}) as a ccbell-compatible pack
+            Install <strong>{packData?.packName}</strong> ({eventMapping.length} sound{eventMapping.length !== 1 ? 's' : ''}) to your ccbell plugin
           </DialogDescription>
         </DialogHeader>
 
