@@ -151,9 +151,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-          lfs: true
 
       - name: Download build artifacts
         uses: actions/download-artifact@v7
@@ -166,13 +163,21 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
 
-      - name: Prepare deployment
+      - name: Prepare and push to HuggingFace Spaces (${{ matrix.space }})
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_USERNAME: ${{ secrets.HF_USERNAME }}
+          HF_SPACE: ${{ matrix.space }}
         run: |
           VERSION="${{ needs.validate.outputs.version }}"
           DEPLOY_TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
-          # Remove Tauri desktop files (not needed for web, contains binary .icns rejected by HF)
-          git rm -rf --quiet frontend/src-tauri/ || true
+          # Create a fresh orphan branch to avoid pushing binary files from git history
+          # HuggingFace rejects any binary files in any ref, not just the latest commit
+          git checkout --orphan hf-deploy
+
+          # Remove Tauri desktop files (not needed for web, contains binary .icns)
+          rm -rf frontend/src-tauri/
 
           # Update deploy version marker in README to force HF rebuild
           sed -i "s/<!-- deploy-version: .* -->/<!-- deploy-version: v${VERSION} deployed at ${DEPLOY_TIMESTAMP} -->/" README.md
@@ -182,26 +187,12 @@ jobs:
             sed -i 's/^title: CCBell Sound Generator$/title: CCBell Sound Generator (Admin)/' README.md
           fi
 
-          # Stage all changes including frontend dist
-          git add -f frontend/dist
-          git add -f backend/app/core/config.py
-          git add -f README.md
+          # Stage only files needed for deployment
+          git add -A
+          git commit -m "Deploy v${VERSION}"
 
-          # Create deployment commit
-          git commit -m "Deploy v${VERSION}" --allow-empty
-
-      - name: Push to HuggingFace Spaces (${{ matrix.space }})
-        env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          HF_USERNAME: ${{ secrets.HF_USERNAME }}
-          HF_SPACE: ${{ matrix.space }}
-        run: |
-          VERSION="${{ needs.validate.outputs.version }}"
-
-          # Add HuggingFace remote
+          # Push orphan branch to HuggingFace (clean history, no binaries)
           git remote add hf https://oauth2:${HF_TOKEN}@huggingface.co/spaces/${HF_USERNAME}/${HF_SPACE} || true
-
-          # Push to HuggingFace
           git push hf HEAD:main --force
 
           echo "Successfully deployed v${VERSION} to HuggingFace Spaces"
