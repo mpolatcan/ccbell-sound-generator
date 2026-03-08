@@ -54,11 +54,19 @@ def _get_device() -> str:
     return "cpu"
 
 
-# Files needed for each model
+# Files needed for each model (GitHub Releases naming)
 MODEL_FILES = {
     "small": {
         "config": "stable-audio-open-small-model_config.json",
         "weights": "stable-audio-open-small-model.safetensors",
+    },
+}
+
+# Original filenames in HuggingFace repos
+HF_MODEL_FILES = {
+    "small": {
+        "config": "model_config.json",
+        "weights": "model.safetensors",
     },
 }
 
@@ -139,7 +147,6 @@ def _download_from_github(
 
 def _download_from_huggingface(
     model_id: str,
-    files: dict[str, str],
     config_path: Path,
     weights_path: Path,
     cache_dir: Path,
@@ -150,6 +157,12 @@ def _download_from_huggingface(
         logger.debug("No HF token available, skipping HuggingFace download")
         return False
 
+    if model_id not in HF_MODEL_FILES:
+        logger.error(f"No HF file mapping for model: {model_id}")
+        return False
+
+    hf_files = HF_MODEL_FILES[model_id]
+
     logger.info("Downloading from HuggingFace Hub...")
     try:
         from huggingface_hub import hf_hub_download, login
@@ -159,12 +172,12 @@ def _download_from_huggingface(
         repo_id = ModelLoader.MODEL_REPOS[model_id]
 
         if not config_path.exists():
-            hf_path = hf_hub_download(repo_id, filename=files["config"], repo_type="model")
+            hf_path = hf_hub_download(repo_id, filename=hf_files["config"], repo_type="model")
             cache_dir.mkdir(parents=True, exist_ok=True)
             shutil.copy2(hf_path, config_path)
 
         if not weights_path.exists():
-            hf_path = hf_hub_download(repo_id, filename=files["weights"], repo_type="model")
+            hf_path = hf_hub_download(repo_id, filename=hf_files["weights"], repo_type="model")
             cache_dir.mkdir(parents=True, exist_ok=True)
             shutil.copy2(hf_path, weights_path)
 
@@ -206,7 +219,7 @@ def _ensure_model_files(model_id: str, progress_callback: Any = None) -> tuple[P
     if on_hf_spaces:
         # HF Spaces: try HuggingFace Hub first (same infrastructure, faster)
         logger.info("Running on HuggingFace Spaces, using HF Hub as primary source")
-        if _download_from_huggingface(model_id, files, config_path, weights_path, cache_dir):
+        if _download_from_huggingface(model_id, config_path, weights_path, cache_dir):
             return config_path, weights_path
         logger.warning("HF Hub download failed, falling back to GitHub Releases")
         if _download_from_github(model_id, files, config_path, weights_path, progress_callback):
@@ -216,7 +229,7 @@ def _ensure_model_files(model_id: str, progress_callback: Any = None) -> tuple[P
         if _download_from_github(model_id, files, config_path, weights_path, progress_callback):
             return config_path, weights_path
         logger.warning("GitHub download failed, falling back to HuggingFace Hub")
-        if _download_from_huggingface(model_id, files, config_path, weights_path, cache_dir):
+        if _download_from_huggingface(model_id, config_path, weights_path, cache_dir):
             return config_path, weights_path
 
     raise RuntimeError(
