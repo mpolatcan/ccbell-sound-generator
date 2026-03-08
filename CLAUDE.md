@@ -193,7 +193,6 @@ This table covers key variables only. See `backend/app/core/config.py` for all 2
 Before creating a release tag, all checks must pass:
 
 - [ ] Code quality passes (see [Code Quality Requirements](#code-quality-requirements))
-- [ ] CI pipeline passes: https://github.com/mpolatcan/ccbell-sound-generator/actions/workflows/ci.yml
 - [ ] Frontend builds: `cd frontend && npm run build`
 - [ ] Docker builds and runs: `docker build -t ccbell-sound-generator . && docker run -p 7860:7860 ccbell-sound-generator`
 - [ ] Health check: `curl http://localhost:7860/api/health`
@@ -215,12 +214,10 @@ Access at http://localhost:7860. Test: load model -> generate -> download audio.
 
 | Pipeline | File | Trigger | Purpose |
 |----------|------|---------|---------|
-| CI | `ci.yml` | Push to `master`, PRs | Lint, build, Docker validation |
 | Deploy | `deploy-huggingface.yml` | Version tags (`v*.*.*`), manual | Build + push to HuggingFace Spaces |
 | Build Desktop | `build-desktop-tauri.yml` | Version tags (`v*.*.*`), manual | macOS universal + Linux x64 Tauri installers via GitHub Release |
 | Base Image | `build-base-image.yml` | Push to `master` (path-filtered), manual | Build `Dockerfile.base` with system deps |
 | Upload Model | `upload-model-weights.yml` | Manual | Download weights from HF, upload to GitHub Release (`models-v1.0`) |
-| Deploy | `deploy-huggingface.yml` | — | Uses `production` environment for deployment approvals (optional) |
 
 Model assets prefixed with model name: `stable-audio-open-small-model.safetensors`, `stable-audio-open-small-model_config.json`.
 

@@ -76,13 +76,12 @@
 ## Desktop — Rust (Tauri v2)
 
 ### frontend/src-tauri/src/lib.rs — Tauri app with Python sidecar
-- Commands: `setup_backend`, `start_backend`, `stop_backend`, `check_backend_health`, `get_settings`, `save_settings`
+- Commands: `setup_backend`, `start_backend`, `stop_backend`, `check_backend_health`, `get_settings`, `save_settings`, `uninstall_cleanup`
 - `SidecarState`, `SetupGuard`, Python auto-install flow
 
 ## CI/CD — GitHub Actions
 
 ### .github/workflows/
-- `ci.yml` — lint, build, Docker validation (push/PR)
 - `deploy-huggingface.yml` — HF Spaces deployment (v* tags)
 - `build-desktop-tauri.yml` — macOS/Linux Tauri installers (v* tags)
 - `build-base-image.yml` — base Docker image (path-filtered)
