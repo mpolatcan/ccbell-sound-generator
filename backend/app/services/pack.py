@@ -3,6 +3,7 @@
 import asyncio
 import contextlib
 import json
+import os
 import re
 import time
 import uuid
@@ -19,8 +20,9 @@ from app.services.audio import audio_service
 # Temporary storage directory for generated packs
 PACKS_DIR = Path("/tmp/ccbell-packs")
 
-# Pack expiration: 30 minutes
-PACK_EXPIRATION_SECONDS = 30 * 60
+# Pack expiration: 30 minutes on HF Spaces, no expiration locally
+_ON_HF_SPACES = bool(os.environ.get("SPACE_ID"))
+PACK_EXPIRATION_SECONDS = 30 * 60 if _ON_HF_SPACES else 0
 
 # Cleanup interval: 5 minutes
 CLEANUP_INTERVAL_SECONDS = 5 * 60
@@ -134,6 +136,7 @@ class PackService:
                 pack_id=pack_id,
                 download_url=download_url,
                 install_command=install_command,
+                expires_in_seconds=PACK_EXPIRATION_SECONDS,
             )
 
         except Exception as e:
@@ -156,13 +159,14 @@ class PackService:
         if not zip_path.exists():
             return None
 
-        # Check expiration
-        created_at = self._pack_times.get(pack_id)
-        if created_at and (time.time() - created_at) > PACK_EXPIRATION_SECONDS:
-            logger.info(f"Pack '{pack_id}' has expired, removing")
-            zip_path.unlink(missing_ok=True)
-            self._pack_times.pop(pack_id, None)
-            return None
+        # Check expiration (disabled locally, only active on HF Spaces)
+        if PACK_EXPIRATION_SECONDS > 0:
+            created_at = self._pack_times.get(pack_id)
+            if created_at and (time.time() - created_at) > PACK_EXPIRATION_SECONDS:
+                logger.info(f"Pack '{pack_id}' has expired, removing")
+                zip_path.unlink(missing_ok=True)
+                self._pack_times.pop(pack_id, None)
+                return None
 
         return zip_path
 

@@ -26,6 +26,7 @@ export function DownloadPackDialog({ open, onOpenChange, packData }: DownloadPac
   const [packId, setPackId] = useState<string | null>(null)
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null)
   const [installCommand, setInstallCommand] = useState<string | null>(null)
+  const [expiresInSeconds, setExpiresInSeconds] = useState<number>(0)
   const [error, setError] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
 
@@ -49,6 +50,7 @@ export function DownloadPackDialog({ open, onOpenChange, packData }: DownloadPac
       setPackId(null)
       setDownloadUrl(null)
       setInstallCommand(null)
+      setExpiresInSeconds(0)
 
       try {
         const response = await api.createPack({
@@ -69,6 +71,7 @@ export function DownloadPackDialog({ open, onOpenChange, packData }: DownloadPac
           setInstallCommand(
             response.install_command?.replace('{base_url}', baseUrl) ?? null
           )
+          setExpiresInSeconds(response.expires_in_seconds ?? 0)
         } else {
           setError(response.error || 'Failed to create pack')
         }
@@ -110,6 +113,7 @@ export function DownloadPackDialog({ open, onOpenChange, packData }: DownloadPac
       setPackId(null)
       setDownloadUrl(null)
       setInstallCommand(null)
+      setExpiresInSeconds(0)
       setError(null)
       setCopied(false)
     }, 300)
@@ -202,9 +206,11 @@ export function DownloadPackDialog({ open, onOpenChange, packData }: DownloadPac
               </div>
             )}
 
-            <p className="text-[10px] text-muted-foreground/60 text-center">
-              Pack link expires in 30 minutes
-            </p>
+            {expiresInSeconds > 0 && (
+              <p className="text-[10px] text-muted-foreground/60 text-center">
+                Pack link expires in {Math.round(expiresInSeconds / 60)} minutes
+              </p>
+            )}
           </div>
         ) : null}
       </DialogContent>

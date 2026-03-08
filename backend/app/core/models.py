@@ -157,6 +157,7 @@ class DownloadPackResponse(BaseModel):
     pack_id: str | None = None
     download_url: str | None = None
     install_command: str | None = None
+    expires_in_seconds: int = 0  # 0 = no expiration
     error: str | None = None
 
 

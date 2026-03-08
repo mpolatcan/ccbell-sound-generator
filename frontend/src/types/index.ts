@@ -201,6 +201,7 @@ export interface DownloadPackResponse {
   pack_id?: string
   download_url?: string
   install_command?: string
+  expires_in_seconds?: number
   error?: string
 }
 
