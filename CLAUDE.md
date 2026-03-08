@@ -122,7 +122,7 @@ No automated test suite yet. Manual verification via the pre-deployment checklis
 
 ## Code Quality Requirements
 
-**CRITICAL: Linting and type checking must ALWAYS pass both locally AND in GitHub Actions CI pipeline before any code is merged or deployed.**
+**CRITICAL: ALWAYS run `/code-quality` before every commit. Linting and type checking must pass both locally AND in GitHub Actions CI pipeline before any code is merged or deployed. Never skip this — commit without checking will break CI.**
 
 ### Local Checks (REQUIRED before every commit)
 
