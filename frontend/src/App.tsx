@@ -1,5 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { useTauriBackend } from '@/hooks/useTauriBackend'
+import { DesktopBootScreen } from '@/components/DesktopBootScreen'
 import { GeneratorForm, GeneratorFormRef } from '@/components/GeneratorForm'
 import { ModelSettings } from '@/components/ModelSettings'
 import { SoundLibrary, SoundLibraryRef } from '@/components/SoundLibrary'
@@ -236,6 +238,13 @@ function AppContent() {
 }
 
 function App() {
+  const backend = useTauriBackend()
+
+  // Show boot screen while desktop app starts the backend
+  if (backend.isDesktop && !backend.ready) {
+    return <DesktopBootScreen stage={backend.stage} error={backend.error} onRetry={backend.retry} />
+  }
+
   return (
     <QueryClientProvider client={queryClient}>
       <AppContent />
