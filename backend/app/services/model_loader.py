@@ -1,7 +1,7 @@
 """ML model management with lazy loading.
 
-Downloads model weights from GitHub Releases (no HuggingFace account needed).
-Falls back to HuggingFace if GitHub download fails and HF token is available.
+On HuggingFace Spaces: downloads from HF Hub (primary), GitHub Releases (fallback).
+Elsewhere (desktop/local): downloads from GitHub Releases (primary), HF Hub (fallback).
 """
 
 import asyncio
@@ -99,11 +99,86 @@ def _download_file(url: str, dest: Path, progress_callback: Any = None) -> None:
     logger.info(f"Downloaded {dest.name} ({downloaded / 1024 / 1024:.1f} MB)")
 
 
+def _is_hf_spaces() -> bool:
+    """Check if running on HuggingFace Spaces (SPACE_ID env var is set)."""
+    return bool(os.environ.get("SPACE_ID"))
+
+
+def _download_from_github(
+    model_id: str,
+    files: dict[str, str],
+    config_path: Path,
+    weights_path: Path,
+    progress_callback: Any = None,
+) -> bool:
+    """Try downloading model files from GitHub Releases. Returns True on success."""
+    base_url = settings.model_download_base_url
+    ok = True
+
+    if not config_path.exists():
+        url = f"{base_url}/{files['config']}"
+        try:
+            _download_file(url, config_path)
+        except Exception as e:
+            logger.warning(f"GitHub download failed for {files['config']}: {e}")
+            ok = False
+
+    if ok and not weights_path.exists():
+        url = f"{base_url}/{files['weights']}"
+        try:
+            _download_file(url, weights_path, progress_callback=progress_callback)
+        except Exception as e:
+            logger.warning(f"GitHub download failed for {files['weights']}: {e}")
+            ok = False
+            # Clean up config if weights failed
+            if config_path.exists():
+                config_path.unlink()
+
+    return config_path.exists() and weights_path.exists()
+
+
+def _download_from_huggingface(
+    model_id: str,
+    files: dict[str, str],
+    config_path: Path,
+    weights_path: Path,
+    cache_dir: Path,
+) -> bool:
+    """Try downloading model files from HuggingFace Hub. Returns True on success."""
+    hf_token = os.environ.get("CCBELL_HF_TOKEN") or os.environ.get("HF_TOKEN")
+    if not hf_token:
+        logger.debug("No HF token available, skipping HuggingFace download")
+        return False
+
+    logger.info("Downloading from HuggingFace Hub...")
+    try:
+        from huggingface_hub import hf_hub_download, login
+
+        login(token=hf_token, add_to_git_credential=False)
+
+        repo_id = ModelLoader.MODEL_REPOS[model_id]
+
+        if not config_path.exists():
+            hf_path = hf_hub_download(repo_id, filename=files["config"], repo_type="model")
+            cache_dir.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(hf_path, config_path)
+
+        if not weights_path.exists():
+            hf_path = hf_hub_download(repo_id, filename=files["weights"], repo_type="model")
+            cache_dir.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(hf_path, weights_path)
+
+        return config_path.exists() and weights_path.exists()
+    except Exception as e:
+        logger.error(f"HuggingFace download failed: {e}")
+        return False
+
+
 def _ensure_model_files(model_id: str, progress_callback: Any = None) -> tuple[Path, Path]:
     """Ensure model files are available locally, downloading if needed.
 
-    Downloads from GitHub Releases (no HuggingFace account required).
-    Falls back to HuggingFace if GitHub fails and HF_TOKEN is set.
+    On HuggingFace Spaces: downloads from HF Hub (primary), GitHub Releases (fallback).
+    Elsewhere (desktop/local): downloads from GitHub Releases (primary), HF Hub (fallback).
 
     Returns:
         Tuple of (config_path, weights_path)
@@ -126,57 +201,23 @@ def _ensure_model_files(model_id: str, progress_callback: Any = None) -> tuple[P
         f.unlink()
         logger.debug(f"Cleaned up partial download: {f}")
 
-    # Try GitHub Releases first (no auth needed)
-    base_url = settings.model_download_base_url
-    github_ok = True
+    on_hf_spaces = _is_hf_spaces()
 
-    if not config_path.exists():
-        url = f"{base_url}/{files['config']}"
-        try:
-            _download_file(url, config_path)
-        except Exception as e:
-            logger.warning(f"GitHub download failed for {files['config']}: {e}")
-            github_ok = False
-
-    if github_ok and not weights_path.exists():
-        url = f"{base_url}/{files['weights']}"
-        try:
-            _download_file(url, weights_path, progress_callback=progress_callback)
-        except Exception as e:
-            logger.warning(f"GitHub download failed for {files['weights']}: {e}")
-            github_ok = False
-            # Clean up config if weights failed
-            if config_path.exists():
-                config_path.unlink()
-
-    if config_path.exists() and weights_path.exists():
-        return config_path, weights_path
-
-    # Fallback: try HuggingFace (requires HF_TOKEN for gated models)
-    hf_token = os.environ.get("CCBELL_HF_TOKEN") or os.environ.get("HF_TOKEN")
-    if hf_token:
-        logger.info("Falling back to HuggingFace download...")
-        try:
-            from huggingface_hub import hf_hub_download, login
-
-            login(token=hf_token, add_to_git_credential=False)
-
-            repo_id = ModelLoader.MODEL_REPOS[model_id]
-
-            if not config_path.exists():
-                hf_path = hf_hub_download(repo_id, filename=files["config"], repo_type="model")
-                cache_dir.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(hf_path, config_path)
-
-            if not weights_path.exists():
-                hf_path = hf_hub_download(repo_id, filename=files["weights"], repo_type="model")
-                cache_dir.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(hf_path, weights_path)
-
-            if config_path.exists() and weights_path.exists():
-                return config_path, weights_path
-        except Exception as e:
-            logger.error(f"HuggingFace fallback failed: {e}")
+    if on_hf_spaces:
+        # HF Spaces: try HuggingFace Hub first (same infrastructure, faster)
+        logger.info("Running on HuggingFace Spaces, using HF Hub as primary source")
+        if _download_from_huggingface(model_id, files, config_path, weights_path, cache_dir):
+            return config_path, weights_path
+        logger.warning("HF Hub download failed, falling back to GitHub Releases")
+        if _download_from_github(model_id, files, config_path, weights_path, progress_callback):
+            return config_path, weights_path
+    else:
+        # Desktop/local: try GitHub Releases first (no HF account needed)
+        if _download_from_github(model_id, files, config_path, weights_path, progress_callback):
+            return config_path, weights_path
+        logger.warning("GitHub download failed, falling back to HuggingFace Hub")
+        if _download_from_huggingface(model_id, files, config_path, weights_path, cache_dir):
+            return config_path, weights_path
 
     raise RuntimeError(
         f"Failed to download model {model_id}. Check your internet connection and try again."
@@ -324,7 +365,7 @@ class ModelLoader:
             self._unload_all_models_sync()
             self._update_loading_state(model_id, "loading", progress=0.15, stage="downloading")
 
-            # Download model files (from GitHub Releases, no HF account needed)
+            # Download model files (source depends on environment)
             def download_progress(pct: float):
                 # Map download progress to 0.15-0.7 range
                 p = 0.15 + pct * 0.55
