@@ -362,7 +362,9 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                             <Badge variant="secondary" className="text-xs font-mono">
                               {completedSounds.length}/{packSounds.length}
                             </Badge>
-                            <Badge variant="outline" className="text-xs font-mono">{pack.model}</Badge>
+                            <Badge variant="outline" className="text-xs font-mono">
+                              {pack.model === 'small' ? 'Stable Audio Open Small' : pack.model}
+                            </Badge>
 
                             {/* Desktop: full action buttons */}
                             <div className="hidden sm:flex items-center gap-1">
@@ -544,7 +546,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                         </Badge>
                                       )}
                                       <Badge variant="outline" className="text-[10px] font-mono">
-                                        {sound.model === 'small' ? 'Small' : sound.model}
+                                        {sound.model === 'small' ? 'Stable Audio Open Small' : sound.model}
                                       </Badge>
                                       {sound.sampler && (
                                         <Badge variant="outline" className="text-[10px] font-mono">

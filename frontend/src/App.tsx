@@ -37,7 +37,11 @@ function AppContent() {
   const [shortcutsHelpOpen, setShortcutsHelpOpen] = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [selectedModel, setSelectedModel] = useState('small')
-  const [advancedSettings, setAdvancedSettings] = useState<GenerationSettings>({})
+  const [advancedSettings, setAdvancedSettings] = useState<GenerationSettings>({
+    steps: 16,
+    cfg_scale: 2.0,
+    sampler: 'pingpong'
+  })
   const { settings, saveSettings, isDesktop } = useSettings()
   const modelStatus = useModelStatus({
     modelId: selectedModel,

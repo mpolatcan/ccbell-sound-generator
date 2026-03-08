@@ -196,17 +196,15 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
     })
   }
 
-  // Generate default pack name from theme
+  // Generate default pack name from current datetime
   const getDefaultPackName = () => {
-    const theme = themes.find((t: ThemePreset) => t.id === selectedTheme)
-    const themeName = theme?.name || selectedTheme
     const now = new Date()
     const date = now.toLocaleDateString('en-CA') // YYYY-MM-DD
     const time = now.toLocaleTimeString('en-US', {
       hour: '2-digit',
       minute: '2-digit'
     })
-    return `${themeName} - ${date} ${time}`
+    return `${date} ${time}`
   }
 
   // Build final prompt text for a specific hook
