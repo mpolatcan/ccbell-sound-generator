@@ -36,8 +36,8 @@ Based on the status above:
 
 1. **If venv doesn't exist**: Run `/setup`
 2. **If node_modules missing**: Run `cd frontend && npm install`
-3. **If build missing**: Run `/build`
-4. **To run locally**: Run `/dev`
+3. **If build missing**: Run `cd frontend && npm run build`
+4. **To run locally**: Start backend (`uvicorn app.main:app --reload --port 8000`) and frontend (`cd frontend && npm run dev`)
 5. **To verify before release**: Run `/verify`
 
 ## Quick Health Check

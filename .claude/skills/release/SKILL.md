@@ -56,7 +56,7 @@ After pushing the tag, monitor all pipelines:
 - GitHub Actions: https://github.com/mpolatcan/ccbell-sound-generator/actions/workflows/deploy-huggingface.yml
 - Public Space: https://huggingface.co/spaces/mpolatcan/ccbell-sound-generator
 - Admin Space: https://huggingface.co/spaces/mpolatcan/ccbell-sound-generator-admin
-- Check logs with `/check-hf-logs`
+- Check logs with `/deploy-huggingface`
 
 **Desktop (Tauri):**
 - GitHub Actions: https://github.com/mpolatcan/ccbell-sound-generator/actions/workflows/build-desktop-tauri.yml
