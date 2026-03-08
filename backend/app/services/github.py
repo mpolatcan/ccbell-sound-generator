@@ -1,6 +1,7 @@
 """GitHub release service for publishing sound packs."""
 
 import asyncio
+import io
 import json
 import os
 from typing import Any
@@ -230,8 +231,6 @@ ccbell packs use {request.pack_id}
 
 def _bytes_io(data: bytes):
     """Create a BytesIO wrapper for upload_asset_from_memory."""
-    import io
-
     return io.BytesIO(data)
 
 

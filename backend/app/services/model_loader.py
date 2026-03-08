@@ -7,8 +7,11 @@ Falls back to HuggingFace if GitHub download fails and HF token is available.
 import asyncio
 import concurrent.futures
 import gc
+import importlib.util
 import json
 import os
+import shutil
+import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, Literal
@@ -28,8 +31,6 @@ def _check_torch() -> bool:
     """Check if torch is available."""
     global _torch_available
     if _torch_available is None:
-        import importlib.util
-
         _torch_available = importlib.util.find_spec("torch") is not None
         if not _torch_available:
             logger.warning("PyTorch not available. Audio generation will not work.")
@@ -73,8 +74,6 @@ def _download_file(url: str, dest: Path, progress_callback: Any = None) -> None:
     Downloads to a .tmp file first, then renames on success to avoid
     partial files from interrupted downloads.
     """
-    import urllib.request
-
     logger.info(f"Downloading {url} -> {dest}")
     dest.parent.mkdir(parents=True, exist_ok=True)
 
@@ -167,15 +166,11 @@ def _ensure_model_files(model_id: str, progress_callback: Any = None) -> tuple[P
             if not config_path.exists():
                 hf_path = hf_hub_download(repo_id, filename=files["config"], repo_type="model")
                 cache_dir.mkdir(parents=True, exist_ok=True)
-                import shutil
-
                 shutil.copy2(hf_path, config_path)
 
             if not weights_path.exists():
                 hf_path = hf_hub_download(repo_id, filename=files["weights"], repo_type="model")
                 cache_dir.mkdir(parents=True, exist_ok=True)
-                import shutil
-
                 shutil.copy2(hf_path, weights_path)
 
             if config_path.exists() and weights_path.exists():

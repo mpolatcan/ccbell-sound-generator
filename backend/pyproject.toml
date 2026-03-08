@@ -73,12 +73,20 @@ select = [
     "C4",     # flake8-comprehensions
     "UP",     # pyupgrade
     "SIM",    # flake8-simplify
+    "PLC0415", # import-outside-top-level
 ]
 ignore = [
     "E501",   # line too long (handled by formatter)
     "B008",   # do not perform function calls in argument defaults
     "B905",   # zip without strict
 ]
+
+[tool.ruff.lint.per-file-ignores]
+# Lazy imports for heavy ML libraries (torch, stable_audio_tools, huggingface_hub, soundfile)
+"app/services/audio.py" = ["PLC0415"]
+"app/services/model_loader.py" = ["PLC0415"]
+# uvicorn import in __main__ guard
+"app/main.py" = ["PLC0415"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["app"]
