@@ -171,6 +171,9 @@ jobs:
           VERSION="${{ needs.validate.outputs.version }}"
           DEPLOY_TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
+          # Remove Tauri desktop files (not needed for web, contains binary .icns rejected by HF)
+          git rm -rf --quiet frontend/src-tauri/ || true
+
           # Update deploy version marker in README to force HF rebuild
           sed -i "s/<!-- deploy-version: .* -->/<!-- deploy-version: v${VERSION} deployed at ${DEPLOY_TIMESTAMP} -->/" README.md
 
