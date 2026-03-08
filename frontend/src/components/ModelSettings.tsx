@@ -40,21 +40,21 @@ interface ModelSettingsProps {
 const PRESETS = {
   fast: {
     name: 'Fast',
-    description: 'Quick generation (~15s)',
+    description: 'Decent quality (~1 min)',
     icon: Zap,
-    settings: { steps: 4, cfg_scale: 1.0, sampler: 'pingpong' }
+    settings: { steps: 8, cfg_scale: 1.0, sampler: 'pingpong' }
   },
   balanced: {
     name: 'Balanced',
-    description: 'Good quality (~30s)',
+    description: 'Good quality (~1.5 min)',
     icon: Scale,
-    settings: { steps: 8, cfg_scale: 1.0, sampler: 'pingpong' }
+    settings: { steps: 16, cfg_scale: 2.0, sampler: 'pingpong' }
   },
   quality: {
     name: 'Quality',
-    description: 'Higher quality (~60s)',
+    description: 'Best quality (~2 min)',
     icon: Gem,
-    settings: { steps: 16, cfg_scale: 3.0, sampler: 'pingpong' }
+    settings: { steps: 25, cfg_scale: 3.0, sampler: 'pingpong' }
   }
 } as const
 
