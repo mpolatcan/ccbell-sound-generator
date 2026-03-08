@@ -378,7 +378,7 @@ class AudioService:
                 if seed is not None:
                     torch.manual_seed(seed)
                     logger.debug(f"Job {job_id}: seed {seed} set in worker thread")
-                with torch.inference_mode():
+                with torch.no_grad():
                     # Note: conditioning is List[Dict] per MultiConditioner.forward signature,
                     # but generate_diffusion_cond type hint incorrectly says dict
                     output = generate_diffusion_cond(
