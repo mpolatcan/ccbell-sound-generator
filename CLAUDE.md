@@ -156,7 +156,7 @@ cd frontend && npm run lint -- --fix
 
 ## Versioning
 
-Versions are managed independently per stack: backend (`pyproject.toml`), frontend (`package.json`), and desktop (`tauri.conf.json`). They are **not** kept in sync. Git tags (`v*`) trigger CI/CD pipelines for all targets simultaneously.
+All version files must match the git tag: backend (`pyproject.toml`), frontend (`package.json`), and desktop (`tauri.conf.json`). The desktop CI auto-syncs `tauri.conf.json` and `package.json` from the git tag before building. Git tags (`v*`) trigger CI/CD pipelines for all targets simultaneously.
 
 ## Implementation Notes
 
