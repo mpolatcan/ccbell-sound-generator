@@ -1,6 +1,7 @@
 """WebSocket handler for real-time progress updates."""
 
 import asyncio
+import base64
 import json
 
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
@@ -60,6 +61,16 @@ async def websocket_progress(websocket: WebSocket, job_id: str):
             message: dict[str, object] = {"progress": progress, "stage": stage}
             if audio_url:
                 message["audio_url"] = audio_url
+                # Embed audio data as base64 so the frontend doesn't need a
+                # separate HTTP fetch. This bypasses WKWebView cross-origin
+                # restrictions that break audio loading in Tauri .dmg builds.
+                audio_path = audio_service.get_audio_path(job_id)
+                if audio_path:
+                    audio_bytes = audio_path.read_bytes()
+                    message["audio_data"] = base64.b64encode(audio_bytes).decode("ascii")
+                    logger.debug(
+                        f"WebSocket: embedded {len(audio_bytes)} bytes of audio for job {job_id}"
+                    )
             if error:
                 message["error"] = error
             await websocket.send_json(message)

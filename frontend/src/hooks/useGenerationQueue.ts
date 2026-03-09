@@ -194,17 +194,26 @@ export function useGenerationQueue() {
                 if (data.type === 'pong') return
 
                 if (data.audio_url) {
-                  // Completed — cache audio as blob URL for stable playback
+                  // Completed — create blob URL for stable playback
                   completed = true
                   let audioUrl: string
                   try {
-                    audioUrl = await toBlobUrl(data.audio_url)
-                    console.log(`[queue] toBlobUrl OK: ${audioUrl.slice(0, 60)}`)
+                    // Prefer inline audio_data (base64) from WebSocket — avoids
+                    // all HTTP fetch issues in Tauri production builds
+                    if (data.audio_data) {
+                      const binary = atob(data.audio_data)
+                      const bytes = new Uint8Array(binary.length)
+                      for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i)
+                      const blob = new Blob([bytes], { type: 'audio/wav' })
+                      audioUrl = URL.createObjectURL(blob)
+                      audioBlobCache.set(audioUrl, blob)
+                    } else {
+                      audioUrl = await toBlobUrl(data.audio_url)
+                    }
                   } catch (e) {
-                    // Fallback to resolved server URL (needed in Tauri where relative
-                    // URLs resolve against the webview origin, not the backend)
+                    // Fallback to resolved server URL
                     audioUrl = resolveAudioUrl(data.audio_url)
-                    console.error(`[queue] toBlobUrl failed, fallback to ${audioUrl}:`, e)
+                    console.error('[queue] blob creation failed, fallback:', e)
                   }
                   updateSound(item.id, {
                     status: 'completed',
