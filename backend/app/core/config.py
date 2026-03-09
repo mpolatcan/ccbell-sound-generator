@@ -31,11 +31,12 @@ class Settings(BaseSettings):
     default_duration: float = 1.0
     max_duration: float = 5.0
 
-    # Generation settings (optimized for short notification sounds on CPU)
+    # Generation settings (ARC post-trained model: pingpong sampler, no CFG)
     default_steps: int = 8
     default_cfg_scale: float = 1.0  # 1.0 = no CFG, single pass per step (2x faster)
     default_sampler: str = "pingpong"
-    # Noise level parameters
+    # sigma_min/sigma_max: kept for API compatibility but unused by sample_rf()
+    # (sigma_min is deleted by generate_diffusion_cond, sigma_max is clamped to 1.0)
     default_sigma_min: float = 0.3
     default_sigma_max: float = 500.0
 

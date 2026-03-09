@@ -6,16 +6,23 @@ import type { GenerateRequest } from '@/types'
 import { API_BASE_URL, WS_BASE_URL } from '@/lib/constants'
 
 /**
+ * Resolve a server URL to a full URL, prepending API_BASE_URL if needed.
+ * In Tauri mode, relative URLs like /api/audio/xxx must be resolved against
+ * the backend's real origin (http://127.0.0.1:7860), not the webview origin.
+ */
+function resolveAudioUrl(serverUrl: string): string {
+  return serverUrl.startsWith('http') ? serverUrl : `${API_BASE_URL}${serverUrl}`
+}
+
+/**
  * Fetch audio from server and create a blob URL for stable client-side playback.
  * Blob URLs are immutable — the audio never changes even if the server file
- * is deleted or the component remounts.  Falls back to the server URL on error.
- *
- * In Tauri mode the WebView origin is tauri://localhost, so relative URLs like
- * /api/audio/xxx must be resolved against the backend's real origin.
+ * is deleted or the component remounts.  Falls back to the resolved server URL on error.
  */
 async function toBlobUrl(serverUrl: string): Promise<string> {
-  const url = serverUrl.startsWith('http') ? serverUrl : `${API_BASE_URL}${serverUrl}`
+  const url = resolveAudioUrl(serverUrl)
   const res = await fetch(url)
+  if (!res.ok) throw new Error(`HTTP ${res.status}`)
   const blob = await res.blob()
   return URL.createObjectURL(blob)
 }
@@ -188,11 +195,13 @@ export function useGenerationQueue() {
               if (data.audio_url) {
                 // Completed — cache audio as blob URL for stable playback
                 completed = true
-                let audioUrl = data.audio_url
+                let audioUrl: string
                 try {
                   audioUrl = await toBlobUrl(data.audio_url)
                 } catch {
-                  // Fallback to server URL
+                  // Fallback to resolved server URL (needed in Tauri where relative
+                  // URLs resolve against the webview origin, not the backend)
+                  audioUrl = resolveAudioUrl(data.audio_url)
                 }
                 updateSound(item.id, {
                   status: 'completed',
@@ -263,11 +272,13 @@ export function useGenerationQueue() {
 
               if (status.status === 'completed' && status.audio_url) {
                 // Completed — cache audio as blob URL for stable playback
-                let audioUrl = status.audio_url
+                let audioUrl: string
                 try {
                   audioUrl = await toBlobUrl(status.audio_url)
                 } catch {
-                  // Fallback to server URL
+                  // Fallback to resolved server URL (needed in Tauri where relative
+                  // URLs resolve against the webview origin, not the backend)
+                  audioUrl = resolveAudioUrl(status.audio_url)
                 }
                 updateSound(item.id, {
                   status: 'completed',

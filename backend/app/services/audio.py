@@ -336,9 +336,13 @@ class AudioService:
             if seed is not None:
                 logger.debug(f"Job {job_id}: will use seed {seed}")
 
+            # Device override (allows comparing CPU vs MPS output)
+            gen_device = gen_settings.device or model_loader.device
+
             # Log generation parameters
             logger.info(
-                f"Job {job_id}: generation params - steps={steps}, cfg={cfg_scale}, sampler={sampler}"
+                f"Job {job_id}: generation params - steps={steps}, cfg={cfg_scale}, "
+                f"sampler={sampler}, device={gen_device}"
             )
             logger.debug(f"Job {job_id}: prompt='{job.request.prompt[:100]}...'")
 
@@ -418,12 +422,21 @@ class AudioService:
             # Start progress reporting task
             progress_task = asyncio.create_task(report_progress())
 
-            def do_generate():
+            def _run_diffusion(target_device: str):
+                """Run diffusion generation on the specified device."""
                 nonlocal current_step
-                logger.debug(f"Job {job_id}: starting diffusion generation with {steps} steps")
+                current_step = 0
 
                 # One-time global setup (tqdm disable + stdout redirect)
                 _setup_generation_environment()
+
+                # Move model to requested device if different from current
+                current_model_device = str(next(model.parameters()).device).split(":")[0]
+                if current_model_device != target_device:
+                    logger.info(
+                        f"Job {job_id}: moving model from {current_model_device} to {target_device}"
+                    )
+                    model.to(target_device)
 
                 # Set seed inside the worker thread for thread safety.
                 # torch.manual_seed affects the calling thread's default generator.
@@ -450,14 +463,34 @@ class AudioService:
                         sigma_min=sigma_min,
                         sigma_max=sigma_max,
                         sampler_type=sampler,
-                        device=model_loader.device,
+                        device=target_device,
                         callback=on_step,
                     )
                 gen_elapsed = time.time() - gen_start
                 logger.info(
                     f"Job {job_id}: diffusion completed in {gen_elapsed:.1f}s "
-                    f"({steps} steps, {gen_elapsed / steps:.1f}s/step)"
+                    f"({steps} steps, {gen_elapsed / steps:.1f}s/step, device={target_device})"
                 )
+                return output
+
+            def do_generate():
+                output = _run_diffusion(gen_device)
+
+                # Detect NaN output — MPS (Apple Metal) can produce NaN under
+                # certain conditions. Auto-retry on CPU as fallback.
+                if torch.isnan(output).any():
+                    if gen_device != "cpu":
+                        logger.warning(
+                            f"Job {job_id}: NaN detected in {gen_device} output, retrying on CPU"
+                        )
+                        output = _run_diffusion("cpu")
+
+                    if torch.isnan(output).any():
+                        raise RuntimeError(
+                            "Generation produced invalid (NaN) audio. "
+                            "Try different settings or a different seed."
+                        )
+
                 return output
 
             output = await loop.run_in_executor(_get_generation_executor(), do_generate)

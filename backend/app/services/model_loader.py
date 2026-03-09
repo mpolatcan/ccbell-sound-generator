@@ -40,7 +40,13 @@ def _check_torch() -> bool:
 
 
 def _get_device() -> str:
-    """Get the compute device (CUDA > MPS > CPU)."""
+    """Get the compute device (CUDA > CPU).
+
+    MPS (Apple Metal) is excluded from auto-detection because
+    stable-audio-open-small produces unreliable results on MPS
+    (NaN output, hangs, prompt drift). MPS remains available as
+    an explicit choice via the device selector in the UI.
+    """
     if _check_torch():
         import torch
 
@@ -48,9 +54,6 @@ def _get_device() -> str:
             device_name = torch.cuda.get_device_name(0)
             logger.info(f"Using CUDA GPU: {device_name}")
             return "cuda"
-        if torch.backends.mps.is_available():
-            logger.info("Using Apple Metal (MPS) GPU")
-            return "mps"
         logger.info("Using CPU for inference")
         return "cpu"
     return "cpu"
@@ -275,6 +278,19 @@ class ModelLoader:
             self._device = _get_device()
             logger.debug(f"ModelLoader device set to: {self._device}")
         return self._device
+
+    @property
+    def available_devices(self) -> list[str]:
+        """Get list of available compute devices."""
+        devices = ["cpu"]
+        if _check_torch():
+            import torch
+
+            if torch.backends.mps.is_available():
+                devices.append("mps")
+            if torch.cuda.is_available():
+                devices.append("cuda")
+        return devices
 
     @property
     def loaded_models(self) -> list[str]:

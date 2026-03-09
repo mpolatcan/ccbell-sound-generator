@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
 import { Play, Pause, Volume2, VolumeX, RotateCcw, AlertCircle, RefreshCw } from 'lucide-react'
 import { formatDuration, cn } from '@/lib/utils'
+import { API_BASE_URL } from '@/lib/constants'
 
 interface AudioPlayerProps {
   audioUrl: string
@@ -133,8 +134,13 @@ export const AudioPlayer = memo(function AudioPlayer({
     }
 
     let cancelled = false
+    // Resolve relative URLs against API_BASE_URL for Tauri mode where
+    // the webview origin (http://tauri.localhost) differs from the backend
+    const resolvedUrl = audioUrl.startsWith('http') || audioUrl.startsWith('blob:')
+      ? audioUrl
+      : `${API_BASE_URL}${audioUrl}`
     const doFetch = () => {
-      fetch(audioUrl)
+      fetch(resolvedUrl)
         .then((res) => {
           if (!res.ok) throw new Error(`HTTP ${res.status}`)
           return res.blob()

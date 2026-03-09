@@ -54,6 +54,7 @@ export interface GenerationSettings {
   seed?: number
   sigma_min?: number
   sigma_max?: number
+  device?: string
 }
 
 export interface GenerateRequest {
@@ -106,6 +107,8 @@ export interface HealthResponse {
   version: string
   models_loaded: string[]
   publish_enabled: boolean
+  available_devices: string[]
+  current_device: string
 }
 
 export type ModelLoadingStatusType = 'idle' | 'loading' | 'ready' | 'error'

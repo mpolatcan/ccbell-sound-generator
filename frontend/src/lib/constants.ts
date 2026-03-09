@@ -1,5 +1,5 @@
 // Detect Tauri desktop environment
-const isTauri = typeof window !== 'undefined' && '__TAURI_INTERNALS__' in window
+export const isTauri = typeof window !== 'undefined' && '__TAURI_INTERNALS__' in window
 
 // API base URL - in Tauri mode, point to the local sidecar backend
 export const API_BASE_URL = isTauri ? 'http://127.0.0.1:7860' : ''
@@ -11,22 +11,18 @@ export const WS_BASE_URL = isTauri
     ? `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}`
     : ''
 
-// Model defaults (optimized for short notification sounds on CPU)
+// Model defaults (ARC post-trained model: pingpong sampler, no CFG)
 export const MODEL_DEFAULTS: Record<string, {
   default_steps: number
   cfg_scale: number
   default_sampler: string
   max_duration: number
-  sigma_min: number
-  sigma_max: number
 }> = {
   'stable-audio-open-small': {
     default_steps: 8,
     cfg_scale: 1.0,
     default_sampler: 'pingpong',
-    max_duration: 5,
-    sigma_min: 0.3,
-    sigma_max: 500
+    max_duration: 5
   }
 }
 
@@ -35,7 +31,10 @@ export const DEFAULT_DURATION = 1.0
 
 // Sampler options per model
 export const SAMPLER_OPTIONS = [
-  { value: 'pingpong', label: 'Pingpong', models: ['stable-audio-open-small'] as const }
+  { value: 'pingpong', label: 'Pingpong (recommended)', models: ['stable-audio-open-small'] as const },
+  { value: 'euler', label: 'Euler', models: ['stable-audio-open-small'] as const },
+  { value: 'dpmpp', label: 'DPM++', models: ['stable-audio-open-small'] as const },
+  { value: 'rk4', label: 'RK4 (Runge-Kutta)', models: ['stable-audio-open-small'] as const }
 ] as const
 
 // Get samplers compatible with a model
