@@ -199,10 +199,12 @@ export function useGenerationQueue() {
                   let audioUrl: string
                   try {
                     audioUrl = await toBlobUrl(data.audio_url)
-                  } catch {
+                    console.log(`[queue] toBlobUrl OK: ${audioUrl.slice(0, 60)}`)
+                  } catch (e) {
                     // Fallback to resolved server URL (needed in Tauri where relative
                     // URLs resolve against the webview origin, not the backend)
                     audioUrl = resolveAudioUrl(data.audio_url)
+                    console.error(`[queue] toBlobUrl failed, fallback to ${audioUrl}:`, e)
                   }
                   updateSound(item.id, {
                     status: 'completed',
@@ -278,10 +280,12 @@ export function useGenerationQueue() {
                   let audioUrl: string
                   try {
                     audioUrl = await toBlobUrl(status.audio_url)
-                  } catch {
+                    console.log(`[queue/poll] toBlobUrl OK: ${audioUrl.slice(0, 60)}`)
+                  } catch (e) {
                     // Fallback to resolved server URL (needed in Tauri where relative
                     // URLs resolve against the webview origin, not the backend)
                     audioUrl = resolveAudioUrl(status.audio_url)
+                    console.error(`[queue/poll] toBlobUrl failed, fallback to ${audioUrl}:`, e)
                   }
                   updateSound(item.id, {
                     status: 'completed',

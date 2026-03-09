@@ -779,6 +779,12 @@ pub fn run() {
         .plugin(tauri_plugin_shell::init())
         .manage(SidecarState(Mutex::new(None)))
         .manage(SetupGuard(AtomicBool::new(false)))
+        .setup(|app| {
+            // Open devtools to diagnose audio loading issues in production
+            let window = app.get_webview_window("main").unwrap();
+            window.open_devtools();
+            Ok(())
+        })
         .invoke_handler(tauri::generate_handler![
             setup_backend,
             start_backend,
