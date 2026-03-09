@@ -12,7 +12,9 @@ import type {
   DownloadPackResponse,
   HealthResponse,
   ModelsStatusResponse,
-  ModelLoadingStatus
+  ModelLoadingStatus,
+  AppConfigResponse,
+  UpdateConfigRequest
 } from '@/types'
 
 class ApiClient {
@@ -52,6 +54,19 @@ class ApiClient {
   // Health check
   getHealth = async (): Promise<HealthResponse> => {
     return this.request('/api/health')
+  }
+
+  // Get runtime config
+  getConfig = async (): Promise<AppConfigResponse> => {
+    return this.request('/api/config')
+  }
+
+  // Update runtime config
+  updateConfig = async (request: UpdateConfigRequest): Promise<AppConfigResponse> => {
+    return this.request('/api/config', {
+      method: 'PUT',
+      body: JSON.stringify(request)
+    })
   }
 
   // Get available models

@@ -17,6 +17,7 @@ import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts'
 import { toast } from '@/hooks/useToast'
 import { api } from '@/lib/api'
 import { useModelStatus } from '@/hooks/useModelStatus'
+import { useGenerationQueueStore } from '@/hooks/useGenerationQueue'
 import type { PublishPackData, DownloadPackData, GenerationSettings } from '@/types'
 
 const queryClient = new QueryClient({
@@ -32,6 +33,8 @@ function AppContent() {
   const [publishDialogOpen, setPublishDialogOpen] = useState(false)
   const [packDataToPublish, setPackDataToPublish] = useState<PublishPackData | null>(null)
   const [publishEnabled, setPublishEnabled] = useState(false)
+  const [isHfSpaces, setIsHfSpaces] = useState(false)
+  const [maxConcurrentGenerations, setMaxConcurrentGenerations] = useState(2)
   const [downloadDialogOpen, setDownloadDialogOpen] = useState(false)
   const [packDataToDownload, setPackDataToDownload] = useState<DownloadPackData | null>(null)
   const [shortcutsHelpOpen, setShortcutsHelpOpen] = useState(false)
@@ -52,6 +55,10 @@ function AppContent() {
   useEffect(() => {
     api.getHealth().then((health) => {
       setPublishEnabled(health.publish_enabled)
+      setIsHfSpaces(health.is_hf_spaces)
+    }).catch(() => {})
+    api.getConfig().then((config) => {
+      setMaxConcurrentGenerations(config.max_concurrent_generations)
     }).catch(() => {})
   }, [])
 
@@ -126,7 +133,7 @@ function AppContent() {
             </div>
           </div>
           <nav className="flex items-center gap-1.5">
-            {isDesktop && (
+            {!isHfSpaces && (
               <Button
                 variant="ghost"
                 size="sm"
@@ -245,13 +252,19 @@ function AppContent() {
         packData={packDataToPublish}
       />
 
-      {/* Settings Dialog (desktop only) */}
-      {isDesktop && (
+      {/* Settings Dialog (desktop + Docker, not HF Spaces) */}
+      {!isHfSpaces && (
         <SettingsDialog
           open={settingsOpen}
           onOpenChange={setSettingsOpen}
           settings={settings}
           onSave={saveSettings}
+          isDesktop={isDesktop}
+          maxConcurrentGenerations={maxConcurrentGenerations}
+          onMaxConcurrentGenerationsChange={(value: number) => {
+            setMaxConcurrentGenerations(value)
+            useGenerationQueueStore.getState().setMaxConcurrency(value)
+          }}
         />
       )}
 

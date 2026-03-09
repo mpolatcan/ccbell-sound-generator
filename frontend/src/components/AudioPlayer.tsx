@@ -6,6 +6,7 @@ import { Slider } from '@/components/ui/slider'
 import { Play, Pause, Volume2, VolumeX, RotateCcw, AlertCircle, RefreshCw } from 'lucide-react'
 import { formatDuration, cn } from '@/lib/utils'
 import { API_BASE_URL } from '@/lib/constants'
+import { audioBlobCache } from '@/lib/audioBlobCache'
 
 interface AudioPlayerProps {
   audioUrl: string
@@ -127,9 +128,19 @@ export const AudioPlayer = memo(function AudioPlayer({
     setHasError(false)
     setIsReady(false)
 
-    // If we already have the blob cached, skip the fetch
+    // If we already have the blob cached locally, skip the fetch
     if (audioBlobRef.current) {
       initWaveSurfer(audioBlobRef.current)
+      return
+    }
+
+    // Check global blob cache (populated by useGenerationQueue's toBlobUrl).
+    // This avoids re-fetching blob URLs which can fail in Tauri v2 production
+    // builds on macOS (WKWebView restricts blob URL fetch).
+    const cachedBlob = audioBlobCache.get(audioUrl)
+    if (cachedBlob) {
+      audioBlobRef.current = cachedBlob
+      initWaveSurfer(cachedBlob)
       return
     }
 
@@ -211,8 +222,10 @@ export const AudioPlayer = memo(function AudioPlayer({
   const handleRetry = useCallback(() => {
     autoRetryCount.current = 0
     audioBlobRef.current = null
+    // Clear stale cache entry so retry fetches fresh data
+    audioBlobCache.delete(audioUrl)
     createWaveSurfer()
-  }, [createWaveSurfer])
+  }, [audioUrl, createWaveSurfer])
 
   return (
     <div className={cn('space-y-2', className)}>

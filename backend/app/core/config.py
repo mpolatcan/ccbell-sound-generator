@@ -6,6 +6,11 @@ from pathlib import Path
 from pydantic_settings import BaseSettings
 
 
+def is_hf_spaces() -> bool:
+    """Check if running on HuggingFace Spaces (detected via SPACE_ID env var)."""
+    return bool(os.environ.get("SPACE_ID"))
+
+
 class Settings(BaseSettings):
     """Application settings."""
 
@@ -46,7 +51,9 @@ class Settings(BaseSettings):
 
     # Concurrency settings
     max_concurrent_generations: int = 2
-    generation_thread_pool_workers: int = 2
+    # Thread pool sized to max configurable concurrency (slider max = 4).
+    # The semaphore is the real concurrency gate; idle threads are negligible cost.
+    generation_thread_pool_workers: int = 4
 
     # WebSocket settings
     ws_idle_timeout: int = 60  # seconds before sending keepalive ping

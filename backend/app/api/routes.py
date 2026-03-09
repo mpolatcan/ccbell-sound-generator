@@ -6,8 +6,9 @@ from fastapi import APIRouter, BackgroundTasks, HTTPException
 from fastapi.responses import FileResponse
 from loguru import logger
 
-from app.core.config import settings
+from app.core.config import is_hf_spaces, settings
 from app.core.models import (
+    AppConfigResponse,
     AudioStatusResponse,
     DownloadPackRequest,
     DownloadPackResponse,
@@ -21,6 +22,7 @@ from app.core.models import (
     PublishRequest,
     PublishResponse,
     ThemePreset,
+    UpdateConfigRequest,
 )
 from app.data.hooks import get_all_hooks
 from app.data.themes import get_all_themes
@@ -49,6 +51,17 @@ def _get_generation_semaphore() -> asyncio.Semaphore:
     return _generation_semaphore
 
 
+def _reset_generation_semaphore(new_limit: int) -> None:
+    """Replace the generation semaphore with a new limit.
+
+    In-flight jobs holding the old semaphore will complete normally;
+    new jobs will use the new semaphore.
+    """
+    global _generation_semaphore
+    _generation_semaphore = asyncio.Semaphore(new_limit)
+    logger.info(f"Generation semaphore reset with limit={new_limit}")
+
+
 async def _run_generation_with_limit(job_id: str):
     """Run audio generation with semaphore-based concurrency limiting."""
     semaphore = _get_generation_semaphore()
@@ -72,6 +85,35 @@ async def health_check():
         version=settings.app_version,
         models_loaded=models,
         publish_enabled=bool(settings.github_token),
+        is_hf_spaces=is_hf_spaces(),
+    )
+
+
+@router.get("/config", response_model=AppConfigResponse)
+async def get_config():
+    """Get runtime configuration."""
+    return AppConfigResponse(
+        max_concurrent_generations=settings.max_concurrent_generations,
+        is_hf_spaces=is_hf_spaces(),
+    )
+
+
+@router.put("/config", response_model=AppConfigResponse)
+async def update_config(request: UpdateConfigRequest):
+    """Update runtime configuration. Rejected on HuggingFace Spaces."""
+    if is_hf_spaces():
+        raise HTTPException(
+            status_code=403,
+            detail="Configuration changes are not allowed on HuggingFace Spaces",
+        )
+
+    settings.max_concurrent_generations = request.max_concurrent_generations
+    _reset_generation_semaphore(request.max_concurrent_generations)
+
+    logger.info(f"Updated max_concurrent_generations to {request.max_concurrent_generations}")
+    return AppConfigResponse(
+        max_concurrent_generations=settings.max_concurrent_generations,
+        is_hf_spaces=False,
     )
 
 

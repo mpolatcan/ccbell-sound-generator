@@ -168,6 +168,20 @@ class HealthResponse(BaseModel):
     version: str = "1.1.0"
     models_loaded: list[str] = []
     publish_enabled: bool = False
+    is_hf_spaces: bool = False
+
+
+class AppConfigResponse(BaseModel):
+    """Response for runtime app configuration."""
+
+    max_concurrent_generations: int
+    is_hf_spaces: bool
+
+
+class UpdateConfigRequest(BaseModel):
+    """Request to update runtime configuration."""
+
+    max_concurrent_generations: int = Field(..., ge=1, le=4)
 
 
 class ModelLoadingStatus(BaseModel):

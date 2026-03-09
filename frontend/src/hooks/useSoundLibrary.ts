@@ -1,10 +1,12 @@
 import { create } from 'zustand'
+import { audioBlobCache } from '@/lib/audioBlobCache'
 import type { SoundLibraryState, GeneratedSound, SoundPack } from '@/types'
 
-/** Revoke a blob URL to free memory. No-op for server URLs. */
+/** Revoke a blob URL and remove its cached Blob to free memory. No-op for server URLs. */
 function revokeBlobUrl(url: string | undefined) {
   if (url?.startsWith('blob:')) {
     URL.revokeObjectURL(url)
+    audioBlobCache.delete(url)
   }
 }
 

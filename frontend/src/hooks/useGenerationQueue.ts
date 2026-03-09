@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { create } from 'zustand'
 import { api } from '@/lib/api'
+import { audioBlobCache } from '@/lib/audioBlobCache'
 import { useSoundLibrary } from './useSoundLibrary'
 import type { GenerateRequest } from '@/types'
 import { API_BASE_URL, WS_BASE_URL } from '@/lib/constants'
@@ -18,13 +19,16 @@ function resolveAudioUrl(serverUrl: string): string {
  * Fetch audio from server and create a blob URL for stable client-side playback.
  * Blob URLs are immutable — the audio never changes even if the server file
  * is deleted or the component remounts.  Falls back to the resolved server URL on error.
+ * Also caches the blob so AudioPlayer can skip re-fetching the blob URL.
  */
 async function toBlobUrl(serverUrl: string): Promise<string> {
   const url = resolveAudioUrl(serverUrl)
   const res = await fetch(url)
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
   const blob = await res.blob()
-  return URL.createObjectURL(blob)
+  const blobUrl = URL.createObjectURL(blob)
+  audioBlobCache.set(blobUrl, blob)
+  return blobUrl
 }
 
 interface QueuedGeneration {
@@ -36,19 +40,21 @@ interface QueuedGeneration {
 
 interface GenerationQueueState {
   queue: QueuedGeneration[]
-  isProcessing: boolean
-  currentSoundId: string | null
+  activeSoundIds: string[]
+  maxConcurrency: number
   addToQueue: (item: QueuedGeneration) => void
   removeFromQueue: (soundId: string) => void
-  setProcessing: (isProcessing: boolean, soundId?: string | null) => void
+  addActive: (soundId: string) => void
+  removeActive: (soundId: string) => void
+  setMaxConcurrency: (n: number) => void
   clearQueue: () => void
   getQueueLength: () => number
 }
 
 export const useGenerationQueueStore = create<GenerationQueueState>((set, get) => ({
   queue: [],
-  isProcessing: false,
-  currentSoundId: null,
+  activeSoundIds: [],
+  maxConcurrency: 2,
 
   addToQueue: (item: QueuedGeneration) =>
     set((state) => ({
@@ -60,10 +66,19 @@ export const useGenerationQueueStore = create<GenerationQueueState>((set, get) =
       queue: state.queue.filter((q) => q.id !== soundId)
     })),
 
-  setProcessing: (isProcessing: boolean, soundId: string | null = null) =>
-    set({ isProcessing, currentSoundId: soundId }),
+  addActive: (soundId: string) =>
+    set((state) => ({
+      activeSoundIds: [...state.activeSoundIds, soundId]
+    })),
 
-  clearQueue: () => set({ queue: [], isProcessing: false, currentSoundId: null }),
+  removeActive: (soundId: string) =>
+    set((state) => ({
+      activeSoundIds: state.activeSoundIds.filter((id) => id !== soundId)
+    })),
+
+  setMaxConcurrency: (n: number) => set({ maxConcurrency: n }),
+
+  clearQueue: () => set({ queue: [], activeSoundIds: [] }),
 
   getQueueLength: () => get().queue.length
 }))
@@ -72,305 +87,323 @@ export function useGenerationQueue() {
   const queueStore = useGenerationQueueStore()
   const updateSound = useSoundLibrary((s) => s.updateSound)
   const [error, setError] = useState<string | null>(null)
-  const wsRef = useRef<WebSocket | null>(null)
-  const processingRef = useRef(false)
-  const pollingRef = useRef<number | null>(null)
-  const abortControllerRef = useRef<AbortController | null>(null)
+  const abortControllersRef = useRef(new Map<string, AbortController>())
+  const processNextRef = useRef<() => void>(() => {})
 
-  // Clean up WebSocket, polling, and abort controller on unmount
+  // Fetch max concurrency from backend on mount
   useEffect(() => {
+    api
+      .getConfig()
+      .then((config) => {
+        useGenerationQueueStore.getState().setMaxConcurrency(config.max_concurrent_generations)
+      })
+      .catch(() => {})
+  }, [])
+
+  // Clean up all abort controllers on unmount
+  useEffect(() => {
+    const controllers = abortControllersRef.current
     return () => {
-      if (wsRef.current) {
-        wsRef.current.close()
-        wsRef.current = null
+      for (const controller of controllers.values()) {
+        controller.abort()
       }
-      if (pollingRef.current) {
-        clearInterval(pollingRef.current)
-        pollingRef.current = null
-      }
-      if (abortControllerRef.current) {
-        abortControllerRef.current.abort()
-        abortControllerRef.current = null
-      }
+      controllers.clear()
     }
   }, [])
 
-  const processNextInQueue = useCallback(async () => {
-    const { queue, setProcessing, removeFromQueue } = useGenerationQueueStore.getState()
+  // Process a single queued item (runs independently, multiple can run concurrently)
+  const processItem = useCallback(
+    async (item: QueuedGeneration) => {
+      const { removeFromQueue, removeActive } = useGenerationQueueStore.getState()
 
-    // Prevent concurrent processing
-    if (processingRef.current || queue.length === 0) {
-      return
-    }
-
-    processingRef.current = true
-    const item = queue[0]
-
-    // Ghost guard: skip if sound was already deleted from library while waiting in queue
-    const soundStillExists = useSoundLibrary.getState().sounds.some((s) => s.id === item.id)
-    if (!soundStillExists) {
-      removeFromQueue(item.id)
-      processingRef.current = false
-      setTimeout(() => processNextInQueue(), 0)
-      return
-    }
-
-    // Create abort controller for this processing cycle
-    const abortController = new AbortController()
-    abortControllerRef.current = abortController
-    const signal = abortController.signal
-
-    setProcessing(true, item.id)
-
-    // Update sound to show it's starting
-    updateSound(item.id, {
-      status: 'generating',
-      stage: 'Starting',
-      progress: 0,
-      started_at: new Date()
-    })
-
-    try {
-      // Start generation
-      const response = await api.generateAudio(item.request)
-      const jobId = response.job_id
-
-      // Check abort after API call returns
-      if (signal.aborted) {
-        // Best-effort cleanup of the backend job we just created
-        api.deleteAudio(jobId).catch(() => {})
-        throw new DOMException('Aborted', 'AbortError')
+      // Ghost guard: skip if sound was already deleted from library while waiting in queue
+      const soundStillExists = useSoundLibrary.getState().sounds.some((s) => s.id === item.id)
+      if (!soundStillExists) {
+        removeFromQueue(item.id)
+        removeActive(item.id)
+        setTimeout(() => processNextRef.current(), 0)
+        return
       }
 
-      // Update sound with job ID
-      updateSound(item.id, { job_id: jobId })
+      // Create abort controller for this item
+      const abortController = new AbortController()
+      abortControllersRef.current.set(item.id, abortController)
+      const signal = abortController.signal
 
-      // Set up WebSocket for progress updates
-      await new Promise<void>((resolve, reject) => {
-        let usePolling = false
+      // Update sound to show it's starting
+      updateSound(item.id, {
+        status: 'generating',
+        stage: 'Starting',
+        progress: 0,
+        started_at: new Date()
+      })
 
-        // Listen for abort signal
-        const onAbort = () => {
-          if (wsRef.current) {
-            wsRef.current.close()
-            wsRef.current = null
-          }
-          if (pollingRef.current) {
-            clearInterval(pollingRef.current)
-            pollingRef.current = null
-          }
-          // Best-effort cleanup of backend job
-          api.deleteAudio(jobId).catch(() => {})
-          reject(new DOMException('Aborted', 'AbortError'))
-        }
+      try {
+        // Start generation
+        const response = await api.generateAudio(item.request)
+        const jobId = response.job_id
 
+        // Check abort after API call returns
         if (signal.aborted) {
-          onAbort()
-          return
-        }
-        signal.addEventListener('abort', onAbort, { once: true })
-
-        const cleanup = () => {
-          signal.removeEventListener('abort', onAbort)
+          api.deleteAudio(jobId).catch(() => {})
+          throw new DOMException('Aborted', 'AbortError')
         }
 
-        const connectWebSocket = () => {
-          const ws = new WebSocket(`${WS_BASE_URL}/api/ws/${jobId}`)
-          wsRef.current = ws
-          let completed = false
+        // Update sound with job ID
+        updateSound(item.id, { job_id: jobId })
 
-          // Keep-alive ping
-          const pingInterval = setInterval(() => {
-            if (ws.readyState === WebSocket.OPEN) {
-              ws.send(JSON.stringify({ type: 'ping' }))
+        // Set up WebSocket for progress updates (with polling fallback)
+        await new Promise<void>((resolve, reject) => {
+          let usePolling = false
+          let localWs: WebSocket | null = null
+          let localPollingInterval: number | null = null
+
+          // Listen for abort signal
+          const onAbort = () => {
+            if (localWs) {
+              localWs.close()
+              localWs = null
             }
-          }, 30000)
+            if (localPollingInterval) {
+              clearInterval(localPollingInterval)
+              localPollingInterval = null
+            }
+            // Best-effort cleanup of backend job
+            api.deleteAudio(jobId).catch(() => {})
+            reject(new DOMException('Aborted', 'AbortError'))
+          }
 
-          ws.onmessage = async (event) => {
-            try {
-              const data = JSON.parse(event.data)
+          if (signal.aborted) {
+            onAbort()
+            return
+          }
+          signal.addEventListener('abort', onAbort, { once: true })
 
-              if (data.type === 'pong') return
+          const cleanup = () => {
+            signal.removeEventListener('abort', onAbort)
+          }
 
-              if (data.audio_url) {
-                // Completed — cache audio as blob URL for stable playback
-                completed = true
-                let audioUrl: string
-                try {
-                  audioUrl = await toBlobUrl(data.audio_url)
-                } catch {
-                  // Fallback to resolved server URL (needed in Tauri where relative
-                  // URLs resolve against the webview origin, not the backend)
-                  audioUrl = resolveAudioUrl(data.audio_url)
-                }
-                updateSound(item.id, {
-                  status: 'completed',
-                  progress: 1,
-                  stage: 'Complete',
-                  audio_url: audioUrl,
-                  completed_at: new Date()
-                })
-                ws.close()
-                cleanup()
-                resolve()
-                return
+          const connectWebSocket = () => {
+            const ws = new WebSocket(`${WS_BASE_URL}/api/ws/${jobId}`)
+            localWs = ws
+            let completed = false
+
+            // Keep-alive ping
+            const pingInterval = setInterval(() => {
+              if (ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({ type: 'ping' }))
               }
+            }, 30000)
 
-              if (data.error) {
-                completed = true
-                updateSound(item.id, {
-                  status: 'error',
-                  error: data.error,
-                  completed_at: new Date()
-                })
-                ws.close()
-                cleanup()
-                reject(new Error(data.error))
-                return
-              }
+            ws.onmessage = async (event) => {
+              try {
+                const data = JSON.parse(event.data)
 
-              // Progress update — only for in-flight sounds
-              const currentSound = useSoundLibrary.getState().sounds.find((s) => s.id === item.id)
-              if (currentSound?.status === 'completed') return
+                if (data.type === 'pong') return
 
-              const currentProgress = currentSound?.progress ?? 0
-              const newProgress = Math.max(data.progress ?? 0, currentProgress)
-
-              updateSound(item.id, {
-                progress: newProgress,
-                stage: data.stage
-              })
-            } catch {
-              // Ignore parse errors
-            }
-          }
-
-          ws.onerror = () => {
-            if (!usePolling && !completed && !signal.aborted) {
-              usePolling = true
-              ws.close()
-              startPolling()
-            }
-          }
-
-          ws.onclose = () => {
-            clearInterval(pingInterval)
-            wsRef.current = null
-            // If WebSocket closed before completion, switch to polling
-            // but not if aborted (abort handler already rejected)
-            if (!completed && !usePolling && !signal.aborted) {
-              usePolling = true
-              startPolling()
-            }
-          }
-        }
-
-        const startPolling = () => {
-          const poll = async () => {
-            try {
-              const status = await api.getAudioStatus(jobId)
-
-              if (status.status === 'completed' && status.audio_url) {
-                // Completed — cache audio as blob URL for stable playback
-                let audioUrl: string
-                try {
-                  audioUrl = await toBlobUrl(status.audio_url)
-                } catch {
-                  // Fallback to resolved server URL (needed in Tauri where relative
-                  // URLs resolve against the webview origin, not the backend)
-                  audioUrl = resolveAudioUrl(status.audio_url)
+                if (data.audio_url) {
+                  // Completed — cache audio as blob URL for stable playback
+                  completed = true
+                  let audioUrl: string
+                  try {
+                    audioUrl = await toBlobUrl(data.audio_url)
+                  } catch {
+                    // Fallback to resolved server URL (needed in Tauri where relative
+                    // URLs resolve against the webview origin, not the backend)
+                    audioUrl = resolveAudioUrl(data.audio_url)
+                  }
+                  updateSound(item.id, {
+                    status: 'completed',
+                    progress: 1,
+                    stage: 'Complete',
+                    audio_url: audioUrl,
+                    completed_at: new Date()
+                  })
+                  ws.close()
+                  cleanup()
+                  resolve()
+                  return
                 }
-                updateSound(item.id, {
-                  status: 'completed',
-                  progress: 1,
-                  stage: 'Complete',
-                  audio_url: audioUrl,
-                  completed_at: new Date()
-                })
-                if (pollingRef.current) {
-                  clearInterval(pollingRef.current)
-                  pollingRef.current = null
+
+                if (data.error) {
+                  completed = true
+                  updateSound(item.id, {
+                    status: 'error',
+                    error: data.error,
+                    completed_at: new Date()
+                  })
+                  ws.close()
+                  cleanup()
+                  reject(new Error(data.error))
+                  return
                 }
-                cleanup()
-                resolve()
-              } else if (status.status === 'error') {
-                updateSound(item.id, {
-                  status: 'error',
-                  error: status.error || 'Generation failed',
-                  completed_at: new Date()
-                })
-                if (pollingRef.current) {
-                  clearInterval(pollingRef.current)
-                  pollingRef.current = null
-                }
-                cleanup()
-                reject(new Error(status.error || 'Generation failed'))
-              } else {
+
                 // Progress update — only for in-flight sounds
                 const currentSound = useSoundLibrary
                   .getState()
                   .sounds.find((s) => s.id === item.id)
-                if (currentSound?.status !== 'completed') {
-                  const currentProgress = currentSound?.progress ?? 0
-                  const newProgress = Math.max(status.progress ?? 0, currentProgress)
-                  updateSound(item.id, {
-                    progress: newProgress,
-                    stage: status.stage || 'Generating'
-                  })
-                }
+                if (currentSound?.status === 'completed') return
+
+                const currentProgress = currentSound?.progress ?? 0
+                const newProgress = Math.max(data.progress ?? 0, currentProgress)
+
+                updateSound(item.id, {
+                  progress: newProgress,
+                  stage: data.stage
+                })
+              } catch {
+                // Ignore parse errors
               }
-            } catch (err) {
-              const msg = err instanceof Error ? err.message : ''
-              if (msg.includes('not found') || msg.includes('404')) {
-                // Job deleted — terminal error, stop polling
-                if (pollingRef.current) {
-                  clearInterval(pollingRef.current)
-                  pollingRef.current = null
-                }
-                cleanup()
-                reject(new Error('Job not found'))
-                return
+            }
+
+            ws.onerror = () => {
+              if (!usePolling && !completed && !signal.aborted) {
+                usePolling = true
+                ws.close()
+                startPolling()
               }
-              // Transient network error — continue polling
+            }
+
+            ws.onclose = () => {
+              clearInterval(pingInterval)
+              localWs = null
+              // If WebSocket closed before completion, switch to polling
+              // but not if aborted (abort handler already rejected)
+              if (!completed && !usePolling && !signal.aborted) {
+                usePolling = true
+                startPolling()
+              }
             }
           }
 
-          poll()
-          pollingRef.current = window.setInterval(poll, 2000)
-        }
+          const startPolling = () => {
+            const poll = async () => {
+              try {
+                const status = await api.getAudioStatus(jobId)
 
-        connectWebSocket()
-      })
-    } catch (err) {
-      // If aborted (sound was deleted), don't set error on the sound
-      if (err instanceof DOMException && err.name === 'AbortError') {
-        // Sound was deleted — nothing to update
-      } else {
-        const message = err instanceof Error ? err.message : 'Generation failed'
-        setError(message)
-        updateSound(item.id, {
-          status: 'error',
-          error: message,
-          completed_at: new Date()
+                if (status.status === 'completed' && status.audio_url) {
+                  // Completed — cache audio as blob URL for stable playback
+                  let audioUrl: string
+                  try {
+                    audioUrl = await toBlobUrl(status.audio_url)
+                  } catch {
+                    // Fallback to resolved server URL (needed in Tauri where relative
+                    // URLs resolve against the webview origin, not the backend)
+                    audioUrl = resolveAudioUrl(status.audio_url)
+                  }
+                  updateSound(item.id, {
+                    status: 'completed',
+                    progress: 1,
+                    stage: 'Complete',
+                    audio_url: audioUrl,
+                    completed_at: new Date()
+                  })
+                  if (localPollingInterval) {
+                    clearInterval(localPollingInterval)
+                    localPollingInterval = null
+                  }
+                  cleanup()
+                  resolve()
+                } else if (status.status === 'error') {
+                  updateSound(item.id, {
+                    status: 'error',
+                    error: status.error || 'Generation failed',
+                    completed_at: new Date()
+                  })
+                  if (localPollingInterval) {
+                    clearInterval(localPollingInterval)
+                    localPollingInterval = null
+                  }
+                  cleanup()
+                  reject(new Error(status.error || 'Generation failed'))
+                } else {
+                  // Progress update — only for in-flight sounds
+                  const currentSound = useSoundLibrary
+                    .getState()
+                    .sounds.find((s) => s.id === item.id)
+                  if (currentSound?.status !== 'completed') {
+                    const currentProgress = currentSound?.progress ?? 0
+                    const newProgress = Math.max(status.progress ?? 0, currentProgress)
+                    updateSound(item.id, {
+                      progress: newProgress,
+                      stage: status.stage || 'Generating'
+                    })
+                  }
+                }
+              } catch (err) {
+                const msg = err instanceof Error ? err.message : ''
+                if (msg.includes('not found') || msg.includes('404')) {
+                  // Job deleted — terminal error, stop polling
+                  if (localPollingInterval) {
+                    clearInterval(localPollingInterval)
+                    localPollingInterval = null
+                  }
+                  cleanup()
+                  reject(new Error('Job not found'))
+                  return
+                }
+                // Transient network error — continue polling
+              }
+            }
+
+            poll()
+            localPollingInterval = window.setInterval(poll, 2000)
+          }
+
+          connectWebSocket()
         })
-      }
-    } finally {
-      // Remove from queue and process next
-      removeFromQueue(item.id)
-      processingRef.current = false
-      abortControllerRef.current = null
-      setProcessing(false, null)
+      } catch (err) {
+        // If aborted (sound was deleted), don't set error on the sound
+        if (err instanceof DOMException && err.name === 'AbortError') {
+          // Sound was deleted — nothing to update
+        } else {
+          const message = err instanceof Error ? err.message : 'Generation failed'
+          setError(message)
+          updateSound(item.id, {
+            status: 'error',
+            error: message,
+            completed_at: new Date()
+          })
+        }
+      } finally {
+        // Remove from queue and active list
+        removeFromQueue(item.id)
+        removeActive(item.id)
+        abortControllersRef.current.delete(item.id)
 
-      // Process next item if available
-      setTimeout(() => {
-        processNextInQueue()
-      }, 500)
+        // Fill the freed slot with next queued item
+        setTimeout(() => processNextRef.current(), 100)
+      }
+    },
+    [updateSound]
+  )
+
+  // Dispatch queued items up to the concurrency limit
+  const processNextInQueue = useCallback(() => {
+    const { queue, activeSoundIds, maxConcurrency, addActive } =
+      useGenerationQueueStore.getState()
+
+    const availableSlots = maxConcurrency - activeSoundIds.length
+    if (availableSlots <= 0 || queue.length === 0) return
+
+    // Get queued items that aren't already active
+    const pendingItems = queue.filter((q) => !activeSoundIds.includes(q.id))
+    const toDispatch = pendingItems.slice(0, availableSlots)
+
+    for (const item of toDispatch) {
+      addActive(item.id)
+      processItem(item) // fire-and-forget — each manages its own lifecycle
     }
-  }, [updateSound])
+  }, [processItem])
+
+  // Keep ref in sync so processItem's finally block can call the latest version
+  useEffect(() => {
+    processNextRef.current = processNextInQueue
+  }, [processNextInQueue])
 
   // Start processing when items are added to queue
   useEffect(() => {
-    if (queueStore.queue.length > 0 && !processingRef.current) {
+    if (queueStore.queue.length > 0) {
       processNextInQueue()
     }
   }, [queueStore.queue.length, processNextInQueue])
@@ -389,9 +422,9 @@ export function useGenerationQueue() {
 
   const cancelGeneration = useCallback(
     (soundId: string) => {
-      const { currentSoundId } = useGenerationQueueStore.getState()
-      if (currentSoundId === soundId && abortControllerRef.current) {
-        abortControllerRef.current.abort()
+      const controller = abortControllersRef.current.get(soundId)
+      if (controller) {
+        controller.abort()
       }
       queueStore.removeFromQueue(soundId)
     },
@@ -400,11 +433,15 @@ export function useGenerationQueue() {
 
   const cancelByPackId = useCallback(
     (packId: string) => {
-      const { queue, currentSoundId } = useGenerationQueueStore.getState()
-      // Abort active item if it belongs to this pack
-      const activeItem = queue.find((q) => q.id === currentSoundId)
-      if (activeItem && activeItem.packId === packId && abortControllerRef.current) {
-        abortControllerRef.current.abort()
+      const { queue } = useGenerationQueueStore.getState()
+      // Abort active items belonging to this pack
+      for (const item of queue) {
+        if (item.packId === packId) {
+          const controller = abortControllersRef.current.get(item.id)
+          if (controller) {
+            controller.abort()
+          }
+        }
       }
       // Remove all queued items for this pack
       for (const item of queue) {
@@ -417,16 +454,17 @@ export function useGenerationQueue() {
   )
 
   const cancelAll = useCallback(() => {
-    if (abortControllerRef.current) {
-      abortControllerRef.current.abort()
+    // Abort all active generations
+    for (const controller of abortControllersRef.current.values()) {
+      controller.abort()
     }
     queueStore.clearQueue()
   }, [queueStore])
 
   return {
     queue: queueStore.queue,
-    isProcessing: queueStore.isProcessing,
-    currentSoundId: queueStore.currentSoundId,
+    isProcessing: queueStore.activeSoundIds.length > 0,
+    activeSoundIds: queueStore.activeSoundIds,
     queueLength: queueStore.queue.length,
     addToQueue,
     cancelGeneration,

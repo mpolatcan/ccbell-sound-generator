@@ -594,16 +594,21 @@ async fn start_backend(app: AppHandle) -> Result<String, String> {
         return Err("Backend not set up yet. Run setup first.".into());
     }
 
-    // Read settings for GitHub token
+    // Read settings for GitHub token and concurrency
     let settings_path = get_settings_path(&app)?;
-    let github_token = if settings_path.exists() {
+    let (github_token, max_concurrent) = if settings_path.exists() {
         let contents = std::fs::read_to_string(&settings_path).unwrap_or_default();
-        serde_json::from_str::<serde_json::Value>(&contents)
-            .ok()
-            .and_then(|v| v.get("github_token").and_then(|t| t.as_str().map(String::from)))
-            .unwrap_or_default()
+        let v: serde_json::Value = serde_json::from_str(&contents).unwrap_or_default();
+        (
+            v.get("github_token")
+                .and_then(|t| t.as_str().map(String::from))
+                .unwrap_or_default(),
+            v.get("max_concurrent_generations")
+                .and_then(|t| t.as_u64())
+                .unwrap_or(2),
+        )
     } else {
-        String::new()
+        (String::new(), 2)
     };
 
     let shell = app.shell();
@@ -623,6 +628,16 @@ async fn start_backend(app: AppHandle) -> Result<String, String> {
         eprintln!("[CCBell] GitHub token configured, passing to backend");
         cmd = cmd.env("CCBELL_GH_TOKEN", &github_token);
     }
+
+    // Pass concurrency setting
+    eprintln!(
+        "[CCBell] Max concurrent generations: {}",
+        max_concurrent
+    );
+    cmd = cmd.env(
+        "CCBELL_MAX_CONCURRENT_GENERATIONS",
+        &max_concurrent.to_string(),
+    );
 
     let (mut rx, child) = cmd.current_dir(&backend_dir).spawn().map_err(|e| {
         eprintln!("[CCBell] Failed to spawn uvicorn: {e}");
@@ -757,10 +772,25 @@ pub fn run() {
                     Err(_) => return,
                 };
                 if let Some(child) = child_lock.take() {
+                    eprintln!("[CCBell] Window destroyed, stopping backend");
                     let _ = child.kill();
                 }
             }
         })
-        .run(tauri::generate_context!())
-        .expect("error while running tauri application");
+        .build(tauri::generate_context!())
+        .expect("error while building tauri application")
+        .run(|app, event| {
+            if let tauri::RunEvent::Exit = event {
+                // Ensure backend is killed when app exits (Cmd+Q, dock quit, etc.)
+                let state = app.state::<SidecarState>();
+                let mut child_lock = match state.0.lock() {
+                    Ok(lock) => lock,
+                    Err(_) => return,
+                };
+                if let Some(child) = child_lock.take() {
+                    eprintln!("[CCBell] App exiting, stopping backend");
+                    let _ = child.kill();
+                }
+            }
+        });
 }

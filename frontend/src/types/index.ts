@@ -106,6 +106,16 @@ export interface HealthResponse {
   version: string
   models_loaded: string[]
   publish_enabled: boolean
+  is_hf_spaces: boolean
+}
+
+export interface AppConfigResponse {
+  max_concurrent_generations: number
+  is_hf_spaces: boolean
+}
+
+export interface UpdateConfigRequest {
+  max_concurrent_generations: number
 }
 
 export type ModelLoadingStatusType = 'idle' | 'loading' | 'ready' | 'error'
