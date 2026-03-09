@@ -53,11 +53,15 @@ async def websocket_progress(websocket: WebSocket, job_id: str):
     job_done = asyncio.Event()
 
     # Define progress callback
-    async def on_progress(progress: float, stage: str, audio_url: str | None = None):
+    async def on_progress(
+        progress: float, stage: str, audio_url: str | None = None, error: str | None = None
+    ):
         try:
             message: dict[str, object] = {"progress": progress, "stage": stage}
             if audio_url:
                 message["audio_url"] = audio_url
+            if error:
+                message["error"] = error
             await websocket.send_json(message)
 
             # Signal completion so the receive loop exits cleanly

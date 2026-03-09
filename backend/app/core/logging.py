@@ -1,5 +1,6 @@
 """Centralized logging configuration using loguru."""
 
+import contextlib
 import sys
 
 from loguru import logger
@@ -15,10 +16,16 @@ def setup_logging() -> None:
     # Determine log level
     log_level = "DEBUG" if settings.debug else "INFO"
 
-    # Configure console output with colored output
-    # Note: No file logging - HF Spaces provides logs via API
+    # Custom sink that suppresses BrokenPipeError.
+    # When running as a Tauri sidecar, stderr is piped to the parent process.
+    # If the pipe breaks, writes raise BrokenPipeError — suppress it to avoid
+    # cascading failures in progress callbacks and audio generation.
+    def _safe_stderr(message: str) -> None:
+        with contextlib.suppress(BrokenPipeError, OSError):
+            sys.stderr.write(message)
+
     logger.add(
-        sys.stderr,
+        _safe_stderr,
         level=log_level,
         format="<green>{time:YYYY-MM-DD HH:mm:ss}</green> | "
         "<level>{level: <8}</level> | "

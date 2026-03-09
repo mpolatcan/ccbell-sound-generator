@@ -3,6 +3,8 @@
 import asyncio
 import concurrent.futures
 import contextlib
+import os
+import sys
 import time
 import uuid
 from collections.abc import Awaitable, Callable
@@ -22,6 +24,9 @@ CLEANUP_INTERVAL_SECONDS = 300
 # Dedicated thread pool for audio generation work.
 _generation_executor: concurrent.futures.ThreadPoolExecutor | None = None
 
+# One-time flag for generation environment setup
+_generation_env_ready = False
+
 
 def _get_generation_executor() -> concurrent.futures.ThreadPoolExecutor:
     """Get or create the dedicated generation thread pool executor."""
@@ -35,6 +40,42 @@ def _get_generation_executor() -> concurrent.futures.ThreadPoolExecutor:
             f"Created generation executor with max_workers={settings.generation_thread_pool_workers}"
         )
     return _generation_executor
+
+
+def _setup_generation_environment() -> None:
+    """One-time setup to prevent pipe blocking from third-party libraries.
+
+    Applied globally (never restored) because:
+    - tqdm progress bars are replaced by our step-callback progress reporting
+    - stdout is only used by stable_audio_tools' print(seed), not by our code (we use loguru/stderr)
+
+    Must be called once before the first generation. Safe to call multiple times (idempotent).
+    """
+    global _generation_env_ready
+    if _generation_env_ready:
+        return
+    _generation_env_ready = True
+
+    # Force-disable tqdm globally. sample_flow_pingpong uses trange(disable=False),
+    # which bypasses the TQDM_DISABLE env var (only checked when disable is None).
+    # Without this, tqdm writes to stderr which blocks on piped stderr in Tauri sidecar.
+    os.environ["TQDM_DISABLE"] = "1"
+    import tqdm as _tqdm_module
+
+    _original_init = _tqdm_module.tqdm.__init__
+
+    def _disabled_init(self, *args, **kwargs):
+        kwargs["disable"] = True
+        _original_init(self, *args, **kwargs)
+
+    _tqdm_module.tqdm.__init__ = _disabled_init  # type: ignore[assignment]
+
+    # Redirect stdout to devnull. generate_diffusion_cond calls print(seed)
+    # which can block on piped stdout in Tauri sidecar. Our code uses loguru
+    # (stderr) exclusively, so stdout is not needed.
+    sys.stdout = open(os.devnull, "w")  # noqa: SIM115
+
+    logger.info("Generation environment configured (tqdm disabled, stdout redirected)")
 
 
 class AudioGenerationJob:
@@ -64,7 +105,7 @@ class AudioService:
     def __init__(self):
         self._jobs: dict[str, AudioGenerationJob] = {}
         self._progress_callbacks: dict[
-            str, list[Callable[[float, str, str | None], Awaitable[None]]]
+            str, list[Callable[[float, str, str | None, str | None], Awaitable[None]]]
         ] = {}
         self._cleanup_task: asyncio.Task[None] | None = None
         logger.debug("AudioService initialized")
@@ -181,7 +222,7 @@ class AudioService:
         return self._jobs.get(job_id)
 
     def register_progress_callback(
-        self, job_id: str, callback: Callable[[float, str, str | None], Awaitable[None]]
+        self, job_id: str, callback: Callable[[float, str, str | None, str | None], Awaitable[None]]
     ):
         """Register a callback for progress updates."""
         if job_id not in self._progress_callbacks:
@@ -190,7 +231,7 @@ class AudioService:
         logger.debug(f"Registered progress callback for job {job_id}")
 
     def unregister_progress_callback(
-        self, job_id: str, callback: Callable[[float, str, str | None], Awaitable[None]]
+        self, job_id: str, callback: Callable[[float, str, str | None, str | None], Awaitable[None]]
     ):
         """Unregister a progress callback."""
         if job_id in self._progress_callbacks:
@@ -199,7 +240,12 @@ class AudioService:
                 logger.debug(f"Unregistered progress callback for job {job_id}")
 
     async def _notify_progress(
-        self, job_id: str, progress: float, stage: str, audio_url: str | None = None
+        self,
+        job_id: str,
+        progress: float,
+        stage: str,
+        audio_url: str | None = None,
+        error: str | None = None,
     ):
         """Notify all registered callbacks of progress."""
         job = self._jobs.get(job_id)
@@ -211,10 +257,11 @@ class AudioService:
         if job_id in self._progress_callbacks:
             for callback in self._progress_callbacks[job_id]:
                 try:
-                    await callback(progress, stage, audio_url)
+                    await callback(progress, stage, audio_url, error)
                 except Exception as e:
-                    logger.error(f"Error in progress callback for job {job_id}: {e}")
-                    logger.opt(exception=True).debug("Progress callback error traceback:")
+                    with contextlib.suppress(Exception):
+                        logger.error(f"Error in progress callback for job {job_id}: {e}")
+                        logger.opt(exception=True).debug("Progress callback error traceback:")
 
     async def generate_audio(self, job_id: str) -> Path:
         """
@@ -327,35 +374,36 @@ class AudioService:
             # Generate audio with progress reporting
             # Run generation in executor to not block event loop
             loop = asyncio.get_running_loop()
-            start_time: float | None = None
+
+            # Thread-safe step counter: written by generation thread callback,
+            # read by event loop progress task. Integer assignment is atomic in CPython.
+            current_step = 0
 
             async def report_progress():
-                """Background task to periodically report generation progress."""
-                nonlocal start_time
-                start_time = time.time()
-                # Heuristic: ~1.5s per step on CPU. This is a rough estimate for progress
-                # reporting since the stable-audio-tools doesn't provide step-by-step
-                # progress callbacks for the generation loop.
-                estimated_total_time = steps * 1.5
+                """Background task to report generation progress based on actual step completion."""
                 max_runtime = 1800  # 30 minutes max to prevent infinite loops
                 last_reported_progress = 0.3
+                start = time.time()
 
                 while True:
-                    elapsed = time.time() - start_time
+                    elapsed = time.time() - start
 
                     # Safety timeout to prevent infinite loops
                     if elapsed > max_runtime:
                         logger.warning(f"Job {job_id}: progress task exceeded max runtime")
                         break
 
-                    # Estimate progress based on time elapsed
-                    if estimated_total_time > 0:
-                        raw_progress = 0.3 + (elapsed / estimated_total_time) * 0.65
+                    # Use actual step count for progress (set by diffusion callback)
+                    step = current_step
+                    if step > 0 and steps > 0:
+                        # Map steps 1..N to progress 0.35..0.95
+                        estimated_progress = 0.35 + (step / steps) * 0.60
                     else:
-                        raw_progress = 0.9
+                        # Before first step: slow creep during conditioning phase
+                        estimated_progress = 0.3 + min(elapsed / 10.0, 1.0) * 0.05
 
-                    # Clamp between 0.3 and 0.95, allowing progress beyond initial estimate
-                    estimated_progress = min(max(raw_progress, 0.3), 0.95)
+                    # Clamp between 0.3 and 0.95
+                    estimated_progress = min(max(estimated_progress, 0.3), 0.95)
 
                     # Enforce monotonically increasing progress (never go backward)
                     estimated_progress = max(estimated_progress, last_reported_progress)
@@ -371,12 +419,24 @@ class AudioService:
             progress_task = asyncio.create_task(report_progress())
 
             def do_generate():
+                nonlocal current_step
                 logger.debug(f"Job {job_id}: starting diffusion generation with {steps} steps")
+
+                # One-time global setup (tqdm disable + stdout redirect)
+                _setup_generation_environment()
+
                 # Set seed inside the worker thread for thread safety.
                 # torch.manual_seed affects the calling thread's default generator.
                 if seed is not None:
                     torch.manual_seed(seed)
                     logger.debug(f"Job {job_id}: seed {seed} set in worker thread")
+
+                # Step callback for real progress reporting instead of time-based estimation
+                def on_step(info):
+                    nonlocal current_step
+                    current_step = info["i"] + 1
+
+                gen_start = time.time()
                 with torch.no_grad():
                     # Note: conditioning is List[Dict] per MultiConditioner.forward signature,
                     # but generate_diffusion_cond type hint incorrectly says dict
@@ -391,15 +451,23 @@ class AudioService:
                         sigma_max=sigma_max,
                         sampler_type=sampler,
                         device=model_loader.device,
+                        callback=on_step,
                     )
-                logger.debug(f"Job {job_id}: diffusion generation completed")
+                gen_elapsed = time.time() - gen_start
+                logger.info(
+                    f"Job {job_id}: diffusion completed in {gen_elapsed:.1f}s "
+                    f"({steps} steps, {gen_elapsed / steps:.1f}s/step)"
+                )
                 return output
 
             output = await loop.run_in_executor(_get_generation_executor(), do_generate)
 
-            # Wait for progress task to complete
+            # Wait for progress task to complete.
+            # Suppress all errors — progress reporting is non-critical and
+            # BrokenPipeError from the progress task must not fail generation.
+            # BaseException needed because CancelledError is a BaseException in Python 3.9+.
             progress_task.cancel()
-            with contextlib.suppress(asyncio.CancelledError):
+            with contextlib.suppress(BaseException):
                 await progress_task
 
             await self._notify_progress(job_id, 0.95, "processing_audio")
@@ -481,13 +549,13 @@ class AudioService:
             # Cancel progress task on error (if it was started)
             if progress_task is not None:
                 progress_task.cancel()
-                with contextlib.suppress(asyncio.CancelledError):
+                with contextlib.suppress(BaseException):
                     await progress_task
             logger.error(f"Job {job_id}: error generating audio: {e}")
             logger.opt(exception=True).debug("Audio generation error traceback:")
             job.status = "error"
             job.error = str(e)
-            await self._notify_progress(job_id, 0.0, "error")
+            await self._notify_progress(job_id, 0.0, "error", error=str(e))
             raise
 
     def get_audio_path(self, job_id: str) -> Path | None:

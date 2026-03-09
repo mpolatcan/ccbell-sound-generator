@@ -1,4 +1,4 @@
-# Codemap — Last updated: 2026-03-08
+# Codemap — Last updated: 2026-03-09
 
 ## Backend — Python (FastAPI)
 
@@ -14,6 +14,7 @@
 
 ### backend/app/core/config.py — Settings
 - `Settings` (env_prefix `CCBELL_`), `settings` singleton
+- Config keys: `default_model`, `max_duration`, `default_steps`, `default_cfg_scale`, `default_sampler` (no `_small` suffix)
 
 ### backend/app/core/models.py — Pydantic schemas
 - All request/response models, data types, `HookTypeId`, `SamplerType`
@@ -26,8 +27,10 @@
 
 ### backend/app/services/model_loader.py — ML model management
 - `ModelLoader`, `model_loader` singleton
-- `_is_hf_spaces()`, `_download_from_github()`, `_download_from_huggingface()`
-- HF Spaces: HF Hub primary, GitHub fallback. Desktop: GitHub primary, HF Hub fallback
+- `MODEL_FILES` (GitHub prefixed names), `HF_MODEL_FILES` (HF Hub original names)
+- `_is_hf_spaces()`, `_download_from_github()`, `_download_from_huggingface()`, `_get_device()`
+- HF Spaces: HF Hub primary, GitHub fallback. Desktop/Docker: GitHub primary, HF Hub fallback
+- Device: CUDA > MPS (Apple Silicon, float32 only) > CPU
 
 ### backend/app/services/pack.py — Sound pack ZIP creation
 - `PackService`, `pack_service` singleton

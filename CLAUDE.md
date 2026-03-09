@@ -8,8 +8,8 @@ This is a full-stack application with two deployment targets:
 - **Backend**: FastAPI (Python 3.11-3.12) - serves API and static files
 - **Frontend**: React 19 + TypeScript + Vite 6 + Tailwind CSS + shadcn/ui
 - **Desktop App**: Tauri v2 with Python sidecar (auto-installs Python via `uv`)
-- **AI Models**: Stable Audio Open Small (341M) - weights hosted on GitHub Releases (no HF account needed)
-- **Deployment**: HuggingFace Spaces (web), GitHub Releases (desktop installers)
+- **AI Model**: Stable Audio Open Small (341M) — single model, ID: `stable-audio-open-small`
+- **Deployment**: HuggingFace Spaces (web), GHCR Docker image (local), GitHub Releases (desktop installers)
 - **Tooling**: uv (package manager), ruff (linter/formatter), ty>=0.0.1a5 (type checker)
 
 ## Quick Start
@@ -43,7 +43,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ### Backend Development
 
-**IMPORTANT**: Always activate the venv before running Python commands (`ruff`, `ty`, `uvicorn`): `source backend/venv/bin/activate`
+**IMPORTANT**: Always activate the venv before running Python commands (`ruff`, `uvicorn`): `source backend/venv/bin/activate`
 
 ```bash
 # First-time setup (from backend directory):
@@ -98,11 +98,12 @@ npm run tauri build      # Build production installer
 - `CARGO_MANIFEST_DIR` compile-time constant used for reliable path resolution in dev mode
 
 ### Model Loading
-- **Primary**: Downloads from GitHub Releases (no HuggingFace account needed)
-- **Fallback**: HuggingFace Hub (only if GitHub fails AND `HF_TOKEN` is set)
-- Files cached at `~/.cache/ccbell-models/stable-audio-open-{model_id}/`
+- **HF Spaces**: Downloads from HuggingFace Hub directly (detected via `SPACE_ID` env var). Files: `model_config.json`, `model.safetensors`
+- **Desktop/Docker**: Downloads from GitHub Releases (prefixed names: `stable-audio-open-small-model_config.json`, `stable-audio-open-small-model.safetensors`). Fallback to HF Hub if GitHub fails AND `HF_TOKEN` is set
+- Files cached at `~/.cache/ccbell-models/stable-audio-open-small/`
 - Uses `create_model_from_config` + `load_ckpt_state_dict` from `stable_audio_tools` (not `get_pretrained_model`)
 - Atomic downloads via `.tmp` file rename pattern
+- Device detection: CUDA > MPS (Apple Silicon) > CPU. MPS requires float32 (no float16). Docker cannot access MPS — always CPU
 
 ## Domain Concepts
 
@@ -118,11 +119,11 @@ Key routes: `GET /health`, `POST /models/{id}/load`, `POST /generate`, `GET /aud
 
 ## Testing
 
-No automated test suite yet. Manual verification via the pre-deployment checklist below. For API testing: start the backend, load a model (`POST /api/models/small/load`), generate audio (`POST /api/generate`), verify output.
+No automated test suite yet. Manual verification via the pre-deployment checklist below. For API testing: start the backend, load a model (`POST /api/models/stable-audio-open-small/load`), generate audio (`POST /api/generate`), verify output.
 
 ## Code Quality Requirements
 
-**CRITICAL: ALWAYS run `/code-quality` before every commit. Linting and type checking must pass both locally AND in GitHub Actions CI pipeline before any code is merged or deployed. Never skip this — commit without checking will break CI.**
+**CRITICAL: ALWAYS run `/code-quality` before every commit. There is no CI pipeline — local quality checks are the only gate. Never skip this.**
 
 ### Local Checks (REQUIRED before every commit)
 
@@ -131,7 +132,7 @@ No automated test suite yet. Manual verification via the pre-deployment checklis
 cd backend
 ruff check .              # Linting
 ruff format --check .     # Format verification (use 'ruff format .' to auto-fix)
-ty check .                # Type checking
+uv run ty check .         # Type checking (ty must be run via uv, not directly)
 
 # Frontend (from frontend directory)
 cd frontend
@@ -157,14 +158,19 @@ Versions are managed independently per stack: backend (`pyproject.toml`), fronte
 
 ## Implementation Notes
 
+- Single model architecture: `stable-audio-open-small` is the only model ID used everywhere (backend config, frontend constants, API paths)
+- Config settings have no model suffix: `max_duration`, `default_steps`, `default_cfg_scale`, `default_sampler` (not `_small`)
 - Lazy load ML models to stay under 16GB memory limit
 - All audio files are 44.1kHz stereo WAV
 - Max 2 concurrent generations; excess jobs queue with `waiting_in_queue` status
 - Jobs auto-expire after 30 minutes regardless of status
+- Pack link expiration: 30 min on HF Spaces (detected via `SPACE_ID`), no expiration locally/desktop
+- Tauri v2 webview origin on macOS is `http://tauri.localhost` — must be in CORS allowed origins
+- `ty` must be run via `uv run ty check .` (not directly from venv)
 
 ## Dependencies
 
-- **Backend** (Python 3.11-3.12): `backend/pyproject.toml`. Key: FastAPI, torch (CPU-only), stable-audio-tools, loguru. Dev: ruff, ty>=0.0.1a5.
+- **Backend** (Python 3.11-3.12): `backend/pyproject.toml`. Key: FastAPI, torch (CPU-only index, but supports CUDA/MPS at runtime), stable-audio-tools, loguru. Dev: ruff, ty>=0.0.1a5.
 - **Frontend** (Node.js 22): `frontend/package.json`. Key: React 19, Vite 6, Tailwind CSS, zustand, @tanstack/react-query, wavesurfer.js.
 - **Desktop** (Rust): `frontend/src-tauri/Cargo.toml`. Key: tauri 2, tauri-plugin-shell 2, reqwest, tokio.
 
