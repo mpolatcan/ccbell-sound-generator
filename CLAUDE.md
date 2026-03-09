@@ -44,6 +44,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 ### Backend Development
 
 **IMPORTANT**: Always activate the venv before running Python commands (`ruff`, `uvicorn`): `source backend/venv/bin/activate`
+- **Note**: `uv` creates `.venv` (with dot) by default. The dev venv with all deps is at `backend/.venv/`, while `backend/venv/` may exist but lack packages. Use `.venv` for running Python scripts with project dependencies.
 
 ```bash
 # First-time setup (from backend directory):
@@ -158,6 +159,9 @@ Versions are managed independently per stack: backend (`pyproject.toml`), fronte
 
 ## Implementation Notes
 
+- **Sampler**: Pingpong is the ONLY correct sampler for stable-audio-open-small (ARC post-trained model that predicts clean outputs, not velocity). Do NOT use euler/dpmpp/rk4.
+- **Device**: CPU only on macOS. MPS (Apple Metal) is unreliable for this model (NaN output, hangs, prompt drift). MPS is excluded from auto-detection in `_get_device()`.
+- **sigma_min/sigma_max**: Unused by `sample_rf()` — sigma_min is deleted by `generate_diffusion_cond`, sigma_max is clamped to 1.0. Kept for API compatibility only.
 - Single model architecture: `stable-audio-open-small` is the only model ID used everywhere (backend config, frontend constants, API paths)
 - Config settings have no model suffix: `max_duration`, `default_steps`, `default_cfg_scale`, `default_sampler` (not `_small`)
 - Lazy load ML models to stay under 16GB memory limit
