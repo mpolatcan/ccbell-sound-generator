@@ -97,6 +97,7 @@ npm run tauri build      # Build production installer
 - `.setup-complete` marker file tracks successful setup (not individual binary checks)
 - Settings persisted to app data dir (`~/Library/Application Support/com.ccbell.soundgenerator/` on macOS)
 - `CARGO_MANIFEST_DIR` compile-time constant used for reliable path resolution in dev mode
+- Backend sidecar killed on both `WindowEvent::Destroyed` and `RunEvent::Exit` (covers Cmd+Q, dock quit)
 
 ### Model Loading
 - **HF Spaces**: Downloads from HuggingFace Hub directly (detected via `SPACE_ID` env var). Files: `model_config.json`, `model.safetensors`
@@ -116,7 +117,7 @@ npm run tauri build      # Build production installer
 
 All endpoints under `/api/*`. See `backend/app/api/routes.py` for full definitions.
 
-Key routes: `GET /health`, `POST /models/{id}/load`, `POST /generate`, `GET /audio/{job_id}`, `WS /ws/{job_id}` (real-time progress).
+Key routes: `GET /health`, `GET/PUT /config`, `POST /models/{id}/load`, `POST /generate`, `GET /audio/{job_id}`, `WS /ws/{job_id}` (real-time progress).
 
 ## Testing
 
@@ -166,11 +167,12 @@ Versions are managed independently per stack: backend (`pyproject.toml`), fronte
 - Config settings have no model suffix: `max_duration`, `default_steps`, `default_cfg_scale`, `default_sampler` (not `_small`)
 - Lazy load ML models to stay under 16GB memory limit
 - All audio files are 44.1kHz stereo WAV
-- Max 2 concurrent generations; excess jobs queue with `waiting_in_queue` status
+- Concurrent generations configurable 1-4 (default 2) via Settings UI or `CCBELL_MAX_CONCURRENT_GENERATIONS`; excess jobs queue with `waiting_in_queue` status
 - Jobs auto-expire after 30 minutes regardless of status
 - Pack link expiration: 30 min on HF Spaces (detected via `SPACE_ID`), no expiration locally/desktop
 - Tauri v2 webview origin on macOS is `http://tauri.localhost` — must be in CORS allowed origins
 - `ty` must be run via `uv run ty check .` (not directly from venv)
+- Audio blob cache (`audioBlobCache.ts`): WKWebView in Tauri production builds can't re-fetch blob URLs, so audio is cached as `Blob` objects and shared between generation queue and AudioPlayer
 
 ## Dependencies
 
