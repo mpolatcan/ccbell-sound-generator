@@ -21,11 +21,12 @@ Generate AI-powered notification sounds for the [Claude Code](https://github.com
 
 - 🎨 **Polished UI** - Modern React interface with shadcn/ui components
 - 🎵 **Waveform Visualization** - Visual audio preview with waveform display
-- 🎭 **Theme Presets** - Sci-Fi, Retro 8-bit, Nature, Minimal, Mechanical, Ambient, Jazz, Custom
-- 🔔 **All Hook Types** - Generate sounds for all Claude Code events
+- 🎭 **Theme Presets** - Sci-Fi, Retro 8-bit, Nature, Minimal, Mechanical, Ambient, Jazz, Custom — each with sub-themes for per-hook prompt variation
+- 🔔 **All Hook Types** - Generate sounds for all 10 Claude Code events
 - 📦 **Sound Packs** - Organize sounds in named packs; add to existing packs or create new ones
 - ⏱️ **Custom Duration** - Generate sounds from 0.5s to 5s
 - 🔄 **Real-time Progress** - Watch generation progress in the Sound Library
+- ⌨️ **Keyboard Shortcuts** - Press `G` to generate, `?` for shortcuts help
 - 💾 **Download** - Individual sounds or batch ZIP (organized by pack)
 - 🚀 **GitHub Release** - Publish sound packs directly to GitHub (admin space only)
 
@@ -139,10 +140,6 @@ uv sync --group dev  # Installs all deps including ruff and ty
 # ALWAYS activate venv before running Python commands
 source venv/bin/activate
 
-# Verify tools are available
-which ruff  # Should show venv/bin/ruff
-which ty    # Should show venv/bin/ty
-
 # Run server
 uvicorn app.main:app --reload --port 8000
 ```
@@ -194,6 +191,26 @@ npm run tauri build      # Build production installer
 | POST | `/api/packs` | Create downloadable sound pack ZIP |
 | GET | `/api/packs/{pack_id}` | Download pack ZIP file |
 | POST | `/api/publish` | Publish to GitHub release (requires `CCBELL_GITHUB_TOKEN`) |
+
+## Environment Variables
+
+All settings use the `CCBELL_` prefix. Configure via environment variables or a `.env` file.
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `CCBELL_PORT` | `7860` | Server port |
+| `CCBELL_DEBUG` | `false` | Enable debug logging |
+| `CCBELL_DEFAULT_MODEL` | `stable-audio-open-small` | Model to use |
+| `CCBELL_MAX_DURATION` | `5.0` | Maximum audio duration in seconds |
+| `CCBELL_DEFAULT_STEPS` | `8` | Diffusion steps per generation |
+| `CCBELL_DEFAULT_CFG_SCALE` | `1.0` | Classifier-free guidance scale (1.0 = disabled) |
+| `CCBELL_DEFAULT_SAMPLER` | `pingpong` | Diffusion sampler |
+| `CCBELL_MAX_CONCURRENT_GENERATIONS` | `2` | Max parallel audio generations |
+| `CCBELL_JOB_MAX_LIFETIME_SECONDS` | `1800` | Job expiry timeout (30 min) |
+| `CCBELL_MODEL_DOWNLOAD_BASE_URL` | GitHub Releases URL | Base URL for model weight downloads |
+| `CCBELL_GH_TOKEN` | — | GitHub token for publishing (also supports `CCBELL_GITHUB_TOKEN`) |
+
+For the full list of 24 configurable settings, see [`backend/app/core/config.py`](backend/app/core/config.py).
 
 ## Deployment
 

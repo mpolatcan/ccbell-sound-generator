@@ -732,6 +732,32 @@ async fn uninstall_cleanup(app: AppHandle) -> Result<serde_json::Value, String> 
     }))
 }
 
+/// Fetch a URL and return its raw bytes.
+/// Used by the frontend to download audio blobs via Rust's HTTP client,
+/// bypassing WKWebView restrictions that block cross-origin fetch in
+/// production macOS builds (https://tauri.localhost → http://127.0.0.1:7860).
+#[tauri::command]
+async fn fetch_audio_bytes(url: String) -> Result<tauri::ipc::Response, String> {
+    let client = reqwest::Client::new();
+    let response = client
+        .get(&url)
+        .timeout(std::time::Duration::from_secs(30))
+        .send()
+        .await
+        .map_err(|e| format!("HTTP request failed: {e}"))?;
+
+    if !response.status().is_success() {
+        return Err(format!("HTTP {}", response.status()));
+    }
+
+    let bytes = response
+        .bytes()
+        .await
+        .map_err(|e| format!("Failed to read response body: {e}"))?;
+
+    Ok(tauri::ipc::Response::new(bytes.to_vec()))
+}
+
 /// Check if the backend is healthy.
 #[tauri::command]
 async fn check_backend_health() -> Result<bool, String> {
@@ -758,6 +784,7 @@ pub fn run() {
             start_backend,
             stop_backend,
             check_backend_health,
+            fetch_audio_bytes,
             get_settings,
             save_settings,
             uninstall_cleanup,

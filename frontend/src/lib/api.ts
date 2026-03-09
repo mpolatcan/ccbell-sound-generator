@@ -1,4 +1,5 @@
 import { API_BASE_URL } from './constants'
+import { fetchAudioBlob } from './audioFetch'
 import type {
   ModelInfo,
   ThemePreset,
@@ -136,12 +137,7 @@ class ApiClient {
 
   // Download audio as blob
   downloadAudio = async (jobId: string): Promise<Blob> => {
-    const url = this.getAudioUrl(jobId)
-    const response = await fetch(url)
-    if (!response.ok) {
-      throw new Error('Failed to download audio')
-    }
-    return response.blob()
+    return fetchAudioBlob(this.getAudioUrl(jobId))
   }
 
   // Create a downloadable pack ZIP

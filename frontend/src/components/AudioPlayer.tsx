@@ -7,6 +7,7 @@ import { Play, Pause, Volume2, VolumeX, RotateCcw, AlertCircle, RefreshCw } from
 import { formatDuration, cn } from '@/lib/utils'
 import { API_BASE_URL } from '@/lib/constants'
 import { audioBlobCache } from '@/lib/audioBlobCache'
+import { fetchAudioBlob } from '@/lib/audioFetch'
 
 interface AudioPlayerProps {
   audioUrl: string
@@ -151,11 +152,7 @@ export const AudioPlayer = memo(function AudioPlayer({
       ? audioUrl
       : `${API_BASE_URL}${audioUrl}`
     const doFetch = () => {
-      fetch(resolvedUrl)
-        .then((res) => {
-          if (!res.ok) throw new Error(`HTTP ${res.status}`)
-          return res.blob()
-        })
+      fetchAudioBlob(resolvedUrl)
         .then((blob) => {
           if (cancelled) return
           audioBlobRef.current = blob

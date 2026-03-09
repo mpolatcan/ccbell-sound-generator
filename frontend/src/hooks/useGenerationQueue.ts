@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { create } from 'zustand'
 import { api } from '@/lib/api'
 import { audioBlobCache } from '@/lib/audioBlobCache'
+import { fetchAudioBlob } from '@/lib/audioFetch'
 import { useSoundLibrary } from './useSoundLibrary'
 import type { GenerateRequest } from '@/types'
 import { API_BASE_URL, WS_BASE_URL } from '@/lib/constants'
@@ -20,12 +21,13 @@ function resolveAudioUrl(serverUrl: string): string {
  * Blob URLs are immutable — the audio never changes even if the server file
  * is deleted or the component remounts.  Falls back to the resolved server URL on error.
  * Also caches the blob so AudioPlayer can skip re-fetching the blob URL.
+ *
+ * In Tauri mode, uses a Rust IPC command to download audio bytes, bypassing
+ * WKWebView restrictions that block cross-origin fetch in production macOS builds.
  */
 async function toBlobUrl(serverUrl: string): Promise<string> {
   const url = resolveAudioUrl(serverUrl)
-  const res = await fetch(url)
-  if (!res.ok) throw new Error(`HTTP ${res.status}`)
-  const blob = await res.blob()
+  const blob = await fetchAudioBlob(url)
   const blobUrl = URL.createObjectURL(blob)
   audioBlobCache.set(blobUrl, blob)
   return blobUrl
