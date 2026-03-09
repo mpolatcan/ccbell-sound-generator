@@ -280,19 +280,6 @@ class ModelLoader:
         return self._device
 
     @property
-    def available_devices(self) -> list[str]:
-        """Get list of available compute devices."""
-        devices = ["cpu"]
-        if _check_torch():
-            import torch
-
-            if torch.backends.mps.is_available():
-                devices.append("mps")
-            if torch.cuda.is_available():
-                devices.append("cuda")
-        return devices
-
-    @property
     def loaded_models(self) -> list[str]:
         """Return list of currently loaded model IDs."""
         return list(self._models.keys())

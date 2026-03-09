@@ -72,8 +72,6 @@ async def health_check():
         version=settings.app_version,
         models_loaded=models,
         publish_enabled=bool(settings.github_token),
-        available_devices=model_loader.available_devices,
-        current_device=model_loader.device,
     )
 
 

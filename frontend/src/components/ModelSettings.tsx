@@ -22,7 +22,7 @@ import {
   TooltipTrigger
 } from '@/components/ui/tooltip'
 import { ModelLoadingIndicator } from './ModelLoadingIndicator'
-import { getSamplersForModel, MODEL_DEFAULTS, isTauri } from '@/lib/constants'
+import { getSamplersForModel, MODEL_DEFAULTS } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 import { Info, Zap, Gem, Scale, RotateCcw, Cpu } from 'lucide-react'
 import type { GenerationSettings } from '@/types'
@@ -34,8 +34,6 @@ interface ModelSettingsProps {
   modelStatus: UseModelStatusReturn
   settings: GenerationSettings
   onChange: (settings: GenerationSettings) => void
-  availableDevices?: string[]
-  currentDevice?: string
 }
 
 // Presets for different use cases
@@ -61,7 +59,7 @@ const PRESETS = {
 } as const
 
 
-export function ModelSettings({ model, onModelChange, modelStatus, settings, onChange, availableDevices = [], currentDevice = 'cpu' }: ModelSettingsProps) {
+export function ModelSettings({ model, onModelChange, modelStatus, settings, onChange }: ModelSettingsProps) {
   const defaults = MODEL_DEFAULTS[model]
 
   const { data: models = [], isLoading: modelsLoading } = useQuery({
@@ -80,11 +78,6 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
 
   const handleSamplerChange = (value: string) => {
     onChange({ ...settings, sampler: value })
-  }
-
-  const handleDeviceChange = (value: string) => {
-    // 'auto' means no override (use server default)
-    onChange({ ...settings, device: value === 'auto' ? undefined : value })
   }
 
   const handleSeedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -330,46 +323,6 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
                   {availableSamplers.map((option) => (
                     <SelectItem key={option.value} value={option.value}>
                       <span>{option.label}</span>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          )}
-
-          {/* Device - only show in desktop mode when multiple devices available */}
-          {isTauri && availableDevices.length > 1 && (
-            <div className="space-y-2">
-              <Label className="flex items-center gap-2">
-                Device
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Info className="h-3.5 w-3.5 text-muted-foreground cursor-help" />
-                  </TooltipTrigger>
-                  <TooltipContent className="max-w-xs">
-                    <p className="font-medium mb-1">Compute device for generation:</p>
-                    <ul className="text-xs space-y-1">
-                      <li><strong>Auto</strong> = Use best available device ({currentDevice.toUpperCase()})</li>
-                      <li><strong>CPU</strong> = Slower but consistent results</li>
-                      <li><strong>MPS</strong> = Apple GPU, faster but may differ slightly</li>
-                    </ul>
-                  </TooltipContent>
-                </Tooltip>
-              </Label>
-              <Select
-                value={settings.device ?? 'auto'}
-                onValueChange={handleDeviceChange}
-              >
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="auto">
-                    Auto ({currentDevice.toUpperCase()})
-                  </SelectItem>
-                  {availableDevices.map((d) => (
-                    <SelectItem key={d} value={d}>
-                      {d.toUpperCase()}
                     </SelectItem>
                   ))}
                 </SelectContent>

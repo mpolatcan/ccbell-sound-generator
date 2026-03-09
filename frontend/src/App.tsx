@@ -42,8 +42,6 @@ function AppContent() {
     cfg_scale: 2.0,
     sampler: 'pingpong'
   })
-  const [availableDevices, setAvailableDevices] = useState<string[]>([])
-  const [currentDevice, setCurrentDevice] = useState('cpu')
   const { settings, saveSettings, isDesktop } = useSettings()
   const modelStatus = useModelStatus({
     modelId: selectedModel,
@@ -54,8 +52,6 @@ function AppContent() {
   useEffect(() => {
     api.getHealth().then((health) => {
       setPublishEnabled(health.publish_enabled)
-      if (health.available_devices?.length) setAvailableDevices(health.available_devices)
-      if (health.current_device) setCurrentDevice(health.current_device)
     }).catch(() => {})
   }, [])
 
@@ -192,8 +188,6 @@ function AppContent() {
             modelStatus={modelStatus}
             settings={advancedSettings}
             onChange={setAdvancedSettings}
-            availableDevices={availableDevices}
-            currentDevice={currentDevice}
           />
         </div>
 

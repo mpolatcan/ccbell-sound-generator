@@ -1,5 +1,5 @@
 // Detect Tauri desktop environment
-export const isTauri = typeof window !== 'undefined' && '__TAURI_INTERNALS__' in window
+const isTauri = typeof window !== 'undefined' && '__TAURI_INTERNALS__' in window
 
 // API base URL - in Tauri mode, point to the local sidecar backend
 export const API_BASE_URL = isTauri ? 'http://127.0.0.1:7860' : ''
@@ -31,10 +31,7 @@ export const DEFAULT_DURATION = 1.0
 
 // Sampler options per model
 export const SAMPLER_OPTIONS = [
-  { value: 'pingpong', label: 'Pingpong (recommended)', models: ['stable-audio-open-small'] as const },
-  { value: 'euler', label: 'Euler', models: ['stable-audio-open-small'] as const },
-  { value: 'dpmpp', label: 'DPM++', models: ['stable-audio-open-small'] as const },
-  { value: 'rk4', label: 'RK4 (Runge-Kutta)', models: ['stable-audio-open-small'] as const }
+  { value: 'pingpong', label: 'Pingpong', models: ['stable-audio-open-small'] as const }
 ] as const
 
 // Get samplers compatible with a model

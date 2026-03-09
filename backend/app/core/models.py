@@ -18,13 +18,10 @@ HookTypeId = Literal[
     "UserPromptSubmit",
 ]
 
-# Valid sampler types for stable-audio-open-small (ARC post-trained rectified flow)
-SamplerType = Literal[
-    "pingpong",  # Recommended — designed for ARC post-trained models
-    "euler",  # Standard RF ODE solver (assumes velocity prediction)
-    "dpmpp",  # DPM++ adapted for flow models
-    "rk4",  # 4th-order Runge-Kutta ODE solver
-]
+# Sampler type for stable-audio-open-small (ARC post-trained rectified flow).
+# Pingpong is the only correct sampler — designed for ARC models that predict
+# clean outputs directly (not velocity like standard rectified flow).
+SamplerType = Literal["pingpong"]
 
 
 class GenerationSettings(BaseModel):
@@ -42,7 +39,6 @@ class GenerationSettings(BaseModel):
     sigma_max: float | None = Field(
         None, ge=1.0, le=1000.0, description="Maximum noise level for diffusion"
     )
-    device: str | None = Field(None, description="Device override (cpu or mps)")
 
 
 class GenerateRequest(BaseModel):
@@ -172,8 +168,6 @@ class HealthResponse(BaseModel):
     version: str = "1.1.0"
     models_loaded: list[str] = []
     publish_enabled: bool = False
-    available_devices: list[str] = []
-    current_device: str = "cpu"
 
 
 class ModelLoadingStatus(BaseModel):
