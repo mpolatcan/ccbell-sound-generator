@@ -1,23 +1,25 @@
-# Codemap — Last updated: 2026-03-09
+# Codemap — Last updated: 2026-03-10
 
 ## Backend — Python (FastAPI)
 
 ### backend/app/main.py — App entry point
 - `app` FastAPI instance, `lifespan()`, static/SPA serving, CORS
 
-### backend/app/api/routes.py — REST API (14 endpoints)
-- `/api/health`, `/api/models/*`, `/api/themes`, `/api/hooks`
+### backend/app/api/routes.py — REST API (16 endpoints)
+- `/api/health`, `/api/config` (GET/PUT), `/api/models/*`, `/api/themes`, `/api/hooks`
 - `/api/generate`, `/api/audio/{job_id}/*`, `/api/publish`, `/api/packs/*`
+- `_get_generation_semaphore()`, `_reset_generation_semaphore()`, `_run_generation_with_limit()`
 
 ### backend/app/api/websocket.py — Real-time progress
 - `websocket_progress()` WS `/api/ws/{job_id}`
 
 ### backend/app/core/config.py — Settings
-- `Settings` (env_prefix `CCBELL_`), `settings` singleton
+- `Settings` (env_prefix `CCBELL_`), `settings` singleton, `is_hf_spaces()` helper
 - Config keys: `default_model`, `max_duration`, `default_steps`, `default_cfg_scale`, `default_sampler` (no `_small` suffix)
 
 ### backend/app/core/models.py — Pydantic schemas
 - All request/response models, data types, `HookTypeId`, `SamplerType`
+- `AppConfigResponse`, `UpdateConfigRequest` for runtime config API
 
 ### backend/app/core/logging.py — Loguru config
 - `setup_logging()`
@@ -53,7 +55,10 @@
 - `<AppContent>` — orchestrates all UI panels and dialogs
 
 ### frontend/src/lib/api.ts — API client
-- `ApiClient`, `api` singleton
+- `ApiClient`, `api` singleton, `getConfig()`, `updateConfig()`
+
+### frontend/src/lib/audioBlobCache.ts — Audio blob cache
+- `audioBlobCache` Map shared between generation queue and AudioPlayer
 
 ### frontend/src/lib/constants.ts — Global constants
 - `isTauri`, `API_BASE_URL`, `WS_BASE_URL`, `MODEL_DEFAULTS`, `HOOK_TYPE_COLORS`
@@ -62,7 +67,7 @@
 - API types, app types, dialog types, `HOOK_TO_EVENT_MAP`
 
 ### frontend/src/hooks/ — 7 React hooks
-- `useGenerationQueue` — generation queue + WebSocket progress (Zustand)
+- `useGenerationQueue` — parallel generation queue + WebSocket progress (Zustand), `useGenerationQueueStore`
 - `useSoundLibrary` — sound/pack CRUD (Zustand)
 - `useModelStatus` — model loading status polling
 - `useTauriBackend` — desktop backend lifecycle
@@ -82,6 +87,7 @@
 ### frontend/src-tauri/src/lib.rs — Tauri app with Python sidecar
 - Commands: `setup_backend`, `start_backend`, `stop_backend`, `check_backend_health`, `get_settings`, `save_settings`, `uninstall_cleanup`
 - `SidecarState`, `SetupGuard`, Python auto-install flow
+- `RunEvent::Exit` + `WindowEvent::Destroyed` handlers for backend cleanup on app close
 
 ## CI/CD — GitHub Actions
 
