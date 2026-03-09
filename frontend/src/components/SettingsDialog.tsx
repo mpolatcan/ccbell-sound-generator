@@ -177,8 +177,8 @@ export function SettingsDialog({
             </div>
           </div>
 
-          {/* GitHub Token (desktop only) */}
-          {isDesktop && (
+          {/* GitHub Token + Uninstall (desktop only) */}
+          {isDesktop && (<>
             <div className="space-y-2.5 border-t pt-5">
               <Label htmlFor="github-token" className="flex items-center gap-2 text-sm font-medium">
                 <Github className="h-4 w-4" />
@@ -233,10 +233,7 @@ export function SettingsDialog({
                 </p>
               )}
             </div>
-          )}
 
-          {/* Uninstall (desktop only) */}
-          {isDesktop && (
             <div className="space-y-2.5 border-t pt-5">
               <Label className="flex items-center gap-2 text-sm font-medium text-destructive">
                 <Trash2 className="h-4 w-4" />
@@ -290,7 +287,7 @@ export function SettingsDialog({
                 </AlertDialogContent>
               </AlertDialog>
             </div>
-          )}
+          </>)}
         </div>
 
         <DialogFooter className="gap-2 sm:gap-0">

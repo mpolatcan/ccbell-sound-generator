@@ -59,6 +59,7 @@ function AppContent() {
     }).catch(() => {})
     api.getConfig().then((config) => {
       setMaxConcurrentGenerations(config.max_concurrent_generations)
+      useGenerationQueueStore.getState().setMaxConcurrency(config.max_concurrent_generations)
     }).catch(() => {})
   }, [])
 

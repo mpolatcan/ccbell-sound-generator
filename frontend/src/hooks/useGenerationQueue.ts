@@ -90,16 +90,6 @@ export function useGenerationQueue() {
   const abortControllersRef = useRef(new Map<string, AbortController>())
   const processNextRef = useRef<() => void>(() => {})
 
-  // Fetch max concurrency from backend on mount
-  useEffect(() => {
-    api
-      .getConfig()
-      .then((config) => {
-        useGenerationQueueStore.getState().setMaxConcurrency(config.max_concurrent_generations)
-      })
-      .catch(() => {})
-  }, [])
-
   // Clean up all abort controllers on unmount
   useEffect(() => {
     const controllers = abortControllersRef.current

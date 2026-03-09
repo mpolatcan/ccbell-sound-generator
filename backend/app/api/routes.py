@@ -113,7 +113,7 @@ async def update_config(request: UpdateConfigRequest):
     logger.info(f"Updated max_concurrent_generations to {request.max_concurrent_generations}")
     return AppConfigResponse(
         max_concurrent_generations=settings.max_concurrent_generations,
-        is_hf_spaces=False,
+        is_hf_spaces=is_hf_spaces(),
     )
 
 

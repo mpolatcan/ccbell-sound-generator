@@ -18,7 +18,7 @@ from typing import TYPE_CHECKING, Any, Literal
 
 from loguru import logger
 
-from app.core.config import settings
+from app.core.config import is_hf_spaces, settings
 
 if TYPE_CHECKING:
     from app.core.models import ModelInfo, ModelLoadingStatus
@@ -110,11 +110,6 @@ def _download_file(url: str, dest: Path, progress_callback: Any = None) -> None:
     # Rename to final path on success
     tmp_path.rename(dest)
     logger.info(f"Downloaded {dest.name} ({downloaded / 1024 / 1024:.1f} MB)")
-
-
-def _is_hf_spaces() -> bool:
-    """Check if running on HuggingFace Spaces (SPACE_ID env var is set)."""
-    return bool(os.environ.get("SPACE_ID"))
 
 
 def _download_from_github(
@@ -219,7 +214,7 @@ def _ensure_model_files(model_id: str, progress_callback: Any = None) -> tuple[P
         f.unlink()
         logger.debug(f"Cleaned up partial download: {f}")
 
-    on_hf_spaces = _is_hf_spaces()
+    on_hf_spaces = is_hf_spaces()
 
     if on_hf_spaces:
         # HF Spaces: try HuggingFace Hub first (same infrastructure, faster)
