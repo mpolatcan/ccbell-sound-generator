@@ -34,7 +34,6 @@ export const AudioPlayer = memo(function AudioPlayer({
   const [isMuted, setIsMuted] = useState(false)
   const [isReady, setIsReady] = useState(false)
   const [hasError, setHasError] = useState(false)
-  const [errorDetail, setErrorDetail] = useState('')
   const [isLoading, setIsLoading] = useState(true)
 
   // Build WaveSurfer from a pre-fetched blob (no internal fetch to be aborted)
@@ -87,10 +86,7 @@ export const AudioPlayer = memo(function AudioPlayer({
       }
     })
 
-    wavesurfer.on('error', (err) => {
-      const msg = err instanceof Error ? err.message : String(err ?? 'WaveSurfer decode error')
-      console.error('[AudioPlayer] WaveSurfer error:', msg)
-      setErrorDetail(msg)
+    wavesurfer.on('error', () => {
       setHasError(true)
       setIsLoading(false)
     })
@@ -131,7 +127,6 @@ export const AudioPlayer = memo(function AudioPlayer({
 
     setIsLoading(true)
     setHasError(false)
-    setErrorDetail('')
     setIsReady(false)
 
     // If we already have the blob cached locally, skip the fetch
@@ -163,16 +158,13 @@ export const AudioPlayer = memo(function AudioPlayer({
           audioBlobRef.current = blob
           initWaveSurfer(blob)
         })
-        .catch((err) => {
+        .catch(() => {
           if (cancelled) return
-          const msg = err instanceof Error ? err.message : String(err)
-          console.error(`[AudioPlayer] fetch error (attempt ${autoRetryCount.current + 1}):`, msg)
           if (autoRetryCount.current < MAX_AUTO_RETRIES) {
             autoRetryCount.current++
             setTimeout(doFetch, RETRY_DELAY_MS)
             return
           }
-          setErrorDetail(`Fetch: ${msg}`)
           setHasError(true)
           setIsLoading(false)
         })
@@ -254,13 +246,8 @@ export const AudioPlayer = memo(function AudioPlayer({
         {hasError && (
           <div className="absolute inset-0 flex items-center gap-3 p-3 rounded-lg bg-destructive/5 border border-destructive/20">
             <AlertCircle className="h-4 w-4 text-destructive shrink-0" />
-            <div className="flex-1 min-w-0">
-              <p className="text-xs text-destructive/80">Failed to load audio</p>
-              {errorDetail && (
-                <p className="text-[10px] text-destructive/50 truncate" title={errorDetail}>{errorDetail}</p>
-              )}
-            </div>
-            <Button variant="ghost" size="sm" onClick={handleRetry} className="h-7 text-xs shrink-0">
+            <p className="text-xs text-destructive/80 flex-1">Failed to load audio</p>
+            <Button variant="ghost" size="sm" onClick={handleRetry} className="h-7 text-xs">
               <RefreshCw className="h-3 w-3 mr-1" />
               Retry
             </Button>
