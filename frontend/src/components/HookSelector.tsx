@@ -85,10 +85,10 @@ export const HookSelector = memo(function HookSelector({ hooks, selectedHooks, o
           <div className="flex items-center justify-between p-2 border-b">
             <span className="text-sm font-medium">Select Hook Types</span>
             <div className="flex gap-2">
-              <Button variant="ghost" size="sm" onClick={selectAll}>
+              <Button variant="ghost" size="sm" onClick={selectAll} className="h-7 rounded-full border border-border/50 player-btn px-2.5 text-xs">
                 Select All
               </Button>
-              <Button variant="ghost" size="sm" onClick={clearAll}>
+              <Button variant="ghost" size="sm" onClick={clearAll} className="h-7 rounded-full border border-border/50 hover-glow-destructive px-2.5 text-xs">
                 Clear
               </Button>
             </div>
@@ -99,8 +99,11 @@ export const HookSelector = memo(function HookSelector({ hooks, selectedHooks, o
                 <div
                   key={hook.id}
                   className={cn(
-                    "flex items-start gap-3 p-2 rounded-md cursor-pointer hover:bg-accent",
-                    selectedHooks.includes(hook.id) && "bg-accent"
+                    "flex items-start gap-3 p-2 rounded-md cursor-pointer transition-all duration-200",
+                    "hover:bg-primary/8 hover:shadow-[0_0_10px_-4px_hsl(30_85%_54%/0.25)]",
+                    selectedHooks.includes(hook.id)
+                      ? "bg-primary/6 border border-primary/20"
+                      : "border border-transparent"
                   )}
                   onClick={() => toggleHook(hook.id)}
                 >

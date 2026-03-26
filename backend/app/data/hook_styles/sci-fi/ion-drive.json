@@ -1,6 +1,7 @@
 {
   "id": "sci-fi-ion-drive",
   "name": "Ion Drive",
+  "description": "Charged particle acceleration with energetic thrust",
   "prompts": {
     "SessionStart": "resonant filtered sweep synth ascending with bright filter opening, ion drive tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SessionEnd": "filtered sweep synth descending with smooth resonant closing, ion drive tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",

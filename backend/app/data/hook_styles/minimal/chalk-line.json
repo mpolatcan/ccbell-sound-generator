@@ -1,6 +1,7 @@
 {
   "id": "minimal-chalk-line",
   "name": "Chalk Line",
+  "description": "Soft chalk-on-slate textures with dusty delicacy",
   "prompts": {
     "SessionStart": "soft precise chalk stroke tone ascending with bright clean mark, chalk percussion, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
     "SessionEnd": "chalk stroke tone descending with smooth gentle precise decay, chalk mark sound, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",

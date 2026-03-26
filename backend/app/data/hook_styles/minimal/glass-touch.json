@@ -1,6 +1,7 @@
 {
   "id": "minimal-glass-touch",
   "name": "Glass Touch",
+  "description": "Crystal-clear glass taps with pristine resonance",
   "prompts": {
     "SessionStart": "crystal glass rim tone rising with clear harmonic ring, glass bell, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
     "SessionEnd": "crystal glass tone decaying smoothly with pristine clarity, glass bell, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",

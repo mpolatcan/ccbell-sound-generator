@@ -227,7 +227,7 @@ export function SettingsDialog({
                 )}
               </div>
               {hasToken && !dirty && (
-                <p className="text-xs text-emerald-500 flex items-center gap-1">
+                <p className="text-xs text-success flex items-center gap-1">
                   <CheckCircle2 className="h-3 w-3" />
                   Token configured
                 </p>

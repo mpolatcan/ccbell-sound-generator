@@ -138,10 +138,10 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
               variant="ghost"
               size="sm"
               onClick={resetToDefaults}
-              className="h-7 text-xs text-muted-foreground hover:text-foreground"
+              className="h-8 rounded-full border border-border/50 player-btn px-3 text-xs"
               aria-label="Reset to defaults"
             >
-              <RotateCcw className="h-3 w-3 mr-1" />
+              <RotateCcw className="h-3.5 w-3.5 mr-1" />
               Reset
             </Button>
           </div>
@@ -210,20 +210,20 @@ export function ModelSettings({ model, onModelChange, modelStatus, settings, onC
                 return (
                   <Tooltip key={key}>
                     <TooltipTrigger asChild>
-                      <Button
-                        variant={activePreset === key ? "default" : "outline"}
-                        size="sm"
+                      <button
+                        type="button"
                         onClick={() => applyPreset(key as keyof typeof PRESETS)}
                         className={cn(
-                          "flex-1 transition-all duration-200",
+                          'inline-flex items-center justify-center gap-1.5 flex-1 px-3 py-1.5 rounded-lg text-sm font-medium',
+                          'border cursor-pointer transition-all duration-200 ease-out',
                           activePreset === key
-                            ? "ring-1 ring-primary/50 shadow-md shadow-primary/15"
-                            : "opacity-70 hover:opacity-100"
+                            ? 'text-primary chip-glow'
+                            : 'border-border/50 bg-muted/15 text-muted-foreground hover:text-foreground chip-hover'
                         )}
                       >
-                        <Icon className="h-4 w-4 mr-1.5" />
+                        <Icon className={cn("h-3.5 w-3.5 transition-transform duration-200", activePreset === key && "scale-110")} />
                         {preset.name}
-                      </Button>
+                      </button>
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>{preset.description}</p>

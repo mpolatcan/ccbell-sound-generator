@@ -1,6 +1,7 @@
 {
   "id": "jazz-swing-time",
   "name": "Swing Time",
+  "description": "Upbeat swing-era energy with bouncing rhythm",
   "prompts": {
     "SessionStart": "clarinet ascending with bright swing band melodic entry, swing clarinet tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "SessionEnd": "clarinet descending with smooth swing band melodic close, swing clarinet tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",

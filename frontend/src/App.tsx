@@ -11,7 +11,7 @@ import { DownloadPackDialog } from '@/components/DownloadPackDialog'
 import { SettingsDialog } from '@/components/SettingsDialog'
 import { KeyboardShortcutsHelp } from '@/components/KeyboardShortcutsHelp'
 import { Toaster } from '@/components/ui/toaster'
-import { Bell, Github, ExternalLink, Keyboard, Settings } from 'lucide-react'
+import { Bell, Github, Keyboard, Settings } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useKeyboardShortcuts } from '@/hooks/useKeyboardShortcuts'
 import { toast } from '@/hooks/useToast'
@@ -137,42 +137,34 @@ function AppContent() {
             {!isHfSpaces && (
               <Button
                 variant="ghost"
-                size="sm"
+                size="icon"
                 onClick={() => setSettingsOpen(true)}
                 aria-label="Settings"
                 title="Settings"
-                className="text-muted-foreground hover:text-foreground h-9 w-9 sm:h-8 sm:w-8"
+                className="h-8 w-8 rounded-full border border-border/50 player-btn"
               >
                 <Settings className="h-4 w-4" />
               </Button>
             )}
             <Button
               variant="ghost"
-              size="sm"
+              size="icon"
               onClick={() => setShortcutsHelpOpen(true)}
               aria-label="Keyboard shortcuts"
               title="Keyboard shortcuts (?)"
-              className="text-muted-foreground hover:text-foreground h-9 w-9 sm:h-8 sm:w-8"
+              className="h-8 w-8 rounded-full border border-border/50 player-btn"
             >
               <Keyboard className="h-4 w-4" />
             </Button>
-            <Button variant="ghost" size="sm" asChild className="text-muted-foreground hover:text-foreground">
+            <Button variant="ghost" size="sm" asChild className="h-8 rounded-full border border-border/50 player-btn px-3 text-xs sm:px-3">
               <a
-                href="https://docs.anthropic.com/en/docs/claude-code/hooks"
+                href="https://github.com/mpolatcan/cc-plugins/tree/master/plugins/ccbell"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="CCBell on GitHub"
+                title="CCBell GitHub"
               >
-                <ExternalLink className="h-4 w-4 mr-1.5" />
-                <span className="hidden sm:inline">Hooks Docs</span>
-              </a>
-            </Button>
-            <Button variant="outline" size="sm" asChild className="border-border/60">
-              <a
-                href="https://github.com/anthropics/ccbell"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Github className="h-4 w-4 mr-1.5" />
+                <Github className="h-3.5 w-3.5 mr-1.5" />
                 CCBell
               </a>
             </Button>

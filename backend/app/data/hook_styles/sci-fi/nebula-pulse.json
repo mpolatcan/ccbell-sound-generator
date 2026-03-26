@@ -1,6 +1,7 @@
 {
   "id": "sci-fi-nebula-pulse",
   "name": "Nebula Pulse",
+  "description": "Deep space nebula rhythms with cosmic resonance",
   "prompts": {
     "SessionStart": "warm pulsing pad synth ascending with rhythmic modulation, deep space pad, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SessionEnd": "pulsing pad synth descending smoothly with warm modulated decay, deep space pad, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",

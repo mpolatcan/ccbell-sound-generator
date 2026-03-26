@@ -467,11 +467,19 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
                   <SelectContent>
                     {subThemes.map((sub) => (
                       <SelectItem key={sub.id} value={sub.id}>
-                        {sub.name}
+                        <span className="flex items-baseline gap-2">
+                          <span>{sub.name}</span>
+                          {sub.description && (
+                            <span className="text-muted-foreground text-xs">— {sub.description}</span>
+                          )}
+                        </span>
                       </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
+                {effectiveSubTheme?.description && (
+                  <p className="text-xs text-muted-foreground">{effectiveSubTheme.description}</p>
+                )}
               </div>
             )}
 
@@ -563,15 +571,15 @@ export const GeneratorForm = forwardRef<GeneratorFormRef, GeneratorFormProps>(fu
           {/* Generate Button */}
           <Button
             className={cn(
-              "w-full font-display font-semibold tracking-wide btn-press transition-transform",
-              canGenerate && "btn-glow"
+              "w-full h-12 text-base font-display font-semibold tracking-wide btn-press transition-transform",
+              canGenerate && "btn-glow btn-generate"
             )}
             size="lg"
             onClick={handleGenerate}
             disabled={!canGenerate}
             title="Generate Sound (G)"
           >
-            <Sparkles className={cn("h-4 w-4 mr-2", queueLength > 0 && "sparkle-spin")} />
+            <Sparkles className={cn("h-5 w-5 mr-2", queueLength > 0 && "sparkle-spin")} />
             Generate {selectedHooks.length > 1 ? `${selectedHooks.length} Sounds` : 'Sound'}
           </Button>
 

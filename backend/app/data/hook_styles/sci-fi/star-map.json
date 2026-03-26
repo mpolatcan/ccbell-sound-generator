@@ -1,6 +1,7 @@
 {
   "id": "sci-fi-star-map",
   "name": "Star Map",
+  "description": "Celestial navigation pings with twinkling clarity",
   "prompts": {
     "SessionStart": "bright plucked synth arpeggio ascending like constellation points, star map tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SessionEnd": "plucked synth arpeggio descending with smooth stellar decay, star map tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",

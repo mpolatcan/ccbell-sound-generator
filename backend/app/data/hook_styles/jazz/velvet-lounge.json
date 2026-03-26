@@ -1,6 +1,7 @@
 {
   "id": "jazz-velvet-lounge",
   "name": "Velvet Lounge",
+  "description": "Plush lounge ambiance with luxurious warmth",
   "prompts": {
     "SessionStart": "warm piano chord ascending with rich velvet tone and sustain, upright bass pluck, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "SessionEnd": "piano chord descending smoothly with warm resolution, bass pluck, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",

@@ -1,6 +1,7 @@
 {
   "id": "nature-forest",
   "name": "Forest",
+  "description": "Deep forest ambiance with rustling organic layers",
   "prompts": {
     "SessionStart": "warm ascending marimba notes climbing a major scale, wooden mallet percussion, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "SessionEnd": "descending marimba notes with wooden warmth and smooth decay, wooden mallet percussion, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",

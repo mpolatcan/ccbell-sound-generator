@@ -1,6 +1,7 @@
 {
   "id": "mechanical-clock-tower",
   "name": "Clock Tower",
+  "description": "Grand clock tower chimes with resonant authority",
   "prompts": {
     "SessionStart": "clock bell chime ascending with bright resonant tower ring, pendulum clock tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SessionEnd": "clock bell descending with smooth resonant tower decay, pendulum clock tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",

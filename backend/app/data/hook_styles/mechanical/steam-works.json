@@ -1,6 +1,7 @@
 {
   "id": "mechanical-steam-works",
   "name": "Steam Works",
+  "description": "Hissing steam valves with industrial atmosphere",
   "prompts": {
     "SessionStart": "bright ascending brass bell ringing with welcoming resonance, clean valve whistle, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SessionEnd": "smooth descending brass bell with warm closing ring, clean valve sound, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",

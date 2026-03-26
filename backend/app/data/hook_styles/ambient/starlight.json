@@ -1,6 +1,7 @@
 {
   "id": "ambient-starlight",
   "name": "Starlight",
+  "description": "Gentle starlight twinkle with peaceful night sky",
   "prompts": {
     "SessionStart": "twinkling celestial ping ascending with bright star-like shimmer, celestial bell synth, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "SessionEnd": "celestial ping descending with smooth star-like twinkling decay, celestial bell, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",

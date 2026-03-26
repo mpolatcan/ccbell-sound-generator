@@ -15,7 +15,7 @@
     --secondary: 24 5% 12%;
     --secondary-foreground: 35 10% 92%;
     --muted: 24 5% 13%;
-    --muted-foreground: 24 5% 50%;
+    --muted-foreground: 24 5% 55%;
     --accent: 24 6% 15%;
     --accent-foreground: 35 10% 92%;
     --destructive: 0 62% 50%;
@@ -96,6 +96,74 @@ body::after {
   background-color: hsl(var(--muted-foreground));
 }
 
+/* ── Unified interactive component hover/focus glow ── */
+/* All form controls share the same warm orange glow on hover and focus */
+
+/* Select & combobox triggers (Radix Select, Popover combobox) */
+button[role="combobox"]:hover {
+  border-color: hsl(30 85% 54% / 0.55);
+  box-shadow: 0 0 12px -2px hsl(30 85% 54% / 0.4);
+}
+button[role="combobox"]:focus,
+button[role="combobox"][data-state="open"] {
+  border-color: hsl(30 85% 54% / 0.65);
+  box-shadow: 0 0 0 1px hsl(30 85% 54% / 0.35), 0 0 14px -2px hsl(30 85% 54% / 0.45);
+}
+
+/* Inputs and textareas */
+input:not([type="checkbox"]):hover,
+textarea:hover {
+  border-color: hsl(30 85% 54% / 0.5);
+}
+input:not([type="checkbox"]):focus,
+textarea:focus {
+  border-color: hsl(30 85% 54% / 0.65);
+  box-shadow: 0 0 0 1px hsl(30 85% 54% / 0.3), 0 0 14px -3px hsl(30 85% 54% / 0.4);
+}
+
+/* Slider thumb */
+[role="slider"] {
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+[role="slider"]:hover {
+  border-color: hsl(30 85% 54% / 0.8);
+  box-shadow: 0 0 12px -1px hsl(30 85% 54% / 0.5);
+  transform: scale(1.15);
+}
+[role="slider"]:active {
+  transform: scale(1.05);
+  box-shadow: 0 0 16px -1px hsl(30 85% 54% / 0.6);
+}
+
+/* Checkbox */
+[role="checkbox"]:hover {
+  border-color: hsl(30 85% 54% / 0.7);
+  box-shadow: 0 0 10px -2px hsl(30 85% 54% / 0.5);
+}
+[role="checkbox"][data-state="checked"] {
+  box-shadow: 0 0 8px -2px hsl(30 85% 54% / 0.4);
+}
+
+/* Select items on hover */
+[data-radix-select-viewport] [role="option"]:focus {
+  background-color: hsl(30 85% 54% / 0.12);
+}
+
+/* Dropdown menu items */
+[role="menuitem"]:focus {
+  background-color: hsl(30 85% 54% / 0.12);
+}
+
+/* Collapsible trigger hover in sound library */
+button[data-state][aria-expanded]:hover {
+  color: hsl(var(--foreground));
+}
+
+/* Smooth transitions for all form borders */
+input, textarea, button[role="combobox"], [role="checkbox"] {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
 /* ── Primary button glow ── */
 @layer utilities {
   .btn-glow {
@@ -113,7 +181,42 @@ body::after {
     z-index: -1;
   }
   .btn-glow:hover::after {
-    opacity: 0.3;
+    opacity: 0.45;
+  }
+
+  .btn-generate {
+    background: linear-gradient(135deg, hsl(30 85% 50%), hsl(24 80% 45%));
+    border: 1px solid hsl(30 85% 60% / 0.3);
+    box-shadow: 0 1px 3px hsl(0 0% 0% / 0.3), inset 0 1px 0 hsl(30 85% 70% / 0.15);
+    overflow: hidden;
+    animation: btn-border-breathe 3s ease-in-out infinite;
+  }
+  .btn-generate::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(30 85% 80% / 0.15) 40%,
+      hsl(30 85% 90% / 0.25) 50%,
+      hsl(30 85% 80% / 0.15) 60%,
+      transparent 100%
+    );
+    animation: btn-shimmer 3s ease-in-out infinite;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .btn-generate:hover {
+    background: linear-gradient(135deg, hsl(30 85% 58%), hsl(24 80% 52%));
+    border-color: hsl(30 85% 60% / 0.6);
+    box-shadow: 0 2px 8px hsl(30 85% 54% / 0.4), inset 0 1px 0 hsl(30 85% 70% / 0.2);
+  }
+  .btn-generate:hover::before {
+    animation-duration: 1.8s;
   }
 
   .card-elevated {
@@ -157,7 +260,7 @@ body::after {
 
 /* ── Progress bar smooth transitions + shimmer overlay ── */
 [role="progressbar"] > div {
-  transition: width 0.4s ease-out;
+  transition: transform 0.5s ease-out;
   position: relative;
   overflow: hidden;
 }
@@ -176,6 +279,26 @@ body::after {
 @keyframes progress-shimmer {
   0%   { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
+}
+
+/* ── Generate button shimmer sweep ── */
+@keyframes btn-shimmer {
+  0%, 100% { left: -100%; opacity: 0; }
+  10%      { opacity: 1; }
+  50%      { left: 140%; opacity: 1; }
+  60%      { opacity: 0; }
+}
+
+/* ── Generate button pulsing border glow ── */
+@keyframes btn-border-breathe {
+  0%, 100% {
+    border-color: hsl(30 85% 60% / 0.3);
+    box-shadow: 0 1px 3px hsl(0 0% 0% / 0.3), inset 0 1px 0 hsl(30 85% 70% / 0.15);
+  }
+  50% {
+    border-color: hsl(30 85% 60% / 0.55);
+    box-shadow: 0 1px 6px hsl(30 85% 54% / 0.25), 0 0 12px -4px hsl(30 85% 54% / 0.2), inset 0 1px 0 hsl(30 85% 70% / 0.15);
+  }
 }
 
 /* ── Generate button press animation ── */
@@ -229,6 +352,24 @@ body::after {
   50%      { border-color: hsl(30 85% 54% / 0.35); }
 }
 
+/* ── Audio player buttons — consistent round style with warm glow ── */
+.player-btn {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+.player-btn:hover {
+  border-color: hsl(30 85% 54% / 0.5) !important;
+  background-color: hsl(30 85% 54% / 0.08) !important;
+  box-shadow: 0 0 10px -3px hsl(30 85% 54% / 0.3);
+  color: hsl(var(--primary)) !important;
+}
+.player-btn:hover svg {
+  filter: drop-shadow(0 0 3px hsl(30 85% 54% / 0.4));
+}
+.player-btn:active {
+  transform: scale(0.93);
+  box-shadow: 0 0 8px -2px hsl(30 85% 54% / 0.4);
+}
+
 /* ── Active playback ring ── */
 .playback-ring {
   animation: playback-pulse 1.5s ease-in-out infinite;
@@ -239,6 +380,93 @@ body::after {
   50%      { box-shadow: 0 0 0 4px hsl(30 85% 54% / 0); }
 }
 
+/* ── Waveform reveal — grows up from flat line ── */
+.waveform-reveal {
+  transform-origin: center bottom;
+  transition: opacity 0.4s ease-out, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.5s ease, border-color 0.5s ease;
+}
+.waveform-hidden {
+  opacity: 0;
+  transform: scaleY(0);
+}
+.waveform-visible {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+/* ── Waveform playing — breathing glow + warm reflection ── */
+.waveform-playing {
+  border-color: hsl(30 85% 54% / 0.3) !important;
+  box-shadow:
+    0 0 16px -4px hsl(30 85% 54% / 0.2),
+    0 4px 20px -8px hsl(30 85% 54% / 0.15),
+    inset 0 0 20px -10px hsl(30 85% 54% / 0.1);
+  animation: waveform-breathe 3s ease-in-out infinite;
+}
+@keyframes waveform-breathe {
+  0%, 100% {
+    box-shadow:
+      0 0 16px -4px hsl(30 85% 54% / 0.2),
+      0 4px 20px -8px hsl(30 85% 54% / 0.15),
+      inset 0 0 20px -10px hsl(30 85% 54% / 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 24px -4px hsl(30 85% 54% / 0.35),
+      0 6px 28px -8px hsl(30 85% 54% / 0.2),
+      inset 0 0 28px -10px hsl(30 85% 54% / 0.15);
+  }
+}
+
+/* ── Chip button — rotating border (active) + shimmer (hover) ── */
+@property --chip-border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.chip-glow {
+  border: 2px solid transparent !important;
+  background:
+    linear-gradient(hsl(24 6% 8%), hsl(24 6% 8%)) padding-box,
+    conic-gradient(from var(--chip-border-angle), hsl(36 100% 65%), hsl(30 85% 54%) 10%, hsl(30 85% 54% / 0.25) 30%, hsl(30 85% 54% / 0.25) 100%) border-box !important;
+  box-shadow: 0 0 10px -2px hsl(30 85% 54% / 0.4), 0 0 4px -1px hsl(30 85% 54% / 0.15);
+  animation: chip-border-spin 2s linear infinite;
+}
+@keyframes chip-border-spin {
+  to { --chip-border-angle: 360deg; }
+}
+
+.chip-hover {
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+.chip-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent 0%, hsl(30 85% 70% / 0.15) 50%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+.chip-hover:hover::before {
+  animation: chip-shimmer 0.6s ease-out forwards;
+}
+@keyframes chip-shimmer {
+  from { left: -100%; }
+  to   { left: 140%; }
+}
+.chip-hover:hover {
+  border-color: hsl(30 85% 54% / 0.6);
+  background-color: hsl(30 85% 54% / 0.1);
+  box-shadow: 0 0 8px -2px hsl(30 85% 54% / 0.35), 0 0 4px -1px hsl(30 85% 54% / 0.15);
+}
+
 /* ── Sparkle spin for generating state ── */
 .sparkle-spin {
   animation: sparkle-rotate 2s linear infinite;
@@ -246,4 +474,15 @@ body::after {
 @keyframes sparkle-rotate {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
+}
+
+/* ── Reusable hover glow utilities ── */
+.hover-glow-destructive {
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+.hover-glow-destructive:hover {
+  color: hsl(var(--destructive)) !important;
+  border-color: hsl(0 62% 50% / 0.4) !important;
+  background-color: hsl(0 62% 50% / 0.06) !important;
+  box-shadow: 0 0 10px -3px hsl(0 62% 50% / 0.3);
 }

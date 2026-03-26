@@ -1,6 +1,7 @@
 {
   "id": "jazz-brass-section",
   "name": "Brass Section",
+  "description": "Punchy brass section stabs with bold character",
   "prompts": {
     "SessionStart": "full brass trumpet ensemble ascending with bright warm fanfare, brass section horn, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "SessionEnd": "brass trumpet ensemble descending with smooth warm decay, brass section horn, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",

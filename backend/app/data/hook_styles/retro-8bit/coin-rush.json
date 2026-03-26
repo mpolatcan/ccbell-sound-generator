@@ -1,6 +1,7 @@
 {
   "id": "retro-8bit-coin-rush",
   "name": "Coin Rush",
+  "description": "Rapid coin collection jingles with metallic sparkle",
   "prompts": {
     "SessionStart": "bright rapid coin-collect arpeggio ascending with metallic 8-bit sparkle, chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SessionEnd": "coin-collect arpeggio descending with smooth metallic 8-bit decay, chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",

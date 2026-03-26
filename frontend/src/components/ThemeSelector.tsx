@@ -47,8 +47,8 @@ export const ThemeSelector = memo(function ThemeSelector({ themes, selectedTheme
                 'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium',
                 'border cursor-pointer transition-all duration-200 ease-out',
                 isSelected
-                  ? 'border-primary/60 bg-primary/12 text-primary shadow-sm shadow-primary/10 ring-1 ring-primary/20'
-                  : 'border-border/50 bg-muted/15 text-muted-foreground hover:border-primary/30 hover:text-foreground hover:bg-muted/30'
+                  ? 'text-primary chip-glow'
+                  : 'border-border/50 bg-muted/15 text-muted-foreground hover:text-foreground chip-hover'
               )}
               onClick={() => onSelect(theme.id)}
               aria-pressed={isSelected}

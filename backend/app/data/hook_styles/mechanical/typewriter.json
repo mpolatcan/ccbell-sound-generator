@@ -1,6 +1,7 @@
 {
   "id": "mechanical-typewriter",
   "name": "Typewriter",
+  "description": "Clacking typewriter keys with satisfying tactility",
   "prompts": {
     "SessionStart": "typewriter key strike ascending with bright carriage bell ring, typewriter percussion, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SessionEnd": "typewriter key descending with smooth carriage return decay, typewriter percussion, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",

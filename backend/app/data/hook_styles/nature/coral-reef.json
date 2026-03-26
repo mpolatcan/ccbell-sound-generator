@@ -1,6 +1,7 @@
 {
   "id": "nature-coral-reef",
   "name": "Coral Reef",
+  "description": "Underwater coral textures with bubbly depth",
   "prompts": {
     "SessionStart": "steel pan ascending with bright tropical melodic percussion, caribbean steel drum, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "SessionEnd": "steel pan descending with smooth tropical melodic decay, caribbean steel drum, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",

@@ -1,6 +1,7 @@
 {
   "id": "ambient-deep-space",
   "name": "Deep Space",
+  "description": "Vast cosmic emptiness with distant astral echoes",
   "prompts": {
     "SessionStart": "cosmic resonant drone ascending with bright deep space bloom, space drone tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "SessionEnd": "cosmic drone descending with smooth deep space resonant decay, space drone tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",

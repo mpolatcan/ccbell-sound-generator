@@ -1,6 +1,7 @@
 {
   "id": "mechanical-iron-press",
   "name": "Iron Press",
+  "description": "Heavy industrial press sounds with powerful weight",
   "prompts": {
     "SessionStart": "crisp press click ascending with bright mechanical chime ring, iron press tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SessionEnd": "press click descending with smooth mechanical chime decay, iron press tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",

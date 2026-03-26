@@ -1,6 +1,7 @@
 {
   "id": "jazz-walking-bass",
   "name": "Walking Bass",
+  "description": "Deep walking bass lines with grooving momentum",
   "prompts": {
     "SessionStart": "deep upright bass pluck ascending with bright warm walking line, acoustic bass tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "SessionEnd": "upright bass pluck descending with smooth warm walking decay, acoustic bass tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",

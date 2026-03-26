@@ -1,6 +1,7 @@
 {
   "id": "retro-8bit-boss-battle",
   "name": "Boss Battle",
+  "description": "Intense boss encounter tones with dramatic weight",
   "prompts": {
     "SessionStart": "bold triangle wave fanfare with bright ascending two-note opening, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SessionEnd": "deep triangle wave tone descending with firm closing resolution, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",

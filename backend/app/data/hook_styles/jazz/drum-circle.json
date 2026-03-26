@@ -1,6 +1,7 @@
 {
   "id": "jazz-drum-circle",
   "name": "Drum Circle",
+  "description": "Rhythmic jazz drum patterns with syncopated pulse",
   "prompts": {
     "SessionStart": "jazz brush on snare ascending with bright rhythmic sweep, rim click percussion, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "SessionEnd": "brush on snare descending with smooth rhythmic sweep decay, rim click, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",

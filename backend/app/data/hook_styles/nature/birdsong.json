@@ -1,6 +1,7 @@
 {
   "id": "nature-birdsong",
   "name": "Birdsong",
+  "description": "Melodic bird calls with natural musicality",
   "prompts": {
     "SessionStart": "bright piccolo whistle ascending with clear high bird-call melody, piccolo flute tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "SessionEnd": "piccolo whistle descending with smooth high bird-call decay, piccolo flute tone, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",

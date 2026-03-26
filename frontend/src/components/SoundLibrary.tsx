@@ -296,10 +296,11 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
             variant="ghost"
             size="sm"
             onClick={handleClearAll}
-            className="text-muted-foreground hover:text-destructive"
+            className="h-8 rounded-full border border-border/50 hover-glow-destructive px-3 text-xs"
             aria-label="Clear all sound packs"
             title="Clear all (Ctrl+Shift+C)"
           >
+            <Trash2 className="h-3.5 w-3.5 mr-1" />
             Clear All
           </Button>
         </CardHeader>
@@ -318,17 +319,17 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                     open={isExpanded}
                     onOpenChange={() => togglePack(pack.id)}
                   >
-                    <div className="border border-border/50 rounded-lg overflow-hidden bg-card/50">
+                    <div className="border border-border/50 rounded-lg overflow-hidden bg-card/50 transition-[border-color,box-shadow] duration-300 hover:border-primary/40 hover:shadow-[0_0_16px_-4px_hsl(30_85%_54%/0.3)]">
                       {/* Pack Header */}
-                      <div className="bg-muted/20 px-3 py-2.5">
+                      <div className="bg-muted/20 px-3 py-2.5 transition-colors duration-200 hover:bg-muted/30">
                         <div className="flex items-center justify-between gap-2">
-                          <CollapsibleTrigger className="flex items-center gap-2 flex-1 min-w-0 text-left">
+                          <CollapsibleTrigger className="flex items-center gap-2 flex-1 min-w-0 text-left group/trigger">
                             {isExpanded ? (
                               <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground" />
                             ) : (
                               <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground" />
                             )}
-                            <Package className="h-4 w-4 shrink-0 text-primary" />
+                            <Package className="h-4 w-4 shrink-0 text-primary transition-transform duration-200 group-hover/trigger:scale-110" />
                             {editingPackId === pack.id ? (
                               <div className="flex items-center gap-1.5" onClick={(e) => e.stopPropagation()}>
                                 <Input
@@ -341,10 +342,10 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                     if (e.key === 'Escape') cancelEditingPack()
                                   }}
                                 />
-                                <Button variant="ghost" size="icon" className="h-6 w-6" onClick={savePackName} aria-label="Save pack name">
+                                <Button variant="ghost" size="icon" className="h-6 w-6 text-success hover:text-success hover:bg-success/10" onClick={savePackName} aria-label="Save pack name">
                                   <Check className="h-3 w-3" />
                                 </Button>
-                                <Button variant="ghost" size="icon" className="h-6 w-6" onClick={cancelEditingPack} aria-label="Cancel editing">
+                                <Button variant="ghost" size="icon" className="h-6 w-6 text-muted-foreground hover:text-destructive hover:bg-destructive/8" onClick={cancelEditingPack} aria-label="Cancel editing">
                                   <X className="h-3 w-3" />
                                 </Button>
                               </div>
@@ -354,8 +355,8 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                           </CollapsibleTrigger>
                           <div className="flex items-center gap-1.5 shrink-0">
                             {hasGenerating && (
-                              <Badge variant="outline" className="animate-pulse text-xs border-primary/30 text-primary">
-                                <Loader2 className="h-3 w-3 mr-1 animate-spin" />
+                              <Badge variant="outline" className="text-xs border-primary/30 text-primary shadow-[0_0_8px_-2px_hsl(30_85%_54%/0.3)] chip-glow">
+                                <Loader2 className="h-3 w-3 mr-1 sparkle-spin" />
                                 Generating
                               </Badge>
                             )}
@@ -365,26 +366,26 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                             <Badge variant="outline" className="text-xs font-mono">{pack.model}</Badge>
 
                             {/* Desktop: full action buttons */}
-                            <div className="hidden sm:flex items-center gap-1">
+                            <div className="hidden sm:flex items-center gap-1.5">
                               {!editingPackId && (
                                 <Button
                                   variant="ghost"
                                   size="icon"
-                                  className="h-7 w-7"
+                                  className="h-8 w-8 rounded-full border border-border/50 player-btn"
                                   onClick={(e) => {
                                     e.stopPropagation()
                                     startEditingPack(pack)
                                   }}
                                   aria-label="Rename pack"
                                 >
-                                  <Pencil className="h-3 w-3" />
+                                  <Pencil className="h-3.5 w-3.5" />
                                 </Button>
                               )}
                               {onSelectForDownload && (
                                 <Button
                                   variant="ghost"
                                   size="sm"
-                                  className="h-7 text-xs"
+                                  className="h-8 rounded-full border border-border/50 player-btn text-xs px-3"
                                   onClick={(e) => {
                                     e.stopPropagation()
                                     handleDownloadPackDialog(pack)
@@ -392,7 +393,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                   disabled={completedSounds.length === 0}
                                   aria-label="Install pack"
                                 >
-                                  <Download className="h-3 w-3 mr-1" />
+                                  <Download className="h-3.5 w-3.5 mr-1" />
                                   Install
                                 </Button>
                               )}
@@ -400,7 +401,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                 <Button
                                   variant="ghost"
                                   size="sm"
-                                  className="h-7 text-xs"
+                                  className="h-8 rounded-full border border-border/50 player-btn text-xs px-3"
                                   onClick={(e) => {
                                     e.stopPropagation()
                                     handlePublishPack(pack)
@@ -408,20 +409,21 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                   disabled={completedSounds.length === 0}
                                   aria-label="Publish pack to GitHub"
                                 >
+                                  <Upload className="h-3.5 w-3.5 mr-1" />
                                   Publish
                                 </Button>
                               )}
                               <Button
                                 variant="ghost"
                                 size="icon"
-                                className="h-7 w-7 text-muted-foreground hover:text-destructive"
+                                className="h-8 w-8 rounded-full border border-border/50 hover-glow-destructive"
                                 onClick={(e) => {
                                   e.stopPropagation()
                                   handleDeletePack(pack.id)
                                 }}
                                 aria-label="Delete pack"
                               >
-                                <Trash2 className="h-3 w-3" />
+                                <Trash2 className="h-3.5 w-3.5" />
                               </Button>
                             </div>
 
@@ -432,11 +434,11 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                   <Button
                                     variant="ghost"
                                     size="icon"
-                                    className="h-7 w-7"
+                                    className="h-8 w-8 rounded-full border border-border/50 player-btn"
                                     onClick={(e) => e.stopPropagation()}
                                     aria-label="Pack actions"
                                   >
-                                    <MoreHorizontal className="h-4 w-4" />
+                                    <MoreHorizontal className="h-3.5 w-3.5" />
                                   </Button>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align="end">
@@ -489,13 +491,13 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                               <div
                                 key={sound.id}
                                 className={cn(
-                                  'p-3 rounded-lg border-l-[3px] border transition-colors sound-card-enter',
+                                  'p-3 rounded-lg border-l-[3px] border transition-[colors,box-shadow,border-color] duration-200 sound-card-enter',
                                   hookColor?.border || 'border-l-primary',
                                   isGenerating
                                     ? 'bg-primary/3 border-primary/15 generating-card'
                                     : isError
                                       ? 'bg-destructive/3 border-destructive/15'
-                                      : 'bg-muted/15 border-border/30'
+                                      : 'bg-muted/15 border-border/30 hover:border-primary/40 hover:shadow-[0_0_14px_-3px_hsl(30_85%_54%/0.35)]'
                                 )}
                                 style={{ animationDelay: `${index * 50}ms` }}
                               >
@@ -529,28 +531,27 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                         </Badge>
                                       )}
                                       {sound.prompt_alias && (
-                                        <Badge variant="outline" className="text-[10px]">
+                                        <Badge variant="outline" className="text-[10px] hidden sm:inline-flex">
                                           {sound.prompt_alias}
                                         </Badge>
                                       )}
-                                      {sound.steps != null && (
-                                        <Badge variant="outline" className="text-[10px] font-mono">
-                                          {sound.steps} steps
-                                        </Badge>
-                                      )}
-                                      {sound.cfg_scale != null && (
-                                        <Badge variant="outline" className="text-[10px] font-mono">
-                                          CFG {sound.cfg_scale}
-                                        </Badge>
-                                      )}
-                                      <Badge variant="outline" className="text-[10px] font-mono">
-                                        {sound.model}
-                                      </Badge>
-                                      {sound.sampler && (
-                                        <Badge variant="outline" className="text-[10px] font-mono">
-                                          {sound.sampler}
-                                        </Badge>
-                                      )}
+                                      <span className="hidden sm:contents">
+                                        {sound.steps != null && (
+                                          <Badge variant="outline" className="text-[10px] font-mono">
+                                            {sound.steps} steps
+                                          </Badge>
+                                        )}
+                                        {sound.cfg_scale != null && (
+                                          <Badge variant="outline" className="text-[10px] font-mono">
+                                            CFG {sound.cfg_scale}
+                                          </Badge>
+                                        )}
+                                        {sound.sampler && (
+                                          <Badge variant="outline" className="text-[10px] font-mono">
+                                            {sound.sampler}
+                                          </Badge>
+                                        )}
+                                      </span>
                                     </div>
                                     <p className="text-xs text-muted-foreground mt-1 font-mono">
                                       {sound.prompt}
@@ -566,7 +567,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                       <Button
                                         variant="ghost"
                                         size="icon"
-                                        className="h-7 w-7"
+                                        className="h-8 w-8 rounded-full border border-border/50 player-btn"
                                         onClick={() => handleRegenerateSound(sound)}
                                         aria-label={`Regenerate ${sound.hook_type} sound`}
                                       >
@@ -576,7 +577,7 @@ export const SoundLibrary = forwardRef<SoundLibraryRef, SoundLibraryProps>(
                                     <Button
                                       variant="ghost"
                                       size="icon"
-                                      className="h-7 w-7 text-muted-foreground hover:text-destructive"
+                                      className="h-8 w-8 rounded-full border border-border/50 hover-glow-destructive"
                                       onClick={() => handleDeleteSound(sound)}
                                       aria-label={`Delete ${sound.hook_type} sound`}
                                     >

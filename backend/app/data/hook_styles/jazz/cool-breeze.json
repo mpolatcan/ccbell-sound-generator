@@ -1,6 +1,7 @@
 {
   "id": "jazz-cool-breeze",
   "name": "Cool Breeze",
+  "description": "Cool West Coast jazz tones with relaxed ease",
   "prompts": {
     "SessionStart": "vibraphone ascending with bright shimmering bars and warm ring, jazz piano chord, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "SessionEnd": "vibraphone descending smoothly with dampened bars decaying, jazz piano, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",

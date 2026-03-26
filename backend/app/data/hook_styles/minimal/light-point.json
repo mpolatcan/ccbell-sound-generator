@@ -1,6 +1,7 @@
 {
   "id": "minimal-light-point",
   "name": "Light Point",
+  "description": "Pinpoint light flickers with focused precision",
   "prompts": {
     "SessionStart": "precise soft ping ascending with focused bright tone, digital click tone, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
     "SessionEnd": "precise ping descending with focused clean decay, digital click tone, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",

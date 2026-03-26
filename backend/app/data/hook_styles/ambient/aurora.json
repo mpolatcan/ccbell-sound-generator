@@ -1,6 +1,7 @@
 {
   "id": "ambient-aurora",
   "name": "Aurora",
+  "description": "Northern lights shimmer with gentle spectral color",
   "prompts": {
     "SessionStart": "shimmering aurora synth ascending with bright northern lights bloom, aurora borealis tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "SessionEnd": "aurora synth descending with smooth shimmering northern lights decay, aurora tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",

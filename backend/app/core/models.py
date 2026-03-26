@@ -99,6 +99,7 @@ class SubTheme(BaseModel):
 
     id: str
     name: str
+    description: str = ""
     prompts: dict[str, str] = Field(default_factory=dict)
 
 

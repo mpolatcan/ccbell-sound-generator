@@ -1,6 +1,7 @@
 {
   "id": "retro-8bit-dungeon-key",
   "name": "Dungeon Key",
+  "description": "Mysterious dungeon discovery with echoing depth",
   "prompts": {
     "SessionStart": "mysterious minor-key chiptune ascending with dark dungeon melody, 8-bit dungeon tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SessionEnd": "minor-key chiptune descending with smooth dark resolution, 8-bit dungeon tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",

@@ -1,6 +1,7 @@
 {
   "id": "minimal-dot-matrix",
   "name": "Dot Matrix",
+  "description": "Precise dot-by-dot patterns with measured rhythm",
   "prompts": {
     "SessionStart": "precise staccato digital dot ascending with bright crisp pattern, dot matrix click, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
     "SessionEnd": "staccato digital dot descending with smooth crisp decay, dot matrix tone, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",

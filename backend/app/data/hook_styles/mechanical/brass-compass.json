@@ -1,6 +1,7 @@
 {
   "id": "mechanical-brass-compass",
   "name": "Brass Compass",
+  "description": "Precision brass mechanisms with nautical character",
   "prompts": {
     "SessionStart": "brass compass click ascending with bright precise instrument ping, brass compass tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SessionEnd": "brass compass click descending with smooth precise instrument decay, brass compass tone, mechanical notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",

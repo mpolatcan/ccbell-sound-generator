@@ -1,6 +1,7 @@
 {
   "id": "retro-8bit-level-complete",
   "name": "Level Complete",
+  "description": "Satisfying level-clear melodies with ascending joy",
   "prompts": {
     "SessionStart": "celebratory chiptune fanfare with bright ascending major arpeggio, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SessionEnd": "smooth chiptune farewell melody descending with clear resolution, 8-bit chiptune notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",

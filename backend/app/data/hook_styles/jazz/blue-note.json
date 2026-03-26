@@ -1,6 +1,7 @@
 {
   "id": "jazz-blue-note",
   "name": "Blue Note",
+  "description": "Smoky blue note bends with soulful expression",
   "prompts": {
     "SessionStart": "warm muted trumpet ascending with breathy welcoming tone, jazz horn, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "SessionEnd": "muted trumpet descending smoothly with breathy warm decay, jazz horn, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",

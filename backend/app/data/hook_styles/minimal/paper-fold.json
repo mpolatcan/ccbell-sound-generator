@@ -1,6 +1,7 @@
 {
   "id": "minimal-paper-fold",
   "name": "Paper Fold",
+  "description": "Crisp paper folding sounds with clean geometry",
   "prompts": {
     "SessionStart": "crisp paper-like percussive tone ascending with bright clean attack, paper crinkle percussion, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
     "SessionEnd": "paper percussive tone descending with smooth crisp decay, paper crinkle sound, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",

@@ -80,11 +80,11 @@ export const ModelLoadingIndicator = memo(function ModelLoadingIndicator({
     )
   }
 
-  // Idle state
+  // Idle state — waiting for auto-load to begin
   return (
     <div className="flex items-center gap-2 text-sm text-muted-foreground">
       <Loader2 className="h-4 w-4 animate-spin" />
-      <span>Preparing {modelName}...</span>
+      <span>Waiting to load {modelName}...</span>
     </div>
   )
 })

@@ -1,6 +1,7 @@
 {
   "id": "sci-fi-plasma-core",
   "name": "Plasma Core",
+  "description": "Warm FM synthesis bells with bright harmonic ring",
   "prompts": {
     "SessionStart": "bright ascending FM synthesis sweep rising two octaves with warm resonance, electronic bell tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SessionEnd": "smooth descending FM synthesis tone with warm harmonic decay, resonant electronic bell, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",

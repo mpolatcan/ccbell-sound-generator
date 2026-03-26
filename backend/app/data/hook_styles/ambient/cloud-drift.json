@@ -1,6 +1,7 @@
 {
   "id": "ambient-cloud-drift",
   "name": "Cloud Drift",
+  "description": "Slow-moving cloud textures with drifting serenity",
   "prompts": {
     "SessionStart": "ethereal pad chime ascending with airy shimmering bloom, crystalline bell tone, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "SessionEnd": "ethereal pad chime decaying with airy descending tone, bell sound, ambient notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",

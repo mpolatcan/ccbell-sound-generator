@@ -1,6 +1,7 @@
 {
   "id": "sci-fi-hologram",
   "name": "Hologram",
+  "description": "Shimmering holographic textures with ethereal shimmer",
   "prompts": {
     "SessionStart": "shimmering granular synth ascending with bright holographic sparkle, granular shimmer tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SessionEnd": "granular synth descending with smooth holographic dissolve, granular shimmer tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",

@@ -1,6 +1,7 @@
 {
   "id": "sci-fi-data-stream",
   "name": "Data Stream",
+  "description": "Flowing data transmission tones with digital clarity",
   "prompts": {
     "SessionStart": "rapid staccato digital synth ascending with bright data burst, digital stream tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SessionEnd": "staccato digital synth descending with crisp data wind-down, digital stream tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",

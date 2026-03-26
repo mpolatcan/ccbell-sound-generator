@@ -1,6 +1,7 @@
 {
   "id": "sci-fi-cyber-grid",
   "name": "Cyber Grid",
+  "description": "Digital square waves with precise grid-like structure",
   "prompts": {
     "SessionStart": "clean digital square wave ascending with crisp grid-like precision, cyber synth tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SessionEnd": "digital square wave descending with crisp structured decay, cyber synth tone, sci-fi notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",

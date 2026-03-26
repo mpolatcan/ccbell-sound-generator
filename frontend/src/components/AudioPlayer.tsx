@@ -49,7 +49,7 @@ export const AudioPlayer = memo(function AudioPlayer({
       container: containerRef.current,
       waveColor: 'hsl(24 5% 30%)',
       progressColor: 'hsl(30 85% 54%)',
-      cursorColor: 'hsl(30 85% 60%)',
+      cursorColor: 'hsl(30 85% 64%)',
       cursorWidth: 2,
       barWidth: 2,
       barGap: 1,
@@ -231,8 +231,9 @@ export const AudioPlayer = memo(function AudioPlayer({
         <div
           ref={containerRef}
           className={cn(
-            'w-full rounded-lg bg-muted/20 p-2 border border-border/30 transition-opacity duration-300',
-            (isLoading || hasError) && 'opacity-0'
+            'relative w-full rounded-lg bg-muted/20 p-2 border border-border/30 waveform-reveal',
+            (isLoading || hasError) ? 'waveform-hidden' : 'waveform-visible',
+            isPlaying && 'waveform-playing'
           )}
         />
         {/* Loading/error overlays positioned on top of the waveform container */}
@@ -260,10 +261,10 @@ export const AudioPlayer = memo(function AudioPlayer({
         <div className="flex items-center gap-2">
           {/* Play/Pause */}
           <Button
-            variant="outline"
+            variant="ghost"
             size="icon"
             className={cn(
-              "h-8 w-8 rounded-full border-border/50 transition-all",
+              "h-8 w-8 rounded-full border border-border/50 player-btn",
               isPlaying && "playback-ring border-primary/40"
             )}
             onClick={togglePlay}
@@ -280,7 +281,7 @@ export const AudioPlayer = memo(function AudioPlayer({
           <Button
             variant="ghost"
             size="icon"
-            className="h-8 w-8 rounded-full"
+            className="h-8 w-8 rounded-full border border-border/50 player-btn"
             onClick={restart}
             aria-label="Restart audio"
           >
@@ -297,7 +298,7 @@ export const AudioPlayer = memo(function AudioPlayer({
             <Button
               variant="ghost"
               size="icon"
-              className="h-7 w-7 rounded-full"
+              className="h-8 w-8 rounded-full border border-border/50 player-btn"
               onClick={toggleMute}
               aria-label={isMuted ? 'Unmute audio' : 'Mute audio'}
             >

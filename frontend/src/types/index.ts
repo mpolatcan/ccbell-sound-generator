@@ -17,6 +17,7 @@ export interface PerHookConfig {
 export interface SubTheme {
   id: string
   name: string
+  description: string
   prompts: Record<string, string>
 }
 

@@ -1,6 +1,7 @@
 {
   "id": "retro-8bit-warp-zone",
   "name": "Warp Zone",
+  "description": "Dimensional warp transitions with swirling motion",
   "prompts": {
     "SessionStart": "warping pitch-bend chiptune ascending with dimensional sweep, 8-bit warp tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",
     "SessionEnd": "pitch-bend chiptune descending with smooth dimensional closing, 8-bit warp tone, notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, crisp",

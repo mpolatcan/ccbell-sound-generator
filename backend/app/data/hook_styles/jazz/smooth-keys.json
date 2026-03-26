@@ -1,6 +1,7 @@
 {
   "id": "jazz-smooth-keys",
   "name": "Smooth Keys",
+  "description": "Silky piano keys with polished elegance",
   "prompts": {
     "SessionStart": "Rhodes electric piano ascending with bright warm shimmering tone, electric piano keys, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",
     "SessionEnd": "Rhodes piano descending with smooth warm electric decay, electric piano tone, jazz notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, rich",

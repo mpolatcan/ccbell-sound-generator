@@ -1,6 +1,7 @@
 {
   "id": "minimal-ink-drop",
   "name": "Ink Drop",
+  "description": "Single ink drop ripples with quiet spreading warmth",
   "prompts": {
     "SessionStart": "precise drop tone ascending with bright clean impact, water drop percussion, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",
     "SessionEnd": "drop tone descending with smooth precise decay, water drop sound, minimal notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, pristine",

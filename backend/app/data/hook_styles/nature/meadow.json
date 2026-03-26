@@ -1,6 +1,7 @@
 {
   "id": "nature-meadow",
   "name": "Meadow",
+  "description": "Open meadow breezes with gentle grass whispers",
   "prompts": {
     "SessionStart": "bright ascending finger cymbal ring with shimmering overtones, small bell chime, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",
     "SessionEnd": "descending wind chime tones with smooth ringing decay, small bell chime, nature notification sound, clean, clear, no background noise, 44.1kHz, stereo, high-quality, warm",

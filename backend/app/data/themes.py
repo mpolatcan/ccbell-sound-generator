@@ -17,7 +17,14 @@ def _load_sub_themes(theme_id: str) -> list[SubTheme]:
     for f in sorted(theme_dir.glob("*.json")):
         with open(f) as fh:
             data = json.load(fh)
-        sub_themes.append(SubTheme(id=data["id"], name=data["name"], prompts=data["prompts"]))
+        sub_themes.append(
+            SubTheme(
+                id=data["id"],
+                name=data["name"],
+                description=data.get("description", ""),
+                prompts=data["prompts"],
+            )
+        )
     return sub_themes
 
 
